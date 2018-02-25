@@ -1,0 +1,22 @@
+//Switch MQTT_Test "Testing..." { mqtt="<[mosquitto:testing/mqtt/topic:state:default], >[mosquitto:testing/mqtt/back-topic:command:*:default]" }  
+// ^-- Item Type              ^-- Item linked Channel
+//         ^-- Item Name              ^-- Inbound MQTT configuration              ^-- Outbound MQTT configuration
+//                   ^-- Item Label
+
+// System temperatures
+Group  Kitchen_Temperature_Chart (System, Charts)
+
+Number Kitchen_Temperature_Chart_Period "Period" (System)
+Number Kitchen_Temperature "Kitchen Temp [%.1f °C]" <temperature> (Kitchen_Temperature_Chart) ["TargetTemperature"] {mqtt="<[mosquitto:/WiFiDevice/Temp1Status:state:default]"} 
+
+// Output of command line execution 
+//String System_Temperature_CPU_out { channel="exec:command:cpuTemp:output" }
+Switch Presence_Mobile_Jo "Jo's Mobile" <network> { channel="network:device:192_168_0_60:online" }
+Switch Presence_Mobile_Elsie "Elsie's Mobile" <network> { channel="network:device:192_168_0_61:online" }
+Switch Presence_Mobile_Hannah "Hannah's Mobile" <network> { channel="network:device:192_168_0_62:online" }
+//Switch Wallplug_FF_LR_TV "Wallplug TV" <poweroutlet> { channel="zwave:device:bb4d2b80:node30:switch_binary" }
+
+//Number ESP01_Temperature "ESP-01 Temperature Sensor [%.1f °C]" {mqtt="<[mosquitto:/WiFiDevice/Temp1Status:state:default]"} 
+
+//Switch ESP01_Relay "ESP-01 Relay" <switch> {mqtt=">[mosquitto:/WiFiDevice/Led2Command:command:*:MAP(onoffcases.map)]"} 
+//Switch ESP01_Relay "ESP-01 Relay" <switch> { mqtt=">[mosquitto:/WiFiDevice/Led2Command:command:*:default]" } 

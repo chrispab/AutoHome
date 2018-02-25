@@ -1,0 +1,64 @@
+rule "StartUp Hannah Bedroom Heating"
+when
+    System started
+then
+    if (H_BR_Heating_Mode ==   (NULL)) {
+        H_BR_Heating_Mode.postUpdate(2)
+    }
+end
+// 
+// rule "H_BR_Heating mode notify changed"
+// when
+//     Item H_BR_Heating_Mode changed 
+// then
+//         //say("Elsie Bedroom heating mode changed")
+// end 
+// 
+
+rule "H_BR_Heating Control"
+when
+    Item H_BR_Heating_Mode changed or
+    Item H_BR_Heating_Setpoint changed or
+    Item H_BR_Temperature changed
+then
+    // 0="Off", 1="On", 2="Auto"
+    if (H_BR_Heating_Mode.state == 0) {
+        H_BR_Heating.sendCommand(OFF)
+        H_BR_Heating.postUpdate(OFF)
+        //say("Elsie bedroom radiator off")
+    }
+    else if (H_BR_Heating_Mode.state == 1) {
+        H_BR_Heating.sendCommand(ON)
+        H_BR_Heating.postUpdate(ON)
+        //say("Elsie bedroom radiator on")
+    }
+    else if (H_BR_Heating_Mode.state == 2) {
+        H_BR_Heating_Mode.postUpdate(2)
+            // get the current setpoint for the nursery
+            var Number setpoint = H_BR_Heating_Setpoint.state as DecimalType
+
+            // calculate the turn on/off temperatures
+            var Number turnOnTemp = setpoint  //- 0.1
+            var Number turnOffTemp = setpoint
+
+            var Number temp = H_BR_Temperature.state as DecimalType
+
+            // determine whether we need to turn on/off the heater
+        // determine whether we need to turn on/off the heater
+        if (temp >= turnOffTemp) {
+            H_BR_Heating.sendCommand(OFF)
+            H_BR_Heating.postUpdate(OFF)
+            if (H_BR_Heating.previousState != H_BR_Heating.state){
+              H_BR_Message.postUpdate("new state. temp at, or over set point, boiler off")  
+            }
+            //H_BRMessage.postUpdate("temp at or over set point, boiler off")
+        }else if (temp < turnOnTemp) {
+            H_BR_Heating.sendCommand(ON)
+            H_BR_Heating.postUpdate(ON)
+            if (H_BR_Heating.previousState != H_BR_Heating.state){
+              H_BR_Message.postUpdate("new state. temp below set point, boiler on")  
+            }
+            //H_BRMessage.postUpdate("temp below set point, Boiler On")
+        }
+    }
+end

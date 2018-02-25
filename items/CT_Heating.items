@@ -1,0 +1,10 @@
+Number CT_Heating_Setpoint "Heating Setpoint [%.1f °C]"    <degreesc>
+Number CT_Heating_Mode     "Heating Mode" <heating> // heating modes: 0 - Off, 1 - On, 2 - Auto
+Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+
+Switch CT_Heating "CT Heating Radiator"  <switch> {http=">[ON:GET:http://192.168.0.27/8=ON:on] >[OFF:GET:http://192.168.0.27/8=OFF:off]" }
+//{mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+
+
+String CT_Message

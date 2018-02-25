@@ -1,0 +1,6 @@
+//String mtv_MythTV_Upcoming_XML "MythTV Upcoming [%s]" (grp_Virtual, grp_MythTV) { http="<[http://192.168.0.100:6544/Dvr/GetUpcomingList?StartIndex=0&Descending=true:30000:XSLT(mythtv_upcoming.xsl)]" }
+//String mtv_MythTV_Upcoming_XML "MythTV Upcoming" (grp_Virtual, grp_MythTV) { http="<[http://192.168.0.100:6544/Dvr/GetUpcomingList?StartIndex=0&Descending=true:1800000:XSLT(mythtv_upcoming.xsl)]" }
+
+String mtv_MythTV_Upcoming_XML "MythTV XML"
+String mtv_MythTV_Upcoming_JSON "MythTV JSON"
+Number pgn_MythTV_Upcoming_Idx "MythTV Pagination Index"

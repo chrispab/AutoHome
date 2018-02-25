@@ -1,0 +1,57 @@
+rule "StartUp FR Heating"
+when
+System started
+then
+if (FR_Heating_Mode == NULL) {
+     FR_Heating_Mode.postUpdate(2)
+}
+end
+
+rule "FR_Heating"
+when
+    Item FR_Heating_Mode changed or
+    Item FR_Heating_Setpoint changed or
+    Item FR_Temperature changed
+then
+    //FR_Heating_Mode = 2
+    // 0="Off", 1="On", 2="Auto"
+    //sendBroadcastNotification("Hello world!")
+    if (FR_Heating_Mode.state == 0) {
+        FR_Heating.sendCommand(OFF)
+        FR_Heating.postUpdate(OFF)
+        //FR_BoilerDemand.state = OFF //ask for boiler off
+    }
+    else if (FR_Heating_Mode.state == 1) {
+        FR_Heating.sendCommand(ON)
+        FR_Heating.postUpdate(ON)
+        //FR_BoilerDemand.state = ON //ask for boiler on
+    }
+    else if (FR_Heating_Mode.state == 2) {
+            //say("f r mode 2")
+            // get the current setpoint for the nursery
+            var Number setpoint = FR_Heating_Setpoint.state as DecimalType
+
+            // calculate the turn on/off temperatures
+            var Number turnOnTemp = setpoint  - 0.1
+            var Number turnOffTemp = setpoint
+
+            var Number temp = FR_Temperature.state as DecimalType
+
+            // determine whether we need to turn on/off the heater
+            if (temp <= turnOnTemp) {
+                // turn on temp has been reached so switch on the heater
+                FR_Heating.sendCommand(ON)
+                FR_Heating.postUpdate(ON)
+                //check if boiler needs turning on
+                //Boiler_Control.postUpdate(ON)
+                //FR_BoilerDemand.postUpdate(ON) //ask for boiler on
+            }
+            else if (temp >= turnOffTemp) {
+                // turn off temp has been reached so switch off the heater
+                FR_Heating.sendCommand(OFF)
+                FR_Heating.postUpdate(OFF)
+                //FR_BoilerDemand.postUpdate(OFF) //ask for boiler off
+            }
+
+    }
+end

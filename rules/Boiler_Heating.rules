@@ -1,0 +1,47 @@
+rule "StartUp Boiler Control Heating"
+when
+    System started
+then
+    if (Boiler_Control == NULL) {
+        Boiler_Control.postUpdate(OFF)
+    }
+end
+
+rule "Boiler Demand changed"
+when
+    Item FR_Heating changed or
+    Item CT_Heating changed or
+    Item E_BR_Heating changed or
+    Item H_BR_Heating changed or
+    Item J_BR_Heating changed 
+
+    // Item FR_Heating_Mode changed or
+    // Item CT_Heating_Mode changed or
+    // Item E_BR_Heating_Mode changed or
+    // Item H_BR_Heating_Mode changed or
+    // Item J_BR_Heating_Mode changed or
+
+    // Item FR_Heating_Setpoint changed or
+    // Item CT_Heating_Setpoint changed or
+    // Item E_BR_Heating_Setpoint changed or
+    // Item H_BR_Heating_Setpoint changed or
+    // Item J_BR_Heating_Setpoint changed 
+
+then
+    //say("Boiler demand changed")
+    if (       (FR_Heating.state == ON) 
+            || (CT_Heating.state == ON) 
+            || (E_BR_Heating.state == ON) 
+            || (H_BR_Heating.state == ON)
+            || (J_BR_Heating.state == ON) 
+            ){
+        Boiler_Control.sendCommand(ON)
+        Boiler_Control.postUpdate(ON)
+       // CT_Message.postUpdate("Mode 0, Boiler Off")
+    }
+    else {
+        Boiler_Control.sendCommand(OFF)
+        Boiler_Control.postUpdate(OFF)
+    }
+
+end

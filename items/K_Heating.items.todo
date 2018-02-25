@@ -1,0 +1,7 @@
+Number K_Heating_Setpoint "Heating Setpoint [%.1f °C]"    <degreesc>
+// heating modes: 0 - Off, 1 - On, 2 - Auto
+Number K_Heating_Mode     "Heating Mode" <heating>
+Number K_Temperature "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number K_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+Switch K_Heating "CT Heating BoilerRelay"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+String K_Message

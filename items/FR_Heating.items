@@ -1,0 +1,8 @@
+
+Number FR_Heating_Setpoint "Front Room Heating Setpoint [%.1f °C]"    <degreesc>
+Number FR_Temperature "Front Room Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_FR/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number FR_Humidity "Front Room Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_FR/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+//Number Sonoff_TH_Humidity "sonoff TH Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:/Zone3/HumidityStatus:state:default]"} 
+//Switch FR_Heating "Front Room Heating"  <switch> {mqtt=">[mosquitto:sonoff_th1/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Switch FR_Heating "Front Room Heating"  <switch> {mqtt=">[mosquitto:sonoff_FR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Number FR_Heating_Mode     "Front Room Heating Mode" <heating>

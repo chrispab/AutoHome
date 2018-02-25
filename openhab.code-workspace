@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"openhab.host" : "openhab.local",
+		"openhab.port": 8080,
+		"openhab.useRestApi": true
+	}
+}

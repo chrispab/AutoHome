@@ -1,0 +1,17 @@
+/* sitemap default label="My first sitemap"
+{
+    Switch item=Presence_Mobile_John label="John's Mobile"
+    Switch item=Wallplug_FF_LR_TV label="Wallplug TV"
+}
+ */
+/*  sitemap temps label="temp sitemap"
+{                
+        Frame label="Date" {
+        Text item=Date
+    }
+      Frame label="Demo" {
+      Switch item=Heating_Mode label="Heating Mode" mappings=[0="Off", 1="On", 2="Auto"]
+      Setpoint item=Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=15 maxValue=24 step=0.1 visibility=[Heating_Mode==2]
+      Text item=ESP01_Relay
+      }
+} */

@@ -1,0 +1,5 @@
+
+//DateTime Date "Date [%1$tA, %1$td.%1$tm.%1$tY]" { ntp="Europe/London:en_GB" }
+DateTime Current_Date  "[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  <date> { channel="ntp:ntp:demo:dateTime" }
+Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+//Switch FR_BoilerDemand "Front Room Boiler Demand"

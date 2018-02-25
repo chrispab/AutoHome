@@ -1,0 +1,61 @@
+rule "StartUp CT Heating"
+when
+    System started
+then
+    if (CT_Heating_Mode == NULL) {
+        CT_Heating_Mode.postUpdate(2)
+    }
+end
+
+rule "Conservatory heating"
+when
+    Item CT_Heating_Mode changed or
+    Item CT_Heating_Setpoint changed or
+    Item CT_Temperature changed
+then
+    if (CT_Heating_Mode.state == 0) {
+        CT_Heating.sendCommand(OFF)
+        CT_Heating.postUpdate(OFF)
+       // CT_Message.postUpdate("Mode 0, Boiler Off")
+    }
+    else if (CT_Heating_Mode.state == 1) {
+        CT_Heating.sendCommand(ON)
+        CT_Heating.postUpdate(ON)
+        //CT_Message.postUpdate("Mode 1, Boiler On")
+    }
+    else if (CT_Heating_Mode.state == 2) { //auto
+        CT_Heating_Mode.postUpdate(2)
+        //CT_Message.postUpdate("Mode 2, Auto")
+
+        var Number setpoint = CT_Heating_Setpoint.state as DecimalType
+
+    // calculate the turn on/off temperatures
+        var Number turnOnTemp = setpoint //- 0.2
+        var Number turnOffTemp = setpoint //+ 0.1
+
+        // get the current temperature in the nursery
+        var Number temp = CT_Temperature.state as DecimalType
+
+       // CT_Message.postUpdate("temp is " + CT_Temperature.state.toString)
+        
+        // determine whether we need to turn on/off the heater
+        if (temp >= turnOffTemp) {
+            CT_Heating.sendCommand(OFF)
+            CT_Heating.postUpdate(OFF)
+            if (CT_Heating.previousState != CT_Heating.state){
+              CT_Message.postUpdate("new state. temp at, or over set point, boiler off")  
+            }
+            //CT_Message.postUpdate("temp at or over set point, boiler off")
+        }else if (temp < turnOnTemp) {
+            CT_Heating.sendCommand(ON)
+            CT_Heating.postUpdate(ON)
+            if (CT_Heating.previousState != CT_Heating.state){
+              CT_Message.postUpdate("new state. temp below set point, boiler on")  
+            }
+            //CT_Message.postUpdate("temp below set point, Boiler On")
+        } 
+        // else {
+        //     //CT_Message.postUpdate("auto mode, - no action")
+        // }
+}
+end
