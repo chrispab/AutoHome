@@ -1,7 +1,9 @@
 
 Number J_BR_Heating_Setpoint "Our Bedroom Heating Setpoint [%.1f °C]"    <degreesc>
-Number J_BR_Temperature "Our Bedroom Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_J_BR/tele/SENSOR:state:JSONPATH($.DHT11.Temperature)]"} 
-Number J_BR_Humidity "Our Bedroom Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_J_BR/tele/SENSOR:state:JSONPATH($.DHT11.Humidity)]"} 
+Number J_BR_Temperature "Our Bedroom Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_J_BR/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number J_BR_Humidity "Our Bedroom Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_J_BR/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
 Switch J_BR_Heating "Our Bedroom Heating"  <switch> {mqtt=">[mosquitto:sonoff_J_BR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
 Number J_BR_Heating_Mode "Our Bedroom Heating Mode" <heating>
 String J_BR_Message
+
+Number J_BR_Heating_PresetTempNormal "Our Bedroom Heating Preset (Normal Mode) [%.1f °C]"

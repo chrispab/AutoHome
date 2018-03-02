@@ -6,3 +6,5 @@ Number FR_Humidity "Front Room Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitt
 //Switch FR_Heating "Front Room Heating"  <switch> {mqtt=">[mosquitto:sonoff_th1/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
 Switch FR_Heating "Front Room Heating"  <switch> {mqtt=">[mosquitto:sonoff_FR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
 Number FR_Heating_Mode     "Front Room Heating Mode" <heating>
+
+Number FR_Heating_PresetTempNormal "Front Room Heating Preset (Normal Mode) [%.1f °C]"

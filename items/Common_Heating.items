@@ -1,5 +1,19 @@
 
+
+Group gHeatingModes
+Group gHeatingSetPoints
+
+
 //DateTime Date "Date [%1$tA, %1$td.%1$tm.%1$tY]" { ntp="Europe/London:en_GB" }
 DateTime Current_Date  "[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  <date> { channel="ntp:ntp:demo:dateTime" }
 Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
 //Switch FR_BoilerDemand "Front Room Boiler Demand"
+
+String Heating_Mode "Global Heating Mode [%s]"
+Switch Heating_UpdateHeater "Send Target Temperatures to Heaters"
+
+Number AbsoluteMaxTempAllowed "Maximum allowed temperature [%.1f °C]" <temperature> 
+
+Number Outside_Temperature "Outside Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number Outside_Humidity "Outside Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+

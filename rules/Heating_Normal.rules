@@ -1,0 +1,136 @@
+rule "06:30"
+when
+    Time cron "0 30 6 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+rule "14:30"
+when
+    Time cron "0 30 14 ? * * *"
+then
+    // CT_Heating_PresetTempNormal.postUpdate(21.0)
+    FR_Heating_PresetTempNormal.postUpdate(20.0)
+    // E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    // H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    // J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+rule "16:30"
+when
+    Time cron "0 30 16 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    //FR_Heating_PresetTempNormal.postUpdate(20.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+rule "10:30"
+when
+    Time cron "0 30 22 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+
+rule "00:30"
+when
+    Time cron "0 30 00 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(16.5)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+rule "test"
+when
+    Time cron "0 12 23 ? * * *"
+then
+    // CT_Heating_PresetTempNormal.postUpdate(17.0)
+    // FR_Heating_PresetTempNormal.postUpdate(21.0)
+    // E_BR_Heating_PresetTempNormal.postUpdate(22.0)
+    // H_BR_Heating_PresetTempNormal.postUpdate(23.0)
+    // J_BR_Heating_PresetTempNormal.postUpdate(24.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+rule "React on heating mode switch, send target temperatures"
+when
+    Item Heating_Mode received update or
+    Item Heating_UpdateHeater received command ON
+then
+    Heating_UpdateHeater.postUpdate(OFF)
+    logInfo("heating_mode.rules", "Heating Mode: " + Heating_Mode.state)
+    switch Heating_Mode.state {
+        case "NORMAL": {
+            CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
+           // CT_Heating_Setpoint.state = 
+            FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
+            E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
+            //E_BR_Heating_PresetTempNormal.postUpdate(22.0)
+            H_BR_Heating_Setpoint.state = (H_BR_Heating_PresetTempNormal.state)
+            J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
+            //J_BR_Heating_PresetTempNormal.postUpdate(24.0)
+
+        }
+        // case "PARTY": {
+        //     LR_Heating_TargetTemp.sendCommand(21.0)
+        //     BE_Heating_TargetTemp.sendCommand(15.0)
+        //     BA_Heating_TargetTemp.sendCommand(19.0)
+        // }
+        // case "SICKDAY": {
+        //     LR_Heating_TargetTemp.sendCommand(23.0)
+        //     BE_Heating_TargetTemp.sendCommand(19.0)
+        //     BA_Heating_TargetTemp.sendCommand(23.0)
+        // }
+
+        // case "WEEKEND_TRIP": {
+        //     LR_Heating_TargetTemp.sendCommand(15.0)
+        //     BE_Heating_TargetTemp.sendCommand(15.0)
+        //     BA_Heating_TargetTemp.sendCommand(15.0)
+        // }
+        // case "AWAY": {
+        //     LR_Heating_TargetTemp.sendCommand(13.0)
+        //     BE_Heating_TargetTemp.sendCommand(13.0)
+        //     BA_Heating_TargetTemp.sendCommand(13.0)
+        // }
+        // case "OFF_SUMMER": {
+        //     LR_Heating_TargetTemp.sendCommand(0.0)
+        //     BE_Heating_TargetTemp.sendCommand(0.0)
+        //     BA_Heating_TargetTemp.sendCommand(0.0)
+        // }
+        default : { logError("heating_mode.rules", "Heating Mode unknown: " + Heating_Mode.state) }
+    }
+end
+
+
+rule "Initialize uninitialized virtual Items"
+when
+    System started
+then
+ if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+    //createTimer(now.plusSeconds(180)) [ |
+      //  if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+       // Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
+   // ]
+end
