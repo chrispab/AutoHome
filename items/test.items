@@ -1,0 +1,7 @@
+Switch TEST_433_Control "TEST_433_Control"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?8=ON:on] >[OFF:GET:http://192.168.0.230/switch?8=OFF:off]" }
+
+Switch socketG2_1 "socketG2_1"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?4=ON:on] >[OFF:GET:http://192.168.0.230/switch?4=OFF:off]" }
+Switch socketG2_2 "socketG2_2"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?5=ON:on] >[OFF:GET:http://192.168.0.230/switch?5=OFF:off]" }
+Switch socketG2_3 "socketG2_3"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?6=ON:on] >[OFF:GET:http://192.168.0.230/switch?6=OFF:off]" }
+Switch socketG2_4 "socketG2_4"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?7=ON:on] >[OFF:GET:http://192.168.0.230/switch?7=OFF:off]" }
+Switch socketG3_1 "socketG3_1"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?8=ON:on] >[OFF:GET:http://192.168.0.230/switch?8=OFF:off]" }

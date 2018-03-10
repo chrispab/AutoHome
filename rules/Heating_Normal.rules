@@ -1,8 +1,8 @@
 rule "06:30"
 when
-    Time cron "0 30 6 ? * * *"
+    Time cron "0 30 6 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    CT_Heating_PresetTempNormal.postUpdate(20.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
     H_BR_Heating_PresetTempNormal.postUpdate(17.0)
@@ -12,7 +12,7 @@ end
 
 rule "14:30"
 when
-    Time cron "0 30 14 ? * * *"
+    Time cron "0 30 14 ? * MON-FRI *"
 then
     // CT_Heating_PresetTempNormal.postUpdate(21.0)
     FR_Heating_PresetTempNormal.postUpdate(20.0)
@@ -24,10 +24,10 @@ end
 
 rule "16:30"
 when
-    Time cron "0 30 16 ? * * *"
+    Time cron "0 30 16 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
-    //FR_Heating_PresetTempNormal.postUpdate(20.0)
+    FR_Heating_PresetTempNormal.postUpdate(20.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
     H_BR_Heating_PresetTempNormal.postUpdate(17.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
@@ -37,7 +37,7 @@ end
 
 rule "10:30"
 when
-    Time cron "0 30 22 ? * * *"
+    Time cron "0 30 22 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
@@ -51,13 +51,53 @@ end
 
 rule "00:30"
 when
-    Time cron "0 30 00 ? * * *"
+    Time cron "0 30 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(16.5)
+    CT_Heating_PresetTempNormal.postUpdate(16.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
     H_BR_Heating_PresetTempNormal.postUpdate(16.0)
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+rule "00:30 weekend"
+when
+    Time cron "0 30 00 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(16.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+rule "9:00 weekend"
+when
+    Time cron "0 0 9 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(20.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeater.sendCommand(ON)
+end
+
+
+
+rule "10:30pm weekend"
+when
+    Time cron "0 30 22 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeater.sendCommand(ON)
 end
 

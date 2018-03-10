@@ -1,0 +1,4 @@
+sitemap Master label="master sitemap"
+{
+//String LINK_THERMOSTAT "<a href='/openhab.app?sitemap=thermostat'>Thermostat control</a>"
+}

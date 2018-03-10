@@ -1,4 +1,4 @@
-sitemap FR_Heating label="Front Room Heating"
+sitemap Front_Room_Heating label="Front Room Heating"
 {
   Frame label="Date" {
     Text item=Current_Date
