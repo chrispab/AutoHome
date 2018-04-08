@@ -74,6 +74,20 @@ Items {
     J_BR_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
     J_BR_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
 
+    Hall_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
+    Hall_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
+    Hall_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Hall_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Hall_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
+
+    Office_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
+    Office_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
+    Office_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Office_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Office_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
+
+
+
     Heating_Mode                : strategy = everyUpdate, restoreOnStartup
     Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
     

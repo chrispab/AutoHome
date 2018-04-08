@@ -6,7 +6,10 @@ Group gHeatingSetPoints
 
 //DateTime Date "Date [%1$tA, %1$td.%1$tm.%1$tY]" { ntp="Europe/London:en_GB" }
 DateTime Current_Date  "[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  <date> { channel="ntp:ntp:demo:dateTime" }
-Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)] "} 
+//Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"} 
+
+
 //Switch FR_BoilerDemand "Front Room Boiler Demand"
 
 String Heating_Mode "Global Heating Mode [%s]"
@@ -17,3 +20,4 @@ Number AbsoluteMaxTempAllowed "Maximum allowed temperature [%.1f °C]" <temperat
 Number Outside_Temperature "Outside Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
 Number Outside_Humidity "Outside Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
 
+Switch 433Socket_3 "433 socket 3"  <switch> {mqtt=">[mosquitto:433MhzBridge/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 

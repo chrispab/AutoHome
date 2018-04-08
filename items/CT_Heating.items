@@ -5,9 +5,13 @@ Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosqui
 
 //Switch CT_Heating "Conservatory Radiator"  <switch> {http=">[ON:GET:http://192.168.0.230/8=ON:on] >[OFF:GET:http://192.168.0.230/8=OFF:off]" }
 //{mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
-Switch CT_Heating "Conservatory Radiator"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?8=ON:on] >[OFF:GET:http://192.168.0.230/switch?8=OFF:off]" }
+//Switch CT_Heating "Conservatory Radiator"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?8=ON:on] >[OFF:GET:http://192.168.0.230/switch?8=OFF:off]" }
+//Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power8:command:*:MAP(onoffcases.map)]"} 
+Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
 
 
 String CT_Message
 
 Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
+
+

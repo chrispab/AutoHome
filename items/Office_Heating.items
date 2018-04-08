@@ -1,0 +1,9 @@
+
+Number Office_Heating_Setpoint "Office Heating Setpoint [%.1f °C]"    <degreesc>
+Number Office_Temperature "Office Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
+Number Office_Humidity "Office Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+Switch Office_Heating "Office Heating"  <switch> {mqtt=">[mosquitto:sonoff_Office/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Number Office_Heating_Mode "Office Heating Mode" <heating>
+String Office_Message
+
+Number Office_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"

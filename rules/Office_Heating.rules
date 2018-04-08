@@ -1,0 +1,59 @@
+rule "StartUp Our Bedroom Heating"
+when
+    System started
+then
+    if (Office_Heating_Mode ==   (NULL)) {
+        Office_Heating_Mode.postUpdate(2)
+    }
+end
+// 
+rule "Office_Heating mode notify changed"
+when
+    Item Office_Heating_Mode changed 
+then
+        //say("Elsie Bedroom heating mode changed")
+end 
+// 
+rule "Office_Heating Control"
+when
+    Item Office_Heating_Mode changed or
+    Item Office_Heating_Setpoint changed or
+    Item Office_Temperature changed
+then
+    // 0="Off", 1="On", 2="Auto"
+    if (Office_Heating_Mode.state == 0) {
+        Office_Heating.sendCommand(OFF)
+        Office_Heating.postUpdate(OFF)
+        //say("Elsie bedroom radiator off")
+    }
+    else if (Office_Heating_Mode.state == 1) {
+        Office_Heating.sendCommand(ON)
+        Office_Heating.postUpdate(ON)
+        //say("Elsie bedroom radiator on")
+    }
+    else if (Office_Heating_Mode.state == 2) {
+
+            // get the current setpoint for the nursery
+            var Number setpoint = Office_Heating_Setpoint.state as DecimalType
+
+            // calculate the turn on/off temperatures
+            var Number turnOnTemp = setpoint  //- 0.1
+            var Number turnOffTemp = setpoint
+
+            var Number temp = Office_Temperature.state as DecimalType
+
+            // determine whether we need to turn on/off the heater
+            if (temp < turnOnTemp) {
+                // turn on temp has been reached so switch on the heater
+                Office_Heating.sendCommand(ON)
+                Office_Heating.postUpdate(ON)
+                //say("Elsie bedroom radiator on")
+            }
+            else if (temp >= turnOffTemp) {
+                // turn off temp has been reached so switch off the heater
+                Office_Heating.sendCommand(OFF)
+                Office_Heating.postUpdate(OFF)
+                //say("Elsie bedroom radiator off")
+            }
+    }
+end
