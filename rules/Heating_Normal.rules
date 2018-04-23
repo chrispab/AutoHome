@@ -139,48 +139,31 @@ when
     Item Heating_Mode received update or
     Item Heating_UpdateHeater received command ON
 then
+//avoid changing a zone sp if zone heating mode 1 , local auto
     Heating_UpdateHeater.postUpdate(OFF)
     logInfo("heating_mode.rules", "Heating Mode: " + Heating_Mode.state)
     switch Heating_Mode.state {
         case "NORMAL": {
             CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
-           // CT_Heating_Setpoint.state = 
             FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
             E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
-            //E_BR_Heating_PresetTempNormal.postUpdate(22.0)
             H_BR_Heating_Setpoint.state = (H_BR_Heating_PresetTempNormal.state)
             J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
             Office_Heating_Setpoint.state = (Office_Heating_PresetTempNormal.state)
             Hall_Heating_Setpoint.state = (Hall_Heating_PresetTempNormal.state)
-            //J_BR_Heating_PresetTempNormal.postUpdate(24.0)
-
         }
-        // case "PARTY": {
-        //     LR_Heating_TargetTemp.sendCommand(21.0)
-        //     BE_Heating_TargetTemp.sendCommand(15.0)
-        //     BA_Heating_TargetTemp.sendCommand(19.0)
-        // }
-        // case "SICKDAY": {
-        //     LR_Heating_TargetTemp.sendCommand(23.0)
-        //     BE_Heating_TargetTemp.sendCommand(19.0)
-        //     BA_Heating_TargetTemp.sendCommand(23.0)
-        // }
 
-        // case "WEEKEND_TRIP": {
-        //     LR_Heating_TargetTemp.sendCommand(15.0)
-        //     BE_Heating_TargetTemp.sendCommand(15.0)
-        //     BA_Heating_TargetTemp.sendCommand(15.0)
-        // }
         // case "AWAY": {
-        //     LR_Heating_TargetTemp.sendCommand(13.0)
+        //     LR_Heating_TargetTemp.sendCommand(13.0)//note this is a command to a device that uses internal setpoint
+        //not like a sonoff - switching in openhab rules, the one above has its own internal logic
         //     BE_Heating_TargetTemp.sendCommand(13.0)
         //     BA_Heating_TargetTemp.sendCommand(13.0)
         // }
-        // case "OFF_SUMMER": {
-        //     LR_Heating_TargetTemp.sendCommand(0.0)
-        //     BE_Heating_TargetTemp.sendCommand(0.0)
-        //     BA_Heating_TargetTemp.sendCommand(0.0)
-        // }
+        case "OFF_SUMMER": {
+            //LR_Heating_TargetTemp.sendCommand(0.0)
+            //BE_Heating_TargetTemp.sendCommand(0.0)
+            //BA_Heating_TargetTemp.sendCommand(0.0)
+        }
         default : { logError("heating_mode.rules", "Heating Mode unknown: " + Heating_Mode.state) }
     }
 end

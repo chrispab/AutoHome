@@ -1,0 +1,4 @@
+DateTime SunsetTime "Sunset [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:set#start" }
+DateTime SunriseTime "Sunrise [%1$tH:%1$tM]" <sun> (Astro) { channel="astro:sun:home:rise#end" }
+Number   SunElevation  "Elevation [%.1f °]"  <sun>  (Astro) { channel="astro:sun:home:position#elevation" }
+Switch   NightState    "Night"

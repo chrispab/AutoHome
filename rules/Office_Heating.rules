@@ -1,4 +1,4 @@
-rule "StartUp Our Bedroom Heating"
+rule "StartUp Office Heating"
 when
     System started
 then
@@ -14,6 +14,7 @@ then
         //say("Elsie Bedroom heating mode changed")
 end 
 // 
+
 rule "Office_Heating Control"
 when
     Item Office_Heating_Mode changed or
@@ -25,13 +26,34 @@ then
         Office_Heating.sendCommand(OFF)
         Office_Heating.postUpdate(OFF)
         //say("Elsie bedroom radiator off")
-    }
-    else if (Office_Heating_Mode.state == 1) {
-        Office_Heating.sendCommand(ON)
-        Office_Heating.postUpdate(ON)
+    }// just single zone in use local setpoint - ignore any global control
+    else if (Office_Heating_Mode.state == 1) { //obey setpoint for that zone
+            // get the current setpoint for the nursery
+            var Number setpoint = Office_Heating_Setpoint.state as DecimalType
+
+            // calculate the turn on/off temperatures
+            var Number turnOnTemp = setpoint  //- 0.1
+            var Number turnOffTemp = setpoint
+            var Number temp = Office_Temperature.state as DecimalType
+
+            // determine whether we need to turn on/off the heater
+            if (temp < turnOnTemp) {   // turn on temp has been reached so switch on the heater
+                Office_Heating.sendCommand(ON)
+                Office_Heating.postUpdate(ON)
+                //say("Elsie bedroom radiator on")
+            }
+            else if (temp >= turnOffTemp) {   // turn off temp has been reached so switch off the heater
+                Office_Heating.sendCommand(OFF)
+                Office_Heating.postUpdate(OFF)
+                //say("Elsie bedroom radiator off")
+            }
+
+
+        //Office_Heating.sendCommand(ON)
+        //Office_Heating.postUpdate(ON)
         //say("Elsie bedroom radiator on")
     }
-    else if (Office_Heating_Mode.state == 2) {
+    else if (Office_Heating_Mode.state == 2) { // obey global pre-programmed settings
 
             // get the current setpoint for the nursery
             var Number setpoint = Office_Heating_Setpoint.state as DecimalType
