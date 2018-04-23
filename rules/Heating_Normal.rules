@@ -4,6 +4,9 @@ rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
 then
+    //if mode = 0 - all off 
+    //if Office_Heating_Mode.state == 1 do not update the setpoint for that zone
+    //only update if mode = 2 - global auto program 2 then defo update
     CT_Heating_PresetTempNormal.postUpdate(16.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
@@ -13,7 +16,6 @@ then
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
     Heating_UpdateHeater.sendCommand(ON)
 end
-
 
 
 rule "06:00"
@@ -30,6 +32,7 @@ then
     Heating_UpdateHeater.sendCommand(ON)
 end
 
+
 rule "14:30"
 when
     Time cron "0 30 14 ? * MON-FRI *"
@@ -43,6 +46,7 @@ then
     //Hall_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeater.sendCommand(ON)
 end
+
 
 rule "16:30"
 when
@@ -119,6 +123,7 @@ then
     Heating_UpdateHeater.sendCommand(ON)
 end
 
+
 rule "test"
 when
     Time cron "0 58 00 ? * * *"
@@ -134,23 +139,37 @@ then
 end
 
 
-rule "React on heating mode switch, send target temperatures"
+rule "React on master heating mode switch, or message to send target temperatures"
 when
-    Item Heating_Mode received update or
-    Item Heating_UpdateHeater received command ON
+    Item Heating_Mode received update or //master mode changes
+    Item Heating_UpdateHeater received command ON //cron job has requested we send updates to setpoints
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
     Heating_UpdateHeater.postUpdate(OFF)
     logInfo("heating_mode.rules", "Heating Mode: " + Heating_Mode.state)
     switch Heating_Mode.state {
         case "NORMAL": {
-            CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
-            FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
-            E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
-            H_BR_Heating_Setpoint.state = (H_BR_Heating_PresetTempNormal.state)
-            J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
-            Office_Heating_Setpoint.state = (Office_Heating_PresetTempNormal.state)
-            Hall_Heating_Setpoint.state = (Hall_Heating_PresetTempNormal.state)
+            if(CT_Heating_Mode.state == 2) { //if mode is master control
+                CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
+            }
+            if(FR_Heating_Mode.state == 2) { //if mode is master control
+                   FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
+            }
+            if(E_BR_Heating_Mode.state == 2) { //if mode is master control
+                E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
+            }
+            if(H_BR_Heating_Mode.state == 2) { //if mode is master control
+                H_BR_Heating_Setpoint.state = (H_BR_Heating_PresetTempNormal.state)
+            }
+            if(J_BR_Heating_Mode.state == 2) { //if mode is master control
+                J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
+            }
+            if(Office_Heating_Mode.state == 2) { //if mode is master control
+                Office_Heating_Setpoint.state = (Office_Heating_PresetTempNormal.state)
+            }
+            if(Hall_Heating_Mode.state == 2) { //if mode is master control
+                Hall_Heating_Setpoint.state = (Hall_Heating_PresetTempNormal.state)
+            }
         }
 
         // case "AWAY": {
