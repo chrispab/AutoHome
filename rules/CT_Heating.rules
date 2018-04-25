@@ -1,9 +1,9 @@
-rule "StartUp CT Heating"
+rule "StartUp CT_Heating"
 when
     System started
 then
     if (CT_Heating_Mode == NULL) {
-        CT_Heating_Mode.postUpdate(2)
+        CT_Heating_Mode.postUpdate(2) // start in master auto control mode
     }
 end
 
@@ -13,53 +13,22 @@ when
     Item CT_Heating_Setpoint changed or
     Item CT_Temperature changed
 then
-//0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
+    //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
     if (CT_Heating_Mode.state == 0) {
         CT_Heating.sendCommand(OFF)
         CT_Heating.postUpdate(OFF)
-       // CT_Message.postUpdate("Mode 0, Boiler Off")
     }
-    else if (CT_Heating_Mode.state == 1) {
-        //follow local setpoint, not programmed sp
-        //get sp from ??? var
+    else if ( (CT_Heating_Mode.state == 1) || (CT_Heating_Mode.state == 2) )  { //auto
         var Number setpoint = CT_Heating_Setpoint.state as DecimalType
-        CT_Heating.sendCommand(ON)
-        CT_Heating.postUpdate(ON)
-        //CT_Message.postUpdate("Mode 1, Boiler On")
-    }
-    else if (CT_Heating_Mode.state == 2) { //auto
-        CT_Heating_Mode.postUpdate(2)
-        //CT_Message.postUpdate("Mode 2, Auto")
-
-        var Number setpoint = CT_Heating_Setpoint.state as DecimalType
-
-    // calculate the turn on/off temperatures
-        var Number turnOnTemp = setpoint //- 0.2
+        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
-
-        // get the current temperature in the nursery
-        var Number temp = CT_Temperature.state as DecimalType
-
-       // CT_Message.postUpdate("temp is " + CT_Temperature.state.toString)
-        
-        // determine whether we need to turn on/off the heater
-        if (temp >= turnOffTemp) {
+        var Number temp = CT_Temperature.state as DecimalType // get the current temperature
+        if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
             CT_Heating.sendCommand(OFF)
             CT_Heating.postUpdate(OFF)
-            if (CT_Heating.previousState != CT_Heating.state){
-              CT_Message.postUpdate("new state. temp at, or over set point, boiler off")  
-            }
-            //CT_Message.postUpdate("temp at or over set point, boiler off")
         }else if (temp < turnOnTemp) {
             CT_Heating.sendCommand(ON)
             CT_Heating.postUpdate(ON)
-            if (CT_Heating.previousState != CT_Heating.state){
-              CT_Message.postUpdate("new state. temp below set point, boiler on")  
-            }
-            //CT_Message.postUpdate("temp below set point, Boiler On")
         } 
-        // else {
-        //     //CT_Message.postUpdate("auto mode, - no action")
-        // }
-}
+    }
 end
