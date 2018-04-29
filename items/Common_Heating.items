@@ -1,3 +1,4 @@
+Group Heating_PresetNormal_Group
 Group gHeatingModes
 Group gHeatingSetPoints
 
@@ -11,7 +12,7 @@ Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boile
 //Switch FR_BoilerDemand "Front Room Boiler Demand"
 
 String Heating_Mode "Global Heating Mode [%s]"
-Switch Heating_UpdateHeater "Send Target Temperatures to Heaters"
+Switch Heating_UpdateHeaters "Send Target Temperatures to Heaters"
 
 Number MaxHeatingTempAllowed "Maximum allowed temperature [%.1f °C]" <temperature> 
 

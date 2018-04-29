@@ -13,6 +13,8 @@ when
     Item CT_Heating_Setpoint changed or
     Item CT_Temperature changed
 then
+    logInfo("CT_heating.rules", "CT Heating Mode: " + CT_Heating_Mode.state)
+    logInfo("CT_heating.rules", "CT Heating SP: " + CT_Heating_Setpoint.state)
     //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
     if (CT_Heating_Mode.state == 0) {
         CT_Heating.sendCommand(OFF)

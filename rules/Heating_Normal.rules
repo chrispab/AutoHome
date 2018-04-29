@@ -1,12 +1,10 @@
 
 
+// NORMAL mode rules
 rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
 then
-    //if mode = 0 - all off 
-    //if Office_Heating_Mode.state == 1 do not update the setpoint for that zone
-    //only update if mode = 2 - global auto program 2 then defo update
     CT_Heating_PresetTempNormal.postUpdate(16.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
@@ -14,9 +12,8 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
     Office_Heating_PresetTempNormal.postUpdate(16.0)
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
-
 
 rule "06:00"
 when
@@ -29,7 +26,7 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
@@ -44,7 +41,7 @@ then
     // J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     //Office_Heating_PresetTempNormal.postUpdate(17.0)
     //Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
@@ -59,9 +56,8 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
-
 
 rule "10:30"
 when
@@ -74,9 +70,8 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
-
 
 rule "00:30 weekend"
 when
@@ -89,7 +84,7 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
     Office_Heating_PresetTempNormal.postUpdate(16.0)
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
@@ -104,10 +99,8 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
-
-
 
 rule "10:30pm weekend"
 when
@@ -120,13 +113,13 @@ then
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
 rule "test"
 when
-    Time cron "0 58 00 ? * * *"
+    Time cron "00 8 11 ? * * *"
 then
     // CT_Heating_PresetTempNormal.postUpdate(17.0)
     // FR_Heating_PresetTempNormal.postUpdate(21.0)
@@ -135,20 +128,22 @@ then
     // J_BR_Heating_PresetTempNormal.postUpdate(24.0)
     //Office_Heating_PresetTempNormal.postUpdate(16.0)
     //Hall_Heating_PresetTempNormal.postUpdate(16.0)
-    Heating_UpdateHeater.sendCommand(ON)
+    Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
-rule "React on master heating mode switch, or message to send target temperatures"
+rule "React on master heating mode switch, or message to send target temperatures to zones"
 when
     Item Heating_Mode received update or //master mode changes
-    Item Heating_UpdateHeater received command ON //cron job has requested we send updates to setpoints
+    Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
-    Heating_UpdateHeater.postUpdate(OFF)
-    logInfo("heating_mode.rules", "Heating Mode: " + Heating_Mode.state)
+    Heating_UpdateHeaters.postUpdate(OFF)
+
+    logInfo("heating_mode.rules", "MASTER Heating Mode: " + Heating_Mode.state)
     switch Heating_Mode.state {
         case "NORMAL": {
+            logInfo("heating_mode.rules", "processing NORMAL MASTER Heating Mode: ")
             if(CT_Heating_Mode.state == 2) { //if mode is master control
                 CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
             }
@@ -179,6 +174,21 @@ then
         //     BA_Heating_TargetTemp.sendCommand(13.0)
         // }
         case "OFF_SUMMER": {
+            logInfo("heating_mode.rules", "processing OFF_SUMMER MASTER Heating Mode: ")
+            CT_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            CT_Heating_Mode.postUpdate(0)
+            Hall_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            Hall_Heating_Mode.postUpdate(0)
+            FR_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            FR_Heating_Mode.postUpdate(0) 
+            Office_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            Office_Heating_Mode.postUpdate(0)
+            E_BR_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            E_BR_Heating_Mode.postUpdate(0)
+            J_BR_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            J_BR_Heating_Mode.postUpdate(0)
+            H_BR_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
+            H_BR_Heating_Mode.postUpdate(0)                                                
             //LR_Heating_TargetTemp.sendCommand(0.0)
             //BE_Heating_TargetTemp.sendCommand(0.0)
             //BA_Heating_TargetTemp.sendCommand(0.0)
@@ -193,8 +203,8 @@ when
     System started
 then
  if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
-    //createTimer(now.plusSeconds(180)) [ |
-      //  if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
-       // Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
-   // ]
+    createTimer(now.plusSeconds(180)) [ |
+       if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+       Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
+   ]
 end

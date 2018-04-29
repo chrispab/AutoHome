@@ -1,4 +1,4 @@
-sitemap Conservatory_Heating label="Conservatory heating"
+sitemap Conservatory_Heating label="Master Heating Mode"
 {
   Frame label="Date" {
     Text item=Current_Date
