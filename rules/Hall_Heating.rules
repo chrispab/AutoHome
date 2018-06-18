@@ -13,8 +13,8 @@ when
     Item Hall_Heating_Setpoint changed or
     Item Hall_Temperature changed
 then
-    logInfo("Hall_heating.rules", "Hall Heating Mode: " + Hall_Heating_Mode.state)
-    logInfo("Hall_heating.rules", "Hall Heating SP: " + Hall_Heating_Setpoint.state)
+    //logInfo("Hall_heating.rules", "Hall Heating Mode: " + Hall_Heating_Mode.state)
+    //logInfo("Hall_heating.rules", "Hall Heating SP: " + Hall_Heating_Setpoint.state)
     //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
     if (Hall_Heating_Mode.state == 0) {
         Hall_Heating.sendCommand(OFF)

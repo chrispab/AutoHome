@@ -93,5 +93,10 @@ Items {
     
     Outside_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
     Outside_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+
+    Bridge_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Bridge_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+
+    
     
 }

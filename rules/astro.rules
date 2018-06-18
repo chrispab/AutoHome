@@ -31,6 +31,9 @@ then
     logInfo("RULE", "It's getting dark!")
         if (NightState.state == ON) {
         sendCommand(socketG1_3, ON)
+        sendCommand(socketG1_4, ON)
+        sendCommand(socketG2_1, ON)
+
     }
 end
 
@@ -41,5 +44,7 @@ then
     logInfo("RULE", "It's getting light!")
         if (NightState.state == OFF) {
         sendCommand(socketG1_3, OFF)
+        sendCommand(socketG1_4, OFF)
+        sendCommand(socketG2_1, OFF)
     }
 end

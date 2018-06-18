@@ -143,7 +143,7 @@ then
     logInfo("heating_mode.rules", "MASTER Heating Mode: " + Heating_Mode.state)
     switch Heating_Mode.state {
         case "NORMAL": {
-            logInfo("heating_mode.rules", "processing NORMAL MASTER Heating Mode: ")
+            logInfo("heating_mode.rules", "processing case NORMAL MASTER Heating Mode: ")
             if(CT_Heating_Mode.state == 2) { //if mode is master control
                 CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
             }
@@ -174,7 +174,7 @@ then
         //     BA_Heating_TargetTemp.sendCommand(13.0)
         // }
         case "OFF_SUMMER": {
-            logInfo("heating_mode.rules", "processing OFF_SUMMER MASTER Heating Mode: ")
+            logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
             CT_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
             CT_Heating_Mode.postUpdate(0)
             Hall_Heating_Setpoint.postUpdate(14.0) //(Hall_Heating_PresetTempNormal.state)
