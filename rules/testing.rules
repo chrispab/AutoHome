@@ -1,0 +1,9 @@
+rule "Garage Door"
+    when
+        Item socketG2_1 changed to ON
+        
+    then
+        timer = Timer.create(now.plusSeconds(3) [|
+            {sendCommand(socketG1_3, OFF)}
+        ]
+end
