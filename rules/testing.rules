@@ -1,9 +1,27 @@
-rule "Garage Door"
+rule "Delayed Off Switch"
     when
         Item socketG2_1 changed to ON
-        
+
     then
         timer = Timer.create(now.plusSeconds(3) [|
             {sendCommand(socketG1_3, OFF)}
-        ]
+        ])
+end
+
+rule "Conservatory Cooling Fan"
+when
+    Item CT_Temperature changed
+then
+        var Number setpoint = 31.5 //CT_Heating_Setpoint.state as DecimalType
+        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
+        var Number turnOffTemp = setpoint //+ 0.1
+        var Number temp = CT_Temperature.state as DecimalType // get the current temperature
+        if (temp < turnOffTemp) {  // determine whether we need to turn on/off the heater
+            socketG3_2.sendCommand(OFF)
+            socketG3_2.postUpdate(OFF)
+        }else if (temp >= turnOnTemp) {
+            socketG3_2.sendCommand(ON)
+            socketG3_2.postUpdate(ON)
+        }
+
 end
