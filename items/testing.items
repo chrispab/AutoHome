@@ -1,1 +1,1 @@
-Switch Delayed_OFF    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
+Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
