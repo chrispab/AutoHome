@@ -1,7 +1,7 @@
 
 Number Hall_Heating_Setpoint "Hall Heating Setpoint [%.1f °C]"    <degreesc>
-Number Hall_Temperature "Hall Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
-Number Hall_Humidity "Hall Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
+Number Hall_Temperature "Hall Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
+Number Hall_Humidity "Hall Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
 Switch Hall_Heating "Hall Heating"  <switch> {mqtt=">[mosquitto:sonoff_Hall/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
 Number Hall_Heating_Mode "Hall Heating Mode" <heating>
 String Hall_Message

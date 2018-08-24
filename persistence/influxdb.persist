@@ -97,6 +97,7 @@ Items {
     Bridge_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
     Bridge_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
 
-    
+    GRG_Temperature : strategy = everyMinute, restoreOnStartup
+    GRG_Humidity : strategy = everyMinute, restoreOnStartup
     
 }

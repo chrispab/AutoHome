@@ -1,2 +1,2 @@
-Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:GRG_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"}
-Number GRG_Humidity "Garage Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:GRG_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"}
+Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:GRG_Sensor/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"}
+Number GRG_Humidity "Garage Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:GRG_Sensor/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"}
