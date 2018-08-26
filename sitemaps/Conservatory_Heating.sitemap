@@ -1,12 +1,15 @@
-sitemap Conservatory_Heating label="Master Heating Mode"
+sitemap Conservatory_Heating label="Conservatory"
 {
   Frame label="Date" {
     Text item=Current_Date
   }
-  Frame label="Current" {
+    Frame label="Dining Room" {
+          Switch item= socketG1_4 label="Dining Room Fairy Lights"
+          Switch item= Delayed_OFF_SW label="Delayed off Switch"
+ }
+  Frame label="Current Temp" {
           Text item=CT_Temperature label="Conservatory Temperature : [%.1f °C]"
           Switch item= CT_Heating label="Conservatory Radiator"
-
   }  
    Frame label="Heating" {
         Switch item=CT_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="On", 2="Auto"]
