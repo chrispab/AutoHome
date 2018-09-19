@@ -1,0 +1,2 @@
+Number   WeatherTemperature   "Temperature [%.2f °C]"   {weather="locationId=home, type=temperature, property=current"}
+Number   WeatherHumidity      "Humidity [%d %%]"        {weather="locationId=home, type=atmosphere, property=humidity"}

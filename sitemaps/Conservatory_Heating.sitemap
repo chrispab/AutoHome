@@ -3,6 +3,23 @@ sitemap Conservatory_Heating label="Conservatory"
   Frame label="Date" {
     Text item=Current_Date
   }
+
+    Frame label="TV" {
+          Switch item= socketG2_4 label="TV"
+ }  
+
+    Frame label="Amp" {
+          Switch item= socketG2_3 label="Amp"
+ }  
+
+    Frame label="Fan" {
+          Switch item= socketG3_2 label="Fan"
+ }  
+
+
+    Frame label="Conservatory" {
+          Switch item= socketG2_1 label="Conservatory Fairy Lights"
+ }  
     Frame label="Dining Room" {
           Switch item= socketG1_4 label="Dining Room Fairy Lights"
           Switch item= Delayed_OFF_SW label="Delayed off Switch"
