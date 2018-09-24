@@ -6,9 +6,9 @@ when
     Time cron "0 30 00 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(16.0)
-    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.0)
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
     Office_Heating_PresetTempNormal.postUpdate(16.0)
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
@@ -19,13 +19,13 @@ rule "06:00"
 when
     Time cron "0 00 6 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(20.0)
-    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    CT_Heating_PresetTempNormal.postUpdate(19.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
-    Hall_Heating_PresetTempNormal.postUpdate(17.0)
+    Hall_Heating_PresetTempNormal.postUpdate(16.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -35,7 +35,7 @@ when
     Time cron "0 30 14 ? * MON-FRI *"
 then
     // CT_Heating_PresetTempNormal.postUpdate(21.0)
-    FR_Heating_PresetTempNormal.postUpdate(20.0)
+    //FR_Heating_PresetTempNormal.postUpdate(20.0)
     // E_BR_Heating_PresetTempNormal.postUpdate(17.0)
     // H_BR_Heating_PresetTempNormal.postUpdate(17.0)
     // J_BR_Heating_PresetTempNormal.postUpdate(17.0)
@@ -50,9 +50,9 @@ when
     Time cron "0 30 16 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
-    FR_Heating_PresetTempNormal.postUpdate(20.0)
+    //FR_Heating_PresetTempNormal.postUpdate(20.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    //H_BR_Heating_PresetTempNormal.postUpdate(17.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
@@ -66,7 +66,7 @@ then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    //H_BR_Heating_PresetTempNormal.postUpdate(17.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)

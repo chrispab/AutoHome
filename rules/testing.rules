@@ -5,7 +5,7 @@ rule "Delayed Off Switch"
         Item Delayed_OFF_SW changed to OFF
 
     then
-        timer = createTimer(now.plusSeconds(180), [|
+        timer = createTimer(now.plusSeconds(240), [|
             {sendCommand(socketG1_4, OFF)}
             {postUpdate(socketG1_4, OFF)}
         ])
