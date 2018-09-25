@@ -1,5 +1,8 @@
 sitemap Conservatory_Heating label="Conservatory"
 {
+  Frame label="time1" {
+    Text item= Time1
+  }
   Frame label="Date" {
     Text item=Current_Date
   }

@@ -1,0 +1,78 @@
+Group gTimerButtons
+Group gTimerButtonsTimeout
+Group gWeekDays
+Group gDownWkSchedTime
+Group gUpWkSchedTime
+Group gWaterWkSchedTime
+
+
+
+Switch ADownstairs "Main Downstairs Switch [%s]" <groundfloor> { gpio="pin:16 activelow:yes force:yes"}
+Switch AUpstairs "Main Upstairs Switch [%s]" <firstfloor> { gpio="pin:20 activelow:yes force:yes"}
+Switch AWater "Main Hot Water Switch [%s]" <cistern> { gpio="pin:21 activelow:yes force:yes"}
+
+Switch DownBoostSwitch "Boost Ground Floor" <groundfloor> (gTimerButtons)
+Switch UpstairsBoostSwitch "Boost Upstairs" <firstfloor> (gTimerButtons) 
+Switch WaterBoostSwitch "Boost Hot Water" <cistern> (gTimerButtons) 
+
+Number DownstairsBoostTime "Hours [%d]" <clock-on> (gTimerButtons)
+Number UpstairsBoostTime "Hours [%d]" <clock-on> (gTimerButtons)
+Number WaterBoostTime "Hours [%d]" <clock-on> (gTimerButtons)
+
+
+
+Switch DownSchedSwitch
+Switch UpstairsSchedSwitch
+Switch WaterSchedSwitch
+
+Switch EnableDownstairsScheduler
+Switch EnableUpstairsScheduler
+Switch EnableWaterScheduler
+
+
+Switch  DownWkSchedMonday "Monday"     <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedTuesday "Tuesday"   <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedWednesday "Wednesday"   <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedThursday "Thursday" <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedFriday "Friday"    <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedSaturday "Saturday"    <switch>  (gDownWkSchedTime) 
+Switch  DownWkSchedSunday "Sunday"    <switch>  (gDownWkSchedTime) 
+
+String DownWkSchedTimeStartMessage "%s"
+String DownWkSchedTimeEndMessage  "%s"
+Number DownWkSchedTimeHour "Hour [%d]" <clock-on> (gDownWkSchedTime)
+Number DownWkSchedTimeMinute "Minute [%d]" <clock-on> (gDownWkSchedTime)
+Number DownWkSchedTimeEndHour "Hour [%d]" <clock> (gDownWkSchedTime)
+Number DownWkSchedTimeEndMinute "Minute [%d]" <clock> (gDownWkSchedTime)
+
+
+Switch  UpWkSchedMonday "Monday"     <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedTuesday "Tuesday"   <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedWednesday "Wednesday"   <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedThursday "Thursday" <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedFriday "Friday"    <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedSaturday "Saturday"    <switch>  (gUpWkSchedTime) 
+Switch  UpWkSchedSunday "Sunday"    <switch>  (gUpWkSchedTime) 
+
+String UpWkSchedTimeStartMessage "%s"
+String UpWkSchedTimeEndMessage  "%s"
+Number UpWkSchedTimeHour "Hour [%d]" <clock-on> (gUpWkSchedTime)
+Number UpWkSchedTimeMinute "Minute [%d]" <clock-on> (gUpWkSchedTime)
+Number UpWkSchedTimeEndHour "Hour [%d]" <clock> (gUpWkSchedTime)
+Number UpWkSchedTimeEndMinute "Minute [%d]" <clock> (gUpWkSchedTime)
+
+
+Switch  WaterWkSchedMonday "Monday"     <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedTuesday "Tuesday"   <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedWednesday "Wednesday"   <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedThursday "Thursday" <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedFriday "Friday"    <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedSaturday "Saturday"    <switch>  (gWaterWkSchedTime) 
+Switch  WaterWkSchedSunday "Sunday"    <switch>  (gWaterWkSchedTime) 
+
+String WaterWkSchedTimeStartMessage "%s"
+String WaterWkSchedTimeEndMessage  "%s"
+Number WaterWkSchedTimeHour "Hour [%d]" <clock-on> (gWaterWkSchedTime)
+Number WaterWkSchedTimeMinute "Minute [%d]" <clock-on> (gWaterWkSchedTime)
+Number WaterWkSchedTimeEndHour "Hour [%d]" <clock> (gWaterWkSchedTime)
+Number WaterWkSchedTimeEndMinute "Minute [%d]" <clock> (gWaterWkSchedTime)
