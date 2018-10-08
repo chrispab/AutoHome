@@ -1,6 +1,20 @@
 
 
 // NORMAL mode rules
+rule "00:00"
+when
+    Time cron "0 00 00 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(16.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Office_Heating_PresetTempNormal.postUpdate(14.0)
+    Hall_Heating_PresetTempNormal.postUpdate(14.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
 rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
@@ -10,8 +24,8 @@ then
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
     H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    Office_Heating_PresetTempNormal.postUpdate(16.0)
-    Hall_Heating_PresetTempNormal.postUpdate(16.0)
+    Office_Heating_PresetTempNormal.postUpdate(14.0)
+    Hall_Heating_PresetTempNormal.postUpdate(14.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -59,14 +73,14 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "10:30"
+rule "22:30 weekdays"
 when
     Time cron "0 30 22 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    //H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
@@ -77,13 +91,13 @@ rule "00:30 weekend"
 when
     Time cron "0 30 00 ? * SAT-SUN *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(16.0)
-    FR_Heating_PresetTempNormal.postUpdate(16.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    Office_Heating_PresetTempNormal.postUpdate(16.0)
-    Hall_Heating_PresetTempNormal.postUpdate(16.0)
+    CT_Heating_PresetTempNormal.postUpdate(15.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    Office_Heating_PresetTempNormal.postUpdate(15.0)
+    Hall_Heating_PresetTempNormal.postUpdate(15.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -94,25 +108,39 @@ when
 then
     CT_Heating_PresetTempNormal.postUpdate(20.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Office_Heating_PresetTempNormal.postUpdate(16.0)
+    Hall_Heating_PresetTempNormal.postUpdate(16.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "4:30pm weekend"
+when
+    Time cron "0 30 16 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "10:30pm weekend"
+rule "22:30pm weekend"
 when
     Time cron "0 30 22 ? * SAT-SUN *"
 then
     CT_Heating_PresetTempNormal.postUpdate(21.0)
-    FR_Heating_PresetTempNormal.postUpdate(15.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    Office_Heating_PresetTempNormal.postUpdate(17.0)
-    Hall_Heating_PresetTempNormal.postUpdate(17.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    Office_Heating_PresetTempNormal.postUpdate(16.0)
+    Hall_Heating_PresetTempNormal.postUpdate(14.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -205,6 +233,6 @@ then
  if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
     createTimer(now.plusSeconds(180)) [ |
        if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
-       Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
+       gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(14.0)]
    ]
 end
