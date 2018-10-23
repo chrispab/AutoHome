@@ -33,7 +33,7 @@ rule "06:00"
 when
     Time cron "0 06 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(20.0)
+    CT_Heating_PresetTempNormal.postUpdate(21.0)
     FR_Heating_PresetTempNormal.postUpdate(14.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
     H_BR_Heating_PresetTempNormal.postUpdate(14.0)

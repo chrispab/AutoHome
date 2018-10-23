@@ -32,9 +32,9 @@ then
 end
 
 
-rule "06:00 lights on"
+rule "06:15 lights on Jo"
 when
-    Time cron "0 06 00 ? * MON-FRI *"
+    Time cron "0 06 15 ? * MON-FRI *"
 then
     logInfo("RULE", "Morning Jo!")
 //        
