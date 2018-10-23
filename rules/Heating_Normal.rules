@@ -29,11 +29,11 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "07:00"
+rule "06:00"
 when
-    Time cron "0 00 7 ? * MON-FRI *"
+    Time cron "0 06 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(19.0)
+    CT_Heating_PresetTempNormal.postUpdate(20.0)
     FR_Heating_PresetTempNormal.postUpdate(14.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
     H_BR_Heating_PresetTempNormal.postUpdate(14.0)
@@ -162,14 +162,14 @@ end
 
 rule "React on master heating mode switch, or message to send target temperatures to zones"
 when
-    Item Heating_Mode received update or //master mode changes
+    Item masterHeatingMode received update or //master mode changes
     Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
     Heating_UpdateHeaters.postUpdate(OFF)
 
-    logInfo("heating_mode.rules", "MASTER Heating Mode: " + Heating_Mode.state)
-    switch Heating_Mode.state {
+    logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+    switch masterHeatingMode.state {
         case "NORMAL": {
             logInfo("heating_mode.rules", "processing case NORMAL MASTER Heating Mode: ")
             if(CT_Heating_Mode.state == 2) { //if mode is master control
@@ -221,7 +221,7 @@ then
             //BE_Heating_TargetTemp.sendCommand(0.0)
             //BA_Heating_TargetTemp.sendCommand(0.0)
         }
-        default : { logError("heating_mode.rules", "Heating Mode unknown: " + Heating_Mode.state) }
+        default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
     }
 end
 
@@ -230,9 +230,9 @@ rule "Initialize uninitialized virtual Items"
 when
     System started
 then
- if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+ if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("NORMAL")
     createTimer(now.plusSeconds(180)) [ |
-       if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+       if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("NORMAL")
        gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(14.0)]
    ]
 end

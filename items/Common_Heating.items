@@ -11,7 +11,7 @@ Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boile
 
 //Switch FR_BoilerDemand "Front Room Boiler Demand"
 
-String Heating_Mode "Global Heating Mode [%s]"
+String masterHeatingMode "Global Master Heating Mode [%s]"
 Switch Heating_UpdateHeaters "Send Target Temperatures to Heaters"
 
 Number MaxHeatingTempAllowed "Maximum allowed temperature [%.1f °C]" <temperature> 
