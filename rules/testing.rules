@@ -1,9 +1,19 @@
 import org.openhab.model.script.actions.Timer
 
+
+rule "06:16 lights on Jo"
+when
+    Time cron "0 16 06 ? * MON-FRI *"
+then
+    logInfo("RULE", "Morning Jo!")
+    sendCommand(socketG1_3, ON)
+    sendCommand(socketG1_4, ON)
+    sendCommand(socketG2_1, ON)
+end
+
 rule "Delayed Off Switch"
     when
         Item Delayed_OFF_SW changed to OFF
-
     then
         timer = createTimer(now.plusSeconds(240), [|
             {sendCommand(socketG1_4, OFF)}
@@ -28,19 +38,7 @@ then
             socketG3_2.postUpdate(ON)
             logInfo("RULE", "ooo hot - turn on fan: " + temp)
         }
-
 end
 
 
-rule "06:15 lights on Jo"
-when
-    Time cron "0 06 15 ? * MON-FRI *"
-then
-    logInfo("RULE", "Morning Jo!")
-//        
-    sendCommand(socketG1_3, ON)
-    sendCommand(socketG1_4, ON)
-    sendCommand(socketG2_1, ON)
 
-  //  }
-end
