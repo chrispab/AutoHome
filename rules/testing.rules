@@ -1,5 +1,49 @@
-import org.openhab.model.script.actions.Timer
+//import org.openhab.model.script.actions.Timer
 
+
+//if conservatory heating in on period
+//then pulse fan every 15 mins
+rule "pulse conservatory fan when setpoint > 19"
+when
+    Time cron "0 0/10 * * * ?"
+then
+    var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
+
+if( sp > 18 ) {
+    logInfo("RULE", "pulse conservatory fan when setpoint > 19")
+    {sendCommand(socketG3_2, ON)} //fan on
+    {postUpdate(socketG3_2, ON)}
+    var Timer lightsTimer2
+    lightsTimer2 = createTimer(now.plusSeconds(60), [|
+        {sendCommand(socketG3_2, OFF)} //con lights
+        {postUpdate(socketG3_2, OFF)}
+    ])
+}
+end
+
+rule "Delayed Off Switch"
+when
+    Item Delayed_OFF_SW changed
+then
+    var Timer lightsTimer
+    lightsTimer = createTimer(now.plusSeconds(240), [|
+    {sendCommand(socketG1_3, OFF)} //con lights
+    {postUpdate(socketG1_3, OFF)}
+    {sendCommand(socketG1_4, OFF)} // d room lights
+    {postUpdate(socketG1_4, OFF)}
+    ])
+end
+
+
+rule "2.30 am turn off lights if i forgot"
+when
+    Time cron "0 30 02 ? * * *"
+then
+    logInfo("RULE", "turn off lights if i forgot")
+    sendCommand(socketG1_3, ON)
+    sendCommand(socketG1_4, ON)
+    sendCommand(socketG2_1, ON)
+end
 
 rule "06:16 lights on Jo"
 when
@@ -11,21 +55,11 @@ then
     sendCommand(socketG2_1, ON)
 end
 
-rule "Delayed Off Switch"
-    when
-        Item Delayed_OFF_SW changed to OFF
-    then
-        timer = createTimer(now.plusSeconds(240), [|
-            {sendCommand(socketG1_4, OFF)}
-            {postUpdate(socketG1_4, OFF)}
-        ])
-end
-
 rule "Conservatory Cooling Fan"
 when
     Item CT_Temperature changed
 then
-        var Number setpoint = 25.0 //CT_Heating_Setpoint.state as DecimalType
+        var Number setpoint = 26.0 //CT_Heating_Setpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
         var Number temp = CT_Temperature.state as DecimalType // get the current temperature
