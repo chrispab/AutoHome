@@ -5,12 +5,12 @@
 //then pulse fan every 15 mins
 rule "pulse conservatory fan when setpoint > 19"
 when
-    Time cron "0 0/10 * * * ?"
+    Time cron "0 0/8 * * * ?"
 then
     var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
 
-if( sp > 18 ) {
-    logInfo("RULE", "pulse conservatory fan when setpoint > 19")
+if( sp >= 19 ) {
+    logInfo("RULE", "pulse conservatory fan when setpoint > 19, set at:" + sp)
     {sendCommand(socketG3_2, ON)} //fan on
     {postUpdate(socketG3_2, ON)}
     var Timer lightsTimer2
@@ -45,9 +45,9 @@ then
     sendCommand(socketG2_1, ON)
 end
 
-rule "06:16 lights on Jo"
+rule "07:00 morning elsie - lights on"
 when
-    Time cron "0 16 06 ? * MON-FRI *"
+    Time cron "0 00 07 ? * MON-FRI *"
 then
     logInfo("RULE", "Morning Jo!")
     sendCommand(socketG1_3, ON)

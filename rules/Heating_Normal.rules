@@ -1,15 +1,16 @@
 
+var Number sleepTemperature = 16
 
 // master heating mode - NORMAL mode rules
 rule "00:00"
 when
     Time cron "0 00 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(16.0)
+    CT_Heating_PresetTempNormal.postUpdate(15.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
     Office_Heating_PresetTempNormal.postUpdate(15.0)
     Hall_Heating_PresetTempNormal.postUpdate(15.0)
     Heating_UpdateHeaters.sendCommand(ON)
@@ -19,11 +20,11 @@ rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(16.0)
-    FR_Heating_PresetTempNormal.postUpdate(15.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    CT_Heating_PresetTempNormal.postUpdate(15.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.1)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
     Office_Heating_PresetTempNormal.postUpdate(15.0)
     Hall_Heating_PresetTempNormal.postUpdate(15.0)
     Heating_UpdateHeaters.sendCommand(ON)
@@ -36,13 +37,26 @@ then
     CT_Heating_PresetTempNormal.postUpdate(20.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
+rule "heating 08:00 am"
+when
+    Time cron "0 00 08 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(20.0)
+    FR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    Office_Heating_PresetTempNormal.postUpdate(18.0)
+    Hall_Heating_PresetTempNormal.postUpdate(15.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
 
 rule "14:30"
 when
@@ -80,7 +94,7 @@ then
     CT_Heating_PresetTempNormal.postUpdate(21.5)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
@@ -93,9 +107,9 @@ when
 then
     CT_Heating_PresetTempNormal.postUpdate(15.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(15.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
     Office_Heating_PresetTempNormal.postUpdate(15.0)
     Hall_Heating_PresetTempNormal.postUpdate(15.0)
     Heating_UpdateHeaters.sendCommand(ON)
@@ -109,7 +123,7 @@ then
     CT_Heating_PresetTempNormal.postUpdate(21.5)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(16.0)
     Office_Heating_PresetTempNormal.postUpdate(16.0)
     Hall_Heating_PresetTempNormal.postUpdate(16.0)
@@ -123,7 +137,7 @@ then
     CT_Heating_PresetTempNormal.postUpdate(21.5)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
     E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
     J_BR_Heating_PresetTempNormal.postUpdate(17.0)
     Office_Heating_PresetTempNormal.postUpdate(17.0)
     Hall_Heating_PresetTempNormal.postUpdate(17.0)
@@ -136,9 +150,9 @@ when
 then
     CT_Heating_PresetTempNormal.postUpdate(21.5)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(16.0)
-    H_BR_Heating_PresetTempNormal.postUpdate(15.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(16.0)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
     Office_Heating_PresetTempNormal.postUpdate(16.0)
     Hall_Heating_PresetTempNormal.postUpdate(15.0)
     Heating_UpdateHeaters.sendCommand(ON)
@@ -167,15 +181,17 @@ when
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
     Heating_UpdateHeaters.postUpdate(OFF)
-
+// MASTER modes are
+//PROGRAMME_CONTROL=Programme Control,OFF_SUMMER=Off Summer,LOCAL=Local
+//local room modes are 0=Off,1=Local Control,2=Master Controlled
     logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
     switch masterHeatingMode.state {
         case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
             logInfo("heating_mode.rules", "processing case NORMAL MASTER Heating Mode: ")
-            if(CT_Heating_Mode.state == 2) { //if mode is master control - 'normal'
+            if(CT_Heating_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
                 CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
             }
-            if(FR_Heating_Mode.state == 2) { //if mode is master control
+            if(FR_Heating_Mode.state == 2) { //if zone mode is master control
                    FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
             }
             if(E_BR_Heating_Mode.state == 2) { //if mode is master control
@@ -195,12 +211,7 @@ then
             }
         }
 
-        // case "AWAY": {
-        //     LR_Heating_TargetTemp.sendCommand(13.0)//note this is a command to a device that uses internal setpoint
-        //not like a sonoff - switching in openhab rules, the one above has its own internal logic
-        //     BE_Heating_TargetTemp.sendCommand(13.0)
-        //     BA_Heating_TargetTemp.sendCommand(13.0)
-        // }
+
         case "OFF_SUMMER": {
             logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
             CT_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
@@ -217,6 +228,14 @@ then
             J_BR_Heating_Mode.postUpdate(0)
             H_BR_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
             H_BR_Heating_Mode.postUpdate(0)                                                
+        }
+        case "LOCAL": {
+            logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")
+
+        //     LR_Heating_TargetTemp.sendCommand(13.0)//note this is a command to a device that uses internal setpoint
+        //not like a sonoff - switching in openhab rules, the one above has its own internal logic
+        //     BE_Heating_TargetTemp.sendCommand(13.0)
+        //     BA_Heating_TargetTemp.sendCommand(13.0)
         }
         default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
     }
