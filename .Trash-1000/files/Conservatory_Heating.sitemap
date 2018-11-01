@@ -1,8 +1,6 @@
-sitemap Conservatory_Heating label="Conservatory"
+sitemap Conservatory label="Conservatory"
 {
-  Frame label="time1" {
-    Text item= Time1
-  }
+
   Frame label="Date" {
     Text item=Current_Date
   }
@@ -32,8 +30,8 @@ sitemap Conservatory_Heating label="Conservatory"
           Switch item= CT_Heating label="Conservatory Radiator"
   }  
    Frame label="Heating" {
-        Switch item=CT_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="On", 2="Auto"]
-        Setpoint item=CT_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[CT_Heating_Mode==2]
+        Switch item=CT_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+        Setpoint item=CT_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[CT_Heating_Mode==2]
   }  
 
 }

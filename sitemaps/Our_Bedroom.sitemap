@@ -1,4 +1,4 @@
-sitemap Our_Bedroom_Heating label="Our Bedroom Heating"
+sitemap Our_Bedroom label="Our Bedroom"
 {
   Frame label="Date" {
     Text item=Current_Date
@@ -9,7 +9,7 @@ sitemap Our_Bedroom_Heating label="Our Bedroom Heating"
   }
 
   Frame label="Heating Control" {
-        Switch item=J_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="On", 2="Auto"]
+        Switch item=J_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
         Setpoint item=J_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[J_BR_Heating_Mode==2]
   }
 
