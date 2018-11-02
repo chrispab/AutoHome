@@ -11,7 +11,9 @@ sitemap Conservatory label="Conservatory"
     Frame label="Amp" {
           Switch item= socketG2_3 label="Amp"
  }  
-
+    Frame label="Radio" {
+          Switch item= socketG2_2 label="Radio"
+ }
     Frame label="Fan" {
           Switch item= socketG3_2 label="Fan"
  }  

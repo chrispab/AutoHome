@@ -3,7 +3,7 @@ sitemap Hall label="Hall"
   Frame label="Date" {
     Text item=Current_Date
   }
-    Frame label="Current Status" {
+  Frame label="Current Status" {
     Text item=Hall_Temperature label="Actual Temperature: [%.1f °C]"
     Switch item= Hall_Heating label="Our Bedroom Radiator"
   }
