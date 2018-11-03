@@ -1,3 +1,6 @@
 Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
 
 DateTime Time1 "Time 1" <time>
+
+
+Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
