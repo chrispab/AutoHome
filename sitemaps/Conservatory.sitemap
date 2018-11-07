@@ -26,6 +26,10 @@ sitemap Conservatory label="Conservatory"
           Switch item= socketG1_4 label="Dining Room Fairy Lights"
           Switch item= Delayed_OFF_SW label="Delayed off Switch"
  }
+     Frame label="433 Bridge Button 1" {
+          Switch item= bridgeButton1 label="Bridge Button 1"
+          //Switch item= Delayed_OFF_SW label="Delayed off Switch"
+ }
   Frame label="Current Temp" {
           Text item=CT_Temperature label="Conservatory Temperature : [%.1f °C]"
           Switch item= CT_Heating label="Conservatory Radiator"

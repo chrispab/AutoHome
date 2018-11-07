@@ -2,7 +2,7 @@
 
 
 //if conservatory heating in on period
-//then pulse fan every 15 mins
+//then pulse fan every n mins
 rule "pulse conservatory fan when setpoint > 19"
 when
     Time cron "0 0/8 * * * ?"
@@ -53,7 +53,7 @@ then
     //     // {sendCommand(socketG1_4, OFF)} // d room lights
     //     // {postUpdate(socketG1_4, OFF)}    
     ])
-    logInfo("RULE", "000000 rxed mqtt button ON")
+    logInfo("RULE", "Item bridgeButton1 received update")
 
        //{sendCommand(socketG1_4, OFF)} // d room lights
          //{postUpdate(socketG1_4, OFF)}
@@ -63,6 +63,8 @@ rule "Delayed Off Switch"
 when
     Item Delayed_OFF_SW changed
 then
+    logInfo("RULE", "delayed off switch")
+
     var Timer lightsTimer
     lightsTimer = createTimer(now.plusSeconds(240), [|
         {sendCommand(socketG2_1, OFF)} //con lights
@@ -103,7 +105,7 @@ rule "07:00 morning elsie - lights on"
 when
     Time cron "0 00 07 ? * MON-FRI *"
 then
-    logInfo("RULE", "Morning Jo!")
+    logInfo("RULE", "Morning Elsie!")
     sendCommand(socketG1_3, ON)
     sendCommand(socketG1_4, ON)
     sendCommand(socketG2_1, ON)
@@ -118,7 +120,7 @@ then
         var Number turnOffTemp = setpoint //+ 0.1
         var Number temp = CT_Temperature.state as DecimalType // get the current temperature
 
-        if (temp < turnOffTemp) {  // determine whether we need to turn on/off the heater
+        if (temp < turnOffTemp) {  // determine whether we need to turn on/off the fan
             socketG3_2.sendCommand(OFF)
             socketG3_2.postUpdate(OFF)
         }else if (temp >= turnOnTemp) {

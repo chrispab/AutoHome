@@ -43,8 +43,8 @@ when
 then
     logInfo("RULE", "It's getting light!")
         if (NightState.state == OFF) {
-        sendCommand(socketG1_3, OFF)
-        sendCommand(socketG1_4, OFF)
-        sendCommand(socketG2_1, OFF)
+        sendCommand(socketG1_3, OFF) // landing
+        sendCommand(socketG1_4, OFF) //droom f
+        sendCommand(socketG2_1, OFF) //con lights
     }
 end
