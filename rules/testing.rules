@@ -1,6 +1,3 @@
-//import org.openhab.model.script.actions.Timer
-
-
 //if conservatory heating in on period
 //then pulse fan every n mins
 rule "pulse conservatory fan when setpoint > 19"
@@ -73,12 +70,14 @@ then
         {postUpdate(socketG1_4, OFF)}
         {sendCommand(socketG2_4, OFF)} //tv
         {postUpdate(socketG2_4, OFF)}
-        {sendCommand(socketG1_3, OFF)} // amp
-        {postUpdate(socketG1_3, OFF)}    
+        // {sendCommand(socketG1_3, OFF)} // landing
+        // {postUpdate(socketG1_3, OFF)}    
         {sendCommand(socketG2_2, OFF)} //radio
         {postUpdate(socketG2_2, OFF)}
         // {sendCommand(socketG1_4, OFF)} // d room lights
         // {postUpdate(socketG1_4, OFF)}    
+        //ensure heating is set to off also
+        //CT_Heating_Setpoint.state = 17.0
     ])
 end
 
@@ -93,9 +92,9 @@ then
         {sendCommand(socketG1_4, OFF)} // d room lights
         {postUpdate(socketG1_4, OFF)}
         {sendCommand(socketG2_4, OFF)} //tv
-        {postUpdate(socketG2_4, OFF)}
-        {sendCommand(socketG1_3, OFF)} // amp
-        {postUpdate(socketG1_3, OFF)}    
+         {postUpdate(socketG2_4, OFF)}
+        // {sendCommand(socketG1_3, OFF)} // landing
+        // {postUpdate(socketG1_3, OFF)}    
         {sendCommand(socketG2_2, OFF)} //radio
         {postUpdate(socketG2_2, OFF)}
     

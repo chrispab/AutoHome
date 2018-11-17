@@ -30,9 +30,37 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "06:00 am"
+rule "01:00 - all heating low"
 when
-    Time cron "0 00 06 ? * MON-FRI *"
+    Time cron "0 00 01 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(15.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.1)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    Office_Heating_PresetTempNormal.postUpdate(15.0)
+    Hall_Heating_PresetTempNormal.postUpdate(15.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "02:30 - all heating low"
+when
+    Time cron "0 30 02 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(15.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.1)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    H_BR_Heating_PresetTempNormal.postUpdate(14.0)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemperature)
+    Office_Heating_PresetTempNormal.postUpdate(15.0)
+    Hall_Heating_PresetTempNormal.postUpdate(15.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "07:00 am"
+when
+    Time cron "0 00 07 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(20.0)
     FR_Heating_PresetTempNormal.postUpdate(15.0)
