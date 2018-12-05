@@ -1,0 +1,9 @@
+
+Number H_BR_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc>
+Number H_BR_Temperature "Attic Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
+Number H_BR_Humidity "Attic Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
+Switch H_BR_Heating "Attic Heating"  <switch> {mqtt=">[mosquitto:sonoff_H_BR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Number H_BR_Heating_Mode "Attic Heating Mode" <heating>
+String H_BR_Message
+
+Number H_BR_Heating_PresetTempNormal "Hannah Heating Preset (Normal Mode) [%.1f °C]"

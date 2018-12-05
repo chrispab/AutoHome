@@ -12,7 +12,7 @@ when
     Item FR_Heating changed or
     Item CT_Heating changed or
     Item E_BR_Heating changed or
-    Item H_BR_Heating changed or
+    Item Attic_Heating changed or
     Item J_BR_Heating changed or
     Item Office_Heating changed or
     Item Hall_Heating changed
@@ -20,13 +20,13 @@ when
     // Item FR_Heating_Mode changed or
     // Item CT_Heating_Mode changed or
     // Item E_BR_Heating_Mode changed or
-    // Item H_BR_Heating_Mode changed or
+    // Item Attic_Heating_Mode changed or
     // Item J_BR_Heating_Mode changed or
 
     // Item FR_Heating_Setpoint changed or
     // Item CT_Heating_Setpoint changed or
     // Item E_BR_Heating_Setpoint changed or
-    // Item H_BR_Heating_Setpoint changed or
+    // Item Attic_Heating_Setpoint changed or
     // Item J_BR_Heating_Setpoint changed 
 
 then
@@ -34,7 +34,7 @@ then
     if (       (FR_Heating.state == ON) 
             || (CT_Heating.state == ON) 
             || (E_BR_Heating.state == ON) 
-            || (H_BR_Heating.state == ON)
+            || (Attic_Heating.state == ON)
             || (J_BR_Heating.state == ON)
             || (Office_Heating.state == ON)
             || (Hall_Heating.state == ON) 

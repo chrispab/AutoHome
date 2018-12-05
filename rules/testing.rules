@@ -1,17 +1,17 @@
 //if conservatory heating in on period
-//then pulse fan every n mins
-rule "pulse conservatory fan when setpoint > 19"
+//then pulse recirc fan every n mins
+rule "pulse conservatory re-circ fan when setpoint > 19"
 when
-    Time cron "0 0/8 * * * ?"
+    Time cron "0 0/5 * * * ?"
 then
     var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
 
 if( sp >= 19 ) {
-    logInfo("RULE", "pulse conservatory fan when setpoint > 19, set at:" + sp)
+    logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
     {sendCommand(socketG3_2, ON)} //fan on
     {postUpdate(socketG3_2, ON)}
-    var Timer lightsTimer2
-    lightsTimer2 = createTimer(now.plusSeconds(60), [|
+    var Timer fanRecircTimer
+    fanRecircTimer = createTimer(now.plusSeconds(20), [|
         {sendCommand(socketG3_2, OFF)} //fan
         {postUpdate(socketG3_2, OFF)}
     ])
