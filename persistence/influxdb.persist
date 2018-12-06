@@ -23,6 +23,7 @@ Items {
     Zone1FanStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
     Zone1LightStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
     Zone1HeaterStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Zone1VentSpeedStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
     
     Zone3Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
     Zone3Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
@@ -30,6 +31,7 @@ Items {
     Zone3FanStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
     Zone3LightStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
     Zone3HeaterStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Zone3VentSpeedStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
 
 
     Boiler_Control :  strategy = everyUpdate,everyMinute, restoreOnStartup
