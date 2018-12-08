@@ -5,7 +5,7 @@ sitemap Attic label="Attic"
   }
     Frame label="Current Status" {
     Text item=Attic_Temperature label="Actual Temperature: [%.1f °C]"
-    Switch item= Attic_Heating label="Hannah's Radiator"
+    Switch item= Attic_Heating label="Attic Radiator"
   }
   Frame label="Heating Control" {
         Switch item=Attic_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]

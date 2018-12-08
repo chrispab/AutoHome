@@ -5,10 +5,10 @@ sitemap Front_Room label="Front Room"
   }
   Frame label="Heating" {
         Switch item=FR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Setpoint item=FR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[FR_Heating_Mode==2]
+        Setpoint item=FR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[FR_Heating_Mode==1,FR_Heating_Mode==2]
   }
-  Frame label="ESP01 Status" {
-    Text item=FR_Temperature label="ESP01 Temperature Sensor: [%.1f °C]"
+  Frame label="Front Room Temperature" {
+    Text item=FR_Temperature label="Front Room Temperature: [%.1f °C]"
     Switch item= FR_Heating label="Front Room Heater"
   }
 

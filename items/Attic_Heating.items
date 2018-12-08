@@ -6,4 +6,4 @@ Switch Attic_Heating "Attic Heating"  <switch> {mqtt=">[mosquitto:sonoff_Attic/c
 Number Attic_Heating_Mode "Attic Heating Mode" <heating>
 String Attic_Message
 
-Number Attic_Heating_PresetTempNormal "Hannah Heating Preset (Normal Mode) [%.1f °C]"
+Number Attic_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
