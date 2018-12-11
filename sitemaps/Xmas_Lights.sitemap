@@ -1,50 +1,32 @@
 sitemap Xmas_Lights label="Xmas Lights"
 {
+
   Frame  {
     Text item=Current_Date
   }
 
-    Frame label="Front Room" {
-          Switch item= socketG1_1 label="Tree Lights"
+    Frame label="All Fairy Lights" {
+          Switch item=gFairyLights label="all Christmas Lights"
+ } 
+
+//  Frame label="individual" {
+    Frame label="Front Room (ID:1)" {
+          Switch item= socketG1_1 label="Tree and Fireplace Lights"
  }  
-
-//     Frame label="Amp" {
-//           Switch item= socketG2_3 label="Amp"
-//  }  
-//     Frame label="Radio" {
-//           Switch item= socketG2_2 label="Radio"
-//  }
-//     Frame label="Fan" {
-//           Switch item= socketG3_2 label="Fan"
-//  }  
-
-
-    Frame label="Conservatory" {
+    Frame label="Dining Room (ID:2)" {
+          //Switch item= socketG1_4 label="Fairy Lights"
+           Switch item= socketG1_2 label="Tree, Piano and staircase and doorway Lights"
+ }
+    Frame label="Conservatory (ID:5)" {
           Switch item= socketG2_1 label="Room Fairy Lights"
  }  
-    Frame label="Dining Room" {
-          Switch item= socketG1_4 label="Fairy Lights"
-           Switch item= socketG1_2 label="Tree Lights"
- }
-    Frame label="Dining Room Delayed off - lights" {
+
+     Frame label="Landing fairy lights (ID:7)" {
+          Switch item= socketG1_3 label="Upstairs Landing Fairy Lights"
+ } 
+ 
+     Frame label="Dining Room Delayed off - lights" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch"
  }
-
-//     Frame label="Dining Room Tree Lights" {
-//           Switch item= socketG2_2 label="Conservatory Fairy Lights"
-//  }  
- 
-//      Frame label="433 Bridge Button 1" {
-//           Switch item= bridgeButton1 label="Bridge Button 1"
-//           //Switch item= Delayed_OFF_SW label="Delayed off Switch"
-//  }
-//   Frame label="Current Temp" {
-//           Text item=CT_Temperature label="Conservatory Temperature : [%.1f °C]"
-//           Switch item= CT_Heating label="Conservatory Radiator"
-//   }  
-//    Frame label="Heating" {
-//         Switch item=CT_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-//         Setpoint item=CT_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[CT_Heating_Mode==2]
-//   }  
 
 }

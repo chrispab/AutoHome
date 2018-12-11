@@ -1,4 +1,14 @@
+Switch     ElsieSIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_61:online"}
+Number     ElsieSIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_61:latency"}
+DateTime   ElsieSIPhone_L
+//Switch     chris_galaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
+
+Switch     ChrisGalaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
+Number     ChrisGalaxyS5_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_60:latency"}
+DateTime   ChrisGalaxyS5_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_60:lastseen"}
+
 Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
+
 
 DateTime Time1 "Time 1" <time>
 

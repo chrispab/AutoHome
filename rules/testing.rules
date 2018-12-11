@@ -1,3 +1,14 @@
+//presence rules
+//switch on xmas lights when eslie gets home
+rule "switch on xmas lights when eslie gets home"
+when
+    Item ElsieSIPhone_Online changed to ON
+    // or 
+    // Item ChrisGalaxyS5_Online changed to ON
+then
+    sendCommand(gFairyLights, ON)
+end
+
 //if conservatory heating in on period
 //then pulse recirc fan every n mins
 rule "pulse conservatory re-circ fan when setpoint > 19"
