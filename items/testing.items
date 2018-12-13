@@ -1,6 +1,6 @@
 Switch     ElsieSIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_61:online"}
 Number     ElsieSIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_61:latency"}
-DateTime   ElsieSIPhone_L
+//DateTime   ElsieSIPhone_L
 //Switch     chris_galaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
 
 Switch     ChrisGalaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
@@ -14,3 +14,5 @@ DateTime Time1 "Time 1" <time>
 
 
 Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
+
+Switch RecircFanEnable    "Recirc Fan Enable" <heating>

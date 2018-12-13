@@ -5,8 +5,8 @@ sitemap Xmas_Lights label="Xmas Lights"
     Text item=Current_Date
   }
 
-    Frame label="All Fairy Lights" {
-          Switch item=gFairyLights label="all Christmas Lights"
+    Frame label="All Christmas Lights" {
+          Switch item=gXmasLights label="all Christmas Lights"
  } 
 
 //  Frame label="individual" {
