@@ -3,12 +3,13 @@
 rule "switch on xmas lights when eslie gets home"
 when
     Item ElsieSIPhone_Online changed to ON
-    // or 
-    // Item ChrisGalaxyS5_Online changed to ON
+    or
+    Item JoIPhone_Online changed to ON
+    or
+    Item ChrisGalaxyS5_Online changed to ON
 then
     if (now.getHourOfDay == 15){
-    logInfo("RULE", "elsies phone connected to wifi")
-
+    logInfo("RULE", "elsies or c or j phone connected to wifi")
     sendCommand(gXmasLights, ON)
     sendCommand(gFairyLights, ON)
     }
@@ -21,14 +22,12 @@ end
 //then pulse recirc fan every n mins
 rule "pulse con re-circ fan when setpoint > 19"
 when
-    Time cron "0 0/2 * * * ?"
+    Time cron "0 0/4 * * * ?"
 then
-{
     var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
 
     if (RecircFanEnable.state == NULL) {
-       logInfo("RULE", "recirc fan enable is NULL so set to ON")
-
+        logInfo("RULE", "recirc fan enable is NULL so set to ON")
         RecircFanEnable.state = ON
     }
     if ((sp >= 19) && (RecircFanEnable.state == ON))  {
@@ -41,8 +40,6 @@ then
             {postUpdate(socketG3_2, OFF)}
         ])
     }
-}
-
 end
 
 rule "433 bridge Button 1"

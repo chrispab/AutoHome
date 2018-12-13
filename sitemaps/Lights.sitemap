@@ -1,0 +1,20 @@
+sitemap Lights label="Lights"
+{
+
+  Frame  {
+    Text item=Current_Date
+  }
+
+    Frame label="Conservatory (ID:5)" {
+          Switch item= socketG2_1 label="Room Fairy Lights"
+ }  
+
+     Frame label="Landing fairy lights (ID:7)" {
+          Switch item= socketG1_3 label="Upstairs Landing Fairy Lights"
+ } 
+ 
+     Frame label="Dining Room Delayed off - lights" {
+          Switch item= Delayed_OFF_SW label="Delayed off Switch"
+ }
+
+}

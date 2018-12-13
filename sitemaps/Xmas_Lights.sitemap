@@ -17,16 +17,6 @@ sitemap Xmas_Lights label="Xmas Lights"
           //Switch item= socketG1_4 label="Fairy Lights"
            Switch item= socketG1_2 label="Tree, Piano and staircase and doorway Lights"
  }
-    Frame label="Conservatory (ID:5)" {
-          Switch item= socketG2_1 label="Room Fairy Lights"
- }  
 
-     Frame label="Landing fairy lights (ID:7)" {
-          Switch item= socketG1_3 label="Upstairs Landing Fairy Lights"
- } 
- 
-     Frame label="Dining Room Delayed off - lights" {
-          Switch item= Delayed_OFF_SW label="Delayed off Switch"
- }
 
 }

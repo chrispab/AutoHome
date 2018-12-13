@@ -7,6 +7,11 @@ Switch     ChrisGalaxyS5_Online     "Online"         {channel="network:pingdevic
 Number     ChrisGalaxyS5_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_60:latency"}
 DateTime   ChrisGalaxyS5_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_60:lastseen"}
 
+
+Switch     JoIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_67:online"}
+Number     JoIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_67:latency"}
+DateTime   JoIPhone_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_67:lastseen"}
+
 Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
 
 
