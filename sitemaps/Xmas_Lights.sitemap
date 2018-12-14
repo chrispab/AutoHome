@@ -7,6 +7,7 @@ sitemap Xmas_Lights label="Xmas Lights"
 
     Frame label="All Christmas Lights" {
           Switch item=gXmasLights label="all Christmas Lights"
+         // Group item=gXmasLights label="Xmas Lights Group"
  } 
 
 //  Frame label="individual" {

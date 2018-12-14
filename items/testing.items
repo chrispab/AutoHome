@@ -20,4 +20,4 @@ DateTime Time1 "Time 1" <time>
 
 Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
 
-Switch RecircFanEnable    "Recirc Fan Enable" <heating>
+Switch RecircFanEnable    "Recirc Fan Enable" <fan>
