@@ -10,10 +10,10 @@ sitemap Xmas_Lights label="Xmas Lights"
  } 
 
 //  Frame label="individual" {
-    Frame label="Front Room (ID:1)" {
+    Frame label="Front Room Xmas Lights (ID:1)" {
           Switch item= socketG1_1 label="Tree and Fireplace Lights"
  }  
-    Frame label="Dining Room (ID:2)" {
+    Frame label="Dining Room, stairs and front door Xmas Lights (ID:2)" {
           //Switch item= socketG1_4 label="Fairy Lights"
            Switch item= socketG1_2 label="Tree, Piano and staircase and doorway Lights"
  }
