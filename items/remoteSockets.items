@@ -8,45 +8,45 @@ Group gRadiators
 Group gZoneControllerSockets
 
 // front room Tree and Fireplace Lights
-Switch socketG1_1 "socketG1_1_1"  <switch> (gXmasLights, gFrontRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power1:command:*:MAP(onoffcases.map)]"}
+Switch socketG1_1 "socketG1_1_1"  <poweroutlet_uk> (gXmasLights, gFrontRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power1:command:*:MAP(onoffcases.map)]"}
 
 //dining room Tree, Piano, shevles and staircase Lights
-Switch socketG1_2 "socketG1_2_2"  <switch>  (gXmasLights, gDiningRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power2:command:*:MAP(onoffcases.map)]"}
+Switch socketG1_2 "socketG1_2_2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power2:command:*:MAP(onoffcases.map)]"}
 
 //landing switched socket - fairy lights
-Switch socketG1_3 "socketG1_3_3"  <switch>  (gFairyLights) {mqtt=">[mosquitto:433Bridge/cmnd/Power3:command:*:MAP(onoffcases.map)]"}
+Switch socketG1_3 "socketG1_3_3"  <poweroutlet_uk>  (gFairyLights) {mqtt=">[mosquitto:433Bridge/cmnd/Power3:command:*:MAP(onoffcases.map)]"}
 
 //Dining room switched socket - upper fairy lights
-Switch socketG1_4 "socketG1_4_4"  <switch>  (gFairyLights, gDiningRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power4:command:*:MAP(onoffcases.map)]"}
+Switch socketG1_4 "socketG1_4_4"  <poweroutlet_uk>  (gFairyLights, gDiningRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power4:command:*:MAP(onoffcases.map)]"}
 
 //conservatory fairy lights
-Switch socketG2_1 "socketG2_1_5"  <switch>  (gFairyLights, gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_1 "socketG2_1_5"  <poweroutlet_uk>  (gFairyLights, gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"}
 
 //DAB Radio
-Switch socketG2_2 "socketG2_2_6"  <switch>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power6:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_2 "socketG2_2_6"  <poweroutlet_uk>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power6:command:*:MAP(onoffcases.map)]"}
 
 //Amplifier
-Switch socketG2_3 "socketG2_3_7"  <switch>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power7:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_3 "socketG2_3_7"  <poweroutlet_uk>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power7:command:*:MAP(onoffcases.map)]"}
 
 //Conservatory TV
-Switch socketG2_4 "socketG2_4_8"  <switch>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power8:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_4 "socketG2_4_8"  <poweroutlet_uk>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power8:command:*:MAP(onoffcases.map)]"}
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
-Switch socketG3_1 "socketG3_1_9"  <switch> (gRadiators) {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_1 "socketG3_1_9"  <poweroutlet_uk> (gRadiators) {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
 
 //conservatory Fan
-Switch socketG3_2 "socketG3_2_10"  <switch> (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power10:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_2 "socketG3_2_10"  <poweroutlet_uk> (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power10:command:*:MAP(onoffcases.map)]"}
 
-Switch socketG3_3 "socketG3_3_11"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power11:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_3 "socketG3_3_11"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power11:command:*:MAP(onoffcases.map)]"}
 
-Switch socketG3_4 "socketG3_4_12"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power12:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_4 "socketG3_4_12"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power12:command:*:MAP(onoffcases.map)]"}
 
-Switch socketG4_1 "socketG4_1_13"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power13:command:*:MAP(onoffcases.map)]"}
+Switch socketG4_1 "socketG4_1_13"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power13:command:*:MAP(onoffcases.map)]"}
 
 //zone1 power socket
-Switch socketG4_2 "socketG4_2_14"  <switch> (gZoneControllerSockets) {mqtt=">[mosquitto:433Bridge/cmnd/Power14:command:*:MAP(onoffcases.map)]"}
+Switch socketG4_2 "socketG4_2_14"  <poweroutlet_uk> (gZoneControllerSockets) {mqtt=">[mosquitto:433Bridge/cmnd/Power14:command:*:MAP(onoffcases.map)]"}
 
 //zone3 power socket
-Switch socketG4_3 "socketG4_3_15"  <switch> (gZoneControllerSockets) {mqtt=">[mosquitto:433Bridge/cmnd/Power15:command:*:MAP(onoffcases.map)]"}
+Switch socketG4_3 "socketG4_3_15"  <poweroutlet_uk> (gZoneControllerSockets) {mqtt=">[mosquitto:433Bridge/cmnd/Power15:command:*:MAP(onoffcases.map)]"}
 
-Switch socketG4_4 "socketG4_4_16"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power16:command:*:MAP(onoffcases.map)]"}
+Switch socketG4_4 "socketG4_4_16"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power16:command:*:MAP(onoffcases.map)]"}

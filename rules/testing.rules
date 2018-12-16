@@ -30,6 +30,7 @@ then
         logInfo("RULE", "recirc fan enable is NULL so set to ON")
         RecircFanEnable.state = ON
     }
+
     if ((sp >= 19) && (RecircFanEnable.state == ON))  {
         logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
@@ -41,6 +42,9 @@ then
             {postUpdate(socketG3_2, OFF)}
             logInfo("RULE", "pulse consv fan OFF sent after n mins")
         ])
+    }
+    else{
+        logInfo("RULE", "recirc cron ran, but recirc fan is disabled so not switching on")
     }
 end
 
