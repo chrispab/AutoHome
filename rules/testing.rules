@@ -37,7 +37,7 @@ then
         {postUpdate(socketG3_2, ON)}
 
         var Timer fanRecircTimer
-        fanRecircTimer = createTimer(now.plusSeconds(30), [|
+        fanRecircTimer = createTimer(now.plusSeconds(40), [|
             {sendCommand(socketG3_2, OFF)} //fan
             {postUpdate(socketG3_2, OFF)}
             logInfo("RULE", "pulse consv fan OFF sent after n mins")

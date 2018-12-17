@@ -14,10 +14,3 @@ then
   logInfo("mythtv", "Processed XML: " + processed)
   mtv_MythTV_Upcoming_JSON.postUpdate(processed)
 end
-
-/* rule "Test"
-when
-    Time cron "0 * * * * ?"
-then
-    logInfo("crontest.rules", "minutely cron rule seems to be working...")
-end */

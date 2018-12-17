@@ -1,0 +1,240 @@
+
+var Number sleepTemp = 16
+var Number offTemp = 14
+var Number liveTemp = 21.5
+var Number midTemp = 17
+var Number lowTemp = 16
+var Number morningTemp = 18
+var Number eveningTemp = 22
+
+
+// master heating mode - NORMAL mode rules
+rule "00:00"
+when
+    Time cron "0 00 00 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "00:30"
+when
+    Time cron "0 30 00 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp )
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp )
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "01:00 - all heating low"
+when
+    Time cron "0 00 01 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp )
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp )
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "02:30 - all heating low"
+when
+    Time cron "0 30 02 ? * * *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp )
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp )
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "NORMAL heating - 06:45 am"
+when
+    Time cron "0 45 06 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(morningTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(morningTemp)
+    Office_Heating_PresetTempNormal.postUpdate(offTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "heating 08:00 am"
+when
+    Time cron "0 00 08 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(offTemp)
+    Office_Heating_PresetTempNormal.postUpdate(offTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "14:30"
+when
+    Time cron "0 30 14 ? * MON-FRI *"
+then
+    // CT_Heating_PresetTempNormal.postUpdate(21.0)
+    //FR_Heating_PresetTempNormal.postUpdate(20.0)
+    // E_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    // Attic_Heating_PresetTempNormal.postUpdate(17.0)
+    // J_BR_Heating_PresetTempNormal.postUpdate(17.0)
+    //Office_Heating_PresetTempNormal.postUpdate(17.0)
+    //Hall_Heating_PresetTempNormal.postUpdate(17.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+
+rule "16:30"
+when
+    Time cron "0 30 16 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    FR_Heating_PresetTempNormal.postUpdate(midTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "22:30 weekdays"
+when
+    Time cron "0 30 22 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+// rule "22:30 weekdays"
+// when
+//     Time cron "0 19 23 ? * MON-FRI *"
+// then
+//     CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+//     FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+//     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+//     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Office_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Heating_UpdateHeaters.sendCommand(ON)
+// end
+
+
+rule "00:30 am weekend"
+when
+    Time cron "0 30 00 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp )
+    E_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp )
+    J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+
+rule "8:00 am weekend"
+when
+    Time cron "0 0 8 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(offTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "4:30pm weekend"
+when
+    Time cron "0 30 16 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(offTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "22:30pm weekend"
+when
+    Time cron "0 30 22 ? * SAT-SUN *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(lowTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(lowTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+
+// rule "22:30pm weekend"
+// when
+//     Time cron "0 20 23 ? * SAT-SUN *"
+// then
+//     CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+//     FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+//     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+//     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Office_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Heating_UpdateHeaters.sendCommand(ON)
+// end
+
+
+rule "test"
+when
+    Time cron "00 8 11 ? * * *"
+then
+    // CT_Heating_PresetTempNormal.postUpdate(17.0)
+    // FR_Heating_PresetTempNormal.postUpdate(21.0)
+    // E_BR_Heating_PresetTempNormal.postUpdate(22.0)
+    // Attic_Heating_PresetTempNormal.postUpdate(23.0)
+    // J_BR_Heating_PresetTempNormal.postUpdate(24.0)
+    //Office_Heating_PresetTempNormal.postUpdate(16.0)
+    //Hall_Heating_PresetTempNormal.postUpdate(16.0)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
