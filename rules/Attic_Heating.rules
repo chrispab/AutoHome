@@ -5,6 +5,9 @@ then
     if (Attic_Heating_Mode == NULL) {
         Attic_Heating_Mode.postUpdate(2) // start in master auto control mode
     }
+        if (Attic_Heating_Mode == 0 ){
+        Attic_Heating_Mode.postUpdate("Off") // start in master auto control mode
+    }
 end
 
 rule "Attic_heating"

@@ -8,7 +8,7 @@ Number Office_Humidity "Office Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitt
 
 
 Switch Office_Heating "Office Heating"  <switch> {mqtt=">[mosquitto:sonoff_Office/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
-Number Office_Heating_Mode "Office Heating Mode" <heating>
+Number Office_Heating_Mode "Office Heating Mode" <heating> (gHeatingModes)
 String Office_Message
 
 Number Office_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"

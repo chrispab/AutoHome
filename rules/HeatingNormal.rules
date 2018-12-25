@@ -71,9 +71,28 @@ rule "Initialize uninitialized virtual Items"
 when
     System started
 then
- if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+ //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
     createTimer(now.plusSeconds(180)) [ |
+        logInfo(filename, "Executing 'System started' rule for Heating")
        if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-       gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(15.0)]
+       gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate("Master Controlled")]
    ]
+//     createTimer(now.plusSeconds(180)) [ |
+//        if (gHeatingModes.members.filter[item | item.state == 2].forEach[item | item.postUpdate(15.0)]) 
+//          masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+//        //gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(15.0)]
+//    ]
+
+
 end
+
+// rule "Initialize uninitialized virtual Items"
+// when
+//     System started
+// then
+//     createTimer(now.plusSeconds(180)) [ |
+//         logInfo(filename, "Executing 'System started' rule for Heating")
+//         if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
+//         Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
+//     ]
+// end

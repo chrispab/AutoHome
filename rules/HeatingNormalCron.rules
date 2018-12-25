@@ -136,19 +136,21 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-// rule "22:30 weekdays"
-// when
-//     Time cron "0 19 23 ? * MON-FRI *"
-// then
-//     CT_Heating_PresetTempNormal.postUpdate(liveTemp)
-//     FR_Heating_PresetTempNormal.postUpdate(lowTemp)
-//     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
-//     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
-//     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
-//     Office_Heating_PresetTempNormal.postUpdate(midTemp)
-//     Hall_Heating_PresetTempNormal.postUpdate(midTemp)
-//     Heating_UpdateHeaters.sendCommand(ON)
-// end
+rule "TEST  weekdays"
+when
+    Time cron "0 58 08 ? * MON-FRI *"
+then
+    logInfo("TEST CRON RULE", "test ran live temp" + liveTemp)
+
+    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    FR_Heating_PresetTempNormal.postUpdate(liveTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
 
 
 rule "00:30 am weekend"
