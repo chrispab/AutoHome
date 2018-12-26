@@ -20,6 +20,7 @@ end
 
 //if conservatory heating in on period
 //then pulse recirc fan every n mins
+
 rule "pulse con re-circ fan when setpoint > 19"
 when
     Time cron "0 0/4 * * * ?"
@@ -35,8 +36,8 @@ then
         logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
         {postUpdate(socketG3_2, ON)}
+var Timer fanRecircTimer = null
 
-        var Timer fanRecircTimer
         fanRecircTimer = createTimer(now.plusSeconds(40), [|
             {sendCommand(socketG3_2, OFF)} //fan
             {postUpdate(socketG3_2, OFF)}
@@ -74,6 +75,8 @@ then
 end
 
 
+
+
 rule "433 bridge Button 1"
 when
     Item bridgeButton1 received update
@@ -90,8 +93,8 @@ then
         {postUpdate(socketG2_2, OFF)}
     //     // {sendCommand(socketG1_4, OFF)} // d room lights
     //     // {postUpdate(socketG1_4, OFF)} 
+var Timer lightsTimer = null
 
-     var Timer lightsTimer
      lightsTimer = createTimer(now.plusSeconds(240), [|
     //     {sendCommand(socketG2_1, OFF)} //con lights
     //     {postUpdate(socketG2_1, OFF)}
@@ -112,14 +115,16 @@ then
          //{postUpdate(socketG1_4, OFF)}
 end
 
+
+
 rule "Delayed Off Switch"
 when
     Item Delayed_OFF_SW changed
 then
     logInfo("RULE", "delayed off switch")
+var Timer lightsTimer2 = null
 
-    var Timer lightsTimer
-    lightsTimer = createTimer(now.plusSeconds(240), [|
+    lightsTimer2 = createTimer(now.plusSeconds(240), [|
         {sendCommand(socketG2_1, OFF)} //con lights
         {postUpdate(socketG2_1, OFF)}
         {sendCommand(socketG1_4, OFF)} // d room lights

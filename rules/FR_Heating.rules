@@ -5,7 +5,11 @@ then
     if (FR_Heating_Mode == NULL) {
         FR_Heating_Mode.postUpdate(2) // start in master auto control mode
     }
-end
+//     if (FR_Heating_Mode == NULL) {
+//         FR_Heating_Mode.postUpdate(2) // start in master auto control mode
+//     }
+
+ end
 
 rule "FR_ heating"
 when

@@ -1,5 +1,5 @@
 
-Number E_BR_Heating_Setpoint "Elsie Bedroom Heating Setpoint [%.1f °C]"    <degreesc>
+Number E_BR_Heating_Setpoint "Elsie Bedroom Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
 Number E_BR_Temperature "Elsie Bedroom Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_E_BR/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
 Number E_BR_Humidity "Elsie Bedroom Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_E_BR/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
 Switch E_BR_Heating "Elsie Bedroom Heating"  <switch> {mqtt=">[mosquitto:sonoff_E_BR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 

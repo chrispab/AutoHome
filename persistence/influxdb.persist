@@ -12,94 +12,95 @@ Items {
     // additionally persist Items
     // Kitchen_Temperature_Chart* : strategy = everyUpdate, everyMinute
     // ESP01_Relay : strategy = everyUpdate,everyMinute
-    // ESP01_BoilerRelay : strategy = everyUpdate, everyMinute, restoreOnStartup
+    // ESP01_BoilerRelay : strategy = everyUpdate, everyMinute
     // //ESP01_Temperature
-    // ESP01_Temperature : strategy = everyMinute, restoreOnStartup
+    // ESP01_Temperature : strategy = everyMinute
     
     
-    Zone1Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1VentStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1FanStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1LightStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1HeaterStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone1VentSpeedStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Zone1Temperature : strategy = everyUpdate,everyMinute
+    Zone1Humidity : strategy = everyUpdate,everyMinute
+    Zone1VentStatus : strategy = everyUpdate,everyMinute
+    Zone1FanStatus : strategy = everyUpdate,everyMinute
+    Zone1LightStatus : strategy = everyUpdate,everyMinute
+    Zone1HeaterStatus : strategy = everyUpdate,everyMinute
+    Zone1VentSpeedStatus : strategy = everyUpdate,everyMinute
     
-    Zone3Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3VentStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3FanStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3LightStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3HeaterStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Zone3VentSpeedStatus : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Zone3Temperature : strategy = everyUpdate,everyMinute
+    Zone3Humidity : strategy = everyUpdate,everyMinute
+    Zone3VentStatus : strategy = everyUpdate,everyMinute
+    Zone3FanStatus : strategy = everyUpdate,everyMinute
+    Zone3LightStatus : strategy = everyUpdate,everyMinute
+    Zone3HeaterStatus : strategy = everyUpdate,everyMinute
+    Zone3VentSpeedStatus : strategy = everyUpdate,everyMinute
 
 
-    Boiler_Control :  strategy = everyUpdate,everyMinute, restoreOnStartup
+    Boiler_Control :  strategy = everyUpdate,everyMinute
 //Switch FR_BoilerDemand "Front Room Boiler Demand"
 
     //Heating_Mode* : strategy = everyUpdate,everyMinute
     //Heating_Setpoint* : strategy = everyUpdate,everyMinute
-    CT_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    //CT_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    CT_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    CT_Temperature : strategy = everyMinute, restoreOnStartup
-    CT_Humidity : strategy = everyMinute, restoreOnStartup
-    CT_Heating : strategy = everyMinute, restoreOnStartup
+    masterHeatingMode :  strategy = everyUpdate
+    CT_Heating_Mode                : strategy = everyUpdate
+    //CT_Heating_PresetNormal_Group* : strategy = everyUpdate
+    CT_Heating_Setpoint                : strategy = everyUpdate
+    CT_Temperature : strategy = everyMinute
+    CT_Humidity : strategy = everyMinute
+    CT_Heating : strategy = everyMinute
     
-    FR_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    FR_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    FR_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    FR_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    FR_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
+    FR_Heating_Mode                : strategy = everyUpdate
+    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
+    FR_Heating_Setpoint                : strategy = everyUpdate
+    FR_Temperature : strategy = everyUpdate,everyMinute
+    FR_Humidity : strategy = everyUpdate,everyMinute
+    FR_Heating : strategy = everyUpdate,everyMinute
 
-    E_BR_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    E_BR_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    E_BR_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    E_BR_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    E_BR_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
-
-
-    Attic_Heating_Mode : strategy = everyUpdate, restoreOnStartup
-    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    Attic_Heating_Setpoint : strategy = everyUpdate, restoreOnStartup
-    Attic_Temperature : strategy = everyMinute, restoreOnStartup
-    Attic_Humidity : strategy = everyMinute, restoreOnStartup
-    Attic_Heating : strategy = everyMinute, restoreOnStartup
+    E_BR_Heating_Mode                : strategy = everyUpdate
+    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
+    E_BR_Heating_Setpoint                : strategy = everyUpdate
+    E_BR_Temperature : strategy = everyUpdate,everyMinute
+    E_BR_Humidity : strategy = everyUpdate,everyMinute
+    E_BR_Heating : strategy = everyUpdate,everyMinute
 
 
-    J_BR_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    J_BR_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    J_BR_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    J_BR_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    J_BR_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
-
-    Hall_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    Hall_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    Hall_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Hall_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Hall_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
-
-    Office_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    Office_Heating_Setpoint                : strategy = everyUpdate, restoreOnStartup
-    Office_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Office_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Office_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Attic_Heating_Mode : strategy = everyUpdate
+    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
+    Attic_Heating_Setpoint : strategy = everyUpdate
+    Attic_Temperature : strategy = everyMinute
+    Attic_Humidity : strategy = everyMinute
+    Attic_Heating : strategy = everyMinute
 
 
+    J_BR_Heating_Mode                : strategy = everyUpdate
+    //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
+    J_BR_Heating_Setpoint                : strategy = everyUpdate
+    J_BR_Temperature : strategy = everyUpdate,everyMinute
+    J_BR_Humidity : strategy = everyUpdate,everyMinute
+    J_BR_Heating : strategy = everyUpdate,everyMinute
 
-    Heating_Mode                : strategy = everyUpdate, restoreOnStartup
-    Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
+    Hall_Heating_Mode                : strategy = everyUpdate
+    Hall_Heating_Setpoint                : strategy = everyUpdate
+    Hall_Temperature : strategy = everyUpdate,everyMinute
+    Hall_Humidity : strategy = everyUpdate,everyMinute
+    Hall_Heating : strategy = everyUpdate,everyMinute
+
+    Office_Heating_Mode                : strategy = everyUpdate
+    Office_Heating_Setpoint                : strategy = everyUpdate
+    Office_Temperature : strategy = everyUpdate,everyMinute
+    Office_Humidity : strategy = everyUpdate,everyMinute
+    Office_Heating : strategy = everyUpdate,everyMinute
+
+
+
+    Heating_Mode                : strategy = everyUpdate
+    Heating_PresetNormal_Group* : strategy = everyUpdate
     
-    Outside_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Outside_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Outside_Temperature : strategy = everyUpdate,everyMinute
+    Outside_Humidity : strategy = everyUpdate,everyMinute
 
-    Bridge_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    Bridge_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+    Bridge_Temperature : strategy = everyUpdate,everyMinute
+    Bridge_Humidity : strategy = everyUpdate,everyMinute
 
-    GRG_Temperature : strategy = everyMinute, restoreOnStartup
-    GRG_Humidity : strategy = everyMinute, restoreOnStartup
+    GRG_Temperature : strategy = everyMinute
+    GRG_Humidity : strategy = everyMinute
     
 }

@@ -1,5 +1,5 @@
 
-Number Office_Heating_Setpoint "Office Heating Setpoint [%.1f °C]"    <degreesc>
+Number Office_Heating_Setpoint "Office Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
 //Number Office_Temperature "Office Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
 //Number Office_Humidity "Office Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"} 
 

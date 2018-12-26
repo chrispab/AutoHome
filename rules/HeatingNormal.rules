@@ -1,7 +1,7 @@
 
-rule "React on master heating mode switch, or message to send target temperatures to zones"
+rule "React on message to send target temperatures to zone setpoints"
 when
-    Item masterHeatingMode received update or //master mode has changed
+    //Item masterHeatingMode received update or //master mode has changed
     Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
@@ -72,15 +72,19 @@ when
     System started
 then
  //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-    createTimer(now.plusSeconds(180)) [ |
-        logInfo(filename, "Executing 'System started' rule for Heating")
-       if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-       gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate("Master Controlled")]
+    createTimer(now.plusSeconds(30)) [ |
+        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heatinguninitialized virtual Items")
+       if (masterHeatingMode.state === NULL) 
+            masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+            //gHeatingModes.members.filter[item | item.state === NULL].forEach[item | item.postUpdate("Master Controlled")]
    ]
-//     createTimer(now.plusSeconds(180)) [ |
-//        if (gHeatingModes.members.filter[item | item.state == 2].forEach[item | item.postUpdate(15.0)]) 
-//          masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-//        //gHeatingModes.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(15.0)]
+       
+//     createTimer(now.plusSeconds(60)) [ |
+//        //if (gHeatingSetPoints.members.filter[item | item.state == 2].forEach[item | item.postUpdate(15.0)]) 
+//          //masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+//         logInfo("HeatingNormal.rules", "'System started' rule for Heating-set all SPs to same val" + 19.0)
+
+//        gHeatingSetPoints.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
 //    ]
 
 
