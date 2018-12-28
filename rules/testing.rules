@@ -36,9 +36,10 @@ then
         logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
         {postUpdate(socketG3_2, ON)}
-var Timer fanRecircTimer = null
 
-        fanRecircTimer = createTimer(now.plusSeconds(40), [|
+// var Timer fanRecircTimer = null
+
+        var Timer fanRecircTimer = createTimer(now.plusSeconds(40), [|
             {sendCommand(socketG3_2, OFF)} //fan
             {postUpdate(socketG3_2, OFF)}
             logInfo("RULE", "pulse consv fan OFF sent after n mins")
@@ -81,6 +82,8 @@ rule "433 bridge Button 1"
 when
     Item bridgeButton1 received update
 then
+            logInfo("RULE", "433 bridge button pressed ")
+
          {sendCommand(socketG2_1, OFF)} //con lights
          {postUpdate(socketG2_1, OFF)}
      //    {sendCommand(socketG1_4, OFF)} // d room lights

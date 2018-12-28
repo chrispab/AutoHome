@@ -12,7 +12,7 @@ then
     logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
     switch masterHeatingMode.state {
         case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
-            logInfo("heating_mode.rules", "processing case NORMAL MASTER Heating Mode: ")
+            logInfo("heating_mode.rules", "processing case MASTER Heating Mode : ")
             if(CT_Heating_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
                 CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
             }
