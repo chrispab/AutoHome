@@ -142,13 +142,13 @@ when
 then
     logInfo("TEST CRON RULE", "test ran live temp" + liveTemp)
 
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
-    FR_Heating_PresetTempNormal.postUpdate(liveTemp)
-    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
-    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
-    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
-    Office_Heating_PresetTempNormal.postUpdate(midTemp)
-    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    // CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    // FR_Heating_PresetTempNormal.postUpdate(liveTemp)
+    // E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    // Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    // J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    // Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    // Hall_Heating_PresetTempNormal.postUpdate(midTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 

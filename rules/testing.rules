@@ -26,13 +26,15 @@ when
     Time cron "0 0/4 * * * ?"
 then
     var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
+    var Number currentTemp = CT_Temperature.state as DecimalType // get the current temperature
+
 
     if (RecircFanEnable.state == NULL) {
         logInfo("RULE", "recirc fan enable is NULL so set to ON")
         RecircFanEnable.state = ON
     }
 
-    if ((sp >= 19) && (RecircFanEnable.state == ON))  {
+    if ((sp >= 19) && (currentTemp < sp) && (RecircFanEnable.state == ON))  {
         logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
         {postUpdate(socketG3_2, ON)}
