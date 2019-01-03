@@ -113,7 +113,7 @@ when
     Time cron "0 30 16 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
-    FR_Heating_PresetTempNormal.postUpdate(midTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
@@ -127,7 +127,7 @@ when
     Time cron "0 30 22 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
-    FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
@@ -201,7 +201,7 @@ when
     Time cron "0 30 22 ? * SAT-SUN *"
 then
     CT_Heating_PresetTempNormal.postUpdate(liveTemp)
-    FR_Heating_PresetTempNormal.postUpdate(lowTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)

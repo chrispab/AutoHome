@@ -150,7 +150,7 @@ end
 
 rule "2 am turn off lights if i forgot"
 when
-    Time cron "0 00 02 ? * * *"
+    Time cron "0 30 02 ? * * *"
 then
     logInfo("RULE", "turn off stuff if i forgot")
         {sendCommand(socketG2_1, OFF)} //con lights
