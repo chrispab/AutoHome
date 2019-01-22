@@ -2,10 +2,11 @@
 var Number sleepTemp = 16
 var Number offTemp = 14
 var Number liveTemp = 21.5
-var Number midTemp = 17
+var Number midTemp = 18
 var Number lowTemp = 16
-var Number morningTemp = 18
-var Number eveningTemp = 22
+var Number morningTemp = 20
+var Number eveningTemp = 23
+var Number highTemp = 23
 
 
 // master heating mode - NORMAL mode rules
@@ -47,7 +48,7 @@ then
     Attic_Heating_PresetTempNormal.postUpdate(offTemp )
     J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
     Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
-    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -61,15 +62,32 @@ then
     Attic_Heating_PresetTempNormal.postUpdate(offTemp )
     J_BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
     Office_Heating_PresetTempNormal.postUpdate(sleepTemp)
-    Hall_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "NORMAL heating - 06:45 am"
+rule "start heating early if cold outside - 05:30 am"
 when
-    Time cron "0 45 06 ? * MON-FRI *"
+    Time cron "0 30 05 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
+    if (temp < 5.0 ) {  // determine whether we need to turn on/off the heater
+        CT_Heating_PresetTempNormal.postUpdate(highTemp)
+        FR_Heating_PresetTempNormal.postUpdate(offTemp)
+        E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
+        Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+        J_BR_Heating_PresetTempNormal.postUpdate(offTemp)
+        Office_Heating_PresetTempNormal.postUpdate(offTemp)
+        Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+        Heating_UpdateHeaters.sendCommand(ON)
+    }
+end
+
+rule "NORMAL heating - 06:30 am"
+when
+    Time cron "0 30 06 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(morningTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -79,11 +97,11 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "heating 08:00 am"
+rule "heating 08:15 am"
 when
-    Time cron "0 00 08 ? * MON-FRI *"
+    Time cron "0 15 08 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    CT_Heating_PresetTempNormal.postUpdate(offTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -108,9 +126,26 @@ then
 end
 
 
-rule "16:30"
+rule "afternoon - start heating early if cold outside - 03:00 pm"
 when
-    Time cron "0 30 16 ? * MON-FRI *"
+    Time cron "0 00 15 ? * MON-FRI *"
+then
+    var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
+    if (temp < 5.0) {  // determine whether we need to turn on/off the heater
+        CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+        FR_Heating_PresetTempNormal.postUpdate(offTemp)
+        E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+        Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+        J_BR_Heating_PresetTempNormal.postUpdate(offTemp)
+        Office_Heating_PresetTempNormal.postUpdate(offTemp)
+        Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+        Heating_UpdateHeaters.sendCommand(ON)
+    }
+end
+
+rule "16:00"
+when
+    Time cron "0 00 16 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)

@@ -1,2 +1,2 @@
-Number:Temperature YahooTemperature 	"Outside Temperature [%.1f %unit%]" { channel="yahooweather:weather:shepshed:temperature" }
+// Number:Temperature YahooTemperature 	"Outside Temperature [%.1f %unit%]" { channel="yahooweather:weather:shepshed:temperature" }
 
