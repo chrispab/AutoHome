@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "/run/user/1000/gvfs/smb-share:server=192.168.0.200,share=openhab%20home"
+			"path": "/nfs/openHAB-userdata"
 		}
 	],
 	"settings": {
