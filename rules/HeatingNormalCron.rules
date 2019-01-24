@@ -167,9 +167,24 @@ then
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
     J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Office_Heating_PresetTempNormal.postUpdate(midTemp)
-    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
+
+rule "11:30pm weekdays"
+when
+    Time cron "0 30 23 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(offTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
 
 rule "TEST  weekdays"
 when
