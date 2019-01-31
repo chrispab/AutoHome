@@ -22,3 +22,4 @@ Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge
 
 Switch RecircFanEnable    "Recirc Fan Enable" <fan>
 Switch GoingToBed    "Going to bed" <bed>
+Switch TurnOnAV "Turn on AV" <tv>
