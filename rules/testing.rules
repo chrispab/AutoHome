@@ -96,7 +96,8 @@ then
     {postUpdate(socketG2_3, ON)}    
     {sendCommand(socketG2_2, OFF)} //radio
     {postUpdate(socketG2_2, OFF)}
-
+    {sendCommand(Kodi_FR, ON)} //tv
+    {postUpdate(Kodi_FR, ON)}
     //wake tv kodi box
 
 
