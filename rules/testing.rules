@@ -99,7 +99,7 @@ then
     {sendCommand(Kodi_FR, ON)} //tv
     {postUpdate(Kodi_FR, ON)}
     //wake tv kodi box
-
+    
 
 end
 
