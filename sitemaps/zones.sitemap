@@ -2,6 +2,8 @@ sitemap zones label="Zones"
 {
   Frame {
     Text item=Current_Date
+    Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+
   }
       Frame label="Zone 1" {
             Switch item= Zone1LightStatus label="Light"
