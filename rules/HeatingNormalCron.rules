@@ -71,7 +71,7 @@ when
     Time cron "0 30 04 ? * MON-FRI *"
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
-    if (temp < 1.0 ) {  // determine whether we need to turn on/off the heater
+    if (temp < 3.0 ) {  // determine whether we need to turn on/off the heater
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -88,7 +88,7 @@ when
     Time cron "0 30 05 ? * MON-FRI *"
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
-    if (temp < 5.0 ) {  // determine whether we need to turn on/off the heater
+    if (temp < 8.0 ) {  // determine whether we need to turn on/off the heater
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -102,7 +102,7 @@ end
 
 rule "NORMAL heating - 06:30 am"
 when
-    Time cron "0 30 06 ? * MON-FRI *"
+    Time cron "0 10 06 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
