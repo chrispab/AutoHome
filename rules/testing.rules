@@ -80,10 +80,9 @@ then
         }
 end
 
-rule "Turn on AV Kit"
+rule "Turn ON AV Kit"
 when
-    Item TurnOnAV received update
-        
+    Item TurnOnAV changed to on
 then
     logInfo("RULE", "Turn on the AV Kit")
 
@@ -99,10 +98,30 @@ then
     {sendCommand(Kodi_FR, ON)} //tv
     {postUpdate(Kodi_FR, ON)}
     //wake tv kodi box
+end
+
+rule "Turn OFF AV Kit"
+when
+    Item TurnOnAV changed to off
+        
+then
+    logInfo("RULE", "Turn off the AV Kit")
+
+    //turn on
+    //{sendCommand(socketG2_1, OFF)} //con lights
+    //{postUpdate(socketG2_1, OFF)}
+    {sendCommand(socketG2_4, OFF)} //tv
+    {postUpdate(socketG2_4, OFF)}
+    {sendCommand(socketG2_3, OFF)} // amp
+    {postUpdate(socketG2_3, OFF)}    
+    //{sendCommand(socketG2_2, OFF)} //radio
+    //{postUpdate(socketG2_2, OFF)}
+    {sendCommand(Kodi_FR, OFF)} //tv
+    {postUpdate(Kodi_FR, OFF)}
+    //wake tv kodi box
     
 
 end
-
 
 rule "433 bridge Button 1"
 when
