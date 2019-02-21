@@ -82,7 +82,7 @@ end
 
 rule "Turn ON AV Kit"
 when
-    Item TurnOnAV changed to on
+    Item TurnOnAV changed to ON
 then
     logInfo("RULE", "Turn on the AV Kit")
 
@@ -102,7 +102,7 @@ end
 
 rule "Turn OFF AV Kit"
 when
-    Item TurnOnAV changed to off
+    Item TurnOnAV changed to OFF
         
 then
     logInfo("RULE", "Turn off the AV Kit")
