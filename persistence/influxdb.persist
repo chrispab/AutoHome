@@ -24,6 +24,16 @@ Items {
     Zone1LightStatus : strategy = everyUpdate
     Zone1HeaterStatus : strategy = everyUpdate
     Zone1VentSpeedStatus : strategy = everyUpdate
+
+    Zone2Temperature : strategy = everyUpdate
+    Zone2Humidity : strategy = everyUpdate
+    Zone2VentStatus : strategy = everyUpdate
+    Zone2FanStatus : strategy = everyUpdate
+    Zone2LightStatus : strategy = everyUpdate
+    Zone2HeaterStatus : strategy = everyUpdate
+    Zone2VentSpeedStatus : strategy = everyUpdate
+    Zone2LightSensor : strategy = everyUpdate
+
     
     Zone3Temperature : strategy = everyUpdate
     Zone3Humidity : strategy = everyUpdate

@@ -8,6 +8,16 @@ Switch Zone1HeaterStatus "Zone 1 Heater Status" <my_radiator> {mqtt="<[mosquitto
 Switch Zone1VentSpeedStatus "Zone 1 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone1/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 
 
+Number Zone2Temperature "Zone 2 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone2/TemperatureStatus:state:default]"} 
+Number Zone2Humidity "Zone 2 Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:Zone2/HumidityStatus:state:default]"} 
+Switch Zone2VentStatus "Zone 2 Vent Status" <fan> {mqtt="<[mosquitto:Zone2/VentStatus:state:MAP(onoffcases.map)]"} 
+Switch Zone2FanStatus "Zone 2 fan Status" <fan_ceiling> {mqtt="<[mosquitto:Zone2/FanStatus:state:MAP(onoffcases.map)]"} 
+Switch Zone2LightStatus "Zone 2 Light Status" <switch> {mqtt="<[mosquitto:Zone2/LightStatus:state:MAP(onoffcases.map)]"} 
+Switch Zone2HeaterStatus "Zone 2 Heater Status" <my_radiator> {mqtt="<[mosquitto:Zone2/HeaterStatus:state:MAP(onoffcases.map)]"} 
+Switch Zone2VentSpeedStatus "Zone 2 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone2/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
+Number Zone2LightSensor "Zone 2 LightSensor [%.1f ]" <LightSensor> {mqtt="<[mosquitto:Zone2/LightSensor:state:default]"} 
+
+
 Number Zone3Temperature "Zone 3 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone3/TemperatureStatus:state:default]"} 
 Number Zone3Humidity "Zone 3 Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:Zone3/HumidityStatus:state:default]"} 
 Switch Zone3VentStatus "Zone 3 Vent Status" <fan> {mqtt="<[mosquitto:Zone3/VentStatus:state:MAP(onoffcases.map)]"} 
