@@ -205,24 +205,24 @@ then
     
 end
 
-rule "07:00 morning elsie - lights on"
-when
-    Time cron "0 00 07 ? * MON-FRI *"
-then
-    logInfo("RULE", "Morning Elsie!")
-    sendCommand(socketG1_3, ON)
-    sendCommand(socketG1_4, ON)
-    sendCommand(socketG2_1, ON)
-end
+// rule "07:00 morning elsie - lights on"
+// when
+//     Time cron "0 00 07 ? * MON-FRI *"
+// then
+//     logInfo("RULE", "Morning Elsie!")
+//     sendCommand(socketG1_3, ON)
+//     sendCommand(socketG1_4, ON)
+//     sendCommand(socketG2_1, ON)
+// end
 
-rule "welcome home elsie - lights on"
-when
-    Time cron "0 10 15 ? * MON-FRI *"
-then
-    logInfo("RULE", "afternoon Elsie!")
-    sendCommand(socketG1_3, ON)
-    sendCommand(socketG1_4, ON)
-    sendCommand(socketG2_1, ON)
-end
+// rule "welcome home elsie - lights on"
+// when
+//     Time cron "0 10 15 ? * MON-FRI *"
+// then
+//     logInfo("RULE", "afternoon Elsie!")
+//     sendCommand(socketG1_3, ON)
+//     sendCommand(socketG1_4, ON)
+//     sendCommand(socketG2_1, ON)
+// end
 
 
