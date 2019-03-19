@@ -2,10 +2,10 @@
 //switch on xmas lights when eslie gets home
 rule "switch on lights when elsie gets home"
 when
-    Item ElsieSIPhone_Online changed to ON
-    or
-    Item JoIPhone_Online changed to ON
-    or
+    // Item ElsieSIPhone_Online changed to ON
+    // or
+    // Item JoIPhone_Online changed to ON
+    // or
     Item ChrisGalaxyS5_Online changed to ON
 then
     if (now.getHourOfDay == 15){
@@ -93,8 +93,8 @@ then
     {postUpdate(socketG2_4, ON)}
     {sendCommand(socketG2_3, ON)} // amp
     {postUpdate(socketG2_3, ON)}    
-    {sendCommand(socketG2_2, OFF)} //radio
-    {postUpdate(socketG2_2, OFF)}
+    //{sendCommand(socketG2_2, OFF)} //radio
+    //{postUpdate(socketG2_2, OFF)}
     {sendCommand(Kodi_FR, ON)} //tv
     {postUpdate(Kodi_FR, ON)}
     //wake tv kodi box
