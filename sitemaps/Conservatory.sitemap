@@ -2,6 +2,10 @@ sitemap Conservatory label="Conservatory"
 {
   Frame {
     Text item=Current_Date
+        Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+                    Switch item= TurnOnAV label="AV Switch" icon="switch"
+          Switch item= GoingToBed label="Going To Bed" icon="switch"
+
   }
   Frame label="Heating" {
           Text item=CT_Temperature label="Conservatory Temperature : [%.1f °C]"
@@ -44,6 +48,7 @@ sitemap Conservatory label="Conservatory"
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
           Switch item= bridgeButton1 label="Bridge Button 1" icon="switch"
+
 
  } 
 }
