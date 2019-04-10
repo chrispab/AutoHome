@@ -3,6 +3,7 @@ sitemap Conservatory label="Conservatory"
   Frame {
     Text item=Current_Date
         Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+        Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
                     Switch item= TurnOnAV label="AV Switch" icon="switch"
           Switch item= GoingToBed label="Going To Bed" icon="switch"
 
