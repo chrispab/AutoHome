@@ -112,5 +112,7 @@ Items {
 
     GRG_Temperature : strategy = everyUpdate
     GRG_Humidity : strategy = everyUpdate
+    BridgeLightSensorLevel : strategy = everyUpdate
+    BridgeLightSensorState : strategy = everyUpdate
     
 }
