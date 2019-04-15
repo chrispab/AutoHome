@@ -205,24 +205,17 @@ then
     
 end
 
-// rule "07:00 morning elsie - lights on"
-// when
-//     Time cron "0 00 07 ? * MON-FRI *"
-// then
-//     logInfo("RULE", "Morning Elsie!")
-//     sendCommand(socketG1_3, ON)
-//     sendCommand(socketG1_4, ON)
-//     sendCommand(socketG2_1, ON)
-// end
 
-// rule "welcome home elsie - lights on"
-// when
-//     Time cron "0 10 15 ? * MON-FRI *"
-// then
-//     logInfo("RULE", "afternoon Elsie!")
-//     sendCommand(socketG1_3, ON)
-//     sendCommand(socketG1_4, ON)
-//     sendCommand(socketG2_1, ON)
-// end
-
-
+rule "Light sensor Turn ON lights"
+when
+    Item BridgeLightSensorState changed to OFF
+then
+    logInfo("RULE", "Turn on lights - light sensor state")
+    //turn on
+    {sendCommand(socketG2_1, ON)} //con lights
+    {postUpdate(socketG2_1, ON)}
+    {sendCommand(socketG1_3, ON)} //landinf lights
+    {postUpdate(socketG1_3, ON)}
+    {sendCommand(socketG1_4, ON)} //DR lights
+    {postUpdate(socketG1_4, ON)}    
+end

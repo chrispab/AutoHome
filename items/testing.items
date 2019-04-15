@@ -27,5 +27,9 @@ Switch TurnOnAV "Turn on AV" <tv>
 Number BridgeLightSensorLevel "Light Sensor Level" <light> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"} 
 Switch BridgeLightSensorState "Light Sensor State" <light> {mqtt="<[mosquitto:433Bridge/LightState:state:MAP(onoffcases.map)]"} 
 
+Number Plant1MoistureLevel "Plant1 Moisture Level" <light> {mqtt="<[mosquitto:Plant/1/MoistureLevel:state:default]"} 
+Switch Plant1MoistureState "Plant 1 Moisture State" <light> {mqtt="<[mosquitto:Plant/1/MoistureState:state:MAP(onoffcases.map)]"} 
 //Number Bridge_Temperature "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:433Bridge/LightState:state:default]"}
 //Number Bridge_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"}
+Number Plant2MoistureLevel "Plant 2 Moisture Level" <light> {mqtt="<[mosquitto:Plant/2/MoistureLevel:state:default]"} 
+Switch Plant2MoistureState "Plant 2 Moisture State" <light> {mqtt="<[mosquitto:Plant/2/MoistureState:state:MAP(onoffcases.map)]"} 

@@ -114,5 +114,8 @@ Items {
     GRG_Humidity : strategy = everyUpdate
     BridgeLightSensorLevel : strategy = everyUpdate
     BridgeLightSensorState : strategy = everyUpdate
-    
+    Plant1MoistureLevel : strategy = everyUpdate
+    Plant1MoistureState : strategy = everyUpdate
+    Plant2MoistureLevel : strategy = everyUpdate
+    Plant2MoistureState : strategy = everyUpdate    
 }
