@@ -118,4 +118,6 @@ Items {
     Plant1MoistureState : strategy = everyUpdate
     Plant2MoistureLevel : strategy = everyUpdate
     Plant2MoistureState : strategy = everyUpdate    
+    Plant3MoistureLevel : strategy = everyUpdate
+    Plant3MoistureState : strategy = everyUpdate    
 }
