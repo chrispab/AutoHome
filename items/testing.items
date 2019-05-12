@@ -36,3 +36,6 @@ Switch Plant2MoistureState "Plant 2 Moisture State" <light> {mqtt="<[mosquitto:P
 
 Number Plant3MoistureLevel "Plant 3 Moisture Level" <light> {mqtt="<[mosquitto:Plant/3/MoistureLevel:state:default]"} 
 Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:Plant/3/MoistureState:state:MAP(onoffcases.map)]"} 
+
+
+Switch PIRState "Bridge PIR sensor" <light> {mqtt="<[mosquitto:433Bridge/PIRState:state:MAP(onoffcases.map)]"} 

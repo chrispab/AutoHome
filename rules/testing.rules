@@ -219,3 +219,52 @@ then
     {sendCommand(socketG1_4, ON)} //DR lights
     {postUpdate(socketG1_4, ON)}    
 end
+
+
+
+
+rule "PIRsensor Turn ON lights"
+when
+    Item PIRState changed to ON
+then
+    logInfo("RULE", "pir on")
+    //turn on
+    {sendCommand(socketG3_3, ON)} //con lights
+     {postUpdate(socketG3_3, ON)}
+    // {sendCommand(socketG1_3, ON)} //landinf lights
+    // {postUpdate(socketG1_3, ON)}
+    // {sendCommand(socketG1_4, ON)} //DR lights
+    // {postUpdate(socketG1_4, ON)}    
+end
+
+rule "PIRsensor Turn OFF lights"
+when
+    Item PIRState changed to OFF
+then
+    logInfo("RULE", "pir off")
+    //turn on
+    {sendCommand(socketG3_3, OFF)} //con lights
+     {postUpdate(socketG3_3, OFF)}
+    // {sendCommand(socketG1_3, ON)} //landinf lights
+    // {postUpdate(socketG1_3, ON)}
+    // {sendCommand(socketG1_4, ON)} //DR lights
+    // {postUpdate(socketG1_4, ON)}    
+end
+
+rule "zone3 lights on"
+when
+    Item Zone3LightStatus changed to ON
+then
+    {sendCommand(socketG2_1, OFF)} //con lights
+    {postUpdate(socketG2_1, OFF)}
+    
+    logInfo("RULE", "Z3 lights - on")
+            createTimer(now.plusSeconds(5), [|
+            {sendCommand(socketG2_1, ON)} //fan
+            {postUpdate(socketG2_1, ON)}
+            //{postUpdate(socketG3_2, OFF)}
+            logInfo("RULE", "pulse consv light OFF/ON")
+        ])
+
+ 
+end
