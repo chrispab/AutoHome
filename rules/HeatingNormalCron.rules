@@ -114,9 +114,9 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "heating 08:15 am"
+rule "heating 08:00 am"
 when
-    Time cron "0 15 08 ? * MON-FRI *"
+    Time cron "0 0 08 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(offTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)

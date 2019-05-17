@@ -37,7 +37,7 @@ then
     logInfo("RULE", "sp : " + sp)
     logInfo("RULE", "currentTemp : " + currentTemp)
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
-    if ( (sp >= 19) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
+    if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
         logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
         {postUpdate(socketG3_2, ON)}
