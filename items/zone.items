@@ -6,6 +6,7 @@ Switch Zone1FanStatus "Zone 1 fan Status" <fan_ceiling> {mqtt="<[mosquitto:Zone1
 Switch Zone1LightStatus "Zone 1 Light Status" <switch> {mqtt="<[mosquitto:Zone1/LightStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone1HeaterStatus "Zone 1 Heater Status" <my_radiator> {mqtt="<[mosquitto:Zone1/HeaterStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone1VentSpeedStatus "Zone 1 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone1/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
+Number Zone1VentPercent "Zone 1 Vent Percent" <vent> {mqtt="<[mosquitto:Zone1/VentPercent:state:default]"} 
 
 
 Number Zone2Temperature "Zone 2 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone2/TemperatureStatus:state:default]"} 
@@ -16,6 +17,7 @@ Switch Zone2LightStatus "Zone 2 Light Status" <switch> {mqtt="<[mosquitto:Zone2/
 Switch Zone2HeaterStatus "Zone 2 Heater Status" <my_radiator> {mqtt="<[mosquitto:Zone2/HeaterStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone2VentSpeedStatus "Zone 2 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone2/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 Number Zone2LightSensor "Zone 2 LightSensor [%.1f ]" <LightSensor> {mqtt="<[mosquitto:Zone2/LightSensor:state:default]"} 
+Number Zone2VentPercent "Zone 2 Vent Percent" <vent> {mqtt="<[mosquitto:Zone2/VentPercent:state:default]"} 
 
 
 Number Zone3Temperature "Zone 3 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone3/TemperatureStatus:state:default]"} 
@@ -25,3 +27,4 @@ Switch Zone3LightStatus "Zone 3 Light Status" <switch> {mqtt="<[mosquitto:Zone3/
 Switch Zone3HeaterStatus "Zone 3 Heater Status" <my_radiator> {mqtt="<[mosquitto:Zone3/HeaterStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone3FanStatus "Zone 3 fan Status" <fan_ceiling> {mqtt="<[mosquitto:Zone3/FanStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone3VentSpeedStatus "Zone 3 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone3/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
+Number Zone3VentPercent "Zone 3 Vent Percent" <vent> {mqtt="<[mosquitto:Zone3/VentPercent:state:default]"} 

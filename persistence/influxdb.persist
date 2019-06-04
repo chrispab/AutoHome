@@ -24,6 +24,7 @@ Items {
     Zone1LightStatus : strategy = everyUpdate
     Zone1HeaterStatus : strategy = everyUpdate
     Zone1VentSpeedStatus : strategy = everyUpdate
+    Zone1VentPercent : strategy = everyUpdate
 
     Zone2Temperature : strategy = everyUpdate
     Zone2Humidity : strategy = everyUpdate
@@ -33,6 +34,7 @@ Items {
     Zone2HeaterStatus : strategy = everyUpdate
     Zone2VentSpeedStatus : strategy = everyUpdate
     Zone2LightSensor : strategy = everyUpdate
+    Zone2VentPercent : strategy = everyUpdate
 
     
     Zone3Temperature : strategy = everyUpdate
@@ -42,6 +44,7 @@ Items {
     Zone3LightStatus : strategy = everyUpdate
     Zone3HeaterStatus : strategy = everyUpdate
     Zone3VentSpeedStatus : strategy = everyUpdate
+    Zone3VentPercent : strategy = everyUpdate
 
 
     Boiler_Control :  strategy = everyUpdate

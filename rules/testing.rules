@@ -56,6 +56,10 @@ then
 end
 
 
+
+
+
+
 rule "Conservatory Cooling Fan"
 when
     Item CT_Temperature changed
@@ -267,4 +271,39 @@ then
         ])
 
  
+end
+
+// rule "pulse fan"
+// when
+//     Item FanPulseSwitch changed to ON
+// then
+// socketG3_2.sendCommand(ON)
+//             socketG3_2.postUpdate(ON)
+//         // sendCommand(socketG3_2, ON) //fan on
+//         // {postUpdate(socketG3_2, ON)}
+
+// // var Timer fanRecircTimer = null
+
+//         createTimer(now.plusSeconds(60), [|
+//             {sendCommand(socketG3_2, OFF)} //fan
+//             {postUpdate(socketG3_2, OFF)}
+//             logInfo("RULE", "pulse fan switch pessed")
+//         ])
+    
+
+// end
+
+rule "React on Fan Pulse (FanPulseSwitch) change/update"
+when
+    Item FanPulseSwitch changed
+then
+    socketG3_2.sendCommand(ON)
+    socketG3_2.postUpdate(ON)
+
+    createTimer(now.plusSeconds(30), [|
+        {sendCommand(socketG3_2, OFF)} //fan
+        {postUpdate(socketG3_2, OFF)}
+        logInfo("RULE", "pulse fan switch pressed")
+    ])
+    
 end
