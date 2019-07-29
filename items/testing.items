@@ -40,3 +40,9 @@ Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:P
 
 
 Switch PIRState "Bridge PIR sensor" <light> {mqtt="<[mosquitto:433Bridge/PIRState:state:MAP(onoffcases.map)]"} 
+
+Switch FanOnOverride    "Fan ON - Override" <fan>
+
+
+Number Conservatory_Fan_ON_Setpoint "conservatory fan on setponit [%.1f °C]"    <degreesc>
+

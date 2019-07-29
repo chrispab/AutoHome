@@ -16,73 +16,7 @@ then
 end
 
 
-//init virtual items on startup
 
-//if conservatory heating in on period
-//then pulse recirc fan every n mins
-
-rule "pulse con re-circ fan when setpoint > 19"
-when
-    Time cron "0 0/5 * * * ?"
-then
-    var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
-    var Number currentTemp = CT_Temperature.state as DecimalType // get the current temperature
-
-
-    if (RecircFanEnable.state == NULL) {
-        logInfo("RULE", "recirc fan enable is NULL so set to ON")
-        RecircFanEnable.state = ON
-    }
-
-    logInfo("RULE", "sp : " + sp)
-    logInfo("RULE", "currentTemp : " + currentTemp)
-    logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
-    if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        logInfo("RULE", "pulse conservatory re-circ fan when setpoint > 19, set at:" + sp)
-        {sendCommand(socketG3_2, ON)} //fan on
-        {postUpdate(socketG3_2, ON)}
-
-// var Timer fanRecircTimer = null
-
-        createTimer(now.plusSeconds(60), [|
-            {sendCommand(socketG3_2, OFF)} //fan
-            {postUpdate(socketG3_2, OFF)}
-            logInfo("RULE", "pulse consv fan OFF sent after n mins")
-        ])
-    }
-    if (  (RecircFanEnable.state == OFF) )  {
-        logInfo("RULE", "recirc cron ran, but recirc fan is disabled so not switching on")
-    }
-end
-
-
-
-
-
-
-rule "Conservatory Cooling Fan"
-when
-    Item CT_Temperature changed
-then
-        var Number setpoint = 26.0 //CT_Heating_Setpoint.state as DecimalType
-        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
-        var Number turnOffTemp = setpoint - 2.0//+ 0.1
-        var Number temp = CT_Temperature.state as DecimalType // get the current temperature
-
-        // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the fan
-        //     socketG3_2.sendCommand(OFF)
-        //     socketG3_2.postUpdate(OFF)
-        // }else 
-        if (temp >= turnOnTemp) {
-            socketG3_2.sendCommand(ON)
-            socketG3_2.postUpdate(ON)
-            logInfo("RULE", "consv hot - turn on fan: " + temp)
-        }
-        if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the fan
-            socketG3_2.sendCommand(OFF)
-            socketG3_2.postUpdate(OFF)
-        }
-end
 
 rule "Turn ON AV Kit"
 when
@@ -292,18 +226,3 @@ end
     
 
 // end
-
-rule "React on Fan Pulse (FanPulseSwitch) change/update"
-when
-    Item FanPulseSwitch changed
-then
-    socketG3_2.sendCommand(ON)
-    socketG3_2.postUpdate(ON)
-
-    createTimer(now.plusSeconds(30), [|
-        {sendCommand(socketG3_2, OFF)} //fan
-        {postUpdate(socketG3_2, OFF)}
-        logInfo("RULE", "pulse fan switch pressed")
-    ])
-    
-end
