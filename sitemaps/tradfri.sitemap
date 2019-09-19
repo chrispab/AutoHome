@@ -1,0 +1,13 @@
+sitemap tradfri label="Ikea Lights"
+{
+    Frame {
+        // Slider item=Light1 label="Light1 Brightness [%.1f %%]"
+        // Slider item=Light2_Brightness label="Light2 Brightness [%.1f %%]"
+        // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
+        Colorpicker item=ClipLight label="Color"
+        Colorpicker item=IkeaLight2 label="Color"
+        // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
+        // Switch item=RemoteControlBatteryLow label="Battery low warning"
+        // Switch item=ControlOutlet label="Power Switch"
+    }
+}
