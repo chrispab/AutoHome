@@ -79,7 +79,8 @@ then
     {postUpdate(socketG2_3, OFF)}    
     {sendCommand(socketG2_2, OFF)} //radio
     {postUpdate(socketG2_2, OFF)}
-        {sendCommand(gIkeaLights, OFF)} //
+    
+    {sendCommand(gIkeaLights, OFF)} //
     {postUpdate(gIkeaLights, OFF)} 
 
     //set rads temps to off
@@ -173,8 +174,8 @@ then
     //turn on
     {sendCommand(socketG3_3, ON)} //con lights
      {postUpdate(socketG3_3, ON)}
-         {sendCommand(gIkeaLights, ON)} //
-    {postUpdate(gIkeaLights, ON)} 
+    //      {sendCommand(gIkeaLights, ON)} //
+    // {postUpdate(gIkeaLights, ON)} 
     // {sendCommand(socketG1_3, ON)} //landinf lights
     // {postUpdate(socketG1_3, ON)}
     // {sendCommand(socketG1_4, ON)} //DR lights

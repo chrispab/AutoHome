@@ -2,38 +2,37 @@ sitemap Conservatory label="Conservatory"
 {
   Frame {
     Text item=Current_Date
-        Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
-        Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
-                    Switch item= TurnOnAV label="AV Switch" icon="switch"
-          Switch item= GoingToBed label="Going To Bed" icon="switch"
-
+    Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+    Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
+    Switch item= TurnOnAV label="AV Switch" 
+    Switch item= GoingToBed label="Going To Bed" 
   }
-  Frame label="Heating" {
-          Text item=CT_Temperature label="Conservatory Temperature : [%.1f °C]"
-          Switch item= CT_Heating label="Conservatory Radiator"
+
+    //Frame label="Heating" {
+      Frame label="Heating" {
+      Text item=CT_Temperature label="Temperature: [%.1f °C]"
+      Switch item= CT_Heating label="Conservatory Radiators"
+   // }
+
+   // Frame label="Control" {
         Switch item=CT_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Setpoint item=CT_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[CT_Heating_Mode==2]
+        Setpoint item=CT_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[CT_Heating_Mode>0]
+    }
+ // }
 
-  }
   
     Frame label="Presence" {
-    Default item=JoIPhone_Online  label="Jo Phone" icon="network"
-    Default item=ChrisGalaxyS5_Online label="Chris Phone" icon="network"
-    Default item=ElsieSIPhone_Online label="Elsie Phone" icon="network"
-     }  
+      Default item=JoG6_Online  label="Jo Phone" icon="network"
+      Default item=ChrisG6_Online label="Chris Phone" icon="network"
+      Default item=ElsieIPhone_Online label="Elsie Phone" icon="network"
+    }  
     
     
     Frame label="TV" {
           Switch item= socketG2_4 label="TV" icon="screen"
- }  
-
-    Frame label="Amp" {
-          Switch item= socketG2_3 label="Amp" icon="receiver"
- }  
-
-    Frame label="Radio" {
+                    Switch item= socketG2_3 label="TV Soundbar" icon="receiver"
           Switch item= socketG2_2 label="Radio" icon="player"
- }
+ }  
 
     Frame label="Recirc Fan" {
           Switch item= socketG3_2 label="Fan" icon="fan"
@@ -42,10 +41,10 @@ sitemap Conservatory label="Conservatory"
 
     Frame label="Conservatory" {
           Switch item= socketG2_1 label="Conservatory Fairy Lights" icon="light"
+                    Switch item= socketG1_4 label="Dining Room Fairy Lights" icon="light"
+
  }  
-    Frame label="Dining Room" {
-          Switch item= socketG1_4 label="Dining Room Fairy Lights" icon="light"
- }
+
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
           Switch item= bridgeButton1 label="Bridge Button 1" icon="switch"

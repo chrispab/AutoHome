@@ -1,17 +1,3 @@
-Switch     ElsieSIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_61:online"}
-Number     ElsieSIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_61:latency"}
-//DateTime   ElsieSIPhone_L
-//Switch     chris_galaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
-
-Switch     ChrisGalaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
-Number     ChrisGalaxyS5_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_60:latency"}
-DateTime   ChrisGalaxyS5_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_60:lastseen"}
-
-
-Switch     JoIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_67:online"}
-Number     JoIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_67:latency"}
-DateTime   JoIPhone_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_67:lastseen"}
-
 Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
 
 
@@ -22,8 +8,8 @@ Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge
 
 Switch RecircFanEnable    "Recirc Fan Enable" <fan>
 Switch FanPulseSwitch    "Fan Pulse" <fan>
-Switch GoingToBed    "Going to bed" <bed>
-Switch TurnOnAV "Turn on AV" <tv>
+Switch GoingToBed    "Going to bed" <switch>
+Switch TurnOnAV "Turn on AV" <switch>
 
 Number BridgeLightSensorLevel "Light Sensor Level" <light> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"} 
 Switch BridgeLightSensorState "Light Sensor State" <light> {mqtt="<[mosquitto:433Bridge/LightState:state:MAP(onoffcases.map)]"} 

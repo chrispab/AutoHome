@@ -1,3 +1,5 @@
+Group gIkeaLights
+
 Color ClipLight { channel="tradfri:0210:gw44916026cf61:65544:color" }
 Color IkeaLight2 { channel="tradfri:0210:gw44916026cf61:65542:color" }
 
@@ -11,3 +13,4 @@ Color IkeaLight2 { channel="tradfri:0210:gw44916026cf61:65542:color" }
 //Group gIkeaLights "Ikea Lights"
 Switch ClipLightPower "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65544:color" }
 Switch IkeaLight2Power "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65542:color" }
+

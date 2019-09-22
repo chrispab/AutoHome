@@ -1,22 +1,16 @@
 sitemap Office label="Office"
 {
-  // Frame  {
-  //   Text item=Current_Date
-  // }
     Frame label="Heating" {
-    // Text item=Office_Temperature label="Actual Temperature: [%.1f °C]"
-    // Switch item= Office_Heating label="Office Radiator"
-  Text item=Current_Date
-    Frame label="Status" {
-    Text item=Office_Temperature label="Temperature: [%.1f °C]"
-    Switch item= Office_Heating label="Office Radiator"
-  }
+    Text item=Current_Date
+      Frame label="Status" {
+      Text item=Office_Temperature label="Temperature: [%.1f °C]"
+      Switch item= Office_Heating label="Office Radiator"
+    }
 
-  Frame label="Control" {
+    Frame label="Control" {
         Switch item=Office_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
         Setpoint item=Office_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[Office_Heating_Mode>0]
-        //Setpoint item=Office_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1
-  }
     }
+  }
 
 }
