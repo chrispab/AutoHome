@@ -72,6 +72,8 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 3.0 ) {  // determine whether we need to turn on/off the heater
+        logInfo("4:30 - check if cold enough to start heating", "starting cos outside temp = " + tempemp)
+
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -89,6 +91,8 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 8.0 ) {  // determine whether we need to turn on/off the heater
+        logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + tempemp)
+
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         E_BR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -100,7 +104,7 @@ then
     }
 end
 
-rule "NORMAL heating - 06:30 am"
+rule "NORMAL heating start - 06:10 am"
 when
     Time cron "0 10 06 ? * MON-FRI *"
 then
@@ -165,6 +169,20 @@ when
     Time cron "0 00 16 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Attic_Heating_PresetTempNormal.postUpdate(offTemp)
+    J_BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    Office_Heating_PresetTempNormal.postUpdate(midTemp)
+    Hall_Heating_PresetTempNormal.postUpdate(midTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
+
+rule "19:00"
+when
+    Time cron "0 00 19 ? * MON-FRI *"
+then
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -239,7 +257,7 @@ rule "8:00 am weekend"
 when
     Time cron "0 0 8 ? * SAT-SUN *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -253,7 +271,7 @@ rule "4:30pm weekend"
 when
     Time cron "0 30 16 ? * SAT-SUN *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -267,7 +285,7 @@ rule "22:30pm weekend"
 when
     Time cron "0 30 22 ? * SAT-SUN *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(liveTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
