@@ -72,7 +72,7 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 3.0 ) {  // determine whether we need to turn on/off the heater
-        logInfo("4:30 - check if cold enough to start heating", "starting cos outside temp = " + tempemp)
+        logInfo("4:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -91,7 +91,7 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 8.0 ) {  // determine whether we need to turn on/off the heater
-        logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + tempemp)
+        logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
         CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -153,7 +153,7 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 5.0) {  // determine whether we need to turn on/off the heater
-        CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+        CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
         Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -168,7 +168,7 @@ rule "16:00"
 when
     Time cron "0 00 16 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -196,7 +196,7 @@ rule "22:30 weekdays"
 when
     Time cron "0 30 22 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     E_BR_Heating_PresetTempNormal.postUpdate(midTemp)
     Attic_Heating_PresetTempNormal.postUpdate(offTemp)

@@ -1,14 +1,22 @@
 sitemap Elsie_Bedroom label="Elsie's Bedroom"
 {
-  Frame label="Date" {
-    Text item=Current_Date
-  }
-  Frame label="Heating Control" {
-        Switch item=E_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Setpoint item=E_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[E_BR_Heating_Mode==2]
-  }
-  Frame label="Current Status" {
-    Text item=E_BR_Temperature label="Actual Temperature: [%.1f °C]"
-    Switch item= E_BR_Heating label="Elsie's Radiator"
+  // Frame label="Date" {
+  //   Text item=Current_Date
+  // }
+  // Frame label="Heating Control" {
+  //       Switch item=E_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+  //       Setpoint item=E_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[E_BR_Heating_Mode==2]
+  // }
+  // Frame label="Current Status" {
+  //   Text item=E_BR_Temperature label="Actual Temperature: [%.1f °C]"
+  //   Switch item= E_BR_Heating label="Elsie's Radiator"
+  // }
+
+  Frame label="Heating" {
+    Text item=E_BR_Temperature label="Temperature: [%.1f °C]"
+    Setpoint item=E_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[E_BR_Heating_Mode>0]
+    Switch item=E_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Switch item= E_BR_Heating label="Radiator"
   }
 }
+
