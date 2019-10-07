@@ -1,0 +1,99 @@
+# /etc/udev/rules.d/10-dvb.rules
+#
+# To Ientify serial nos etc for a Device call
+# udevadm info -a -p $(udevadm info -q path -n /dev/dvb/adapter0/frontend0)
+#
+# Create a symlink /dev/dvb/adapterhd0 pointing to wintv dualhd tuner 0
+SUBSYSTEM=="dvb", ATTRS{idVendor}=="2040", ATTRS{idProduct}=="0265", ATTRS{urbnum}=="776039", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapterhd0/%%s $${K#*.}'", SYMLINK+="%c"
+
+# Create a symlink /dev/dvb/adapterhd1 pointing to wintv dualhd tuner 1
+SUBSYSTEM=="dvb", ATTRS{idVendor}=="2040", ATTRS{idProduct}=="0265", ATTRS{urbnum}=="811273", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapterhd1/%%s $${K#*.}'", SYMLINK+="%c"
+
+
+# /etc/udev/rules.d/10-dvb.rules
+#
+# To Ientify serial nos etc for a Device call
+# udevadm info -a -p $(udevadm info -q path -n /dev/dvb/adapter0/frontend0)
+#
+# Create a symlink /dev/dvb/adapterhd0 pointing to wintv dualhd tuner 0
+SUBSYSTEM=="dvb", ATTR{idVendor}=="2040", ATTR{idProduct}=="0265", ATTR{urbnum}=="776039", SYMLINK+="adapterhd0"
+
+# Create a symlink /dev/dvb/adapterhd1 pointing to wintv dualhd tuner 1
+SUBSYSTEM=="dvb", ATTR{idVendor}=="2040", ATTR{idProduct}=="0265", ATTR{urbnum}=="811273", SYMLINK+="adapterhd1"
+
+
+#THIS WORKS
+# Create a symlink /dev/dvb/adapter110 pointing to pinnacle tuner 0, and adapter111 for tuner 1
+SUBSYSTEM=="dvb", ATTRS{idVendor}=="2040", ATTRS{idProduct}=="0265", PROGRAM="/bin/sh -c ' K=%k; K=$${K#dvb}; N=$${K#*.}; if [ ! -e /dev/dvb/adapter110/$N ] ; then  printf dvb/adapter110/%%s $${K#*.}; else printf dvb/adapter111/%%s $${K#*.}; fi ; exit 0'", SYMLINK+="%c"
+
+
+    KERNELS=="1-1.1.2"
+    SUBSYSTEMS=="usb"
+    DRIVERS=="usb"
+    ATTRS{bNumInterfaces}==" 1"
+    ATTRS{bMaxPower}=="500mA"
+    ATTRS{maxchild}=="0"
+    ATTRS{bcdDevice}=="0100"
+    ATTRS{authorized}=="1"
+    ATTRS{idProduct}=="0265"
+    ATTRS{configuration}==""
+    ATTRS{bConfigurationValue}=="1"
+    ATTRS{bDeviceClass}=="00"
+    ATTRS{speed}=="480"
+    ATTRS{avoid_reset_quirk}=="0"
+    ATTRS{manufacturer}=="HCW"
+    ATTRS{devspec}=="  (null)"
+    ATTRS{removable}=="unknown"
+    ATTRS{rx_lanes}=="1"
+    ATTRS{bDeviceProtocol}=="00"
+    ATTRS{ltm_capable}=="no"
+    ATTRS{bDeviceSubClass}=="00"
+    ATTRS{quirks}=="0x0"
+    ATTRS{bNumConfigurations}=="1"
+    ATTRS{devpath}=="1.1.2"
+    ATTRS{devnum}=="4"
+    ATTRS{serial}=="0014053554"
+    ATTRS{idVendor}=="2040"
+    ATTRS{tx_lanes}=="1"
+    ATTRS{busnum}=="1"
+    ATTRS{bmAttributes}=="80"
+    ATTRS{product}=="dualHD"
+    ATTRS{urbnum}=="1935"
+    ATTRS{bMaxPacketSize0}=="64"
+    ATTRS{version}==" 2.00"
+
+      looking at parent device '//devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.1/1-1.1.2':
+    KERNELS=="1-1.1.2"
+    SUBSYSTEMS=="usb"
+    DRIVERS=="usb"
+    ATTRS{devpath}=="1.1.2"
+    ATTRS{manufacturer}=="HCW"
+    ATTRS{urbnum}=="2814"
+    ATTRS{version}==" 2.00"
+    ATTRS{bDeviceClass}=="00"
+    ATTRS{authorized}=="1"
+    ATTRS{bmAttributes}=="80"
+    ATTRS{serial}=="0014053554"
+    ATTRS{maxchild}=="0"
+    ATTRS{bDeviceProtocol}=="00"
+    ATTRS{bNumInterfaces}==" 1"
+    ATTRS{bNumConfigurations}=="1"
+    ATTRS{tx_lanes}=="1"
+    ATTRS{avoid_reset_quirk}=="0"
+    ATTRS{bMaxPower}=="500mA"
+    ATTRS{speed}=="480"
+    ATTRS{quirks}=="0x0"
+    ATTRS{bConfigurationValue}=="1"
+    ATTRS{ltm_capable}=="no"
+    ATTRS{busnum}=="1"
+    ATTRS{idVendor}=="2040"
+    ATTRS{configuration}==""
+    ATTRS{bcdDevice}=="0100"
+    ATTRS{bDeviceSubClass}=="00"
+    ATTRS{product}=="dualHD"
+    ATTRS{removable}=="unknown"
+    ATTRS{devnum}=="4"
+    ATTRS{devspec}=="  (null)"
+    ATTRS{rx_lanes}=="1"
+    ATTRS{idProduct}=="0265"
+    ATTRS{bMaxPacketSize0}=="64"

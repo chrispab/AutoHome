@@ -58,16 +58,22 @@ then
         //     socketG3_2.sendCommand(OFF)
         //     socketG3_2.postUpdate(OFF)
         // }else 
-        if (temp >= turnOnTemp) {
-            socketG3_2.sendCommand(ON)
-            socketG3_2.postUpdate(ON)
-            logInfo("RULE", "consv hot - turn on fan: " + temp)
-        }
-        //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the fan
-        if ((temp < turnOnTemp) ) { 
-            if (FanOnOverride.state == OFF){
-            socketG3_2.sendCommand(OFF)
-            socketG3_2.postUpdate(OFF)
+
+
+        //only when heating not on
+        var Number sp = CT_Heating_Setpoint.state as DecimalType // get the current temperature
+        if (sp < 19) {
+            if (temp >= turnOnTemp) {
+                socketG3_2.sendCommand(ON)
+                socketG3_2.postUpdate(ON)
+                logInfo("RULE", "consv hot - turn on fan: " + temp)
+            }
+            //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the fan
+            if ((temp < turnOnTemp) ) { 
+                if (FanOnOverride.state == OFF){
+                socketG3_2.sendCommand(OFF)
+                socketG3_2.postUpdate(OFF)
+                }
             }
         }
 end
