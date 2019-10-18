@@ -79,6 +79,8 @@ then
     {postUpdate(socketG2_3, OFF)}    
     {sendCommand(socketG2_2, OFF)} //radio
     {postUpdate(socketG2_2, OFF)}
+        {postUpdate(TurnOnAV, OFF)}
+
     
     {sendCommand(gIkeaLights, OFF)} //
     {postUpdate(gIkeaLights, OFF)} 
@@ -109,7 +111,7 @@ when
 then
     logInfo("RULE", "delayed off switch")
 
-        lightsTimer2 = createTimer(now.plusSeconds(240), [|
+        createTimer(now.plusSeconds(240), [|
         {sendCommand(socketG2_1, OFF)} //con lights
         {postUpdate(socketG2_1, OFF)}
         {sendCommand(socketG1_4, OFF)} // d room lights
