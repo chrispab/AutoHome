@@ -28,3 +28,7 @@ Switch Zone3HeaterStatus "Zone 3 Heater Status" <my_radiator> {mqtt="<[mosquitto
 Switch Zone3FanStatus "Zone 3 fan Status" <fan_ceiling> {mqtt="<[mosquitto:Zone3/FanStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone3VentSpeedStatus "Zone 3 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone3/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 Number Zone3VentPercent "Zone 3 Vent Percent" <vent> {mqtt="<[mosquitto:Zone3/VentPercent:state:default]"} 
+
+
+
+Number Water1_Temperature "Water 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/tele/SENSOR:state:JSONPATH($.DS18B20.Temperature)]"} 

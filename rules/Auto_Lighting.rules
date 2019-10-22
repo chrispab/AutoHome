@@ -1,0 +1,23 @@
+rule "if dark in morning turn on conservatory lights"
+when
+    Time cron "0 15 07 ? * * *"
+then
+    logInfo("RULE", "morning lighting if dark")
+
+    if (BridgeLightSensorState.state == OFF) {
+
+        {sendCommand(socketG2_1, ON)} //con lights
+        {postUpdate(socketG2_1, ON)}
+        {sendCommand(socketG1_4, ON)} // d room lights
+        {postUpdate(socketG1_4, ON)}
+        {sendCommand(gIkeaLights, ON)} // d room lights
+        {postUpdate(gIkeaLights, ON)}
+        //{sendCommand(socketG2_4, OFF)} //tv
+         //{postUpdate(socketG2_4, OFF)}
+        // {sendCommand(socketG1_3, OFF)} // landing
+        // {postUpdate(socketG1_3, OFF)}    
+        //{sendCommand(socketG2_2, OFF)} //radio
+       // {postUpdate(socketG2_2, OFF)}
+    }
+
+end

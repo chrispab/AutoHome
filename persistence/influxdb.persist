@@ -124,4 +124,5 @@ Items {
     Plant3MoistureLevel : strategy = everyUpdate
     Plant3MoistureState : strategy = everyUpdate    
     PIRState : strategy = everyUpdate    
+    Water1_Temperature : strategy = everyUpdate    
 }

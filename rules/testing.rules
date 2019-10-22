@@ -216,22 +216,3 @@ then
  
 end
 
-// rule "pulse fan"
-// when
-//     Item FanPulseSwitch changed to ON
-// then
-// socketG3_2.sendCommand(ON)
-//             socketG3_2.postUpdate(ON)
-//         // sendCommand(socketG3_2, ON) //fan on
-//         // {postUpdate(socketG3_2, ON)}
-
-// // var Timer fanRecircTimer = null
-
-//         createTimer(now.plusSeconds(60), [|
-//             {sendCommand(socketG3_2, OFF)} //fan
-//             {postUpdate(socketG3_2, OFF)}
-//             logInfo("RULE", "pulse fan switch pessed")
-//         ])
-    
-
-// end
