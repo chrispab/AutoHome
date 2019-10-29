@@ -19,12 +19,14 @@ sitemap Elsie_Bedroom label="Elsie's Bedroom"
     Switch item= E_BR_Heating label="Radiator"
   }
   Frame label="Lights"{
-          Colorpicker item=ClipLight label="ClipLight Color"
+          //Colorpicker item=ClipLight label="ClipLight Color"
         //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
         // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
         // Switch item=RemoteControlBatteryLow label="Battery low warning"
         // Switch item=ControlOutlet label="Power Switch"
-        Switch item=ClipLightPower label="ClipLight switch"
+        Switch item=ClipLightPower label="ClipLight Power"
+        Colorpicker item=ClipLight label="ClipLight Color"
+
         //Switch item=IkeaLight2Power label="IkeaLight2 switch"
   }
 }
