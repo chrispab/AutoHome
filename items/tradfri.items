@@ -14,7 +14,9 @@ Switch ClipLightPower "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026c
 //tradfri:0100:gw44916026cf61:65548
 
 
-Color IkeaLight2 (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65549:color" }
-Switch IkeaLight2Power "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65549:color_temperature" }
+Color IkeaLight2 (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65542:color" }
+Switch IkeaLight2Power "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 
 Dimmer Bulb3 "Bulb3 Power" (gIkeaLights) { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
+//tradfri:0100:gw44916026cf61:65551tradfri:0100:gw44916026cf61:65551
+Dimmer Bulb4 "Bulb4" (gIkeaLights) { channel="tradfri:0100:gw44916026cf61:65551:brightness" }

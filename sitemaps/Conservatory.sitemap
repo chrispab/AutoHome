@@ -29,7 +29,8 @@ sitemap Conservatory label="Conservatory"
           Switch item= socketG2_4 label="TV" icon="screen"
                     Switch item= socketG2_3 label="TV Soundbar" icon="receiver"
           Switch item= socketG2_2 label="Radio" icon="player"
- }  
+          Switch item= socketG4_1 label="Mythtv backend"
+           }  
 
     Frame label="Recirc Fan" {
           Switch item= socketG3_2 label="Fan" icon="fan"
