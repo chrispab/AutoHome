@@ -1,6 +1,6 @@
 Group gIkeaLights
 
-Color ClipLight (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65544:color" }
+Color ClipLight "clip light colour" (gIkeaLights) [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65544:color" }
 
 //Switch Hobbyroom_LED6_switch "Hobbyrum LED6 Switch" (gHobbyroom,gHobbyroom_switch,gSwitch) { channel="tradfri:0220:mygateway:Hobbyroom_Color_LED6:brightness" }
 // Switch ClipLight "Clip Light Power" (gIkeaLights) { channel="tradfri:0220:gw44916026cf61:65544:brightness" }
@@ -9,14 +9,14 @@ Color ClipLight (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65544:color
 // Switch ClipLight “switch”  [“Lighting”, “Switchable”] {channel="tradfri:0210:gw44916026cf61:65544:color" }
 
 //Group gIkeaLights "Ikea Lights"
-Switch ClipLightPower "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65544:color" }
+Switch ClipLightPower "clip light power" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65544:color" }
 
 //tradfri:0100:gw44916026cf61:65548
 
 
-Color IkeaLight2 (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65542:color" }
-Switch IkeaLight2Power "switch" (gIkeaLights) { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
+Color IkeaLight2 "bulb one colour" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65542:color" }
+Switch IkeaLight2Power "bulb one power" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 
-Dimmer Bulb3 "Bulb3 Power" (gIkeaLights) { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
+Dimmer Bulb3 "Bulb three" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
 //tradfri:0100:gw44916026cf61:65551tradfri:0100:gw44916026cf61:65551
-Dimmer Bulb4 "Bulb4" (gIkeaLights) { channel="tradfri:0100:gw44916026cf61:65551:brightness" }
+Dimmer Bulb4 "Bulb four" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0100:gw44916026cf61:65551:brightness" }

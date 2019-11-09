@@ -1,7 +1,9 @@
 sitemap tradfri label="Ikea Lights"
 {
     Frame {
-         Slider item=Bulb3 label="Bulb 3 Brightness [%.1f %%]"
+        Slider item=Bulb3 label="Bulb 3 Brightness [%.1f %%]" 
+        Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
+
         // Slider item=Light2_Brightness label="Light2 Brightness [%.1f %%]"
         // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
         Colorpicker item=ClipLight label="ClipLight Color"

@@ -9,7 +9,8 @@ Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge
 Switch RecircFanEnable    "Recirc Fan Enable" <fan>
 Switch FanPulseSwitch    "Fan Pulse" <fan>
 Switch GoingToBed    "Going to bed" <switch>
-Switch TurnOnAV "Turn on AV" <switch>
+Switch TurnOnAV "TV" <switch> ["Switchable"]
+//Switch  "Turn on AV" <switch> ["Swithcable"]
 
 Number BridgeLightSensorLevel "Light Sensor Level" <light> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"} 
 Switch BridgeLightSensorState "Light Sensor State" <light> {mqtt="<[mosquitto:433Bridge/LightState:state:MAP(onoffcases.map)]"} 
