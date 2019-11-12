@@ -1,0 +1,3 @@
+//Switch Scene_Wakeup "Wake Up" (LightingScenes) [ "Switchable" ]
+
+Switch Scene_Goodnight "Goodnight" (LightingScenes) [ "Switchable" ]

@@ -61,47 +61,6 @@ then
 
 end
 
-rule "433 bridge Button 1"
-when
-    Item bridgeButton1 received update
-    or
-    Item GoingToBed received update
-        
-then
-    logInfo("RULE", "going tobed OR 433 bridge button pressed ")
-
-    //turn off sockets
-    {sendCommand(socketG2_1, OFF)} //con lights
-    {postUpdate(socketG2_1, OFF)}
-    {sendCommand(socketG2_4, OFF)} //tv
-    {postUpdate(socketG2_4, OFF)}
-    {sendCommand(socketG2_3, OFF)} // amp
-    {postUpdate(socketG2_3, OFF)}    
-    {sendCommand(socketG2_2, OFF)} //radio
-    {postUpdate(socketG2_2, OFF)}
-        {postUpdate(TurnOnAV, OFF)}
-
-    
-    {sendCommand(gIkeaLights, OFF)} //
-    {postUpdate(gIkeaLights, OFF)} 
-
-    //set rads temps to off
-    CT_Heating_PresetTempNormal.postUpdate(17.0)
-    FR_Heating_PresetTempNormal.postUpdate(14.0)
-    E_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    Attic_Heating_PresetTempNormal.postUpdate(14.0)
-    J_BR_Heating_PresetTempNormal.postUpdate(17.0)
-    Office_Heating_PresetTempNormal.postUpdate(17.0)
-    Hall_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeaters.sendCommand(ON)    
-
-    // var Timer lightsTimer = null
-    createTimer(now.plusSeconds(240), [|
-    {sendCommand(socketG1_4, OFF)} // d room lights
-    {postUpdate(socketG1_4, OFF)}
-    ])
-    logInfo("RULE", "Item bridgeButton1 received update")
-end
 
 
 
