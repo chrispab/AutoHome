@@ -33,6 +33,8 @@ then
     createTimer(now.plusSeconds(240), [|
         {sendCommand(socketG1_4, OFF)} // d room lights
         {postUpdate(socketG1_4, OFF)}
+        logInfo("RULE", "Item Scene_Goodnight now set to OFF again")
+
     ])
     logInfo("RULE", "Item Scene_Goodnight received command ON")
 

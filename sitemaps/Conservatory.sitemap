@@ -5,7 +5,7 @@ sitemap Conservatory label="Conservatory"
     Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
     Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
     Switch item= TurnOnAV label="AV Switch" 
-    Switch item= GoingToBed label="Going To Bed"
+    //Switch item= GoingToBed label="Going To Bed"
     Default item= BridgeLightSensorState label="Outside Light Level"
     Group item=gIkeaLights label="ikea"
   }

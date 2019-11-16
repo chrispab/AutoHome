@@ -4,7 +4,8 @@ when
 then
     logInfo("RULE", "morning lighting if dark")
 
-    if (BridgeLightSensorState == OFF) {
+    if (BridgeLightSensorState.state == OFF) {
+        logInfo("RULE", "morning - switching on lights")
         {sendCommand(socketG2_1, ON)} //con lights
         {postUpdate(socketG2_1, ON)}
         {sendCommand(socketG1_4, ON)} // d room lights
@@ -13,6 +14,7 @@ then
         {postUpdate(gIkeaLights, ON)}
     }
 end
+
 
 rule "turn off lights (if on) when daylight rises"
 when
@@ -26,6 +28,7 @@ then
         {sendCommand(gIkeaLights, OFF)} // d room lights
         {postUpdate(gIkeaLights, OFF)}
 end
+
 
 rule "Light sensor Turn ON lights"
 when

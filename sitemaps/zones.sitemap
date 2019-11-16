@@ -3,6 +3,8 @@ sitemap zones label="Zones"
   Frame {
     Text item=Current_Date
     Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+    Text item= Water1_Temperature label="Water Temperature : [%.1f °C]"
+    Switch item= Water1_Power label="Water Power"
 
   }
       Frame label="Zone 1" {
