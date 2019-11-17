@@ -20,7 +20,7 @@ rule "turn off lights (if on) when daylight rises"
 when
     Item BridgeLightSensorState changed from OFF to ON 
 then
-    logInfo("RULE", "turn off lights (if on) when daylight rises")
+    logInfo("RULE", "Light sensor detected - turn off lights when dark to light detected")
         {sendCommand(socketG2_1, OFF)} //con lights
         {postUpdate(socketG2_1, OFF)}
         {sendCommand(socketG1_4, OFF)} // d room lights
@@ -34,7 +34,7 @@ rule "Light sensor Turn ON lights"
 when
     Item BridgeLightSensorState changed to OFF
 then
-    logInfo("RULE", "Turn on lights - light sensor state")
+    logInfo("RULE", "Light sensor detected - gone dark - Turn on lights")
     //turn on
     {sendCommand(socketG2_1, ON)} //con lights
     {postUpdate(socketG2_1, ON)}

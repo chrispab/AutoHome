@@ -9,13 +9,13 @@
 Group gIkeaLights
 
 Color ClipLight "colour bulb" (gIkeaLights) [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65544:color" }
-Switch ClipLightPower "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65544:color" }
+//Switch ClipLightPower "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65544:color" }
 
 //tradfri:0100:gw44916026cf61:65548
 
 
 Color IkeaLight2 "colour bulb" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65542:color" }
-Switch IkeaLight2Power "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
+//Switch IkeaLight2Power "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 
 Dimmer Bulb3 "Bulb three" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
 //tradfri:0100:gw44916026cf61:65551tradfri:0100:gw44916026cf61:65551

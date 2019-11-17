@@ -1,5 +1,4 @@
 //Number CT_Heating_Setpoint "Conservatory Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints) [ "Lighting" ]
-Number CT_Heating_Mode     "Heating Mode" <heating> (gHeatingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
 
 //Number CT_Temperat;ure "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"}
 //Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:CT_Sensor/tele/SENSOR:state:JSONPATH($.SI7021.Humidity)]"}
@@ -17,8 +16,10 @@ Number CT_Heating_Mode     "Heating Mode" <heating> (gHeatingModes) // heating m
 //{mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)]"}
 //Switch CT_Heating "Conservatory Radiator"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?8=ON:on] >[OFF:GET:http://192.168.0.230/switch?8=OFF:off]" }
 //Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power8:command:*:MAP(onoffcases.map)]"}
-Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
+//String CT_Heat_Mode "Conservatoy Heat Mode" <heating> (gConservatory_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
+Number CT_Heating_Mode     "Heating Mode" <heating> (gHeatingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
+Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
 
 String CT_Message
 
@@ -28,7 +29,6 @@ Group gConservatory_Thermostat "Conservatory Thermostat" [ "Thermostat" ]
 Number CT_Heating_Setpoint "Conservatory Setpoint [%.1f °C]" <degreesc> (gConservatory_Thermostat) [ "TargetTemperature" ]
 Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] {mqtt="<[mosquitto:433Bridge/Temperature:state:default]"}
 Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] {mqtt="<[mosquitto:433Bridge/Humidity:state:default]"}
-//String CT_Heat_Mode "Conservatoy Heat Mode" <heating> (gConservatory_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 String CT_Heat_Mode "Conservatoy Heat Mode" <heating> (gConservatory_Thermostat) [ "homekit:TargetHeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
 

@@ -39,3 +39,15 @@ Switch Water1_Power "Water 1 Power" <switch> {mqtt=">[mosquitto:sonoff_water1/cm
 //Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/stat/POWER:state)]"}
 //Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/stat/POWER:state:JSONPATH($.AM2301.Temperature)]"}
 // Switch LivingRoom_Light "Living Room Light" <light> (LR,gLight) { mqtt=">[broker:cmnd/sonoff-A00EEA/POWER:command:*:default], <[broker:stat/sonoff-A00EEA/POWER:state:default]" }
+
+
+
+//A switch being 'ON' as long as the device is reachable
+Switch Water1_Reachable "Water1: reachable" (gReachable) 
+    { mqtt="<[mosquitto:sonoff_water1/tele/LWT:state:MAP(reachable.map)]" }
+
+//Wifi Signal Strength in Percent
+Number Water1_RSSI "Water1: RSSI [%d %%]" (gRSSI) 
+    { mqtt="<[mosquitto:sonoff_water1/tele/STATE:state:JSONPATH($.Wifi.RSSI)]" }
+
+Number Shed_Temperature "Shed Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:SHED_sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 
