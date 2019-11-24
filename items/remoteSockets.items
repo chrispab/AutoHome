@@ -23,7 +23,7 @@ Switch socketG1_4 "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, g
 Switch socketG2_1 "Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory)  ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"}
 
 //DAB Radio
-Switch socketG2_2 "Radio"  <poweroutlet_uk>  (gConservatory) ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power6:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_2 "Radio"  <poweroutlet_uk>  (gConservatory) ["Outlet"] {mqtt=">[mosquitto:433Bridge/cmnd/Power6:command:*:MAP(onoffcases.map)]"}
 
 //Amplifier
 Switch socketG2_3 "socketG2_3_7"  <poweroutlet_uk>  (gConservatory) {mqtt=">[mosquitto:433Bridge/cmnd/Power7:command:*:MAP(onoffcases.map)]"}
@@ -35,15 +35,15 @@ Switch socketG2_4 "socketG2_4_8"  <poweroutlet_uk>  (gConservatory) {mqtt=">[mos
 Switch socketG3_1 "Conservatory Radiators"  <poweroutlet_uk> (gRadiators) {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
 
 //conservatory Fan
-Switch socketG3_2 "Fan" <poweroutlet_uk> (gConservatory) ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power10:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_2 "Fan" <poweroutlet_uk> (gConservatory) ["Outlet"] {mqtt=">[mosquitto:433Bridge/cmnd/Power10:command:*:MAP(onoffcases.map)]"}
 
 
-Switch socketG3_3 "Bedroom TV"  <poweroutlet_uk> ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power11:command:*:MAP(onoffcases.map)]"}
+Switch socketG3_3 "Bedroom TV"  <poweroutlet_uk> ["Outlet"] {mqtt=">[mosquitto:433Bridge/cmnd/Power11:command:*:MAP(onoffcases.map)]"}
 
 Switch socketG3_4 "socketG3_4_12"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power12:command:*:MAP(onoffcases.map)]"}
 
 //mythtv-backend power socket in the garage
-Switch socketG4_1 "MythTV backend"  <poweroutlet_uk> ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power13:command:*:MAP(onoffcases.map)]"}
+Switch socketG4_1 "MythTV backend"  <poweroutlet_uk> ["Outlet"] {mqtt=">[mosquitto:433Bridge/cmnd/Power13:command:*:MAP(onoffcases.map)]"}
 
 
 //zone1 power socket

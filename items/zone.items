@@ -31,23 +31,22 @@ Number Zone3VentPercent "Zone 3 Vent Percent" <vent> {mqtt="<[mosquitto:Zone3/Ve
 
 
 
-Number Water1_Temperature "Water 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/tele/SENSOR:state:JSONPATH($.DS18B20.Temperature)]"} 
-Switch Water1_Power "Water 1 Power" <switch> {mqtt=">[mosquitto:sonoff_water1/cmnd/POWER:command:*:default], <[mosquitto:sonoff_water1/stat/POWER:state:default]"}
-//18:51:34 MQT: sonoff_water1/stat/RESULT = {"POWER":"ON"}
-//18:51:34 MQT: sonoff_water1/stat/POWER = ON
 
-//Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/stat/POWER:state)]"}
-//Number GRG_Temperature "Garage Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/stat/POWER:state:JSONPATH($.AM2301.Temperature)]"}
-// Switch LivingRoom_Light "Living Room Light" <light> (LR,gLight) { mqtt=">[broker:cmnd/sonoff-A00EEA/POWER:command:*:default], <[broker:stat/sonoff-A00EEA/POWER:state:default]" }
+Switch Water1_Power "Water one Power"
+(gMQTT, gWiFiPowerSockets)
+{ channel = "mqtt:topic:water1:PowerSwitch" }
 
+Switch Water1_Reachable "Water one reachable"
+(gMQTT, gWiFiPowerSockets)
+{ channel = "mqtt:topic:water1:Reachable" }
 
+Number Water1_RSSI "Water one RSSI"
+(gMQTT, gWiFiPowerSockets)
+{ channel = "mqtt:topic:water1:rssi" }
 
-//A switch being 'ON' as long as the device is reachable
-Switch Water1_Reachable "Water1: reachable" (gReachable) 
-    { mqtt="<[mosquitto:sonoff_water1/tele/LWT:state:MAP(reachable.map)]" }
+Number Water1_Temperature "Water one Temperature"
+(gMQTT, gWiFiPowerSockets) [ "CurrentTemperature" ]
+{ channel = "mqtt:topic:water1:temperature" }
 
-//Wifi Signal Strength in Percent
-Number Water1_RSSI "Water1: RSSI [%d %%]" (gRSSI) 
-    { mqtt="<[mosquitto:sonoff_water1/tele/STATE:state:JSONPATH($.Wifi.RSSI)]" }
 
 Number Shed_Temperature "Shed Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:SHED_sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 

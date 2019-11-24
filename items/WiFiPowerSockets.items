@@ -1,0 +1,11 @@
+Group gMQTT
+Group gWiFiPowerSockets
+
+Switch WiFiSocket1Power "Socket one" (gMQTT, gWiFiPowerSockets) [ "Outlet" ] { channel = "mqtt:topic:WiFiSocket1:PowerSwitch" }
+Switch WiFiSocket1Reachable "Socket one reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket1:Reachable" }
+Number WiFiSocket1RSSI "Socket one RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket1:rssi" }
+
+
+Switch WiFiSocket2Power "Socket two" (gMQTT, gWiFiPowerSockets) [ "Outlet" ] { channel = "mqtt:topic:WiFiSocket2:PowerSwitch" }
+Switch WiFiSocket2Reachable "Socket two reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
+Number WiFiSocket2RSSI "Socket two RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:rssi" }

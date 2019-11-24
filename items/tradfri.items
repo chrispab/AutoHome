@@ -6,17 +6,35 @@
 // Switch ClipLight “switch”  [“Lighting”, “Switchable”] {channel="tradfri:0210:gw44916026cf61:65544:color" }
 
 //Group gIkeaLights "Ikea Lights"
+
 Group gIkeaLights
+Dimmer Bulb1Brightness "Boris" (gIkeaLights)  [ "Lighting" ] 
+    { channel="tradfri:0100:gw44916026cf61:65553:brightness" }
+Dimmer Bulb2Brightness "Jezza" (gIkeaLights)  [ "Lighting" ] 
+    { channel="tradfri:0100:gw44916026cf61:65554:brightness" }
 
-Color ClipLight "colour bulb" (gIkeaLights) [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65544:color" }
-//Switch ClipLightPower "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65544:color" }
+Color Bulb3Colour "Colour Bulb" (gIkeaLights)  [ "Lighting" ] 
+    { channel="tradfri:0210:gw44916026cf61:65555:color" }
 
-//tradfri:0100:gw44916026cf61:65548
+Color Bulb4Colour "Colour Bulb" (gIkeaLights)  [ "Lighting" ] 
+    { channel="tradfri:0210:gw44916026cf61:65556:color" }
+
+//Color ColourBulb1Colour "colour bulb" (gIkeaLights, gConservatory) [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65542:color" }
+// Dimmer ColourBulb1Brightness "colour bulb" (gIkeaLights)  [ "Lighting" ] 
+//     { channel="tradfri:0100:gw44916026cf61:65542:brightness" }
+//Dimmer ColourBulb1Brightness "colour bulb" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
+// Switch ClipLightPower "colour bulb" (gIkeaLights) [ "Lighting" ]  
+//     { channel="tradfri:0210:gw44916026cf61:65544:color" }
+// Switch IkeaLight2Power "colour bulb" (gIkeaLights) [ "Lighting" ]  
+//     { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 
 
-Color IkeaLight2 "colour bulb" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0210:gw44916026cf61:65542:color" }
-//Switch IkeaLight2Power "colour bulb" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
+// Color IkeaLight2 "colour bulb" (gIkeaLights)  [ "Lighting" ] 
+//     { channel="tradfri:0210:gw44916026cf61:65542:color" }
+// Switch IkeaLight2Power "colour bulb" (gIkeaLights) [ "Lighting" ]  
+//     { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 
-Dimmer Bulb3 "Bulb three" (gIkeaLights)  [ "Lighting" ] { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
-//tradfri:0100:gw44916026cf61:65551tradfri:0100:gw44916026cf61:65551
-Dimmer Bulb4 "Boris" (gIkeaLights) [ "Lighting" ]  { channel="tradfri:0100:gw44916026cf61:65551:brightness" }
+// Dimmer Bulb3 "Bulb three" (gIkeaLights)  [ "Lighting" ] 
+//     { channel="tradfri:0100:gw44916026cf61:65550:brightness" }
+// Dimmer Bulb4 "Boris" (gIkeaLights) [ "Lighting" ] 
+//     { channel="tradfri:0100:gw44916026cf61:65551:brightness" }

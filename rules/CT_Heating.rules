@@ -28,9 +28,17 @@ then
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
             CT_Heating.sendCommand(OFF)
             CT_Heating.postUpdate(OFF)
+            WiFiSocket1Power.sendCommand(OFF)
+            WiFiSocket2Power.sendCommand(OFF)
+           // WiFiSocket1Power.sendUpdate(OFF)
         }else if (temp < turnOnTemp) {
             CT_Heating.sendCommand(ON)
             CT_Heating.postUpdate(ON)
+            WiFiSocket1Power.sendCommand(ON)
+            WiFiSocket2Power.sendCommand(ON)
+//  WiFiSocket1Power.sendUpdate(ON)
+
         } 
     }
 end
+

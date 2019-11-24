@@ -78,6 +78,7 @@ Items {
     Attic_Heating_Mode : strategy = everyUpdate
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
     Attic_Heating_Setpoint : strategy = everyUpdate
+    Attic_TargetTemperature : strategy = everyUpdate
     Attic_Temperature : strategy = everyUpdate
     Attic_Humidity : strategy = everyUpdate
     Attic_Heating : strategy = everyUpdate

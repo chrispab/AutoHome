@@ -33,8 +33,8 @@ then
     {postUpdate(socketG2_3, ON)}    
     //{sendCommand(socketG2_2, OFF)} //radio
     //{postUpdate(socketG2_2, OFF)}
-    {sendCommand(Kodi_FR, ON)} //tv
-    {postUpdate(Kodi_FR, ON)}
+    //{sendCommand(Kodi_FR, ON)} //tv
+    //{postUpdate(Kodi_FR, ON)}
     //wake tv kodi box
 end
 
@@ -54,8 +54,8 @@ then
     {postUpdate(socketG2_3, OFF)}    
     //{sendCommand(socketG2_2, OFF)} //radio
     //{postUpdate(socketG2_2, OFF)}
-    {sendCommand(Kodi_FR, OFF)} //tv
-    {postUpdate(Kodi_FR, OFF)}
+    //{sendCommand(Kodi_FR, OFF)} //tv
+    //{postUpdate(Kodi_FR, OFF)}
     //wake tv kodi box
     
 
@@ -153,9 +153,20 @@ then
             {sendCommand(socketG2_1, ON)} //fan
             {postUpdate(socketG2_1, ON)}
             //{postUpdate(socketG3_2, OFF)}
-            logInfo("RULE", "pulse consv light OFF/ON")
+   // say("What happened then?")
+    logInfo("RULE", "What happened then?")
+
+    logInfo("RULE", "pulse consv light OFF/ON")
         ])
 
  
 end
 
+rule "The garage is still open"
+when
+    Item testSwitch changed
+then
+    // say("The garage is still open")
+    logInfo("RULE", "The garage is still open")
+
+end

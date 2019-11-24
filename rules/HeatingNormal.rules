@@ -23,7 +23,7 @@ then
                 E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
             }
             if(Attic_Heating_Mode.state == 2) { //if mode is master control
-                Attic_Heating_Setpoint.state = (Attic_Heating_PresetTempNormal.state)
+                Attic_TargetTemperature.state = (Attic_Heating_PresetTempNormal.state)
             }
             if(J_BR_Heating_Mode.state == 2) { //if mode is master control
                 J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
@@ -51,7 +51,7 @@ then
             E_BR_Heating_Mode.postUpdate(0)
             J_BR_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
             J_BR_Heating_Mode.postUpdate(0)
-            Attic_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
+            Attic_TargetTemperature.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
             Attic_Heating_Mode.postUpdate(0)                                                
         }
         case "LOCAL": {

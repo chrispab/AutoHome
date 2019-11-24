@@ -1,0 +1,15 @@
+Thing mqtt:topic:WiFiSocket1  "MQTT Thing: WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : PowerSwitch  [ stateTopic="sonoff_WiFiSocket1/stat/POWER" , commandTopic="sonoff_WiFiSocket1/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="sonoff_WiFiSocket1/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="sonoff_WiFiSocket1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}
+
+Thing mqtt:topic:WiFiSocket2  "MQTT Thing: WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : PowerSwitch  [ stateTopic="sonoff_WiFiSocket2/stat/POWER" , commandTopic="sonoff_WiFiSocket2/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="sonoff_WiFiSocket2/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="sonoff_WiFiSocket2/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}

@@ -1,12 +1,12 @@
-sitemap wifi_sockets label="wifi sockets"
+sitemap wifiSockets label="wifi sockets"
 {
     Frame {
-        Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
-        Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
+        // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
+        // Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
         //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
 
-         Colorpicker item=Bulb3Colour label="Bulb 3 colour"
-         Colorpicker item=Bulb4Colour label="Bulb 4 colour"
+        //  Colorpicker item=Bulb3Colour label="Bulb 3 colour"
+        //  Colorpicker item=Bulb4Colour label="Bulb 4 colour"
         // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
         //Colorpicker item=ColourBulb1Colour label="C bulb 1 Color"
         //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
@@ -14,6 +14,8 @@ sitemap wifi_sockets label="wifi sockets"
         // Switch item=RemoteControlBatteryLow label="Battery low warning"
         //// Switch item=ControlOutlet label="Power Switch"
         //Switch item=ClipLightPower label="ClipLight switch"
-        Switch item=testSwitch label="test switch"
+        Switch item=WiFiSocket1 label="wifi socket 1"
+        Switch item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"
+        Text item=WiFiSocket1RSSI label="wifi socket 1 RSSI [%d %%]"
     }
 }
