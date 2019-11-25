@@ -1,4 +1,3 @@
-
 Number Zone1Temperature "Zone 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone1/TemperatureStatus:state:default]"} 
 Number Zone1Humidity "Zone 1 Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:Zone1/HumidityStatus:state:default]"} 
 Switch Zone1VentStatus "Zone 1 Vent Status" <fan> {mqtt="<[mosquitto:Zone1/VentStatus:state:MAP(onoffcases.map)]"} 
@@ -7,8 +6,6 @@ Switch Zone1LightStatus "Zone 1 Light Status" <switch> {mqtt="<[mosquitto:Zone1/
 Switch Zone1HeaterStatus "Zone 1 Heater Status" <my_radiator> {mqtt="<[mosquitto:Zone1/HeaterStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone1VentSpeedStatus "Zone 1 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone1/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 Number Zone1VentPercent "Zone 1 Vent Percent" <vent> {mqtt="<[mosquitto:Zone1/VentPercent:state:default]"} 
-
-
 Number Zone2Temperature "Zone 2 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone2/TemperatureStatus:state:default]"} 
 Number Zone2Humidity "Zone 2 Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:Zone2/HumidityStatus:state:default]"} 
 Switch Zone2VentStatus "Zone 2 Vent Status" <fan> {mqtt="<[mosquitto:Zone2/VentStatus:state:MAP(onoffcases.map)]"} 
@@ -18,8 +15,6 @@ Switch Zone2HeaterStatus "Zone 2 Heater Status" <my_radiator> {mqtt="<[mosquitto
 Switch Zone2VentSpeedStatus "Zone 2 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone2/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 Number Zone2LightSensor "Zone 2 LightSensor [%.1f ]" <LightSensor> {mqtt="<[mosquitto:Zone2/LightSensor:state:default]"} 
 Number Zone2VentPercent "Zone 2 Vent Percent" <vent> {mqtt="<[mosquitto:Zone2/VentPercent:state:default]"} 
-
-
 Number Zone3Temperature "Zone 3 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:Zone3/TemperatureStatus:state:default]"} 
 Number Zone3Humidity "Zone 3 Humidity [%.1f ]" <humidity> {mqtt="<[mosquitto:Zone3/HumidityStatus:state:default]"} 
 Switch Zone3VentStatus "Zone 3 Vent Status" <fan> {mqtt="<[mosquitto:Zone3/VentStatus:state:MAP(onoffcases.map)]"} 
@@ -28,25 +23,8 @@ Switch Zone3HeaterStatus "Zone 3 Heater Status" <my_radiator> {mqtt="<[mosquitto
 Switch Zone3FanStatus "Zone 3 fan Status" <fan_ceiling> {mqtt="<[mosquitto:Zone3/FanStatus:state:MAP(onoffcases.map)]"} 
 Switch Zone3VentSpeedStatus "Zone 3 Vent Speed Status" <vent> {mqtt="<[mosquitto:Zone3/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
 Number Zone3VentPercent "Zone 3 Vent Percent" <vent> {mqtt="<[mosquitto:Zone3/VentPercent:state:default]"} 
-
-
-
-
-Switch Water1_Power "Water one Power"
-(gMQTT, gWiFiPowerSockets)
-{ channel = "mqtt:topic:water1:PowerSwitch" }
-
-Switch Water1_Reachable "Water one reachable"
-(gMQTT, gWiFiPowerSockets)
-{ channel = "mqtt:topic:water1:Reachable" }
-
-Number Water1_RSSI "Water one RSSI"
-(gMQTT, gWiFiPowerSockets)
-{ channel = "mqtt:topic:water1:rssi" }
-
-Number Water1_Temperature "Water one Temperature"
-(gMQTT, gWiFiPowerSockets) [ "CurrentTemperature" ]
-{ channel = "mqtt:topic:water1:temperature" }
-
-
+Switch Water1_Power "Water one Power"(gMQTT, gWiFiPowerSockets){ channel = "mqtt:topic:water1:PowerSwitch" }
+Switch Water1_Reachable "Water one reachable"(gMQTT, gWiFiPowerSockets){ channel = "mqtt:topic:water1:Reachable" }
+Number Water1_RSSI "Water one RSSI"(gMQTT, gWiFiPowerSockets){ channel = "mqtt:topic:water1:rssi" }
+Number Water1_Temperature "Water one Temperature"(gMQTT, gWiFiPowerSockets) [ "CurrentTemperature" ]{ channel = "mqtt:topic:water1:temperature" }
 Number Shed_Temperature "Shed Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:SHED_sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"} 

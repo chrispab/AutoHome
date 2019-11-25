@@ -1,9 +1,4 @@
-Bridge mqtt:broker:MyMQTTBroker "MQTT Broker: Pi Mosquitto" 
-[ 
-    host="192.168.0.200",
-    port=1883,
-    secure=false 
-]
+Bridge mqtt:broker:MyMQTTBroker "MQTT Broker: Pi Mosquitto" [ host="192.168.0.200", port=1883, secure=false ]
     // {
     // //   Thing topic fluksosensors {
     // //    Channels:
