@@ -8,13 +8,3 @@ Thing mqtt:topic:atticRadThermoValve  "MQTT Thing: Attic Radiator Thermo Valve" 
         Type number : rssi         [ stateTopic="sonoff_Attic/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-
-// Number Attic_Temperature "Attic Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
-// Number Attic_Humidity "Attic Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
-// Switch Attic_Heating "Attic Heating"  <switch> {mqtt=">[mosquitto:sonoff_Attic/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
-
-// Number Attic_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
-// Number Attic_Heating_Mode "Attic Heating Mode" <heating>  (gHeatingModes)
-// String Attic_Message
-
-// Number Attic_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"

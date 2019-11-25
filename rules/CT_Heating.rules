@@ -5,6 +5,7 @@ then
     if (CT_Heating_Mode == NULL) {
         CT_Heating_Mode.postUpdate(2) // start in master auto control mode
     }
+    
 end
 
 rule "Conservatory heating"

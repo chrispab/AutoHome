@@ -162,11 +162,10 @@ then
  
 end
 
-rule "The garage is still open"
+rule "StartUp - set up Heating settings"
 when
-    Item testSwitch changed
+    System started
 then
-    // say("The garage is still open")
-    logInfo("RULE", "The garage is still open")
-
+    CT_Heat_Mode.postUpdate("heat")
+        
 end
