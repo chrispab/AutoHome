@@ -1,0 +1,9 @@
+//Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)] "} 
+
+Thing mqtt:topic:boiler  "MQTT Thing: Boiler control" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch  [ stateTopic="sonoff_Boiler/stat/POWER" , commandTopic="sonoff_Boiler/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="sonoff_Boiler/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="sonoff_Boiler/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}

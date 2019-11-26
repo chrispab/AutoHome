@@ -34,7 +34,7 @@ Number Zone3VentPercent "Zone 3 Vent Percent" <vent> {mqtt="<[mosquitto:Zone3/Ve
 
 Switch Water1_Power "Water one Power"
 (gMQTT, gWiFiPowerSockets)
-{ channel = "mqtt:topic:water1:PowerSwitch" }
+{ channel = "mqtt:topic:water1:powerSwitch" }
 
 Switch Water1_Reachable "Water one reachable"
 (gMQTT, gWiFiPowerSockets)
