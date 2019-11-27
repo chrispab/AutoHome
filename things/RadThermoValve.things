@@ -8,3 +8,16 @@ Thing mqtt:topic:atticRadThermoValve  "MQTT Thing: Attic Radiator Thermo Valve" 
         Type number : rssi         [ stateTopic="sonoff_Attic/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
+Thing mqtt:topic:conservatoryRadThermoValve  "MQTT Thing: Conservatory Radiator Thermostat Valve" (mqtt:broker:MyMQTTBroker) @ "attic"
+{
+    Channels:
+        //Type number : temperature  [ stateTopic="sonoff_Attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        //Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] {mqtt="<[mosquitto:433Bridge/Temperature:state:default]"}
+        Type number : temperature  [ stateTopic="433Bridge/Temperature"]
+        Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
+        //Switch CT_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
+//        Type switch : powerSwitch  [ stateTopic="sonoff_Attic/stat/POWER" , commandTopic="433Bridge/cmnd/Power9", on="ON", off="OFF" ]
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9", on="ON", off="OFF" ]
+        //Type string : reachable    [ stateTopic="sonoff_Attic/tele/LWT"  ]
+        //Type number : rssi         [ stateTopic="sonoff_Attic/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}
