@@ -17,11 +17,6 @@ end
 
 
 
-
-
-
-
-
 rule "Delayed Off Switch"
 when
     Item Delayed_OFF_SW changed

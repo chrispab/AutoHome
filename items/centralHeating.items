@@ -6,8 +6,7 @@ Number Attic_CurrentHumidity "Attic Humidity [%.1f °C]" <humidity> (gAttic_Ther
 String Attic_Heat_Mode "Conservatoy Heat Mode" <heating> (gAttic_Thermostat) [ "homekit:TargetHeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
 String Attic_Reachable "Attic Rechable" <temperature> (gAttic_Thermostat)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
-
- Number Attic_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
+Number Attic_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
 // Number Attic_Temperature "Attic Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
 // Number Attic_Humidity "Attic Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Attic/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
 Switch Attic_Heating "Attic Heating"  <switch> { channel="mqtt:topic:atticRadThermoValve:powerSwitch", autoupdate="false" } 
