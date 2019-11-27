@@ -3,9 +3,9 @@ var Timer timer = null
 
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
-    Item TurnOnAV changed to ON
+    Item conservatoryTVPower changed to ON
 then
-    logInfo("RULE", "Turn on the AV Kit")
+    logInfo("RULE", "Turn on the Conservatory Kodi, pi and speakers")
 
     //turn on
     //{sendCommand(socketG2_1, OFF)} //con lights
@@ -25,7 +25,7 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item TurnOnAV changed to OFF
+    Item conservatoryTVPower changed to OFF
         
 then
     logInfo("RULE", "Turn off the AV Kit")
@@ -34,10 +34,10 @@ then
     var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
     sendHttpPostRequest(kodiUrl,'application/json',content)
 
-    logInfo("RULE", "Sent shutdown command to pi")
+    logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
     if(timer === null) {
-        timer = createTimer(now.plusSeconds(30)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "30 secs later - we can turn off power now")
+        timer = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
+            logInfo("RULE", "20 secs later - we can turn off power sockets now")
             {sendCommand(socketG2_4, OFF)} //tv
             {postUpdate(socketG2_4, OFF)}
             {sendCommand(socketG2_3, OFF)} // amp

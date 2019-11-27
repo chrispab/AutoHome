@@ -2,10 +2,14 @@ rule "StartUp CT_Heating"
 when
     System started
 then
+       // logInfo("ct_heating", "Executing 'System started' - set ct heating mode to 2 - heat")
+
     if (CT_Heating_Mode == NULL) {
         CT_Heating_Mode.postUpdate(2) // start in master auto control mode
+        logInfo("ct_heating", "Executing 'System started' ct heat mode was NULL - set ct heating mode to 2 - heat")
+
     }
-    
+
 end
 
 rule "Conservatory heating"

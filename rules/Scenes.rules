@@ -13,7 +13,7 @@ then
     {postUpdate(socketG2_3, OFF)}    
     {sendCommand(socketG2_2, OFF)} //radio
     {postUpdate(socketG2_2, OFF)}
-        {postUpdate(TurnOnAV, OFF)}
+        {postUpdate(conservatoryTVPower, OFF)}
 
     
     {sendCommand(gIkeaLights, OFF)} //

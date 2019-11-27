@@ -1,0 +1,2 @@
+Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:KodiConservatory:volume" }
+Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }

@@ -73,21 +73,12 @@ when
 then
  //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
     createTimer(now.plusSeconds(30)) [ |
-        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heatinguninitialized virtual Items")
+        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating init uninitialized virtual Items")
        if (masterHeatingMode.state === NULL) 
             masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
             //gHeatingModes.members.filter[item | item.state === NULL].forEach[item | item.postUpdate("Master Controlled")]
    ]
        
-//     createTimer(now.plusSeconds(60)) [ |
-//        //if (gHeatingSetPoints.members.filter[item | item.state == 2].forEach[item | item.postUpdate(15.0)]) 
-//          //masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-//         logInfo("HeatingNormal.rules", "'System started' rule for Heating-set all SPs to same val" + 19.0)
-
-//        gHeatingSetPoints.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
-//    ]
-
-
 end
 
 // rule "Initialize uninitialized virtual Items"
