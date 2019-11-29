@@ -34,3 +34,4 @@ Switch FanOnOverride    "Fan ON - Override" <fan>
 Number Conservatory_Fan_ON_Setpoint "conservatory fan on setponit [%.1f °C]"    <degreesc>
 
 Switch testSwitch "test switch"
+

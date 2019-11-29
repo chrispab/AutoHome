@@ -1,0 +1,14 @@
+
+rule "Pause Kodi"
+when
+     Item pauseKodiProxy received update 
+then
+    myKodi_control.sendCommand(PAUSE)
+end
+
+// rule "Play Kodi"
+// when
+//      Item pauseKodiProxy changed to OFF 
+// then
+//     myKodi_control.sendCommand(PLAY)
+// end

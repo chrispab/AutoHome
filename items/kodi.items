@@ -1,2 +1,8 @@
-Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:KodiConservatory:volume" }
-Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+// Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:KodiConservatory:volume" }
+// Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+//String kodiLivingRoomShowNotification "Show Notification" { channel="kodi:kodi:myKodi:shownotification" }
+
+//Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+
+Player myKodi_control "Kodi Pause"   { channel="kodi:kodi:KodiConservatory:control" }
+Switch pauseKodiProxy "pause kodi" [ "Switchable" ]

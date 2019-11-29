@@ -1,4 +1,4 @@
-sitemap wifi_sockets label="wifi sockets"
+sitemap tradfri label="wifi sockets"
 {
     Frame {
         Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 

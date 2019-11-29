@@ -31,6 +31,8 @@ then
         //{sendCommand(gIkeaLights, OFF)} // d room lights
         gIkeaLights.sendCommand(new PercentType(0))
         gIkeaLights.postUpdate(new PercentType(0))
+        gIkeaLights.sendCommand(OFF)
+        gIkeaLights.postUpdate(OFF)
         //{postUpdate(gIkeaLights, OFF)}
 end
 
@@ -53,3 +55,18 @@ then
     // {postUpdate(gIkeaLights, ON)} 
 end
 
+//switch on xmas lights when eslie gets home
+rule "switch on lights when elsie gets home"
+when
+    // Item ElsieSIPhone_Online changed to ON
+    // or
+    // Item JoIPhone_Online changed to ON
+    // or
+    Item ChrisGalaxyS5_Online changed to ON
+then
+    if (now.getHourOfDay == 15){
+        logInfo("RULE", "elsies or c or j phone connected to wifi @ 3-4 pm")
+        sendCommand(gXmasLights, ON)
+        sendCommand(gFairyLights, ON)
+    }
+end
