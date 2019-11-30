@@ -1,8 +1,19 @@
 // Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:KodiConservatory:volume" }
-// Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+// Player kodiCon_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
 //String kodiLivingRoomShowNotification "Show Notification" { channel="kodi:kodi:myKodi:shownotification" }
 
-//Player myKodi_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+//Player kodiCon_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
 
-Player myKodi_control "Kodi Pause"   { channel="kodi:kodi:KodiConservatory:control" }
-Switch pauseKodiProxy "pause kodi" [ "Switchable" ]
+//kodi conservatory
+Player kodiCon_control "Kodi Pause"   { channel="kodi:kodi:KodiConservatory:control" }
+Switch pauseKodiConProxy "pause conservatory kodi" [ "Switchable" ]
+
+String kodiCons_systemcommand "Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
+Switch shutdownKodiConProxy "shutdown conservatory kodi" [ "Switchable" ]
+
+//Master Bedroom
+Player kodiMB_control "Kodi Pause"   { channel="kodi:kodi:KodiMasterBedroom:control" }
+Switch pauseKodiMBProxy "pause bedroom kodi" [ "Switchable" ]
+
+String kodiMB_systemcommand "Systemcommand" { channel="kodi:kodi:KodiMasterBedroom:systemcommand" }
+Switch shutdownKodiMBProxy "shutdown bedroom kodi" [ "Switchable" ]

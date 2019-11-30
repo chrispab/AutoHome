@@ -33,8 +33,8 @@ then
     var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
     var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
     sendHttpPostRequest(kodiUrl,'application/json',content)
-
     logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
+    
     if(timer === null) {
         timer = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
             logInfo("RULE", "20 secs later - we can turn off power sockets now")

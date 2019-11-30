@@ -253,9 +253,9 @@ then
 end
 
 
-rule "8:00 am weekend"
+rule "7:00 am weekend"
 when
-    Time cron "0 0 8 ? * SAT-SUN *"
+    Time cron "0 0 7 ? * SAT-SUN *"
 then
     CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)

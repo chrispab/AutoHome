@@ -14,8 +14,11 @@ sitemap testing label="wifi sockets"
         // Switch item=RemoteControlBatteryLow label="Battery low warning"
         //// Switch item=ControlOutlet label="Power Switch"
         //Switch item=ClipLightPower label="ClipLight switch"
-        Switch item=pauseKodiProxy label="kodi pause"
-//Player item=myKodi_control label="Kodi Pause"
+        Switch item=pauseKodiConProxy label="kodi pause"
+//Player item=kodiCon_control label="Kodi Pause"
+        Switch item=shutdownKodiConProxy label="kodi shutdown"
+
+
 
         Switch item=WiFiSocket1Power label="wifi socket 1"
         Switch item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"

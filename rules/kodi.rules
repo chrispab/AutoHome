@@ -1,14 +1,43 @@
-
+//Kodi conservatory
 rule "Pause Kodi"
 when
-     Item pauseKodiProxy received update 
+     Item pauseKodiConProxy received update 
 then
-    myKodi_control.sendCommand(PAUSE)
+    kodiCon_control.sendCommand(PAUSE)
 end
 
+rule "Shutdown Conservatory Kodi Pi Host"
+when
+     Item shutdownKodiConProxy received update 
+then
+    kodiCons_systemcommand.sendCommand("Shutdown")
+
+end
+
+//Kodi Master Bedroom
+rule "Pause Kodi Master Bedroom"
+when
+     Item pauseKodiMBProxy received update 
+then
+    kodiMB_control.sendCommand(PAUSE)
+end
+
+rule "Shutdown Master Bedroom Kodi Pi Host"
+when
+     Item shutdownKodiMBProxy received update 
+then
+    kodiMB_systemcommand.sendCommand("Shutdown")
+
+end
+
+    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
+    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
+    // sendHttpPostRequest(kodiUrl,'application/json',content)
+    // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
+    
 // rule "Play Kodi"
 // when
-//      Item pauseKodiProxy changed to OFF 
+//      Item pauseKodiConProxy changed to OFF 
 // then
-//     myKodi_control.sendCommand(PLAY)
+//     kodiCon_control.sendCommand(PLAY)
 // end
