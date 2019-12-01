@@ -1,32 +1,22 @@
-var Timer timer = null
+var Timer timer1 = null
+var Timer timer2 = null
 
 
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
     Item conservatoryTVPower changed to ON
 then
-    logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers vvv")
-
-    //turn on
-    //{sendCommand(socketG2_1, OFF)} //con lights
-    //{postUpdate(socketG2_1, OFF)}
+    logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     {sendCommand(socketG2_4, ON)} //tv
     {postUpdate(socketG2_4, ON)}
     {sendCommand(socketG2_3, ON)} // amp
     {postUpdate(socketG2_3, ON)}    
-    //{sendCommand(socketG2_2, OFF)} //radio
-    //{postUpdate(socketG2_2, OFF)}
-    //{sendCommand(Kodi_FR, ON)} //tv
-    //{postUpdate(Kodi_FR, ON)}
-    //wake tv kodi box
 end
-
 
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPower changed to OFF
-        
+    Item conservatoryTVPower changed to OFF 
 then
     logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
 
@@ -36,13 +26,46 @@ then
     // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
     shutdownKodiConProxy.postUpdate(OFF)
 
-    if(timer === null) {
-        timer = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
+    if(timer1 === null) {
+        timer1 = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
             logInfo("RULE", "20 secs later - we can turn off power sockets now")
             {sendCommand(socketG2_4, OFF)} //tv
             {postUpdate(socketG2_4, OFF)}
             {sendCommand(socketG2_3, OFF)} // amp
             {postUpdate(socketG2_3, OFF)}
-            timer = null]}
+            timer1 = null]}
+end
 
+rule "Turn ON master bedroom Kodi-Pi, TV and soundbar"
+when
+    Item masterBedroomTVPower changed to ON
+then
+    logInfo("RULE", "Turn ON the master bedroom Kodi, pi and speakers vvv")
+    // {sendCommand(socketG2_4, ON)} //tv
+    // {postUpdate(socketG2_4, ON)}
+    // {sendCommand(socketG2_3, ON)} // amp
+    // {postUpdate(socketG2_3, ON)}    
+end
+
+
+rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
+when
+    Item masterBedroomTVPower changed to OFF 
+then
+    logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
+
+    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
+    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
+    // sendHttpPostRequest(kodiUrl,'application/json',content)
+    // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
+    shutdownKodiMBRProxy.postUpdate(OFF)
+
+    if(timer2 === null) {
+        timer2 = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
+            logInfo("RULE", "20 secs later - we can turn off power sockets now")
+            // {sendCommand(socketG2_4, OFF)} //tv
+            // {postUpdate(socketG2_4, OFF)}
+            // {sendCommand(socketG2_3, OFF)} // amp
+            // {postUpdate(socketG2_3, OFF)}
+            timer2 = null]}
 end

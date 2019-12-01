@@ -1,1 +1,2 @@
 Switch conservatoryTVPower "TV" <switch> [ "Switchable" ]
+Switch masterBedroomTVPower "TV" <switch> [ "Switchable" ]

@@ -1,33 +1,11 @@
 sitemap Elsie_Bedroom label="Elsie's Bedroom"
 {
-  // Frame label="Date" {
-  //   Text item=Current_Date
-  // }
-  // Frame label="Heating Control" {
-  //       Switch item=E_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-  //       Setpoint item=E_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[E_BR_Heating_Mode==2]
-  // }
-  // Frame label="Current Status" {
-  //   Text item=E_BR_Temperature label="Actual Temperature: [%.1f °C]"
-  //   Switch item= E_BR_Heating label="Elsie's Radiator"
-  // }
-
   Frame label="Heating" {
-    Text item=E_BR_Temperature label="Temperature: [%.1f °C]"
-    Setpoint item=E_BR_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[E_BR_Heating_Mode>0]
-    Switch item=E_BR_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-    Switch item= E_BR_Heating label="Radiator"
+    Text item=elsie_CurrentTemperature label="Current Temperature: [%.1f °C]"
+    Setpoint item=elsie_TargetTemperature label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[elsie_Heating_Mode>0]
+    Switch item=elsie_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Switch item= elsie_Heating label="Radiator"
+    Text item=elsie_Reachable label="Reachable: "
   }
-  // Frame label="Lights"{
-  //         //Colorpicker item=ClipLight label="ClipLight Color"
-  //       //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
-  //       // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
-  //       // Switch item=RemoteControlBatteryLow label="Battery low warning"
-  //       // Switch item=ControlOutlet label="Power Switch"
-  //       Switch item=ClipLightPower label="ClipLight Power"
-  //       Colorpicker item=ClipLight label="ClipLight Color"
-
-  //       //Switch item=IkeaLight2Power label="IkeaLight2 switch"
-  // }
 }
 

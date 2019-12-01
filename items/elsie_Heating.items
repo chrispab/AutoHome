@@ -1,0 +1,28 @@
+
+// //Number E_BR_Heating_Setpoint "Elsie Elsie's Bedroom Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
+// //Number E_BR_Temperature "Elsie Bedroom Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_E_BR/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
+// Number E_BR_Humidity "Elsie Bedroom Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_E_BR/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
+// Switch E_BR_Heating "Elsie Bedroom Heating"  <switch> {mqtt=">[mosquitto:sonoff_E_BR/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+// Number E_BR_Heating_Mode     "Elsie Bedroom Heating Mode" <heating>
+// String E_BR_Message
+
+// Number E_BR_Heating_PresetTempNormal "Elsie Heating Preset (Normal Mode) [%.1f °C]"
+
+
+// Group gE_BR_Thermostat "Elsie's Thermostat" [ "Thermostat" ]
+// Number E_BR_Heating_Setpoint "Elsie's Setpoint [%.1f °C]" <degreesc> (gE_BR_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+// Number E_BR_Temperature "Elsie's Temperature [%.1f °C]" <temperature> (gE_BR_Thermostat) [ "CurrentTemperature" ] {mqtt="<[mosquitto:sonoff_E_BR/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"}
+// String E_BR_Heat_Mode "Elsie's Heat Mode" <heating> (gE_BR_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+
+
+Group gElsie_Thermostat "Elsie's Bedroom Thermostat" [ "Thermostat" ]
+Number elsie_TargetTemperature "Elsie's Bedroom Setpoint [%.1f °C]" <heating> (gElsie_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+Number elsie_CurrentTemperature "Elsie's Bedroom Temperature [%.1f °C]" <temperature> (gElsie_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:elsieRadThermoValve:temperature" }
+Number elsie_CurrentHumidity "Elsie's Bedroom Humidity [%.1f °C]" <humidity> (gElsie_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:elsieRadThermoValve:humidity" }
+String elsie_Heat_Mode "Elsie's Bedroom Heat Mode" <settings> (gElsie_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+
+Switch elsie_Heating "Elsie's Bedroom Heating"  <my_radiator> { channel="mqtt:topic:elsieRadThermoValve:powerSwitch", autoupdate="false" } 
+String elsie_Reachable "Elsie's Bedroom Reachable" <qualityofservice> (gElsie_Thermostat)  { channel="mqtt:topic:elsieRadThermoValve:reachable" }
+Number elsie_Heating_Mode "Elsie's Bedroom Heating Mode" <settings>
+String elsie_Message
+Number elsie_Heating_PresetTempNormal "Elsie's Bedroom Heating Preset (Normal Mode) [%.1f °C]"
