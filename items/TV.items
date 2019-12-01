@@ -1,0 +1,1 @@
+Switch conservatoryTVPower "TV" <switch> [ "Switchable" ]

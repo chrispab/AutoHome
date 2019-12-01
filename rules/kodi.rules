@@ -1,5 +1,5 @@
 //Kodi conservatory
-rule "Pause Kodi"
+rule "Pause Conservatory Kodi"
 when
      Item pauseKodiConProxy received update 
 then
@@ -11,7 +11,6 @@ when
      Item shutdownKodiConProxy received update 
 then
     kodiCons_systemcommand.sendCommand("Shutdown")
-
 end
 
 //Kodi Master Bedroom
