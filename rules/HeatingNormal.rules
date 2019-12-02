@@ -13,45 +13,45 @@ then
     switch masterHeatingMode.state {
         case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
             logInfo("heating_mode.rules", "processing case MASTER Heating Mode : ")
-            if(CT_Heating_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
-                CT_Heating_Setpoint.state = (CT_Heating_PresetTempNormal.state )
+            if(conservatory_Heat_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
+                conservatory_TargetTemperature.state = (conservatory_Heating_PresetTempNormal.state )
             }
-            if(FR_Heating_Mode.state == 2) { //if zone mode is master control
-                   FR_Heating_Setpoint.state = (FR_Heating_PresetTempNormal.state)
+            if(frontRoom_Heating_Mode.state == 2) { //if zone mode is master control
+                   frontRoom_TargetTemperature.state = (frontRoom_Heating_PresetTempNormal.state)
             }
-            if(E_BR_Heating_Mode.state == 2) { //if mode is master control
-                E_BR_Heating_Setpoint.state = (E_BR_Heating_PresetTempNormal.state)
+            if(elsiesRoom_Heating_Mode.state == 2) { //if mode is master control
+                elsie_Heating_Setpoint.state = (elsiesRoom_Heating_PresetTempNormal.state)
             }
             if(Attic_Heating_Mode.state == 2) { //if mode is master control
                 Attic_TargetTemperature.state = (Attic_Heating_PresetTempNormal.state)
             }
-            if(J_BR_Heating_Mode.state == 2) { //if mode is master control
-                J_BR_Heating_Setpoint.state = (J_BR_Heating_PresetTempNormal.state)
+            if(bedroom_Heating_Mode.state == 2) { //if mode is master control
+                bedroom_Heating_Setpoint.state = (bedroom_Heating_PresetTempNormal.state)
             }
-            if(Office_Heating_Mode.state == 2) { //if mode is master control
-                Office_Heating_Setpoint.state = (Office_Heating_PresetTempNormal.state)
+            if(office_Heating_Mode.state == 2) { //if mode is master control
+                office_TargetTemperature.state = (office_Heating_PresetTempNormal.state)
             }
-            if(Hall_Heating_Mode.state == 2) { //if mode is master control
-                Hall_Heating_Setpoint.state = (Hall_Heating_PresetTempNormal.state)
+            if(hall_Heating_Mode.state == 2) { //if mode is master control
+                hall_TargetTemperature.state = (hall_Heating_PresetTempNormal.state)
             }
         }
 
 
         case "OFF_SUMMER": {
             logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
-            CT_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            CT_Heating_Mode.postUpdate(0)
-            Hall_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            Hall_Heating_Mode.postUpdate(0)
-            FR_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            FR_Heating_Mode.postUpdate(0) 
-            Office_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            Office_Heating_Mode.postUpdate(0)
-            E_BR_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            E_BR_Heating_Mode.postUpdate(0)
-            J_BR_Heating_Setpoint.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
-            J_BR_Heating_Mode.postUpdate(0)
-            Attic_TargetTemperature.postUpdate(15.0) //(Hall_Heating_PresetTempNormal.state)
+            conservatory_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            conservatory_Heat_Mode.postUpdate(0)
+            hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            hall_Heating_Mode.postUpdate(0)
+            frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            frontRoom_Heating_Mode.postUpdate(0) 
+            office_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            office_Heating_Mode.postUpdate(0)
+            elsie_Heating_Setpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            elsiesRoom_Heating_Mode.postUpdate(0)
+            bedroom_Heating_Setpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            bedroom_Heating_Mode.postUpdate(0)
+            Attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             Attic_Heating_Mode.postUpdate(0)                                                
         }
         case "LOCAL": {

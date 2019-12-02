@@ -1,0 +1,10 @@
+Group gFrontRoom_Thermostat "Front Room Thermostat" [ "Thermostat" ]
+Number frontRoom_TargetTemperature "Front Room Setpoint [%.1f °C]" <heating> (gFrontRoom_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+Number frontRoom_CurrentTemperature "Front Room Temperature [%.1f °C]" <temperature> (gFrontRoom_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:frontRoomRadThermoValve:temperature" }
+Number frontRoom_CurrentHumidity "Front Room Humidity [%.1f °C]" <humidity> (gFrontRoom_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:frontRoomRadThermoValve:humidity" }
+String frontRoom_Heat_Mode "Front Room Heat Mode" <settings> (gFrontRoom_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+
+Switch frontRoom_Heating "Front Room Heating"  <my_radiator> { channel="mqtt:topic:frontRoomRadThermoValve:powerSwitch", autoupdate="false" } 
+String frontRoom_Reachable "Front Room Reachable" <qualityofservice> (gFrontRoom_Thermostat)  { channel="mqtt:topic:frontRoomRadThermoValve:reachable" }
+Number frontRoom_Heating_Mode "Front Room Heating Mode" <settings>
+Number frontRoom_Heating_PresetTempNormal "Front Room Heating Preset (Normal Mode) [%.1f °C]"

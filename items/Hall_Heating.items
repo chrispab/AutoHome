@@ -1,9 +1,10 @@
+Group gHall_Thermostat "Hall Thermostat" [ "Thermostat" ]
+Number hall_TargetTemperature "Hall Setpoint [%.1f °C]" <heating> (gHall_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+Number hall_CurrentTemperature "Hall Temperature [%.1f °C]" <temperature> (gHall_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:hallRadThermoValve:temperature" }
+Number hall_CurrentHumidity "Hall Humidity [%.1f °C]" <humidity> (gHall_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:hallRadThermoValve:humidity" }
+String hall_Heat_Mode "Hall Heat Mode" <settings> (gHall_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
-Number Hall_Heating_Setpoint "Hall Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
-Number Hall_Temperature "Hall Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
-Number Hall_Humidity "Hall Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Hall/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
-Switch Hall_Heating "Hall Heating"  <switch> {mqtt=">[mosquitto:sonoff_Hall/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
-Number Hall_Heating_Mode "Hall Heating Mode" <heating> (gHeatingModes)
-String Hall_Message
-
-Number Hall_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]"
+Switch hall_Heating "Hall Heating"  <my_radiator> { channel="mqtt:topic:hallRadThermoValve:powerSwitch", autoupdate="false" } 
+String hall_Reachable "Hall Reachable" <qualityofservice> (gHall_Thermostat)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
+Number hall_Heating_Mode "Hall Heating Mode" <settings>
+Number hall_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]"

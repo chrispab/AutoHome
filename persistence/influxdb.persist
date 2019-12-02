@@ -53,19 +53,19 @@ Items {
     //Heating_Mode* : strategy = everyUpdate
     //Heating_Setpoint* : strategy = everyUpdate
     masterHeatingMode :  strategy = everyUpdate
-    CT_Heating_Mode                : strategy = everyUpdate
+    conservatory_Heat_Mode                : strategy = everyUpdate
     //CT_Heating_PresetNormal_Group* : strategy = everyUpdate
-    CT_Heating_Setpoint                : strategy = everyUpdate
-    CT_Temperature : strategy = everyUpdate
-    CT_Humidity : strategy = everyUpdate
-    CT_Heating : strategy = everyUpdate
+    conservatory_TargetTemperature                : strategy = everyUpdate
+    conservatory_CurrentTemperature : strategy = everyUpdate
+    conservatory_CurrentHumidity : strategy = everyUpdate
+    conservatory_Heating : strategy = everyUpdate
     
-    FR_Heating_Mode                : strategy = everyUpdate
+    frontRoom_Heating_Mode                : strategy = everyUpdate
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
-    FR_Heating_Setpoint                : strategy = everyUpdate
-    FR_Temperature : strategy = everyUpdate
-    FR_Humidity : strategy = everyUpdate
-    FR_Heating : strategy = everyUpdate
+    frontRoom_TargetTemperature                : strategy = everyUpdate
+    frontRoom_CurrentTemperature : strategy = everyUpdate
+    frontRoom_CurrentHumidity : strategy = everyUpdate
+    frontRoom_Heating : strategy = everyUpdate
 
     E_BR_Heating_Mode                : strategy = everyUpdate
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
@@ -91,17 +91,17 @@ Items {
     J_BR_Humidity : strategy = everyUpdate
     J_BR_Heating : strategy = everyUpdate
 
-    Hall_Heating_Mode                : strategy = everyUpdate
-    Hall_Heating_Setpoint                : strategy = everyUpdate
-    Hall_Temperature : strategy = everyUpdate
-    Hall_Humidity : strategy = everyUpdate
-    Hall_Heating : strategy = everyUpdate
+    hall_Heating_Mode                : strategy = everyUpdate
+    hall_TargetTemperature                : strategy = everyUpdate
+    hall_CurrentTemperature : strategy = everyUpdate
+    hall_CurrentHumidity : strategy = everyUpdate
+    hall_Heating : strategy = everyUpdate
 
-    Office_Heating_Mode                : strategy = everyUpdate
-    Office_Heating_Setpoint                : strategy = everyUpdate
-    Office_Temperature : strategy = everyUpdate
-    Office_Humidity : strategy = everyUpdate
-    Office_Heating : strategy = everyUpdate
+    office_Heating_Mode                : strategy = everyUpdate
+    office_TargetTemperature                : strategy = everyUpdate
+    office_CurrentTemperature : strategy = everyUpdate
+    office_CurrentHumidity : strategy = everyUpdate
+    office_Heating : strategy = everyUpdate
 
 
 

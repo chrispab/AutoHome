@@ -1,0 +1,38 @@
+rule "StartUp frontRoom_Heating"
+when
+    System started
+then
+    if (frontRoom_Heating_Mode == NULL) {
+        frontRoom_Heating_Mode.postUpdate(2) // start in master auto control mode
+    }
+//     if (frontRoom_Heating_Mode == NULL) {
+//         frontRoom_Heating_Mode.postUpdate(2) // start in master auto control mode
+//     }
+
+ end
+
+rule "FR_ heating"
+when
+    Item frontRoom_Heating_Mode changed or
+    Item frontRoom_TargetTemperature changed or
+    Item frontRoom_CurrentTemperature changed
+then
+    //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
+    if (frontRoom_Heating_Mode.state == 0) {
+        frontRoom_Heating.sendCommand(OFF)
+        frontRoom_Heating.postUpdate(OFF)
+    }
+    else if ( (frontRoom_Heating_Mode.state == 1) || (frontRoom_Heating_Mode.state == 2) )  { //auto
+        var Number setpoint = frontRoom_TargetTemperature.state as DecimalType
+        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
+        var Number turnOffTemp = setpoint //+ 0.1
+        var Number temp = frontRoom_CurrentTemperature.state as DecimalType // get the current temperature
+        if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
+            frontRoom_Heating.sendCommand(OFF)
+            frontRoom_Heating.postUpdate(OFF)
+        }else if (temp < turnOnTemp) {
+            frontRoom_Heating.sendCommand(ON)
+            frontRoom_Heating.postUpdate(ON)
+        } 
+    }
+end

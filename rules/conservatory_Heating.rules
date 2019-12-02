@@ -1,0 +1,55 @@
+rule "StartUp conservatory_Heating"
+when
+    System started
+then
+       // logInfo("ct_heating", "Executing 'System started' - set ct heating mode to 2 - heat")
+
+    if (conservatory_Heating_Mode == NULL) {
+        conservatory_Heating_Mode.postUpdate(2) // start in master auto control mode
+        logInfo("ct_heating", "Executing 'System started' ct heat mode was NULL - set ct heating mode to 2 - heat")
+
+    }
+
+end
+
+rule "Conservatory heating"
+when
+    Item conservatory_Heating_Mode changed or
+    Item conservatory_TargetTemperature changed or
+    Item conservatory_CurrentTemperature changed
+then
+    //logInfo("CT_heating.rules", "CT Heating Mode: " + conservatory_Heating_Mode.state)
+    logInfo("CT_heating.rules", "CT Heating Mode or temp or target happened: ")
+    //logInfo("CT_heating.rules", "CT Heating SP: " + conservatory_TargetTemperature.state)
+    //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
+    if (conservatory_Heating_Mode.state == 0) {
+        conservatory_Heating.sendCommand(OFF)
+        conservatory_Heating.postUpdate(OFF)
+    }
+    else if ( (conservatory_Heating_Mode.state == 1) || (conservatory_Heating_Mode.state == 2) )  { //auto
+        logInfo("CT_heating.rules", "checking conservatory Heating Mode: " + conservatory_Heating_Mode.state)
+        var Number setpoint = conservatory_TargetTemperature.state as DecimalType
+        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
+        var Number turnOffTemp = setpoint //+ 0.1
+        var Number temp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
+        if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
+            logInfo("CT_heating.rules", "turn boiler OFF: " + temp)
+
+            conservatory_Heating.sendCommand(OFF)
+            conservatory_Heating.postUpdate(OFF)
+            // WiFiSocket1Power.sendCommand(OFF)
+            // WiFiSocket2Power.sendCommand(OFF)
+           // WiFiSocket1Power.sendUpdate(OFF)
+        }else if (temp < turnOnTemp) {
+            logInfo("CT_heating.rules", "turn boiler ON: " + temp)
+
+            conservatory_Heating.sendCommand(ON)
+            conservatory_Heating.postUpdate(ON)
+            // WiFiSocket1Power.sendCommand(ON)
+            // WiFiSocket2Power.sendCommand(ON)
+//  WiFiSocket1Power.sendUpdate(ON)
+
+        } 
+    }
+end
+

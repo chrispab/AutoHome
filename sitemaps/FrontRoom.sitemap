@@ -1,0 +1,11 @@
+sitemap FrontRoom label="Front Room"
+{
+  Frame label="Heating" {
+      Text item=frontRoom_CurrentTemperature label="Temperature: [%.1f °C]"
+        Setpoint item=frontRoom_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[frontRoom_Heating_Mode>0]
+        Switch item=frontRoom_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Switch item= frontRoom_Heating label="Radiator"
+
+  }
+
+}

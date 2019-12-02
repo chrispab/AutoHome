@@ -1,10 +1,10 @@
 sitemap Office label="Office"
 {
   Frame label="Heating" {
-    Text item=Office_Temperature label="Temperature: [%.1f °C]"
-    Setpoint item= Office_Heating_Setpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[Office_Heating_Mode>0]
-    Switch item=Office_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-    Switch item= Office_Heating label="Radiator"
+    Text item=office_CurrentTemperature label="Temperature: [%.1f °C]"
+    Setpoint item= office_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[office_Heating_Mode>0]
+    Switch item=office_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Switch item= office_Heating label="Radiator"
   }
 }
 

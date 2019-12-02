@@ -9,22 +9,22 @@ end
 
 rule "Boiler Demand changed"
 when
-    Item FR_Heating changed or
-    Item CT_Heating changed or
-    Item elsie_Heating changed or
+    Item frontRoom_Heating changed or
+    Item conservatory_Heating changed or
+    Item elsiesRoom_Heating changed or
     Item Attic_Heating changed or
     Item bedroom_Heating changed or
-    Item Office_Heating changed or
-    Item Hall_Heating changed
+    Item office_Heating changed or
+    Item hall_Heating changed
 then
     //say("Boiler demand changed")
-    if (       (FR_Heating.state == ON) 
-            || (CT_Heating.state == ON) 
-            || (elsie_Heating.state == ON) 
+    if (       (frontRoom_Heating.state == ON) 
+            || (conservatory_Heating.state == ON) 
+            || (elsiesRoom_Heating.state == ON) 
             || (Attic_Heating.state == ON)
             || (bedroom_Heating.state == ON)
-            || (Office_Heating.state == ON)
-            || (Hall_Heating.state == ON) 
+            || (office_Heating.state == ON)
+            || (hall_Heating.state == ON) 
             ){
         Boiler_Control.sendCommand(ON)
         Boiler_Control.postUpdate(ON)

@@ -1,0 +1,23 @@
+// Number conservatory_Heat_Mode     "Heating Mode" <heating> (gHeatingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
+// Switch conservatory_Heating "Conservatory Radiator"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power9:command:*:MAP(onoffcases.map)]"}
+
+// Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
+
+// Group gConservatory_Thermostat "Conservatory Thermostat" [ "Thermostat" ]
+// Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <degreesc> (gConservatory_Thermostat) [ "TargetTemperature" ]
+// Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] {mqtt="<[mosquitto:433Bridge/Temperature:state:default]"}
+// Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] {mqtt="<[mosquitto:433Bridge/Humidity:state:default]"}
+// String conservatory_Heat_Mode "Conservatoy Heat Mode" <heating> (gConservatory_Thermostat) [ "homekit:TargetHeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+
+
+
+Group gConservatory_Thermostat "Conservatory Thermostat" [ "Thermostat" ]
+Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+String conservatory_Heat_Mode "Conservatory Heat Mode" <settings> (gConservatory_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+
+Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
+// String conservatory_Reachable "Conservatory Reachable" <qualityofservice> (gConservatory_Thermostat)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }
+Number conservatory_Heating_Mode "Conservatory Heating Mode" <settings>
+Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"

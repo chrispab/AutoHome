@@ -1,0 +1,11 @@
+sitemap ElsiesRoom label="Elsie's Room"
+{
+  Frame label="Heating" {
+    Text item=elsiesRoom_CurrentTemperature label="Current Temperature[%.1f °C]"
+    Setpoint item=elsiesRoom_TargetTemperature label="Target Temperature[%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[elsiesRoom_Heating_Mode>0]
+    Switch item=elsiesRoom_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Switch item=elsiesRoom_Heating label="Radiator"
+    Text item=elsiesRoom_Reachable label="Reachable"
+  }
+}
+
