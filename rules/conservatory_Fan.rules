@@ -81,7 +81,7 @@ end
 
 rule "React on Fan Pulse (FanPulseSwitch) change/update"
 when
-    Item FanPulseSwitch changed to ON
+    Item FanPulseSwitch changed from OFF to ON
 then
     socketG3_2.sendCommand(ON)
     socketG3_2.postUpdate(ON)
@@ -99,7 +99,7 @@ end
 
 rule "React on Fan override ON"
 when
-    Item FanOnOverride changed to ON
+    Item FanOnOverride changed from OFF to ON
 then
     socketG3_2.sendCommand(ON)
     socketG3_2.postUpdate(ON)
@@ -108,7 +108,7 @@ end
 
 rule "React on Fan override OFF"
 when
-    Item FanOnOverride changed to OFF
+    Item FanOnOverride changed from ON to OFF
 then
     socketG3_2.sendCommand(OFF)
     socketG3_2.postUpdate(OFF)

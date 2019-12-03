@@ -51,7 +51,7 @@ end
 
 rule "PIRsensor Turn ON lights"
 when
-    Item PIRState changed to ON
+    Item PIRState changed from OFF to ON
 then
     logInfo("RULE", "pir on")
     //turn on
@@ -67,7 +67,7 @@ end
 
 rule "PIRsensor Turn OFF lights"
 when
-    Item PIRState changed to OFF
+    Item PIRState changed from ON to OFF
 then
     logInfo("RULE", "pir off")
     //turn on
@@ -81,7 +81,7 @@ end
 
 rule "zone3 lights on"
 when
-    Item Zone3LightStatus changed to ON
+    Item Zone3LightStatus changed from OFF to ON
 then
     {sendCommand(socketG2_1, OFF)} //con lights
     {postUpdate(socketG2_1, OFF)}

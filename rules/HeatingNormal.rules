@@ -13,20 +13,20 @@ then
     switch masterHeatingMode.state {
         case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
             logInfo("heating_mode.rules", "processing case MASTER Heating Mode : ")
-            if(conservatory_Heat_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
+            if(conservatory_Heating_Mode.state == 2) { //if mode is master control - 'normal' - auto - 2
                 conservatory_TargetTemperature.state = (conservatory_Heating_PresetTempNormal.state )
             }
             if(frontRoom_Heating_Mode.state == 2) { //if zone mode is master control
                    frontRoom_TargetTemperature.state = (frontRoom_Heating_PresetTempNormal.state)
             }
             if(elsiesRoom_Heating_Mode.state == 2) { //if mode is master control
-                elsie_Heating_Setpoint.state = (elsiesRoom_Heating_PresetTempNormal.state)
+                elsiesRoom_TargetTemperature.state = (elsiesRoom_Heating_PresetTempNormal.state)
             }
             if(Attic_Heating_Mode.state == 2) { //if mode is master control
-                Attic_TargetTemperature.state = (Attic_Heating_PresetTempNormal.state)
+                Attic_TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
             }
             if(bedroom_Heating_Mode.state == 2) { //if mode is master control
-                bedroom_Heating_Setpoint.state = (bedroom_Heating_PresetTempNormal.state)
+                bedroom_TargetTemperature.state = (bedroom_Heating_PresetTempNormal.state)
             }
             if(office_Heating_Mode.state == 2) { //if mode is master control
                 office_TargetTemperature.state = (office_Heating_PresetTempNormal.state)
@@ -40,16 +40,17 @@ then
         case "OFF_SUMMER": {
             logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
             conservatory_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            conservatory_Heat_Mode.postUpdate(0)
+            //conservatory_TargetTemperature.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
+            conservatory_Heating_Mode.postUpdate(0)
             hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             hall_Heating_Mode.postUpdate(0)
             frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             frontRoom_Heating_Mode.postUpdate(0) 
             office_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             office_Heating_Mode.postUpdate(0)
-            elsie_Heating_Setpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            elsiesRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             elsiesRoom_Heating_Mode.postUpdate(0)
-            bedroom_Heating_Setpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            bedroom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             bedroom_Heating_Mode.postUpdate(0)
             Attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             Attic_Heating_Mode.postUpdate(0)                                                

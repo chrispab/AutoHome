@@ -36,7 +36,7 @@ end
     
 // rule "Play Kodi"
 // when
-//      Item pauseKodiConProxy changed to OFF 
+//      Item pauseKodiConProxy changed from ON to OFF 
 // then
 //     kodiCon_control.sendCommand(PLAY)
 // end

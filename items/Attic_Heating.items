@@ -10,4 +10,4 @@ Number Attic_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc> 
 Switch Attic_Heating "Attic Heating"  <switch> { channel="mqtt:topic:atticRadThermoValve:powerSwitch", autoupdate="false" } 
 Number Attic_Heating_Mode "Attic Heating Mode" <heating>  (gHeatingModes)
 // String Attic_Message
-Number Attic_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
+Number attic_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"

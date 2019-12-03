@@ -2,7 +2,7 @@ var Timer timer = null
 
 rule "motionEye Control ON"
 when
-    Item MECam1 changed to ON
+    Item MECam1 changed from OFF to ON
 then
     MERelay1.postUpdate(ON)
     if(timer !== null) {
@@ -12,7 +12,7 @@ end
 
 rule "motionEye Control OFF"
 when
-    Item MECam1 changed to OFF
+    Item MECam1 changed from ON to OFF
 then
     val results = executeCommandLine ("sudo -u openhab ssh pi@10.0.0.189 sudo /sbin/shutdown now")
     if(timer === null) {

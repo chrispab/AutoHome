@@ -4,7 +4,7 @@ var Timer timer2 = null
 
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPower changed to ON
+    Item conservatoryTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     {sendCommand(socketG2_4, ON)} //tv
@@ -16,7 +16,7 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPower changed to OFF 
+    Item conservatoryTVPower changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
 
@@ -38,7 +38,7 @@ end
 
 rule "Turn ON master bedroom Kodi-Pi, TV and soundbar"
 when
-    Item masterBedroomTVPower changed to ON
+    Item masterBedroomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the master bedroom Kodi, pi and speakers vvv")
     // {sendCommand(socketG2_4, ON)} //tv
@@ -50,7 +50,7 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item masterBedroomTVPower changed to OFF 
+    Item masterBedroomTVPower changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
 

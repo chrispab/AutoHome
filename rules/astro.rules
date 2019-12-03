@@ -26,7 +26,7 @@ end
 
 rule "Night has started"
 when
-    Item NightState changed to ON
+    Item NightState changed from OFF to ON
 then
     logInfo("RULE", "It's getting dark!")
         if (NightState.state == ON) {
@@ -39,7 +39,7 @@ end
 
 rule "Night has ended"
 when
-    Item NightState changed to OFF
+    Item NightState changed from ON to OFF
 then
     logInfo("RULE", "It's getting light!")
         if (NightState.state == OFF) {
