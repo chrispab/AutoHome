@@ -12,7 +12,7 @@ when
     Item frontRoom_Heating changed or
     Item conservatory_Heating changed or
     Item elsiesRoom_Heating changed or
-    Item attic_Heating changed or
+    Item Attic_Heating changed or
     Item bedroom_Heating changed or
     Item office_Heating changed or
     Item hall_Heating changed
@@ -21,7 +21,7 @@ then
     if (       (frontRoom_Heating.state == ON) 
             || (conservatory_Heating.state == ON) 
             || (elsiesRoom_Heating.state == ON) 
-            || (attic_Heating.state == ON)
+            || (Attic_Heating.state == ON)
             || (bedroom_Heating.state == ON)
             || (office_Heating.state == ON)
             || (hall_Heating.state == ON) 

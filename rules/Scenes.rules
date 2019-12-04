@@ -16,9 +16,10 @@ then
     {postUpdate(conservatoryTVPower, OFF)}
 
     
-    {sendCommand(gIkeaLights, OFF)} //
-    {postUpdate(gIkeaLights, OFF)} 
-
+    // {sendCommand(gIkeaLights, OFF)} //
+    // {postUpdate(gIkeaLights, OFF)} 
+        gIkeaLights.sendCommand(new PercentType(0))
+        gIkeaLights.postUpdate(new PercentType(0))
     //set rads temps to off
     conservatory_Heating_PresetTempNormal.postUpdate(17.0)
     frontRoom_Heating_PresetTempNormal.postUpdate(14.0)

@@ -36,11 +36,11 @@ then
             timer1 = null]}
 end
 
-rule "Turn ON master bedroom Kodi-Pi, TV and soundbar"
+rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
 when
     Item masterBedroomTVPower changed from OFF to ON
 then
-    logInfo("RULE", "Turn ON the master bedroom Kodi, pi and speakers vvv")
+    logInfo("RULE", "Turn ON the bedroom Kodi, pi and speakers vvv")
     // {sendCommand(socketG2_4, ON)} //tv
     // {postUpdate(socketG2_4, ON)}
     // {sendCommand(socketG2_3, ON)} // amp

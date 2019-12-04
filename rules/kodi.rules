@@ -14,14 +14,14 @@ then
 end
 
 //Kodi Master Bedroom
-rule "Pause Kodi Master Bedroom"
+rule "Pause Kodi bedroom"
 when
      Item pauseKodiMBProxy received update 
 then
     kodiMB_control.sendCommand(PAUSE)
 end
 
-rule "Shutdown Master Bedroom Kodi Pi Host"
+rule "Shutdown bedroom Kodi Pi Host"
 when
      Item shutdownKodiMBProxy received update 
 then
