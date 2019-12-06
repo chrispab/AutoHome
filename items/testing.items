@@ -6,8 +6,7 @@ DateTime Time1 "Time 1" <time>
 
 Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
 
-Switch RecircFanEnable    "Recirc Fan Enable" <fan>
-Switch FanPulseSwitch    "Fan Pulse" <fan>
+
 //Switch GoingToBed    "Going to bed" <switch>
 //Switch  "Turn on AV" <switch> ["Swithcable"]
 
@@ -27,10 +26,6 @@ Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:P
 
 Switch PIRState "Bridge PIR sensor" <light> {mqtt="<[mosquitto:433Bridge/PIRState:state:MAP(onoffcases.map)]"} 
 
-Switch FanOnOverride    "Fan ON - Override" <fan>
-
-
-Number Conservatory_Fan_ON_Setpoint "conservatory fan on setponit [%.1f °C]"    <degreesc>
 
 Switch testSwitch "test switch"
 

@@ -22,8 +22,8 @@ then
             if(elsiesRoom_Heating_Mode.state == 2) { //if mode is master control
                 elsiesRoom_TargetTemperature.state = (elsiesRoom_Heating_PresetTempNormal.state)
             }
-            if(Attic_Heating_Mode.state == 2) { //if mode is master control
-                Attic_TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
+            if(_Heating_Mode.state == 2) { //if mode is master control
+                _TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
             }
             if(bedroom_Heating_Mode.state == 2) { //if mode is master control
                 bedroom_TargetTemperature.state = (bedroom_Heating_PresetTempNormal.state)
@@ -52,8 +52,8 @@ then
             elsiesRoom_Heating_Mode.postUpdate(0)
             bedroom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             bedroom_Heating_Mode.postUpdate(0)
-            Attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            Attic_Heating_Mode.postUpdate(0)                                                
+            attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            attic_Heating_Mode.postUpdate(0)                                                
         }
         case "LOCAL": {
             logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")

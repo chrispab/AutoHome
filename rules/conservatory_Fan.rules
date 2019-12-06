@@ -16,8 +16,8 @@ then
         //RecircFanEnable
     }
 
-    logInfo("RULE", "sp : " + sp)
-    logInfo("RULE", "currentTemp : " + currentTemp)
+    logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
+    logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
     if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
         logInfo("RULE", "pulsing ON conservatory re-circ fan when setpoint > 19, set at:" + sp)

@@ -17,7 +17,8 @@ Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <te
 Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 String conservatory_Heat_Mode "Conservatory Heat Mode" <settings> (gConservatory_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
-Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
+//Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
+Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
 // String conservatory_Reachable "Conservatory Reachable" <qualityofservice> (gConservatory_Thermostat)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }
 Number conservatory_Heating_Mode "Conservatory Heating Mode" <settings>
 Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"

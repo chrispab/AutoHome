@@ -1,0 +1,6 @@
+rule "StartUp - set up Heating settings"
+when
+    System started
+then
+    conservatory_Heat_Mode.postUpdate("heat")
+end

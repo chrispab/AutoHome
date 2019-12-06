@@ -7,6 +7,7 @@ var Number lowTemp = 16
 var Number morningTemp = 20
 var Number eveningTemp = 21
 var Number highTemp = 22
+var Number vhighTemp = 23
 
 
 // master heating mode - NORMAL mode rules
@@ -74,7 +75,7 @@ then
     if (temp < 2.0 ) {  // determine whether we need to turn on/off the heater
         logInfo("4:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
-        conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+        conservatory_Heating_PresetTempNormal.postUpdate(vhighTemp)
         frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
         elsiesRoom_Heating_PresetTempNormal.postUpdate(offTemp)
         attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -93,7 +94,7 @@ then
     if (temp < 10.0 ) {  // determine whether we need to turn on/off the heater
         logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
-        conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+        conservatory_Heating_PresetTempNormal.postUpdate(vhighTemp)
         frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
         elsiesRoom_Heating_PresetTempNormal.postUpdate(offTemp)
         attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -108,7 +109,7 @@ rule "NORMAL heating start - 06:10 am"
 when
     Time cron "0 00 06 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(vhighTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     elsiesRoom_Heating_PresetTempNormal.postUpdate(morningTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -153,7 +154,7 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 5.0) {  // determine whether we need to turn on/off the heater
-        conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+        conservatory_Heating_PresetTempNormal.postUpdate(vhighTemp)
         frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
         elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
         attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -168,7 +169,7 @@ rule "16:00"
 when
     Time cron "0 00 16 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(vhighTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -178,33 +179,33 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-rule "19:00"
-when
-    Time cron "0 00 19 ? * MON-FRI *"
-then
-    conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
-    frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
-    elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
-    attic_Heating_PresetTempNormal.postUpdate(offTemp)
-    bedroom_Heating_PresetTempNormal.postUpdate(midTemp)
-    office_Heating_PresetTempNormal.postUpdate(midTemp)
-    hall_Heating_PresetTempNormal.postUpdate(midTemp)
-    Heating_UpdateHeaters.sendCommand(ON)
-end
+// rule "19:00"
+// when
+//     Time cron "0 00 19 ? * MON-FRI *"
+// then
+//     conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+//     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
+//     elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
+//     attic_Heating_PresetTempNormal.postUpdate(offTemp)
+//     bedroom_Heating_PresetTempNormal.postUpdate(midTemp)
+//     office_Heating_PresetTempNormal.postUpdate(midTemp)
+//     hall_Heating_PresetTempNormal.postUpdate(midTemp)
+//     Heating_UpdateHeaters.sendCommand(ON)
+// end
 
-rule "22:30 weekdays"
-when
-    Time cron "0 30 22 ? * MON-FRI *"
-then
-    conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
-    frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
-    elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
-    attic_Heating_PresetTempNormal.postUpdate(offTemp)
-    bedroom_Heating_PresetTempNormal.postUpdate(midTemp)
-    office_Heating_PresetTempNormal.postUpdate(midTemp)
-    hall_Heating_PresetTempNormal.postUpdate(offTemp)
-    Heating_UpdateHeaters.sendCommand(ON)
-end
+// rule "22:30 weekdays"
+// when
+//     Time cron "0 30 22 ? * MON-FRI *"
+// then
+//     conservatory_Heating_PresetTempNormal.postUpdate(highTemp)
+//     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
+//     elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
+//     attic_Heating_PresetTempNormal.postUpdate(offTemp)
+//     bedroom_Heating_PresetTempNormal.postUpdate(midTemp)
+//     office_Heating_PresetTempNormal.postUpdate(midTemp)
+//     hall_Heating_PresetTempNormal.postUpdate(offTemp)
+//     Heating_UpdateHeaters.sendCommand(ON)
+// end
 
 rule "11:30pm weekdays"
 when

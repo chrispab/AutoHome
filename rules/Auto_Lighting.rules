@@ -1,6 +1,7 @@
 rule "if dark in morning turn on conservatory lights"
 when
-    Time cron "0 15 07 ? * * *"
+    Time cron "0 00 07 ? * * *"
+//    Time cron "0 53 17 ? * * *"
 then
     logInfo("RULE", "morning lighting if dark")
 
@@ -31,6 +32,8 @@ then
         //{sendCommand(gIkeaLights, OFF)} // d room lights
         gIkeaLights.sendCommand(new PercentType(0))
         gIkeaLights.postUpdate(new PercentType(0))
+        gDimmerBulbs.sendCommand(new PercentType(0))
+        gColourBulbs.sendCommand(new HSBType(0,0,0))
         gIkeaLights.sendCommand(OFF)
         gIkeaLights.postUpdate(OFF)
         //{postUpdate(gIkeaLights, OFF)}

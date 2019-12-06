@@ -1,0 +1,10 @@
+Switch RecircFanEnable "Enable Fan" <fan> [ "Fan" ]
+
+
+Switch FanPulseSwitch    "Fan Pulse" <fan>
+
+
+Switch FanOnOverride    "Fan ON - Override" <fan>
+
+
+Number Conservatory_Fan_ON_Setpoint "conservatory fan on setponit [%.1f °C]"    <degreesc>
