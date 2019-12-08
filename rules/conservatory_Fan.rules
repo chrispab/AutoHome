@@ -5,11 +5,13 @@
 
 rule "pulse ON con re-circ fan when setpoint > 19"
 when
-    Time cron "0 0/3 * * * ?"
+    Time cron "0 0/2 * * * ?"
 then
     var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
     var Number currentTemp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
-
+    var Number fanOnSecs = 90
+    //var Number fanRepeatSecs = 100
+    
     if (RecircFanEnable.state == NULL) {
         logInfo("RULE", "recirc fan enable is NULL so set to ON")
         RecircFanEnable.state = ON
@@ -20,16 +22,16 @@ then
     logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
     if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        logInfo("RULE", "pulsing ON conservatory re-circ fan when setpoint > 19, set at:" + sp)
+        logInfo("RULE", "start conservatory re-circ fan when setpoint > 19, set at:" + sp)
         {sendCommand(socketG3_2, ON)} //fan on
         {postUpdate(socketG3_2, ON)}
 
 // var Timer fanRecircTimer = null
 
-        createTimer(now.plusSeconds(60), [|
+        createTimer(now.plusSeconds(fanOnSecs), [|
             {sendCommand(socketG3_2, OFF)} //fan
             {postUpdate(socketG3_2, OFF)}
-            logInfo("RULE", "pulse consv fan OFF sent after n mins")
+            logInfo("RULE", "pulse consv fan OFF sent after " + fanOnSecs + " secs")
         ])
     }
     if (  (RecircFanEnable.state == OFF) )  {

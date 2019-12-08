@@ -22,8 +22,8 @@ then
             if(elsiesRoom_Heating_Mode.state == 2) { //if mode is master control
                 elsiesRoom_TargetTemperature.state = (elsiesRoom_Heating_PresetTempNormal.state)
             }
-            if(_Heating_Mode.state == 2) { //if mode is master control
-                _TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
+            if(attic_Heating_Mode.state == 2) { //if mode is master control
+                attic_TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
             }
             if(bedroom_Heating_Mode.state == 2) { //if mode is master control
                 bedroom_TargetTemperature.state = (bedroom_Heating_PresetTempNormal.state)

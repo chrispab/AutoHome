@@ -1,9 +1,9 @@
 Thing mqtt:topic:WiFiSocket1  "MQTT Thing: WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="sonoff_WiFiSocket1/stat/POWER" , commandTopic="sonoff_WiFiSocket1/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : Reachable    [ stateTopic="sonoff_WiFiSocket1/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_WiFiSocket1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type switch : powerSwitch  [ stateTopic="wiFiSocket1/stat/POWER" , commandTopic="wiFiSocket1/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="wiFiSocket1/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="wiFiSocket1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 Thing mqtt:topic:WiFiSocket2  "MQTT Thing: WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
@@ -18,16 +18,16 @@ Thing mqtt:topic:WiFiSocket2  "MQTT Thing: WiFi Power Socket 2" (mqtt:broker:MyM
 Thing mqtt:topic:WiFiSocket3  "MQTT Thing: WiFi Power Socket 3" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="sonoff_WiFiSocket3/stat/POWER" , commandTopic="sonoff_WiFiSocket3/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : Reachable    [ stateTopic="sonoff_WiFiSocket3/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_WiFiSocket3/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type switch : powerSwitch  [ stateTopic="wiFiSocket3/stat/POWER" , commandTopic="wiFiSocket3/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="wiFiSocket3/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="wiFiSocket3/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 
 Thing mqtt:topic:WiFiSocket4  "MQTT Thing: WiFi Power Socket 4" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="sonoff_WiFiSocket4/stat/POWER" , commandTopic="sonoff_WiFiSocket4/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : Reachable    [ stateTopic="sonoff_WiFiSocket4/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_WiFiSocket4/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type switch : powerSwitch  [ stateTopic="wiFiSocket4/stat/POWER" , commandTopic="wiFiSocket4/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="wiFiSocket4/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="wiFiSocket4/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
