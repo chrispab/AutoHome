@@ -1,14 +1,14 @@
-sitemap  label=""
+sitemap Attic label="Attic"
 {
   Frame label="Date" {
     Text item=Current_Date
   }
     Frame label="Current Status" {
-    Text item=_CurrentTemperature label="Actual Temperature: [%.1f °C]"
-    Switch item= _Heating label=" Radiator"
+    Text item=attic_CurrentTemperature label="Actual Temperature: [%.1f °C]"
+    Switch item= attic_Heating label=" Radiator"
   }
   Frame label="Heating Control" {
-        Switch item=_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Setpoint item=_TargetTemperature label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[_Heating_Mode==2]
+        Switch item=attic_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+        Setpoint item=attic_TargetTemperature label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[attic_Heating_Mode==2]
   }
 }

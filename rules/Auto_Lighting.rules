@@ -69,7 +69,7 @@ when
 then
     if (now.getHourOfDay == 15){
         logInfo("RULE", "elsies or c or j phone connected to wifi @ 3-4 pm")
-        sendCommand(gXmasLights, ON)
+        sendCommand(gChristmasLights, ON)
         sendCommand(gFairyLights, ON)
     }
 end
