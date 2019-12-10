@@ -1,5 +1,5 @@
 
-var Number sleepTemp = 16
+var Number sleepTemp = 17
 var Number offTemp = 14
 var Number liveTemp = 21
 var Number midTemp = 18
@@ -211,12 +211,12 @@ rule "11:30pm weekdays"
 when
     Time cron "0 30 23 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
-    elsiesRoom_Heating_PresetTempNormal.postUpdate(midTemp)
+    elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
-    bedroom_Heating_PresetTempNormal.postUpdate(midTemp)
-    office_Heating_PresetTempNormal.postUpdate(midTemp)
+    bedroom_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    office_Heating_PresetTempNormal.postUpdate(offTemp)
     hall_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end

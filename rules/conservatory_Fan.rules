@@ -9,7 +9,7 @@ when
 then
     var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
     var Number currentTemp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
-    var Number fanOnSecs = 90
+    var Number fanOnSecs = 60
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {

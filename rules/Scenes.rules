@@ -1,6 +1,14 @@
+rule "StartUp - set up Item Scene_Goodnight"
+when
+    System started
+then
+    Scene_Goodnight.postUpdate(OFF)
+end
+
 rule "Goodnight Going to bed"
 when
-	Item Scene_Goodnight received command ON
+//	Item Scene_Goodnight received command ON
+	Item Scene_Goodnight changed from OFF to ON
 then
     logInfo("RULE", "goodnight going to bed")
 
