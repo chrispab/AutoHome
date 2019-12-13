@@ -13,17 +13,17 @@ Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Therm
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type switch : powerSwitch  [ stateTopic="frontRoom/stat/POWER" , commandTopic="frontRoom/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="frontRoom/tele/LWT"  ]
+        Type string : reachable    [ stateTopic="frontRoom/tele/LWT", transformationPattern="MAP:reachable.map" ]
         Type number : rssi         [ stateTopic="frontRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 Thing mqtt:topic:hallRadThermoValve  "MQTT Thing: Hall Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Hall" {
     Channels:
-        Type number : temperature  [ stateTopic="sonoff_hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        Type number : humidity     [ stateTopic="sonoff_hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
-        Type switch : powerSwitch  [ stateTopic="sonoff_hall/stat/POWER" , commandTopic="sonoff_hall/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="sonoff_hall/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_hall/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type number : temperature  [ stateTopic="hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type switch : powerSwitch  [ stateTopic="hall/stat/POWER" , commandTopic="hall/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : reachable    [ stateTopic="hall/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="hall/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 Thing mqtt:topic:elsiesRoomRadThermoValve  "MQTT Thing: Elsie's Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Elsie's Room" {
@@ -39,29 +39,29 @@ Thing mqtt:topic:elsiesRoomRadThermoValve  "MQTT Thing: Elsie's Room Radiator Th
 
 Thing mqtt:topic:officeRadThermoValve  "MQTT Thing: Office Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Office" {
     Channels:
-        Type number : temperature  [ stateTopic="sonoff_office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        Type number : humidity     [ stateTopic="sonoff_office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
-        Type switch : powerSwitch  [ stateTopic="sonoff_office/stat/POWER" , commandTopic="sonoff_office/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="sonoff_office/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_office/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type number : temperature  [ stateTopic="office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type switch : powerSwitch  [ stateTopic="office/stat/POWER" , commandTopic="office/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : reachable    [ stateTopic="office/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="office/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 Thing mqtt:topic:bedroomRadThermoValve  "MQTT Thing: Bedroom Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Bedroom" {
     Channels:
-        Type number : temperature  [ stateTopic="sonoff_bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        Type number : humidity     [ stateTopic="sonoff_bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
-        Type switch : powerSwitch  [ stateTopic="sonoff_bedroom/stat/POWER" , commandTopic="sonoff_bedroom/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="sonoff_bedroom/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_bedroom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type number : temperature  [ stateTopic="bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type switch : powerSwitch  [ stateTopic="bedroom/stat/POWER" , commandTopic="bedroom/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : reachable    [ stateTopic="bedroom/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="bedroom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
 
 Thing mqtt:topic:atticRadThermoValve  "MQTT Thing: Attic Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Attic" {
     Channels:
-        Type number : temperature  [ stateTopic="sonoff_attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        Type number : humidity     [ stateTopic="sonoff_attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
-        Type switch : powerSwitch  [ stateTopic="sonoff_attic/stat/POWER" , commandTopic="sonoff_attic/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="sonoff_attic/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_attic/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type number : temperature  [ stateTopic="attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type switch : powerSwitch  [ stateTopic="attic/stat/POWER" , commandTopic="attic/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : reachable    [ stateTopic="attic/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="attic/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 

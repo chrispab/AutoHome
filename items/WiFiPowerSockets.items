@@ -3,20 +3,21 @@ Group gWiFiPowerSockets
 Group gChristmasLights "Christmas Lights"
 
 Switch WiFiSocket1Power "Socket one" (gMQTT, gWiFiPowerSockets, gChristmasLights) [ "Lighting" ] { channel = "mqtt:topic:WiFiSocket1:powerSwitch" }
-Switch WiFiSocket1Reachable "Socket one reachable" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket1:Reachable" }
-Number WiFiSocket1RSSI "Socket one RSSI" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket1:rssi" }
+String WiFiSocket1Reachable "Socket one reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket1:Reachable" }
+Number WiFiSocket1RSSI "Socket one RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket1:rssi" }
 
 
 Switch WiFiSocket2Power "Socket two" (gMQTT, gWiFiPowerSockets, gChristmasLights) [ "Lighting" ] { channel = "mqtt:topic:WiFiSocket2:powerSwitch" }
-Switch WiFiSocket2Reachable "Socket two reachable" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
-Number WiFiSocket2RSSI "Socket two RSSI" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket2:rssi" }
+String WiFiSocket2Reachable "Socket two reachable [MAP" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
+// (reachable.map)]:%s
+Number WiFiSocket2RSSI "Socket two RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:rssi" }
 
 
 Switch WiFiSocket3Power "Socket three" (gMQTT, gWiFiPowerSockets, gChristmasLights) [ "Lighting" ] { channel = "mqtt:topic:WiFiSocket3:powerSwitch" }
-Switch WiFiSocket3Reachable "Socket three reachable" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket3:Reachable" }
-Number WiFiSocket3RSSI "Socket three RSSI" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket3:rssi" }
+String WiFiSocket3Reachable "Socket three reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:Reachable" }
+Number WiFiSocket3RSSI "Socket three RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:rssi" }
 
 
 Switch WiFiSocket4Power "Socket four" (gMQTT, gWiFiPowerSockets, gChristmasLights) [ "Lighting" ] { channel = "mqtt:topic:WiFiSocket4:powerSwitch" }
-Switch WiFiSocket4Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket4:Reachable" }
-Number WiFiSocket4RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket4:rssi" }
+String WiFiSocket4Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:Reachable" }
+Number WiFiSocket4RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:rssi" }

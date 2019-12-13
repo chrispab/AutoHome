@@ -4,14 +4,7 @@ Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating mo
 DateTime Time1 "Time 1" <time>
 
 
-Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
 
-
-//Switch GoingToBed    "Going to bed" <switch>
-//Switch  "Turn on AV" <switch> ["Swithcable"]
-
-Number BridgeLightSensorLevel "Light Sensor Level" <light> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"} 
-Switch BridgeLightSensorState "Light Sensor State" <light> {mqtt="<[mosquitto:433Bridge/LightState:state:MAP(onoffcases.map)]"} 
 
 Number Plant1MoistureLevel "Plant1 Moisture Level" <light> {mqtt="<[mosquitto:Plant/1/MoistureLevel:state:default]"} 
 Switch Plant1MoistureState "Plant 1 Moisture State" <light> {mqtt="<[mosquitto:Plant/1/MoistureState:state:MAP(onoffcases.map)]"} 
@@ -23,8 +16,6 @@ Switch Plant2MoistureState "Plant 2 Moisture State" <light> {mqtt="<[mosquitto:P
 Number Plant3MoistureLevel "Plant 3 Moisture Level" <light> {mqtt="<[mosquitto:Plant/3/MoistureLevel:state:default]"} 
 Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:Plant/3/MoistureState:state:MAP(onoffcases.map)]"} 
 
-
-Switch PIRState "Bridge PIR sensor" <light> {mqtt="<[mosquitto:433Bridge/PIRState:state:MAP(onoffcases.map)]"} 
 
 
 Switch testSwitch "test switch"
