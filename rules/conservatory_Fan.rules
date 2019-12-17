@@ -5,11 +5,11 @@
 
 rule "pulse ON con re-circ fan when setpoint > 19"
 when
-    Time cron "0 0/2 * * * ?"
+    Time cron "0 0/3 * * * ?"
 then
     var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
     var Number currentTemp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
-    var Number fanOnSecs = 60
+    var Number fanOnSecs = 45
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {

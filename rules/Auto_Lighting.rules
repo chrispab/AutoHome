@@ -36,6 +36,10 @@ then
         gColourBulbs.sendCommand(new HSBType(0,0,0))
         gIkeaLights.sendCommand(OFF)
         gIkeaLights.postUpdate(OFF)
+
+                gIkeaLights.sendCommand(new PercentType(0))
+        gIkeaLights.postUpdate(new PercentType(0))
+        gConservatoryLights.sendCommand(OFF)
         //{postUpdate(gIkeaLights, OFF)}
 end
 
@@ -59,17 +63,17 @@ then
 end
 
 //switch on xmas lights when eslie gets home
-rule "switch on lights when elsie gets home"
-when
-    // Item ElsieSIPhone_Online changed from OFF to ON
-    // or
-    // Item JoIPhone_Online changed from OFF to ON
-    // or
-    Item ChrisGalaxyS5_Online changed from OFF to ON
-then
-    if (now.getHourOfDay == 15){
-        logInfo("RULE", "elsies or c or j phone connected to wifi @ 3-4 pm")
-        sendCommand(gChristmasLights, ON)
-        sendCommand(gFairyLights, ON)
-    }
-end
+// rule "switch on lights when elsie gets home"
+// when
+//     // Item ElsieSIPhone_Online changed from OFF to ON
+//     // or
+//     // Item JoIPhone_Online changed from OFF to ON
+//     // or
+//     Item ChrisGalaxyS5_Online changed from OFF to ON
+// then
+//     if (now.getHourOfDay == 15){
+//         logInfo("RULE", "elsies or c or j phone connected to wifi @ 3-4 pm")
+//         sendCommand(gChristmasLights, ON)
+//         sendCommand(gFairyLights, ON)
+//     }
+// end

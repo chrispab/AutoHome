@@ -13,7 +13,8 @@ Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Therm
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type switch : powerSwitch  [ stateTopic="frontRoom/stat/POWER" , commandTopic="frontRoom/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : reachable    [ stateTopic="frontRoom/tele/LWT", transformationPattern="MAP:reachable.map" ]
+//        Type string : reachable    [ stateTopic="frontRoom/tele/LWT", transformationPattern="MAP:reachable.map" ]
+        Type string : reachable    [ stateTopic="frontRoom/tele/LWT" ]
         Type number : rssi         [ stateTopic="frontRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
