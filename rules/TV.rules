@@ -2,6 +2,10 @@ var Timer timer1 = null
 var Timer timer2 = null
 
 
+
+
+
+
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
     Item conservatoryTVPower changed from OFF to ON
@@ -18,7 +22,7 @@ rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
     Item conservatoryTVPower changed from ON to OFF 
 then
-    logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
+    logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
 
     // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
     // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
@@ -33,7 +37,8 @@ then
             {postUpdate(socketG2_4, OFF)}
             {sendCommand(socketG2_3, OFF)} // amp
             {postUpdate(socketG2_3, OFF)}
-            timer1 = null]}
+            timer1 = null]
+    }
 end
 
 rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
@@ -48,11 +53,11 @@ then
 end
 
 
-rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
+rule "Turn OFF bedroom Kodi-Pi, TV and soundbar"
 when
     Item masterBedroomTVPower changed from ON to OFF 
 then
-    logInfo("RULE", "Turn OFF kodi, pi and TV Kit")
+    logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
 
     // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
     // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'

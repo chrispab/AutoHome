@@ -30,8 +30,8 @@ then
         {sendCommand(socketG1_4, OFF)} // d room lights
         {postUpdate(socketG1_4, OFF)}
         //{sendCommand(gIkeaLights, OFF)} // d room lights
-        gIkeaLights.sendCommand(new PercentType(0))
-        gIkeaLights.postUpdate(new PercentType(0))
+        // gIkeaLights.sendCommand(new PercentType(0))
+        // gIkeaLights.postUpdate(new PercentType(0))
         gDimmerBulbs.sendCommand(new PercentType(0))
         gColourBulbs.sendCommand(new HSBType(0,0,0))
         gIkeaLights.sendCommand(OFF)
@@ -39,7 +39,7 @@ then
 
                 gIkeaLights.sendCommand(new PercentType(0))
         gIkeaLights.postUpdate(new PercentType(0))
-        gConservatoryLights.sendCommand(OFF)
+        // gConservatoryLights.sendCommand(OFF)
         //{postUpdate(gIkeaLights, OFF)}
 end
 

@@ -4,7 +4,7 @@
 
 rule "Delayed Off Switch"
 when
-    Item Delayed_OFF_SW changed
+    Item Delayed_OFF_SW changed from OFF to ON
 then
     logInfo("RULE", "delayed off switch")
 
