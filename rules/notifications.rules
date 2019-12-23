@@ -1,0 +1,21 @@
+
+rule "zone3 lights on"
+when
+    Item Zone3LightStatus changed from OFF to ON
+then
+    {sendCommand(socketG2_1, OFF)} //con lights
+    {postUpdate(socketG2_1, OFF)}
+    
+    logInfo("RULE", "Z3 lights - on")
+            createTimer(now.plusSeconds(5), [|
+            {sendCommand(socketG2_1, ON)} //fan
+            {postUpdate(socketG2_1, ON)}
+            //{postUpdate(socketG3_2, OFF)}
+   // say("What happened then?")
+    logInfo("RULE", "What happened then?")
+
+    logInfo("RULE", "pulse consv light OFF/ON")
+        ])
+
+ 
+end

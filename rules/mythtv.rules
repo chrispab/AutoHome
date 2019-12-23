@@ -14,3 +14,12 @@ then
   logInfo("mythtv", "Processed XML: " + processed)
   mtv_MythTV_Upcoming_JSON.postUpdate(processed)
 end
+
+
+//reboot mythtv backend every day
+//shutdown
+//wait
+//power off
+//wait
+//power on
+

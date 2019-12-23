@@ -4,6 +4,8 @@
 Group gFairyLights
 Group gXmasLights
 Group gConservatory
+Group gConservatoryFairyLights
+
 Group gRadiators
 Group gZoneControllerSockets
 
@@ -17,10 +19,10 @@ Switch socketG1_2 "socketG1_2_2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {
 Switch socketG1_3 "socketG1_3_3"  <poweroutlet_uk>  (gFairyLights) {mqtt=">[mosquitto:433Bridge/cmnd/Power3:command:*:MAP(onoffcases.map)]"}
 
 //Dining room switched socket - upper fairy lights
-Switch socketG1_4 "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom)  ["Switchable"]  {mqtt=">[mosquitto:433Bridge/cmnd/Power4:command:*:MAP(onoffcases.map)]"}
+Switch socketG1_4 "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights)  ["Switchable"]  {mqtt=">[mosquitto:433Bridge/cmnd/Power4:command:*:MAP(onoffcases.map)]"}
 
 //conservatory fairy lights
-Switch socketG2_1 "Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory)  ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"}
+Switch socketG2_1 "Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory, gConservatoryFairyLights)  ["Switchable"] {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"}
 
 //DAB Radio
 Switch socketG2_2 "Radio"  <poweroutlet_uk>  (gConservatory) ["Outlet"] {mqtt=">[mosquitto:433Bridge/cmnd/Power6:command:*:MAP(onoffcases.map)]"}

@@ -1,46 +1,29 @@
 
-rule "Turn ON conservatory "
+rule "Turn ON conservatory lights via proxy"
 when
     Item conservatoryLightsProxy changed from OFF to ON
 then
-    logInfo("RULE", "Turn ON the Conservatory ")
-    // {sendCommand(socketG2_4, ON)} //tv
-    // {postUpdate(socketG2_4, ON)}
-    // {sendCommand(socketG2_3, ON)} // amp
-    // {postUpdate(socketG2_3, ON)}    
+    logInfo("RULE", "Turn ON the Conservatory lights via proxy")
+        //ikea lights
         gDimmerBulbs.sendCommand(new PercentType(100))
         gColourBulbs.sendCommand(ON)
-    // gConservatoryLights.sendCommand(ON)
+        //fairy light
+        gConservatoryFairyLights.sendCommand(ON)
+        gConservatoryFairyLights.postUpdate(ON)
 end
 
-rule "Turn OFF conservatory "
+rule "Turn OFF conservatory lights via proxy"
 when
     Item conservatoryLightsProxy changed from ON to OFF 
 then
-    logInfo("RULE", "Turn OFF Conservatory ")
+    logInfo("RULE", "Turn OFF Conservatory lights via proxy")
+        //ikea lights
+        gDimmerBulbs.sendCommand(new PercentType(0))
+        gColourBulbs.sendCommand(OFF)
+        //fairy light
+        gConservatoryFairyLights.sendCommand(OFF)
+        gConservatoryFairyLights.postUpdate(OFF)
 
-    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
-    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
-    // sendHttpPostRequest(kodiUrl,'application/json',content)
-    // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
-    // shutdownKodiConProxy.postUpdate(OFF)
-
-    // if(timer1 === null) {
-    //     timer1 = createTimer(now.plusSeconds(30)) [| // give time for pi kodi to shut down
-    //         logInfo("RULE", "30 secs later - we can turn off power sockets now")
-    //         {sendCommand(socketG2_4, OFF)} //tv
-    //         {postUpdate(socketG2_4, OFF)}
-    //         {sendCommand(socketG2_3, OFF)} // amp
-    //         {postUpdate(socketG2_3, OFF)}
-    //         timer1 = null]
-    // }
-        //             gIkeaLights.sendCommand(new PercentType(0))
-        // gIkeaLights.postUpdate(new PercentType(0))
-                gDimmerBulbs.sendCommand(new PercentType(0))
-        // gColourBulbs.sendCommand(new HSBType(240,50,0))
-                gColourBulbs.sendCommand(OFF)
-
-    // gConservatoryLights.sendCommand(OFF)
 end
 
 
