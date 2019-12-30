@@ -5,7 +5,7 @@ when
 then
     logInfo("RULE", "Turn ON the Conservatory lights via proxy")
         //ikea lights
-        gDimmerBulbs.sendCommand(new PercentType(100))
+        gDimmerBulbs.sendCommand(new PercentType(20))
         gColourBulbs.sendCommand(ON)
         //fairy light
         gConservatoryFairyLights.sendCommand(ON)

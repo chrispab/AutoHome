@@ -15,10 +15,10 @@ then
     //turn off sockets
     {sendCommand(socketG2_1, OFF)} //con lights
     {postUpdate(socketG2_1, OFF)}
-    {sendCommand(socketG2_4, OFF)} //tv
-    {postUpdate(socketG2_4, OFF)}
-    {sendCommand(socketG2_3, OFF)} // amp
-    {postUpdate(socketG2_3, OFF)}    
+    // {sendCommand(socketG2_4, OFF)} //tv
+    // {postUpdate(socketG2_4, OFF)}
+    // {sendCommand(socketG2_3, OFF)} // amp
+    // {postUpdate(socketG2_3, OFF)}    
     {sendCommand(socketG2_2, OFF)} //radio
     {postUpdate(socketG2_2, OFF)}
     {postUpdate(conservatoryTVPower, OFF)}

@@ -31,8 +31,8 @@ then
     shutdownKodiConProxy.postUpdate(OFF)
 
     if(timer1 === null) {
-        timer1 = createTimer(now.plusSeconds(30)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "30 secs later - we can turn off power sockets now")
+        timer1 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
+            logInfo("RULE", "60 secs later - we can turn off power sockets now")
             {sendCommand(socketG2_4, OFF)} //tv
             {postUpdate(socketG2_4, OFF)}
             {sendCommand(socketG2_3, OFF)} // amp
@@ -45,7 +45,7 @@ rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
 when
     Item masterBedroomTVPower changed from OFF to ON
 then
-    logInfo("RULE", "Turn ON the bedroom Kodi, pi and speakers vvv")
+    logInfo("RULE", "Turn ON the bedroom Kodi, pi")
     // {sendCommand(socketG2_4, ON)} //tv
     // {postUpdate(socketG2_4, ON)}
     // {sendCommand(socketG2_3, ON)} // amp

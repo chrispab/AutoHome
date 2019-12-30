@@ -1,23 +1,14 @@
 rule "if dark in morning turn on conservatory lights"
 when
-    Time cron "0 00 07 ? * * *"
+    Time cron "0 19 07 ? * * *"
 //    Time cron "0 53 17 ? * * *"
 then
     logInfo("RULE", "morning lighting if dark")
 
     if (BridgeLightSensorState.state == OFF) {
         logInfo("RULE", "morning - switching on lights")
-        // {sendCommand(socketG2_1, ON)} //con lights
-        // {postUpdate(socketG2_1, ON)}
-        // {sendCommand(socketG1_4, ON)} // d room lights
-        // {postUpdate(socketG1_4, ON)}
-        // {sendCommand(gIkeaLights, ON)} // d room lights
-        // //MyColorItem.sendCommand(new PercentType(50))
-        // gIkeaLights.sendCommand(new PercentType(50))
-        // gIkeaLights.postUpdate(new PercentType(50))
-        //{postUpdate(gIkeaLights, ON)}
-                conservatoryLightsProxy.sendCommand(ON)
-
+        conservatoryLightsProxy.postUpdate(OFF)
+        conservatoryLightsProxy.postUpdate(ON)
     }
 end
 
@@ -43,22 +34,12 @@ end
 
 
 
-rule "2 am turn off lights if i forgot"
+rule "2.30 am turn off lights if i forgot"
 when
     Time cron "0 30 02 ? * * *"
 then
     logInfo("RULE", "turn off stuff if i forgot")
-        {sendCommand(socketG2_1, OFF)} //con lights
-        {postUpdate(socketG2_1, OFF)}
-        {sendCommand(socketG1_4, OFF)} // d room lights
-        {postUpdate(socketG1_4, OFF)}
-        {sendCommand(socketG2_4, OFF)} //tv
-         {postUpdate(socketG2_4, OFF)}
-        // {sendCommand(socketG1_3, OFF)} // landing
-        // {postUpdate(socketG1_3, OFF)}    
-        {sendCommand(socketG2_2, OFF)} //radio
-        {postUpdate(socketG2_2, OFF)}
-    
+        conservatoryLightsProxy.sendCommand(OFF)
 end
 
 

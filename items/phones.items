@@ -1,7 +1,6 @@
 Switch     ElsieIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_61:online"}
 Number     ElsieIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_61:latency"}
-DateTime   ElsieIPhone_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_61:lastseen"}//DateTime   ElsieSIPhone_L
-//Switch     chris_galaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
+DateTime   ElsieIPhone_Lastseen   "Last seen"      {channel="network:pingdevice:192_168_0_61:lastseen"}
 
 Switch     ChrisGalaxyS5_Online     "Online"         {channel="network:pingdevice:192_168_0_60:online"}
 Number     ChrisGalaxyS5_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_60:latency"}
@@ -10,7 +9,6 @@ DateTime   ChrisGalaxyS5_Lastseen   "Last seen"      {channel="network:pingdevic
 Switch     ChrisG6_Online     "Online"         {channel="network:pingdevice:ChrisG6:online"}
 Number     ChrisG6_Latency    "Latency (ms)"   {channel="network:pingdevice:ChrisG6:latency"}
 DateTime   ChrisG6_Lastseen   "Last seen"      {channel="network:pingdevice:ChrisG6:lastseen"}
-
 
 Switch     JoIPhone_Online     "Online"         {channel="network:pingdevice:192_168_0_67:online"}
 Number     JoIPhone_Latency    "Latency (ms)"   {channel="network:pingdevice:192_168_0_67:latency"}
