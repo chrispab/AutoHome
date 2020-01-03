@@ -63,7 +63,8 @@ then
     // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
     // sendHttpPostRequest(kodiUrl,'application/json',content)
     // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
-    shutdownKodiMBRProxy.postUpdate(OFF)
+   
+   // shutdownKodiMBRProxy.postUpdate(OFF)
 
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
