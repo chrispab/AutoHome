@@ -36,7 +36,7 @@ Switch Water1_Power "Water one Power"
 (gMQTT, gWiFiPowerSockets)
 { channel = "mqtt:topic:water1:powerSwitch" }
 
-Switch Water1_Reachable "Water one reachable"
+String Water1_Reachable "Water one reachable"
 (gMQTT, gWiFiPowerSockets)
 { channel = "mqtt:topic:water1:Reachable" }
 
