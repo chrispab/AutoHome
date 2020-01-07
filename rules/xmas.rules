@@ -6,13 +6,13 @@
 // end
 
  
-rule "It's gone dark - turn on x lights"
-when
-    Item BridgeLightSensorState changed from ON to OFF
-then
-    logInfo("RULE", "It's gone dark - turn on x lights")
-    gChristmasLights.sendCommand(ON)
-end
+// rule "It's gone dark - turn on x lights"
+// when
+//     Item BridgeLightSensorState changed from ON to OFF
+// then
+//     logInfo("RULE", "It's gone dark - turn on x lights")
+//     gChristmasLights.sendCommand(ON)
+// end
 
 
 
