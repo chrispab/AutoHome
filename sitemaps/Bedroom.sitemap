@@ -1,5 +1,8 @@
 sitemap Bedroom label="Bedroom"
 {
+  Frame label="TV" {
+    Switch item= bedroomTVPower label="Bedroom Kodi and TV"
+  }
   Frame label="Heating" {
     Text item=bedroom_CurrentTemperature label="Current Temperature: [%.1f °C]"
     Setpoint item=bedroom_TargetTemperature label="Target Temperature [%.1f °C]" minValue=16 maxValue=24 step=0.1 visibility=[bedroom_Heating_Mode>0]

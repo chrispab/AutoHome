@@ -1,19 +1,28 @@
 // Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:KodiConservatory:volume" }
-// Player kodiCon_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+// Player kodiConservatory_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
 //String kodiLivingRoomShowNotification "Show Notification" { channel="kodi:kodi:myKodi:shownotification" }
 
-//Player kodiCon_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
+//Player kodiConservatory_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:KodiConservatory:control:pause" }
 
 //kodi conservatory
-Player kodiCon_control "Kodi Pause"   { channel="kodi:kodi:KodiConservatory:control" }
-Switch pauseKodiConProxy "pause conservatory kodi" [ "Switchable" ]
+Player kodiFrontRoom_control "Kodi Pause"   { channel="kodi:kodi:KodiFrontRoom:control" }
+Switch pauseKodiFrontRoomProxy "pause Front Room kodi"
 
-String kodiCons_systemcommand "Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
-Switch shutdownKodiConProxy "shutdown conservatory kodi" [ "Switchable" ]
+String kodiFrontRoom_systemcommand "Systemcommand" { channel="kodi:kodi:KodiFrontRoom:systemcommand" }
+Switch shutdownKodiFrontRoomProxy "shutdown Front Room kodi"
+
+
+//kodi conservatory
+Player kodiConservatory_control "Kodi Pause"   { channel="kodi:kodi:KodiConservatory:control" }
+Switch pauseKodiConservatoryProxy "pause conservatory kodi"
+
+String kodiConservatory_systemcommand "Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
+Switch shutdownKodiConservatoryProxy "shutdown conservatory kodi"
+
 
 //Master Bedroom
-Player kodiMB_control "Kodi Pause"   { channel="kodi:kodi:KodiMasterBedroom:control" }
-Switch pauseKodiMBProxy "pause bedroom kodi" [ "Switchable" ]
+Player kodiBedroom_control "Kodi Pause"   { channel="kodi:kodi:KodiBedroom:control" }
+Switch pauseKodiBedroomProxy "pause bedroom kodi" 
 
-String kodiMB_systemcommand "Systemcommand" { channel="kodi:kodi:KodiMasterBedroom:systemcommand" }
-Switch shutdownKodiMBProxy "shutdown bedroom kodi" [ "Switchable" ]
+String kodiBedroom_systemcommand "Systemcommand" { channel="kodi:kodi:KodiBedroom:systemcommand" }
+Switch shutdownKodiBedroomProxy "shutdown bedroom kodi"

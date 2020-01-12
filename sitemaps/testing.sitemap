@@ -14,9 +14,9 @@ sitemap testing label="wifi sockets"
         // Switch item=RemoteControlBatteryLow label="Battery low warning"
         //// Switch item=ControlOutlet label="Power Switch"
         //Switch item=ClipLightPower label="ClipLight switch"
-        Switch item=pauseKodiConProxy label="kodi pause"
-//Player item=kodiCon_control label="Kodi Pause"
-        Switch item=shutdownKodiConProxy label="kodi shutdown"
+        Switch item=pauseKodiConservatoryProxy label="con kodi pause"
+//Player item=kodiConservatory_control label="Kodi Pause"
+        Switch item=shutdownKodiConservatoryProxy label="con kodi shutdown"
 
 
 

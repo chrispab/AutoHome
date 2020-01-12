@@ -1,5 +1,4 @@
-sitemap default label="Home SiteMap"
+sitemap default label="Default SiteMap"
 {
-    Switch item=Presence_Mobile_John label="John's Mobile"
-    Switch item=Wallplug_FF_LR_TV label="Wallplug TV"
+
 }

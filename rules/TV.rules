@@ -1,11 +1,45 @@
 var Timer timer1 = null
 var Timer timer2 = null
+var Timer timer3 = null
+var Timer timer4 = null
+var Timer timer5 = null
+var Timer timer6 = null
+//FrontRoom Pi Kodi and TV on/off control
+rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
+when
+    Item frontRoomTVPower changed from OFF to ON
+then
+    logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
+    WiFiSocket2Power.sendCommand(ON)
+    WiFiSocket2Power.postUpdate(ON)
+
+end
+
+rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
+when
+    Item frontRoomTVPower changed from ON to OFF 
+then
+    logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
+
+    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
+    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
+    // sendHttpPostRequest(kodiUrl,'application/json',content)
+    // logInfo("RULE", "Sent shutdown command to Kodi FrontRoom pi")
+    shutdownKodiFrontRoomProxy.postUpdate(OFF)
+
+    if(timer1 === null) {
+        timer1 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
+            logInfo("RULE", "60 secs later - we can turn off power sockets now")
+    WiFiSocket2Power.sendCommand(OFF)
+     WiFiSocket2Power.postUpdate(OFF)
+       // WiFiSocket2Power.sendCommand(OFF)
 
 
+            timer1 = null]
+    }
+end
 
-
-
-
+//Conservatory Pi Kodi and TV on/off control
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
     Item conservatoryTVPower changed from OFF to ON
@@ -17,7 +51,6 @@ then
     {postUpdate(socketG2_3, ON)}    
 end
 
-
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
     Item conservatoryTVPower changed from ON to OFF 
@@ -28,50 +61,45 @@ then
     // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
     // sendHttpPostRequest(kodiUrl,'application/json',content)
     // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
-    shutdownKodiConProxy.postUpdate(OFF)
+    shutdownKodiConservatoryProxy.postUpdate(OFF)
 
-    if(timer1 === null) {
-        timer1 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
+    if(timer2 === null) {
+        timer2 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
             {sendCommand(socketG2_4, OFF)} //tv
             {postUpdate(socketG2_4, OFF)}
             {sendCommand(socketG2_3, OFF)} // amp
             {postUpdate(socketG2_3, OFF)}
-            timer1 = null]
+            timer2 = null]
     }
 end
 
+
+//Bedroom Pi Kodi and TV on/off control
 rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
 when
-    Item masterBedroomTVPower changed from OFF to ON
+    Item bedroomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
-    // {sendCommand(socketG2_4, ON)} //tv
-    // {postUpdate(socketG2_4, ON)}
-    // {sendCommand(socketG2_3, ON)} // amp
-    // {postUpdate(socketG2_3, ON)}    
+    WiFiSocket3Power.sendCommand(ON)
+         WiFiSocket3Power.postUpdate(ON)
+
 end
 
 
 rule "Turn OFF bedroom Kodi-Pi, TV and soundbar"
 when
-    Item masterBedroomTVPower changed from ON to OFF 
+    Item bedroomTVPower changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
 
-    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
-    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
-    // sendHttpPostRequest(kodiUrl,'application/json',content)
-    // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
-   
-   // shutdownKodiMBRProxy.postUpdate(OFF)
+   shutdownKodiBedroomProxy.postUpdate(OFF)
 
-    if(timer2 === null) {
-        timer2 = createTimer(now.plusSeconds(20)) [| // give time for pi kodi to shut down
+    if(timer3 === null) {
+        timer3 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
             logInfo("RULE", "20 secs later - we can turn off power sockets now")
-            // {sendCommand(socketG2_4, OFF)} //tv
-            // {postUpdate(socketG2_4, OFF)}
-            // {sendCommand(socketG2_3, OFF)} // amp
-            // {postUpdate(socketG2_3, OFF)}
-            timer2 = null]}
+            WiFiSocket3Power.sendCommand(OFF)
+                     WiFiSocket3Power.postUpdate(OFF)
+
+            timer3 = null]}
 end

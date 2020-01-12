@@ -5,6 +5,7 @@ then
     Scene_Goodnight.postUpdate(OFF)
 end
 
+
 rule "Goodnight Going to bed"
 when
 //	Item Scene_Goodnight received command ON
@@ -12,6 +13,11 @@ when
 then
     logInfo("RULE", "goodnight going to bed")
 
+
+    //turn off the conservatory Pi Kodi box ands the TV and Soundbar
+    conservatoryTVPower.sendCommand(ON) //trigger to shutdown pi and power off socket to tv and pi after 1 min
+
+    
     //turn off sockets
     {sendCommand(socketG2_1, OFF)} //con lights
     {postUpdate(socketG2_1, OFF)}

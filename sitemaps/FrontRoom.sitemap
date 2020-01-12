@@ -1,11 +1,26 @@
 sitemap FrontRoom label="Front Room"
 {
+    Frame label="TV" {
+      // Text item=frontRoom_CurrentTemperature label="Temperature: [%.1f °C]"
+      //   Setpoint item=frontRoom_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[frontRoom_Heating_Mode>0]
+         
+        
+          Switch item= frontRoomTVPower label="Front Room TV"
+
+          // Switch item= socketG2_4 label="TV" icon="screen"
+          // Switch item= socketG2_3 label="TV Soundbar" icon="receiver"
+          // Switch item= socketG2_2 label="Radio" icon="player"
+          // Switch item= socketG4_1 label="Mythtv backend"
+          // Switch item= Scene_Goodnight label="turn off tv then lights etc"
+          
+            // Switch item=WiFiSocket2Power label="TV and Kodi Power" 
+    // Switch item= frontRoom_Heating label="Radiator"
+  }
   Frame label="Heating" {
       Text item=frontRoom_CurrentTemperature label="Temperature: [%.1f °C]"
         Setpoint item=frontRoom_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[frontRoom_Heating_Mode>0]
         Switch item=frontRoom_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
     Switch item= frontRoom_Heating label="Radiator"
-
   }
 
 }
