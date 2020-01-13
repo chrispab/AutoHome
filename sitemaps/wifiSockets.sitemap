@@ -15,11 +15,14 @@ sitemap wifiSockets label="wifi sockets"
         //// Switch item=ControlOutlet label="Power Switch"
         //Switch item=ClipLightPower label="ClipLight switch"
 
-        Switch item=WiFiSocket1Power label="wifi socket 1"
-        Switch item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"
-        Text item=WiFiSocket1RSSI label="wifi socket 1 RSSI [%d %%]"
-                Switch item=WiFiSocket2Power label="wifi socket 2"
-        Switch item=WiFiSocket2Reachable label="wifi socket 2 reachable [%s]"
-        Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
+        Switch item=WiFiSocket1Power label="mythtv backend wifi socket 1"
+        // Text item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"
+        // Text item=WiFiSocket1RSSI label="wifi socket 1 RSSI [%d %%]"
+                Switch item=WiFiSocket2Power label="front room kodi/tv wifi socket 2"
+        // Text item=WiFiSocket2Reachable label="wifi socket 2 reachable [%s]"
+        // Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
+                Switch item=WiFiSocket3Power label="bedroom kodi/tv wifi socket 3"
+        Switch item=WiFiSocket4Power label="wifi socket 4"
+
     }
 }

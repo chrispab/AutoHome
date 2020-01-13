@@ -1,15 +1,48 @@
+var Timer timerStart = null
 var Timer timer1 = null
 var Timer timer2 = null
 var Timer timer3 = null
-var Timer timer4 = null
-var Timer timer5 = null
-var Timer timer6 = null
+// var Timer timer4 = null
+// var Timer timer5 = null
+// var Timer timer6 = null
+
+var shutDownWaitTime = 45 //wait for pi shutdown in secs, before turning off power socket
+
+
 //FrontRoom Pi Kodi and TV on/off control
+
+rule "System started - set all rooms TV settings"
+when
+    System started
+then
+
+    if(timerStart === null) {
+        timerStart = createTimer(now.plusSeconds(25)) [| 
+        logInfo("TV.rules", "Executing 'System started' rule for front room TV Initialize uninitialized virtual Items")
+        if (frontRoomTVPower.state === NULL) {
+            frontRoomTVPower.postUpdate(OFF) // set power up val
+            logInfo("TV.rules", "'System started' rule, change front room tv power state from NULL to OFF")
+        }
+            //masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+        timerStart = null]
+    }
+
+    // if (frontRoomTVPower === NULL) { // set power up value
+    //     frontRoomTVPower.postUpdate(OFF) // set power up val
+    //     logInfo("front room TV startup setting", "Executing 'System started' setting all front room tv power state from NULL to OFF")
+    // }
+end
+
+
 rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
 when
     Item frontRoomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
+            //check if a shutdown timer is running - then stop it before turning stuff on
+    if(timer1 !== null) {
+        timer1 = null
+    }
     WiFiSocket2Power.sendCommand(ON)
     WiFiSocket2Power.postUpdate(ON)
 
@@ -28,14 +61,11 @@ then
     shutdownKodiFrontRoomProxy.postUpdate(OFF)
 
     if(timer1 === null) {
-        timer1 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "60 secs later - we can turn off power sockets now")
-    WiFiSocket2Power.sendCommand(OFF)
-     WiFiSocket2Power.postUpdate(OFF)
-       // WiFiSocket2Power.sendCommand(OFF)
-
-
-            timer1 = null]
+        timer1 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
+        logInfo("RULE", "n secs later - we can turn off power sockets now")
+        WiFiSocket2Power.sendCommand(OFF)
+        WiFiSocket2Power.postUpdate(OFF)
+        timer1 = null]
     }
 end
 
@@ -45,11 +75,16 @@ when
     Item conservatoryTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
+    //check if a shutdown timer is running - then stop it before turning stuff on
+    if(timer2 !== null) {
+        timer2 = null
+    }
     {sendCommand(socketG2_4, ON)} //tv
     {postUpdate(socketG2_4, ON)}
     {sendCommand(socketG2_3, ON)} // amp
     {postUpdate(socketG2_3, ON)}    
 end
+
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
@@ -64,7 +99,7 @@ then
     shutdownKodiConservatoryProxy.postUpdate(OFF)
 
     if(timer2 === null) {
-        timer2 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
+        timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
             {sendCommand(socketG2_4, OFF)} //tv
             {postUpdate(socketG2_4, OFF)}
@@ -81,6 +116,10 @@ when
     Item bedroomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
+        //check if a shutdown timer is running - then stop it before turning stuff on
+    if(timer3 !== null) {
+        timer3 = null
+    }
     WiFiSocket3Power.sendCommand(ON)
          WiFiSocket3Power.postUpdate(ON)
 
@@ -96,8 +135,8 @@ then
    shutdownKodiBedroomProxy.postUpdate(OFF)
 
     if(timer3 === null) {
-        timer3 = createTimer(now.plusSeconds(60)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "20 secs later - we can turn off power sockets now")
+        timer3 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
+            logInfo("RULE", "n secs later - we can turn off bedroom tv and kodi power socket now")
             WiFiSocket3Power.sendCommand(OFF)
                      WiFiSocket3Power.postUpdate(OFF)
 

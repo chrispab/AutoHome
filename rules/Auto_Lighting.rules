@@ -1,6 +1,6 @@
 rule "if dark in morning turn on conservatory lights"
 when
-    Time cron "0 19 07 ? * * *"
+    Time cron "0 0 07 ? * * *"
 //    Time cron "0 53 17 ? * * *"
 then
     logInfo("RULE", "morning lighting if dark")

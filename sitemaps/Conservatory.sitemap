@@ -8,7 +8,7 @@ sitemap Conservatory label="Conservatory"
           Switch item= socketG2_3 label="TV Soundbar" icon="receiver"
           Switch item= socketG2_2 label="Radio" icon="player"
           Switch item= socketG4_1 label="Mythtv backend"
-          Switch item= Scene_Goodnight label="turn off tv then lights etc"
+          Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
           
            }  
   Frame {

@@ -1,3 +1,29 @@
+var Timer timer1 = null
+
+rule "Initialize uninitialized virtual Items"
+when
+    System started
+then
+
+    if(timer1 === null) {
+        timer1 = createTimer(now.plusSeconds(30)) [| 
+        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating Initialize uninitialized virtual Items")
+        if (masterHeatingMode.state === NULL) 
+            masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+        timer1 = null]
+    }
+ //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+
+
+    // createTimer(now.plusSeconds(30)) [ |
+    //     logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating init uninitialized virtual Items")
+    //    if (masterHeatingMode.state === NULL) 
+    //         masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+            //gHeatingModes.members.filter[item | item.state === NULL].forEach[item | item.postUpdate("Master Controlled")]
+//    ]
+       
+end
+
 
 rule "React on message to send target temperatures to zone setpoints"
 when
@@ -57,38 +83,7 @@ then
         }
         case "LOCAL": {
             logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")
-
-        //     LR_Heating_TargetTemp.sendCommand(13.0)//note this is a command to a device that uses internal setpoint
-        //not like a sonoff - switching in openhab rules, the one above has its own internal logic
-        //     BE_Heating_TargetTemp.sendCommand(13.0)
-        //     BA_Heating_TargetTemp.sendCommand(13.0)
         }
         default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
     }
 end
-
-
-rule "Initialize uninitialized virtual Items"
-when
-    System started
-then
- //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-    createTimer(now.plusSeconds(30)) [ |
-        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating init uninitialized virtual Items")
-       if (masterHeatingMode.state === NULL) 
-            masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-            //gHeatingModes.members.filter[item | item.state === NULL].forEach[item | item.postUpdate("Master Controlled")]
-   ]
-       
-end
-
-// rule "Initialize uninitialized virtual Items"
-// when
-//     System started
-// then
-//     createTimer(now.plusSeconds(180)) [ |
-//         logInfo(filename, "Executing 'System started' rule for Heating")
-//         if (Heating_Mode.state == NULL) Heating_Mode.postUpdate("NORMAL")
-//         Heating_PresetNormal_Group.members.filter[item | item.state == NULL].forEach[item | item.postUpdate(19.0)]
-//     ]
-// end
