@@ -2,6 +2,7 @@
 
 //if conservatory heating in on period
 //then pulse recirc fan every n mins
+var fanOnSecs = 90 //global
 
 rule "pulse ON con re-circ fan when setpoint > 19"
 when
@@ -9,7 +10,6 @@ when
 then
     var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
     var Number currentTemp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
-    var Number fanOnSecs = 90
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {

@@ -1,4 +1,4 @@
-sitemap testing label="wifi sockets"
+sitemap testing label="various"
 {
     Frame {
         // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
