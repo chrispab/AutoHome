@@ -5,7 +5,7 @@ when
 then
     logInfo("RULE", "Turn ON the Conservatory lights via proxy")
         //ikea lights
-        gDimmerBulbs.sendCommand(new PercentType(20))
+        gDimmerBulbs.sendCommand(30)
         gColourBulbs.sendCommand(ON)
         //fairy light
         gConservatoryFairyLights.sendCommand(ON)
@@ -17,8 +17,10 @@ when
     Item conservatoryLightsProxy changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF Conservatory lights via proxy")
-        //ikea lights
-        gDimmerBulbs.sendCommand(new PercentType(0))
+        //ikea lights  PercentType newValue = new PercentType(newPercent);
+        // gDimmerBulbs.sendCommand( (new PercentType(0)) )
+                gDimmerBulbs.sendCommand(0) 
+
         gColourBulbs.sendCommand(OFF)
         //fairy light
         gConservatoryFairyLights.sendCommand(OFF)
