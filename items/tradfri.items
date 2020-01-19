@@ -11,9 +11,9 @@ Group gIkeaLights
 Group gColourBulbs (gIkeaLights)
 Group gDimmerBulbs (gIkeaLights)
 
-Dimmer Bulb1Brightness "Boris" (gIkeaLights, gDimmerBulbs)  [ "Lighting" ] 
+Dimmer Bulb1Brightness "Cyril" (gIkeaLights, gDimmerBulbs)  [ "Lighting" ] 
     { channel="tradfri:0100:gw44916026cf61:65553:brightness" }
-Dimmer Bulb2Brightness "Jezza" (gIkeaLights, gDimmerBulbs)  [ "Lighting" ] 
+Dimmer Bulb2Brightness "Arthur" (gIkeaLights, gDimmerBulbs)  [ "Lighting" ] 
     { channel="tradfri:0100:gw44916026cf61:65554:brightness" }
 
 Color Bulb3Colour "Colour Bulb" (gIkeaLights, gColourBulbs)  [ "Lighting" ] 
