@@ -1,5 +1,5 @@
 //thermostat definition formatted for Google home, assistant use
-Group gConservatory_Thermostat "Conservatory Thermostat" { ga="Thermostat" }
+Group gConservatory_Thermostat "Conservatory Thermostat" { ga="Thermostat" [ roomHint="Conservatory" ] }
 String conservatory_Heat_Mode "Conservatory Heat Mode" <settings> (gConservatory_Thermostat) { ga="thermostatMode" }// heating modes: 0 - Off, 1 - On, 2 - Auto
 Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) { ga="thermostatTemperatureSetpoint" }
 Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
