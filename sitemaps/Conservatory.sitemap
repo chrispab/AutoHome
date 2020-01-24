@@ -1,5 +1,12 @@
 sitemap Conservatory label="Conservatory"
 {
+
+    Frame label="Heating" {
+        Text item= conservatory_CurrentTemperature label="Temperature: [%.1f °C]"
+        Setpoint item= conservatory_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[conservatory_Heating_Mode>0]
+        Switch item= conservatory_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+        Switch item= conservatory_Heating label="Radiators"
+    }
     Frame label="TV" {
         Switch item= conservatoryTVPower label="Conservatory TV"
         Switch item= socketG2_4 label="TV" icon="screen"
@@ -8,21 +15,11 @@ sitemap Conservatory label="Conservatory"
         Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
     }
-
-
-    Frame label="Heating" {
-        Text item= conservatory_CurrentTemperature label="Temperature: [%.1f °C]"
-        Setpoint item= conservatory_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[conservatory_Heating_Mode>0]
-        Switch item= conservatory_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Switch item= conservatory_Heating label="Radiators"
-    }
-    
     Frame label="Presence" {
       Default item=JoG6_Online  label="Jo Phone" icon="network"
       Default item=ChrisG6_Online label="Chris Phone" icon="network"
       Default item=ElsieIPhone_Online label="Elsie Phone" icon="network"
     }  
-    
   Frame {
     Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
     Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
@@ -31,19 +28,14 @@ sitemap Conservatory label="Conservatory"
     Default item= BridgeLightSensorState label="Outside Light Level"
     Group item=gIkeaLights label="ikea"
   }
-
-
-    
     Frame label="Recirc Fan" {
           Switch item= socketG3_2 label="Fan" icon="fan"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
     }
-
-    Frame label="Conservatory" {
+    Frame label="Conservatory sockets" {
           Switch item= socketG2_1 label="Conservatory Fairy Lights" icon="light"
         Switch item= socketG1_4 label="Dining Room Fairy Lights" icon="light"
     }  
-
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
           Switch item= bridgeButton1 label="Bridge Button 1" icon="switch"

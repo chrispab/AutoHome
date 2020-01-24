@@ -6,7 +6,7 @@ var Timer timer3 = null
 // var Timer timer5 = null
 // var Timer timer6 = null
 
-var shutDownWaitTime = 45 //wait for pi shutdown in secs, before turning off power socket
+var shutDownWaitTime = 35 //wait for pi shutdown in secs, before turning off power socket
 
 
 //FrontRoom Pi Kodi and TV on/off control
