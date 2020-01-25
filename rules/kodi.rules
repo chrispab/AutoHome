@@ -1,3 +1,29 @@
+var Timer timerStart = null
+
+rule "System started - INIT all KODI PROXY ITEMS"
+when
+    System started
+then
+    if(timerStart === null) {
+        timerStart = createTimer(now.plusSeconds(5)) [| 
+        logInfo("Kodi.rules", "System started rule for ALL rooms -  KODI PROXY virtual Items")
+        if (shutdownKodiFrontRoomProxy.state === NULL) {
+            shutdownKodiFrontRoomProxy.postUpdate(ON) // set power up val
+            logInfo("Kodi.rules", "System started rule - change front room KodiPi proxy from NULL to OFF")
+        }
+        if (shutdownKodiConservatoryProxy.state === NULL) {
+            shutdownKodiConservatoryProxy.postUpdate(ON) // set power up val
+            logInfo("Kodi.rules", "System started rule - change Conservatory KodiPi proxy from NULL to OFF")
+        }
+        if (shutdownKodiBedroomProxy.state === NULL) {
+            shutdownKodiBedroomProxy.postUpdate(ON) // set power up val
+            logInfo("Kodi.rules", "System started rule - change Bed room KodiPi proxy from NULL to OFF")
+        }
+        timerStart = null]
+    }
+end
+
+
 //Kodi front room
 rule "Pause FrontRoom Kodi"
 when
@@ -8,7 +34,7 @@ end
 
 rule "Shutdown FrontRoom Kodi Pi Host"
 when
-     Item shutdownKodiFrontRoomProxy received update 
+     Item shutdownKodiFrontRoomProxy changed from ON to OFF 
 then
     kodiFrontRoom_systemcommand.sendCommand("Shutdown")
 end
@@ -24,7 +50,7 @@ end
 
 rule "Shutdown Conservatory Kodi Pi Host"
 when
-     Item shutdownKodiConservatoryProxy received update 
+     Item shutdownKodiConservatoryProxy changed from ON to OFF 
 then
     kodiConservatory_systemcommand.sendCommand("Shutdown")
 end
@@ -39,8 +65,7 @@ end
 
 rule "Shutdown bedroom Kodi Pi Host"
 when
-     Item shutdownKodiBedroomProxy received update 
+     Item shutdownKodiBedroomProxy changed from ON to OFF 
 then
     kodiBedroom_systemcommand.sendCommand("Shutdown")
-
 end

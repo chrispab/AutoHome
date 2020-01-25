@@ -6,7 +6,7 @@ var Timer timer3 = null
 // var Timer timer5 = null
 // var Timer timer6 = null
 
-var shutDownWaitTime = 35 //wait for pi shutdown in secs, before turning off power socket
+var shutDownWaitTime = 30 //wait for pi shutdown in secs, before turning off power socket
 
 
 //FrontRoom Pi Kodi and TV on/off control
@@ -17,20 +17,22 @@ when
 then
 
     if(timerStart === null) {
-        timerStart = createTimer(now.plusSeconds(25)) [| 
-        logInfo("TV.rules", "Executing 'System started' rule for front room TV Initialize uninitialized virtual Items")
+        timerStart = createTimer(now.plusSeconds(5)) [| 
+        logInfo("TV.rules", "Executing 'System started' rule for ALL rooms -  TV Initialize uninitialized virtual Items")
         if (frontRoomTVPower.state === NULL) {
             frontRoomTVPower.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change front room tv power state from NULL to OFF")
         }
-            //masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
+        if (bedroomTVPower.state === NULL) {
+            bedroomTVPower.postUpdate(OFF) // set power up val
+            logInfo("TV.rules", "'System started' rule, change bedroom tv power state from NULL to OFF")
+        }
+        if (conservatoryTVPower.state === NULL) {
+            conservatoryTVPower.postUpdate(OFF) // set power up val
+            logInfo("TV.rules", "'System started' rule, change conservatory tv power state from NULL to OFF")
+        }
         timerStart = null]
     }
-
-    // if (frontRoomTVPower === NULL) { // set power up value
-    //     frontRoomTVPower.postUpdate(OFF) // set power up val
-    //     logInfo("front room TV startup setting", "Executing 'System started' setting all front room tv power state from NULL to OFF")
-    // }
 end
 
 
@@ -39,6 +41,8 @@ when
     Item frontRoomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
+    shutdownKodiFrontRoomProxy.postUpdate(ON)
+
             //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer1 !== null) {
         timer1 = null
@@ -53,11 +57,6 @@ when
     Item frontRoomTVPower changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
-
-    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
-    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
-    // sendHttpPostRequest(kodiUrl,'application/json',content)
-    // logInfo("RULE", "Sent shutdown command to Kodi FrontRoom pi")
     shutdownKodiFrontRoomProxy.postUpdate(OFF)
 
     if(timer1 === null) {
@@ -75,6 +74,8 @@ when
     Item conservatoryTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
+    shutdownKodiConservatoryProxy.postUpdate(ON)
+
     //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer2 !== null) {
         timer2 = null
@@ -91,11 +92,6 @@ when
     Item conservatoryTVPower changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
-
-    // var String kodiUrl = 'http://kodi:0000@192.168.0.112:8080/jsonrpc?request='
-    // var String content = '{"jsonrpc":"2.0","method":"System.Shutdown","id":1}'
-    // sendHttpPostRequest(kodiUrl,'application/json',content)
-    // logInfo("RULE", "Sent shutdown command to Kodi conservatory pi")
     shutdownKodiConservatoryProxy.postUpdate(OFF)
 
     if(timer2 === null) {
@@ -116,13 +112,14 @@ when
     Item bedroomTVPower changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
+    shutdownKodiBedroomProxy.postUpdate(ON)
+
         //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer3 !== null) {
         timer3 = null
     }
     WiFiSocket3Power.sendCommand(ON)
-         WiFiSocket3Power.postUpdate(ON)
-
+    WiFiSocket3Power.postUpdate(ON)
 end
 
 
@@ -132,13 +129,12 @@ when
 then
     logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
 
-   shutdownKodiBedroomProxy.postUpdate(OFF)
+    shutdownKodiBedroomProxy.postUpdate(OFF)
 
     if(timer3 === null) {
         timer3 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "n secs later - we can turn off bedroom tv and kodi power socket now")
-            WiFiSocket3Power.sendCommand(OFF)
-                     WiFiSocket3Power.postUpdate(OFF)
-
-            timer3 = null]}
+        logInfo("RULE", "n secs later - we can turn off bedroom tv and kodi power socket now")
+        WiFiSocket3Power.sendCommand(OFF)
+        WiFiSocket3Power.postUpdate(OFF)
+        timer3 = null]}
 end
