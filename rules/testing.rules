@@ -9,16 +9,16 @@ then
     logInfo("RULE", "delayed off switch")
 
         createTimer(now.plusSeconds(240), [|
-        {sendCommand(socketG2_1, OFF)} //con lights
-        {postUpdate(socketG2_1, OFF)}
-        {sendCommand(socketG1_4, OFF)} // d room lights
-        {postUpdate(socketG1_4, OFF)}
-        {sendCommand(socketG2_4, OFF)} //tv
-        {postUpdate(socketG2_4, OFF)}
-        {sendCommand(socketG2_3, OFF)} // amp
-        {postUpdate(socketG2_3, OFF)}    
-        {sendCommand(socketG2_2, OFF)} //radio
-        {postUpdate(socketG2_2, OFF)}
+        {sendCommand(conservatoryFairyLights, OFF)} //con lights
+        {postUpdate(conservatoryFairyLights, OFF)}
+        {sendCommand(diningRoomFairyLights, OFF)} // d room lights
+        {postUpdate(diningRoomFairyLights, OFF)}
+        {sendCommand(conservatoryTVPower, OFF)} //tv
+        {postUpdate(conservatoryTVPower, OFF)}
+        {sendCommand(amp, OFF)} // amp
+        {postUpdate(amp, OFF)}    
+        {sendCommand(radio, OFF)} //radio
+        {postUpdate(radio, OFF)}
         // {sendCommand(socketG1_4, OFF)} // d room lights
         // {postUpdate(socketG1_4, OFF)}    
         //ensure heating is set to off also

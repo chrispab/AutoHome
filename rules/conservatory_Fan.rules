@@ -23,14 +23,14 @@ then
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
     if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
         logInfo("RULE", "start conservatory re-circ fan if setpoint > 19, currently set at :" + sp)
-        {sendCommand(socketG3_2, ON)} //fan on
-        {postUpdate(socketG3_2, ON)}
+        {sendCommand(fan, ON)} //fan on
+        {postUpdate(fan, ON)}
 
 // var Timer fanRecircTimer = null
 
         createTimer(now.plusSeconds(fanOnSecs), [|
-            {sendCommand(socketG3_2, OFF)} //fan
-            {postUpdate(socketG3_2, OFF)}
+            {sendCommand(fan, OFF)} //fan
+            {postUpdate(fan, OFF)}
             logInfo("RULE", "pulse consv fan OFF sent after " + fanOnSecs + " secs")
         ])
     }
@@ -66,15 +66,15 @@ then
         var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
         if (sp < 19) {
             if (temp >= turnOnTemp) {
-                socketG3_2.sendCommand(ON)
-                socketG3_2.postUpdate(ON)
+                fan.sendCommand(ON)
+                fan.postUpdate(ON)
                 logInfo("RULE", "consv hot - turn on fan: " + temp)
             }
             //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the fan
             if ((temp < turnOnTemp) ) { 
                 if (FanOnOverride.state == OFF){
-                socketG3_2.sendCommand(OFF)
-                socketG3_2.postUpdate(OFF)
+                fan.sendCommand(OFF)
+                fan.postUpdate(OFF)
                 }
             }
         }
@@ -85,12 +85,12 @@ rule "React on Fan Pulse (FanPulseSwitch) change/update"
 when
     Item FanPulseSwitch changed from OFF to ON
 then
-    socketG3_2.sendCommand(ON)
-    socketG3_2.postUpdate(ON)
+    fan.sendCommand(ON)
+    fan.postUpdate(ON)
 
     createTimer(now.plusSeconds(30), [|
-        {sendCommand(socketG3_2, OFF)} //fan
-        {postUpdate(socketG3_2, OFF)}
+        {sendCommand(fan, OFF)} //fan
+        {postUpdate(fan, OFF)}
         logInfo("RULE", "pulse fan switch pressed")
             FanPulseSwitch.postUpdate(OFF)
 
@@ -103,8 +103,8 @@ rule "React on Fan override ON"
 when
     Item FanOnOverride changed from OFF to ON
 then
-    socketG3_2.sendCommand(ON)
-    socketG3_2.postUpdate(ON)
+    fan.sendCommand(ON)
+    fan.postUpdate(ON)
     
 end
 
@@ -112,7 +112,7 @@ rule "React on Fan override OFF"
 when
     Item FanOnOverride changed from ON to OFF
 then
-    socketG3_2.sendCommand(OFF)
-    socketG3_2.postUpdate(OFF)
+    fan.sendCommand(OFF)
+    fan.postUpdate(OFF)
 
 end

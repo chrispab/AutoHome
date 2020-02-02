@@ -1,23 +1,34 @@
-Group Heating_PresetNormal_Group
-Group gHeatingModes
-Group gHeatingSetPoints
+Group	Heating_PresetNormal_Group
+Group	gHeatingModes
+Group	gHeatingSetPoints
 
+DateTime	Current_Date
+		"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"
+		<date>
+		{ channel="ntp:ntp:demo:dateTime" }
 
-//DateTime Date "Date [%1$tA, %1$td.%1$tm.%1$tY]" { ntp="Europe/London:en_GB" }
-DateTime Current_Date  "[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"  <date> { channel="ntp:ntp:demo:dateTime" }
-Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)] "} 
-//Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:433Bridge/cmnd/Power5:command:*:MAP(onoffcases.map)]"} 
+Switch	Boiler_Control
+		"Boiler Control"
+		<my_radiator>
+		{ channel="mqtt:topic:boiler:powerSwitch"}
 
+String	masterHeatingMode
+		"Global Master Heating Mode [%s]"
 
-//Switch FR_BoilerDemand "Front Room Boiler Demand"
+Switch	Heating_UpdateHeaters
+		"Send Target Temperatures to Heaters"
 
-String masterHeatingMode "Global Master Heating Mode [%s]"
-Switch Heating_UpdateHeaters "Send Target Temperatures to Heaters"
+Number	MaxHeatingTempAllowed
+		"Maximum allowed temperature [%.1f °C]"
+		<temperature>
 
-Number MaxHeatingTempAllowed "Maximum allowed temperature [%.1f °C]" <temperature> 
+Number	Outside_Temperature
+		"Outside Temperature [%.1f °C]"
+		<temperature>
+		[ "CurrentTemperature" ]
+		{ channel="mqtt:topic:outside:temperature"}
 
-
-Number Outside_Temperature "Outside Temperature [%.1f °C]" <temperature> [ "CurrentTemperature" ] {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"} 
-Number Outside_Humidity "Outside Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
-
-//Switch 433Socket_3 "433 socket 3"  <switch> {mqtt=">[mosquitto:433MhzBridge/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
+Number	Outside_Humidity
+		"Outside Humidity [%.1f °C]"
+		<humidity>
+		{ channel="mqtt:topic:outside:humidity"}

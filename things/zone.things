@@ -1,17 +1,34 @@
-Thing mqtt:topic:water1  "MQTT Thing: Water 1 WiFi Power Socket" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
-{
+
+Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:MyMQTTBroker) @ "Garage" {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="sonoff_water1/stat/POWER" , commandTopic="sonoff_water1/cmnd/POWER", on="ON", off="OFF" ]
-        Type string : Reachable    [ stateTopic="sonoff_water1/tele/LWT"  ]
-        Type number : rssi         [ stateTopic="sonoff_water1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
-        Type number : temperature  [ stateTopic="sonoff_water1/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20.Temperature" ]
+        Type number : temperature   [ stateTopic="Zone1/TemperatureStatus" ]
+        Type number : humidity      [ stateTopic="Zone1/HumidityStatus" ]
+        Type switch : ventStatus    [ stateTopic="Zone1/VentStatus" ]
+        Type switch : ventSpeedStatus  [ stateTopic="Zone1/VentSpeedStatus" ]
+        Type number : ventPercent   [ stateTopic="Zone1/VentPercent" ]
+        Type switch : fanStatus     [ stateTopic="Zone1/FanStatus" ]
+        Type switch : lightStatus   [ stateTopic="Zone1/LightStatus" ]
+        Type switch : heaterStatus  [ stateTopic="Zone1/HeaterStatus" ]
+        Type string : heartBeat     [ stateTopic="Zone1/HeartBeat"  ]
 }
 
-// Number Water1_Temperature "Water 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:sonoff_water1/tele/SENSOR:state:JSONPATH($.DS18B20.Temperature)]"} 
-// Switch Water1_Power "Water 1 Power" <switch> {mqtt=">[mosquitto:sonoff_water1/cmnd/POWER:command:*:default], <[mosquitto:sonoff_water1/stat/POWER:state:default]"}
-// //A switch being 'ON' as long as the device is reachable
-// Switch Water1_Reachable "Water1: reachable" (gReachable) 
-//     { mqtt="<[mosquitto:sonoff_water1/tele/LWT:state:MAP(reachable.map)]" }
-// //Wifi Signal Strength in Percent
-// Number Water1_RSSI "Water1: RSSI [%d %%]" (gRSSI) 
-//     { mqtt="<[mosquitto:sonoff_water1/tele/STATE:state:JSONPATH($.Wifi.RSSI)]" }
+Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {
+    Channels:
+        Type number : temperature   [ stateTopic="Zone3/TemperatureStatus" ]
+        Type number : humidity      [ stateTopic="Zone3/HumidityStatus" ]
+        Type switch : ventStatus    [ stateTopic="Zone3/VentStatus" ]
+        Type switch : ventSpeedStatus  [ stateTopic="Zone3/VentSpeedStatus" ]
+        Type number : ventPercent   [ stateTopic="Zone3/VentPercent" ]
+        Type switch : fanStatus     [ stateTopic="Zone3/FanStatus" ]
+        Type switch : lightStatus   [ stateTopic="Zone3/LightStatus" ]
+        Type switch : heaterStatus  [ stateTopic="Zone3/HeaterStatus" ]
+        Type string : heartBeat     [ stateTopic="Zone3/HeartBeat"  ]
+}
+// Number Zone1Temperature "Zone 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquittoz:Zone1/TemperatureStatus:state:default]"} 
+// Number Zone1Humidity "Zone 1 Humidity [%.1f ]" <humidity> {mqtt="<[mosquittoz:Zone1/HumidityStatus:state:default]"} 
+// Switch Zone1VentStatus "Zone 1 Vent Status" <fan> {mqtt="<[mosquittoz:Zone1/VentStatus:state:MAP(onoffcases.map)]"} 
+// Switch Zone1FanStatus "Zone 1 fan Status" <fan_ceiling> {mqtt="<[mosquittoz:Zone1/FanStatus:state:MAP(onoffcases.map)]"} 
+// Switch Zone1LightStatus "Zone 1 Light Status" <switch> {mqtt="<[mosquittoz:Zone1/LightStatus:state:MAP(onoffcases.map)]"} 
+// Switch Zone1HeaterStatus "Zone 1 Heater Status" <my_radiator> {mqtt="<[mosquittoz:Zone1/HeaterStatus:state:MAP(onoffcases.map)]"} 
+// Switch Zone1VentSpeedStatus "Zone 1 Vent Speed Status" <vent> {mqtt="<[mosquittoz:zZone1/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
+// Number Zone1VentPercent "Zone 1 Vent Percent" <vent> {mqtt="<[mosquittoz:Zone1/VentPercent:state:default]"} 

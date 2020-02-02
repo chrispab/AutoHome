@@ -1,0 +1,9 @@
+Thing mqtt:topic:bridge  "MQTT Thing: 433Mhz Bridge" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type number : temperature  [ stateTopic="433Bridge/Temperature"]
+        Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
+        Type switch : button1       [ stateTopic="433Bridge/Button1" ]
+        Type number : lightSensorLevel  [ stateTopic="433Bridge/LightLevel"]
+        Type switch : lightSensorState      [ stateTopic="433Bridge/LightState" ]
+        Type switch : pirState      [ stateTopic="433Bridge/PIRState" ]
+}

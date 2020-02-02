@@ -6,11 +6,11 @@ sitemap Lights label="Lights"
   }
 
     Frame label="Conservatory " {
-          Switch item= socketG2_1 label="Conservatory Fairy Lights(ID:5)" icon="light"
+          Switch item= conservatoryFairyLights label="Conservatory Fairy Lights(ID:5)" icon="light"
  }  
 
     Frame label="Dining Room" {
-          Switch item= socketG1_4 label="Dining Room Fairy Lights(ID:4)" icon="light"
+          Switch item= diningRoomFairyLights label="Dining Room Fairy Lights(ID:4)" icon="light"
  } 
 
      Frame label="Landing fairy lights" {

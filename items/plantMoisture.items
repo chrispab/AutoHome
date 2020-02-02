@@ -1,13 +1,8 @@
-
-
-
 Number Plant1MoistureLevel "Plant1 Moisture Level" <light> {mqtt="<[mosquitto:Plant/1/MoistureLevel:state:default]"} 
 Switch Plant1MoistureState "Plant 1 Moisture State" <light> {mqtt="<[mosquitto:Plant/1/MoistureState:state:MAP(onoffcases.map)]"} 
-//Number Bridge_Temperature "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:433Bridge/LightState:state:default]"}
-//Number Bridge_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"}
+
 Number Plant2MoistureLevel "Plant 2 Moisture Level" <light> {mqtt="<[mosquitto:Plant/2/MoistureLevel:state:default]"} 
 Switch Plant2MoistureState "Plant 2 Moisture State" <light> {mqtt="<[mosquitto:Plant/2/MoistureState:state:MAP(onoffcases.map)]"} 
 
 Number Plant3MoistureLevel "Plant 3 Moisture Level" <light> {mqtt="<[mosquitto:Plant/3/MoistureLevel:state:default]"} 
-Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:Plant/3/MoistureState:state:MAP(onoffcases.map)]"} 
-
+Switch Plant3MoistureState "Plant 3 Moisture State" <light> {mqtt="<[mosquitto:Plant/3/MoistureState:state:MAP(onoffcases.map)]"}

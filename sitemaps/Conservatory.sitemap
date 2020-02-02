@@ -9,9 +9,9 @@ sitemap Conservatory label="Conservatory"
     }
     Frame label="TV" {
         Switch item= conservatoryTVPower label="Conservatory TV"
-        Switch item= socketG2_4 label="TV" icon="screen"
-        Switch item= socketG2_3 label="TV Soundbar" icon="receiver"
-        Switch item= socketG2_2 label="Radio" icon="player"
+        Switch item= conservatoryTVPower label="TV" icon="screen"
+        Switch item= amp label="TV Soundbar" icon="receiver"
+        Switch item= radio label="Radio" icon="player"
         Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
     }
@@ -29,12 +29,12 @@ sitemap Conservatory label="Conservatory"
     Group item=gIkeaLights label="ikea"
   }
     Frame label="Recirc Fan" {
-          Switch item= socketG3_2 label="Fan" icon="fan"
+          Switch item= fan label="Fan" icon="fan"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
     }
     Frame label="Conservatory sockets" {
-          Switch item= socketG2_1 label="Conservatory Fairy Lights" icon="light"
-        Switch item= socketG1_4 label="Dining Room Fairy Lights" icon="light"
+          Switch item= conservatoryFairyLights label="Conservatory Fairy Lights" icon="light"
+        Switch item= diningRoomFairyLights label="Dining Room Fairy Lights" icon="light"
     }  
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"

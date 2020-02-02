@@ -5,7 +5,11 @@ Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <heatin
 Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
 Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 //additional params for use in openhab functions etc
-Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
+
+
+Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
+// Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
+
 Number conservatory_Heating_Mode "Conservatory Heating Mode" <settings>
 Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
 

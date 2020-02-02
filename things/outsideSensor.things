@@ -1,0 +1,7 @@
+Thing mqtt:topic:outside  "MQTT Thing: Outside sensor" (mqtt:broker:MyMQTTBroker) @ "Outside" {
+    Channels:
+        Type number : temperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type string : reachable    [ stateTopic="Outside_Sensor/tele/LWT" ]
+        Type number : rssi         [ stateTopic="Outside_Sensor/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}

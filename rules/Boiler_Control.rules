@@ -9,15 +9,16 @@ end
 
 rule "Boiler Demand changed"
 when
-    Item frontRoom_Heating changed or
-    Item conservatory_Heating changed or
-    Item elsiesRoom_Heating changed or
-    Item attic_Heating changed or
-    Item bedroom_Heating changed or
-    Item office_Heating changed or
-    Item hall_Heating changed
+//any change in demand , on or off in any room
+    Item frontRoom_Heating received update or
+    Item conservatory_Heating received update or
+    Item elsiesRoom_Heating received update or
+    Item attic_Heating received update or
+    Item bedroom_Heating received update or
+    Item office_Heating received update or
+    Item hall_Heating received update
 then
-    //say("Boiler demand changed")
+    //if any rooms want heat - turn on boiler
     if (       (frontRoom_Heating.state == ON) 
             || (conservatory_Heating.state == ON) 
             || (elsiesRoom_Heating.state == ON) 
@@ -26,13 +27,14 @@ then
             || (office_Heating.state == ON)
             || (hall_Heating.state == ON) 
             ){
+        logInfo("Boiler RULE", "Sending boiler ON command" )
         Boiler_Control.sendCommand(ON)
         Boiler_Control.postUpdate(ON)
        // CT_Message.postUpdate("Mode 0, Boiler Off")
     }
-    else {
+    else { // no rooms want heat so turn off boiler
+        logInfo("Boiler RULE", "Sending boiler OFF command" )
         Boiler_Control.sendCommand(OFF)
         Boiler_Control.postUpdate(OFF)
     }
-
 end

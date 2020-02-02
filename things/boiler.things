@@ -1,5 +1,3 @@
-//Switch Boiler_Control "Boiler Control"  <switch> {mqtt=">[mosquitto:sonoff_Boiler/cmnd/POWER:command:*:MAP(onoffcases.map)] "} 
-
 Thing mqtt:topic:boiler  "MQTT Thing: Boiler control" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:

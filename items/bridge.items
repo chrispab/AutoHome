@@ -1,11 +1,31 @@
-Number Bridge_Temperature "Conservatory Temperature [%.1f °C]" <temperature> {mqtt="<[mosquitto:433Bridge/Temperature:state:default]"}
-Number Bridge_Humidity "Conservatory Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:433Bridge/Humidity:state:default]"}
+Number	Bridge_Temperature
+		"Bridge Temperature [%.1f °C]"
+		<temperature>
+		{ channel="mqtt:topic:bridge:temperature" }
 
-Switch bridgeButton1 "433 Bridge button 1" <button> {mqtt="<[mosquitto:433Bridge/Button1:state:MAP(onoffcases.map)]"} 
+Number	Bridge_Humidity
+		"Conservatory Humidity [%.1f °C]"
+		<humidity>
+		{ channel="mqtt:topic:bridge:humidity" }
+
+Switch	bridgeButton1
+		"433 Bridge button 1"
+		<button>
+		{ channel="mqtt:topic:bridge:button1" }
+
+Number	BridgeLightSensorLevel
+		"Light Sensor Level"
+		<light>
+		{ channel="mqtt:topic:bridge:lightLevel" }
+
+Switch	BridgeLightSensorState
+		"Light Sensor State"
+		<light>
+		{ channel="mqtt:topic:bridge:lightState" }
+
+Switch	PIRState
+		"Bridge PIR sensor"
+		<light>
+		{ channel="mqtt:topic:bridge:pirState" }
 
 
-Number BridgeLightSensorLevel "Light Sensor Level" <light> {mqtt="<[mosquitto:433Bridge/LightLevel:state:default]"} 
-Switch BridgeLightSensorState "Light Sensor State" <light> {mqtt="<[mosquitto:433Bridge/LightState:state:MAP(onoffcases.map)]"} 
-
-
-Switch PIRState "Bridge PIR sensor" <light> {mqtt="<[mosquitto:433Bridge/PIRState:state:MAP(onoffcases.map)]"} 

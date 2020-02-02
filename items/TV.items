@@ -1,3 +1,18 @@
-Switch conservatoryTVPower "Conservatory TV" <switch> (gConservatory) { synonyms="My TV", ga="Switch" [ roomHint="Conservatory" ] }
-Switch bedroomTVPower "Bedroom TV" <switch> (gBedroom) { ga="Switch" [ roomHint="Bedroom" ] }
-Switch frontRoomTVPower "Lounge TV" <switch> (gFrontRoom) { synonyms="Front room TV", ga="Switch" [ roomHint="Front Room" ] }
+Switch	conservatoryTVPower
+		"Conservatory TV"
+		<switch>
+		(gConservatory)
+		{ synonyms="My TV", ga="Switch" [ roomHint="Conservatory" ] }
+
+Switch	bedroomTVPower
+		"Bedroom TV"
+		<switch>
+		(gBedroom)
+		{ ga="Switch" [ roomHint="Bedroom" ] }
+
+Switch	frontRoomTVPower
+		"Lounge TV"
+		<switch>
+		(gFrontRoom)
+		{ synonyms="Front room TV", ga="Switch" [ roomHint="Front Room" ] }
+

@@ -80,10 +80,10 @@ then
     if(timer2 !== null) {
         timer2 = null
     }
-    {sendCommand(socketG2_4, ON)} //tv
-    {postUpdate(socketG2_4, ON)}
-    {sendCommand(socketG2_3, ON)} // amp
-    {postUpdate(socketG2_3, ON)}    
+    {sendCommand(conservatoryTVPower, ON)} //tv
+    {postUpdate(conservatoryTVPower, ON)}
+    {sendCommand(amp, ON)} // amp
+    {postUpdate(amp, ON)}    
 end
 
 
@@ -97,10 +97,10 @@ then
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
-            {sendCommand(socketG2_4, OFF)} //tv
-            {postUpdate(socketG2_4, OFF)}
-            {sendCommand(socketG2_3, OFF)} // amp
-            {postUpdate(socketG2_3, OFF)}
+            {sendCommand(conservatoryTVPower, OFF)} //tv
+            {postUpdate(conservatoryTVPower, OFF)}
+            {sendCommand(amp, OFF)} // amp
+            {postUpdate(amp, OFF)}
             timer2 = null]
     }
 end

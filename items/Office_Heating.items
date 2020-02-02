@@ -1,18 +1,3 @@
-// Number office_CurrentHumidity "Office Humidity [%.1f °C]" <humidity> {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.AM2301.Humidity)]"} 
-
-// Switch office_Heating "Office Heating"  <switch> {mqtt=">[mosquitto:sonoff_Office/cmnd/POWER:command:*:MAP(onoffcases.map)]"} 
-// Number office_Heating_Mode "Office Heating Mode" <heating> (gHeatingModes)
-// // String Office_Message
-
-// Number office_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"
-
-// Group gOffice_Thermostat "Office Thermostat" [ "Thermostat" ]
-// Number office_TargetTemperature "Office Setpoint [%.1f °C]" <degreesc> (gOffice_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-// Number office_CurrentTemperature "Office Temperature [%.1f °C]" <temperature> (gOffice_Thermostat) [ "CurrentTemperature" ] {mqtt="<[mosquitto:sonoff_Office/tele/SENSOR:state:JSONPATH($.AM2301.Temperature)]"}
-// String office_Heat_Mode "Office Heat Mode" <heating> (gOffice_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
-
-
-
 Group gOffice_Thermostat "Office Thermostat" [ "Thermostat" ]
 Number office_TargetTemperature "Office Setpoint [%.1f °C]" <heating> (gOffice_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
 Number office_CurrentTemperature "Office Temperature [%.1f °C]" <temperature> (gOffice_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:officeRadThermoValve:temperature" }
