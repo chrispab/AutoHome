@@ -11,10 +11,10 @@ Group gZoneControllerSockets
 
 
 //Dining room switched socket - upper fairy lights
-Switch diningRoomFairyLights "Dining Room Fairy Lights"  <poweroutlet_uk> { channel="mqtt:topic:diningRoomFairyLights:powerSwitch" }
+Switch diningRoomFairyLights "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:diningRoomFairyLights:powerSwitch" }
 
 //conservatory fairy lights
-Switch conservatoryFairyLights "Conservatory Fairy Lights"  <poweroutlet_uk> { channel="mqtt:topic:conservatoryFairyLights:powerSwitch" }
+Switch conservatoryFairyLights "Conservatory Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:conservatoryFairyLights:powerSwitch" }
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
