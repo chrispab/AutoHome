@@ -1,10 +1,11 @@
 
 // Switch socketG2_1 "socketG2_1"  <switch> {http=">[ON:GET:http://192.168.0.230/switch?4=ON:on] >[OFF:GET:http://192.168.0.230/switch?4=OFF:off]" }
 
+
 Group gFairyLights
 Group gXmasLights
 Group gConservatory
-// Group gConservatoryFairyLights
+Group gConservatoryFairyLights
 
 Group gRadiators
 Group gZoneControllerSockets
