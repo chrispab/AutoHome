@@ -34,6 +34,7 @@ then
     }
     else { // no rooms want heat so turn off boiler
         logInfo("Boiler RULE", "Sending boiler OFF command" )
+        // logInfo("Boiler RULE", "Triggered by : " )
         Boiler_Control.sendCommand(OFF)
         Boiler_Control.postUpdate(OFF)
     }
