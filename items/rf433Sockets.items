@@ -22,10 +22,10 @@ Switch conservatoryFairyLights "Conservatory Fairy Lights"  <poweroutlet_uk>  (g
 Switch conservatoryRadiators "Conservatory Radiators"  <poweroutlet_uk> { channel="mqtt:topic:conservatoryRadiators:powerSwitch" }
 
 //DAB Radio
-Switch radio "DAB Radio"  <poweroutlet_uk> { channel="mqtt:topic:radio:powerSwitch" }
+Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:radio:powerSwitch" }
 
 //conservatory Fan
-Switch fan "fan"  <poweroutlet_uk> { channel="mqtt:topic:fan:powerSwitch" }
+Switch fan "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:fan:powerSwitch" }
 
 
 //Amplifier

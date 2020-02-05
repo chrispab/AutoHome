@@ -1,6 +1,6 @@
 Bridge mqtt:broker:MyMQTTBroker "MQTT Broker: Pi Mosquitto" 
 [ 
-    host="localhost",
+    host="192.168.0.200",
     port=1883,
     lwtRetain=false,
     secure=false 
