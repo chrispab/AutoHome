@@ -15,7 +15,7 @@ then
 
 
     //turn off the conservatory Pi Kodi box ands the TV and Soundbar
-    conservatoryTVPower.sendCommand(ON) //trigger to shutdown pi and power off socket to tv and pi after 1 min
+    conservatoryTVPowerProxy.sendCommand(ON) //trigger to shutdown pi and power off socket to tv and pi after 1 min
 
     
     //turn off sockets
@@ -27,7 +27,7 @@ then
     // {postUpdate(socketG2_3, OFF)}    
     {sendCommand(radio, OFF)} //radio
     {postUpdate(radio, OFF)}
-    {postUpdate(conservatoryTVPower, OFF)}
+    {postUpdate(conservatoryTVPowerProxy, OFF)}
 
     
     // {sendCommand(gIkeaLights, OFF)} //

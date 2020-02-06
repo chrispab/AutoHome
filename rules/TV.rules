@@ -6,7 +6,7 @@ var Timer timer3 = null
 // var Timer timer5 = null
 // var Timer timer6 = null
 
-var shutDownWaitTime = 30 //wait for pi shutdown in secs, before turning off power socket
+var shutDownWaitTime = 25 //wait for pi shutdown in secs, before turning off power socket
 
 
 //FrontRoom Pi Kodi and TV on/off control
@@ -27,8 +27,8 @@ then
             bedroomTVPower.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change bedroom tv power state from NULL to OFF")
         }
-        if (conservatoryTVPower.state === NULL) {
-            conservatoryTVPower.postUpdate(OFF) // set power up val
+        if (conservatoryTVPowerProxy.state === NULL) {
+            conservatoryTVPowerProxy.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change conservatory tv power state from NULL to OFF")
         }
         timerStart = null]
@@ -71,7 +71,7 @@ end
 //Conservatory Pi Kodi and TV on/off control
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPower changed from OFF to ON
+    Item conservatoryTVPowerProxy changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     shutdownKodiConservatoryProxy.postUpdate(ON)
@@ -80,8 +80,8 @@ then
     if(timer2 !== null) {
         timer2 = null
     }
-    {sendCommand(conservatoryTVPower, ON)} //tv
-    {postUpdate(conservatoryTVPower, ON)}
+    {sendCommand(conservatoryTVPowerSocket, ON)} //tv
+    {postUpdate(conservatoryTVPowerSocket, ON)}
     {sendCommand(amp, ON)} // amp
     {postUpdate(amp, ON)}    
 end
@@ -89,7 +89,7 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPower changed from ON to OFF 
+    Item conservatoryTVPowerProxy changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
     shutdownKodiConservatoryProxy.postUpdate(OFF)
@@ -97,8 +97,8 @@ then
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
-            {sendCommand(conservatoryTVPower, OFF)} //tv
-            {postUpdate(conservatoryTVPower, OFF)}
+            {sendCommand(conservatoryTVPowerSocket, OFF)} //tv
+            {postUpdate(conservatoryTVPowerSocket, OFF)}
             {sendCommand(amp, OFF)} // amp
             {postUpdate(amp, OFF)}
             timer2 = null]

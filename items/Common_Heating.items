@@ -1,34 +1,10 @@
-Group	Heating_PresetNormal_Group
-Group	gHeatingModes
-Group	gHeatingSetPoints
-
-DateTime	Current_Date
-		"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"
-		<date>
-		{ channel="ntp:ntp:demo:dateTime" }
-
-Switch	Boiler_Control
-		"Boiler Control"
-		<my_radiator>
-		{ channel="mqtt:topic:boiler:powerSwitch"}
-
-String	masterHeatingMode
-		"Global Master Heating Mode [%s]"
-
-Switch	Heating_UpdateHeaters
-		"Send Target Temperatures to Heaters"
-
-Number	MaxHeatingTempAllowed
-		"Maximum allowed temperature [%.1f °C]"
-		<temperature>
-
-Number	Outside_Temperature
-		"Outside Temperature [%.1f °C]"
-		<temperature>
-		[ "CurrentTemperature" ]
-		{ channel="mqtt:topic:outside:temperature"}
-
-Number	Outside_Humidity
-		"Outside Humidity [%.1f °C]"
-		<humidity>
-		{ channel="mqtt:topic:outside:humidity"}
+Group		Heating_PresetNormal_Group
+Group		gHeatingModes
+Group		gHeatingSetPoints
+DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
+Switch		Boiler_Control				"Boiler Control"							<my_radiator>									{ channel="mqtt:topic:boiler:powerSwitch"}
+String		masterHeatingMode			"Global Master Heating Mode [%s]"
+Switch		Heating_UpdateHeaters		"Send Target Temperatures to Heaters"
+Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>
+Number		Outside_Temperature			"Outside Temperature [%.1f °C]"				<temperature>		[ "CurrentTemperature" ]	{ channel="mqtt:topic:outside:temperature"}
+Number		Outside_Humidity			"Outside Humidity [%.1f °C]"				<humidity>										{ channel="mqtt:topic:outside:humidity"}

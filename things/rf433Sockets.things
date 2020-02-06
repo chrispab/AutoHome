@@ -55,3 +55,9 @@ Thing mqtt:topic:zone3ControllerPower  "MQTT Thing: Zone 3 controller Power 433 
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power15" ]
 }
+
+//outside sensor power socket
+Thing mqtt:topic:outsideSensorPower  "MQTT Thing: Outside sensor Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power16" ]
+}

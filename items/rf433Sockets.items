@@ -32,7 +32,7 @@ Switch fan "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], ch
 Switch amp "Amplifier"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:amp:powerSwitch" }
 
 //Conservatory TV
-Switch conservatoryTVPower "conservatoryTVPower"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:conservatoryTVPower:powerSwitch" }
+Switch conservatoryTVPowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:conservatoryTVPower:powerSwitch" }
 
 
 //zone1 power socket
@@ -42,6 +42,9 @@ Switch zone1ControllerPower "Zone one power"  <poweroutlet_uk> (gZoneControllerS
 Switch zone3ControllerPower "Zone three power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:zone3ControllerPower:powerSwitch" }
 
 
+//outside temp sensor
+// Switch socketG4_4 "socketG4_4_16"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power16:command:*:MAP(onoffcases.map)]"}
+Switch outsideSensorPower "socketG4_4_16"  <poweroutlet_uk> { channel="mqtt:topic:outsideSensorPower:powerSwitch" }
 
 
 // ! to be converted to mqtt 2 binding format
@@ -58,8 +61,6 @@ Switch socketG3_3 "not in use"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cm
 
 Switch socketG3_4 "socketG3_4_12"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power12:command:*:MAP(onoffcases.map)]"}
 
-//mythtv-backend power socket in the garage
 Switch socketG4_1 "not in use"  <poweroutlet_uk>  {mqtt=">[mosquitto:433Bridge/cmnd/Power13:command:*:MAP(onoffcases.map)]"}
 
-//outside temp sensor
-Switch socketG4_4 "socketG4_4_16"  <poweroutlet_uk> {mqtt=">[mosquitto:433Bridge/cmnd/Power16:command:*:MAP(onoffcases.map)]"}
+
