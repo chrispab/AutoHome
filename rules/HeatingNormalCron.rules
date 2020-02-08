@@ -5,9 +5,9 @@ var Number liveTemp = 21
 var Number midTemp = 18
 var Number lowTemp = 16
 var Number morningTemp = 20
-var Number eveningTemp = 21
-var Number highTemp = 22
-var Number vhighTemp = 23
+var Number eveningTemp = 22
+var Number highTemp = 22.5
+var Number vhighTemp = 22.5
 
 
 // master heating mode - NORMAL mode rules
