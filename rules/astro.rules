@@ -31,8 +31,8 @@ then
     logInfo("RULE", "It's getting dark!")
         if (NightState.state == ON) {
         sendCommand(socketG1_3, ON)
-        sendCommand(diningRoomFairyLights, ON)
-        sendCommand(conservatoryFairyLights, ON)
+        sendCommand(diningRoomFairyLights433Socket, ON)
+        sendCommand(conservatoryFairyLights433Socket, ON)
 
     }
 end
@@ -44,7 +44,7 @@ then
     logInfo("RULE", "It's getting light!")
         if (NightState.state == OFF) {
         sendCommand(socketG1_3, OFF) // landing
-        sendCommand(diningRoomFairyLights, OFF) //droom f
-        sendCommand(conservatoryFairyLights, OFF) //con lights
+        sendCommand(diningRoomFairyLights433Socket, OFF) //droom f
+        sendCommand(conservatoryFairyLights433Socket, OFF) //con lights
     }
 end

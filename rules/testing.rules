@@ -9,10 +9,10 @@ then
     logInfo("RULE", "delayed off switch")
 
         createTimer(now.plusSeconds(240), [|
-        {sendCommand(conservatoryFairyLights, OFF)} //con lights
-        {postUpdate(conservatoryFairyLights, OFF)}
-        {sendCommand(diningRoomFairyLights, OFF)} // d room lights
-        {postUpdate(diningRoomFairyLights, OFF)}
+        {sendCommand(conservatoryFairyLights433Socket, OFF)} //con lights
+        {postUpdate(conservatoryFairyLights433Socket, OFF)}
+        {sendCommand(diningRoomFairyLights433Socket, OFF)} // d room lights
+        {postUpdate(diningRoomFairyLights433Socket, OFF)}
         {sendCommand(conservatoryTVPower, OFF)} //tv
         {postUpdate(conservatoryTVPower, OFF)}
         {sendCommand(amp, OFF)} // amp

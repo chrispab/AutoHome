@@ -1,5 +1,5 @@
 //conservatory fairy lights
-Thing mqtt:topic:conservatoryFairyLights  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:conservatoryFairyLights433Socket  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
     //    Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9", on="ON", off="OFF"  ]
     //    Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9", on=1, off=0 ]
@@ -7,7 +7,7 @@ Thing mqtt:topic:conservatoryFairyLights  "MQTT Thing: Conservatory Fairy Lights
 }
 
 //Dining room switched socket - upper fairy lights
-Thing mqtt:topic:diningRoomFairyLights  "MQTT Thing: Dining Room Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
+Thing mqtt:topic:diningRoomFairyLights433Socket  "MQTT Thing: Dining Room Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power4" ]
 }

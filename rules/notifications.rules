@@ -3,13 +3,13 @@ rule "zone3 lights on"
 when
     Item Zone3LightStatus changed from OFF to ON
 then
-    {sendCommand(conservatoryFairyLights, OFF)} //con lights
-    {postUpdate(conservatoryFairyLights, OFF)}
+    {sendCommand(conservatoryFairyLights433Socket, OFF)} //con lights
+    {postUpdate(conservatoryFairyLights433Socket, OFF)}
     
     logInfo("RULE", "Z3 lights - on")
             createTimer(now.plusSeconds(5), [|
-            {sendCommand(conservatoryFairyLights, ON)} //fan
-            {postUpdate(conservatoryFairyLights, ON)}
+            {sendCommand(conservatoryFairyLights433Socket, ON)} //fan
+            {postUpdate(conservatoryFairyLights433Socket, ON)}
             //{postUpdate(socketG3_2, OFF)}
    // say("What happened then?")
     logInfo("RULE", "What happened then?")

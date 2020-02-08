@@ -19,8 +19,8 @@ then
 
     
     //turn off sockets
-    {sendCommand(conservatoryFairyLights, OFF)} //con lights
-    {postUpdate(conservatoryFairyLights, OFF)}
+    {sendCommand(conservatoryFairyLights433Socket, OFF)} //con lights
+    {postUpdate(conservatoryFairyLights433Socket, OFF)}
     // {sendCommand(socketG2_4, OFF)} //tv
     // {postUpdate(socketG2_4, OFF)}
     // {sendCommand(socketG2_3, OFF)} // amp
@@ -46,8 +46,8 @@ then
 
     // var Timer lightsTimer = null
     createTimer(now.plusSeconds(240), [|
-        {sendCommand(diningRoomFairyLights, OFF)} // d room lights
-        {postUpdate(diningRoomFairyLights, OFF)}
+        {sendCommand(diningRoomFairyLights433Socket, OFF)} // d room lights
+        {postUpdate(diningRoomFairyLights433Socket, OFF)}
         logInfo("RULE", "Item Scene_Goodnight now set to OFF again")
 
     ])
