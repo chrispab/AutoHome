@@ -16,6 +16,7 @@ sitemap zones label="Zones"
             Switch item= Zone1HeaterStatus label="Heat"
   }
       Frame label="Zone 3" {
+        Switch item=zone3ControllerPower label="Power"
             Switch item= Zone3LightStatus label="Light"
             Text item= Zone3Temperature label="Temperature : [%.1f °C]"
             Text item= Zone3Humidity label="Humidity : [%.1f %%]"

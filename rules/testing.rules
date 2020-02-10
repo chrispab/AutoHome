@@ -1,28 +1,20 @@
-//presence rules
-
-
-
 rule "Delayed Off Switch"
 when
     Item Delayed_OFF_SW changed from OFF to ON
 then
     logInfo("RULE", "delayed off switch")
 
-        createTimer(now.plusSeconds(240), [|
+    createTimer(now.plusSeconds(240), [|
         {sendCommand(conservatoryFairyLights433Socket, OFF)} //con lights
         {postUpdate(conservatoryFairyLights433Socket, OFF)}
         {sendCommand(diningRoomFairyLights433Socket, OFF)} // d room lights
         {postUpdate(diningRoomFairyLights433Socket, OFF)}
-        {sendCommand(conservatoryTVPower, OFF)} //tv
-        {postUpdate(conservatoryTVPower, OFF)}
-        {sendCommand(amp, OFF)} // amp
-        {postUpdate(amp, OFF)}    
+        {sendCommand(vConservatory_TV, OFF)} //tv
+        {postUpdate(vConservatory_TV, OFF)}
+        {sendCommand(amplifier, OFF)} // amplifier
+        {postUpdate(amplifier, OFF)}    
         {sendCommand(radio, OFF)} //radio
         {postUpdate(radio, OFF)}
-        // {sendCommand(socketG1_4, OFF)} // d room lights
-        // {postUpdate(socketG1_4, OFF)}    
-        //ensure heating is set to off also
-        //conservatory_TargetTemperature.state = 17.0
     ])
 end
 

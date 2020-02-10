@@ -6,7 +6,7 @@ var Timer timer3 = null
 // var Timer timer5 = null
 // var Timer timer6 = null
 
-var shutDownWaitTime = 25 //wait for pi shutdown in secs, before turning off power socket
+var shutDownWaitTime = 20 //wait for pi shutdown in secs, before turning off power socket
 
 
 //FrontRoom Pi Kodi and TV on/off control
@@ -27,8 +27,8 @@ then
             bedroomTVPower.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change bedroom tv power state from NULL to OFF")
         }
-        if (conservatoryTVPowerProxy.state === NULL) {
-            conservatoryTVPowerProxy.postUpdate(OFF) // set power up val
+        if (vConservatory_TV.state === NULL) {
+            vConservatory_TV.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change conservatory tv power state from NULL to OFF")
         }
         timerStart = null]
@@ -38,7 +38,7 @@ end
 
 rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
 when
-    Item frontRoomTVPower changed from OFF to ON
+    Item frontRoomTVPower received update ON
 then
     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
     shutdownKodiFrontRoomProxy.postUpdate(ON)
@@ -71,7 +71,9 @@ end
 //Conservatory Pi Kodi and TV on/off control
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPowerProxy changed from OFF to ON
+    // Item vConservatory_TV changed from OFF to ON
+        Item vConservatory_TV received update ON
+
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     shutdownKodiConservatoryProxy.postUpdate(ON)
@@ -82,14 +84,16 @@ then
     }
     {sendCommand(conservatoryTVPowerSocket, ON)} //tv
     {postUpdate(conservatoryTVPowerSocket, ON)}
-    {sendCommand(amp, ON)} // amp
-    {postUpdate(amp, ON)}    
+    {sendCommand(amplifier, ON)} // amplifier
+    {postUpdate(amplifier, ON)}    
 end
 
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item conservatoryTVPowerProxy changed from ON to OFF 
+    Item vConservatory_TV changed from ON to OFF 
+            // Item vConservatory_TV received update OFF
+
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
     shutdownKodiConservatoryProxy.postUpdate(OFF)
@@ -99,8 +103,8 @@ then
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
             {sendCommand(conservatoryTVPowerSocket, OFF)} //tv
             {postUpdate(conservatoryTVPowerSocket, OFF)}
-            {sendCommand(amp, OFF)} // amp
-            {postUpdate(amp, OFF)}
+            {sendCommand(amplifier, OFF)} // amplifier
+            {postUpdate(amplifier, OFF)}
             timer2 = null]
     }
 end
@@ -109,7 +113,7 @@ end
 //Bedroom Pi Kodi and TV on/off control
 rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
 when
-    Item bedroomTVPower changed from OFF to ON
+    Item bedroomTVPower received update ON
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
     shutdownKodiBedroomProxy.postUpdate(ON)

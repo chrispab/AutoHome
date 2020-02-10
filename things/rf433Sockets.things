@@ -33,7 +33,7 @@ Thing mqtt:topic:fan  "MQTT Thing: Fan 433 socket" (mqtt:broker:MyMQTTBroker) @ 
 
 
 //Amplifier
-Thing mqtt:topic:ampPowerSocket  "MQTT Thing: Amp 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:amplifier  "MQTT Thing: amplifier 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power7" ]
 }

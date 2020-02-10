@@ -8,13 +8,14 @@ sitemap Conservatory label="Conservatory"
         Switch item= conservatory_Heating label="Radiators"
     }
     Frame label="TV" {
-        Switch item= conservatoryTVPowerSocket label="Conservatory TV"
-        Switch item= conservatoryTVPower label="TV" icon="screen"
-        Switch item= amp label="TV Soundbar" icon="receiver"
+        Switch item= vConservatory_TV label="Conservatory TV Pi, Soundbar"
+        // Switch item= conservatoryTVPower label="TV" icon="screen"
+        Switch item= amplifier label="TV Soundbar" icon="receiver"
         Switch item= radio label="Radio" icon="player"
         Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
     }
+    
     Frame label="Presence" {
       Default item=JoG6_Online  label="Jo Phone" icon="network"
       Default item=ChrisG6_Online label="Chris Phone" icon="network"
