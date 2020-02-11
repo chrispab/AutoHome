@@ -8,7 +8,7 @@ sitemap Conservatory label="Conservatory"
         Switch item= conservatory_Heating label="Radiators"
     }
     Frame label="TV" {
-        Switch item= vConservatory_TV label="Conservatory TV Pi, Soundbar"
+        Switch item= vCT_TVKodiSpeakers label="Conservatory TV Pi, Soundbar"
         // Switch item= conservatoryTVPower label="TV" icon="screen"
         Switch item= amplifier label="TV Soundbar" icon="receiver"
         Switch item= radio label="Radio" icon="player"

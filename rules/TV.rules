@@ -27,8 +27,8 @@ then
             bedroomTVPower.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change bedroom tv power state from NULL to OFF")
         }
-        if (vConservatory_TV.state === NULL) {
-            vConservatory_TV.postUpdate(OFF) // set power up val
+        if (vCT_TVKodiSpeakers.state === NULL) {
+            vCT_TVKodiSpeakers.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change conservatory tv power state from NULL to OFF")
         }
         timerStart = null]
@@ -71,8 +71,8 @@ end
 //Conservatory Pi Kodi and TV on/off control
 rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
 when
-    // Item vConservatory_TV changed from OFF to ON
-        Item vConservatory_TV received update ON
+    // Item vCT_TVKodiSpeakers changed from OFF to ON
+        Item vCT_TVKodiSpeakers received update ON
 
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
@@ -91,8 +91,8 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item vConservatory_TV changed from ON to OFF 
-            // Item vConservatory_TV received update OFF
+    Item vCT_TVKodiSpeakers changed from ON to OFF 
+            // Item vCT_TVKodiSpeakers received update OFF
 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")

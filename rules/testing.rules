@@ -9,8 +9,8 @@ then
         {postUpdate(conservatoryFairyLights433Socket, OFF)}
         {sendCommand(diningRoomFairyLights433Socket, OFF)} // d room lights
         {postUpdate(diningRoomFairyLights433Socket, OFF)}
-        {sendCommand(vConservatory_TV, OFF)} //tv
-        {postUpdate(vConservatory_TV, OFF)}
+        {sendCommand(vCT_TVKodiSpeakers, OFF)} //tv
+        {postUpdate(vCT_TVKodiSpeakers, OFF)}
         {sendCommand(amplifier, OFF)} // amplifier
         {postUpdate(amplifier, OFF)}    
         {sendCommand(radio, OFF)} //radio
