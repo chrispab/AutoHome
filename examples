@@ -1,0 +1,14 @@
+https://community.openhab.org/t/virtual-item-string-default-value/33588/17
+
+
+Restore on Startup: 
+https://github.com/ThomDietrich/openhab-config/blob/master/persistence/mapdb.persist 63
+
+A rule to initialized uninitialized Items: 
+https://github.com/ThomDietrich/openhab-config/blob/master/rules/heizung-modus.rules#L31 98 (also including fallback for the heating mode from before)
+
+Making sure rules will not trip over Items with not yet known real world state: 
+https://github.com/ThomDietrich/openhab-config/blob/master/rules/kodi.rules#L24 33
+
+Indicating real word synchronization issues in sitemap: 
+https://github.com/ThomDietrich/openhab-config/blob/master/sitemaps/w66a.sitemap#L162 23

@@ -2,7 +2,7 @@
 
 //if conservatory heating in on period
 //then pulse recirc fan every n mins
-var fanOnSecs = 90 //global
+var fanOnSecs =110 //global
 
 rule "pulse ON con re-circ fan when setpoint > 19"
 when

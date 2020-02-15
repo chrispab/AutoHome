@@ -18,6 +18,19 @@ when
     Item office_Heating received update or
     Item hall_Heating received update
 then
+    if (
+        frontRoom_Heating.state == NULL 
+        || conservatory_Heating.state == NULL 
+        || elsiesRoom_Heating.state == NULL
+        || attic_Heating.state == NULL 
+        || bedroom_Heating.state == NULL
+        || office_Heating.state == NULL 
+        || hall_Heating.state == NULL        
+        ) 
+            {
+                logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" )
+                return 
+            }
     //if any rooms want heat - turn on boiler
     if (       (frontRoom_Heating.state == ON) 
             || (conservatory_Heating.state == ON) 
