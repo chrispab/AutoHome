@@ -5,7 +5,7 @@ sitemap FrontRoom label="Front Room"
       //   Setpoint item=frontRoom_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[frontRoom_Heating_Mode>0]
          
         
-          Switch item= frontRoomTVPower label="Front Room TV/kodi"
+          Switch item= vFR_TVKodi label="Front Room TV/kodi"
 
           // Switch item= socketG2_4 label="TV" icon="screen"
           // Switch item= socketG2_3 label="TV Soundbar" icon="receiver"

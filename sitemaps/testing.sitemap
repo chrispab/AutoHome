@@ -46,8 +46,8 @@ sitemap testing label="testing"
     //}
         //Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
       Frame label="TV" {
-    Switch item= frontRoomTVPower label="Front Room Kodi and TV"
+    Switch item= vFR_TVKodi label="Front Room Kodi and TV"
     Switch item= vCT_TVKodiSpeakers label="Conservatory Kodi and TV"
-    Switch item= bedroomTVPower label="Bedroom Kodi and TV"
+    Switch item= vBR_TVKodi label="Bedroom Kodi and TV"
   }
 }

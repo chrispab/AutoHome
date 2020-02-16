@@ -32,7 +32,7 @@ Switch fan "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], ch
 Switch amplifier "Amplifier"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:amplifier:powerSwitch" }
 
 //Conservatory TV
-Switch conservatoryTVPowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:conservatoryTVPowerSocket:powerSwitch" }
+Switch CT_TV433PowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_TV433PowerSocket:powerSwitch" }
 
 
 //zone1 power socket

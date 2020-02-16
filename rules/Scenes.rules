@@ -8,33 +8,17 @@ end
 
 rule "Goodnight Going to bed"
 when
-//	Item Scene_Goodnight received command ON
 	Item Scene_Goodnight changed from OFF to ON
 then
     logInfo("RULE", "goodnight going to bed")
-
-
-    //turn off the conservatory Pi Kodi box ands the TV and Soundbar
-    // vCT_TVKodiSpeakers.sendCommand(ON) //trigger to shutdown pi and power off socket to tv and pi after 1 min
-
-    
-    //turn off sockets
     {sendCommand(conservatoryFairyLights433Socket, OFF)} //con lights
     {postUpdate(conservatoryFairyLights433Socket, OFF)}
-    // {sendCommand(socketG2_4, OFF)} //tv
-    // {postUpdate(socketG2_4, OFF)}
-    // {sendCommand(socketG2_3, OFF)} // amplifier
-    // {postUpdate(socketG2_3, OFF)}    
     {sendCommand(radio, OFF)} //radio
     {postUpdate(radio, OFF)}
     vCT_TVKodiSpeakers.sendCommand(OFF)
-    // {postUpdate(vCT_TVKodiSpeakers, OFF)}
 
-    
-    // {sendCommand(gIkeaLights, OFF)} //
-    // {postUpdate(gIkeaLights, OFF)} 
-        gIkeaLights.sendCommand(0)
-        gIkeaLights.postUpdate(0)
+    gIkeaLights.sendCommand(0)
+    gIkeaLights.postUpdate(0)
     //set rads temps to off
     conservatory_Heating_PresetTempNormal.postUpdate(17.0)
     frontRoom_Heating_PresetTempNormal.postUpdate(14.0)
@@ -45,12 +29,10 @@ then
     hall_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeaters.sendCommand(ON)    
 
-    // var Timer lightsTimer = null
     createTimer(now.plusSeconds(240), [|
         {sendCommand(diningRoomFairyLights433Socket, OFF)} // d room lights
         {postUpdate(diningRoomFairyLights433Socket, OFF)}
         logInfo("RULE", "Item Scene_Goodnight now set to OFF again")
-
     ])
     logInfo("RULE", "Item Scene_Goodnight received command ON")
 

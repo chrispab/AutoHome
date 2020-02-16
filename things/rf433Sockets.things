@@ -37,7 +37,7 @@ Thing mqtt:topic:amplifier  "MQTT Thing: amplifier 433 Power socket" (mqtt:broke
 }
 
 //Conservatory TV
-Thing mqtt:topic:conservatoryTVPowerSocket  "MQTT Thing: COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:CT_TV433PowerSocket  "MQTT Thing: COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power8" ]
 }

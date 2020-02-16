@@ -1,7 +1,7 @@
 sitemap Bedroom label="Bedroom"
 {
   Frame label="TV" {
-    Switch item= bedroomTVPower label="Bedroom Kodi and TV"
+    Switch item= vBR_TVKodi label="Bedroom Kodi and TV"
   }
   Frame label="Heating" {
     Text item=bedroom_CurrentTemperature label="Current Temperature: [%.1f °C]"

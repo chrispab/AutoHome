@@ -19,12 +19,12 @@ then
     if(timerStart === null) {
         timerStart = createTimer(now.plusSeconds(5)) [| 
         logInfo("TV.rules", "Executing 'System started' rule for ALL rooms -  TV Initialize uninitialized virtual Items")
-        if (frontRoomTVPower.state === NULL) {
-            frontRoomTVPower.postUpdate(OFF) // set power up val
+        if (vFR_TVKodi.state === NULL) {
+            vFR_TVKodi.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change front room tv power state from NULL to OFF")
         }
-        if (bedroomTVPower.state === NULL) {
-            bedroomTVPower.postUpdate(OFF) // set power up val
+        if (vBR_TVKodi.state === NULL) {
+            vBR_TVKodi.postUpdate(OFF) // set power up val
             logInfo("TV.rules", "'System started' rule, change bedroom tv power state from NULL to OFF")
         }
         if (vCT_TVKodiSpeakers.state === NULL) {
@@ -38,7 +38,7 @@ end
 
 rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
 when
-    Item frontRoomTVPower received update ON
+    Item vFR_TVKodi received update ON
 then
     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
     shutdownKodiFrontRoomProxy.postUpdate(ON)
@@ -54,7 +54,7 @@ end
 
 rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
 when
-    Item frontRoomTVPower changed from ON to OFF 
+    Item vFR_TVKodi changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
     shutdownKodiFrontRoomProxy.postUpdate(OFF)
@@ -82,8 +82,8 @@ then
     if(timer2 !== null) {
         timer2 = null
     }
-    {sendCommand(conservatoryTVPowerSocket, ON)} //tv
-    {postUpdate(conservatoryTVPowerSocket, ON)}
+    {sendCommand(CT_TV433PowerSocket, ON)} //tv
+    {postUpdate(CT_TV433PowerSocket, ON)}
     {sendCommand(amplifier, ON)} // amplifier
     {postUpdate(amplifier, ON)}    
 end
@@ -101,8 +101,8 @@ then
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
-            {sendCommand(conservatoryTVPowerSocket, OFF)} //tv
-            {postUpdate(conservatoryTVPowerSocket, OFF)}
+            {sendCommand(CT_TV433PowerSocket, OFF)} //tv
+            {postUpdate(CT_TV433PowerSocket, OFF)}
             {sendCommand(amplifier, OFF)} // amplifier
             {postUpdate(amplifier, OFF)}
             timer2 = null]
@@ -113,7 +113,7 @@ end
 //Bedroom Pi Kodi and TV on/off control
 rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
 when
-    Item bedroomTVPower received update ON
+    Item vBR_TVKodi received update ON
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
     shutdownKodiBedroomProxy.postUpdate(ON)
@@ -129,7 +129,7 @@ end
 
 rule "Turn OFF bedroom Kodi-Pi, TV and soundbar"
 when
-    Item bedroomTVPower changed from ON to OFF 
+    Item vBR_TVKodi changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
 
