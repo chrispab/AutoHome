@@ -10,7 +10,7 @@ sitemap Conservatory label="Conservatory"
     Frame label="TV" {
         Switch item= vCT_TVKodiSpeakers label="Conservatory TV Kodi, Speakers"
         // Switch item= conservatoryTVPower label="TV" icon="screen"
-        Switch item= amplifier label="TV Soundbar" icon="receiver"
+        Switch item= CT_Soundbar433PowerSocket label="TV Soundbar" icon="receiver"
         Switch item= radio label="Radio" icon="player"
         Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
@@ -30,7 +30,7 @@ sitemap Conservatory label="Conservatory"
     Group item=gIkeaLights label="ikea"
   }
     Frame label="Recirc Fan" {
-          Switch item= fan label="Fan" icon="fan"
+          Switch item= CT_Fan433PowerSocket label="Fan" icon="CT_Fan433PowerSocket"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
     }
     Frame label="Conservatory sockets" {

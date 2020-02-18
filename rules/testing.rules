@@ -11,8 +11,8 @@ then
         {postUpdate(diningRoomFairyLights433Socket, OFF)}
         {sendCommand(vCT_TVKodiSpeakers, OFF)} //tv
         {postUpdate(vCT_TVKodiSpeakers, OFF)}
-        {sendCommand(amplifier, OFF)} // amplifier
-        {postUpdate(amplifier, OFF)}    
+        {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
+        {postUpdate(CT_Soundbar433PowerSocket, OFF)}    
         {sendCommand(radio, OFF)} //radio
         {postUpdate(radio, OFF)}
     ])

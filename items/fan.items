@@ -1,10 +1,10 @@
-Switch RecircFanEnable "Enable Fan" <fan> [ "Fan" ]
+Switch RecircFanEnable "Enable Fan" <CT_Fan433PowerSocket> [ "Fan" ]
 
 
-Switch FanPulseSwitch    "Fan Pulse" <fan>
+Switch FanPulseSwitch    "Fan Pulse" <CT_Fan433PowerSocket>
 
 
-Switch FanOnOverride    "Fan ON - Override" <fan>
+Switch FanOnOverride    "Fan ON - Override" <CT_Fan433PowerSocket>
 
 
-Number Conservatory_Fan_ON_Setpoint "conservatory fan on setponit [%.1f °C]"    <degreesc>
+Number Conservatory_Fan_ON_Setpoint "conservatory CT_Fan433PowerSocket on setponit [%.1f °C]"    <degreesc>

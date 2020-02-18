@@ -1,10 +1,10 @@
 //init virtual items on startup
 
 //if conservatory heating in on period
-//then pulse recirc fan every n mins
+//then pulse recirc CT_Fan433PowerSocket every n mins
 var fanOnSecs =110 //global
 
-rule "pulse ON con re-circ fan when setpoint > 19"
+rule "pulse ON con re-circ CT_Fan433PowerSocket when setpoint > 19"
 when
     Time cron "0 0/3 * * * ?"
 then
@@ -13,7 +13,7 @@ then
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {
-        logInfo("RULE", "recirc fan enable is NULL so set to ON")
+        logInfo("RULE", "recirc CT_Fan433PowerSocket enable is NULL so set to ON")
         RecircFanEnable.state = ON
         //RecircFanEnable
     }
@@ -21,21 +21,21 @@ then
     logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
     logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
-    if ( (sp >= 21) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        logInfo("RULE", "start conservatory re-circ fan if setpoint > 19, currently set at :" + sp)
-        {sendCommand(fan, ON)} //fan on
-        {postUpdate(fan, ON)}
+    if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
+        logInfo("RULE", "start conservatory re-circ CT_Fan433PowerSocket if setpoint > 19, currently set at :" + sp)
+        {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
+        {postUpdate(CT_Fan433PowerSocket, ON)}
 
 // var Timer fanRecircTimer = null
 
         createTimer(now.plusSeconds(fanOnSecs), [|
-            {sendCommand(fan, OFF)} //fan
-            {postUpdate(fan, OFF)}
-            logInfo("RULE", "pulse consv fan OFF sent after " + fanOnSecs + " secs")
+            {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
+            {postUpdate(CT_Fan433PowerSocket, OFF)}
+            logInfo("RULE", "pulse consv CT_Fan433PowerSocket OFF sent after " + fanOnSecs + " secs")
         ])
     }
     if (  (RecircFanEnable.state == OFF) )  {
-        logInfo("RULE", "recirc cron ran, but recirc fan is disabled so not switching on")
+        logInfo("RULE", "recirc cron ran, but recirc CT_Fan433PowerSocket is disabled so not switching on")
     }
 end
 
@@ -56,7 +56,7 @@ then
         //var Number turnOffTemp = setpoint - 1.0//+ 0.1
         var Number temp = conservatory_CurrentTemperature.state as DecimalType // get the current temperature
 
-        // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the fan
+        // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
         //     socketG3_2.sendCommand(OFF)
         //     socketG3_2.postUpdate(OFF)
         // }else 
@@ -66,15 +66,15 @@ then
         var Number sp = conservatory_TargetTemperature.state as DecimalType // get the current temperature
         if (sp < 19) {
             if (temp >= turnOnTemp) {
-                fan.sendCommand(ON)
-                fan.postUpdate(ON)
-                logInfo("RULE", "consv hot - turn on fan: " + temp)
+                CT_Fan433PowerSocket.sendCommand(ON)
+                CT_Fan433PowerSocket.postUpdate(ON)
+                logInfo("RULE", "consv hot - turn on CT_Fan433PowerSocket: " + temp)
             }
-            //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the fan
+            //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
             if ((temp < turnOnTemp) ) { 
                 if (FanOnOverride.state == OFF){
-                fan.sendCommand(OFF)
-                fan.postUpdate(OFF)
+                CT_Fan433PowerSocket.sendCommand(OFF)
+                CT_Fan433PowerSocket.postUpdate(OFF)
                 }
             }
         }
@@ -85,13 +85,13 @@ rule "React on Fan Pulse (FanPulseSwitch) change/update"
 when
     Item FanPulseSwitch changed from OFF to ON
 then
-    fan.sendCommand(ON)
-    fan.postUpdate(ON)
+    CT_Fan433PowerSocket.sendCommand(ON)
+    CT_Fan433PowerSocket.postUpdate(ON)
 
     createTimer(now.plusSeconds(30), [|
-        {sendCommand(fan, OFF)} //fan
-        {postUpdate(fan, OFF)}
-        logInfo("RULE", "pulse fan switch pressed")
+        {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
+        {postUpdate(CT_Fan433PowerSocket, OFF)}
+        logInfo("RULE", "pulse CT_Fan433PowerSocket switch pressed")
             FanPulseSwitch.postUpdate(OFF)
 
     ])
@@ -103,8 +103,8 @@ rule "React on Fan override ON"
 when
     Item FanOnOverride changed from OFF to ON
 then
-    fan.sendCommand(ON)
-    fan.postUpdate(ON)
+    CT_Fan433PowerSocket.sendCommand(ON)
+    CT_Fan433PowerSocket.postUpdate(ON)
     
 end
 
@@ -112,7 +112,7 @@ rule "React on Fan override OFF"
 when
     Item FanOnOverride changed from ON to OFF
 then
-    fan.sendCommand(OFF)
-    fan.postUpdate(OFF)
+    CT_Fan433PowerSocket.sendCommand(OFF)
+    CT_Fan433PowerSocket.postUpdate(OFF)
 
 end

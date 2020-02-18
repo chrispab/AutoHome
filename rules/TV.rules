@@ -84,8 +84,8 @@ then
     }
     {sendCommand(CT_TV433PowerSocket, ON)} //tv
     {postUpdate(CT_TV433PowerSocket, ON)}
-    {sendCommand(amplifier, ON)} // amplifier
-    {postUpdate(amplifier, ON)}    
+    {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket
+    {postUpdate(CT_Soundbar433PowerSocket, ON)}    
 end
 
 
@@ -103,8 +103,8 @@ then
             logInfo("RULE", "60 secs later - we can turn off power sockets now")
             {sendCommand(CT_TV433PowerSocket, OFF)} //tv
             {postUpdate(CT_TV433PowerSocket, OFF)}
-            {sendCommand(amplifier, OFF)} // amplifier
-            {postUpdate(amplifier, OFF)}
+            {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
+            {postUpdate(CT_Soundbar433PowerSocket, OFF)}
             timer2 = null]
     }
 end

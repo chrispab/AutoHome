@@ -25,11 +25,11 @@ Switch conservatoryRadiators "Conservatory Radiators"  <poweroutlet_uk> { channe
 Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:radio:powerSwitch" }
 
 //conservatory Fan
-Switch fan "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:fan:powerSwitch" }
+Switch CT_Fan433PowerSocket "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:fan:powerSwitch" }
 
 
 //Amplifier
-Switch amplifier "Amplifier"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:amplifier:powerSwitch" }
+Switch CT_Soundbar433PowerSocket "Amplifier"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_Soundbar433PowerSocket:powerSwitch" }
 
 //Conservatory TV
 Switch CT_TV433PowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_TV433PowerSocket:powerSwitch" }
