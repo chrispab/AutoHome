@@ -1,18 +1,18 @@
 //conservatory fairy lights
-Thing mqtt:topic:conservatoryFairyLights433Socket  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:CT_FairyLights433Socket  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power5" ]
 }
 
 //Dining room switched socket - upper fairy lights
-Thing mqtt:topic:diningRoomFairyLights433Socket  "MQTT Thing: Dining Room Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
+Thing mqtt:topic:DR_FairyLights433Socket  "MQTT Thing: Dining Room Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power4" ]
 }
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
-Thing mqtt:topic:conservatoryRadiators  "MQTT Thing: Conservatory Radiators 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:CT_Radiators  "MQTT Thing: Conservatory Radiators 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
 }

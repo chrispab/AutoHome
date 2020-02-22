@@ -4,6 +4,7 @@ when
 //    Time cron "0 53 17 ? * * *"
 then
     logInfo("RULE", "morning lighting if dark")
+    sendNotification("cbattisson@gmail.com", "morning - lights on")
 
     if (BridgeLightSensorState.state == OFF) {
         logInfo("RULE", "morning - switching on lights")

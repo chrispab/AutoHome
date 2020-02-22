@@ -12,14 +12,14 @@ Group gZoneControllerSockets
 
 
 //Dining room switched socket - upper fairy lights
-Switch diningRoomFairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:diningRoomFairyLights433Socket:powerSwitch" }
+Switch DR_FairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:DR_FairyLights433Socket:powerSwitch" }
 
 //conservatory fairy lights
-Switch conservatoryFairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:conservatoryFairyLights433Socket:powerSwitch" }
+Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
-Switch conservatoryRadiators "Conservatory Radiators"  <poweroutlet_uk> { channel="mqtt:topic:conservatoryRadiators:powerSwitch" }
+Switch CT_Radiators "Conservatory Radiators"  <poweroutlet_uk> { channel="mqtt:topic:CT_Radiators:powerSwitch" }
 
 //DAB Radio
 Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:radio:powerSwitch" }

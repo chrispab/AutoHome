@@ -34,8 +34,8 @@ sitemap Conservatory label="Conservatory"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
     }
     Frame label="Conservatory sockets" {
-          Switch item= conservatoryFairyLights433Socket label="Conservatory Fairy Lights" icon="light"
-        Switch item= diningRoomFairyLights433Socket label="Dining Room Fairy Lights" icon="light"
+          Switch item= CT_FairyLights433Socket label="Conservatory Fairy Lights" icon="light"
+        Switch item= DR_FairyLights433Socket label="Dining Room Fairy Lights" icon="light"
     }  
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
