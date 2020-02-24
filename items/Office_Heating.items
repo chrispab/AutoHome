@@ -6,5 +6,5 @@ String office_Heat_Mode "Office Heat Mode" <settings> (gOffice_Thermostat) [ "He
 
 Switch office_Heating "Office Heating"  <my_radiator> { channel="mqtt:topic:officeRadThermoValve:powerSwitch", autoupdate="false" } 
 String office_Reachable "Office Reachable" <qualityofservice> (gOffice_Thermostat)  { channel="mqtt:topic:officeRadThermoValve:reachable" }
-Number office_Heating_Mode "Office Heating Mode" <settings>
+Number office_Heating_Mode "Office Heating Mode" <settings> (gRoomHeatingMode)
 Number office_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"

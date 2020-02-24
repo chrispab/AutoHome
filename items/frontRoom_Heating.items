@@ -6,5 +6,5 @@ String frontRoom_Heat_Mode "Front Room Heat Mode" <settings> (gFrontRoom_Thermos
 
 Switch frontRoom_Heating "Front Room Heating"  <my_radiator> { channel="mqtt:topic:frontRoomRadThermoValve:powerSwitch", autoupdate="false" } 
 String frontRoom_Reachable "Front Room Reachable" <qualityofservice> (gFrontRoom_Thermostat)  { channel="mqtt:topic:frontRoomRadThermoValve:reachable" }
-Number frontRoom_Heating_Mode "Front Room Heating Mode" <settings>
+Number frontRoom_Heating_Mode "Front Room Heating Mode" <settings> (gRoomHeatingMode)
 Number frontRoom_Heating_PresetTempNormal "Front Room Heating Preset (Normal Mode) [%.1f °C]"

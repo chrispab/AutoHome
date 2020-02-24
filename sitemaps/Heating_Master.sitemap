@@ -1,0 +1,9 @@
+sitemap Heating_Master label="Master Heating Control"
+{
+    Selection item=masterHeatingMode label="Central Heating Mode []" 
+        mappings=[
+            PROGRAMME_CONTROL="Auto - follow house programme",
+            LOCAL="Local control - each room seperate control",
+            OFF_SUMMER="All Heating Off"
+        ]
+}

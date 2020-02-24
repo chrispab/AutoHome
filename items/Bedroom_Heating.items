@@ -6,6 +6,6 @@ String bedroom_Heat_Mode "Bedroom Heat Mode" <settings> (gBedroom_Thermostat) [ 
 
 Switch bedroom_Heating "Bedroom Heating"  <my_radiator> { channel="mqtt:topic:bedroomRadThermoValve:powerSwitch", autoupdate="false" } 
 String bedroom_Reachable "Bedroom Reachable" <qualityofservice> (gBedroom_Thermostat)  { channel="mqtt:topic:bedroomRadThermoValve:reachable" }
-Number bedroom_Heating_Mode "Bedroom Heating Mode" <settings>
+Number bedroom_Heating_Mode "Bedroom Heating Mode" <settings> (gRoomHeatingMode)
 String bedroom_Message
 Number bedroom_Heating_PresetTempNormal "Bedroom Heating Preset (Normal Mode) [%.1f °C]"

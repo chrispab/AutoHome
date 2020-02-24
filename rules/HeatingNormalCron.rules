@@ -16,7 +16,7 @@ rule "00:00"
 when
     Time cron "0 00 00 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -30,7 +30,7 @@ rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp )
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -44,7 +44,7 @@ rule "01:00 - all heating low"
 when
     Time cron "0 00 01 ? * * *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp )
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -58,7 +58,7 @@ rule "02:30 - all heating low"
 when
     Time cron "0 30 02 ? * * *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp )
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -124,7 +124,7 @@ rule "heating 08:00 am"
 when
     Time cron "0 0 08 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(offTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     elsiesRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -212,7 +212,7 @@ rule "11:30pm weekdays"
 when
     Time cron "0 30 23 ? * MON-FRI *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp)
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -244,7 +244,7 @@ rule "00:30 am weekend"
 when
     Time cron "0 30 00 ? * SAT-SUN *"
 then
-    conservatory_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    conservatory_Heating_PresetTempNormal.postUpdate(midTemp)
     frontRoom_Heating_PresetTempNormal.postUpdate(offTemp )
     elsiesRoom_Heating_PresetTempNormal.postUpdate(sleepTemp)
     attic_Heating_PresetTempNormal.postUpdate(offTemp )

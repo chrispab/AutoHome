@@ -1,5 +1,6 @@
 Group		Heating_PresetNormal_Group
 Group		gHeatingModes
+Group		gRoomHeatingMode
 Group		gHeatingSetPoints
 DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
 Switch		Boiler_Control				"Boiler Control"							<my_radiator>									{ channel="mqtt:topic:boiler:powerSwitch"}

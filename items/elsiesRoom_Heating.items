@@ -6,5 +6,5 @@ String elsiesRoom_Heat_Mode "Elsie's Bedroom Heat Mode" <settings> (gElsiesRoom_
 
 Switch elsiesRoom_Heating "Elsie's Bedroom Heating"  <my_radiator> { channel="mqtt:topic:elsiesRoomRadThermoValve:powerSwitch", autoupdate="false" } 
 String elsiesRoom_Reachable "Elsie's Bedroom Reachable" <qualityofservice> (gElsiesRoom_Thermostat)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
-Number elsiesRoom_Heating_Mode "Elsie's Bedroom Heating Mode" <settings>
+Number elsiesRoom_Heating_Mode "Elsie's Bedroom Heating Mode" <settings> (gRoomHeatingMode)
 Number elsiesRoom_Heating_PresetTempNormal "Elsie's Bedroom Heating Preset (Normal Mode) [%.1f °C]"

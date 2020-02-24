@@ -25,6 +25,54 @@ then
 end
 
 
+rule "React to MasterHeatingMode updated"
+when
+    Item masterHeatingMode received update
+then
+//avoid changing a zone sp if zone heating mode 1 , local auto
+    Heating_UpdateHeaters.postUpdate(OFF)
+// MASTER modes are
+//PROGRAMME_CONTROL=Programme Control,OFF_SUMMER=Off Summer,LOCAL=Local
+//local room modes are 0=Off,1=Local Control,2=Master Controlled
+    logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+    switch masterHeatingMode.state {
+        case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
+            logInfo("heating_mode.rules", "make all rooms -AUTO - MASTER Heating Mode : ")
+
+            gRoomHeatingMode.members.forEach[ it | it.postUpdate(2) ] 
+            gHeatingSetPoints.members.forEach[ it | it.postUpdate(19) ]
+        }
+
+
+        case "OFF_SUMMER": {
+            logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
+                        gRoomHeatingMode.members.forEach[ it | it.postUpdate(0) ] 
+
+            conservatory_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            //conservatory_TargetTemperature.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
+            conservatory_Heating_Mode.postUpdate(0)
+            hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            hall_Heating_Mode.postUpdate(0)
+            frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            frontRoom_Heating_Mode.postUpdate(0) 
+            office_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            office_Heating_Mode.postUpdate(0)
+            elsiesRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            elsiesRoom_Heating_Mode.postUpdate(0)
+            bedroom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            bedroom_Heating_Mode.postUpdate(0)
+            attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
+            attic_Heating_Mode.postUpdate(0)                                                
+        }
+        case "LOCAL": {
+            logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")
+            gRoomHeatingMode.members.forEach[ it | it.postUpdate(1) ] 
+        }
+        default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
+    }
+end
+
+
 rule "React on message to send target temperatures to zone setpoints"
 when
     //Item masterHeatingMode received update or //master mode has changed

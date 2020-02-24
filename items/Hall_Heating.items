@@ -6,5 +6,5 @@ String hall_Heat_Mode "Hall Heat Mode" <settings> (gHall_Thermostat) [ "HeatingC
 
 Switch hall_Heating "Hall Heating"  <my_radiator> { channel="mqtt:topic:hallRadThermoValve:powerSwitch", autoupdate="false" } 
 String hall_Reachable "Hall Reachable" <qualityofservice> (gHall_Thermostat)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
-Number hall_Heating_Mode "Hall Heating Mode" <settings>
+Number hall_Heating_Mode "Hall Heating Mode" <settings> (gRoomHeatingMode)
 Number hall_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]"
