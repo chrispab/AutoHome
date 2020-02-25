@@ -11,7 +11,7 @@ rule "Boiler Demand changed"
 when
 //any change in demand , on or off in any room
     Item frontRoom_Heating received update or
-    Item conservatory_Heating received update or
+    Item conservatory_Heater received update or
     Item elsiesRoom_Heating received update or
     Item attic_Heating received update or
     Item bedroom_Heating received update or
@@ -20,7 +20,7 @@ when
 then
     if (
         frontRoom_Heating.state == NULL 
-        || conservatory_Heating.state == NULL 
+        || conservatory_Heater.state == NULL 
         || elsiesRoom_Heating.state == NULL
         || attic_Heating.state == NULL 
         || bedroom_Heating.state == NULL
@@ -33,7 +33,7 @@ then
             }
     //if any rooms want heat - turn on boiler
     if (       (frontRoom_Heating.state == ON) 
-            || (conservatory_Heating.state == ON) 
+            || (conservatory_Heater.state == ON) 
             || (elsiesRoom_Heating.state == ON) 
             || (attic_Heating.state == ON)
             || (bedroom_Heating.state == ON)

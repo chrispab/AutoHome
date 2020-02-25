@@ -1,27 +1,42 @@
+// To map the default thermostat modes of Google (on, off, heat, cool, etc.) to custom ones for your specific setup,
+//  you can use the modes config option on the thermostat group. E.g. [ modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto" ] 
+//  will enable the following five modes in Google Home "off, heat, eco, on, auto" that will be translated to "OFF, COMFORT, ECO, ON, auto". 
+//  You can specify alternative conversions using the colon sign, so that in the former example "BOOST" in openHAB would also be translated 
+//  to "heat" in Google. For the translation of Google modes to openHAB always the first option after the equal sign is used. 
+//  By default the integration will provide "off,heat,cool,on,heatcool,auto,eco".
+
+// //Thermostat Setup (Google requires a mode, even if you manually set it up in openHAB)
+// Group g_HK_Basement_TSTAT "Basement Thermostat" { ga="Thermostat" [ useFahrenheit=true ] }
+// Number HK_Basement_Mode "Basement Heating/Cooling Mode" (g_HK_Basement_TSTAT) { ga="thermostatMode" }
+// Number HK_Basement_Setpoint "Basement Setpoint" (g_HK_Basement_TSTAT) { ga="thermostatTemperatureSetpoint" }
+// Number HK_Basement_Temp "Basement Temperature" (g_HK_Basement_TSTAT) { ga="thermostatTemperatureAmbient" }
+// Number HK_Basement_Humid "Basement Humidity" (g_HK_Basement_TSTAT) { ga="thermostatHumidityAmbient" }
+
+
+
 //thermostat definition formatted for Google home, assistant use
-Group gConservatory_Thermostat "Conservatory Thermostat" { ga="Thermostat" [ roomHint="Conservatory" ] }
-String conservatory_Heat_Mode "Conservatory Heat Mode" <settings> (gConservatory_Thermostat) { ga="thermostatMode" }// heating modes: 0 - Off, 1 - On, 2 - Auto
-Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) { ga="thermostatTemperatureSetpoint" }
-Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
-Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+Group gConservatory_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory", modes="off=OFF,heat=ON,on=ON,auto=AUTO" ] }
+Number conservatory_HeatingMode "Conservatory Heating Mode" <settings> (gConservatory_Thermostat, gHeatingModes) { ga="thermostatMode" }// heating modes: 0 - Off, 1 - On, 2 - Auto
+Number conservatory_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number conservatory_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number conservatory_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+
 //additional params for use in openhab functions etc
+Switch conservatory_Heater "Conservatory Heater"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
+// Switch conservatory_Heater "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
 
-
-Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
-// Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
-
-Number conservatory_Heating_Mode "Conservatory Heating Mode" <settings> (gRoomHeatingMode)
+// Number conservatory_HeatingMode "Conservatory Heating Mode" <settings> (gRoomHeatingMode)
 Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
 
 //was previously
 // Group gConservatory_Thermostat "Conservatory Thermostat" [ "Thermostat" ]
-// Number conservatory_TargetTemperature "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-// Number conservatory_CurrentTemperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
-// Number conservatory_CurrentHumidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+// Number conservatory_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gConservatory_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
+// Number conservatory_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gConservatory_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+// Number conservatory_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gConservatory_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 // String conservatory_Heat_Mode "Conservatory Heat Mode" <settings> (gConservatory_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
-// //Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
-// Switch conservatory_Heating "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
+// //Switch conservatory_Heater "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", autoupdate="false" } 
+// Switch conservatory_Heater "Conservatory Heating"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
 // // String conservatory_Reachable "Conservatory Reachable" <qualityofservice> (gConservatory_Thermostat)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }
-// Number conservatory_Heating_Mode "Conservatory Heating Mode" <settings>
+// Number conservatory_HeatingMode "Conservatory Heating Mode" <settings>
 // Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
