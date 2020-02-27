@@ -50,7 +50,7 @@ then
 
             conservatory_TemperatureSetpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             //conservatory_TemperatureSetpoint.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
-            conservatory_HeatingMode.postUpdate(0)
+            conservatory_HeatingMode.postUpdate("off")
             hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             hall_Heating_Mode.postUpdate(0)
             frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
@@ -87,7 +87,7 @@ then
     switch masterHeatingMode.state {
         case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
             logInfo("heating_mode.rules", "processing case MASTER Heating Mode : ")
-            if(conservatory_HeatingMode.state == 2) { //if mode is master control - 'normal' - auto - 2
+            if(conservatory_HeatingMode.state == "auto") { //if mode is master control - 'normal' - auto - 2
                 conservatory_TemperatureSetpoint.state = (conservatory_Heating_PresetTempNormal.state )
             }
             if(frontRoom_Heating_Mode.state == 2) { //if zone mode is master control
@@ -115,7 +115,7 @@ then
             logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
             conservatory_TemperatureSetpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             //conservatory_TemperatureSetpoint.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
-            conservatory_HeatingMode.postUpdate(0)
+            conservatory_HeatingMode.postUpdate("off")
             hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
             hall_Heating_Mode.postUpdate(0)
             frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
