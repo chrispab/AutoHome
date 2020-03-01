@@ -1,13 +1,25 @@
 
-Group gAttic_Thermostat "Attic Thermostat" [ "Thermostat" ]
-Number attic_TargetTemperature "Attic Setpoint [%.1f °C]" <degreesc> (gAttic_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-Number attic_CurrentTemperature "Attic Temperature [%.1f °C]" <temperature> (gAttic_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:atticRadThermoValve:temperature" }
-Number attic_CurrentHumidity "Attic Humidity [%.1f °C]" <humidity> (gAttic_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:atticRadThermoValve:humidity" }
-String attic_Heat_Mode "Attic Heat Mode" <heating> (gAttic_Thermostat) [ "homekit:TargetHeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+// Group gAT_Thermostat "Attic Thermostat" [ "Thermostat" ]
+// Number AT_TemperatureSetpoint "Attic Setpoint [%.1f °C]" <degreesc> (gAT_Thermostat, gTemperatureSetPoints) [ "TargetTemperature" ]
+// Number AT_Temperature "Attic Temperature [%.1f °C]" <temperature> (gAT_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:atticRadThermoValve:temperature" }
+// Number AT_Humidity "Attic Humidity [%.1f °C]" <humidity> (gAT_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:atticRadThermoValve:humidity" }
+// String AT_ThermostatMode "Attic Heat Mode" <heating> (gAT_Thermostat) [ "homekit:TargetHeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
 
-String attic_Reachable "Attic Rechable" <temperature> (gAttic_Thermostat)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
-Number attic_Heating_Setpoint "Attic Heating Setpoint [%.1f °C]"    <degreesc> (gHeatingSetPoints)
-Switch attic_Heating "Attic Heating"  <switch> { channel="mqtt:topic:atticRadThermoValve:powerSwitch", autoupdate="false" } 
-Number attic_Heating_Mode "Attic Heating Mode" <heating> (gRoomHeatingMode)
-// String Attic_Message
-Number attic_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
+// String AT_RTVReachable "Attic Rechable" <temperature> (gAT_Thermostat)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
+// Switch AT_Heater "Attic Heater"  <switch> { channel="mqtt:topic:atticRadThermoValve:powerSwitch", autoupdate="false" } 
+// Number AT_HeatingMode "Attic Heating Mode" <heating> (gRoomHeatingModes)
+// Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
+
+
+
+Group gAT_Thermostat "Attic Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Attic" ] }
+String AT_ThermostatMode "Attic Thermostat Mode" <settings> (gAT_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number AT_TemperatureSetpoint "Attic Setpoint [%.1f °C]" <heating> (gAT_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number AT_Temperature "Bedroom Temperature [%.1f °C]" <temperature> (gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
+Number AT_Humidity "Attic Humidity [%.1f °C]" <humidity> (gAT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
+
+// // // // //additional params for use in openhab functions etc
+Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" } 
+String AT_HeatingMode "Attic Heating Mode" <settings> (gRoomHeatingModes)
+Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
+String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat)  { channel="mqtt:topic:atticRadThermoValve:reachable" }

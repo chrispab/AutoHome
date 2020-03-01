@@ -4,13 +4,13 @@ sitemap Hall label="Hall"
     Text item=Current_Date
   }
   Frame label="Current Status" {
-    Text item=hall_CurrentTemperature label="Actual Temperature: [%.1f °C]"
-    Switch item= hall_Heating label="Our Bedroom Radiator"
+    Text item=HL_Temperature label="Actual Temperature: [%.1f °C]"
+    Switch item= HL_Heater label="Our Bedroom Radiator"
   }
 
   Frame label="Heating Control" {
-        Switch item=hall_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
-        Setpoint item=hall_TargetTemperature label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[hall_Heating_Mode==2]
+        Switch item=HL_Heating_Mode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+        Setpoint item=HL_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[HL_Heating_Mode==2]
   }
 
 

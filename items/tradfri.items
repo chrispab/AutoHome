@@ -1,9 +1,9 @@
 Group gIkeaLights 
 Group gColourBulbs (gIkeaLights)
-Group gDimmerBulbs (gIkeaLights)
+Group gDimmerBulbs "Dimmer bulbs" (gIkeaLights) { ga="Light" [ roomHint="Conservatory" ] }
 
-Dimmer Bulb1Brightness "Cyril" (gIkeaLights, gDimmerBulbs) { ga="Light" [ roomHint="Conservatory" ], channel="tradfri:0100:gw44916026cf61:65553:brightness" }
-Dimmer Bulb2Brightness "Arthur" (gIkeaLights, gDimmerBulbs)  [ "Lighting" ] { channel="tradfri:0100:gw44916026cf61:65554:brightness" }
+Dimmer Bulb1Brightness "Cyril" (gIkeaLights, gDimmerBulbs)  { synonyms="dimmer bulb", ga="Light" [ roomHint="Conservatory" ], channel="tradfri:0100:gw44916026cf61:65553:brightness" }
+Dimmer Bulb2Brightness "Arthur" (gIkeaLights, gDimmerBulbs) { synonyms="dimmer bulb", ga="Light" [ roomHint="Conservatory" ], channel="tradfri:0100:gw44916026cf61:65554:brightness" }
 
 
 

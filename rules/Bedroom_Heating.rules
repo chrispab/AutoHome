@@ -2,33 +2,33 @@ rule "System started Bedroom_Heating"
 when
     System started
 then
-    if (bedroom_Heating_Mode == NULL) {
-        bedroom_Heating_Mode.postUpdate(2) // start in master auto control mode
+    if (BR_HeatingMode == NULL) {
+        BR_HeatingMode.postUpdate(2) // start in master auto control mode
     }
 end
 
 rule "bedroom_ heating"
 when
-    Item bedroom_Heating_Mode changed or
-    Item bedroom_TargetTemperature changed or
-    Item bedroom_CurrentTemperature changed
+    Item BR_HeatingMode changed or
+    Item BR_TemperatureSetpoint changed or
+    Item BR_Temperature changed
 then
     //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
-    if (bedroom_Heating_Mode.state == 0) {
-        bedroom_Heating.sendCommand(OFF)
-        bedroom_Heating.postUpdate(OFF)
+    if (BR_HeatingMode.state == "off") {
+        BR_Heater.sendCommand(OFF)
+        BR_Heater.postUpdate(OFF)
     }
-    else if ( (bedroom_Heating_Mode.state == 1) || (bedroom_Heating_Mode.state == 2) )  { //auto
-        var Number setpoint = bedroom_TargetTemperature.state as DecimalType
+    else if ( (BR_HeatingMode.state == "auto") || (BR_HeatingMode.state == "manual") )  { //auto
+        var Number setpoint = BR_TemperatureSetpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
-        var Number temp = bedroom_CurrentTemperature.state as DecimalType // get the current temperature
+        var Number temp = BR_Temperature.state as DecimalType // get the current temperature
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
-            bedroom_Heating.sendCommand(OFF)
-            bedroom_Heating.postUpdate(OFF)
+            BR_Heater.sendCommand(OFF)
+            BR_Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            bedroom_Heating.sendCommand(ON)
-            bedroom_Heating.postUpdate(ON)
+            BR_Heater.sendCommand(ON)
+            BR_Heater.postUpdate(ON)
         } 
     }
 end

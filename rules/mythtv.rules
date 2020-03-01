@@ -1,3 +1,30 @@
+
+
+//reboot mythtv backend every day
+//shutdown
+//wait
+//power off
+//wait
+//power on
+rule "reboot MythTV backend"
+when
+  //Time cron "0 * * * * ?" 
+  //or
+  Item mtv_MythTV_Upcoming_XML changed
+then
+//pgn_MythTV_Upcoming_Idx = 1
+  //logInfo("XXXXXXX", "Kitchen light turned on")
+  
+  val String processed = transform("XSLT", "xml_to_json.xsl", mtv_MythTV_Upcoming_XML.state.toString)
+  
+  //logInfo("mythtv", "Processed XML: " + processed)
+  //mtv_MythTV_Upcoming_XML= 
+  logInfo("mythtv", "Processed XML: " + processed)
+  mtv_MythTV_Upcoming_JSON.postUpdate(processed)
+end
+
+
+
 rule "MythTV Upcoming XML raw parsing..."
 when
   //Time cron "0 * * * * ?" 

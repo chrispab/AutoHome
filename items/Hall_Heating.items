@@ -1,10 +1,11 @@
-Group gHall_Thermostat "Hall Thermostat" [ "Thermostat" ]
-Number hall_TargetTemperature "Hall Setpoint [%.1f °C]" <heating> (gHall_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-Number hall_CurrentTemperature "Hall Temperature [%.1f °C]" <temperature> (gHall_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:hallRadThermoValve:temperature" }
-Number hall_CurrentHumidity "Hall Humidity [%.1f °C]" <humidity> (gHall_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:hallRadThermoValve:humidity" }
-String hall_Heat_Mode "Hall Heat Mode" <settings> (gHall_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+Group gHL_Thermostat "Hall Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Hall" ] }
+String HL_ThermostatMode "Hall Thermostat Mode" <settings> (gHL_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number HL_TemperatureSetpoint "Hall Setpoint [%.1f °C]" <heating> (gHL_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number HL_Temperature "Hall Temperature [%.1f °C]" <temperature> (gHL_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:hallRadThermoValve:temperature" }
+Number HL_Humidity "Hall Humidity [%.1f °C]" <humidity> (gHL_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:hallRadThermoValve:humidity" }
 
-Switch hall_Heating "Hall Heating"  <my_radiator> { channel="mqtt:topic:hallRadThermoValve:powerSwitch", autoupdate="false" } 
-String hall_Reachable "Hall Reachable" <qualityofservice> (gHall_Thermostat)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
-Number hall_Heating_Mode "Hall Heating Mode" <settings> (gRoomHeatingMode)
-Number hall_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]"
+// //additional params for use in openhab functions etc
+Switch HL_Heater "Hall Heater"  <my_radiator>  (gRoomHeaterStates) { channel="mqtt:topic:hallRadThermoValve:powerSwitch" } 
+String HL_HeatingMode "Hall Heating Mode" <settings> (gRoomHeatingModes)
+Number HL_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]"
+String HL_RTVReachable "Hall Reachable" <qualityofservice> (gHL_Thermostat)  { channel="mqtt:topic:hallRadThermoValve:reachable" }

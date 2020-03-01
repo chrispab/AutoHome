@@ -1,73 +1,31 @@
-rule "StartUp Office Heating"
+rule "OF_Heater Control"
 when
-    System started
-then
-    if (office_Heating_Mode ==   (NULL)) {
-        office_Heating_Mode.postUpdate(2)
-    }
-end
-// 
-rule "office_Heating mode notify changed"
-when
-    Item office_Heating_Mode changed 
-then
-        //say("Elsie Bedroom heating mode changed")
-end 
-// 
-
-rule "office_Heating Control"
-when
-    Item office_Heating_Mode changed or
-    Item office_TargetTemperature changed or
-    Item office_CurrentTemperature changed
+    Item OF_HeatingMode changed or
+    Item OF_TemperatureSetpoint changed or
+    Item OF_Temperature changed
 then
     // 0="Off", 1="On", 2="Auto"
-    if (office_Heating_Mode.state == 0) {
-        office_Heating.sendCommand(OFF)
-        office_Heating.postUpdate(OFF)
+    if (OF_HeatingMode.state == "off") {
+        OF_Heater.sendCommand(OFF)
+        OF_Heater.postUpdate(OFF)
         //say("Elsie bedroom radiator off")
     }// just single zone in use local setpoint - ignore any global control
-    else if ( (office_Heating_Mode.state == 1) || (office_Heating_Mode.state == 2) ) { //obey setpoint for that zone
+    else if ( (OF_HeatingMode.state == "auto") || (OF_HeatingMode.state == "manual") ) { //obey setpoint for that zone
             // get the current setpoint for the nursery
-            var Number setpoint = office_TargetTemperature.state as DecimalType
+            var Number setpoint = OF_TemperatureSetpoint.state as DecimalType
             // calculate the turn on/off temperatures
             var Number turnOnTemp = setpoint  //- 0.1
             var Number turnOffTemp = setpoint
-            var Number temp = office_CurrentTemperature.state as DecimalType
+            var Number temp = OF_Temperature.state as DecimalType
             // determine whether we need to turn on/off the heater
             if (temp < turnOnTemp) {   // turn on temp has been reached so switch on the heater
-                office_Heating.sendCommand(ON)
-                office_Heating.postUpdate(ON)
+                OF_Heater.sendCommand(ON)
+                OF_Heater.postUpdate(ON)
                 //say("Elsie bedroom radiator on")
             }
             else if (temp >= turnOffTemp) {   // turn off temp has been reached so switch off the heater
-                office_Heating.sendCommand(OFF)
-                office_Heating.postUpdate(OFF)
-                //say("Elsie bedroom radiator off")
-            }
-    }
-    else if (office_Heating_Mode.state == 2) { // obey global pre-programmed settings
-
-            // get the current setpoint for the nursery
-            var Number setpoint = office_TargetTemperature.state as DecimalType
-
-            // calculate the turn on/off temperatures
-            var Number turnOnTemp = setpoint  //- 0.1
-            var Number turnOffTemp = setpoint
-
-            var Number temp = office_CurrentTemperature.state as DecimalType
-
-            // determine whether we need to turn on/off the heater
-            if (temp < turnOnTemp) {
-                // turn on temp has been reached so switch on the heater
-                office_Heating.sendCommand(ON)
-                office_Heating.postUpdate(ON)
-                //say("Elsie bedroom radiator on")
-            }
-            else if (temp >= turnOffTemp) {
-                // turn off temp has been reached so switch off the heater
-                office_Heating.sendCommand(OFF)
-                office_Heating.postUpdate(OFF)
+                OF_Heater.sendCommand(OFF)
+                OF_Heater.postUpdate(OFF)
                 //say("Elsie bedroom radiator off")
             }
     }

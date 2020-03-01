@@ -1,34 +1,25 @@
-rule "System started elsiesRoom_Heating"
-when
-    System started
-then
-    if (elsiesRoom_Heating_Mode == NULL) {
-        elsiesRoom_Heating_Mode.postUpdate(2) // start in master auto control mode
-    }
-end
-
 rule "elsie_ heating"
 when
-    Item elsiesRoom_Heating_Mode changed or
-    Item elsiesRoom_TargetTemperature changed or
-    Item elsiesRoom_CurrentTemperature changed
+    Item ER_HeatingMode changed or
+    Item ER_TemperatureSetpoint changed or
+    Item ER_Temperature changed
 then
     //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
-    if (elsiesRoom_Heating_Mode.state == 0) {
-        elsiesRoom_Heating.sendCommand(OFF)
-        elsiesRoom_Heating.postUpdate(OFF)
+    if (ER_HeatingMode.state == "off") {
+        ER_Heater.sendCommand(OFF)
+        ER_Heater.postUpdate(OFF)
     }
-    else if ( (elsiesRoom_Heating_Mode.state == 1) || (elsiesRoom_Heating_Mode.state == 2) )  { //auto
-        var Number setpoint = elsiesRoom_TargetTemperature.state as DecimalType
+    else if ( (ER_HeatingMode.state == "auto") || (ER_HeatingMode.state == "manual") )  { //auto
+        var Number setpoint = ER_TemperatureSetpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
-        var Number temp = elsiesRoom_CurrentTemperature.state as DecimalType // get the current temperature
+        var Number temp = ER_Temperature.state as DecimalType // get the current temperature
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
-            elsiesRoom_Heating.sendCommand(OFF)
-            elsiesRoom_Heating.postUpdate(OFF)
+            ER_Heater.sendCommand(OFF)
+            ER_Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            elsiesRoom_Heating.sendCommand(ON)
-            elsiesRoom_Heating.postUpdate(ON)
+            ER_Heater.sendCommand(ON)
+            ER_Heater.postUpdate(ON)
         } 
     }
 end

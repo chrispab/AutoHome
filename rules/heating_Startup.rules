@@ -1,6 +1,41 @@
+var Timer MModeTimer = null
+var Timer ModesTimer = null
+var Timer TModesTimer = null
+
 rule "StartUp - set up Heating settings"
 when
     System started
 then
-    conservatory_Heat_Mode.postUpdate("heat")
+    logInfo("startup heating", "checking if master heating mode null")
+    if(MModeTimer === null) {
+        MModeTimer = createTimer(now.plusSeconds(60)) [| 
+            if (masterHeatingMode.state == null) {
+                masterHeatingMode.postUpdate("auto")
+                logInfo("startup heating", "master heating mode was null - set master heating mode to - auto")
+            }
+            MModeTimer = null
+        ]
+    }
+
+    logInfo("startup heating", "checking if any room heating modes are null")
+    if(ModesTimer === null) {
+        ModesTimer = createTimer(now.plusSeconds(60)) [| 
+            if ( gRoomHeatingModes.state == null) {
+                gRoomHeatingModes.members.forEach[ String heatingMode | heatingMode.postUpdate("auto") ] 
+                logInfo("startup heating", "heating mode was null - set heating mode to - auto")
+            }
+            ModesTimer = null
+        ]
+    }
+
+    logInfo("startup heating", "checking if any GA Thermostat modes are null")
+    if(TModesTimer === null) {
+        TModesTimer = createTimer(now.plusSeconds(60)) [| 
+            if ( gThermostatModes.state == null) {
+                gThermostatModes.members.forEach[ String ThermostatMode | ThermostatMode.postUpdate("heat") ]
+                logInfo("startup heating", "Setting GA Thermostat modes to heat")
+            }
+            TModesTimer = null
+        ]
+    }
 end

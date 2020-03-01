@@ -20,13 +20,13 @@ then
     gIkeaLights.sendCommand(0)
     gIkeaLights.postUpdate(0)
     //set rads temps to off
-    conservatory_Heating_PresetTempNormal.postUpdate(17.0)
-    frontRoom_Heating_PresetTempNormal.postUpdate(14.0)
-    elsiesRoom_Heating_PresetTempNormal.postUpdate(17.0)
-    attic_Heating_PresetTempNormal.postUpdate(14.0)
-    bedroom_Heating_PresetTempNormal.postUpdate(17.0)
-    office_Heating_PresetTempNormal.postUpdate(17.0)
-    hall_Heating_PresetTempNormal.postUpdate(17.0)
+    CT_Heating_PresetTempNormal.postUpdate(17.0)
+    FR_Heating_PresetTempNormal.postUpdate(14.0)
+    ER_Heating_PresetTempNormal.postUpdate(17.0)
+    AT_Heating_PresetTempNormal.postUpdate(14.0)
+    BR_Heating_PresetTempNormal.postUpdate(17.0)
+    OF_Heating_PresetTempNormal.postUpdate(17.0)
+    HL_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeaters.sendCommand(ON)    
 
     createTimer(now.plusSeconds(240), [|

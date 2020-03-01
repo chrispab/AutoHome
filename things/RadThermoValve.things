@@ -7,13 +7,11 @@ Thing mqtt:topic:conservatoryRadThermoValve  "MQTT Thing: Conservatory Radiator 
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
 }
 
-
 Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
     Channels:
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type switch : powerSwitch  [ stateTopic="frontRoom/stat/POWER" , commandTopic="frontRoom/cmnd/POWER", on="ON", off="OFF" ]
-//        Type string : reachable    [ stateTopic="frontRoom/tele/LWT", transformationPattern="MAP:reachable.map" ]
         Type string : reachable    [ stateTopic="frontRoom/tele/LWT" ]
         Type number : rssi         [ stateTopic="frontRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
@@ -36,8 +34,6 @@ Thing mqtt:topic:elsiesRoomRadThermoValve  "MQTT Thing: Elsie's Room Radiator Th
         Type number : rssi         [ stateTopic="elsiesRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-
-
 Thing mqtt:topic:officeRadThermoValve  "MQTT Thing: Office Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Office" {
     Channels:
         Type number : temperature  [ stateTopic="office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
@@ -55,7 +51,6 @@ Thing mqtt:topic:bedroomRadThermoValve  "MQTT Thing: Bedroom Radiator Thermo Val
         Type string : reachable    [ stateTopic="bedroom/tele/LWT"  ]
         Type number : rssi         [ stateTopic="bedroom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
-
 
 Thing mqtt:topic:atticRadThermoValve  "MQTT Thing: Attic Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Attic" {
     Channels:

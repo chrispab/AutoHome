@@ -8,8 +8,8 @@ rule "pulse ON con re-circ CT_Fan433PowerSocket when setpoint > 19"
 when
     Time cron "0 0/3 * * * ?"
 then
-    var Number sp = conservatory_TemperatureSetpoint.state as DecimalType // get the current temperature
-    var Number currentTemp = conservatory_Temperature.state as DecimalType // get the current temperature
+    var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
+    var Number currentTemp = CT_Temperature.state as DecimalType // get the current temperature
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {
@@ -46,15 +46,15 @@ end
 
 rule "Conservatory Cooling Fan"
 when
-    Item conservatory_Temperature changed
+    Item CT_Temperature changed
     or
     Item Conservatory_Fan_ON_Setpoint changed 
 then
-        //var Number setpoint = 26.0 //conservatory_TemperatureSetpoint.state as DecimalType
+        //var Number setpoint = 26.0 //CT_TemperatureSetpoint.state as DecimalType
         var Number setpoint = Conservatory_Fan_ON_Setpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         //var Number turnOffTemp = setpoint - 1.0//+ 0.1
-        var Number temp = conservatory_Temperature.state as DecimalType // get the current temperature
+        var Number temp = CT_Temperature.state as DecimalType // get the current temperature
 
         // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
         //     socketG3_2.sendCommand(OFF)
@@ -63,7 +63,7 @@ then
 
 
         //only when heating not on
-        var Number sp = conservatory_TemperatureSetpoint.state as DecimalType // get the current temperature
+        var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
         if (sp < 19) {
             if (temp >= turnOnTemp) {
                 CT_Fan433PowerSocket.sendCommand(ON)

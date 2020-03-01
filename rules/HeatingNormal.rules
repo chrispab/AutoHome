@@ -1,137 +1,77 @@
-var Timer timer1 = null
-
-rule "Initialize uninitialized virtual Items"
-when
-    System started
-then
-
-    if(timer1 === null) {
-        timer1 = createTimer(now.plusSeconds(30)) [| 
-        logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating Initialize uninitialized virtual Items")
-        if (masterHeatingMode.state === NULL) 
-            masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-        timer1 = null]
-    }
- //if (masterHeatingMode.state == NULL) masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-
-
-    // createTimer(now.plusSeconds(30)) [ |
-    //     logInfo("HeatingNormal.rules", "Executing 'System started' rule for Heating init uninitialized virtual Items")
-    //    if (masterHeatingMode.state === NULL) 
-    //         masterHeatingMode.postUpdate("PROGRAMME_CONTROL")
-            //gHeatingModes.members.filter[item | item.state === NULL].forEach[item | item.postUpdate("Master Controlled")]
-//    ]
-       
-end
-
+var number offTemp = 13
 
 rule "React to MasterHeatingMode updated"
 when
     Item masterHeatingMode received update
 then
-//avoid changing a zone sp if zone heating mode 1 , local auto
+//avoid changing a zone sp if zone heating local or auto
     Heating_UpdateHeaters.postUpdate(OFF)
-// MASTER modes are
-//PROGRAMME_CONTROL=Programme Control,OFF_SUMMER=Off Summer,LOCAL=Local
-//local room modes are 0=Off,1=Local Control,2=Master Controlled
-    logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+
+    logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
     switch masterHeatingMode.state {
-        case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
-            logInfo("heating_mode.rules", "make all rooms -AUTO - MASTER Heating Mode : ")
-
-            gRoomHeatingMode.members.forEach[ it | it.postUpdate(2) ] 
-            gHeatingSetPoints.members.forEach[ it | it.postUpdate(19) ]
+        case "auto": { //normal mode is under master control and folows 'normal' rules
+            logInfo("heatingNormal.rules", "make all rooms -AUTO - MASTER Heating Mode : " + masterHeatingMode.state)
+            gRoomHeatingModes.members.forEach[  string HeatingMode | HeatingMode.postUpdate("auto") ] 
+            //gTemperatureSetPoints.members.forEach[ TemperatureSetPoint | TemperatureSetPoint.postUpdate(20) ]
         }
 
-
-        case "OFF_SUMMER": {
-            logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
-                        gRoomHeatingMode.members.forEach[ it | it.postUpdate(0) ] 
-
-            conservatory_TemperatureSetpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            //conservatory_TemperatureSetpoint.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
-            conservatory_HeatingMode.postUpdate("off")
-            hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            hall_Heating_Mode.postUpdate(0)
-            frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            frontRoom_Heating_Mode.postUpdate(0) 
-            office_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            office_Heating_Mode.postUpdate(0)
-            elsiesRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            elsiesRoom_Heating_Mode.postUpdate(0)
-            bedroom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            bedroom_Heating_Mode.postUpdate(0)
-            attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            attic_Heating_Mode.postUpdate(0)                                                
+        case "off": {
+            logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
+            gRoomHeatingModes.members.forEach[  string RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
+            gTemperatureSetpoints.members.forEach[  number TemperatureSetpoint | TemperatureSetpoint.postUpdate(offTemp) ] 
         }
-        case "LOCAL": {
-            logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")
-            gRoomHeatingMode.members.forEach[ it | it.postUpdate(1) ] 
+
+        case "manual": {
+            logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
+            gRoomHeatingModes.members.forEach[  string RoomHeatingMode | RoomHeatingMode.postUpdate("manual") ] 
         }
-        default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
+        default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
     }
 end
 
 
 rule "React on message to send target temperatures to zone setpoints"
 when
-    //Item masterHeatingMode received update or //master mode has changed
     Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
 then
 //avoid changing a zone sp if zone heating mode 1 , local auto
-    Heating_UpdateHeaters.postUpdate(OFF)
-// MASTER modes are
-//PROGRAMME_CONTROL=Programme Control,OFF_SUMMER=Off Summer,LOCAL=Local
-//local room modes are 0=Off,1=Local Control,2=Master Controlled
-    logInfo("heating_mode.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+    Heating_UpdateHeaters.postUpdate(OFF) // rest update heaters flag ready for next trigger (OFF-ON)
+
+    logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
     switch masterHeatingMode.state {
-        case "PROGRAMME_CONTROL": { //normal mode is under master control and folows 'normal' rules
-            logInfo("heating_mode.rules", "processing case MASTER Heating Mode : ")
-            if(conservatory_HeatingMode.state == "auto") { //if mode is master control - 'normal' - auto - 2
-                conservatory_TemperatureSetpoint.state = (conservatory_Heating_PresetTempNormal.state )
+        case "auto": { //normal mode is under master control and folows 'normal' rules
+            logInfo("heatingNormal.rules", "processing case MASTER Heating Mode : " + masterHeatingMode.state)
+            if(CT_HeatingMode.state == "auto") { //if mode is master control - 'normal' - auto - 2
+                CT_TemperatureSetpoint.state = (CT_Heating_PresetTempNormal.state )
             }
-            if(frontRoom_Heating_Mode.state == 2) { //if zone mode is master control
-                   frontRoom_TargetTemperature.state = (frontRoom_Heating_PresetTempNormal.state)
+            if(FR_HeatingMode.state == "auto") { //if zone mode is master control
+                   FR_TemperatureSetpoint.state = (FR_Heating_PresetTempNormal.state)
             }
-            if(elsiesRoom_Heating_Mode.state == 2) { //if mode is master control
-                elsiesRoom_TargetTemperature.state = (elsiesRoom_Heating_PresetTempNormal.state)
+            if(HL_HeatingMode.state == "auto") { //if mode is master control
+                HL_TemperatureSetpoint.state = (HL_Heating_PresetTempNormal.state)
+            }            
+            if(OF_HeatingMode.state == "auto") { //if mode is master control
+                OF_TemperatureSetpoint.state = (OF_Heating_PresetTempNormal.state)
             }
-            if(attic_Heating_Mode.state == 2) { //if mode is master control
-                attic_TargetTemperature.state = (attic_Heating_PresetTempNormal.state)
+            if(BR_HeatingMode.state == "auto") { //if mode is master control
+                BR_TemperatureSetpoint.state = (BR_Heating_PresetTempNormal.state)
             }
-            if(bedroom_Heating_Mode.state == 2) { //if mode is master control
-                bedroom_TargetTemperature.state = (bedroom_Heating_PresetTempNormal.state)
+            if(ER_HeatingMode.state == "auto") { //if mode is master control
+                ER_TemperatureSetpoint.state = (ER_Heating_PresetTempNormal.state)
             }
-            if(office_Heating_Mode.state == 2) { //if mode is master control
-                office_TargetTemperature.state = (office_Heating_PresetTempNormal.state)
+            if(AT_HeateingMode.state == "auto") { //if mode is master control
+                AT_TemperatureSetpoint.state = (AT_Heating_PresetTempNormal.state)
             }
-            if(hall_Heating_Mode.state == 2) { //if mode is master control
-                hall_TargetTemperature.state = (hall_Heating_PresetTempNormal.state)
-            }
-        }
 
-
-        case "OFF_SUMMER": {
-            logInfo("heating_mode.rules", "processing case OFF_SUMMER MASTER Heating Mode: ")
-            conservatory_TemperatureSetpoint.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            //conservatory_TemperatureSetpoint.sendCommand(15.0) //(hall_Heating_PresetTempNormal.state)
-            conservatory_HeatingMode.postUpdate("off")
-            hall_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            hall_Heating_Mode.postUpdate(0)
-            frontRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            frontRoom_Heating_Mode.postUpdate(0) 
-            office_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            office_Heating_Mode.postUpdate(0)
-            elsiesRoom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            elsiesRoom_Heating_Mode.postUpdate(0)
-            bedroom_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            bedroom_Heating_Mode.postUpdate(0)
-            attic_TargetTemperature.postUpdate(15.0) //(hall_Heating_PresetTempNormal.state)
-            attic_Heating_Mode.postUpdate(0)                                                
         }
-        case "LOCAL": {
-            logInfo("heating_mode.rules", "processing case LOCAL MASTER Heating Mode: ")
+        case "off": {
+            logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
+            gRoomHeatingModes.members.forEach[ string RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
+            gTemperatureSetpoints.members.forEach[ number TemperatureSetpoint | TemperatureSetpoint.postUpdate(offTemp) ] 
         }
-        default : { logError("heating_mode.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
+        case "manual": {
+            logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
+        }
+        default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
     }
 end

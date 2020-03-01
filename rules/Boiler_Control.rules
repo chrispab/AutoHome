@@ -7,48 +7,51 @@ then
     }
 end
 
-rule "Boiler Demand changed"
+rule "check for Boiler Demand changed"
 when
 //any change in demand , on or off in any room
-    Item frontRoom_Heating received update or
-    Item conservatory_Heater received update or
-    Item elsiesRoom_Heating received update or
-    Item attic_Heating received update or
-    Item bedroom_Heating received update or
-    Item office_Heating received update or
-    Item hall_Heating received update
+    Item FR_Heater received update or
+    Item CT_Heater received update or
+    Item ER_Heater received update or
+    Item AT_Heater received update or
+    Item BR_Heater received update or
+    Item OF_Heater received update or
+    Item HL_Heater received update
 then
     if (
-        frontRoom_Heating.state == NULL 
-        || conservatory_Heater.state == NULL 
-        || elsiesRoom_Heating.state == NULL
-        || attic_Heating.state == NULL 
-        || bedroom_Heating.state == NULL
-        || office_Heating.state == NULL 
-        || hall_Heating.state == NULL        
-        ) 
-            {
-                logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" )
-                return 
-            }
+        FR_Heater.state == NULL 
+        || CT_Heater.state == NULL 
+        || ER_Heater.state == NULL
+        || AT_Heater.state == NULL 
+        || BR_Heater.state == NULL
+        || OF_Heater.state == NULL 
+        || HL_Heater.state == NULL        
+        ) {
+            logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" + gRoomHeaterStates)
+            gRoomHeaterStates.members.forEach[ heatings | 
+            // heatings.postUpdate("auto")
+                logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with val = " + heatings.name + heatings.state) 
+            ] 
+            // return 
+        }
     //if any rooms want heat - turn on boiler
-    if (       (frontRoom_Heating.state == ON) 
-            || (conservatory_Heater.state == ON) 
-            || (elsiesRoom_Heating.state == ON) 
-            || (attic_Heating.state == ON)
-            || (bedroom_Heating.state == ON)
-            || (office_Heating.state == ON)
-            || (hall_Heating.state == ON) 
+    if (       (FR_Heater.state == ON) 
+            || (CT_Heater.state == ON) 
+            || (ER_Heater.state == ON) 
+            || (AT_Heater.state == ON)
+            || (BR_Heater.state == ON)
+            || (OF_Heater.state == ON)
+            || (HL_Heater.state == ON) 
             ){
         logInfo("Boiler RULE", "Sending boiler ON command" )
         Boiler_Control.sendCommand(ON)
-        Boiler_Control.postUpdate(ON)
+        //Boiler_Control.postUpdate(ON)
        // CT_Message.postUpdate("Mode 0, Boiler Off")
     }
     else { // no rooms want heat so turn off boiler
         logInfo("Boiler RULE", "Sending boiler OFF command" )
         // logInfo("Boiler RULE", "Triggered by : " )
         Boiler_Control.sendCommand(OFF)
-        Boiler_Control.postUpdate(OFF)
+        //Boiler_Control.postUpdate(OFF)
     }
 end

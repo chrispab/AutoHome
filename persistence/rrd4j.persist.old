@@ -39,17 +39,17 @@ Items {
     //Heating_Setpoint* : strategy = everyUpdate,everyMinute
     conservatory_Heat_Mode                : strategy = everyUpdate, restoreOnStartup
     //CT_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    conservatory_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
-    conservatory_Temperature : strategy = everyMinute, restoreOnStartup
-    conservatory_Humidity : strategy = everyMinute, restoreOnStartup
-    conservatory_Heater : strategy = everyMinute, restoreOnStartup
+    CT_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
+    CT_Temperature : strategy = everyMinute, restoreOnStartup
+    CT_Humidity : strategy = everyMinute, restoreOnStartup
+    CT_Heater : strategy = everyMinute, restoreOnStartup
     
-    frontRoom_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
+    FR_HeatingMode                : strategy = everyUpdate, restoreOnStartup
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    frontRoom_TargetTemperature                : strategy = everyUpdate, restoreOnStartup
-    frontRoom_CurrentTemperature : strategy = everyUpdate,everyMinute, restoreOnStartup
-    frontRoom_CurrentHumidity : strategy = everyUpdate,everyMinute, restoreOnStartup
-    frontRoom_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
+    FR_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
+    FR_Temperature : strategy = everyUpdate,everyMinute, restoreOnStartup
+    FR_Humidity : strategy = everyUpdate,everyMinute, restoreOnStartup
+    FR_Heater : strategy = everyUpdate,everyMinute, restoreOnStartup
 
     E_BR_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
@@ -59,12 +59,12 @@ Items {
     E_BR_Heating : strategy = everyUpdate,everyMinute, restoreOnStartup
 
 
-    Attic_Heating_Mode : strategy = everyUpdate, restoreOnStartup
+    AT_HeatingMode : strategy = everyUpdate, restoreOnStartup
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    Attic_Heating_Setpoint : strategy = everyUpdate, restoreOnStartup
+    AT_Heater_Setpoint : strategy = everyUpdate, restoreOnStartup
     Attic_Temperature : strategy = everyMinute, restoreOnStartup
     Attic_Humidity : strategy = everyMinute, restoreOnStartup
-    Attic_Heating : strategy = everyMinute, restoreOnStartup
+    AT_Heater : strategy = everyMinute, restoreOnStartup
 
 
     J_BR_Heating_Mode                : strategy = everyUpdate, restoreOnStartup

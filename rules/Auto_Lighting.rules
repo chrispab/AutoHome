@@ -19,18 +19,16 @@ when
     Item BridgeLightSensorState changed from OFF to ON 
 then
     logInfo("RULE", "Light sensor detected - turn off lights when dark to light detected")
-
-        conservatoryLightsProxy.sendCommand(OFF)
+    conservatoryLightsProxy.sendCommand(OFF)
 end
 
 
-rule "Light sensor Turn ON lights"
+rule "Light sensor Turn ON lights when it gets dark"
 when
     Item BridgeLightSensorState changed from ON to OFF
 then
     logInfo("RULE", "Light sensor detected - gone dark - Turn on lights")
-        conservatoryLightsProxy.sendCommand(ON)
-
+    conservatoryLightsProxy.sendCommand(ON)
 end
 
 

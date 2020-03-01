@@ -1,36 +1,24 @@
-rule "StartUp hall_Heating"
-when
-    System started
-then
-    if (hall_Heating_Mode == NULL) {
-        hall_Heating_Mode.postUpdate(2) // start in master auto control mode
-    }
-end
-
 rule "Hall_ heating"
 when
-    Item hall_Heating_Mode changed or
-    Item hall_TargetTemperature changed or
-    Item hall_CurrentTemperature changed
+    Item HL_Heating_Mode changed or
+    Item HL_TemperatureSetpoint changed or
+    Item HL_Temperature changed
 then
-    //logInfo("Hall_heating.rules", "Hall Heating Mode: " + hall_Heating_Mode.state)
-    //logInfo("Hall_heating.rules", "Hall Heating SP: " + hall_TargetTemperature.state)
-    //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
-    if (hall_Heating_Mode.state == 0) {
-        hall_Heating.sendCommand(OFF)
-        hall_Heating.postUpdate(OFF)
+    if (HL_HeatingMode.state == "off") {
+        HL_Heater.sendCommand(OFF)
+        HL_Heater.postUpdate(OFF)
     }
-    else if ( (hall_Heating_Mode.state == 1) || (hall_Heating_Mode.state == 2) )  { //auto
-        var Number setpoint = hall_TargetTemperature.state as DecimalType
+    else if ( (HL_HeatingMode.state == "auto") || (HL_HeatingMode.state == "manual") )  { //auto
+        var Number setpoint = HL_TemperatureSetpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
-        var Number temp = hall_CurrentTemperature.state as DecimalType // get the current temperature
+        var Number temp = HL_Temperature.state as DecimalType // get the current temperature
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
-            hall_Heating.sendCommand(OFF)
-            hall_Heating.postUpdate(OFF)
+            HL_Heater.sendCommand(OFF)
+            // HL_Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            hall_Heating.sendCommand(ON)
-            hall_Heating.postUpdate(ON)
+            HL_Heater.sendCommand(ON)
+            // HL_Heater.postUpdate(ON)
         } 
     }
 end

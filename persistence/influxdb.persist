@@ -56,53 +56,53 @@ Items {
 
 
     conservatory_Heat_Mode                : strategy = everyUpdate
-    conservatory_TemperatureSetpoint                : strategy = everyUpdate
-    conservatory_Temperature : strategy = everyUpdate
-    conservatory_Humidity : strategy = everyUpdate
-    conservatory_Heater : strategy = everyUpdate
+    CT_TemperatureSetpoint                : strategy = everyUpdate
+    CT_Temperature : strategy = everyUpdate
+    CT_Humidity : strategy = everyUpdate
+    CT_Heater : strategy = everyUpdate
     
-    frontRoom_Heating_Mode                : strategy = everyUpdate
-    frontRoom_TargetTemperature                : strategy = everyUpdate
-    frontRoom_CurrentTemperature : strategy = everyUpdate
-    frontRoom_CurrentHumidity : strategy = everyUpdate
-    frontRoom_Heating : strategy = everyUpdate
+    FR_HeatingMode                : strategy = everyUpdate
+    FR_TemperatureSetpoint                : strategy = everyUpdate
+    FR_Temperature : strategy = everyUpdate
+    FR_Humidity : strategy = everyUpdate
+    FR_Heater : strategy = everyUpdate
 
-    hall_Heating_Mode                : strategy = everyUpdate
-    hall_TargetTemperature                : strategy = everyUpdate
-    hall_CurrentTemperature : strategy = everyUpdate
-    hall_CurrentHumidity : strategy = everyUpdate
-    hall_Heating : strategy = everyUpdate
+    HL_Heating_Mode                : strategy = everyUpdate
+    HL_TemperatureSetpoint                : strategy = everyUpdate
+    HL_Temperature : strategy = everyUpdate
+    HL_Humidity : strategy = everyUpdate
+    HL_Heater : strategy = everyUpdate
 
-    bedroom_Heating_Mode                : strategy = everyUpdate
+    BR_HeatingMode                : strategy = everyUpdate
     bedroom_Heating_Setpoint                : strategy = everyUpdate
     bedroom_Temperature : strategy = everyUpdate
     bedroom_Humidity : strategy = everyUpdate
-    bedroom_Heating : strategy = everyUpdate
-    bedroom_CurrentTemperature : strategy = everyUpdate
+    BR_Heater : strategy = everyUpdate
+    BR_Temperature : strategy = everyUpdate
 
-    office_Heating_Mode : strategy = everyUpdate
+    OF_HeatingMode : strategy = everyUpdate
     office_Heating_Setpoint : strategy = everyUpdate
-    office_TargetTemperature : strategy = everyUpdate
+    OF_TemperatureSetpoint : strategy = everyUpdate
     office_Humidity : strategy = everyUpdate
-    office_Heating : strategy = everyUpdate
-    office_CurrentTemperature : strategy = everyUpdate
+    OF_Heater : strategy = everyUpdate
+    OF_Temperature : strategy = everyUpdate
 
-    elsiesRoom_Heating_Mode                : strategy = everyUpdate
+    ER_HeatingMode                : strategy = everyUpdate
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
-    elsiesRoom_Heating_Setpoint                : strategy = everyUpdate
+    ER_Heater_Setpoint                : strategy = everyUpdate
     elsiesRoom_Temperature : strategy = everyUpdate
     elsiesRoom_Humidity : strategy = everyUpdate
-    elsiesRoom_Heating : strategy = everyUpdate
-    elsiesRoom_CurrentTemperature : strategy = everyUpdate
+    ER_Heater : strategy = everyUpdate
+    ER_Temperature : strategy = everyUpdate
 
-    attic_Heating_Mode : strategy = everyUpdate
+    AT_HeatingMode : strategy = everyUpdate
     //FR_Heating_PresetNormal_Group* : strategy = everyUpdate
-    attic_Heating_Setpoint : strategy = everyUpdate
-    attic_TargetTemperature : strategy = everyUpdate
+    AT_Heater_Setpoint : strategy = everyUpdate
+    AT_TemperatureSetpoint : strategy = everyUpdate
     attic_Temperature : strategy = everyUpdate
     attic_Humidity : strategy = everyUpdate
-    attic_Heating : strategy = everyUpdate
-    attic_CurrentTemperature : strategy = everyUpdate
+    AT_Heater : strategy = everyUpdate
+    AT_Temperature : strategy = everyUpdate
 
 
     Heating_Mode                : strategy = everyUpdate

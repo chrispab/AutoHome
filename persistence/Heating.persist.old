@@ -11,15 +11,15 @@ Items {
 
     // conservatory_Heat_Mode                : strategy = everyUpdate, restoreOnStartup
     // //CT_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    // conservatory_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
-    // conservatory_Temperature : strategy = everyMinute, restoreOnStartup
-    // conservatory_Humidity : strategy = everyMinute, restoreOnStartup
-    // conservatory_Heater : strategy = everyMinute, restoreOnStartup
+    // CT_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
+    // CT_Temperature : strategy = everyMinute, restoreOnStartup
+    // CT_Humidity : strategy = everyMinute, restoreOnStartup
+    // CT_Heater : strategy = everyMinute, restoreOnStartup
     
-    // frontRoom_Heating_Mode                : strategy = everyUpdate, restoreOnStartup
+    // FR_HeatingMode                : strategy = everyUpdate, restoreOnStartup
     // //FR_Heating_PresetNormal_Group* : strategy = everyUpdate, restoreOnStartup
-    // frontRoom_TargetTemperature                : strategy = everyUpdate, restoreOnStartup
-    // frontRoom_CurrentTemperature : strategy = everyMinute, restoreOnStartup
-    // frontRoom_CurrentHumidity : strategy = everyMinute, restoreOnStartup
-    // frontRoom_Heating : strategy = everyMinute, restoreOnStartup
+    // FR_TemperatureSetpoint                : strategy = everyUpdate, restoreOnStartup
+    // FR_Temperature : strategy = everyMinute, restoreOnStartup
+    // FR_Humidity : strategy = everyMinute, restoreOnStartup
+    // FR_Heater : strategy = everyMinute, restoreOnStartup
 }

@@ -1,38 +1,26 @@
-rule "StartUp attic_Heating"
-when
-    System started
-then
-    if (attic_Heating_Mode == NULL) {
-        attic_Heating_Mode.postUpdate(2) // start in master auto control mode
-    }
-        if (attic_Heating_Mode == 0 ){
-        attic_Heating_Mode.postUpdate("Off") // start in master auto control mode
-    }
-end
-
 rule "attic heating"
 when
-    Item attic_Heating_Mode changed or
+    Item AT_HeatingMode changed or
     //Item _Heating_Setpoint changed or
-    Item attic_TargetTemperature changed or
-    Item attic_CurrentTemperature changed
+    Item AT_TemperatureSetpoint changed or
+    Item AT_Temperature changed
 then
     //0=Off, 1=On (local setpoint), 2=Auto (follows program), 3=Boost (1 Hour On)
-    if (attic_Heating_Mode.state == 0) {
-        attic_Heating.sendCommand(OFF)
-       attic_Heating.postUpdate(OFF)
+    if (AT_HeatingMode.state == "off") {
+        AT_Heater.sendCommand(OFF)
+       AT_Heater.postUpdate(OFF)
     }
-    else if ( (attic_Heating_Mode.state == 1) || (attic_Heating_Mode.state == 2) )  { //auto
-        var Number setpoint = attic_TargetTemperature.state as DecimalType
+    else if ( (AT_HeatingMode.state == "auto") || (AT_HeatingMode.state == "manual") )  { //auto
+        var Number setpoint = AT_TemperatureSetpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
         var Number turnOffTemp = setpoint //+ 0.1
-        var Number temp =attic_CurrentTemperature.state as DecimalType // get the current temperature
+        var Number temp =AT_Temperature.state as DecimalType // get the current temperature
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
-            attic_Heating.sendCommand(OFF)
-            attic_Heating.postUpdate(OFF)
+            AT_Heater.sendCommand(OFF)
+            AT_Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            attic_Heating.sendCommand(ON)
-            attic_Heating.postUpdate(ON)
+            AT_Heater.sendCommand(ON)
+            AT_Heater.postUpdate(ON)
         } 
     }
 end

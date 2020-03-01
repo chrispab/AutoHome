@@ -1,10 +1,11 @@
-Group gOffice_Thermostat "Office Thermostat" [ "Thermostat" ]
-Number office_TargetTemperature "Office Setpoint [%.1f °C]" <heating> (gOffice_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-Number office_CurrentTemperature "Office Temperature [%.1f °C]" <temperature> (gOffice_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:officeRadThermoValve:temperature" }
-Number office_CurrentHumidity "Office Humidity [%.1f °C]" <humidity> (gOffice_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:officeRadThermoValve:humidity" }
-String office_Heat_Mode "Office Heat Mode" <settings> (gOffice_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+Group gOF_Thermostat "Office Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Office" ] }
+String OF_ThermostatMode "Office Thermostat Mode" <settings> (gOF_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number OF_TemperatureSetpoint "Office Setpoint [%.1f °C]" <heating> (gOF_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number OF_Temperature "Office Temperature [%.1f °C]" <temperature> (gOF_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:officeRadThermoValve:temperature" }
+Number OF_Humidity "Office Humidity [%.1f °C]" <humidity> (gOF_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:officeRadThermoValve:humidity" }
 
-Switch office_Heating "Office Heating"  <my_radiator> { channel="mqtt:topic:officeRadThermoValve:powerSwitch", autoupdate="false" } 
-String office_Reachable "Office Reachable" <qualityofservice> (gOffice_Thermostat)  { channel="mqtt:topic:officeRadThermoValve:reachable" }
-Number office_Heating_Mode "Office Heating Mode" <settings> (gRoomHeatingMode)
-Number office_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"
+// //additional params for use in openhab functions etc
+Switch OF_Heater "Office Heater"  <my_radiator> (gRoomHeaterStates)  { channel="mqtt:topic:officeRadThermoValve:powerSwitch" } 
+String OF_HeatingMode "Office Heating Mode" <settings> (gRoomHeatingModes)
+Number OF_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"
+String OF_RTVReachable "Office Reachable" <qualityofservice> (gOF_Thermostat)  { channel="mqtt:topic:officeRadThermoValve:reachable" }

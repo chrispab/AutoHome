@@ -1,10 +1,11 @@
-Group gElsiesRoom_Thermostat "Elsie's Bedroom Thermostat" [ "Thermostat" ]
-Number elsiesRoom_TargetTemperature "Elsie's Bedroom Setpoint [%.1f °C]" <heating> (gElsiesRoom_Thermostat, gHeatingSetPoints) [ "TargetTemperature" ]
-Number elsiesRoom_CurrentTemperature "Elsie's Bedroom Temperature [%.1f °C]" <temperature> (gElsiesRoom_Thermostat) [ "CurrentTemperature" ] { channel="mqtt:topic:elsiesRoomRadThermoValve:temperature" }
-Number elsiesRoom_CurrentHumidity "Elsie's Bedroom Humidity [%.1f °C]" <humidity> (gElsiesRoom_Thermostat) [ "CurrentHumidity" ] { channel="mqtt:topic:elsiesRoomRadThermoValve:humidity" }
-String elsiesRoom_Heat_Mode "Elsie's Bedroom Heat Mode" <settings> (gElsiesRoom_Thermostat) [ "HeatingCoolingMode" ]// heating modes: 0 - Off, 1 - On, 2 - Auto
+Group gER_Thermostat "Elsie's Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Elsie's Room" ] }
+String ER_ThermostatMode "Elsie's Room Thermostat Mode" <settings> (gER_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number ER_TemperatureSetpoint "Elsie's Room Setpoint [%.1f °C]" <heating> (gER_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number ER_Temperature "Bedro om Temperature [%.1f °C]" <temperature> (gER_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:elsiesRoomRadThermoValve:temperature" }
+Number ER_Humidity "Elsie's Room Humidity [%.1f °C]" <humidity> (gER_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:elsiesRoomRadThermoValve:humidity" }
 
-Switch elsiesRoom_Heating "Elsie's Bedroom Heating"  <my_radiator> { channel="mqtt:topic:elsiesRoomRadThermoValve:powerSwitch", autoupdate="false" } 
-String elsiesRoom_Reachable "Elsie's Bedroom Reachable" <qualityofservice> (gElsiesRoom_Thermostat)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
-Number elsiesRoom_Heating_Mode "Elsie's Bedroom Heating Mode" <settings> (gRoomHeatingMode)
-Number elsiesRoom_Heating_PresetTempNormal "Elsie's Bedroom Heating Preset (Normal Mode) [%.1f °C]"
+// // // //additional params for use in openhab functions etc
+Switch ER_Heater "Elsie's Room Heater"  <my_radiator>  (gRoomHeaterStates) { channel="mqtt:topic:elsiesRoomRadThermoValve:powerSwitch" } 
+String ER_HeatingMode "Elsie's Room Heating Mode" <settings> (gRoomHeatingModes)
+Number ER_Heating_PresetTempNormal "Elsie's Room Heating Preset (Normal Mode) [%.1f °C]"
+String ER_RTVReachable "Elsie's Room Reachable" <qualityofservice> (gER_Thermostat)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }

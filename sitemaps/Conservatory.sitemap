@@ -1,10 +1,10 @@
 sitemap Conservatory label="Conservatory"
 {
     Frame label="Heating" {
-        Text item= conservatory_Temperature label="Temperature: [%.1f °C]"
-        Setpoint item= conservatory_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[conservatory_HeatingMode=="auto", conservatory_HeatingMode=="manual"]
-        Switch item= conservatory_HeatingMode label="Heating Mode" mappings=[off="off",auto="auto", manual="manual"]
-        Switch item= conservatory_Heater label="Radiators"
+        Text item= CT_Temperature label="Temperature: [%.1f °C]"
+        Setpoint item= CT_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[CT_HeatingMode=="auto", CT_HeatingMode=="manual"]
+        Switch item= CT_HeatingMode label="Heating Mode" mappings=[off="off",auto="auto", manual="manual"]
+        Switch item= CT_Heater label="Radiators"
     }
     Frame label="TV" {
         Switch item= vCT_TVKodiSpeakers label="Conservatory TV Kodi, Speakers"

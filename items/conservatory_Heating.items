@@ -1,21 +1,13 @@
-// To map the default thermostat modes of Google (on, off, heat, cool, etc.) to custom ones for your specific setup,
-//  you can use the modes config option on the thermostat group. 
-// E.g. [ modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto" ] 
-//  will enable the following five modes in Google Home "off, heat, eco, on, auto" 
-// that will be translated to "OFF, COMFORT, ECO, ON, auto". 
-//  You can specify alternative conversions using the colon sign, 
-// so that in the former example "BOOST" in openHAB would also be translated 
-//  to "heat" in Google. For the translation of Google modes to openHAB always the first option after the equal sign is used. 
-//  By default the integration will provide "off,heat,cool,on,heatcool,auto,eco".
-
+// https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
 //thermostat definition formatted for Google home, assistant use
-Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory", modes="off=OFF,heat=ON,on=ON,cool=COOL,auto=AUTO" ] }
-String conservatory_ThermostatMode "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number conservatory_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gHeatingSetPoints) { ga="thermostatTemperatureSetpoint" }
-Number conservatory_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
-Number conservatory_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gCT_Thermostat) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+// Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory", modes="off,heat,auto" ] }
+Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
+String CT_ThermostatMode "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number CT_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gCT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 
 //additional params for use in openhab functions etc
-Switch conservatory_Heater "Conservatory Heater"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
-String conservatory_HeatingMode "Conservatory Heating Mode" <settings> (gRoomHeatingModes)
-Number conservatory_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
+Switch CT_Heater "Conservatory Heater"  <my_radiator> { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
+String CT_HeatingMode "Conservatory Heating Mode" <settings> (gRoomHeatingModes)
+Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
