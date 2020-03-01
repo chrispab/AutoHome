@@ -38,4 +38,8 @@ then
             TModesTimer = null
         ]
     }
+
+    if (Boiler_Control == NULL) {
+        Boiler_Control.postUpdate(OFF)
+    }
 end

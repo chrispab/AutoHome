@@ -5,7 +5,7 @@ Number BR_Temperature "Bedro om Temperature [%.1f °C]" <temperature> (gBR_Therm
 Number BR_Humidity "Bedroom Humidity [%.1f °C]" <humidity> (gBR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:bedroomRadThermoValve:humidity" }
 
 // // //additional params for use in openhab functions etc
-Switch BR_Heater "Bedroom Heater"  <my_radiator>  (gRoomHeaterStates) { channel="mqtt:topic:bedroomRadThermoValve:powerSwitch" } 
+Switch BR_Heater "Bedroom Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:bedroomRadThermoValve:powerSwitch" } 
 String BR_HeatingMode "Bedroom Heating Mode" <settings> (gRoomHeatingModes)
 Number BR_Heating_PresetTempNormal "Bedroom Heating Preset (Normal Mode) [%.1f °C]"
 String BR_RTVReachable "Bedroom Reachable" <qualityofservice> (gBR_Thermostat)  { channel="mqtt:topic:bedroomRadThermoValve:reachable" }

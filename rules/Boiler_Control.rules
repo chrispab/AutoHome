@@ -1,57 +1,26 @@
-rule "StartUp Boiler Control Heating"
-when
-    System started
-then
-    if (Boiler_Control == NULL) {
-        Boiler_Control.postUpdate(OFF)
-    }
-end
-
 rule "check for Boiler Demand changed"
 when
-//any change in demand , on or off in any room
-    Item FR_Heater received update or
-    Item CT_Heater received update or
-    Item ER_Heater received update or
-    Item AT_Heater received update or
-    Item BR_Heater received update or
-    Item OF_Heater received update or
-    Item HL_Heater received update
+    Member of gRoomHeaterStates received command
 then
-    if (
-        FR_Heater.state == NULL 
-        || CT_Heater.state == NULL 
-        || ER_Heater.state == NULL
-        || AT_Heater.state == NULL 
-        || BR_Heater.state == NULL
-        || OF_Heater.state == NULL 
-        || HL_Heater.state == NULL        
-        ) {
+    // logInfo("Boiler_Control RULE", "here we go=========" )
+    if ( gRoomHeaterStates.state ==  NULL ) {
             logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" + gRoomHeaterStates)
             gRoomHeaterStates.members.forEach[ heatings | 
-            // heatings.postUpdate("auto")
-                logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with val = " + heatings.name + heatings.state) 
+                logInfo("Boiler_Control RULE", "--------->Heating state detected with val = " + heatings.name + heatings.state) 
             ] 
-            // return 
         }
-    //if any rooms want heat - turn on boiler
-    if (       (FR_Heater.state == ON) 
-            || (CT_Heater.state == ON) 
-            || (ER_Heater.state == ON) 
-            || (AT_Heater.state == ON)
-            || (BR_Heater.state == ON)
-            || (OF_Heater.state == ON)
-            || (HL_Heater.state == ON) 
-            ){
+    if ( gAnyRoomHeaterOn.state == ON ) {//if any rooms want heat - turn on boiler
         logInfo("Boiler RULE", "Sending boiler ON command" )
+        gRoomHeaterStates.members.forEach[ heatings | 
+            logInfo("Boiler_Control RULE", "--------->Heater state detected ON : " + heatings.name + heatings.state) 
+        ] 
         Boiler_Control.sendCommand(ON)
-        //Boiler_Control.postUpdate(ON)
-       // CT_Message.postUpdate("Mode 0, Boiler Off")
     }
     else { // no rooms want heat so turn off boiler
         logInfo("Boiler RULE", "Sending boiler OFF command" )
-        // logInfo("Boiler RULE", "Triggered by : " )
+        gRoomHeaterStates.members.forEach[ heatings | 
+            logInfo("Boiler_Control RULE", "--------->Heater state detected OFF : " + heatings.name + heatings.state) 
+        ] 
         Boiler_Control.sendCommand(OFF)
-        //Boiler_Control.postUpdate(OFF)
     }
 end

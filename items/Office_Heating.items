@@ -5,7 +5,7 @@ Number OF_Temperature "Office Temperature [%.1f °C]" <temperature> (gOF_Thermos
 Number OF_Humidity "Office Humidity [%.1f °C]" <humidity> (gOF_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:officeRadThermoValve:humidity" }
 
 // //additional params for use in openhab functions etc
-Switch OF_Heater "Office Heater"  <my_radiator> (gRoomHeaterStates)  { channel="mqtt:topic:officeRadThermoValve:powerSwitch" } 
+Switch OF_Heater "Office Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn)  { channel="mqtt:topic:officeRadThermoValve:powerSwitch" } 
 String OF_HeatingMode "Office Heating Mode" <settings> (gRoomHeatingModes)
 Number OF_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]"
 String OF_RTVReachable "Office Reachable" <qualityofservice> (gOF_Thermostat)  { channel="mqtt:topic:officeRadThermoValve:reachable" }

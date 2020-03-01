@@ -5,7 +5,7 @@ when
     Item masterHeatingMode received update
 then
 //avoid changing a zone sp if zone heating local or auto
-    Heating_UpdateHeaters.postUpdate(OFF)
+    //Heating_UpdateHeaters.postUpdate(OFF)
 
     logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
     switch masterHeatingMode.state {
@@ -34,7 +34,6 @@ rule "React on message to send target temperatures to zone setpoints"
 when
     Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
 then
-//avoid changing a zone sp if zone heating mode 1 , local auto
     Heating_UpdateHeaters.postUpdate(OFF) // rest update heaters flag ready for next trigger (OFF-ON)
 
     logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
