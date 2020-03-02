@@ -2,8 +2,8 @@ sitemap Office label="Office"
 {
   Frame label="Heating" {
     Text item=OF_Temperature label="Temperature: [%.1f °C]"
-    Setpoint item= OF_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=14 maxValue=24 step=0.1 visibility=[OF_HeatingMode>0]
-    Switch item=OF_HeatingMode label="Heating Mode" mappings=[0="Off", 1="Local", 2="Master"]
+    Setpoint item= OF_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[OF_HeatingMode=="auto", OF_HeatingMode=="manual"]
+    Switch item=OF_HeatingMode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
     Switch item= OF_Heater label="Radiator"
   }
 }

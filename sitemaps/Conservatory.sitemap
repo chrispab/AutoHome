@@ -11,23 +11,10 @@ sitemap Conservatory label="Conservatory"
         // Switch item= conservatoryTVPower label="TV" icon="screen"
         Switch item= CT_Soundbar433PowerSocket label="TV Soundbar" icon="receiver"
         Switch item= radio label="Radio" icon="player"
-        Switch item= socketG4_1 label="Mythtv backend Pi server"
+        // Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
     }
-    
-    Frame label="Presence" {
-      Default item=JoG6_Online  label="Jo Phone" icon="network"
-      Default item=ChrisG6_Online label="Chris Phone" icon="network"
-      Default item=ElsieIPhone_Online label="Elsie Phone" icon="network"
-    }  
-  Frame {
-    Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
-    Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
-    //Switch item= conservatoryTVPower label="TV Switch" 
-    //Switch item= GoingToBed label="Going To Bed"
-    Default item= BridgeLightSensorState label="Outside Light Level"
-    Group item=gIkeaLights label="ikea"
-  }
+
     Frame label="Recirc Fan" {
           Switch item= CT_Fan433PowerSocket label="Fan" icon="CT_Fan433PowerSocket"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
@@ -40,4 +27,19 @@ sitemap Conservatory label="Conservatory"
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
           Switch item= bridgeButton1 label="Bridge Button 1" icon="switch"
     } 
+  Frame {
+    Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+    Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
+    //Switch item= conservatoryTVPower label="TV Switch" 
+    //Switch item= GoingToBed label="Going To Bed"
+    Default item= BridgeLightSensorState label="Outside Light Level"
+    Group item=gIkeaLights label="ikea"
+  }
+    
+    Frame label="Presence" {
+      Default item=JoG6_Online  label="Jo Phone" icon="network"
+      Default item=ChrisG6_Online label="Chris Phone" icon="network"
+      Default item=ElsieIPhone_Online label="Elsie Phone" icon="network"
+    }  
+
 }

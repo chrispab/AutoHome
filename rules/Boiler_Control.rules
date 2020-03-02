@@ -2,25 +2,27 @@ rule "check for Boiler Demand changed"
 when
     Member of gRoomHeaterStates received command
 then
-    logInfo("RuleExamples", "The item " + triggeringItem.name + " changed state from " + triggeringItem.previousState + " to " + triggeringItem.state)
-    // logInfo("Boiler_Control RULE", "here we go=========" )
+    logInfo("Boiler_Control rule", "---> A Heater has recieved a command - update boiler as reqd")
+    logInfo("Boiler_Control rule", "---> The item " + triggeringItem.name + " changed state from " + triggeringItem.previousState.state + " to " + triggeringItem.state)
+    // logInfo("Boiler_Control rule", "here we go=========" )
     if ( gRoomHeaterStates.state ==  NULL ) {
-            logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" + gRoomHeaterStates)
-            gRoomHeaterStates.members.forEach[ heatings | 
-                logInfo("Boiler_Control RULE", "--------->Heating state detected with val = " + heatings.name + heatings.state) 
+            // logInfo("Boiler_Control rule", "+++> Heating state detected with NULL VALUE" + gRoomHeaterStates)
+            gRoomHeaterStates.members.forEach[ Heater | 
+                logInfo("Boiler_Control rule", "---> Heating state detected with val = " + Heater.name + Heater.state) 
             ] 
         }
     if ( gAnyRoomHeaterOn.state == ON ) {//if any rooms want heat - turn on boiler
-        logInfo("Boiler RULE", "Sending boiler ON command" )
-        gRoomHeaterStates.members.forEach[ heatings | 
-            logInfo("Boiler_Control RULE", "--------->Heater state detected ON : " + heatings.name + heatings.state) 
+        // gRoomHeaterStates.members.forEach[ Heater | 
+        gRoomHeaterStates.members.filter[l|l.state == ON].forEach[ Heater | 
+            logInfo("Boiler_Control rule", "---> Heater state detected : " + Heater.name + " : " + Heater.state) 
         ] 
+        logInfo("Boiler_Control rule", "---> At least one heater on -> Sending boiler ON command" )
         Boiler_Control.sendCommand(ON)
     }
     else { // no rooms want heat so turn off boiler
-        logInfo("Boiler RULE", "Sending boiler OFF command" )
-        gRoomHeaterStates.members.forEach[ heatings | 
-            logInfo("Boiler_Control RULE", "--------->Heater state detected OFF : " + heatings.name + heatings.state) 
+        logInfo("Boiler_Control rule", "---> All heaters are off -> Sending boiler OFF command" )
+        gRoomHeaterStates.members.filter[l|l.state != ON].forEach[ Heater | 
+            logInfo("Boiler_Control rule", "---> Heater state detected : " + Heater.name + " : " + Heater.state) 
         ] 
         Boiler_Control.sendCommand(OFF)
     }

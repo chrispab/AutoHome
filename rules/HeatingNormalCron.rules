@@ -180,19 +180,19 @@ then
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
-// rule "19:00"
-// when
-//     Time cron "0 00 19 ? * MON-FRI *"
-// then
-//     CT_Heating_PresetTempNormal.postUpdate(highTemp)
-//     FR_Heating_PresetTempNormal.postUpdate(offTemp)
-//     ER_Heating_PresetTempNormal.postUpdate(midTemp)
-//     AT_Heating_PresetTempNormal.postUpdate(offTemp)
-//     BR_Heating_PresetTempNormal.postUpdate(midTemp)
-//     OF_Heating_PresetTempNormal.postUpdate(midTemp)
-//     HL_Heating_PresetTempNormal.postUpdate(midTemp)
-//     Heating_UpdateHeaters.sendCommand(ON)
-// end
+rule "21:00"
+when
+    Time cron "0 00 21 ? * MON-FRI *"
+then
+    // CT_Heating_PresetTempNormal.postUpdate(highTemp)
+    // FR_Heating_PresetTempNormal.postUpdate(offTemp)
+    // ER_Heating_PresetTempNormal.postUpdate(midTemp)
+    // AT_Heating_PresetTempNormal.postUpdate(offTemp)
+    BR_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    // OF_Heating_PresetTempNormal.postUpdate(midTemp)
+    // HL_Heating_PresetTempNormal.postUpdate(midTemp)
+    Heating_UpdateHeaters.sendCommand(ON)
+end
 
 // rule "22:30 weekdays"
 // when
