@@ -3,11 +3,11 @@
 // Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory", modes="off,heat,auto" ] }
 Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
 String CT_ThermostatMode "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number CT_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gTemperatureSetPoints) { ga="thermostatTemperatureSetpoint" }
+Number CT_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
 Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gCT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 
 //additional params for use in openhab functions etc
 Switch CT_Heater "Conservatory Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
-String CT_HeatingMode "Conservatory Heating Mode" <settings> (gRoomHeatingModes)
+String CT_HeatingMode "Conservatory Heating Mode" <settings> (gHeatingModes)
 Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"

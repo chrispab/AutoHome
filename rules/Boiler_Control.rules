@@ -2,6 +2,7 @@ rule "check for Boiler Demand changed"
 when
     Member of gRoomHeaterStates received command
 then
+    logInfo("RuleExamples", "The item " + triggeringItem.name + " changed state from " + triggeringItem.previousState + " to " + triggeringItem.state)
     // logInfo("Boiler_Control RULE", "here we go=========" )
     if ( gRoomHeaterStates.state ==  NULL ) {
             logInfo("Boiler_Control RULE", "?? ?? ??Heating state detected with NULL VALUE" + gRoomHeaterStates)

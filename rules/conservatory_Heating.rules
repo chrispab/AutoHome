@@ -29,13 +29,25 @@ then
     }
 end
 
-rule "Conservatory heating"
+rule "test rule"
 when
-    Item CT_ThermostatMode received update
-    // or
-    // Item CT_TemperatureSetpoint changed or
-    // Item CT_Temperature changed
+    Member of gHeatingModes received update or 
+    Member of gTemperatureSetpoints received update or 
+    Member of gRoomTemperatures received update
 then
-    logInfo("CT_heating.rules", "CT gCT_Thermostat happened:.... " + CT_ThermostatMode)
-// gCT_Thermostat
+//get room prefix
+//add _heatingmode
+//if heating mode == off
+//  _Heater.sendCommand(OFF)
+//if heating mode == auto or manual
+var string prefix = triggeringItem.name.split("_").get(0)
+
+ var string heatername = "" + prefix + "_HeatingMode"
+
+
+			// Grab name of item
+			// val nameOfItem = lastItem.label
+			// postUpdate(Sensor_Allarme,nameOfItem)
+// https://community.openhab.org/t/solved-using-a-variable-to-obtain-an-item-state/61500/3
+        logInfo("RuleExamples", "====>>>> The item ...." + heatername + "...." + triggeringItem.name + " changed state from " + triggeringItem.previousState + " to " + triggeringItem.state)
 end

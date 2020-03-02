@@ -20,8 +20,8 @@ then
     logInfo("startup heating", "checking if any room heating modes are null")
     if(ModesTimer === null) {
         ModesTimer = createTimer(now.plusSeconds(60)) [| 
-            if ( gRoomHeatingModes.state == null) {
-                gRoomHeatingModes.members.forEach[ String heatingMode | heatingMode.postUpdate("auto") ] 
+            if ( gHeatingModes.state == null) {
+                gHeatingModes.members.forEach[ String heatingMode | heatingMode.postUpdate("auto") ] 
                 logInfo("startup heating", "heating mode was null - set heating mode to - auto")
             }
             ModesTimer = null
