@@ -1,8 +1,8 @@
 
 var Number sleepTemp = 17
-var Number offTemp = 14
+var Number offTemp = 13
 var Number liveTemp = 21
-var Number midTemp = 18
+var Number midTemp = 19
 var Number lowTemp = 16
 var Number morningTemp = 20
 var Number eveningTemp = 22
@@ -16,7 +16,7 @@ rule "00:00"
 when
     Time cron "0 00 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -30,7 +30,7 @@ rule "00:30"
 when
     Time cron "0 30 00 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp )
     ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -44,7 +44,7 @@ rule "01:00 - all heating low"
 when
     Time cron "0 00 01 ? * * *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp )
     ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -58,7 +58,7 @@ rule "02:30 - all heating low"
 when
     Time cron "0 30 02 ? * * *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp )
     ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp )
@@ -188,7 +188,7 @@ then
     // FR_Heating_PresetTempNormal.postUpdate(offTemp)
     // ER_Heating_PresetTempNormal.postUpdate(midTemp)
     // AT_Heating_PresetTempNormal.postUpdate(offTemp)
-    BR_Heating_PresetTempNormal.postUpdate(eveningTemp)
+    BR_Heating_PresetTempNormal.postUpdate(midTemp)
     // OF_Heating_PresetTempNormal.postUpdate(midTemp)
     // HL_Heating_PresetTempNormal.postUpdate(midTemp)
     Heating_UpdateHeaters.sendCommand(ON)
@@ -244,7 +244,7 @@ rule "00:30 am weekend"
 when
     Time cron "0 30 00 ? * SAT-SUN *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(sleepTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp )
     ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp )
