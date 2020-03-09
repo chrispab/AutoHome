@@ -1,0 +1,10 @@
+to use ssh for push
+chanhe remotes
+e.g from
+chris@E5520:/mnt/nfs/openhab/openhab2$ git remote -v
+origin  https://github.com/chrispab/AutoHome.git (fetch)
+origin  https://github.com/chrispab/AutoHome.git (push)
+
+Change directory into the local clone of your repository (if you're not already there) and run:
+
+git remote set-url origin git@github.com:chrispab/AutoHome.git
