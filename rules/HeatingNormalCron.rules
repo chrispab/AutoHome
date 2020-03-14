@@ -6,10 +6,11 @@ var Number midTemp = 19
 var Number lowTemp = 16
 var Number morningTemp = 20
 var Number eveningTemp = 22
-var Number highTemp = 22.5
-var Number vhighTemp = 22.5
+var Number highTemp = 22
+var Number vhighTemp = 22
 var Number wakeTemp = 19
 
+var Number HL_midTemp = 17
 
 // master heating mode - NORMAL mode rules
 rule "00:00"
@@ -176,7 +177,7 @@ then
     AT_Heating_PresetTempNormal.postUpdate(offTemp)
     BR_Heating_PresetTempNormal.postUpdate(midTemp)
     OF_Heating_PresetTempNormal.postUpdate(midTemp)
-    HL_Heating_PresetTempNormal.postUpdate(midTemp)
+    HL_Heating_PresetTempNormal.postUpdate(HL_midTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 

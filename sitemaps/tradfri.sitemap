@@ -1,6 +1,7 @@
 sitemap tradfri label="ikea tradfri"
 {
     Frame {
+        Switch item=conservatoryLightsProxy label="item=conservatoryLightsProxy"
         Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
         Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
         //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"

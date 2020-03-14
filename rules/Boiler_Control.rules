@@ -2,27 +2,27 @@ rule "check for Boiler Demand changed"
 when
     Member of gRoomHeaterStates received command
 then
-    logInfo("Boiler_Control rule", "---> A Heater has recieved a command - update boiler as reqd")
-    logInfo("Boiler_Control rule", "---> The item " + triggeringItem.name + " changed state from " + triggeringItem.previousState.state + " to " + triggeringItem.state)
+    logInfo("Boiler_Control rule", "---> A Heater recieved a command - updating boiler state")
+    logInfo("Boiler_Control rule", "---> " + triggeringItem.name + " changed from " + triggeringItem.previousState.state + " to " + triggeringItem.state)
     // logInfo("Boiler_Control rule", "here we go=========" )
     if ( gRoomHeaterStates.state ==  NULL ) {
             // logInfo("Boiler_Control rule", "+++> Heating state detected with NULL VALUE" + gRoomHeaterStates)
             gRoomHeaterStates.members.forEach[ Heater | 
                 logInfo("Boiler_Control rule", "---> Heating state detected with val = " + Heater.name + Heater.state) 
             ] 
-        }
+    }
     if ( gAnyRoomHeaterOn.state == ON ) {//if any rooms want heat - turn on boiler
         // gRoomHeaterStates.members.forEach[ Heater | 
         gRoomHeaterStates.members.filter[l|l.state == ON].forEach[ Heater | 
-            logInfo("Boiler_Control rule", "---> Heater state detected : " + Heater.name + " : " + Heater.state) 
+            logInfo("Boiler_Control rule", "---> Heater " + Heater.name + " is " + Heater.state) 
         ] 
-        logInfo("Boiler_Control rule", "---> At least one heater on -> Sending boiler ON command" )
+        logInfo("Boiler_Control rule", "---> One or more heater on -> Sending boiler ON command" )
         Boiler_Control.sendCommand(ON)
     }
     else { // no rooms want heat so turn off boiler
         logInfo("Boiler_Control rule", "---> All heaters are off -> Sending boiler OFF command" )
         gRoomHeaterStates.members.filter[l|l.state != ON].forEach[ Heater | 
-            logInfo("Boiler_Control rule", "---> Heater state detected : " + Heater.name + " : " + Heater.state) 
+            logInfo("Boiler_Control rule", "---> Heater " + Heater.name + " is " + Heater.state) 
         ] 
         Boiler_Control.sendCommand(OFF)
     }
