@@ -1,7 +1,9 @@
 Group		Heating_PresetNormal_Group
 
 Group		gHeatingModes
-Group		gThermostatModes
+// Group		gThermostatModes
+Group:String:AND("heat","notdef") gThermostatModes
+
 Group		gTemperatureSetpoints
 Group       gRoomTemperatures
 Group       gRoomHumidities

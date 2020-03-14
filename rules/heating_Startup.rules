@@ -9,7 +9,7 @@ then
     logInfo("startup heating", "checking if master heating mode null")
     if(MModeTimer === null) {
         MModeTimer = createTimer(now.plusSeconds(60), [| 
-            if (masterHeatingMode.state == null) {
+            if (masterHeatingMode.state == NULL) {
                 masterHeatingMode.postUpdate("auto")
                 logInfo("startup heating", "master heating mode was null - set master heating mode to - auto")
             }
@@ -20,7 +20,7 @@ then
     logInfo("startup heating", "checking if any room heating modes are null")
     if(ModesTimer === null) {
         ModesTimer = createTimer(now.plusSeconds(60), [| 
-            if ( gHeatingModes.state == null) {
+            if ( gHeatingModes.state == NULL) {
                 gHeatingModes.members.forEach[ String heatingMode | heatingMode.postUpdate("auto") ] 
                 logInfo("startup heating", "heating mode was null - set heating mode to - auto")
             }
@@ -29,19 +29,16 @@ then
     }
 
     logInfo("startup heating", "????????????????????????????????????????checking if any GA Thermostat modes are null")
-    if(TModesTimer === null) {
-        TModesTimer = createTimer(now.plusSeconds(5), [| 
+    if(TModesTimer === null) {//if timer not currently running
+        TModesTimer = createTimer(now.plusSeconds(69), [| 
           logInfo("startup heating", "================================== timer executing")
 
-           if ( gThermostatModes.state === NULL) {
-              logInfo("startup heating", ")))))))))))))))))))))))))))))))Setting GA Thermostat modes to heat")
+           if ( gThermostatModes.state == "notdef") {//if any states are - notdef
+              logInfo("startup heating", ")))cc))))))))))xx))))))))))))))))))Setting GA Thermostat modes to heat")
                gThermostatModes.members.forEach[  ThermoMode | ThermoMode.postUpdate("heat") ]
             }
-            TModesTimer = null
+            TModesTimer = null//mark as timer not running
         ])
-                // GaesteWC_timer = createTimer(now.plusMinutes(5), [| 
-                //     EG_Hue_bloom_Wohnzimmer.sendCommand(HSBType::RED) 
-                // ])
     }
 
     if (Boiler_Control === null) {
