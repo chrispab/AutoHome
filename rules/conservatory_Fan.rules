@@ -22,7 +22,7 @@ then
     logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
     logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        logInfo("RULE", "start conservatory re-circ CT_Fan433PowerSocket if setpoint > 19, currently set at :" + sp)
+        logInfo("fan rules", "conservatory fan on, heating setpoint > 20, sp currently:" + sp)
         {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
         {postUpdate(CT_Fan433PowerSocket, ON)}
 
