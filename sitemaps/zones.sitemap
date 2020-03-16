@@ -14,6 +14,8 @@ sitemap zones label="Zones"
             Switch item= Zone1FanStatus label="Fan"
             Switch item= Zone1VentStatus label="Vent"
             Switch item= Zone1HeaterStatus label="Heat"
+            Text item=Zone1Reachable label="Reachable"
+
   }
       Frame label="Zone 3" {
         Switch item=zone3ControllerPower label="Power"
@@ -23,6 +25,7 @@ sitemap zones label="Zones"
             Switch item= Zone3FanStatus label="Fan"
             Switch item= Zone3VentStatus label="Vent"
             Switch item= Zone3HeaterStatus label="Heat"
+            Text item=Zone3Reachable label="Reachable"
   }
 
 

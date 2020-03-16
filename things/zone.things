@@ -10,6 +10,7 @@ Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:M
         Type switch : lightStatus   [ stateTopic="Zone1/LightStatus" ]
         Type switch : heaterStatus  [ stateTopic="Zone1/HeaterStatus" ]
         Type string : heartBeat     [ stateTopic="Zone1/HeartBeat"  ]
+        Type string : Reachable    [ stateTopic="Zone1/LWT"  ]
 }
 
 Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {
@@ -23,6 +24,7 @@ Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:M
         Type switch : lightStatus   [ stateTopic="Zone3/LightStatus" ]
         Type switch : heaterStatus  [ stateTopic="Zone3/HeaterStatus" ]
         Type string : heartBeat     [ stateTopic="Zone3/HeartBeat"  ]
+        Type string : Reachable    [ stateTopic="Zone3/LWT"  ]
 }
 // Number Zone1Temperature "Zone 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquittoz:Zone1/TemperatureStatus:state:default]"} 
 // Number Zone1Humidity "Zone 1 Humidity [%.1f ]" <humidity> {mqtt="<[mosquittoz:Zone1/HumidityStatus:state:default]"} 

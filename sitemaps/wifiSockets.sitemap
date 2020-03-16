@@ -23,6 +23,7 @@ sitemap wifiSockets label="wifi sockets"
         // Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
                 Switch item=WiFiSocket3Power label="bedroom kodi/tv wifi socket 3"
         Switch item=WiFiSocket4Power label="wifi socket 4"
+            // String item=Zone3Reachable label="Reachable"
 
     }
 }
