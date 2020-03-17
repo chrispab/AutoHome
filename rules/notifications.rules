@@ -3,22 +3,15 @@ rule "zone3 lights on"
 when
     Item Zone3LightStatus changed from OFF to ON
 then
-    CT_FairyLights433Socket.sendCommand(OFF)
-    sendNotification("cbattisson@gmail.com", "z3 light on")
-    logInfo("RULE", "Z3 lights - on")
+    sendNotification("cbattisson@gmail.com", "Zone 3 light on")
+    logInfo("RULE", "Zone 3 lights - on")
 
-    createTimer(now.plusSeconds(2), [|
-        CT_FairyLights433Socket.sendCommand(ON)
-    ])
-    
-    // createTimer(now.plusSeconds(4), [|
-    // CT_FairyLights433Socket.sendCommand(OFF)
-    // ])
-
-    // createTimer(now.plusSeconds(6), [|
-    //     CT_FairyLights433Socket.sendCommand(ON)
-    // ])
-
+    if (CT_FairyLights433Socket.state == ON) {
+        CT_FairyLights433Socket.sendCommand(OFF)
+        val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    }
 end
 
 
@@ -29,6 +22,12 @@ then
     CT_FairyLights433Socket.sendCommand(OFF)
     sendNotification("cbattisson@gmail.com", "Zone 1 went offline")
     logInfo("RULE", "Zone 1 went Offline")
+    if (CT_FairyLights433Socket.state == ON) {
+        CT_FairyLights433Socket.sendCommand(OFF)
+        val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    }
 end
 
 rule "Zone 1 came Online"
@@ -38,6 +37,12 @@ then
     CT_FairyLights433Socket.sendCommand(OFF)
     sendNotification("cbattisson@gmail.com", "Zone 1 came Online")
     logInfo("RULE", "Zone 1 came Online")
+    if (CT_FairyLights433Socket.state == ON) {
+        CT_FairyLights433Socket.sendCommand(OFF)
+        val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    }
 end
 
 
@@ -48,6 +53,12 @@ then
     CT_FairyLights433Socket.sendCommand(OFF)
     sendNotification("cbattisson@gmail.com", "zone3 went offline")
     logInfo("RULE", "Z3 went Offline")
+    if (CT_FairyLights433Socket.state == ON) {
+        CT_FairyLights433Socket.sendCommand(OFF)
+        val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    }
 end
 
 rule "zone3 came Online"
@@ -57,4 +68,10 @@ then
     CT_FairyLights433Socket.sendCommand(OFF)
     sendNotification("cbattisson@gmail.com", "Zone 3 came Online")
     logInfo("RULE", "Zone 3 came Online")
+    if (CT_FairyLights433Socket.state == ON) {
+        CT_FairyLights433Socket.sendCommand(OFF)
+        val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    }
 end
