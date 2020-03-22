@@ -1,4 +1,3 @@
-
 Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:MyMQTTBroker) @ "Garage" {
     Channels:
         Type number : temperature   [ stateTopic="Zone1/TemperatureStatus" ]
@@ -26,11 +25,3 @@ Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:M
         Type string : heartBeat     [ stateTopic="Zone3/HeartBeat"  ]
         Type string : Reachable    [ stateTopic="Zone3/LWT"  ]
 }
-// Number Zone1Temperature "Zone 1 Temperature [%.1f °C]" <temperature> {mqtt="<[mosquittoz:Zone1/TemperatureStatus:state:default]"} 
-// Number Zone1Humidity "Zone 1 Humidity [%.1f ]" <humidity> {mqtt="<[mosquittoz:Zone1/HumidityStatus:state:default]"} 
-// Switch Zone1VentStatus "Zone 1 Vent Status" <fan> {mqtt="<[mosquittoz:Zone1/VentStatus:state:MAP(onoffcases.map)]"} 
-// Switch Zone1FanStatus "Zone 1 fan Status" <fan_ceiling> {mqtt="<[mosquittoz:Zone1/FanStatus:state:MAP(onoffcases.map)]"} 
-// Switch Zone1LightStatus "Zone 1 Light Status" <switch> {mqtt="<[mosquittoz:Zone1/LightStatus:state:MAP(onoffcases.map)]"} 
-// Switch Zone1HeaterStatus "Zone 1 Heater Status" <my_radiator> {mqtt="<[mosquittoz:Zone1/HeaterStatus:state:MAP(onoffcases.map)]"} 
-// Switch Zone1VentSpeedStatus "Zone 1 Vent Speed Status" <vent> {mqtt="<[mosquittoz:zZone1/VentSpeedStatus:state:MAP(onoffcases.map)]"} 
-// Number Zone1VentPercent "Zone 1 Vent Percent" <vent> {mqtt="<[mosquittoz:Zone1/VentPercent:state:default]"} 

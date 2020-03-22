@@ -10,7 +10,7 @@ Number WiFiSocket1RSSI "Socket one RSSI" (gMQTT, gWiFiPowerSockets) { channel = 
 
 
 Switch WiFiSocket2Power "Socket two" (gMQTT, gWiFiPowerSockets)  { channel = "mqtt:topic:WiFiSocket2:powerSwitch", autoupdate="false" }
-String WiFiSocket2Reachable "Socket two reachable [MAP" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
+String WiFiSocket2Reachable "Socket two reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
 Number WiFiSocket2RSSI "Socket two RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:rssi" }
 
 
