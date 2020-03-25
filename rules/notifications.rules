@@ -9,8 +9,8 @@ then
     if (CT_FairyLights433Socket.state == ON) {
         CT_FairyLights433Socket.sendCommand(OFF)
         val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+        // val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        // val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
     }
 end
 
@@ -25,9 +25,9 @@ then
     if (CT_FairyLights433Socket.state == ON) {
         CT_FairyLights433Socket.sendCommand(OFF)
         val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
-    }
+    //     val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+    //     val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+    // }
 end
 
 rule "Zone 1 came Online"
@@ -40,8 +40,8 @@ then
     if (CT_FairyLights433Socket.state == ON) {
         CT_FairyLights433Socket.sendCommand(OFF)
         val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+        // val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        // val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
     }
 end
 
@@ -56,8 +56,8 @@ then
     if (CT_FairyLights433Socket.state == ON) {
         CT_FairyLights433Socket.sendCommand(OFF)
         val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+        // val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        // val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
     }
 end
 
@@ -71,7 +71,7 @@ then
     if (CT_FairyLights433Socket.state == ON) {
         CT_FairyLights433Socket.sendCommand(OFF)
         val Timer t1 = createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+        // val Timer t2 = createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+        // val Timer t3 = createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
     }
 end

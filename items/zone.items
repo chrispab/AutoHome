@@ -30,6 +30,6 @@ Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topi
 String  Zone3Reachable          "Zone 3 reachable"              <network>               { channel="mqtt:topic:zone3Controller:Reachable" }
 
 
-Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:SHED_sensor/tele/SENSOR:state:JSONPATH($.SI7021.Temperature)]"}
+// Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.DS18B20-2.Temperature)]"}
 
 

@@ -1,7 +1,11 @@
 Thing mqtt:topic:outside  "MQTT Thing: Outside sensor" (mqtt:broker:MyMQTTBroker) @ "Outside" {
     Channels:
-        Type number : temperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        Type number : humidity     [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type number : temperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20-1.Temperature" ]
+        Type number : shedTemperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20-2.Temperature" ]
+        // Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.DS18B20-2.Temperature)]"}
+
+                                                                               //                            "Id":"01144DB5D5AA","Temperature"
+        // Type number : humidity     [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type string : reachable    [ stateTopic="Outside_Sensor/tele/LWT" ]
         Type number : rssi         [ stateTopic="Outside_Sensor/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }

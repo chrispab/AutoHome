@@ -110,7 +110,7 @@ Items {
     
     Outside_Temperature : strategy = everyUpdate
     Outside_Humidity : strategy = everyUpdate
-
+    Shed_Temperature : strategy = everyUpdate
     Bridge_Temperature : strategy = everyUpdate
     Bridge_Humidity : strategy = everyUpdate
 
