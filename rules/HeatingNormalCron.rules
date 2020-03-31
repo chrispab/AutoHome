@@ -128,9 +128,9 @@ then
     CT_Heating_PresetTempNormal.postUpdate(midTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     ER_Heating_PresetTempNormal.postUpdate(offTemp)
-    AT_Heating_PresetTempNormal.postUpdate(offTemp)
+    AT_Heating_PresetTempNormal.postUpdate(midTemp)
     BR_Heating_PresetTempNormal.postUpdate(offTemp)
-    OF_Heating_PresetTempNormal.postUpdate(offTemp)
+    OF_Heating_PresetTempNormal.postUpdate(midTemp)
     HL_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
