@@ -6,7 +6,7 @@ room: AT
 Time: 21:25 #9.25 pm
 temp: 19.7 # temp setpoint in degs c
 
-string item AT_PRG1 = "room: AT
+string item AT_PRG1 = '"room":"AT" etc 
 
 https://community.openhab.org/t/http-binding-howto-manage-return-values/4579/4
 

@@ -1,16 +1,22 @@
 
-var Number sleepTemp = 17
+var Number offTemp = 13
+var Number minTemp = 13
+var Number sleepTemp = 18
 var Number offTemp = 13
 var Number liveTemp = 21
 var Number midTemp = 19
 var Number lowTemp = 16
 var Number morningTemp = 20
-var Number eveningTemp = 22
+var Number midTemp = 21
+
+var Number eveningTemp = 23
 var Number highTemp = 22
-var Number vhighTemp = 22
+var Number vhighTemp = 23
 var Number wakeTemp = 19
 
 var Number HL_midTemp = 17
+var Number maxTemp = 24
+
 
 // master heating mode - NORMAL mode rules
 rule "00:00"
@@ -71,13 +77,13 @@ end
 
 rule "start heating early if cold outside - 04:30 am"
 when
-    Time cron "0 30 04 ? * MON-FRI *"
+    Time cron "0 30 05 ? * MON-FRI *"
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 2.0 ) {  // determine whether we need to turn on/off the heater
-        logInfo("4:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
+        logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
-        CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
+        CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         ER_Heating_PresetTempNormal.postUpdate(offTemp)
         AT_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -93,10 +99,10 @@ when
     Time cron "0 00 05 ? * MON-FRI *"
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
-    if (temp < 10.0 ) {  // determine whether we need to turn on/off the heater
+    if (temp < 5.0 ) {  // determine whether we need to turn on/off the heater
         logInfo("5:30 - check if cold enough to start heating", "starting cos outside temp = " + temp)
 
-        CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
+        CT_Heating_PresetTempNormal.postUpdate(highTemp)
         FR_Heating_PresetTempNormal.postUpdate(offTemp)
         ER_Heating_PresetTempNormal.postUpdate(offTemp)
         AT_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -111,7 +117,7 @@ rule "NORMAL heating start - 06:10 am"
 when
     Time cron "0 00 06 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
+    CT_Heating_PresetTempNormal.postUpdate(midTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     ER_Heating_PresetTempNormal.postUpdate(morningTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -125,12 +131,12 @@ rule "heating 08:00 am"
 when
     Time cron "0 0 08 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     ER_Heating_PresetTempNormal.postUpdate(offTemp)
-    AT_Heating_PresetTempNormal.postUpdate(midTemp)
+    AT_Heating_PresetTempNormal.postUpdate(highTemp)
     BR_Heating_PresetTempNormal.postUpdate(offTemp)
-    OF_Heating_PresetTempNormal.postUpdate(midTemp)
+    OF_Heating_PresetTempNormal.postUpdate(highTemp)
     HL_Heating_PresetTempNormal.postUpdate(offTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
@@ -146,7 +152,7 @@ then
     // BR_Heating_PresetTempNormal.postUpdate(17.0)
     //OF_Heating_PresetTempNormal.postUpdate(17.0)
     //HL_Heating_PresetTempNormal.postUpdate(17.0)
-    Heating_UpdateHeaters.sendCommand(ON)
+    // Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
@@ -156,13 +162,13 @@ when
 then
     var Number temp = Outside_Temperature.state as DecimalType // get the current temperature
     if (temp < 5.0) {  // determine whether we need to turn on/off the heater
-        CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
-        FR_Heating_PresetTempNormal.postUpdate(midTemp)
-        ER_Heating_PresetTempNormal.postUpdate(midTemp)
-        AT_Heating_PresetTempNormal.postUpdate(offTemp)
-        BR_Heating_PresetTempNormal.postUpdate(offTemp)
-        OF_Heating_PresetTempNormal.postUpdate(offTemp)
-        HL_Heating_PresetTempNormal.postUpdate(offTemp)
+        // CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
+        // FR_Heating_PresetTempNormal.postUpdate(midTemp)
+        // ER_Heating_PresetTempNormal.postUpdate(midTemp)
+        // AT_Heating_PresetTempNormal.postUpdate(offTemp)
+        // BR_Heating_PresetTempNormal.postUpdate(offTemp)
+        // OF_Heating_PresetTempNormal.postUpdate(offTemp)
+        // HL_Heating_PresetTempNormal.postUpdate(offTemp)
         Heating_UpdateHeaters.sendCommand(ON)
     }
 end
@@ -171,13 +177,13 @@ rule "16:00"
 when
     Time cron "0 00 16 ? * MON-FRI *"
 then
-    CT_Heating_PresetTempNormal.postUpdate(vhighTemp)
+    CT_Heating_PresetTempNormal.postUpdate(highTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
     ER_Heating_PresetTempNormal.postUpdate(midTemp)
     AT_Heating_PresetTempNormal.postUpdate(offTemp)
     BR_Heating_PresetTempNormal.postUpdate(midTemp)
     OF_Heating_PresetTempNormal.postUpdate(midTemp)
-    HL_Heating_PresetTempNormal.postUpdate(HL_midTemp)
+    HL_Heating_PresetTempNormal.postUpdate(midTemp)
     Heating_UpdateHeaters.sendCommand(ON)
 end
 
@@ -189,10 +195,10 @@ then
     // FR_Heating_PresetTempNormal.postUpdate(offTemp)
     // ER_Heating_PresetTempNormal.postUpdate(midTemp)
     // AT_Heating_PresetTempNormal.postUpdate(offTemp)
-    BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    // BR_Heating_PresetTempNormal.postUpdate(midTemp)
     // OF_Heating_PresetTempNormal.postUpdate(midTemp)
     // HL_Heating_PresetTempNormal.postUpdate(midTemp)
-    Heating_UpdateHeaters.sendCommand(ON)
+    // Heating_UpdateHeaters.sendCommand(ON)
 end
 
 // rule "22:30 weekdays"
@@ -237,7 +243,7 @@ then
     // BR_Heating_PresetTempNormal.postUpdate(midTemp)
     // OF_Heating_PresetTempNormal.postUpdate(midTemp)
     // HL_Heating_PresetTempNormal.postUpdate(midTemp)
-    Heating_UpdateHeaters.sendCommand(ON)
+    // Heating_UpdateHeaters.sendCommand(ON)
 end
 
 
@@ -325,6 +331,6 @@ then
     // BR_Heating_PresetTempNormal.postUpdate(24.0)
     //OF_Heating_PresetTempNormal.postUpdate(16.0)
     //HL_Heating_PresetTempNormal.postUpdate(16.0)
-    Heating_UpdateHeaters.sendCommand(ON)
+    // Heating_UpdateHeaters.sendCommand(ON)
 end
 

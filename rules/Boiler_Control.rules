@@ -21,7 +21,7 @@ then
     }
     else { // no rooms want heat so turn off boiler
         gRoomHeaterStates.members.filter[l|l.state != ON].forEach[ Heater | 
-            logInfo("Boiler_Control rule", "-> Heater " + Heater.name + " is " + Heater.state) 
+            // logInfo("Boiler_Control rule", "-> Heater " + Heater.name + " is " + Heater.state) 
         ] 
        logInfo("Boiler_Control rule", "-> All heaters are off -> Send boiler OFF command" )
 
