@@ -1,10 +1,42 @@
-// fire regulargly for testing
+import java.util.List
+import java.io.File
+import java.io.BufferedReader
+import java.io.FileReader
+import java.util.HashMap
 
 // var String jsonString = (myStrom001_update.state as StringType).toString
 var String jsonString = '{"room":"AT","temp":"17.5","time":"13:45"}'
 var String stateSwitch = transform("JSONPATH","$.room",jsonString)
 var String powerString = transform("JSONPATH","$.temp",jsonString)
 // var String jsonString = "{\"room\":\"AT\",\"temp\":\"17.5\",\"time\":\"13:45\"}"
+
+rule "Test"
+when
+    Item Virtual_Switch_1 received update
+then
+    logInfo("Rules","Test: Start")
+    val String filePathString = "/etc/openhab2/conf/test/test.txt"
+    val File filePath = new File(filePathString)
+    if (filePath.exists) {
+        var HashMap<String,String> test = new HashMap<String,String>
+        var BufferedReader in = new BufferedReader(new FileReader(filePathString))
+        var String line = ""
+        while ((line = in.readLine) !== null) {
+            val List<String> parts = line.split(",")
+            test.put(parts.get(0), parts.get(1))
+        }
+        in.close
+        logInfo("Rules","Test: [{}]",test.toString)
+    }
+    else {
+        logInfo("Rules","Test: file does not exist!")
+    }
+    logInfo("Rules","Test: End")
+end
+
+// fire regulargly for testing
+
+
 
 rule "02:30 - testing rules"
 when
