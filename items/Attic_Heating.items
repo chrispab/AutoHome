@@ -22,4 +22,4 @@ Number AT_Humidity "Attic Humidity [%.1f °C]" <humidity> (gAT_Thermostat, gRoom
 Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" } 
 String AT_HeatingMode "Attic Heating Mode" <settings> (gHeatingModes)
 Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]"
-String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
+String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:atticRadThermoValve:reachable" }

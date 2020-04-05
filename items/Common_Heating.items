@@ -9,6 +9,7 @@ Group       gRoomTemperatures
 Group       gRoomHumidities
 Group       gRoomHeaterStates 
 Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
+Group       gRTVsReachable
 // Group:Switch:AND(ON, OFF) FullyAutomatic "Fully Automatic [ (%d) ]" <switch>
 
 

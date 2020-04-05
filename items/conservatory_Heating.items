@@ -11,3 +11,5 @@ Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gCT_Thermostat
 Switch CT_Heater "Conservatory Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" } 
 String CT_HeatingMode "Conservatory Heating Mode" <settings> (gHeatingModes)
 Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]"
+
+String CT_RTVReachable "Conservatory Reachable" <qualityofservice> (gCT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }

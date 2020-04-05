@@ -42,13 +42,13 @@ rule "02:30 - testing rules"
 when
     Time cron "25 * * ? * * *"
 then
-    logInfo("testing.rules", "----> HI FROM TESTING.RULES ") // + masterHeatingMode.state)
-    logInfo("testing.rules", "----> HI FROM TESTING.RULES -- ROOM: " + jsonString)
-    stateSwitch = transform("JSONPATH","$.room",jsonString)
-    powerString = transform("JSONPATH","$.temp",jsonString)
+    // logInfo("testing.rules", "---->TESTING.RULES ") // + masterHeatingMode.state)
+    // logInfo("testing.rules", "---->TESTING.RULES -: " + jsonString)
+    // stateSwitch = transform("JSONPATH","$.room",jsonString)
+    // powerString = transform("JSONPATH","$.temp",jsonString)
     
-    logInfo("testing.rules", "----> HI FROM TESTING.RULES -- ROOM: " + stateSwitch)
-    logInfo("testing.rules", "----> HI FROM TESTING.RULES -- TEMP: " + powerString)
+    // logInfo("testing.rules", "---->TESTING.RULES -- ROOM: " + stateSwitch)
+    // logInfo("testing.rules", "---->TESTING.RULES -- TEMP: " + powerString)
 
 
     // Heating_UpdateHeaters.sendCommand(ON)
