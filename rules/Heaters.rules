@@ -26,14 +26,15 @@ then
 
 //get state of triggering item 'reachable'- is the rtv reachable?
     val Reachable = gRTVsReachable.members.findFirst[ t | t.name == prefix + "_RTVReachable" ]
-    logInfo("Heaters rules", "===> Reachable tostring:   " + prefix + " : " + Reachable ) 
+    logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable.state ) 
     if (Reachable.state.toString  != "Online") {
-        logInfo("Heaters rules", "===> Reachable-Offline - leaving!!!   " + prefix + " : " + Reachable.state.toString ) 
-        return
-    } else{
-        // logInfo("Heaters rules", "===> Reachable   " + prefix + " : OFFLINE or NULL: " + Reachable ) 
-       logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable ) 
-    }
+        logInfo("Heaters rules", "===> Reachable-Offline - leaving!!!   " + prefix ) 
+        return //dont continue on and update the bolier control if this RTV is Offline
+    } 
+    // else{
+    //     // logInfo("Heaters rules", "===> Reachable   " + prefix + " : OFFLINE or NULL: " + Reachable ) 
+    //    //logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable ) 
+    // }
     
     if (HeatingMode.state == "off") {
         logInfo("Heaters rules", "===> Turn heater OFF for " + prefix + " cos Heating Mode is " + HeatingMode.state)
@@ -48,11 +49,11 @@ then
         var Number temp = Temperature.state as DecimalType // get the current temperature
 
         if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
-            logInfo("Heaters rules", "===> SendCommand " + prefix + "_Heater OFF")
+            logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater OFF")
             Heater.sendCommand(OFF)
             Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            logInfo("Heaters rules", "===> SendCommand " + prefix + "_Heater ON")
+            logInfo("Heaters rules", "===> SendCommand    :" + prefix + "Heater ON")
             Heater.sendCommand(ON)
             Heater.postUpdate(ON)
         } 
