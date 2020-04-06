@@ -53,7 +53,7 @@ then
             Heater.sendCommand(OFF)
             Heater.postUpdate(OFF)
         }else if (temp < turnOnTemp) {
-            logInfo("Heaters rules", "===> SendCommand    :" + prefix + "Heater ON")
+            logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater ON")
             Heater.sendCommand(ON)
             Heater.postUpdate(ON)
         } 
