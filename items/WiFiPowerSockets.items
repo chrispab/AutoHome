@@ -22,3 +22,4 @@ Number WiFiSocket3RSSI "Socket three RSSI" (gMQTT, gWiFiPowerSockets) { channel 
 Switch WiFiSocket4Power "Socket four" (gMQTT, gWiFiPowerSockets)  { channel = "mqtt:topic:WiFiSocket4:powerSwitch", autoupdate="false"  }
 String WiFiSocket4Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:Reachable" }
 Number WiFiSocket4RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:rssi" }
+Number WiFiSocket4Temperature	"WiFi Socket 4 Temperature"				{ channel = "mqtt:topic:WiFiSocket4:temperature" }
