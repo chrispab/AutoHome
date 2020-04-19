@@ -128,4 +128,6 @@ Items {
     Water1_Temperature : strategy = everyUpdate   
 
     WiFiSocket4Temperature  : strategy = everyUpdate
+    WiFiSocket4_TemperatureSetpoint : strategy = everyUpdate
+    WiFiSocket4Power : strategy = everyUpdate
 }
