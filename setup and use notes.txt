@@ -19,5 +19,7 @@ Rule1 ON Tele-DS18B20#Temperature>=24.9 DO power1 0 ENDON ON Tele-DS18B20#Temper
 for greenhouse:
 Rule1 ON Tele-DS18B20#Temperature>=8.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<8.9 DO power1 1 ENDON
 Rule1 ON Tele-DS18B20#Temperature>=8.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<8.9 DO power1 1 ENDON
+Rule1 ON Tele-DS18B20#Temperature>=9.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<9.9 DO power1 1 ENDON
+Rule1 ON Tele-DS18B20#Temperature>=7.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<7.9 DO power1 1 ENDON
 
 Rule1 on

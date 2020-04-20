@@ -75,8 +75,6 @@ when
         Item vCT_TVKodiSpeakers received update ON
         or
         Item vCT_TVKodiSpeakers2 received update ON
-
-
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     shutdownKodiConservatoryProxy.postUpdate(ON)
@@ -94,11 +92,13 @@ end
 
 rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
 when
-    Item vCT_TVKodiSpeakers changed from ON to OFF
-    or
-    Item vCT_TVKodiSpeakers2 changed from ON to OFF
+    // Item vCT_TVKodiSpeakers changed from ON to OFF
+    // or
+    // Item vCT_TVKodiSpeakers2 changed from ON to OFF
 
-            // Item vCT_TVKodiSpeakers received update OFF
+         Item vCT_TVKodiSpeakers received update OFF
+        or
+        Item vCT_TVKodiSpeakers2 received update OFF           // Item vCT_TVKodiSpeakers received update OFF
 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
