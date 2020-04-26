@@ -101,12 +101,12 @@ when
         Item vCT_TVKodiSpeakers2 received update OFF           // Item vCT_TVKodiSpeakers received update OFF
 
 then
-    logInfo("RULE", "Turn OFF Conservatory kodi, pi and TV Kit")
+    logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
     shutdownKodiConservatoryProxy.postUpdate(OFF)
 
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-            logInfo("RULE", "60 secs later - we can turn off power sockets now")
+            logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
             {sendCommand(CT_TV433PowerSocket, OFF)} //tv
             {postUpdate(CT_TV433PowerSocket, OFF)}
             {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket

@@ -18,6 +18,3 @@ Switch		Boiler_Control				"Boiler Control"							<my_radiator>									{ channel
 String		masterHeatingMode			"Global Master Heating Mode [%s]"
 Switch		Heating_UpdateHeaters		"Send Target Temperatures to Heaters"
 Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>
-Number		Outside_Temperature			"Outside Temperature [%.1f °C]"				<temperature>		[ "CurrentTemperature" ]	{ channel="mqtt:topic:outside:temperature"}
-Number		Outside_Humidity			"Outside Humidity [%.1f °C]"				<humidity>		{ channel="mqtt:topic:outside:humidity"}
-Number	    Shed_Temperature		    "Shed Temperature [%.1f °C]"	            <temperature>  	{ channel="mqtt:topic:outside:shedTemperature"}
