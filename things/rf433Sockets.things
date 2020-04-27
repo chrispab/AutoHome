@@ -59,3 +59,9 @@ Thing mqtt:topic:outsideSensorPower  "MQTT Thing: Outside sensor Power 433 socke
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power16" ]
 }
+
+//table lamp 1
+Thing mqtt:topic:tableLamp1  "MQTT Thing: Table lamp 1 Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power2" ]
+}

@@ -62,7 +62,7 @@ Rule2 ON DS18B20#Temperature>=7.0 DO power1 0 ENDON ON DS18B20#Temperature<7.0 D
 Rule2 ON DS18B20#Temperature>=6.5 DO power1 0 ENDON ON DS18B20#Temperature<6.5 DO power1 1 ENDON
 
 https://groups.google.com/forum/#!searchin/sonoffusers/rules$20temperature$20sensor%7Csort:date/sonoffusers/XqPC256tecs/WuA5GzTdCgAJ
-
+https://groups.google.com/forum/#!searchin/sonoffusers/rule$20break/sonoffusers/XqPC256tecs/Yg1ncx9gCgAJ
 rule1 On BH1750#Illuminance!=%Var1% Do Var1 %value% EndOn On Var1#State Do WebSend [192.168.2.37] Var1 %value% EndOn
 
 rule1 
