@@ -42,7 +42,7 @@ Switch zone1ControllerPower "Zone one power"  <poweroutlet_uk> (gZoneControllerS
 Switch zone3ControllerPower "Zone three power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:zone3ControllerPower:powerSwitch" }
 
 //test tablelamp1
-Switch socketG1_2 "table lamp 1"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:tableLamp1:powerSwitch"}
+Switch tableLamp1 "table lamp 1"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:tableLamp1:powerSwitch"}
 
 
 //outside temp sensor

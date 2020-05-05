@@ -7,6 +7,7 @@ Switch	Zone1HeaterStatus		"Zone 1 Heater Status"			<my_radiator>			{ channel="mq
 Switch	Zone1VentSpeedStatus	"Zone 1 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone1Controller:ventSpeedStatus" }
 Number	Zone1VentPercent		"Zone 1 Vent Percent"			<vent>					{ channel="mqtt:topic:zone1Controller:ventPercent" }
 String  Zone1Reachable          "Zone 1 reachable"              <network>               { channel="mqtt:topic:zone1Controller:Reachable" }
+Number	Zone1Rssi	    	    "Zone 1 RSSI"       			<vent>					{ channel="mqtt:topic:zone1Controller:rssi" }
 
 Number	Zone2Temperature		"Zone 2 Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquittoz:Zone2/TemperatureStatus:state:default]"}
 Number	Zone2Humidity			"Zone 2 Humidity [%.1f ]"		<humidity>				{mqtt="<[mosquittoz:Zone2/HumidityStatus:state:default]"}
@@ -18,6 +19,7 @@ Switch	Zone2VentSpeedStatus	"Zone 2 Vent Speed Status"		<vent>					{mqtt="<[mosq
 Number	Zone2LightSensor		"Zone 2 LightSensor [%.1f ]"	<LightSensor>			{mqtt="<[mosquittoz:Zone2/LightSensor:state:default]"}
 Number	Zone2VentPercent		"Zone 2 Vent Percent"			<vent>					{mqtt="<[mosquittoz:Zone2/VentPercent:state:default]"}
 String  Zone2Reachable          "Zone 2 reachable"              <network>               { channel="mqtt:topic:zone2Controller:Reachable" }
+Number	Zone2Rssi	    	    "Zone 2 RSSI"       			<vent>					{ channel="mqtt:topic:zone2Controller:rssi" }
 
 Number	Zone3Temperature		"Zone 3 Temperature [%.1f °C]"	<temperature>			{ channel="mqtt:topic:zone3Controller:temperature" }
 Number	Zone3Humidity			"Zone 3 Humidity [%.1f ]"		<humidity>				{ channel="mqtt:topic:zone3Controller:humidity" }
@@ -28,6 +30,7 @@ Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:t
 Switch	Zone3VentSpeedStatus	"Zone 3 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone3Controller:ventSpeedStatus" }
 Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topic:zone3Controller:ventPercent" }
 String  Zone3Reachable          "Zone 3 reachable"              <network>               { channel="mqtt:topic:zone3Controller:Reachable" }
+Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topic:zone3Controller:rssi" }
 
 
 // Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.DS18B20-2.Temperature)]"}
