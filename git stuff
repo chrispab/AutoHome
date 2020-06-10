@@ -1,5 +1,5 @@
 to use ssh for push
-chanhe remotes
+change remotes
 e.g from
 chris@E5520:/mnt/nfs/openhab/openhab2$ git remote -v
 origin  https://github.com/chrispab/AutoHome.git (fetch)
