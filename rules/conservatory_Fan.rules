@@ -64,7 +64,7 @@ then
 
         //only when heating not on
         var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
-        if (sp < 19) { //! or if summer and heating is off
+        // if (sp < 19) { //! or if summer and heating is off
             if (temp >= turnOnTemp) {
                 CT_Fan433PowerSocket.sendCommand(ON)
                 CT_Fan433PowerSocket.postUpdate(ON)
@@ -77,7 +77,7 @@ then
                 CT_Fan433PowerSocket.postUpdate(OFF)
                 }
             }
-        }
+        // }
 end
 
 

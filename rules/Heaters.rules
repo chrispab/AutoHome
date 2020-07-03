@@ -36,7 +36,10 @@ then
     //    //logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable ) 
     // }
     
-    if (HeatingMode.state == "off") {
+    if ((HeatingMode.state == "off") || (masterHeatingMode.state == "off")) {
+        if (masterHeatingMode.state == "off") {
+            logInfo("Heaters rules", "===> Master Heating Mode is OFF")
+        }    
         logInfo("Heaters rules", "===> Turn heater OFF for " + prefix + " cos Heating Mode is " + HeatingMode.state)
         Heater.sendCommand(OFF)
         Heater.postUpdate(OFF)
