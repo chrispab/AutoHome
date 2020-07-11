@@ -25,3 +25,7 @@ String WiFiSocket4Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, g
 Number WiFiSocket4RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:rssi" }
 Number WiFiSocket4Temperature	"WiFi Socket 4 Temperature"				{ channel = "mqtt:topic:WiFiSocket4:temperature" }
 Number WiFiSocket4_TemperatureSetpoint
+
+Switch WiFiSocket5Power "bedroom fan" (gMQTT, gWiFiPowerSockets) { ga="Switch" [ roomHint="Bedroom" ], channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
+String WiFiSocket5Reachable "Socket five reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket5:Reachable" }
+Number WiFiSocket5RSSI "Socket five RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:rssi" }
