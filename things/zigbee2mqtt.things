@@ -1,0 +1,67 @@
+// Bridge mqtt:broker:mymqttbroker [ host="mymqttbrokeripaddr", secure=false ]
+// {
+//     Thing topic zigbeebridge "Zigbee2mqtt Bridge" {
+//     Channels:
+//         Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config/permit_join", on="true", off="false" ]
+//         Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
+//         Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
+//         Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+//     }
+
+//     Thing topic ikeabulb01 "IKEA Bulb 01" {
+//     Channels:
+//         Type switch : switch "Ikea Bulb 01 Switch" [ stateTopic="zigbee2mqtt/ikeabulb01", commandTopic="zigbee2mqtt/ikeabulb01/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2Zigbee2mqtt.js"]
+//         Type dimmer : dimmer "Ikea Bulb 01 Dimmer" [ stateTopic="zigbee2mqtt/ikeabulb01", commandTopic="zigbee2mqtt/ikeabulb01/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
+//         Type number : linkquality "Ikea Bulb 01 LinkQuality" [ stateTopic="zigbee2mqtt/ikeabulb01",  transformationPattern="JSONPATH:$.linkquality" ]
+//     }
+
+//     Thing topic huewhite02 "Philips HUE White 02" {
+//     Channels:
+//         Type switch : switch "Hue White 02 Switch" [ stateTopic="zigbee2mqtt/huewhite02", commandTopic="zigbee2mqtt/huewhite02/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2Zigbee2mqtt.js"]
+//         Type dimmer : dimmer "Hue White 02 Dimmer" [ stateTopic="zigbee2mqtt/huewhite02", commandTopic="zigbee2mqtt/huewhite02/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:huewhite2openhab.js" ]
+//         Type number : linkquality "Hue White 02 LinkQuality" [ stateTopic="zigbee2mqtt/huewhite02",  transformationPattern="JSONPATH:$.linkquality" ]
+//     }
+// }
+
+Thing mqtt:topic:zigbeebridge "Zigbee2mqtt Bridge" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config/permit_join", on="true", off="false" ]
+    Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
+    Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
+    Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+}
+
+
+Thing mqtt:topic:ikeabulb01 "IKEA Bulb 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : switch "Ikea Bulb 01 Switch" [ stateTopic="zigbee2mqtt/ikeabulb01", commandTopic="zigbee2mqtt/ikeabulb01/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
+    Type dimmer : dimmer "Ikea Bulb 01 Dimmer" [ stateTopic="zigbee2mqtt/ikeabulb01", commandTopic="zigbee2mqtt/ikeabulb01/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
+    Type number : linkquality "Ikea Bulb 01 LinkQuality" [ stateTopic="zigbee2mqtt/ikeabulb01",  transformationPattern="JSONPATH:$.linkquality" ]
+}
+
+Thing mqtt:topic:ikeabulb02 "IKEA Bulb 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : switch "Ikea Bulb 02 Switch" [ stateTopic="zigbee2mqtt/ikeabulb02", commandTopic="zigbee2mqtt/ikeabulb02/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
+    Type dimmer : dimmer "Ikea Bulb 02 Dimmer" [ stateTopic="zigbee2mqtt/ikeabulb02", commandTopic="zigbee2mqtt/ikeabulb02/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
+    Type number : linkquality "Ikea Bulb 02 LinkQuality" [ stateTopic="zigbee2mqtt/ikeabulb02",  transformationPattern="JSONPATH:$.linkquality" ]
+}
+
+//colour bulbs
+Thing mqtt:topic:ikeacolourbulb01 "IKEA Colour Bulb 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : switch "Ikea Colour Bulb 01 Switch" [ stateTopic="zigbee2mqtt/ikeacolourbulb01", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
+    Type dimmer : dimmer "Ikea Colour Bulb 01 Dimmer" [ stateTopic="zigbee2mqtt/ikeacolourbulb01", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
+    Type number : linkquality "Ikea Colour Bulb 01 LinkQuality" [ stateTopic="zigbee2mqtt/ikeacolourbulb01",  transformationPattern="JSONPATH:$.linkquality" ]
+}
+
+Thing mqtt:topic:ikeacolourbulb02 "IKEA Colour Bulb 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : switch "Ikea Colour Bulb 02 Switch" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
+    Type dimmer : dimmer "Ikea Colour Bulb 02 Dimmer" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
+    Type number : linkquality "Ikea Colour Bulb 02 LinkQuality" [ stateTopic="zigbee2mqtt/ikeacolourbulb02",  transformationPattern="JSONPATH:$.linkquality" ]
+}
