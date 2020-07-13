@@ -22,11 +22,13 @@ Number ZigbeeKitchenBulbQuality2  "Kitchen LinkQuality [%d]" <qualityofservice> 
 
 //colour bulbs
 Group  ZigbeeKitchenColourBulb                                                                  (Zigbee)
-Switch ZigbeeKitchenColourBulbSwitch   "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:switch" }
-Dimmer ZigbeeKitchenColourBulbDim      "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:dimmer" }
-Number ZigbeeKitchenColourBulbQuality  "Kitchen LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:linkquality" }
+Switch ZigbeeKitchenColourBulbSwitch   "Kitchen1 [%s]"                                 (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:switch" }
+Dimmer ZigbeeKitchenColourBulbDim      "Kitchen1 [%s]"                                 (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:dimmer" }
+Color ZigbeeKitchenColourBulbColour      "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:color" }
+Number ZigbeeKitchenColourBulbQuality  "Kitchen1 LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenColourBulb)            { channel="mqtt:topic:ikeacolourbulb01:linkquality" }
 
 Group  ZigbeeKitchenColourBulb2                                                                  (Zigbee)
-Switch ZigbeeKitchenColourBulbSwitch2   "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:switch" }
-Dimmer ZigbeeKitchenColourBulbDim2      "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:dimmer" }
-Number ZigbeeKitchenColourBulbQuality2  "Kitchen LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:linkquality" }
+Switch ZigbeeKitchenColourBulbSwitch2   "Kitchen 2[%s]"                                 (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:switch" }
+Dimmer ZigbeeKitchenColourBulbDim2      "Kitchen 2[%s]"                                 (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:dimmer" }
+Color ZigbeeKitchenColourBulbColour2      "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:color" }
+Number ZigbeeKitchenColourBulbQuality2  "Kitchen 2LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:linkquality" }
