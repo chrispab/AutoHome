@@ -1,0 +1,66 @@
+rule "Check if Heaters need changing"
+when
+    Member of gZBRemote01 received update
+    // or 
+    // Member of gTemperatureSetpoints received update or 
+    // Member of gRoomTemperatures received update
+then
+    // https://community.openhab.org/t/solved-using-a-variable-to-obtain-an-item-state/61500/3
+    // logInfo("Remote01 rules", "===> Remote01 button clicked")
+// //
+//     val prefix = triggeringItem.name.split("_").get(0)
+//     //val  heatingModeName = "" + prefix + "_HeatingMode"
+    logInfo("Remote01 rules", "===> Triggering item: " + triggeringItem.name ) 
+    logInfo("Remote01 rules", "===> Value: " + triggeringItem.state ) 
+    
+//     val HeatingMode = gHeatingModes.members.findFirst[ t | t.name == prefix + "_HeatingMode"]
+//     logInfo("Heaters rules", "===> HeatingMode " + prefix + " : " + HeatingMode.state ) 
+    
+//     val TSetpoint = gTemperatureSetpoints.members.findFirst[ t | t.name == prefix + "_TemperatureSetpoint" ] as NumberItem
+//     logInfo("Heaters rules", "===> Setpoint    " + prefix + " : " + TSetpoint.state ) 
+    
+//     val Temperature = gRoomTemperatures.members.findFirst[ t | t.name == prefix + "_Temperature" ] as NumberItem
+//     logInfo("Heaters rules", "===> Temperature " + prefix + " : " + Temperature.state )
+    
+//     val Heater = gRoomHeaterStates.members.findFirst[ t | t.name == prefix + "_Heater" ]
+//     logInfo("Heaters rules", "===> Heater      " + prefix + " : " + Heater.state ) 
+    // logInfo("Heaters rules", "===> The HeatingMode for : " + prefix + " is " + HeatingMode.state)
+
+//get state of triggering item 'reachable'- is the rtv reachable?
+    // val Reachable = gRTVsReachable.members.findFirst[ t | t.name == prefix + "_RTVReachable" ]
+    // logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable.state ) 
+    // if (Reachable.state.toString  != "Online") {
+    //     logInfo("Heaters rules", "===> Reachable-Offline - leaving!!!   " + prefix ) 
+    //     return //dont continue on and update the bolier control if this RTV is Offline
+    // } 
+    // else{
+    //     // logInfo("Heaters rules", "===> Reachable   " + prefix + " : OFFLINE or NULL: " + Reachable ) 
+    //    //logInfo("Heaters rules", "===> Reachable   " + prefix + " : " + Reachable ) 
+    // }
+    
+    // if ((HeatingMode.state == "off") || (masterHeatingMode.state == "off")) {
+    //     if (masterHeatingMode.state == "off") {
+    //         logInfo("Heaters rules", "===> Master Heating Mode is OFF")
+    //     }    
+    //     logInfo("Heaters rules", "===> Turn heater OFF for " + prefix + " cos Heating Mode is " + HeatingMode.state)
+    //     Heater.sendCommand(OFF)
+    //     Heater.postUpdate(OFF)
+    // }
+    // else if ( (HeatingMode.state == "auto") || (HeatingMode.state == "manual") )  { //auto
+    //     // logInfo("Heaters rules", "===> checking Heating Mode: " + prefix + " : " + HeatingMode.state)
+    //     var Number setpoint = TSetpoint.state as DecimalType
+    //     var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
+    //     var Number turnOffTemp = setpoint //+ 0.1
+    //     var Number temp = Temperature.state as DecimalType // get the current temperature
+
+    //     if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
+    //         logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater OFF")
+    //         Heater.sendCommand(OFF)
+    //         Heater.postUpdate(OFF)
+    //     }else if (temp < turnOnTemp) {
+    //         logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater ON")
+    //         Heater.sendCommand(ON)
+    //         Heater.postUpdate(ON)
+    //     } 
+    // }
+end

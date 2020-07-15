@@ -22,6 +22,13 @@
 //         Type number : linkquality "Hue White 02 LinkQuality" [ stateTopic="zigbee2mqtt/huewhite02",  transformationPattern="JSONPATH:$.linkquality" ]
 //     }
 // }
+//  Currently 5 devices are joined:5
+//  ikeabulb01 (0x000b57fffebe2091): LED1623G12 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white (Router)
+//  ikearemote01 (0x14b457fffe3f625d): E1524/E1810 - IKEA TRADFRI remote control (EndDevice)
+//  ikeabulb02 (0x000b57fffebb2777): LED1623G12 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white (Router)
+//  ikeacolourbulb01 (0x14b457fffe2e9489): LED1624G9 - IKEA TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white (Router)
+//  ikeacolourbulb02 (0x14b457fffe3bf669): LED1624G9 - IKEA TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white (Router)
+
 
 Thing mqtt:topic:zigbeebridge "Zigbee2mqtt Bridge" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
@@ -71,3 +78,15 @@ Channels:
 }
  
     // Type color : color "Ikea Colour Bulb 02 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set" ]
+Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type string : action            [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action" ]
+    // Type string : arrow_left_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_left_click" ]
+    // Type string : arrow_right_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_right_click" ]
+    // Type string : brightness_up_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_up_click" ]
+    // Type string : brightness_down_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_down_click" ]
+
+    Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
+
+}
