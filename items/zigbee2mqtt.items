@@ -1,45 +1,44 @@
-Group  Zigbee
-
-Group  ZigbeeBridge                   "Zigbee2mqtt Bridge"                                     (Zigbee)
-String ZigbeeBridgeState              "Zigbee2mqtt Bridge State"                               (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:state" }
-
+Group	gZb
+Group	ZbBridge				"Zigbee2mqtt Bridge"										(gZb)
+String	ZbBridgeState			"Zigbee2mqtt Bridge State"									(ZbBridge)									{channel="mqtt:topic:zigbeebridge:state"}
 // Switch ZigbeeBridgePermitJoin         "Zigbee2mqtt Bridge Permit join"                         (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:permitJoin" , expire="10m,command=OFF" }
-Switch ZigbeeBridgePermitJoin         "Zigbee2mqtt Bridge Permit join"                         (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:permitJoin"}
+Switch	ZbBridgePermitJoin		"Zigbee2mqtt Bridge Permit join"							(ZbBridge)									{channel="mqtt:topic:zigbeebridge:permitJoin"}
+String	ZbBridgeLogType			"Zigbee2mqtt Bridge LogType"								(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logType"}
+String	ZbBridgeLogMessage		"Zigbee2mqtt Bridge LogMessage"								(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logMessage"}
 
-String ZigbeeBridgeLogType            "Zigbee2mqtt Bridge LogType"                             (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:logType" }
-String ZigbeeBridgeLogMessage         "Zigbee2mqtt Bridge LogMessage"                          (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:logMessage" }
 
+Group	gZbAllBulbs																			(gZb)
+Group	gZbWhiteBulbs																		(gZbAllBulbs)
 
-Group  ZigbeeKitchenBulb                                                                  (Zigbee)
-Switch ZigbeeKitchenBulbSwitch   "Kitchen [%s]"                                 (ZigbeeKitchenBulb)            { channel="mqtt:topic:ikeabulb01:switch" }
-Dimmer ZigbeeKitchenBulbDim      "carrot"                                 (ZigbeeKitchenBulb)            { ga="Light",channel="mqtt:topic:ikeabulb01:dimmer" }
-Number ZigbeeKitchenBulbQuality  "Kitchen LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenBulb)            { channel="mqtt:topic:ikeabulb01:linkquality" }
-
-Group  ZigbeeKitchenBulb2                                                                  (Zigbee)
-Switch ZigbeeKitchenBulbSwitch2   "Kitchen [%s]"                                 (ZigbeeKitchenBulb2)            { channel="mqtt:topic:ikeabulb02:switch" }
-Dimmer ZigbeeKitchenBulbDim2      "knob end"                                 (ZigbeeKitchenBulb2)            { ga="Light",channel="mqtt:topic:ikeabulb02:dimmer" }
-Number ZigbeeKitchenBulbQuality2  "Kitchen LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenBulb2)            { channel="mqtt:topic:ikeabulb02:linkquality" }
+Group	gZbWhiteBulb01																		(gZbWhiteBulbs)
+Switch	ZbWhiteBulb01Switch		"Zb white bulb 1 switch [%s]"								(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:switch"}
+Dimmer	ZbWhiteBulb01Dim		"Zb white bulb 1 Dim [%s]"									(gZbWhiteBulb01)							{ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
+Number	ZbWhiteBulb01Quality	"Zb white bulb 1  LinkQuality [%d]"		<qualityofservice>	(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:linkquality"}
+Group	gZbWhiteBulb02																		(gZbWhiteBulbs)
+Switch	ZbWhiteBulb02Switch		"Zb white bulb 2 switch [%s]"								(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:switch"}
+Dimmer	ZbWhiteBulb02Dim		"Zb white bulb 2 Dim [%s]"									(gZbWhiteBulb02)							{ga="Light", channel="mqtt:topic:ikeabulb02:dimmer"}
+Number	ZbWhiteBulb02Quality	"Zb white bulb 2  LinkQuality [%d]"		<qualityofservice>	(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:linkquality"}
 
 //colour bulbs
-Group  gZBColourBulb1                                                                  (Zigbee)
-Group gZColourBulbsColour
-Group gZColourBulbsDim
-Switch ZigbeeKitchenColourBulbSwitch   "Kitchen1 [%s]"                                 (gZBColourBulb1)            { ga="Light", channel="mqtt:topic:ikeacolourbulb01:switch" }
-Dimmer ZigbeeKitchenColourBulbDim      "Kitchen1 [%s]"                                 (gZBColourBulb1, gZColourBulbsDim)            {ga="Light",  channel="mqtt:topic:ikeacolourbulb01:dimmer" }
-Color ZigbeeKitchenColourBulbColour      "Kitchen [%s]"                                 (gZBColourBulb1, gZColourBulbsColour)            { ga="Light", channel="mqtt:topic:ikeacolourbulb01:color" }
-Number ZigbeeKitchenColourBulbQuality  "Kitchen1 LinkQuality [%d]" <qualityofservice>  (gZBColourBulb1)            { channel="mqtt:topic:ikeacolourbulb01:linkquality" }
+Group	gZbColourBulbs																		(gZbAllBulbs)
+Group	gZbColourBulbsColour
+Group	gZbColourBulbsDim
 
-Group  ZigbeeKitchenColourBulb2                                                                  (Zigbee)
-Switch ZigbeeKitchenColourBulbSwitch2   "Kitchen 2[%s]"                                 (ZigbeeKitchenColourBulb2)            {ga="Light",  channel="mqtt:topic:ikeacolourbulb02:switch" }
-Dimmer ZigbeeKitchenColourBulbDim2      "Kitchen 2[%s]"                                 (ZigbeeKitchenColourBulb2, gZColourBulbsDim)            { ga="Light", channel="mqtt:topic:ikeacolourbulb02:dimmer" }
-Color ZigbeeKitchenColourBulbColour2      "Kitchen [%s]"                                 (ZigbeeKitchenColourBulb2, gZColourBulbsColour)            {ga="Light",  channel="mqtt:topic:ikeacolourbulb02:color" }
-Number ZigbeeKitchenColourBulbQuality2  "Kitchen 2LinkQuality [%d]" <qualityofservice>  (ZigbeeKitchenColourBulb2)            { channel="mqtt:topic:ikeacolourbulb02:linkquality" }
+Group	gZbColourBulb01
+Switch	ZbColourBulb01Switch	"Zb colour bulb 01 switch [%s]"								(gZbColourBulb01)							{ga="Light", channel="mqtt:topic:ikeacolourbulb01:switch"}
+Dimmer	ZbColourBulb01Dim		"Zb colour bulb 01 dim [%d]"								(gZbColourBulb01, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb01:dimmer"}
+Color	ZbColourBulb01Colour	"Zb colour bulb 01  [%s]"									(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
+Number	ZbColourBulb01Quality	"Zb colour bulb 01  LinkQuality [%d]"	<qualityofservice>	(gZbColourBulb01)							{channel="mqtt:topic:ikeacolourbulb01:linkquality"}
+
+Group	gZbColourBulb02
+Switch	ZbColourBulb02Switch	"Zb colour bulb 02 switch [%s]"								(gZbColourBulb02)							{ga="Light", channel="mqtt:topic:ikeacolourbulb02:switch"}
+Dimmer	ZbColourBulb02Dim		"Zb colour bulb 02 dim [%d]"								(gZbColourBulb02, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb02:dimmer"}
+Color	ZbColourBulb02Colour	"Zb colour bulb 02  [%s]"									(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Number	ZbColourBulb02Quality	"Zb colour bulb 02  LinkQuality [%d]"	<qualityofservice>	(gZbColourBulb02)							{channel="mqtt:topic:ikeacolourbulb02:linkquality"}
 
 
 //! ikea remote 01
-Group gZBRemote01
-String ZBRemote01Action     "remote 01 action: [%s]"    (gZBRemote01)   { channel="mqtt:topic:ikearemote01:action" }
-// String ZBRemote01arrow_left_click     "remote 01 arrow_left_click: [%s]"    (gZBRemote01)   { channel="mqtt:topic:ikearemote01:arrow_left_click" }
-// String ZBRemote01arrow_right_click     "remote 01 arrow_right_click: [%s]"    (gZBRemote01)   { channel="mqtt:topic:ikearemote01:arrow_right_click" }
-// String ZBRemote01brightness_up_click     "remote 01 brightness_up_click: [%s]"    (gZBRemote01)   { channel="mqtt:topic:ikearemote01:brightness_up_click" }
-// String ZBRemote01brightness_down_click     "remote 01 brightness_down_click: [%s]"    (gZBRemote01)   { channel="mqtt:topic:ikearemote01:brightness_down_click" }
+Group	gZbRemote01
+String	ZbRemote01Action		"remote 01 action: [%s]"									(gZbRemote01)								{channel="mqtt:topic:ikearemote01:action"}
+Number	ZbRemote01Quality		"Zb remote 1 LinkQuality [%d]"			<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:linkquality"}
+Number	ZbRemote01Battery		"Zb remote 1 battery [%d]"				<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:battery"}
