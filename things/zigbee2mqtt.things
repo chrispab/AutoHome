@@ -90,3 +90,14 @@ Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker) @ "
     Type number : battery "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
 
 }
+
+// ! THSensor01 (0x00158d0003fb1bdb): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : linkquality "Xiaomi Temp Humi Sensor 01 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi Sensor 01 battery" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.voltage" ]
+
+}

@@ -1,6 +1,7 @@
 rule "Check if Heaters need changing"
 when
-    Member of gZBRemote01 received update
+    Item ZbRemote01Action received update
+    // Member of gZBRemote01 received update
     // or 
     // Member of gTemperatureSetpoints received update or 
     // Member of gRoomTemperatures received update
@@ -12,7 +13,16 @@ then
 //     //val  heatingModeName = "" + prefix + "_HeatingMode"
     logInfo("Remote01 rules", "===> Triggering item: " + triggeringItem.name ) 
     logInfo("Remote01 rules", "===> Value: " + triggeringItem.state ) 
-    
+        if (ZbRemote01Action.state.toString  == "toggle") {
+            // gZbColourBulbsSwitch.sendCommand(gZbColourBulbsSwitch.state)
+            if(gZbColourBulbsSwitch.state == ON)
+                gZbColourBulbsSwitch.sendCommand(OFF)
+            else //{// return
+            // if(gZbColourBulbsSwitch.state == OFF)
+                gZbColourBulbsSwitch.sendCommand(ON)
+            // }
+        }
+
 //     val HeatingMode = gHeatingModes.members.findFirst[ t | t.name == prefix + "_HeatingMode"]
 //     logInfo("Heaters rules", "===> HeatingMode " + prefix + " : " + HeatingMode.state ) 
     
