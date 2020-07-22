@@ -130,4 +130,11 @@ Items {
     WiFiSocket4Temperature  : strategy = everyUpdate
     WiFiSocket4_TemperatureSetpoint : strategy = everyUpdate
     WiFiSocket4Power : strategy = everyUpdate
+
+    Zb_THPSensor_01_temperature : strategy = everyUpdate	
+    Zb_THPSensor_01_humidity : strategy = everyUpdate	
+    Zb_THPSensor_01_pressure : strategy = everyUpdate	
+    Zb_THPSensor_01_linkquality : strategy = everyUpdate	
+    Zb_THPSensor_01_battery : strategy = everyUpdate		
+    Zb_THPSensor_01_voltage : strategy = everyUpdate		
 }

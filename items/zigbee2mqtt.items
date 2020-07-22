@@ -46,3 +46,11 @@ Number	Zb_THSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb
 Number	Zb_THSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:linkquality"}
 Number	Zb_THSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:battery"}
 Number	Zb_THSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:voltage"}
+
+Group	gZb_THPSensor_01
+Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"						(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:temperature"}
+Number	Zb_THPSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:humidity"}
+Number	Zb_THPSensor_01_pressure		"Xiaomi Temp Humi Sensor 01 pressure"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:pressure"}
+Number	Zb_THPSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:linkquality"}
+Number	Zb_THPSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:battery"}
+Number	Zb_THPSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:voltage"}
