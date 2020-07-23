@@ -136,5 +136,32 @@ Items {
     Zb_THPSensor_01_pressure : strategy = everyUpdate	
     Zb_THPSensor_01_linkquality : strategy = everyUpdate	
     Zb_THPSensor_01_battery : strategy = everyUpdate		
-    Zb_THPSensor_01_voltage : strategy = everyUpdate		
+    Zb_THPSensor_01_voltage : strategy = everyUpdate
+
+
+    Zb_THSensor_01_temperature : strategy = everyUpdate	
+    Zb_THSensor_01_humidity : strategy = everyUpdate	
+    Zb_THSensor_01_linkquality : strategy = everyUpdate	
+    Zb_THSensor_01_battery : strategy = everyUpdate		
+    Zb_THSensor_01_voltage : strategy = everyUpdate
+
+    Zb_THSensor_02_temperature : strategy = everyUpdate	
+    Zb_THSensor_02_humidity : strategy = everyUpdate	
+    Zb_THSensor_02_linkquality : strategy = everyUpdate	
+    Zb_THSensor_02_battery : strategy = everyUpdate		
+    Zb_THSensor_02_voltage : strategy = everyUpdate
+
+
+    Zb_THSensor_03_temperature : strategy = everyUpdate	
+    Zb_THSensor_03_humidity : strategy = everyUpdate	
+    Zb_THSensor_03_linkquality : strategy = everyUpdate	
+    Zb_THSensor_03_battery : strategy = everyUpdate		
+    Zb_THSensor_03_voltage : strategy = everyUpdate
+
+
+    Zb_THSensor_04_temperature : strategy = everyUpdate	
+    Zb_THSensor_04_humidity : strategy = everyUpdate	
+    Zb_THSensor_04_linkquality : strategy = everyUpdate	
+    Zb_THSensor_04_battery : strategy = everyUpdate		
+    Zb_THSensor_04_voltage : strategy = everyUpdate
 }

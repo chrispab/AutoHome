@@ -5,12 +5,15 @@ String	ZbBridgeState				"Zigbee2mqtt Bridge State"										(ZbBridge)									{
 Switch	ZbBridgePermitJoin			"Zigbee2mqtt Bridge Permit join"								(ZbBridge)									{channel="mqtt:topic:zigbeebridge:permitJoin"}
 String	ZbBridgeLogType				"Zigbee2mqtt Bridge LogType"									(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logType"}
 String	ZbBridgeLogMessage			"Zigbee2mqtt Bridge LogMessage"									(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logMessage"}
+
 Group	gZbAllBulbs																					(gZb)
 Group	gZbWhiteBulbs																				(gZbAllBulbs)
+
 Group	gZbWhiteBulb01																				(gZbWhiteBulbs)
 Switch	ZbWhiteBulb01Switch			"Zb white bulb 1 switch [%s]"									(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:switch"}
 Dimmer	ZbWhiteBulb01Dim			"Zb white bulb 1 Dim [%s]"										(gZbWhiteBulb01)							{ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
 Number	ZbWhiteBulb01Quality		"Zb white bulb 1  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:linkquality"}
+
 Group	gZbWhiteBulb02																				(gZbWhiteBulbs)
 Switch	ZbWhiteBulb02Switch			"Zb white bulb 2 switch [%s]"									(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:switch"}
 Dimmer	ZbWhiteBulb02Dim			"Zb white bulb 2 Dim [%s]"										(gZbWhiteBulb02)							{ga="Light", channel="mqtt:topic:ikeabulb02:dimmer"}
@@ -27,6 +30,7 @@ Switch	ZbColourBulb01Switch		"Zb colour bulb 01 switch [%s]"									(gZbColourB
 Dimmer	ZbColourBulb01Dim			"Zb colour bulb 01 dim [%d]"									(gZbColourBulb01, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb01:dimmer"}
 Color	ZbColourBulb01Colour		"Zb colour bulb 01  [%s]"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
 Number	ZbColourBulb01Quality		"Zb colour bulb 01  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb01)							{channel="mqtt:topic:ikeacolourbulb01:linkquality"}
+
 Group	gZbColourBulb02
 Switch	ZbColourBulb02Switch		"Zb colour bulb 02 switch [%s]"									(gZbColourBulb02, gZbColourBulbsSwitch)							{ga="Light", channel="mqtt:topic:ikeacolourbulb02:switch"}
 Dimmer	ZbColourBulb02Dim			"Zb colour bulb 02 dim [%d]"									(gZbColourBulb02, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb02:dimmer"}
@@ -40,12 +44,6 @@ String	ZbRemote01Action			"remote 01 action: [%s]"										(gZbRemote01)							
 Number	ZbRemote01Quality			"Zb remote 1 LinkQuality [%d]"				<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:linkquality"}
 Number	ZbRemote01Battery			"Zb remote 1 battery [%d]"					<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:battery"}
 
-Group	gZb_THSensor_01
-Number	Zb_THSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"						(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:temperature"}
-Number	Zb_THSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:humidity"}
-Number	Zb_THSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:linkquality"}
-Number	Zb_THSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:battery"}
-Number	Zb_THSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:voltage"}
 
 Group	gZb_THPSensor_01
 Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"						(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:temperature"}
@@ -54,3 +52,33 @@ Number	Zb_THPSensor_01_pressure		"Xiaomi Temp Humi Sensor 01 pressure"							(gZ
 Number	Zb_THPSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:linkquality"}
 Number	Zb_THPSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:battery"}
 Number	Zb_THPSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:voltage"}
+
+
+Group	gZb_THSensor_01
+Number	Zb_THSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"						(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:temperature"}
+Number	Zb_THSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:humidity"}
+Number	Zb_THSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:linkquality"}
+Number	Zb_THSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:battery"}
+Number	Zb_THSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:voltage"}
+
+Group	gZb_THSensor_02
+Number	Zb_THSensor_02_temperature	"Xiaomi Temp Humi Sensor 02 Temperature"						(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:temperature"}
+Number	Zb_THSensor_02_humidity		"Xiaomi Temp Humi Sensor 02 Humidity"							(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:humidity"}
+Number	Zb_THSensor_02_linkquality	"Xiaomi Temp Humi Sensor 02 LinkQuality"						(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:linkquality"}
+Number	Zb_THSensor_02_battery		"Xiaomi Temp Humi Sensor 02 Battery"							(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:battery"}
+Number	Zb_THSensor_02_voltage		"Xiaomi Temp Humi Sensor 02 voltage"							(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:voltage"}
+
+
+Group	gZb_THSensor_03
+Number	Zb_THSensor_03_temperature	"Xiaomi Temp Humi Sensor 03 Temperature"						(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:temperature"}
+Number	Zb_THSensor_03_humidity		"Xiaomi Temp Humi Sensor 03 Humidity"							(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:humidity"}
+Number	Zb_THSensor_03_linkquality	"Xiaomi Temp Humi Sensor 03 LinkQuality"						(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:linkquality"}
+Number	Zb_THSensor_03_battery		"Xiaomi Temp Humi Sensor 03 battery"							(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:battery"}
+Number	Zb_THSensor_03_voltage		"Xiaomi Temp Humi Sensor 03 voltage"							(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:voltage"}
+
+Group	gZb_THSensor_04
+Number	Zb_THSensor_04_temperature	"Xiaomi Temp Humi Sensor 04 Temperature"						(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:temperature"}
+Number	Zb_THSensor_04_humidity		"Xiaomi Temp Humi Sensor 04 Humidity"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:humidity"}
+Number	Zb_THSensor_04_linkquality	"Xiaomi Temp Humi Sensor 04 LinkQuality"						(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:linkquality"}
+Number	Zb_THSensor_04_battery		"Xiaomi Temp Humi Sensor 04 battery"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:battery"}
+Number	Zb_THSensor_04_voltage		"Xiaomi Temp Humi Sensor 04 voltage"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:voltage"}
