@@ -17,8 +17,11 @@ then
     {postUpdate(radio, OFF)}
     vCT_TVKodiSpeakers.sendCommand(OFF)
 
-    gIkeaLights.sendCommand(0)
-    gIkeaLights.postUpdate(0)
+    gZbAllBulbs.sendCommand(OFF)
+
+    gZbAllBulbs.postUpdate(OFF)
+    // gIkeaLights.sendCommand(0)
+    // gIkeaLights.postUpdate(0)
     //set rads temps to off
     CT_Heating_PresetTempNormal.postUpdate(17.0)
     FR_Heating_PresetTempNormal.postUpdate(14.0)
@@ -28,13 +31,13 @@ then
     OF_Heating_PresetTempNormal.postUpdate(17.0)
     HL_Heating_PresetTempNormal.postUpdate(17.0)
     Heating_UpdateHeaters.sendCommand(ON)    
+    logInfo("RULE", "Item Scene_Goodnight received command ON")
 
     createTimer(now.plusSeconds(240), [|
         {sendCommand(DR_FairyLights433Socket, OFF)} // d room lights
         {postUpdate(DR_FairyLights433Socket, OFF)}
         logInfo("RULE", "Item Scene_Goodnight now set to OFF again")
     ])
-    logInfo("RULE", "Item Scene_Goodnight received command ON")
 
     Scene_Goodnight.postUpdate(OFF)
 end

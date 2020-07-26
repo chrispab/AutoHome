@@ -11,16 +11,18 @@ Group	gZbWhiteBulbs																				(gZbAllBulbs)
 
 Group	gZbWhiteBulb01																				(gZbWhiteBulbs)
 Switch	ZbWhiteBulb01Switch			"Zb white bulb 1 switch [%s]"									(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:switch"}
-Dimmer	ZbWhiteBulb01Dim			"Zb white bulb 1 Dim [%s]"										(gZbWhiteBulb01)							{ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
+Dimmer	ZbWhiteBulb01Dim			"cyril"										(gZbWhiteBulb01)							{ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
 Number	ZbWhiteBulb01Quality		"Zb white bulb 1  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:linkquality"}
 
 Group	gZbWhiteBulb02																				(gZbWhiteBulbs)
 Switch	ZbWhiteBulb02Switch			"Zb white bulb 2 switch [%s]"									(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:switch"}
-Dimmer	ZbWhiteBulb02Dim			"Zb white bulb 2 Dim [%s]"										(gZbWhiteBulb02)							{ga="Light", channel="mqtt:topic:ikeabulb02:dimmer"}
+Dimmer	ZbWhiteBulb02Dim			"arthur"										(gZbWhiteBulb02)							{ga="Light", channel="mqtt:topic:ikeabulb02:dimmer"}
 Number	ZbWhiteBulb02Quality		"Zb white bulb 2  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:linkquality"}
 
 //colour bulbs
-Group	gZbColourBulbs																				(gZbAllBulbs)
+// Group gDimmerBulbs "Dimmer bulbs" (gIkeaLights) { ga="Light" [ roomHint="Conservatory" ] }
+
+Group	gZbColourBulbs		"colour bulbs"	(gZbAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
 Group	gZbColourBulbsColour
 Group	gZbColourBulbsDim
 Group	gZbColourBulbsSwitch
@@ -28,13 +30,13 @@ Group	gZbColourBulbsSwitch
 Group	gZbColourBulb01																				(gZbColourBulbs)
 Switch	ZbColourBulb01Switch		"Zb colour bulb 01 switch [%s]"									(gZbColourBulb01, gZbColourBulbsSwitch)							{ga="Light", channel="mqtt:topic:ikeacolourbulb01:switch"}
 Dimmer	ZbColourBulb01Dim			"Zb colour bulb 01 dim [%d]"									(gZbColourBulb01, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb01:dimmer"}
-Color	ZbColourBulb01Colour		"Zb colour bulb 01  [%s]"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
+Color	ZbColourBulb01Colour		"colour bulb 01"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
 Number	ZbColourBulb01Quality		"Zb colour bulb 01  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb01)							{channel="mqtt:topic:ikeacolourbulb01:linkquality"}
 
 Group	gZbColourBulb02
 Switch	ZbColourBulb02Switch		"Zb colour bulb 02 switch [%s]"									(gZbColourBulb02, gZbColourBulbsSwitch)							{ga="Light", channel="mqtt:topic:ikeacolourbulb02:switch"}
 Dimmer	ZbColourBulb02Dim			"Zb colour bulb 02 dim [%d]"									(gZbColourBulb02, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb02:dimmer"}
-Color	ZbColourBulb02Colour		"Zb colour bulb 02  [%s]"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Color	ZbColourBulb02Colour		"colour bulb 02"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
 Number	ZbColourBulb02Quality		"Zb colour bulb 02  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb02)							{channel="mqtt:topic:ikeacolourbulb02:linkquality"}
 
 
