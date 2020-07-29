@@ -1,0 +1,22 @@
+
+/* Assistenten (Alexa, Google Home, ...)  */
+
+Group gGHM "Google Home Minis" <computer>
+
+// Google Home Mini Bathroom - minimum items required for this tutorial
+
+Dimmer GHM_Conservatory_Volume           "GHM_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:volume" }
+Player GHM_Conservatory_Player           "GHM_Conservatory Player"                             (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:control" }
+Switch GHM_Conservatory_Idle             "GHM_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:idling" }
+
+
+// Power Switch - You need to adapt this to your setup - this is the power switch I turn on in case the Google Home is not already switched on
+// Switch Switch_DG_Bath_Google_Home        "Google Home Bath"         <recorder>			(gAssistenten) [ "Switchable" ] 	{ knx="<6/0/1" }
+
+// Motion Detector
+Switch Send_Audio_to_GHM   "Send_Audio_to_GHM" //          <presence>     
+//  (Motion_DG)                  { knx="<16/0/0" }
+
+// Groups for motion detector
+// Group 	 Motion         "Motion"                <present>       (All)
+// Group 	 Motion_DG      "Motion Upper Level"  	<present>       (Motion)
