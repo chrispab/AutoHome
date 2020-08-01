@@ -50,6 +50,7 @@ when
     or
     Item Conservatory_Fan_ON_Setpoint changed 
 then
+logInfo("RULE", "Check if cooling fan reqd")
         //var Number setpoint = 26.0 //CT_TemperatureSetpoint.state as DecimalType
         var Number setpoint = Conservatory_Fan_ON_Setpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
@@ -61,23 +62,30 @@ then
         //     socketG3_2.postUpdate(OFF)
         // }else 
 
+logInfo("RULE", "--1")
 
         //only when heating not on
         var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
-        // if (sp < 19) { //! or if summer and heating is off
+        if (sp < 20) { //! or if summer and heating is off
             if (temp >= turnOnTemp) {
+                logInfo("RULE", "--2")
+
                 CT_Fan433PowerSocket.sendCommand(ON)
                 CT_Fan433PowerSocket.postUpdate(ON)
                 logInfo("RULE", "consv hot - turn on CT_Fan433PowerSocket: " + temp)
             }
             //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
             if ((temp < turnOnTemp) ) { 
+                logInfo("RULE", "--3")
+
                 if (FanOnOverride.state == OFF){
                 CT_Fan433PowerSocket.sendCommand(OFF)
                 CT_Fan433PowerSocket.postUpdate(OFF)
+                                logInfo("RULE", "--4")
+
                 }
             }
-        // }
+        }
 end
 
 
@@ -85,6 +93,8 @@ rule "React on Fan Pulse (FanPulseSwitch) change/update"
 when
     Item FanPulseSwitch changed from OFF to ON
 then
+logInfo("RULE", "Fan pulsed")
+
     CT_Fan433PowerSocket.sendCommand(ON)
     CT_Fan433PowerSocket.postUpdate(ON)
 
@@ -103,7 +113,8 @@ rule "React on Fan override ON"
 when
     Item FanOnOverride changed from OFF to ON
 then
-    CT_Fan433PowerSocket.sendCommand(ON)
+                 logInfo("RULE", "--Z")
+   CT_Fan433PowerSocket.sendCommand(ON)
     CT_Fan433PowerSocket.postUpdate(ON)
     
 end
@@ -112,6 +123,8 @@ rule "React on Fan override OFF"
 when
     Item FanOnOverride changed from ON to OFF
 then
+                 logInfo("RULE", "--X")
+
     CT_Fan433PowerSocket.sendCommand(OFF)
     CT_Fan433PowerSocket.postUpdate(OFF)
 
