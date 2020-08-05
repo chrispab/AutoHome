@@ -2,3 +2,5 @@
 1=ON
 OFF=0
 ON=1
+true=ON
+false=OFF

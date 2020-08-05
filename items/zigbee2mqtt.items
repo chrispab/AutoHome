@@ -95,3 +95,15 @@ Number	Zb_THSensor_04_linkquality	"Xiaomi Temp Humi Sensor 04 LinkQuality"						
 Number	Zb_THSensor_04_battery		"Xiaomi Temp Humi Sensor 04 battery"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:battery"}
 Number	Zb_THSensor_04_voltage		"Xiaomi Temp Humi Sensor 04 voltage"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:voltage"}
 String	Zb_THSensor_04_reachable	"Xiaomi THSensor04 Reachable"			{channel="mqtt:topic:THSensor04:reachable"}
+
+//----------------------------------------------
+Group	gZb_pir
+Number	pir01_illuminance	"pir01_illuminance"	(gZb_pir)   {channel="mqtt:topic:pir01:illuminance"}
+Number	pir01_illuminance_lux	"pir01_illuminance_lux"	(gZb_pir)   {channel="mqtt:topic:pir01:illuminance_lux"}
+Switch	pir01_occupancy	"pir01_occupancy"	(gZb_pir)   {channel="mqtt:topic:pir01:occupancy"}
+Number	pir01_linkquality	"pir01_linkquality" (gZb_pir)   {channel="mqtt:topic:pir01:linkquality"}
+Number	pir01_battery		"pir01_battery"    (gZb_pir)   {channel="mqtt:topic:pir01:battery"}
+Number	pir01_voltage		"pir01_voltage"	(gZb_pir)	{channel="mqtt:topic:pir01:voltage"}
+String	pir01_reachable	"pir01_reachable"			{channel="mqtt:topic:pir01:reachable"}
+
+

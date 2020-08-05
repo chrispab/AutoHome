@@ -78,6 +78,7 @@ when
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     shutdownKodiConservatoryProxy.postUpdate(ON)
+		say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
     //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer2 !== null) {
@@ -102,6 +103,8 @@ when
 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
+		say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+
     shutdownKodiConservatoryProxy.postUpdate(OFF)
 
     if(timer2 === null) {
@@ -123,6 +126,7 @@ when
 then
     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
     shutdownKodiBedroomProxy.postUpdate(ON)
+		say("Turning on Bedroom TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
         //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer3 !== null) {
@@ -138,6 +142,7 @@ when
     Item vBR_TVKodi changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
+		say("Turning off Bedroom TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
     shutdownKodiBedroomProxy.postUpdate(OFF)
 

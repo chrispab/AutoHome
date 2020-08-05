@@ -13,16 +13,16 @@ then
     //var Number fanRepeatSecs = 100
     
     if (RecircFanEnable.state == NULL) {
-        logInfo("RULE", "recirc CT_Fan433PowerSocket enable is NULL so set to ON")
+        // logInfo("RULE", "recirc CT_Fan433PowerSocket enable is NULL so set to ON")
         RecircFanEnable.state = ON
         //RecircFanEnable
     }
 
-    logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
-    logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
-    logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
+    // logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
+    // logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
+    // logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        logInfo("fan rules", "conservatory fan on, heating setpoint > 20, sp currently:" + sp)
+        // logInfo("fan rules", "conservatory fan on, heating setpoint > 20, sp currently:" + sp)
         {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
         {postUpdate(CT_Fan433PowerSocket, ON)}
 
@@ -31,11 +31,11 @@ then
         createTimer(now.plusSeconds(fanOnSecs), [|
             {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
             {postUpdate(CT_Fan433PowerSocket, OFF)}
-            logInfo("RULE", "pulse consv CT_Fan433PowerSocket OFF sent after " + fanOnSecs + " secs")
+            // logInfo("RULE", "pulse consv CT_Fan433PowerSocket OFF sent after " + fanOnSecs + " secs")
         ])
     }
     if (  (RecircFanEnable.state == OFF) )  {
-        logInfo("RULE", "recirc cron ran, but recirc CT_Fan433PowerSocket is disabled so not switching on")
+        // logInfo("RULE", "recirc cron ran, but recirc CT_Fan433PowerSocket is disabled so not switching on")
     }
 end
 
@@ -50,7 +50,7 @@ when
     or
     Item Conservatory_Fan_ON_Setpoint changed 
 then
-logInfo("RULE", "Check if cooling fan reqd")
+    // logInfo("RULE", "Check if cooling fan reqd")
         //var Number setpoint = 26.0 //CT_TemperatureSetpoint.state as DecimalType
         var Number setpoint = Conservatory_Fan_ON_Setpoint.state as DecimalType
         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures

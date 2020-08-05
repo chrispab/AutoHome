@@ -131,6 +131,7 @@ Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBrok
     Type number : battery "Xiaomi Temp Humi Sensor 01 battery" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.voltage" ]
     Type string : reachable "Xiaomi THSensor01 Reachable"
+    // Type timer  : timer "Xiaomi THSensor01 timer"
 
 }
 
@@ -164,5 +165,48 @@ Thing mqtt:topic:THSensor04 "Xiaomi Temp Humi Sensor 04" (mqtt:broker:MyMQTTBrok
     Type number : battery "Xiaomi Temp Humi Sensor 04 battery" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 04 voltage" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.voltage" ]
     Type string : reachable "Xiaomi THSensor04 Reachable"
+
+}
+
+//----------------------------------------------------------------------------------------------------
+Thing mqtt:topic:pir01 "PIR 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : illuminance "PIR 01 illuminance"      [stateTopic="zigbee2mqtt/pir01", transformationPattern="JSONPATH:$.illuminance" ]
+    Type number : illuminance_lux "PIR 01 illuminance_lux"  [stateTopic="zigbee2mqtt/pir01", transformationPattern="JSONPATH:$.illuminance_lux" ]
+    Type switch : occupancy "PIR 01 occupancy"          [stateTopic="zigbee2mqtt/pir01", transformationPattern="JS:truefalse2onoff.js"]
+    Type number : linkquality "PIR 01 LinkQuality"   [ stateTopic="zigbee2mqtt/pir01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "PIR 01 battery"   [ stateTopic="zigbee2mqtt/pir01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "PIR 01 voltage"   [ stateTopic="zigbee2mqtt/pir01",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "PIR 01 Reachable"
+
+}
+Thing mqtt:topic:pir02 "PIR 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : illuminance "PIR 02 illuminance"      [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.illuminance" ]
+    Type number : illuminance_lux "PIR 02 illuminance_lux"  [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.illuminance_lux" ]
+    Type string : occupancy "PIR 02 occupancy"          [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.occupancy" ]
+    Type number : linkquality "PIR 02 LinkQuality"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "PIR 02 battery"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "PIR 02 voltage"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "PIR 02 Reachable"
+
+}
+//--------------------------------------------------------------------------
+Thing mqtt:topic:contact01 "Contact 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type string : contact "Contact 01 contact"          [stateTopic="zigbee2mqtt/contact01", transformationPattern="JSONPATH:$.contact" ]
+    Type number : linkquality "Contact 01 LinkQuality"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Contact 01 battery"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Contact 01 voltage"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Contact 01 Reachable"
+
+}
+Thing mqtt:topic:contact02 "Contact 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type string : contact "Contact 02 contact"          [stateTopic="zigbee2mqtt/contact02", transformationPattern="JSONPATH:$.contact" ]
+    Type number : linkquality "Contact 02 LinkQuality"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Contact 02 battery"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Contact 02 voltage"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Contact 02 Reachable"
 
 }
