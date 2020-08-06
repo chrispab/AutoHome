@@ -164,4 +164,6 @@ Items {
     Zb_THSensor_04_linkquality : strategy = everyUpdate	
     Zb_THSensor_04_battery : strategy = everyUpdate		
     Zb_THSensor_04_voltage : strategy = everyUpdate
+    
+    pir01_illuminance_lux : strategy = everyUpdate
 }

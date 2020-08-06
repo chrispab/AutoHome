@@ -35,7 +35,7 @@ rule "Motion Bath DG"
 
 		say("Hello, this is a test message","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 		// say("Hello, this is a test message","voicerss:default","chromecast:chromecast:GHM_Conservatory")
-		Thread::sleep(1500)
+		// Thread::sleep(1500)
 		Send_Audio_to_GHM.postUpdate(OFF)
 					// }
 				// ] 

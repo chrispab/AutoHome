@@ -184,7 +184,7 @@ Thing mqtt:topic:pir02 "PIR 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Type number : illuminance "PIR 02 illuminance"      [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.illuminance" ]
     Type number : illuminance_lux "PIR 02 illuminance_lux"  [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.illuminance_lux" ]
-    Type string : occupancy "PIR 02 occupancy"          [stateTopic="zigbee2mqtt/pir02", transformationPattern="JSONPATH:$.occupancy" ]
+    Type switch : occupancy "PIR 02 occupancy"          [stateTopic="zigbee2mqtt/pir02", transformationPattern="JS:truefalse2onoff.js" ]
     Type number : linkquality "PIR 02 LinkQuality"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "PIR 02 battery"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "PIR 02 voltage"   [ stateTopic="zigbee2mqtt/pir02",  transformationPattern="JSONPATH:$.voltage" ]

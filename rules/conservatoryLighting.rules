@@ -19,12 +19,13 @@ then
     logInfo("RULE", "Turn OFF Conservatory lights via proxy")
         //ikea lights  PercentType newValue = new PercentType(newPercent);
         // gDimmerBulbs.sendCommand( (new PercentType(0)) )
-                gDimmerBulbs.sendCommand(0) 
+                // gDimmerBulbs.sendCommand(0) 
 
-        gColourBulbs.sendCommand(OFF)
+        // gColourBulbs.sendCommand(OFF)
         //fairy light
         gConservatoryFairyLights.sendCommand(OFF)
         gConservatoryFairyLights.postUpdate(OFF)
+        ZbColourBulb01Colour.sendCommand(OFF)
 
 end
 
