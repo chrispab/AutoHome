@@ -7,7 +7,10 @@ when
     System started
 then
     logInfo("StartUp - announce startup", "StartUp - announce startup")
-    playSound("chromecast:chromecast:GHM_Conservatory","0600_hours_regeneration_cycle_complete.mp3", new PercentType(75) )
+    // playSound("chromecast:chromecast:GHM_Conservatory","0600_hours_regeneration_cycle_complete.mp3", new PercentType(75) )
+    
+    
+    
     // if(MModeTimer === null) {
     //     MModeTimer = createTimer(now.plusSeconds(60), [| 
     //         if (masterHeatingMode.state == NULL) {

@@ -10,6 +10,22 @@ var String stateSwitch = transform("JSONPATH","$.room",jsonString)
 var String powerString = transform("JSONPATH","$.temp",jsonString)
 // var String jsonString = "{\"room\":\"AT\",\"temp\":\"17.5\",\"time\":\"13:45\"}"
 
+
+rule "React on test switch (testSwitch) change/update"
+when
+    Item testSwitch changed from OFF
+then
+    logInfo("RULE", "Turn OFF Conservatory lights via proxy")
+    gConservatoryFairyLights.sendCommand(OFF)
+    gConservatoryFairyLights.postUpdate(OFF)
+    ZbColourBulb01Switch.sendCommand(OFF)
+    testSwitch.sendCommand(OFF)
+
+end
+
+
+
+
 rule "Test"
 when
     Item Virtual_Switch_1 received update

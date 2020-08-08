@@ -1,32 +1,21 @@
-
 rule "Turn ON conservatory lights via proxy"
 when
     Item conservatoryLightsProxy changed from OFF to ON
 then
     logInfo("RULE", "Turn ON the Conservatory lights via proxy")
-        //ikea lights
-        // gDimmerBulbs.sendCommand(30)
-        // gColourBulbs.sendCommand(ON)
-        //fairy light
-        gConservatoryFairyLights.sendCommand(ON)
-        gConservatoryFairyLights.postUpdate(ON)
+    gConservatoryFairyLights.sendCommand(ON)
+    gConservatoryFairyLights.postUpdate(ON)
 end
+
 
 rule "Turn OFF conservatory lights via proxy"
 when
     Item conservatoryLightsProxy changed from ON to OFF 
 then
     logInfo("RULE", "Turn OFF Conservatory lights via proxy")
-        //ikea lights  PercentType newValue = new PercentType(newPercent);
-        // gDimmerBulbs.sendCommand( (new PercentType(0)) )
-                // gDimmerBulbs.sendCommand(0) 
-
-        // gColourBulbs.sendCommand(OFF)
-        //fairy light
-        gConservatoryFairyLights.sendCommand(OFF)
-        gConservatoryFairyLights.postUpdate(OFF)
-        ZbColourBulb01Colour.sendCommand(OFF)
-
+    gConservatoryFairyLights.sendCommand(OFF)
+    gConservatoryFairyLights.postUpdate(OFF)
+    ZbColourBulb01Switch.sendCommand(OFF)
 end
 
 

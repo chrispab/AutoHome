@@ -1,3 +1,30 @@
+import java.util.concurrent.locks.ReentrantLock
+
+val ReentrantLock RLock = new ReentrantLock
+// val ReentrantLock THPSensor_01_Lock = new ReentrantLock
+
+
+rule "monitor ZB Zb_THSensor_01 availability"
+when
+    Member of gTHSensorTemperatures received update
+then
+    logInfo("gTHSensorTemperatures", "!!!!!  gTHSensorTemperatures received update: " + triggeringItem.name)
+
+   var boolean gotLock = RLock.tryLock() // get the lock if we can, but as quick as we can
+   if (gotLock) {   // if we got the lock
+    // logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 mqtt received - mark as ONLINE")
+    // Zb_THSensor_01_reachable.postUpdate("Online")
+    // Zb_THSensor_01_Timer?.cancel    //if timer is active, cancel it
+    // logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 Starting a new Timer")
+    // Zb_THSensor_01_Timer = createTimer(now.plusSeconds(Zb_TempSensor_Timeout), [| 
+    //     Zb_THSensor_01_reachable.postUpdate("Offline")//execute if timer not cancelled - set as "Offline"
+    //     logInfo("monitor ZB Zb_THSensor_01", "Zb_THSensor_01 timed out - mark as OFFLINE")
+    //     Zb_THSensor_01_Timer = null
+    // ])
+    RLock.unlock()  // MUST release the lock
+   }
+end
+
 // var Timer RouterTimer = null
 // var int routerTimeout = 61 
 
