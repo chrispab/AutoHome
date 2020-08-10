@@ -5,10 +5,10 @@ when
     Item WiFiSocket4_TemperatureSetpoint received update
     
 then
-        var Number setpoint = WiFiSocket4_TemperatureSetpoint.state as DecimalType
-        var Number turnOnTemp = setpoint - 0.1//- 0.2// calculate the turn on/off temperatures
-        var Number turnOffTemp = setpoint - 0.1 //+ 0.1
-        var Number temp = WiFiSocket4Temperature.state as DecimalType // get the current temperature
+        // var Number setpoint = WiFiSocket4_TemperatureSetpoint.state as DecimalType
+        // var Number turnOnTemp = setpoint - 0.1//- 0.2// calculate the turn on/off temperatures
+        // var Number turnOffTemp = setpoint - 0.1 //+ 0.1
+        // var Number temp = WiFiSocket4Temperature.state as DecimalType // get the current temperature
 
         // if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
         //     logInfo("Heaters rules", "===> SendCommand " + "Green House" + " : " + "Heater OFF")

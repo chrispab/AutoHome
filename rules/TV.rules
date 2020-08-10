@@ -78,7 +78,7 @@ when
 then
     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
     shutdownKodiConservatoryProxy.postUpdate(ON)
-		say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+		// say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
     //check if a shutdown timer is running - then stop it before turning stuff on
     if(timer2 !== null) {
@@ -103,7 +103,7 @@ when
 
 then
     logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
-		say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+		// say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
     shutdownKodiConservatoryProxy.postUpdate(OFF)
 

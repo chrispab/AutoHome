@@ -1,19 +1,29 @@
 import java.util.concurrent.locks.ReentrantLock
 
 val ReentrantLock RLock = new ReentrantLock
-// val ReentrantLock THPSensor_01_Lock = new ReentrantLock
 
+rule "StartUp - RLock.unlock()"
+when
+    System started
+then
+RLock.unlock()
+end
 
-rule "monitor ZB Zb_THSensor_01 availability"
+rule "Member of gTHSensorTemperatures received updatevv"
 when
     Member of gTHSensorTemperatures received update
 then
-    logInfo("gTHSensorTemperatures", "!!!!!  gTHSensorTemperatures received update: " + triggeringItem.name)
+    logInfo("gTHSensorTemperatures", ">>>>>>>-------  gTHSensorTemperatures received update: " + triggeringItem.name)
 
    var boolean gotLock = RLock.tryLock() // get the lock if we can, but as quick as we can
    if (gotLock) {   // if we got the lock
-    // logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 mqtt received - mark as ONLINE")
-    // Zb_THSensor_01_reachable.postUpdate("Online")
+    logInfo("gTHSensorTemperatures received update", "++++++gTHSensorTemperatures received update - " + triggeringItem.name  + " now " + triggeringItem.state)
+    
+    val prefix = triggeringItem.name.split("_").get(0)
+    // val HeatingMode = gHeatingModes.members.findFirst[ t | t.name == prefix + "_HeatingMode"]
+        // val HeatingMode = gTHSensorTemperatures.members.findFirst[ t | t.name == prefix + " : _HeatingMode"]
+
+    logInfo("Heaters rules", "===> prefix :  " + prefix + " : " + triggeringItem.state )     // Zb_THSensor_01_reachable.postUpdate("Online")
     // Zb_THSensor_01_Timer?.cancel    //if timer is active, cancel it
     // logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 Starting a new Timer")
     // Zb_THSensor_01_Timer = createTimer(now.plusSeconds(Zb_TempSensor_Timeout), [| 

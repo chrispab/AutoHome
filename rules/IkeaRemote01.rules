@@ -13,15 +13,15 @@ then
 //     //val  heatingModeName = "" + prefix + "_HeatingMode"
     logInfo("Remote01 rules", "===> Triggering item: " + triggeringItem.name ) 
     logInfo("Remote01 rules", "===> Value: " + triggeringItem.state ) 
-        if (ZbRemote01Action.state.toString  == "toggle") {
-            // gZbColourBulbsSwitch.sendCommand(gZbColourBulbsSwitch.state)
-            if(gZbColourBulbsSwitch.state == ON)
-                gZbColourBulbsSwitch.sendCommand(OFF)
-            else //{// return
-            // if(gZbColourBulbsSwitch.state == OFF)
-                gZbColourBulbsSwitch.sendCommand(ON)
-            // }
-        }
+        // if (ZbRemote01Action.state.toString  == "toggle") {
+        //     // gZbColourBulbsSwitch.sendCommand(gZbColourBulbsSwitch.state)
+        //     if(gZbColourBulbsSwitch.state == ON)
+        //         gZbColourBulbsSwitch.sendCommand(OFF)
+        //     else //{// return
+        //     // if(gZbColourBulbsSwitch.state == OFF)
+        //         gZbColourBulbsSwitch.sendCommand(ON)
+        //     // }
+        // }
 
 //     val HeatingMode = gHeatingModes.members.findFirst[ t | t.name == prefix + "_HeatingMode"]
 //     logInfo("Heaters rules", "===> HeatingMode " + prefix + " : " + HeatingMode.state ) 

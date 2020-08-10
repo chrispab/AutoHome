@@ -44,9 +44,10 @@ rule "pir01 Turn ON lights"
 when
     Item pir01_occupancy changed from OFF to ON
 then
-    logInfo("RULE", "pir01 turn on lights on")
     if (pir01_illuminance_lux.state < 30){
         ZbWhiteBulb01Switch.sendCommand(ON)
-        ZbWhiteBulb01Dim.sendCommand( new PercentType(65) )
+        ZbWhiteBulb01Dim.sendCommand( new PercentType(65).toString() )
+            logInfo("RULE", "pir01 turn on lamp, kitchen bulb")
+
     }
 end

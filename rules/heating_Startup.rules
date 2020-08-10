@@ -19,7 +19,7 @@ then
 
     logInfo("startup heating", "checking if any room heating modes are null")
     if(ModesTimer === null) {
-        ModesTimer = createTimer(now.plusSeconds(60), [| 
+        ModesTimer = createTimer(now.plusSeconds(70), [| 
             if ( gHeatingModes.state == NULL) {
                 gHeatingModes.members.forEach[ String heatingMode | heatingMode.postUpdate("auto") ] 
                 logInfo("startup heating", "heating mode was null - set heating mode to - auto")
@@ -30,7 +30,7 @@ then
 
     logInfo("startup heating", "????????????????????????????????????????checking if any GA Thermostat modes are null")
     if(TModesTimer === null) {//if timer not currently running
-        TModesTimer = createTimer(now.plusSeconds(69), [| 
+        TModesTimer = createTimer(now.plusSeconds(80), [| 
           logInfo("startup heating", "================================== timer executing")
 
            if ( gThermostatModes.state == "notdef") {//if any states are - notdef

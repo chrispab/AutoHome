@@ -62,20 +62,20 @@ rule "Motion Bath DG"
 
 
 // when someone put the power off we force/switch the Player item to PAUSE, as it does not get initialized in PAUSE state when the the Google Home is booting
-rule "Google Home Bath Power Off"
-	when
-		/* Google Home switch off */ 
-         Item Steckdose_DG_Bath_Waschbacken_Unten changed from ON to OFF
-	then
-        // need to set the player to Pause, so next time it is in the right state when we start
-		sendCommand(Google_Home_Bath_Player,PAUSE)
+// rule "Google Home Bath Power Off"
+// 	when
+// 		/* Google Home switch off */ 
+//          Item Steckdose_DG_Bath_Waschbacken_Unten changed from ON to OFF
+// 	then
+//         // need to set the player to Pause, so next time it is in the right state when we start
+// 		sendCommand(Google_Home_Bath_Player,PAUSE)
 		
-	end
+// 	end
 
 /* Is the Google Home busy ? - just logging the state changes - not needed for the example to work*/
-rule "GH Bath Idle has changed"
-	when
-		Item Google_Home_Bath_Idle changed
-	then
-		logInfo("RULE.AUDIO", "Google Home Bath Idle changed! ->" + Google_Home_Bath_Idle.state.toString())
-	end
+// rule "GH Bath Idle has changed"
+// 	when
+// 		Item Google_Home_Bath_Idle changed
+// 	then
+// 		logInfo("RULE.AUDIO", "Google Home Bath Idle changed! ->" + Google_Home_Bath_Idle.state.toString())
+// 	end
