@@ -1,0 +1,9 @@
+Thing mqtt:topic:amplifier  "MQTT Thing: ir amplifier" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        // Type number : temperature  [ stateTopic="433Bridge/Temperature"]
+        // Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
+        // Type switch : button1       [ stateTopic="433Bridge/Button1" ]
+        // Type number : lightLevel  [ stateTopic="433Bridge/LightLevel"]
+        // Type switch : lightState      [ stateTopic="433Bridge/LightState", on="true", off="false"]
+    Type switch : standby "ir amplifier standyby" [ stateTopic="irbridge/amplifier/standby", commandTopic="irbridge/amplifier/standby", on="on", off="off" ]
+}
