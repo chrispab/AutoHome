@@ -87,7 +87,9 @@ then
     {sendCommand(CT_TV433PowerSocket, ON)} //tv
     {postUpdate(CT_TV433PowerSocket, ON)}
     {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket
-    {postUpdate(CT_Soundbar433PowerSocket, ON)}    
+    {postUpdate(CT_Soundbar433PowerSocket, ON)} 
+    amplifierStandby.sendCommand(ON)
+    amplifierStandby.postUpdate(ON)   
 end
 
 
@@ -106,7 +108,8 @@ then
 		// say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
     shutdownKodiConservatoryProxy.postUpdate(OFF)
-
+            amplifierStandby.sendCommand(OFF)
+            amplifierStandby.postUpdate(OFF)  
     if(timer2 === null) {
         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
             logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
@@ -114,6 +117,8 @@ then
             {postUpdate(CT_TV433PowerSocket, OFF)}
             {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
             {postUpdate(CT_Soundbar433PowerSocket, OFF)}
+
+ 
             timer2 = null]
     }
 end
