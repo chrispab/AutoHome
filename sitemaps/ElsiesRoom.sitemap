@@ -1,7 +1,8 @@
 sitemap ElsiesRoom label="Elsie's Room"
 {
   Frame label="Heating" {
-    Text item=ER_Temperature label="Current Temperature: [%.1f °C]"
+    Text item=Zb_THSensor_04_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=ER_Temperature label="Current Temp(old sensor): [%.1f °C]"
     Setpoint item=ER_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[ER_HeatingMode=="auto", ER_HeatingMode=="manual"]
     Switch item=ER_HeatingMode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
     Switch item= ER_Heater label="Radiator"
