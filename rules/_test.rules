@@ -11,6 +11,19 @@ var String powerString = transform("JSONPATH","$.temp",jsonString)
 // var String jsonString = "{\"room\":\"AT\",\"temp\":\"17.5\",\"time\":\"13:45\"}"
 
 
+
+rule "React on amp test switch (amptestSwitch) change/update"
+when
+    Item amptestSwitch received update// your condition here
+then
+    // your logic here
+    val String hex_code = "0xE13E29D6"
+    // val dimVal =  Integer.parseInt(0xE13E29D6, 16) as Number
+    var MyNumber = Long.parseLong('E13E29D6', 16) as Number
+    amplifiercode.sendCommand(MyNumber)
+end
+
+
 rule "React on test switch (testSwitch) change/update"
 when
     Item testSwitch changed from OFF

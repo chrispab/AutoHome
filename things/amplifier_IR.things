@@ -6,4 +6,8 @@ Thing mqtt:topic:amplifier  "MQTT Thing: ir amplifier" (mqtt:broker:MyMQTTBroker
         // Type number : lightLevel  [ stateTopic="433Bridge/LightLevel"]
         // Type switch : lightState      [ stateTopic="433Bridge/LightState", on="true", off="false"]
     Type switch : standby "ir amplifier standyby" [ stateTopic="irbridge/amplifier/standby", commandTopic="irbridge/amplifier/standby", on="on", off="off" ]
+    Type number : code "ir amplifier control code" [ stateTopic="irbridge/amplifier/code", commandTopic="irbridge/amplifier/code" ]
+
+
+
 }
