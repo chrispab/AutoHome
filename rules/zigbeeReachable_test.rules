@@ -2,12 +2,12 @@ import java.util.concurrent.locks.ReentrantLock
 
 val ReentrantLock RLock = new ReentrantLock
 
-rule "StartUp - RLock.unlock()"
-when
-    System started
-then
-RLock.unlock()
-end
+// rule "StartUp - RLock.unlock()"
+// when
+//     System started
+// then
+// RLock.unlock()
+// end
 
 rule "Member of gTHSensorTemperatures received updatevv"
 when

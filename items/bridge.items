@@ -2,7 +2,7 @@ Number	Bridge_Temperature		"Bridge Temperature [%.1f °C]"		<temperature>			{ ch
 Number	Bridge_Humidity			"Conservatory Humidity [%.1f °C]"	<humidity>				{ channel="mqtt:topic:bridge:humidity" }
 Switch	bridgeButton1			"433 Bridge button 1"				<button>				{ channel="mqtt:topic:bridge:button1" }
 Number	BridgeLightSensorLevel	"Light Sensor Level"				<light>					{ channel="mqtt:topic:bridge:lightLevel" }
-Switch	BridgeLightSensorState	"Light Sensor State"				<light>					{ channel="mqtt:topic:bridge:lightState" }
+Switch	BridgeLightSensorState	"Light Sensor State"				<light>					{ channel="mqtt:topic:bridge:lightSensorState" }
 Switch	PIRState				"Bridge PIR sensor"					<light>					{ channel="mqtt:topic:bridge:pirState" }
 
 

@@ -17,9 +17,9 @@ when
     Item amptestSwitch received update// your condition here
 then
     // your logic here
-    val String hex_code = "0xE13E29D6"
+    // val String hex_code = "0xE13E29D6"
     // val dimVal =  Integer.parseInt(0xE13E29D6, 16) as Number
-    var MyNumber = Long.parseLong('E13E29D6', 16) as Number
+    var MyNumber = Long.parseLong('E13E29D6', 16) as Number // mute amp
     amplifiercode.sendCommand(MyNumber)
 end
 
