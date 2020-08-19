@@ -4,6 +4,9 @@ var Boolean CLightsAreOn = false
 rule "PIRsensor change"
 when
     Item pir01_occupancy received update
+    or 
+    Item pir02_occupancy received update
+
 then
     logInfo("RULE", "pir01 occupancy update:" + triggeringItem.state)
    
@@ -20,9 +23,13 @@ end
 rule "PIRsensor Turn OFF lights"
 when
     Item pir01_occupancy changed from ON to OFF
+    or 
+    Item pir02_occupancy changed from ON to OFF
+
 then
     logInfo("RULE", "pir off")
-        ZbWhiteBulb01Switch.sendCommand(OFF)
+    if ((pir01_occupancy.state == OFF) && (pir01_occupancy.state == OFF))
+            ZbWhiteBulb01Switch.sendCommand(OFF)
 end
 
 
@@ -46,7 +53,7 @@ when
 then
     if (pir01_illuminance_lux.state < 30){
         ZbWhiteBulb01Switch.sendCommand(ON)
-        ZbWhiteBulb01Dim.sendCommand( new PercentType(65).toString() )
+        ZbWhiteBulb01Dim.sendCommand( new PercentType(100).toString() )
             logInfo("RULE", "pir01 turn on lamp, kitchen bulb")
 
     }
