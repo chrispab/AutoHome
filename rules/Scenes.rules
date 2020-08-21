@@ -13,6 +13,8 @@ then
     logInfo("RULE", "goodnight going to bed")
     {sendCommand(CT_FairyLights433Socket, OFF)} //con lights
     {postUpdate(CT_FairyLights433Socket, OFF)}
+    ZbColourBulb01Switch.sendCommand(OFF)
+
     {sendCommand(radio, OFF)} //radio
     {postUpdate(radio, OFF)}
     vCT_TVKodiSpeakers.sendCommand(OFF)

@@ -26,7 +26,7 @@ end
 
 rule "React on test switch (testSwitch) change/update"
 when
-    Item testSwitch changed from OFF
+    Item testSwitch changed from ON to OFF
 then
     logInfo("RULE", "Turn OFF Conservatory lights via proxy")
     gConservatoryFairyLights.sendCommand(OFF)
@@ -36,6 +36,17 @@ then
 
 end
 
+rule "React on test switch (testSwitch) change/update"
+when
+    Item testSwitch changed from OFF to ON
+then
+    logInfo("RULE", "Turn OFF Conservatory lights via proxy")
+    gConservatoryFairyLights.sendCommand(ON)
+    gConservatoryFairyLights.postUpdate(ON)
+    ZbColourBulb01Switch.sendCommand(ON)
+    testSwitch.sendCommand(ON)
+
+end
 
 
 
