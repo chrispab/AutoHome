@@ -1,4 +1,4 @@
-rule "Check if Heaters need changing"
+rule "Check if Heaters need changing etc"
 when
     Member of gHeatingModes received update or 
     Member of gTemperatureSetpoints received update or 

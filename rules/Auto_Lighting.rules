@@ -1,3 +1,10 @@
+rule "StartUp - set up Auto lighting"
+when
+    System started
+then
+    BridgeLightSensorState.postUpdate(OFF)
+end
+
 rule "if dark in morning turn on conservatory lights"
 when
     Time cron "0 55 06 ? * * *"

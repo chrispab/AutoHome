@@ -1,4 +1,4 @@
-rule "Check if Heaters need changing"
+rule "ikea testing rulel"
 when
     Item ZbRemote01Action received update
     // Member of gZBRemote01 received update

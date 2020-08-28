@@ -14,4 +14,6 @@ Switch amplifierStandby "amplifierStandby" (gMQTT) { ga="amp standby" [ roomHint
 
 Number amplifiercode    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }
 
-Switch amptestSwitch "amp test switch"
+Switch amptestSwitch "amp test switch" 
+
+Switch ampSelectSourceVideo1 " amp source video1"
