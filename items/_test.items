@@ -10,7 +10,7 @@ Switch testSwitch "test switch"
 Switch Virtual_Switch_1 "virtual switch 1"
 
 
-Switch amplifierStandby "amplifierStandby" (gMQTT) { ga="amp standby" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby" }
+Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby" }
 
 Number amplifiercode    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }
 

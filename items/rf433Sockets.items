@@ -29,7 +29,7 @@ Switch CT_Fan433PowerSocket "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Co
 
 
 //Amplifier
-Switch CT_Soundbar433PowerSocket "Amplifier"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_Soundbar433PowerSocket:powerSwitch" }
+Switch CT_Soundbar433PowerSocket "Amplifier"  <poweroutlet_uk>  (gConservatory) { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:CT_Soundbar433PowerSocket:powerSwitch" }
 
 //Conservatory TV
 Switch CT_TV433PowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_TV433PowerSocket:powerSwitch" }
