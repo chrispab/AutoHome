@@ -11,9 +11,15 @@ Switch Virtual_Switch_1 "virtual switch 1"
 
 
 Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby" }
+Switch amplifiermute "amplifier mute" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute" }
+Switch amplifiervideo1 "amplifier video one" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1" }
+Switch amplifiertuner "amplifier tuner" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner" }
+Switch amplifieraux "amplifier aux" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux" }
+Switch amplifiervolumeup "amplifier volume up" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup" }
+Switch amplifiervolumedown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown" }
+
 
 Number amplifiercode    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }
 
 Switch amptestSwitch "amp test switch" 
 
-Switch ampSelectSourceVideo1 " amp source video1"
