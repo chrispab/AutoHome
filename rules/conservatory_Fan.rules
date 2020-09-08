@@ -2,91 +2,91 @@
 
 //if conservatory heating in on period
 //then pulse recirc CT_Fan433PowerSocket every n mins
-var fanOnSecs =110 //global
+// var fanOnSecs =110 //global
 
-rule "pulse ON con re-circ CT_Fan433PowerSocket when setpoint > 19"
-when
-    Time cron "0 0/3 * * * ?"
-then
-    var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
-    var Number currentTemp = CT_Temperature.state as DecimalType // get the current temperature
-    //var Number fanRepeatSecs = 100
+// rule "pulse ON con re-circ CT_Fan433PowerSocket when setpoint > 19"
+// when
+//     Time cron "0 0/3 * * * ?"
+// then
+//     var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
+//     var Number currentTemp = CT_Temperature.state as DecimalType // get the current temperature
+//     //var Number fanRepeatSecs = 100
     
-    if (RecircFanEnable.state == NULL) {
-        // logInfo("RULE", "recirc CT_Fan433PowerSocket enable is NULL so set to ON")
-        RecircFanEnable.state = ON
-        //RecircFanEnable
-    }
+//     if (RecircFanEnable.state == NULL) {
+//         // logInfo("RULE", "recirc CT_Fan433PowerSocket enable is NULL so set to ON")
+//         RecircFanEnable.state = ON
+//         //RecircFanEnable
+//     }
 
-    // logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
-    // logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
-    // logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
-    if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-        // logInfo("fan rules", "conservatory fan on, heating setpoint > 20, sp currently:" + sp)
-        {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
-        {postUpdate(CT_Fan433PowerSocket, ON)}
+//     // logInfo("RULE", "Fan recirc rule conservatory target temp: " + sp)
+//     // logInfo("RULE", "Fan recirc currentTemp : " + currentTemp)
+//     // logInfo("RULE", "RecircFanEnable.state : " + RecircFanEnable.state)
+//     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
+//         // logInfo("fan rules", "conservatory fan on, heating setpoint > 20, sp currently:" + sp)
+//         {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
+//         {postUpdate(CT_Fan433PowerSocket, ON)}
 
-// var Timer fanRecircTimer = null
+// // var Timer fanRecircTimer = null
 
-        createTimer(now.plusSeconds(fanOnSecs), [|
-            {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
-            {postUpdate(CT_Fan433PowerSocket, OFF)}
-            // logInfo("RULE", "pulse consv CT_Fan433PowerSocket OFF sent after " + fanOnSecs + " secs")
-        ])
-    }
-    if (  (RecircFanEnable.state == OFF) )  {
-        // logInfo("RULE", "recirc cron ran, but recirc CT_Fan433PowerSocket is disabled so not switching on")
-    }
-end
-
-
+//         createTimer(now.plusSeconds(fanOnSecs), [|
+//             {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
+//             {postUpdate(CT_Fan433PowerSocket, OFF)}
+//             // logInfo("RULE", "pulse consv CT_Fan433PowerSocket OFF sent after " + fanOnSecs + " secs")
+//         ])
+//     }
+//     if (  (RecircFanEnable.state == OFF) )  {
+//         // logInfo("RULE", "recirc cron ran, but recirc CT_Fan433PowerSocket is disabled so not switching on")
+//     }
+// end
 
 
 
 
-rule "Conservatory Cooling Fan"
-when
-    Item CT_Temperature changed
-    or
-    Item Conservatory_Fan_ON_Setpoint changed 
-then
-    // logInfo("RULE", "Check if cooling fan reqd")
-        //var Number setpoint = 26.0 //CT_TemperatureSetpoint.state as DecimalType
-        var Number setpoint = Conservatory_Fan_ON_Setpoint.state as DecimalType
-        var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
-        //var Number turnOffTemp = setpoint - 1.0//+ 0.1
-        var Number temp = CT_Temperature.state as DecimalType // get the current temperature
 
-        // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
-        //     socketG3_2.sendCommand(OFF)
-        //     socketG3_2.postUpdate(OFF)
-        // }else 
 
-// logInfo("RULE", "--1")
+// rule "Conservatory Cooling Fan"
+// when
+//     // Item CT_Temperature changed
+//     or
+//     // Item Conservatory_Fan_ON_Setpoint changed 
+// then
+//     // logInfo("RULE", "Check if cooling fan reqd")
+//         //var Number setpoint = 26.0 //CT_TemperatureSetpoint.state as DecimalType
+//         var Number setpoint = Conservatory_Fan_ON_Setpoint.state as DecimalType
+//         var Number turnOnTemp = setpoint //- 0.2// calculate the turn on/off temperatures
+//         //var Number turnOffTemp = setpoint - 1.0//+ 0.1
+//         var Number temp = CT_Temperature.state as DecimalType // get the current temperature
 
-        //only when heating not on
-        var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
-        if (sp < 20) { //! or if summer and heating is off
-            if (temp >= turnOnTemp) {
-                // logInfo("RULE", "--2")
+//         // if (temp < turnOffTemp) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
+//         //     socketG3_2.sendCommand(OFF)
+//         //     socketG3_2.postUpdate(OFF)
+//         // }else 
 
-                CT_Fan433PowerSocket.sendCommand(ON)
-                CT_Fan433PowerSocket.postUpdate(ON)
-                logInfo("RULE", "consv hot - turn on CT_Fan433PowerSocket: " + temp)
-            }
-            //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
-            if ((temp < turnOnTemp) ) { 
-                // logInfo("RULE", "--3")
+// // logInfo("RULE", "--1")
 
-                if (FanOnOverride.state == OFF){
-                CT_Fan433PowerSocket.sendCommand(OFF)
-                CT_Fan433PowerSocket.postUpdate(OFF)
-                                // logInfo("RULE", "--4")
+//         //only when heating not on
+//         var Number sp = CT_TemperatureSetpoint.state as DecimalType // get the current temperature
+//         if (sp < 20) { //! or if summer and heating is off
+//             if (temp >= turnOnTemp) {
+//                 // logInfo("RULE", "--2")
 
-                }
-            }
-        }
-end
+//                 CT_Fan433PowerSocket.sendCommand(ON)
+//                 CT_Fan433PowerSocket.postUpdate(ON)
+//                 logInfo("RULE", "consv hot - turn on CT_Fan433PowerSocket: " + temp)
+//             }
+//             //if ((temp < turnOnTemp)  && (temp > turnOffTemp) ) {  // determine whether we need to turn on/off the CT_Fan433PowerSocket
+//             if ((temp < turnOnTemp) ) { 
+//                 // logInfo("RULE", "--3")
+
+//                 if (FanOnOverride.state == OFF){
+//                 CT_Fan433PowerSocket.sendCommand(OFF)
+//                 CT_Fan433PowerSocket.postUpdate(OFF)
+//                                 // logInfo("RULE", "--4")
+
+//                 }
+//             }
+//         }
+// end
 
 
 rule "React on Fan Pulse (FanPulseSwitch) change/update"
