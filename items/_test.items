@@ -14,7 +14,7 @@ Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="co
 Switch amplifiermute "amplifier mute" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute" }
 Switch amplifiervideo1 "amplifier video one" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1" }
 Switch amplifiertuner "amplifier tuner" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner" }
-Switch amplifieraux "amplifier aux" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux" }
+Switch amplifieraux "amplifier bluetooth" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux" }
 Switch amplifiervolumeup "amplifier volume up" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup" }
 Switch amplifiervolumedown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown" }
 

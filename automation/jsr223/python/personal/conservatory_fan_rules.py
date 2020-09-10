@@ -29,7 +29,7 @@ def conservatory_fan_cool(event):
 # description and tags are optional
 
 @rule("conservatory fan rule", description="Handles fan actions", tags=["conservatory", "fan"])
-@when("Time cron 0/20 * * * * ?")
+@when("Time cron 0/40 * * * * ?")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
     fanOnSecs = 110
@@ -51,8 +51,8 @@ def conservatory_fan(event):
     #         createTimer(now.plusSeconds(fanOnSecs), [|
     #             {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
     #             {postUpdate(CT_Fan433PowerSocket, OFF)}
-        fan_timer = ScriptExecution.createTimer(DateTime.now().plusMinutes(
-            5), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+        fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
+            20), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
     # events.sendCommand("CT_Fan433PowerSocket", "OFF")
 
     #         ])
