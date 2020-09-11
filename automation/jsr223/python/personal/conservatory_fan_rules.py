@@ -30,7 +30,7 @@ def conservatory_fan_cool(event):
 # //then pulse recirc CT_Fan433PowerSocket every n mins
 # description and tags are optional
 
-@rule("conservatory fan rule", description="Handles fan actions", tags=["conservatory", "fan"])
+@rule("conservatory fan circulaterule", description="Handles fan actions", tags=["conservatory", "fan"])
 @when("Time cron 0/55 * * * * ?")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
@@ -42,4 +42,4 @@ def conservatory_fan(event):
         conservatory_fan.log.info("conservatory_fan rulel FAN ON NOW")
         events.sendCommand("CT_Fan433PowerSocket", "ON")
         fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
-            15), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+            25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
