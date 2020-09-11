@@ -4,6 +4,7 @@ var Timer timer2 = null
 var Timer timer3 = null
 var Timer IRTimer = null
 
+var Timer IRTimer2 = null
 // var Timer timer4 = null
 // var Timer timer5 = null
 // var Timer timer6 = null
@@ -92,6 +93,12 @@ then
             amplifierStandby.postUpdate(ON)   
             IRTimer = null
         ])
+    IRTimer2 = createTimer(now.plusSeconds(30), [| 
+        logInfo("tv rules", "turn ON amp from standby")
+        amplifiervideo1.sendCommand(ON)
+        amplifiervideo1.postUpdate(ON)   
+        IRTimer2 = null
+    ])
     {sendCommand(CT_TV433PowerSocket, ON)} //tv
     {postUpdate(CT_TV433PowerSocket, ON)}
     {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket

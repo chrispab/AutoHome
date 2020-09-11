@@ -5,6 +5,8 @@ This script controls conservatory fan rules
 from core.rules import rule
 from core.triggers import when
 from core.actions import ScriptExecution
+import org.joda.time.DateTime as DateTime
+
 
 @rule("conservatory fan_cool rule", description="Handles fan actions", tags=["conservatory", "fan"])
 @when("Item CT_Temperature changed")
@@ -29,7 +31,7 @@ def conservatory_fan_cool(event):
 # description and tags are optional
 
 @rule("conservatory fan rule", description="Handles fan actions", tags=["conservatory", "fan"])
-@when("Time cron 0/40 * * * * ?")
+@when("Time cron 0/55 * * * * ?")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
     fanOnSecs = 110
@@ -38,25 +40,6 @@ def conservatory_fan(event):
     #     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
     if ((sp >= 20) and (currentTemp < (sp)) and (items["RecircFanEnable"] == ON)):
         conservatory_fan.log.info("conservatory_fan rulel FAN ON NOW")
-
-    #     if (RecircFanEnable.state == NULL) {
-    #         RecircFanEnable.state = ON
-    #     }
-
-    #     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
-    #         {sendCommand(CT_Fan433PowerSocket, ON)} //CT_Fan433PowerSocket on
-    #         {postUpdate(CT_Fan433PowerSocket, ON)}
         events.sendCommand("CT_Fan433PowerSocket", "ON")
-
-    #         createTimer(now.plusSeconds(fanOnSecs), [|
-    #             {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
-    #             {postUpdate(CT_Fan433PowerSocket, OFF)}
         fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
-            20), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
-    # events.sendCommand("CT_Fan433PowerSocket", "OFF")
-
-    #         ])
-    #     }
-    #     if (  (RecircFanEnable.state == OFF) )  {
-    #     }
-    # end
+            15), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
