@@ -71,71 +71,70 @@ then
     }
 end
 
-//Conservatory Pi Kodi and TV on/off control
-rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
-when
-    // Item vCT_TVKodiSpeakers changed from OFF to ON
-        Item vCT_TVKodiSpeakers received update ON
-        or
-        Item vCT_TVKodiSpeakers2 received update ON
-then
-    logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
-    shutdownKodiConservatoryProxy.postUpdate(ON)
-		// say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+// //Conservatory Pi Kodi and TV on/off control
+// rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
+// when
+//     // Item vCT_TVKodiSpeakers changed from OFF to ON
+//         Item vCT_TVKodiSpeakers received update ON
+//         or
+//         Item vCT_TVKodiSpeakers2 received update ON
+// then
+//     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
+//     shutdownKodiConservatoryProxy.postUpdate(ON)
+// 		// say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
-    //check if a shutdown timer is running - then stop it before turning stuff on
-    if(timer2 !== null) {
-        timer2 = null
-    }
-    IRTimer = createTimer(now.plusSeconds(20), [| 
-            logInfo("tv rules", "turn ON amp from standby")
-            amplifierStandby.sendCommand(ON)
-            amplifierStandby.postUpdate(ON)   
-            IRTimer = null
-        ])
-    IRTimer2 = createTimer(now.plusSeconds(30), [| 
-        logInfo("tv rules", "turn ON amp from standby")
-        amplifiervideo1.sendCommand(ON)
-        amplifiervideo1.postUpdate(ON)   
-        IRTimer2 = null
-    ])
-    {sendCommand(CT_TV433PowerSocket, ON)} //tv
-    {postUpdate(CT_TV433PowerSocket, ON)}
-    {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket
-    {postUpdate(CT_Soundbar433PowerSocket, ON)} 
+//     //check if a shutdown timer is running - then stop it before turning stuff on
+//     if(timer2 !== null) {
+//         timer2 = null
+//     }
+//     IRTimer = createTimer(now.plusSeconds(20), [| 
+//             logInfo("tv rules", "turn ON amp from standby")
+//             amplifierStandby.sendCommand(ON)
+//             amplifierStandby.postUpdate(ON)   
+//             IRTimer = null
+//         ])
+//     IRTimer2 = createTimer(now.plusSeconds(30), [| 
+//         logInfo("tv rules", "turn ON amp from standby")
+//         amplifiervideo1.sendCommand(ON)
+//         amplifiervideo1.postUpdate(ON)   
+//         IRTimer2 = null
+//     ])
+//     {sendCommand(CT_TV433PowerSocket, ON)} //tv
+//     {postUpdate(CT_TV433PowerSocket, ON)}
+//     {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket
+//     {postUpdate(CT_Soundbar433PowerSocket, ON)} 
+// end
 
-end
 
+// rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
+// when
+//     // Item vCT_TVKodiSpeakers changed from ON to OFF
+//     // or
+//     // Item vCT_TVKodiSpeakers2 changed from ON to OFF
 
-rule "Turn OFF conservatory Kodi-Pi, TV and soundbar"
-when
-    // Item vCT_TVKodiSpeakers changed from ON to OFF
-    // or
-    // Item vCT_TVKodiSpeakers2 changed from ON to OFF
+//          Item vCT_TVKodiSpeakers received update OFF
+//         or
+//         Item vCT_TVKodiSpeakers2 received update OFF           // Item vCT_TVKodiSpeakers received update OFF
 
-         Item vCT_TVKodiSpeakers received update OFF
-        or
-        Item vCT_TVKodiSpeakers2 received update OFF           // Item vCT_TVKodiSpeakers received update OFF
+// then
+//     logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
+// 		// say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
-then
-    logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
-		// say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
-
-    shutdownKodiConservatoryProxy.postUpdate(OFF)
-            amplifierStandby.sendCommand(OFF)
-            amplifierStandby.postUpdate(OFF)  
-    if(timer2 === null) {
-        timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-            logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
-            {sendCommand(CT_TV433PowerSocket, OFF)} //tv
-            {postUpdate(CT_TV433PowerSocket, OFF)}
-            {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
-            {postUpdate(CT_Soundbar433PowerSocket, OFF)}
+//     shutdownKodiConservatoryProxy.postUpdate(OFF)
+//             amplifierStandby.sendCommand(OFF)
+//             amplifierStandby.postUpdate(OFF)  
+//     if(timer2 === null) {
+//         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
+//             logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
+//             {sendCommand(CT_TV433PowerSocket, OFF)} //tv
+//             {postUpdate(CT_TV433PowerSocket, OFF)}
+//             {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
+//             {postUpdate(CT_Soundbar433PowerSocket, OFF)}
 
  
-            timer2 = null]
-    }
-end
+//             timer2 = null]
+//     }
+// end
 
 
 //Bedroom Pi Kodi and TV on/off control

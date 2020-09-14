@@ -34,9 +34,9 @@ Group	gZbColourBulbsDim
 Group	gZbColourBulbsSwitch
 
 Group	gZbColourBulb01																				(gZbColourBulbs)
-Switch	ZbColourBulb01Switch		"Zb colour bulb 01 switch [%s]"									(gZbColourBulb01, gZbColourBulbsSwitch)							{ga="Light", channel="mqtt:topic:ikeacolourbulb01:switch"}
+Switch	ZbColourBulb01Switch		"clip bulb"									(gZbColourBulb01, gZbColourBulbsSwitch)							{ga="Light", channel="mqtt:topic:ikeacolourbulb01:switch"}
 Dimmer	ZbColourBulb01Dim			"Zb colour bulb 01 dim [%d]"									(gZbColourBulb01, gZbColourBulbsDim)		{ga="Light",  channel="mqtt:topic:ikeacolourbulb01:dimmer"}
-Color	ZbColourBulb01Colour		"colour bulb 01"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
+Color	ZbColourBulb01Colour		"clip bulb colour"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
 Number	ZbColourBulb01Quality		"Zb colour bulb 01  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb01)							{channel="mqtt:topic:ikeacolourbulb01:linkquality"}
 
 Group	gZbColourBulb02
