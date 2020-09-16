@@ -1,14 +1,20 @@
 """
 This example shows two methods of using timers in rules.
 """
+# Example using Python threading.Time
+# from threading import Timer
 
 import org.joda.time.DateTime as DateTime
 from core.actions import ScriptExecution
 from core.rules import rule
 from core.triggers import when
 
-# Example using Python threading.Time
-from threading import Timer
+
+# voice support
+from org.eclipse.smarthome.core.library.types import PercentType
+from core.actions import Voice
+
+
 chargerTimer1 = None
 
 
@@ -51,7 +57,7 @@ def tvs_init(event):
     tvs_init.log.info("tvs_init")
     events.postUpdate("BridgeLightSensorState", "OFF")
     global tStartup
-    if tStartup == None:
+    if tStartup is None:
         tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
 
 
@@ -89,55 +95,27 @@ def tvs_init(event):
 
 t_ampStandbyON = None
 t_ampVideo01 = None
+
+
 # //Conservatory Pi Kodi and TV on/off control
-
-
 @rule("Conservatory Pi Kodi and TV amp on", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vCT_TVKodiSpeakers received update ON")
 @when("Item vCT_TVKodiSpeakers2 received update ON")
 def conservatory_tv_on(event):
     global t_tvPowerOff
     conservatory_tv_on.log.info("conservatory_tv_on")
-# rule "Turn ON conservatory Kodi-Pi, TV and soundbar"
-# when
-#     // Item vCT_TVKodiSpeakers changed from OFF to ON
-#         Item vCT_TVKodiSpeakers received update ON
-#         or
-#         Item vCT_TVKodiSpeakers2 received update ON
-# then
-#     logInfo("RULE", "Turn ON the Conservatory Kodi, pi and speakers")
-#     //shutdownKodiConservatoryProxy.postUpdate(ON)
-# 		// say("Turning on Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+
     events.postUpdate("shutdownKodiConservatoryProxy", "ON")
 
     events.sendCommand("CT_TV433PowerSocket", "ON")
     events.sendCommand("CT_Soundbar433PowerSocket", "ON")
-#     {sendCommand(CT_TV433PowerSocket, ON)} //tv
-#     {postUpdate(CT_TV433PowerSocket, ON)}
-#     {sendCommand(CT_Soundbar433PowerSocket, ON)} // CT_Soundbar433PowerSocket
-#     {postUpdate(CT_Soundbar433PowerSocket, ON)}
 
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_tvPowerOff is not None:
         t_tvPowerOff = None
-#     }
-#     IRTimer = createTimer(now.plusSeconds(20), [|
-#             logInfo("tv rules", "turn ON amp from standby")
-#             amplifierStandby.sendCommand(ON)
-#             amplifierStandby.postUpdate(ON)
-#             IRTimer = None
-#         ])
-    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(20), lambda: events.sendCommand("amplifierStandby", "ON"))
 
-#     IRTimer2 = createTimer(now.plusSeconds(30), [|
-#         logInfo("tv rules", "turn ON amp from standby")
-#         amplifiervideo1.sendCommand(ON)
-#         amplifiervideo1.postUpdate(ON)
-#         IRTimer2 = None
-#     ])
-    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: events.sendCommand("amplifiervideo1", "ON"))
-
-# end
+    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: events.sendCommand("amplifierStandby", "ON"))
+    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(40), lambda: events.sendCommand("amplifiervideo1", "ON"))
 
 
 @rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
@@ -146,40 +124,20 @@ def conservatory_tv_on(event):
 def conservatory_tv_off(event):
     conservatory_tv_off.log.info("conservatory_tv_off")
     global t_tvPowerOff
-#     logInfo("RULE", "Turn OFF Conservatory kodi, pi then TV and speakers")
-# 		// say("Turning off Conservatory TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
-    # events.sendCommand("CT_TV433PowerSocket", "ON")
-    # events.sendCommand("CT_Soundbar433PowerSocket", "ON")
-#     shutdownKodiConservatoryProxy.postUpdate(OFF)
+
+    Voice.say("Turning off Conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
     events.postUpdate("shutdownKodiConservatoryProxy", "OFF")
-#             amplifierStandby.sendCommand(OFF)
     events.sendCommand("amplifierStandby", "OFF")
-#             amplifierStandby.postUpdate(OFF)
-    # events.sendCommand("amplifiervideo1", "OFF")
+
     if t_tvPowerOff is None:
         t_tvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: tvoffbody())
 
-#         timer2 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-#             logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
-#             {sendCommand(CT_TV433PowerSocket, OFF)} //tv
-#             {postUpdate(CT_TV433PowerSocket, OFF)}
-#             {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
-#             {postUpdate(CT_Soundbar433PowerSocket, OFF)}
 
-
-#             timer2 = None]
-#     }
-# end
 def tvoffbody():
-    #  logInfo("RULE", shutDownWaitTime + " secs later - we can turn off power sockets now")
-    # {sendCommand(CT_TV433PowerSocket, OFF)} //tv
-    # {postUpdate(CT_TV433PowerSocket, OFF)}
     events.sendCommand("CT_TV433PowerSocket", "OFF")
     events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
-    # {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
-    # {postUpdate(CT_Soundbar433PowerSocket, OFF)}
-
     t_tvPowerOff = None
+
 
 # //Bedroom Pi Kodi and TV on/off control
 # rule "Turn ON bedroom Kodi-Pi, TV and soundbar"

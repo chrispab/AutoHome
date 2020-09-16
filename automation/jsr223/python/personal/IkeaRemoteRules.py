@@ -10,7 +10,7 @@ from core.triggers import when
 @rule("ikea testing rulel ", description="Handles ike remote actions", tags=["Ikea Remote"])
 @when("Item ZbRemote01Action received update")
 def ikea_remote(event):
-    ikea_remote.log.info("ikea testing rulel>>>>zzzzzzzzzz")
+    ikea_remote.log.info("IKEA remote TEST")
     # ikea_remote.log.info("Remote01 rules===> Triggering item: ")
     ikea_remote.log.info("Remote01 rules==> Value: " + event.itemState.toString())
 
