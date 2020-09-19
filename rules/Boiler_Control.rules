@@ -4,15 +4,12 @@ when
 then
     logInfo("Boiler_Control rule", "-> A Heater recieved a command - updating boiler state")
     logInfo("Boiler_Control rule", "-> " + triggeringItem.name + " command was " + triggeringItem.previousState.state + " now " + triggeringItem.state)
-    // logInfo("Boiler_Control rule", "here we go=========" )
     if ( gRoomHeaterStates.state ==  NULL ) {
-            // logInfo("Boiler_Control rule", "+++> Heating state detected with NULL VALUE" + gRoomHeaterStates)
             gRoomHeaterStates.members.forEach[ Heater | 
                 logInfo("Boiler_Control rule", "-> Heating state detected with val = " + Heater.name + Heater.state) 
             ] 
     }
     if ( gAnyRoomHeaterOn.state == ON ) {//if any rooms want heat - turn on boiler
-        // gRoomHeaterStates.members.forEach[ Heater | 
         gRoomHeaterStates.members.filter[l|l.state == ON].forEach[ Heater | 
             logInfo("Boiler_Control rule", "-> Heater " + Heater.name + " is " + Heater.state) 
         ] 
@@ -20,11 +17,7 @@ then
         Boiler_Control.sendCommand(ON)
     }
     else { // no rooms want heat so turn off boiler
-        gRoomHeaterStates.members.filter[l|l.state != ON].forEach[ Heater | 
-            // logInfo("Boiler_Control rule", "-> Heater " + Heater.name + " is " + Heater.state) 
-        ] 
        logInfo("Boiler_Control rule", "-> All heaters are off -> Send boiler OFF command" )
-
         Boiler_Control.sendCommand(OFF)
     }
 end

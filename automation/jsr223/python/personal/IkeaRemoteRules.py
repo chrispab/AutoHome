@@ -1,5 +1,4 @@
 """
-This script uses a decorated cron rule that will generate logs every 10s and can be used to test your initial setup.
 """
 
 from core.rules import rule

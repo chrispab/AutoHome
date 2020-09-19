@@ -156,6 +156,23 @@ def tvoffbody():
 #     WiFiSocket3Power.postUpdate(ON)
 # end
 
+# Bedroom Pi Kodi and TV on/off control
+@rule("bedroom Pi Kodi and TV", description="bedroom Pi Kodi and TV", tags=["tv"])
+@when("Item vBR_TVKodi received update ON")
+def bedroom_tv_on(event):
+    global t_tvPowerOff
+    bedroom_tv_on.log.info("bedroom_tv_on")
+    Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+    events.postUpdate("shutdownKodiBedroomProxy", "ON")
+
+    events.sendCommand("WiFiSocket3Power", "ON")
+
+#     //check if a shutdown timer is running - then stop it before turning stuff on
+    if t_tvPowerOff is not None:
+        t_tvPowerOff = None
+
+
 
 # rule "Turn OFF bedroom Kodi-Pi, TV and soundbar"
 # when
@@ -173,3 +190,91 @@ def tvoffbody():
 #         WiFiSocket3Power.postUpdate(OFF)
 #         timer3 = None]}
 # end
+t_brtvPowerOff=None
+@rule("Turn OFF bedroom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
+@when("Item vBR_TVKodi changed from ON to OFF")
+def bedroom_tv_off(event):
+    bedroom_tv_off.log.info("bedroom_tv_off")
+    global t_brtvPowerOff
+
+    Voice.say("Turning off Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    events.postUpdate("shutdownKodiBedroomProxy", "OFF")
+    # events.sendCommand("amplifierStandby", "OFF")
+
+    if t_brtvPowerOff is None:
+        t_brtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: brtvoffbody())
+
+
+def brtvoffbody():
+    global t_brtvPowerOff
+    events.sendCommand("WiFiSocket3Power", "OFF")
+    # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
+    t_brtvPowerOff = None
+
+
+
+# rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
+# when
+#     Item vFR_TVKodi received update ON
+# then
+#     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
+#     shutdownKodiFrontRoomProxy.postUpdate(ON)
+
+#             //check if a shutdown timer is running - then stop it before turning stuff on
+#     if(timer1 !== null) {
+#         timer1 = null
+#     }
+#     WiFiSocket2Power.sendCommand(ON)
+#     WiFiSocket2Power.postUpdate(ON)
+# end
+
+# Bedroom Pi Kodi and TV on/off control
+@rule("Turn ON FrontRoom Kodi-Pi, TV", description="Turn ON FrontRoom Kodi-Pi, TV", tags=["tv"])
+@when("Item vFR_TVKodi received update ON")
+def FR_tv_on(event):
+    global t_frtvPowerOff
+    FR_tv_on.log.info("FR_tv_on")
+    # Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+    events.postUpdate("shutdownKodiFrontRoomProxy", "ON")
+#     //check if a shutdown timer is running - then stop it before turning stuff on
+    if t_frtvPowerOff is not None:
+        t_tfrvPowerOff = None
+    events.sendCommand("WiFiSocket3Power", "ON")
+
+
+# rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
+# when
+#     Item vFR_TVKodi changed from ON to OFF 
+# then
+#     logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
+#     shutdownKodiFrontRoomProxy.postUpdate(OFF)
+
+#     if(timer1 === null) {
+#         timer1 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
+#         logInfo("RULE", "n secs later - we can turn off power sockets now")
+#         WiFiSocket2Power.sendCommand(OFF)
+#         WiFiSocket2Power.postUpdate(OFF)
+#         timer1 = null]
+#     }
+# end
+t_frtvPowerOff=None
+@rule("Turn OFF FrontRoom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
+@when("Item vFR_TVKodi changed from ON to OFF")
+def fr_tv_off(event):
+    fr_tv_off.log.info("bedroom_tv_off")
+    global t_frtvPowerOff
+
+    Voice.say("Turning off Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    events.postUpdate("shutdownKodiFrontRoomProxy", "OFF")
+    # events.sendCommand("amplifierStandby", "OFF")
+
+    if t_frtvPowerOff is None:
+        t_frtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: frtvoffbody())
+
+
+def frtvoffbody():
+    global t_frtvPowerOff
+    events.sendCommand("WiFiSocket2Power", "OFF")
+    # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
+    t_frtvPowerOff = None
