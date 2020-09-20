@@ -1,0 +1,60 @@
+// var Boolean CLightsAreOn = false
+
+
+// rule "PIRsensor change"
+// when
+//     Item pir01_occupancy received update
+//     or 
+//     Item pir02_occupancy received update
+
+// then
+//     logInfo("RULE", "pir01 occupancy update:" + triggeringItem.state)
+   
+// end
+
+// rule "PIRsensor change"
+// when
+//     Item pir02_occupancy received update
+// then
+//     logInfo("RULE", "pir 02 occupancy update:" + triggeringItem.state)
+   
+// // end
+
+// rule "PIRsensor Turn OFF lights"
+// when
+//     Item pir01_occupancy changed from ON to OFF
+//     or 
+//     Item pir02_occupancy changed from ON to OFF
+
+// then
+//     logInfo("RULE", "pir off")
+//     if ((pir01_occupancy.state == OFF) && (pir01_occupancy.state == OFF))
+//             ZbWhiteBulb01Switch.sendCommand(OFF)
+// end
+
+
+// rule "pir01 lux change"
+// when
+//     Item pir01_illuminance_lux received update
+// then
+//     logInfo("RULE", "pir01 lux update:" + triggeringItem.state)
+//     // if( (pir01_illuminance_lux.state <30) && (CLightsAreOn==false) ) {
+//     //     // say("It's getting dark. Turning on conservatory lights","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
+//     //     CLightsAreOn = true
+//     //     logInfo("RULE", "Turn ON the Conservatory lights via proxy")
+//     //     gConservatoryFairyLights.sendCommand(ON)
+//     //     gConservatoryFairyLights.postUpdate(ON)
+//     // }
+// end
+
+// rule "pir01 Turn ON lights"
+// when
+//     Item pir01_occupancy changed from OFF to ON
+// then
+//     if (pir01_illuminance_lux.state < 30){
+//         ZbWhiteBulb01Switch.sendCommand(ON)
+//         ZbWhiteBulb01Dim.sendCommand( new PercentType(100).toString() )
+//             logInfo("RULE", "pir01 turn on lamp, kitchen bulb")
+
+//     }
+// end

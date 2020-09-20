@@ -43,3 +43,63 @@ def conservatory_fan(event):
         events.sendCommand("CT_Fan433PowerSocket", "ON")
         fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
             25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+
+
+
+# rule "React on Fan Pulse (FanPulseSwitch) change/update"
+# when
+#     Item FanPulseSwitch changed from OFF to ON
+# then
+# logInfo("RULE", "Fan pulsed")
+@rule("React on Fan Pulse (FanPulseSwitch) change/update", description="React on Fan Pulse (FanPulseSwitch) change/update", tags=["conservatory", "fan"])
+@when("Item FanPulseSwitch changed from OFF to ON")
+def conservatory_fan_pulse(event):
+    conservatory_fan_pulse.log.info("conservatory_fan rulel now")
+#     CT_Fan433PowerSocket.sendCommand(ON)
+#     CT_Fan433PowerSocket.postUpdate(ON)
+    events.sendCommand("CT_Fan433PowerSocket", "ON")
+
+#     createTimer(now.plusSeconds(30), [|
+#         {sendCommand(CT_Fan433PowerSocket, OFF)} //CT_Fan433PowerSocket
+#         {postUpdate(CT_Fan433PowerSocket, OFF)}
+#         logInfo("RULE", "pulse CT_Fan433PowerSocket switch pressed")
+#             FanPulseSwitch.postUpdate(OFF)
+    fan_pulse_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
+            25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+#     ])
+
+# end
+
+
+# rule "React on Fan override ON"
+# when
+#     Item FanOnOverride changed from OFF to ON
+# then
+#                 //  logInfo("RULE", "--Z")
+@rule("React on Fan override ON", description="React on Fan override ON", tags=["conservatory", "fan"])
+@when("Item FanOnOverride changed from OFF to ON")
+def conservatory_fan_override(event):
+    conservatory_fan_override.log.info("conservatory_fan_override")
+    #    CT_Fan433PowerSocket.sendCommand(ON)
+#     CT_Fan433PowerSocket.postUpdate(ON)
+    events.sendCommand("CT_Fan433PowerSocket", "ON")
+   
+# end
+
+# rule "React on Fan override OFF"
+# when
+#     Item FanOnOverride changed from ON to OFF
+# then
+#                 //  logInfo("RULE", "--X")
+@rule("React on Fan override OFF", description="React on Fan override OFF", tags=["conservatory", "fan"])
+@when("Item FanOnOverride changed from ON to OFF")
+def conservatory_fan_override_off(event):
+    conservatory_fan_override_off.log.info("conservatory_fan_override off")
+    #    CT_Fan433PowerSocket.sendCommand(ON)
+#     CT_Fan433PowerSocket.postUpdate(ON)
+    events.sendCommand("CT_Fan433PowerSocket", "OFF")
+   
+#     CT_Fan433PowerSocket.sendCommand(OFF)
+#     CT_Fan433PowerSocket.postUpdate(OFF)
+
+# end

@@ -192,14 +192,13 @@ def bedroom_tv_on(event):
 # end
 t_brtvPowerOff=None
 @rule("Turn OFF bedroom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
-@when("Item vBR_TVKodi changed from ON to OFF")
+@when("Item vBR_TVKodi received update OFF")
 def bedroom_tv_off(event):
     bedroom_tv_off.log.info("bedroom_tv_off")
     global t_brtvPowerOff
 
-    Voice.say("Turning off Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    Voice.say("Turning off Bedroom TV now", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
     events.postUpdate("shutdownKodiBedroomProxy", "OFF")
-    # events.sendCommand("amplifierStandby", "OFF")
 
     if t_brtvPowerOff is None:
         t_brtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: brtvoffbody())
@@ -240,7 +239,7 @@ def FR_tv_on(event):
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_frtvPowerOff is not None:
         t_tfrvPowerOff = None
-    events.sendCommand("WiFiSocket3Power", "ON")
+    events.sendCommand("WiFiSocket2Power", "ON")
 
 
 # rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
