@@ -9,7 +9,7 @@ from org.eclipse.smarthome.core.library.types import PercentType
 @when("Item pir01_occupancy received update")
 @when("Item pir02_occupancy received update")
 def pir_change(event):
-    pir_change.log.info("pir_change trigger item : " + event.itemName + ":" + event.itemState.toString())
+    pir_change.log.info("/////pir_change trigger item : " + event.itemName + ":" + event.itemState.toString())
 
 
 # rule "pir01 or 02 - Turn ON lights"
@@ -17,8 +17,8 @@ def pir_change(event):
 @when("Item pir01_occupancy changed from OFF to ON")
 @when("Item pir02_occupancy changed from OFF to ON")
 def pir_light_on(event):
-    pir_light_on.log.info("pir_light_on triggering item : " + event.itemName + ":" + event.itemState.toString())
-    if items["pir01_illuminance_lux"] < DecimalType(60):
+    pir_light_on.log.info("//////pir_light_on triggering item : " + event.itemName + ":" + event.itemState.toString())
+    if items["pir01_illuminance_lux"] < DecimalType(30):
         events.sendCommand("ZbWhiteBulb01Switch", "ON")
         events.sendCommand("ZbWhiteBulb01Dim", "100")
 
@@ -41,7 +41,7 @@ def pir_light_on(event):
 @when("Item pir01_occupancy changed from ON to OFF")
 @when("Item pir02_occupancy changed from ON to OFF")
 def pir_light_off(event):
-    pir_light_off.log.info("pir_light_off triggering item : " + event.itemName + ":" + event.itemState.toString())
+    pir_light_off.log.info("/////pir_light_off triggering item : " + event.itemName + ":" + event.itemState.toString())
     if items["pir01_occupancy"] == OFF and items["pir02_occupancy"] == OFF:
         events.sendCommand("ZbWhiteBulb01Switch", "OFF")
         # events.sendCommand("ZbWhiteBulb01Dim", PercentType(50))

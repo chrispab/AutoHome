@@ -1,9 +1,9 @@
-rule "StartUp - set up Item Scene_Goodnight"
-when
-    System started
-then
-    Scene_Goodnight.postUpdate(OFF)
-end
+// rule "StartUp - set up Item Scene_Goodnight"
+// when
+//     System started
+// then
+//     Scene_Goodnight.postUpdate(OFF)
+// end
 
 
 rule "Goodnight Going to bed"
