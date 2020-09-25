@@ -51,7 +51,7 @@ then
     logInfo("monitor ZB Router", "ZB Router received mqtt - mark as ONLINE")
     ZbRouter_01_Reachable.postUpdate("Online")
     RouterTimer?.cancel
-    // logInfo("monitor ZB Router", "ZB Router Starting a new Timer")
+    logInfo("monitor ZB Router", "ZB Router Starting a new Timer")
     RouterTimer = createTimer(now.plusSeconds(routerTimeout), [| 
         ZbRouter_01_Reachable.postUpdate("Offline")//execute if timer not reset - set as "Offline"
         logInfo("monitor ZB Router", "ZB Router timed out - mark as OFFLINE")
@@ -60,8 +60,6 @@ then
     Router_Lock.unlock()  // MUST release the lock
    }
 end
-
-
 
 rule "monitor ZB Zb_THPSensor_01 availability"
 when
