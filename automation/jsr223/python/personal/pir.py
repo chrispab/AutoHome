@@ -1,7 +1,7 @@
 from core.rules import rule
 from core.triggers import when
 from org.eclipse.smarthome.core.library.types import PercentType
-
+from core.actions import PersistenceExtensions
 # var Boolean CLightsAreOn = false
 
 
@@ -9,16 +9,17 @@ from org.eclipse.smarthome.core.library.types import PercentType
 @when("Item pir01_occupancy received update")
 @when("Item pir02_occupancy received update")
 def pir_change(event):
-    pir_change.log.info("/////pir_change trigger item : " + event.itemName + ":" + event.itemState.toString())
-
+  #  pir_change.log.info("/////=======pir_change trigger item : " + event.itemName + ", PREV: " + PersistenceExtensions.previousState(ir.getItem(event.itemName), True).state + ", NOW: " + event.itemState.toString())
+    pir_change.log.info("///pir_light received update" )
+                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
 # rule "pir01 or 02 - Turn ON lights"
-@rule("pir01 or 02 Turn ON lights", description="PIRsensor change", tags=["pir"])
+@rule("pir01 or 02 Turn ON lights", description="PIRsensor change", tags=["pir"]) 
 @when("Item pir01_occupancy changed from OFF to ON")
 @when("Item pir02_occupancy changed from OFF to ON")
 def pir_light_on(event):
-    pir_light_on.log.info("//////pir_light_on triggering item : " + event.itemName + ":" + event.itemState.toString())
-    if items["pir01_illuminance_lux"] < DecimalType(30):
+    pir_light_on.log.info("//////+++++++++pir_light_on triggering item : " + event.itemName + ": " + event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString() )
+    if items["pir01_illuminance_lux"] < DecimalType(20):
         events.sendCommand("ZbWhiteBulb01Switch", "ON")
         events.sendCommand("ZbWhiteBulb01Dim", "100")
 

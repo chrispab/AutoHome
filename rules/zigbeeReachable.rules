@@ -35,7 +35,7 @@ then
     Zb_THSensor_02_reachable.postUpdate("Offline")
     Zb_THSensor_03_reachable.postUpdate("Offline")
     Zb_THSensor_04_reachable.postUpdate("Offline")
-        logInfo("monitor ZB Router", "ZB Router STARTUP clear timers")
+    logInfo("monitor ZB Router", "ZB Router STARTUP clear timers")
 
             //         gHeatingModes.members.forEach[ String RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
             // gTemperatureSetpoints.members.forEach[ TSetpoint | TSetpoint.postUpdate(offTemp) ] 
@@ -148,6 +148,8 @@ when
     Item Zb_THSensor_04_temperature received update
 then
    var boolean gotLock = THSensor_04_Lock.tryLock() // get the lock if we can, but as quick as we can
+   logInfo("monitor Zb_THSensor_04", "$$$$$$$$$$$$$$$$$$$$$$$  Zb_THSensor_04 mqtt received - mark as ONLINE")
+
    if (gotLock) {   // if we did get the lock
     logInfo("monitor Zb_THSensor_04", "Zb_THSensor_04 mqtt received - mark as ONLINE")
     Zb_THSensor_04_reachable.postUpdate("Online")
