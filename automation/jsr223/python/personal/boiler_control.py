@@ -27,9 +27,6 @@ def boiler_control(event):
     if items["gRoomHeaterStates"] == NULL:
         for item in ir.getItem("gTest").members:
                LogAction.logInfo("boiler control", ":::Heater Item: {}, state: {}", item.itemName, item.itemState)
- 
-
-
 
 
 

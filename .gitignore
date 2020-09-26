@@ -1,2 +1,12 @@
 services/runtime.cfg.dpkg-old
 services/readme.txt.dpkg-old
+automation/lib/python/core/__init__$py.class
+automation/lib/python/core/actions$py.class
+automation/lib/python/core/jsr223$py.class
+automation/lib/python/core/log$py.class
+automation/lib/python/core/rules$py.class
+automation/lib/python/core/triggers$py.class
+automation/lib/python/core/utils$py.class
+automation/lib/python/configuration$py.class
+automation/lib/python/core/osgi/__init__$py.class
+automation/lib/python/core/osgi/events$py.class
