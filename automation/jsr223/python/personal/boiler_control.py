@@ -8,8 +8,8 @@ from core.actions import LogAction
 @rule("If heater demand turn on Boiler else off", description="If heater demand turn on Boiler else off", tags=["boiler"])
 @when("Member of gRoomHeaterStates received update")
 def boiler_control(event):
-    boiler_control.log.info("::Boiler_Control rule -> A Heater recieved a command - updating boiler state::")
-    LogAction.logInfo("Boiler_Control", "::Item {} received update: {}", event.itemName, event.itemState)
+    boiler_control.log.warn("::Boiler_Control rule -> A Heater recieved a command - updating boiler state::")
+    LogAction.logWarn("Boiler_Control", ":::Item {} received update: {}", event.itemName, event.itemState)
 #     logInfo("Boiler_Control rule", "-> A Heater recieved a command - updating boiler state")
     LogAction.logInfo("::Boiler_Control rule", "-> name:{}, prev:{}, now:{}", event.itemName, event.itemName , event.itemState)
     boiler_control.log.info("::Boiler_Control -> -> A Heater recieved a command - updating boiler state")
