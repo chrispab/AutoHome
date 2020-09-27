@@ -48,13 +48,13 @@ when
 then
    var boolean gotLock = Router_Lock.tryLock() // get the lock if we can, but as quick as we can
    if (gotLock) {   // if we did get the lock
-    logInfo("monitor ZB Router", "ZB Router received mqtt - mark as ONLINE")
+    logWarn("monitor ZB Router", "ZB Router received mqtt - mark as ONLINE")
     ZbRouter_01_Reachable.postUpdate("Online")
     RouterTimer?.cancel
-    logInfo("monitor ZB Router", "ZB Router Starting a new Timer")
+    logWarn("monitor ZB Router", "ZB Router Starting a new Timer")
     RouterTimer = createTimer(now.plusSeconds(routerTimeout), [| 
         ZbRouter_01_Reachable.postUpdate("Offline")//execute if timer not reset - set as "Offline"
-        logInfo("monitor ZB Router", "ZB Router timed out - mark as OFFLINE")
+        logWarn("monitor ZB Router", "ZB Router timed out - mark as OFFLINE")
         RouterTimer = null
     ])
     Router_Lock.unlock()  // MUST release the lock
