@@ -5,7 +5,7 @@ when
     Member of gRoomTemperatures received update
 then
     // https://community.openhab.org/t/solved-using-a-variable-to-obtain-an-item-state/61500/3
-    logInfo("Heaters rules", "===> HeatingMode, Setpoint or Temperature updated-")
+    logWarn("Heaters rules", "===> HeatingMode, Setpoint or Temperature updated-")
 //
     val prefix = triggeringItem.name.split("_").get(0)
     //val  heatingModeName = "" + prefix + "_HeatingMode"
