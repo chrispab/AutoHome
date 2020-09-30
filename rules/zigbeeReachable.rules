@@ -42,24 +42,24 @@ then
 end
 
 //---------------------------------------------------
-rule "monitor ZB Router availability"
-when
-    Item ZbRouter_01_Quality received update
-then
-   var boolean gotLock = Router_Lock.tryLock() // get the lock if we can, but as quick as we can
-   if (gotLock) {   // if we did get the lock
-    logWarn("monitor ZB Router", "ZB Router received mqtt - mark as ONLINE")
-    ZbRouter_01_Reachable.postUpdate("Online")
-    RouterTimer?.cancel
-    logWarn("monitor ZB Router", "ZB Router Starting a new Timer")
-    RouterTimer = createTimer(now.plusSeconds(routerTimeout), [| 
-        ZbRouter_01_Reachable.postUpdate("Offline")//execute if timer not reset - set as "Offline"
-        logWarn("monitor ZB Router", "ZB Router timed out - mark as OFFLINE")
-        RouterTimer = null
-    ])
-    Router_Lock.unlock()  // MUST release the lock
-   }
-end
+// rule "monitor ZB Router availability"
+// when
+//     Item ZbRouter_01_Quality received update
+// then
+//    var boolean gotLock = Router_Lock.tryLock() // get the lock if we can, but as quick as we can
+//    if (gotLock) {   // if we did get the lock
+//     logWarn("monitor ZB Router", "ZB Router received mqtt - mark as ONLINE")
+//     ZbRouter_01_Reachable.postUpdate("Online")
+//     RouterTimer?.cancel
+//     logWarn("monitor ZB Router", "ZB Router Starting a new Timer")
+//     RouterTimer = createTimer(now.plusSeconds(routerTimeout), [| 
+//         ZbRouter_01_Reachable.postUpdate("Offline")//execute if timer not reset - set as "Offline"
+//         logWarn("monitor ZB Router", "ZB Router timed out - mark as OFFLINE")
+//         RouterTimer = null
+//     ])
+//     Router_Lock.unlock()  // MUST release the lock
+//    }
+// end
 
 rule "monitor ZB Zb_THPSensor_01 availability"
 when
