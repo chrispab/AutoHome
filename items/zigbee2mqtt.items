@@ -52,9 +52,11 @@ String	ZbRemote01Action			"remote 01 action: [%s]"										(gZbRemote01)							
 Number	ZbRemote01Quality			"Zb remote 1 LinkQuality [%d]"				<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:linkquality"}
 Number	ZbRemote01Battery			"Zb remote 1 battery [%d]"					<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:battery"}
 
+Group gTHSensorTemperatures
+Group gZbTHSensorLinkQuality
 
 Group	gZb_THPSensor_01
-Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Pressure Sensor 01 Temperature"		<temperature>				(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:temperature"}
+Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Pressure Sensor 01 Temperature"		<temperature>				(gZb_THPSensor_01, gTHSensorTemperatures)							{channel="mqtt:topic:THPSensor01:temperature"}
 Number	Zb_THPSensor_01_humidity		"Xiaomi Temp Humi Pressure Sensor 01 Humidity"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:humidity"}
 Number	Zb_THPSensor_01_pressure		"Xiaomi Temp Humi Pressure Sensor 01 pressure"							(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:pressure"}
 Number	Zb_THPSensor_01_linkquality	"Xiaomi Temp Humi Pressure Sensor 01 LinkQuality"						(gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:linkquality"}
@@ -63,7 +65,6 @@ Number	Zb_THPSensor_01_voltage		"Xiaomi Temp Humi Pressure Sensor 01 voltage"			
 String	Zb_THPSensor_01_reachable	"Xiaomi THPSensor01 Reachable"			{channel="mqtt:topic:THPSensor01:reachable"}
 
 
-Group gTHSensorTemperatures
 Group	gZb_THSensor_01
 Number	Zb_THSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"	<temperature>					(gZb_THSensor_01, gTHSensorTemperatures)							{channel="mqtt:topic:THSensor01:temperature"}
 Number	Zb_THSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:humidity"}

@@ -22,7 +22,7 @@ from org.joda.time import DateTime
 #    }
 # end
 
-chargerTimer2 = None
+zbRouterTimer = None
 routerTimeout = 61
 
 @rule("monitor ZB Router availability", description="monitor ZB Router availability", tags=["zigbee"])
@@ -32,10 +32,10 @@ def zbRouterAvail(event):
     LogAction.logWarn("zbRouterAvail", "== Item {} received update: {}", event.itemName, event.itemState)
     events.postUpdate("ZbRouter_01_Reachable","Online")
     #log.debug("Battery charging monitor: {}: start".format(event.itemState))
-    global chargerTimer2
-    if chargerTimer2 is not None and not chargerTimer2.hasTerminated():
-        chargerTimer2.cancel()
-    chargerTimer2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(routerTimeout), lambda: events.postUpdate("ZbRouter_01_Reachable","Offline"))
+    global zbRouterTimer
+    if zbRouterTimer is not None and not zbRouterTimer.hasTerminated():
+        zbRouterTimer.cancel()
+    zbRouterTimer = ScriptExecution.createTimer(DateTime.now().plusSeconds(routerTimeout), lambda: events.postUpdate("ZbRouter_01_Reachable","Offline"))
     zbRouterAvail.log.warn("==== zbRouterAvail timer started!!!!!!!!!!!::")
 
     # if items["Outlet9"] == ON and event.itemState <= DecimalType(8) and event.oldItemState <= DecimalType(8):
