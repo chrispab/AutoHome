@@ -6,6 +6,7 @@ DateTime Time1 "Time 1" <time>
 
 
 Switch testSwitch "test switch"
+Switch testSwitch1 "test switch1"
 
 Switch Virtual_Switch_1 "virtual switch 1"
 

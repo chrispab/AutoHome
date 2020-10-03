@@ -6,14 +6,18 @@ from org.joda.time import DateTime
 
 # zbRouterTimer = None
 # routerTimeout = 61
+# https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
+timers = {}
+timeoutMinutes = 50 # use an appropriate value
 
 @rule("monitor ZB  temp sensor availability", description="monitor ZB  availability", tags=["zigbee"])
 @when("Member of gTHSensorTemperatures received update")
 def zbAvail(event):
-    zbAvail.log.warn("== zb   gTHSensorTemperatures     Avail::")
-    LogAction.logError("gTHSensorTemperatures", "== >>>>>>>>>>>>>>>>>>>>>>>gTHSensorTemperatures  Item {} received update: {}", event.itemName, event.itemState)
+    zbAvail.log.warn("== zb   ..ccgTHSensorTemperatures     Avail::")
+    LogAction.logError("gTHSensorTemperatures", "== >>>>>>>>>>>>>>>>>>>>>>>gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
     # events.postUpdate("ZbRouter_01_Reachable","Online")
     #log.debug("Battery charging monitor: {}: start".format(event.itemState))
+
     # global zbRouterTimer
     # if zbRouterTimer is not None and not zbRouterTimer.hasTerminated():
     #     zbRouterTimer.cancel()
@@ -29,11 +33,23 @@ def zbAvail(event):
 #    if (gotLock) {   // if we did get the lock
 #         logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 mqtt received - mark as ONLINE")
 
-#         Zb_THSensor_01_reachable.postUpdate("Online")
-    events.postUpdate(event.itemName,"Online")
+        # Zb_THSensor_01_reachable.postUpdate("Online")
+    # events.postUpdate(event.itemName.rfind('_')),"Online") #use reachable not triggering event cos its temp
+    # name = 
+    newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
+    events.postUpdate(newname,"Online") #use reachable not triggering event cos its temp
+
+    zbAvail.log.error("== item marked  ONLINE::")
+
+    if event.itemName not in timers or timers[event.itemName].hasTerminated():
+        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusMinutes(timeoutMinutes), lambda: events.postUpdate(newname, "Offline"))
+    else:
+        timers[event.itemName].reschedule(DateTime.now().plusMinutes(timeoutMinutes))
+
+
     # if zbRouterTimer is not None and not zbRouterTimer.hasTerminated():
     #     zbRouterTimer.cancel()
-    
+
 #         Zb_THSensor_01_Timer?.cancel    //if timer is active, cancel it
 
 #         logInfo("monitor Zb_THSensor_01", "Zb_THSensor_01 Starting a new Timer")

@@ -29,7 +29,7 @@ routerTimeout = 61
 @when("Item ZbRouter_01_Quality received update")
 def zbRouterAvail(event):
     zbRouterAvail.log.warn("== zbRouterAvail::")
-    LogAction.logWarn("zbRouterAvail", "== Item {} received update: {}", event.itemName, event.itemState)
+    LogAction.logWarn("zbRouterAvail", "==xxxccc Item {} received update: {}", event.itemName, event.itemState)
     events.postUpdate("ZbRouter_01_Reachable","Online")
     #log.debug("Battery charging monitor: {}: start".format(event.itemState))
     global zbRouterTimer

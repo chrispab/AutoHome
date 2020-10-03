@@ -34,7 +34,7 @@ then
           logInfo("startup heating", "================================== timer executing")
 
            if ( gThermostatModes.state == "notdef") {//if any states are - notdef
-              logInfo("startup heating", ")))cc))))))))))xx))))))))))))))))))Setting GA Thermostat modes to heat")
+              logInfo("startup h eating", ")))cc))))))))))xx))))))))))))))))))Setting GA Thermostat modes to heat")
                gThermostatModes.members.forEach[  ThermoMode | ThermoMode.postUpdate("heat") ]
             }
             TModesTimer = null//mark as timer not running
