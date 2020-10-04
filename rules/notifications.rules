@@ -1,18 +1,18 @@
 
-rule "zone3 lights on"
-when
-    Item Zone3LightStatus changed from OFF to ON
-then
-    sendNotification("cbattisson@gmail.com", "Zone 3 light on")
-    logInfo("RULE", "Zone 3 lights - on")
+// rule "zone3 lights on"
+// when
+//     Item Zone3LightStatus changed from OFF to ON
+// then
+//     sendNotification("cbattisson@gmail.com", "Zone 3 light on")
+//     logInfo("RULE", "Zone 3 lights - on")
 
-    if (CT_FairyLights433Socket.state == ON) {
-        CT_FairyLights433Socket.sendCommand(OFF)
-        createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
-        createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
-        createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
-    }
-end
+//     if (CT_FairyLights433Socket.state == ON) {
+//         CT_FairyLights433Socket.sendCommand(OFF)
+//         createTimer(now.plusSeconds(2), [|CT_FairyLights433Socket.sendCommand(ON)])
+//         createTimer(now.plusSeconds(4), [|CT_FairyLights433Socket.sendCommand(OFF)])
+//         createTimer(now.plusSeconds(6), [|CT_FairyLights433Socket.sendCommand(ON)])
+//     }
+// end
 
 
 rule "Zone 1 went Offline"
