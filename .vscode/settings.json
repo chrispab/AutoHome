@@ -4,5 +4,6 @@
         "**/automation/**/python/community/**/*.py"
     ],
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.pythonPath": "/bin/python3"
 }
