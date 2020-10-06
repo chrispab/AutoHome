@@ -217,7 +217,7 @@ end
 
 rule "11:30pm weekdays"
 when
-    Time cron "0 30 23 ? * MON-FRI *"
+    Time cron "0 35 23 ? * MON-FRI *"
 then
     CT_Heating_PresetTempNormal.postUpdate(midTemp)
     FR_Heating_PresetTempNormal.postUpdate(offTemp)
@@ -232,15 +232,14 @@ end
 
 rule "TEST  weekdays"
 when
-    Time cron "0 58 20 ? * MON-FRI *"
+    Time cron "0 11 00 ? * MON-FRI *"
 then
-    logInfo("TEST CRON RULE", "test ran live temp" + liveTemp)
-
-    // CT_Heating_PresetTempNormal.postUpdate(liveTemp)
-    // FR_Heating_PresetTempNormal.postUpdate(liveTemp)
-    // ER_Heating_PresetTempNormal.postUpdate(midTemp)
-    // AT_Heating_PresetTempNormal.postUpdate(offTemp)
-    // BR_Heating_PresetTempNormal.postUpdate(midTemp)
+    logInfo("TEST CRON RULE", "test ran lnivve temp" + liveTemp)
+    // CT_Heating_PresetTempNormal.postUpdate(midTemp)
+    // FR_Heating_PresetTempNormal.postUpdate(midTemp)
+    // ER_Heating_PresetTempNormal.postUpdate(sleepTemp)
+    // AT_Heating_PresetTempNormal.postUpdate(midTemp)
+    // BR_Heating_PresetTempNormal.postUpdate(sleepTemp)
     // OF_Heating_PresetTempNormal.postUpdate(midTemp)
     // HL_Heating_PresetTempNormal.postUpdate(midTemp)
     // Heating_UpdateHeaters.sendCommand(ON)

@@ -1,76 +1,76 @@
 var Number offTemp = 13
 
-rule "React to MasterHeatingMode updated"
-when
-    Item masterHeatingMode received update
-then
-//avoid changing a zone sp if zone heating local or auto
-    //Heating_UpdateHeaters.postUpdate(OFF)
+// rule "React to MasterHeatingMode updated"
+// when
+//     Item masterHeatingMode received update
+// then
+// //avoid changing a zone sp if zone heating local or auto
+//     //Heating_UpdateHeaters.postUpdate(OFF)
 
-    logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
-    switch masterHeatingMode.state {
-        case "auto": { //normal mode is under master control and folows 'normal' rules
-            logInfo("heatingNormal.rules", "make all rooms -AUTO - MASTER Heating Mode : " + masterHeatingMode.state)
-            gHeatingModes.members.forEach[  String HeatingMode | HeatingMode.postUpdate("auto") ] 
-            //gTemperatureSetpoints.members.forEach[ TemperatureSetPoint | TemperatureSetPoint.postUpdate(20) ]
-        }
+//     logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+//     switch masterHeatingMode.state {
+//         case "auto": { //normal mode is under master control and folows 'normal' rules
+//             logInfo("heatingNormal.rules", "make all rooms -AUTO - MASTER Heating Mode : " + masterHeatingMode.state)
+//             gHeatingModes.members.forEach[  String HeatingMode | HeatingMode.postUpdate("auto") ] 
+//             //gTemperatureSetpoints.members.forEach[ TemperatureSetPoint | TemperatureSetPoint.postUpdate(20) ]
+//         }
 
-        case "off": {
-            logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
-            gHeatingModes.members.forEach[  String RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
-            gTemperatureSetpoints.members.forEach[  TemperatureSetpoint | TemperatureSetpoint.postUpdate(offTemp) ] 
-        }
+//         case "off": {
+//             logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
+//             gHeatingModes.members.forEach[  String RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
+//             gTemperatureSetpoints.members.forEach[  TemperatureSetpoint | TemperatureSetpoint.postUpdate(offTemp) ] 
+//         }
 
-        case "manual": {
-            logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
-            gHeatingModes.members.forEach[  String RoomHeatingMode | RoomHeatingMode.postUpdate("manual") ] 
-        }
-        default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
-    }
-end
+//         case "manual": {
+//             logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
+//             gHeatingModes.members.forEach[  String RoomHeatingMode | RoomHeatingMode.postUpdate("manual") ] 
+//         }
+//         default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
+//     }
+// end
 
 
-rule "React on message to send target temperatures to zone setpoints"
-when
-    Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
-then
-    Heating_UpdateHeaters.postUpdate(OFF) // rest update heaters flag ready for next trigger (OFF-ON)
+// rule "React on message to send target temperatures to zone setpoints"
+// when
+//     Item Heating_UpdateHeaters received command ON //cron job has requested we send updates to setpoints
+// then
+//     Heating_UpdateHeaters.postUpdate(OFF) // rest update heaters flag ready for next trigger (OFF-ON)
 
-    logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
-    switch masterHeatingMode.state {
-        case "auto": { //normal mode is under master control and folows 'normal' rules
-            logInfo("heatingNormal.rules", "processing case MASTER Heating Mode : " + masterHeatingMode.state)
-            if(CT_HeatingMode.state == "auto") { //if mode is master control - 'normal' - auto - 2
-                CT_TemperatureSetpoint.state = (CT_Heating_PresetTempNormal.state )
-            }
-            if(FR_HeatingMode.state == "auto") { //if zone mode is master control
-                   FR_TemperatureSetpoint.state = (FR_Heating_PresetTempNormal.state)
-            }
-            if(HL_HeatingMode.state == "auto") { //if mode is master control
-                HL_TemperatureSetpoint.state = (HL_Heating_PresetTempNormal.state)
-            }            
-            if(OF_HeatingMode.state == "auto") { //if mode is master control
-                OF_TemperatureSetpoint.state = (OF_Heating_PresetTempNormal.state)
-            }
-            if(BR_HeatingMode.state == "auto") { //if mode is master control
-                BR_TemperatureSetpoint.state = (BR_Heating_PresetTempNormal.state)
-            }
-            if(ER_HeatingMode.state == "auto") { //if mode is master control
-                ER_TemperatureSetpoint.state = (ER_Heating_PresetTempNormal.state)
-            }
-            if(AT_HeatingMode.state == "auto") { //if mode is master control
-                AT_TemperatureSetpoint.state = (AT_Heating_PresetTempNormal.state)
-            }
+//     logInfo("heatingNormal.rules", "MASTER Heating Mode: " + masterHeatingMode.state)
+//     switch masterHeatingMode.state {
+//         case "auto": { //normal mode is under master control and folows 'normal' rules
+//             logInfo("heatingNormal.rules", "processing case MASTER Heating Mode : " + masterHeatingMode.state)
+//             if(CT_HeatingMode.state == "auto") { //if mode is master control - 'normal' - auto - 2
+//                 CT_TemperatureSetpoint.state = (CT_Heating_PresetTempNormal.state )
+//             }
+//             if(FR_HeatingMode.state == "auto") { //if zone mode is master control
+//                    FR_TemperatureSetpoint.state = (FR_Heating_PresetTempNormal.state)
+//             }
+//             if(HL_HeatingMode.state == "auto") { //if mode is master control
+//                 HL_TemperatureSetpoint.state = (HL_Heating_PresetTempNormal.state)
+//             }            
+//             if(OF_HeatingMode.state == "auto") { //if mode is master control
+//                 OF_TemperatureSetpoint.state = (OF_Heating_PresetTempNormal.state)
+//             }
+//             if(BR_HeatingMode.state == "auto") { //if mode is master control
+//                 BR_TemperatureSetpoint.state = (BR_Heating_PresetTempNormal.state)
+//             }
+//             if(ER_HeatingMode.state == "auto") { //if mode is master control
+//                 ER_TemperatureSetpoint.state = (ER_Heating_PresetTempNormal.state)
+//             }
+//             if(AT_HeatingMode.state == "auto") { //if mode is master control
+//                 AT_TemperatureSetpoint.state = (AT_Heating_PresetTempNormal.state)
+//             }
 
-        }
-        case "off": {
-            logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
-            gHeatingModes.members.forEach[ String RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
-            gTemperatureSetpoints.members.forEach[ TSetpoint | TSetpoint.postUpdate(offTemp) ] 
-        }
-        case "manual": {
-            logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
-        }
-        default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
-    }
-end
+//         }
+//         case "off": {
+//             logInfo("heatingNormal.rules", "processing case off MASTER Heating Mode: " + masterHeatingMode.state)
+//             gHeatingModes.members.forEach[ String RoomHeatingMode | RoomHeatingMode.postUpdate("off") ] 
+//             gTemperatureSetpoints.members.forEach[ TSetpoint | TSetpoint.postUpdate(offTemp) ] 
+//         }
+//         case "manual": {
+//             logInfo("heatingNormal.rules", "processing case manual MASTER Heating Mode: " + masterHeatingMode.state)
+//         }
+//         default : { logError("heatingNormal.rules", "Heating Mode unknown: " + masterHeatingMode.state) }
+//     }
+// end

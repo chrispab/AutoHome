@@ -72,12 +72,13 @@ def checkIfHeatersNeedUpdating(event):
 #     // }
 
 #   if ((HeatingMode.state == "off") || (masterHeatingMode.state == "off")) {
-    LogAction.logError("Check if Heaters need changing", "+++++ SHOW HeatingMode.state: {}  masterHeatingMode.state {}", HeatingMode.state, ir.getItem("masterHeatingMode").state)
+    LogAction.logError("Check if Heaters need changing", "+++++ SHOW HeatingMode.state: {}  masterHeatingMode.state {}",
+                       HeatingMode.state, ir.getItem("masterHeatingMode").state)
 
     if (HeatingMode.state.toString() == "off") or (ir.getItem("masterHeatingMode").state.toString() == "off"):
-    #   if (masterHeatingMode.state == "off") {
+        #   if (masterHeatingMode.state == "off") {
         if (ir.getItem("masterHeatingMode").state.toString() == "off"):
-        #   logInfo("Heaters rules", "===> Master Heating Mode is OFF")
+            #   logInfo("Heaters rules", "===> Master Heating Mode is OFF")
             LogAction.logError("Check if Heaters need changing", "+++++ Master Heating Mode is OFF")
 
 #       }
@@ -100,22 +101,22 @@ def checkIfHeatersNeedUpdating(event):
 #       var Number turnOffTemp = setpoint //+ 0.1
 #       var Number temp = Temperature.state as DecimalType // get the current temperature
         setpoint = TSetpoint.state
-        turnOnTemp = setpoint #- 0.2// calculate the turn on/off temperatures
-        turnOffTemp = setpoint #+ 0.1
-        temp = Temperature.state # get the current temperature
+        turnOnTemp = setpoint  # - 0.2// calculate the turn on/off temperatures
+        turnOffTemp = setpoint  # + 0.1
+        temp = Temperature.state  # get the current temperature
 
 
 #       if (temp >= turnOffTemp) {  // determine whether we need to turn on/off the heater
 #           logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater OFF")
 #           Heater.sendCommand(OFF)
 #           Heater.postUpdate(OFF)
-        if temp >= turnOffTemp: # {  // determine whether we need to turn on/off the heater
+        if temp >= turnOffTemp:  # {  // determine whether we need to turn on/off the heater
             LogAction.logError("Check if Heaters need changing", "+++++ SendCommand to {}, Heater OFF", prefix)
             events.sendCommand(Heater, "OFF")
             events.postUpdate(Heater, "OFF")
 #       }else if (temp < turnOnTemp) {
         elif temp < turnOnTemp:
-#           logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater ON")
+            #           logInfo("Heaters rules", "===> SendCommand " + prefix + " : " + "Heater ON")
             LogAction.logError("Check if Heaters need changing", "+++++ SendCommand to {}, Heater ON", prefix)
 #           Heater.sendCommand(ON)
 #           Heater.postUpdate(ON)
