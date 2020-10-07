@@ -1,4 +1,4 @@
-var Number offTemp = 13
+// var Number offTemp = 13
 
 // rule "React to MasterHeatingMode updated"
 // when
