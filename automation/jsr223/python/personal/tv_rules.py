@@ -1,8 +1,4 @@
-"""
-This example shows two methods of using timers in rules.
-"""
-# Example using Python threading.Time
-# from threading import Timer
+
 
 import org.joda.time.DateTime as DateTime
 from core.actions import ScriptExecution
@@ -60,39 +56,6 @@ def tvs_init(event):
     if tStartup is None:
         tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
 
-
-# rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
-# when
-#     Item vFR_TVKodi received update ON
-# then
-#     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
-#     shutdownKodiFrontRoomProxy.postUpdate(ON)
-
-#             //check if a shutdown timer is running - then stop it before turning stuff on
-#     if(timer1 !== None) {
-#         timer1 = None
-#     }
-#     WiFiSocket2Power.sendCommand(ON)
-#     WiFiSocket2Power.postUpdate(ON)
-
-# end
-
-# rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
-# when
-#     Item vFR_TVKodi changed from ON to OFF
-# then
-#     logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
-#     shutdownKodiFrontRoomProxy.postUpdate(OFF)
-
-#     if(timer1 === None) {
-#         timer1 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-#         logInfo("RULE", "n secs later - we can turn off power sockets now")
-#         WiFiSocket2Power.sendCommand(OFF)
-#         WiFiSocket2Power.postUpdate(OFF)
-#         timer1 = None]
-#     }
-# end
-
 t_ampStandbyON = None
 t_ampVideo01 = None
 
@@ -139,22 +102,7 @@ def tvoffbody():
     t_tvPowerOff = None
 
 
-# //Bedroom Pi Kodi and TV on/off control
-# rule "Turn ON bedroom Kodi-Pi, TV and soundbar"
-# when
-#     Item vBR_TVKodi received update ON
-# then
-#     logInfo("RULE", "Turn ON the bedroom Kodi, pi")
-#     shutdownKodiBedroomProxy.postUpdate(ON)
-# 		say("Turning on Bedroom TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
 
-#         //check if a shutdown timer is running - then stop it before turning stuff on
-#     if(timer3 !== None) {
-#         timer3 = None
-#     }
-#     WiFiSocket3Power.sendCommand(ON)
-#     WiFiSocket3Power.postUpdate(ON)
-# end
 
 # Bedroom Pi Kodi and TV on/off control
 @rule("bedroom Pi Kodi and TV", description="bedroom Pi Kodi and TV", tags=["tv"])
@@ -174,22 +122,7 @@ def bedroom_tv_on(event):
 
 
 
-# rule "Turn OFF bedroom Kodi-Pi, TV and soundbar"
-# when
-#     Item vBR_TVKodi changed from ON to OFF
-# then
-#     logInfo("RULE", "Turn OFF bedroom kodi, pi and TV Kit")
-# 		say("Turning off Bedroom TV","voicerss:enGB","chromecast:chromecast:GHM_Conservatory", new PercentType(70))
-
-#     shutdownKodiBedroomProxy.postUpdate(OFF)
-
-#     if(timer3 === None) {
-#         timer3 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-#         logInfo("RULE", "n secs later - we can turn off bedroom tv and kodi power socket now")
-#         WiFiSocket3Power.sendCommand(OFF)
-#         WiFiSocket3Power.postUpdate(OFF)
-#         timer3 = None]}
-# end
+#
 t_brtvPowerOff=None
 @rule("Turn OFF bedroom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vBR_TVKodi received update OFF")
@@ -212,20 +145,6 @@ def brtvoffbody():
 
 
 
-# rule "Turn ON FrontRoom Kodi-Pi, TV and soundbar"
-# when
-#     Item vFR_TVKodi received update ON
-# then
-#     logInfo("RULE", "Turn ON the FrontRoom Kodi, pi and speakers")
-#     shutdownKodiFrontRoomProxy.postUpdate(ON)
-
-#             //check if a shutdown timer is running - then stop it before turning stuff on
-#     if(timer1 !== null) {
-#         timer1 = null
-#     }
-#     WiFiSocket2Power.sendCommand(ON)
-#     WiFiSocket2Power.postUpdate(ON)
-# end
 
 # Bedroom Pi Kodi and TV on/off control
 @rule("Turn ON FrontRoom Kodi-Pi, TV", description="Turn ON FrontRoom Kodi-Pi, TV", tags=["tv"])
@@ -242,21 +161,6 @@ def FR_tv_on(event):
     events.sendCommand("WiFiSocket2Power", "ON")
 
 
-# rule "Turn OFF FrontRoom Kodi-Pi, TV and soundbar"
-# when
-#     Item vFR_TVKodi changed from ON to OFF 
-# then
-#     logInfo("RULE", "Turn OFF FrontRoom kodi, pi and TV Kit")
-#     shutdownKodiFrontRoomProxy.postUpdate(OFF)
-
-#     if(timer1 === null) {
-#         timer1 = createTimer(now.plusSeconds(shutDownWaitTime)) [| // give time for pi kodi to shut down
-#         logInfo("RULE", "n secs later - we can turn off power sockets now")
-#         WiFiSocket2Power.sendCommand(OFF)
-#         WiFiSocket2Power.postUpdate(OFF)
-#         timer1 = null]
-#     }
-# end
 t_frtvPowerOff=None
 @rule("Turn OFF FrontRoom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vFR_TVKodi changed from ON to OFF")

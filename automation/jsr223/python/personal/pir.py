@@ -25,19 +25,6 @@ def pir_light_on(event):
 
 
 
-
-# rule "PIRsensor Turn OFF lights"
-# when
-#     Item pir01_occupancy changed from ON to OFF
-#     or
-#     Item pir02_occupancy changed from ON to OFF
-
-# then
-#     logInfo("RULE", "pir off")
-#     if ((pir01_occupancy.state == OFF) && (pir01_occupancy.state == OFF))
-#             ZbWhiteBulb01Switch.sendCommand(OFF)
-# end
-# rule "pir01 or 02 - Turn ON lights"
 @rule("PIRsensor Turn OFF lights", description="PIRsensor Turn OFF lights", tags=["pir"])
 @when("Item pir01_occupancy changed from ON to OFF")
 @when("Item pir02_occupancy changed from ON to OFF")

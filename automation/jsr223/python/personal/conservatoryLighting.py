@@ -1,7 +1,3 @@
-"""
-This script controls conservatory fan rules
-"""
-
 from core.rules import rule
 from core.triggers import when
 from core.actions import ScriptExecution
@@ -12,7 +8,7 @@ from core.actions import ScriptExecution
 def conservatory_lights_on(event):
     conservatory_lights_on.log.info("Turn ON the Conservatory lights via proxy")
     events.sendCommand("gConservatoryFairyLights", "ON")
-    events.postUpdate("gConservatoryFairyLights", "ON")
+    # events.postUpdate("gConservatoryFairyLights", "ON")
 
 
 @rule("Turn OFF conservatory lights via proxy", description="Handles fan actions", tags=["conservatory", "fan"])
@@ -20,7 +16,7 @@ def conservatory_lights_on(event):
 def conservatory_lights_off(event):
     conservatory_lights_off.log.info("Turn Off the Conservatory lights via proxy")
     events.sendCommand("gConservatoryFairyLights", "OFF")
-    events.postUpdate("gConservatoryFairyLights", "OFF")
-    events.postUpdate("ZbColourBulb01Switch", "OFF")
+    # events.postUpdate("gConservatoryFairyLights", "OFF")
+    # events.postUpdate("ZbColourBulb01Switch", "OFF")
 
 
