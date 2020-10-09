@@ -19,18 +19,18 @@ HL_midTemp = 17
 maxTemp = 24
 
 #! master heating mode - NORMAL mode rules
-@rule("cron test", description="cron test", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 22 21 ? * MON-FRI *")
-def heating_cron1(event):
-    heating_cron1.log.error("HEATING CRON 1 ============================>>>>>>>")
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), sleepTemp)
-    events.sendCommand("Heating_UpdateHeaters", "ON")
+# @rule("cron test", description="cron test", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 22 21 ? * MON-FRI *")
+# def heating_cron1(event):
+#     heating_cron1.log.error("HEATING CRON 1 ============================>>>>>>>")
+#     events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), sleepTemp)
+#     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
+#     events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), sleepTemp)
+#     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
+#     events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), sleepTemp)
+#     events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), sleepTemp)
+#     events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), sleepTemp)
+#     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 @rule("00:00 cron mon-fri", description="00:00 cron mon-fri", tags=["heating", "cron"])# description and tags are optional
 @when("Time cron 0 00 00 ? * MON-FRI *")
@@ -83,40 +83,40 @@ def heating_cron4(event):
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 
-@rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 30 05 ? * MON-FRI *")
-def heating_cron5(event):
-    temp = ir.getItem("Outside_Temperature").state
-    if temp < 2.0:
-        heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
-    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    events.sendCommand("Heating_UpdateHeaters", "ON")
+# @rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 30 05 ? * MON-FRI *")
+# def heating_cron5(event):
+#     temp = ir.getItem("Outside_Temperature").state
+    # if temp < 2.0:
+    #     heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
+    # events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    # events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    # events.sendCommand("Heating_UpdateHeaters", "ON")
 
-@rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 00 05 ? * MON-FRI *")
-def heating_cron6(event):
-    temp = ir.getItem("Outside_Temperature").state
-    if temp < 5.0:
-        heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
-    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    events.sendCommand("Heating_UpdateHeaters", "ON")
+# @rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 00 05 ? * MON-FRI *")
+# def heating_cron6(event):
+#     temp = ir.getItem("Outside_Temperature").state
+    # if temp < 5.0:
+    #     heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
+    # events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    # events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
+    # events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    # events.sendCommand("Heating_UpdateHeaters", "ON")
 
-@rule("NORMAL heating start - 06:10 am", description="NORMAL heating start - 06:10 am", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 00 06 ? * MON-FRI *")
+@rule("NORMAL heating start - 07:30 am", description="NORMAL heating start - 06:10 am", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 30 07 ? * MON-FRI *")
 def heating_cron7(event):
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), midTemp)
+    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
     events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), morningTemp)
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
@@ -174,8 +174,8 @@ def heating_cron10(event):
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 
-@rule("7:00 am weekend", description="7:00 am weekend", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 0 7 ? * SAT,SUN *")
+@rule("730 am weekend", description="7:00 am weekend", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 30 7 ? * SAT,SUN *")
 def heating_cron11(event):
     events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
