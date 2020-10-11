@@ -74,7 +74,7 @@ def zone3WentOffline(event):
     global t6
     if items["tableLamp1.state"] == ON:
         events.sendCommand("tableLamp1", "OFF")
-        t4 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+        t6 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
         # t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("CT_FairyLights433Socket","ON"))
 
@@ -92,7 +92,7 @@ def zone3WentOnline(event):
     global t7
     if items["tableLamp1.state"] == ON:
         events.sendCommand("tableLamp1", "OFF")
-        t5 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+        t7 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
         # t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("CT_FairyLights433Socket","ON"))
 

@@ -11,7 +11,7 @@ t1 = None
 @when("Item Outside_Reachable changed to \"Offline\"")
 def OS_sensor_offline(event):
     OS_sensor_offline.log.warn("outside sensor goes offline")
-    NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor goes offline")
+    NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor gone offline")
 
     global t1
     if items["ousideReboots"] == NULL:
