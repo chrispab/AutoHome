@@ -24,3 +24,4 @@ Number amplifiercode    "ir amplifier control code" { channel = "mqtt:topic:ampl
 
 Switch amptestSwitch "amp test switch" 
 
+Number outsideReboots    "outsideReboots" 

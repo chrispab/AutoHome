@@ -1,3 +1,27 @@
+from core.rules import rule
+from core.triggers import when
+from core.actions import LogAction
+from core.actions import ScriptExecution
+
+
+t1 = None
+
+
+@rule("outside sensor goes offline", description="outside sensor goes offline", tags=["notification"])
+@when("Item Outside_Reachable changed to \"Offline\"")
+def OS_sensor_offline(event):
+    OS_sensor_offline.log.warn("outside sensor goes offline")
+    NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor goes offline")
+
+    global t1
+    if items["ousideReboots"] == NULL:
+        items["ousideReboots"] = 0
+    # if items["tableLamp1.state"] == ON:
+    events.sendCommand("outsideSensorPower", "OFF")
+    t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand("outsideSensorPower", "ON"))
+    items["ousideReboots"] = items["ousideReboots"]+1
+
+
 # import java.util.List
 # import java.io.File
 # import java.io.BufferedReader
@@ -20,6 +44,7 @@
 # // // on      0xE13EA45B
 # // // off     0xE13E13E
 # // var String ampCodeMute = 'E13E29D6'
+
 
 # // rule "React on amp test switch (amptestSwitch) change/update AMP MUTE"
 # // when
@@ -88,7 +113,6 @@
 # end
 
 
-
 # rule "Test"
 # when
 #     Item Virtual_Switch_1 received update
@@ -116,7 +140,6 @@
 # // fire regulargly for testing
 
 
-
 # rule "02:30 - testing rules"
 # when
 #     Time cron "25 * * ? * * *"
@@ -125,7 +148,7 @@
 #     // logInfo("testing.rules", "---->TESTING.RULES -: " + jsonString)
 #     // stateSwitch = transform("JSONPATH","$.room",jsonString)
 #     // powerString = transform("JSONPATH","$.temp",jsonString)
-    
+
 #     // logInfo("testing.rules", "---->TESTING.RULES -- ROOM: " + stateSwitch)
 #     // logInfo("testing.rules", "---->TESTING.RULES -- TEMP: " + powerString)
 
@@ -147,9 +170,8 @@
 #         {sendCommand(vCT_TVKodiSpeakers, OFF)} //tv
 #         {postUpdate(vCT_TVKodiSpeakers, OFF)}
 #         {sendCommand(CT_Soundbar433PowerSocket, OFF)} // CT_Soundbar433PowerSocket
-#         {postUpdate(CT_Soundbar433PowerSocket, OFF)}    
+#         {postUpdate(CT_Soundbar433PowerSocket, OFF)}
 #         {sendCommand(radio, OFF)} //radio
 #         {postUpdate(radio, OFF)}
 #     ])
 # end
-
