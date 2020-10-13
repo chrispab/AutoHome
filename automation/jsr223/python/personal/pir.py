@@ -3,15 +3,17 @@ from core.triggers import when
 from org.eclipse.smarthome.core.library.types import PercentType
 from core.actions import PersistenceExtensions
 # var Boolean CLightsAreOn = false
-
+import personal.util
+reload(personal.util)
+from personal.util import send_info, send_alert
 
 @rule("PIRsensor change", description="PIRsensor change", tags=["pir"])
 @when("Item pir01_occupancy received update")
 @when("Item pir02_occupancy received update")
 def pir_change(event):
   #  pir_change.log.info("/////=======pir_change trigger item : " + event.itemName + ", PREV: " + PersistenceExtensions.previousState(ir.getItem(event.itemName), True).state + ", NOW: " + event.itemState.toString())
-    pir_change.log.info("///pir_light received update" )
-                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
+    pir_change.log.info("///pir_light received upd  ate           " )
+    send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
 # rule "pir01 or 02 - Turn ON lights"
 @rule("pir01 or 02 Turn ON lights", description="PIRsensor change", tags=["pir"]) 

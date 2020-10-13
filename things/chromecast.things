@@ -1,16 +1,12 @@
-chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.75" ]
-
+chromecast:chromecast:GHM_Attic     "Attic GHM"    [ ipAddress="192.168.0.75" ]
+chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
 chromecast:chromecast:GHM_Bedroom	      "Bedroom GHM" [ ipAddress="192.168.0.77" ]
 chromecast:chromecast:GHM_ElsiesRoom        "Elsie's Room GHM"  [ ipAddress="192.168.0.76" ]
-
 chromecast:chromecast:GHM_FrontRoom       "Front Room GHM"   [ ipAddress="192.168.0.78" ]
 
+
 chromecast:chromecast:GCC_Bedroom       "Bedroom GCC"   [ ipAddress="192.168.0.74" ]
-
 chromecast:chromecast:GCC_Conservatory      "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
-
-// chromecast:chromecast:GCC_FrontRoom          [ ipAddress="192.168.1.216" ]
-// chromecast:chromecast:GCC_Bedroom          [ ipAddress="192.168.1.216" ]
 
 
 /* Chromecast Audio Group for my Google Home Mini's */

@@ -21,7 +21,7 @@ def conservatory_fan_cool(event):
         events.sendCommand("CT_Fan433PowerSocket", "OFF")
 
 
-@rule("conservatory fan circulaterule", description="Handles fan actions", tags=["conservatory", "fan"])
+@rule("conservatory fan circulate heat", description="Handles fan actions", tags=["conservatory", "fan"])
 @when("Time cron 0/55 * * * * ?")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")

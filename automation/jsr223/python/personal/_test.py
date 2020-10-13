@@ -4,6 +4,14 @@ from core.actions import LogAction
 from core.actions import ScriptExecution
 
 
+@rule("outside sensor  startup", description="outside sensor ", tags=["Heating"])
+@when("System started")
+def outside_startup(event):
+    LogAction.logError("outside sensor  startup", "outside sensor  startup")
+    if items["ousideReboots"] == NULL:
+        items["ousideReboots"] = 0
+
+
 t1 = None
 
 
