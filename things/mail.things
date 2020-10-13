@@ -1,4 +1,4 @@
-// Thing mail:smtp:gmailsmtp [ hostname="smtp.gmail.com", port="587", sender="cbattisson@gmail.com", security="TLS", username="cbattisson@gmail.com", password="ibgaxjmevdylqaki" ]
+// Thing mail:smtp:gmailsmtp [ hostname="smtp.gmail.com", port="587", sender="cbattisson@gmail.com", security="TLS", username="cbattisson@gmail.com", password="" ]
 
 // Thing mail:imap:sampleimap [ hostname="imap.example.com", security="SSL", username="user", password="pass" ] {
 //     Channels:
