@@ -13,7 +13,7 @@ from personal.util import send_info, send_alert
 def pir_change(event):
   #  pir_change.log.info("/////=======pir_change trigger item : " + event.itemName + ", PREV: " + PersistenceExtensions.previousState(ir.getItem(event.itemName), True).state + ", NOW: " + event.itemState.toString())
     pir_change.log.info("///pir_light received upd  ate           " )
-    send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
+    # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
 # rule "pir01 or 02 - Turn ON lights"
 @rule("pir01 or 02 Turn ON lights", description="PIRsensor change", tags=["pir"]) 
