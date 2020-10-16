@@ -17,6 +17,7 @@ wakeTemp = 19
 
 HL_midTemp = 17
 maxTemp = 24
+highEvening = 22.5
 
 #! master heating mode - NORMAL mode rules
 # @rule("cron test", description="cron test", tags=["heating", "cron"])# description and tags are optional
@@ -140,7 +141,7 @@ def heating_cron8(event):
 @rule("heating 16:00 am", description="heating 16:00 am", tags=["heating", "cron"])# description and tags are optional
 @when("Time cron 0 0 16 ? * MON-FRI *")
 def heating_cron9(event):
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highEvening)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
     events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), morningTemp)
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
@@ -149,8 +150,8 @@ def heating_cron9(event):
     events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
-@rule("11:30pm weekdays", description="h11:30pm weekdays", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 35 23 ? * MON-FRI *")
+@rule("11:55pm weekdays", description="h11:30pm weekdays", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 55 23 ? * MON-FRI *")
 def heating_cron9(event):
     events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), midTemp)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
@@ -189,7 +190,7 @@ def heating_cron11(event):
 @rule("4:30pm weekend", description="4:30pm weekend", tags=["heating", "cron"])# description and tags are optional
 @when("Time cron 0 30 16 ? * SAT,SUN *")
 def heating_cron12(event):
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highEvening)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
     events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), sleepTemp)
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
