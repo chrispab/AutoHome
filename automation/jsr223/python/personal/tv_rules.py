@@ -152,7 +152,7 @@ def brtvoffbody():
 def FR_tv_on(event):
     global t_frtvPowerOff
     FR_tv_on.log.info("FR_tv_on")
-    # Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    # Voice.say("Turning on front room TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
     events.postUpdate("shutdownKodiFrontRoomProxy", "ON")
 #     //check if a shutdown timer is running - then stop it before turning stuff on
@@ -168,7 +168,7 @@ def fr_tv_off(event):
     fr_tv_off.log.info("bedroom_tv_off")
     global t_frtvPowerOff
 
-    Voice.say("Turning off Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    Voice.say("Turning off front room TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
     events.postUpdate("shutdownKodiFrontRoomProxy", "OFF")
     # events.sendCommand("amplifierStandby", "OFF")
 
