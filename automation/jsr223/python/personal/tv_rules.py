@@ -165,7 +165,7 @@ t_frtvPowerOff=None
 @rule("Turn OFF FrontRoom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vFR_TVKodi changed from ON to OFF")
 def fr_tv_off(event):
-    fr_tv_off.log.info("bedroom_tv_off")
+    fr_tv_off.log.info("front room_tv_off")
     global t_frtvPowerOff
 
     Voice.say("Turning off front room TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))

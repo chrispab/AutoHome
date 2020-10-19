@@ -13,7 +13,7 @@ reload(personal.util)
 @when("Item pir02_occupancy received update")
 def pir_change(event):
   #  pir_change.log.info("/////=======pir_change trigger item : " + event.itemName + ", PREV: " + PersistenceExtensions.previousState(ir.getItem(event.itemName), True).state + ", NOW: " + event.itemState.toString())
-    pir_change.log.info("///pir_light received upd  ate           ")
+    pir_change.log.info("///pir_light received update")
     # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
 
@@ -23,7 +23,9 @@ def pir_change(event):
 def pir_light_on(event):
     pir_light_on.log.info("//////+++++++++pir_light_on triggering item : " + event.itemName + ": " +
                           event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString())
-    if items["pir01_illuminance_lux"] < DecimalType(30):
+    #! change to main light sensor detect level on bridge     BridgeLightSensorLevel                 
+    if items["BridgeLightSensorLevel"] < DecimalType(1200) :
+    # if items["pir01_illuminance_lux"] < DecimalType(30) or items["pir02_illuminance_lux"] < DecimalType(30):
         events.sendCommand("ZbWhiteBulb01Switch", "ON")
         events.sendCommand("ZbWhiteBulb01Dim", "100")
 
