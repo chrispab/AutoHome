@@ -21,10 +21,11 @@ def pir_change(event):
 @when("Item pir01_occupancy changed from OFF to ON")
 @when("Item pir02_occupancy changed from OFF to ON")
 def pir_light_on(event):
-    pir_light_on.log.info("//////+++++++++pir_light_on triggering item : " + event.itemName + ": " +
+    pir_light_on.log.error("+++++++++pir_light_on triggering item : " + event.itemName + ": " +
                           event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString())
     #! change to main light sensor detect level on bridge     BridgeLightSensorLevel                 
-    if items["BridgeLightSensorLevel"] < DecimalType(1200) :
+    # if items["BridgeLightSensorLevel"] < DecimalType(1500) :
+    if items["BridgeLightSensorLevel"] < items["ConservatoryLightTriggerLevel"] :
     # if items["pir01_illuminance_lux"] < DecimalType(30) or items["pir02_illuminance_lux"] < DecimalType(30):
         events.sendCommand("ZbWhiteBulb01Switch", "ON")
         events.sendCommand("ZbWhiteBulb01Dim", "100")
