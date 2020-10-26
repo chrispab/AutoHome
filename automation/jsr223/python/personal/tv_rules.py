@@ -72,7 +72,8 @@ def conservatory_tv_on(event):
 
     events.sendCommand("CT_TV433PowerSocket", "ON")
     events.sendCommand("CT_Soundbar433PowerSocket", "ON")
-
+    events.sendCommand("CT_pi_kodiPowerSocket", "ON")
+# CT_pi_kodiPowerSocket
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_tvPowerOff is not None:
         t_tvPowerOff = None
@@ -99,6 +100,8 @@ def conservatory_tv_off(event):
 def tvoffbody():
     events.sendCommand("CT_TV433PowerSocket", "OFF")
     events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
+    events.sendCommand("CT_pi_kodiPowerSocket", "OFF")
+
     t_tvPowerOff = None
 
 

@@ -1,67 +1,82 @@
-//conservatory fairy lights
-Thing mqtt:topic:CT_FairyLights433Socket  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+// 1 conservaTOry kodi pi
+Thing mqtt:topic:CT_pi_kodi  "MQTT Thing: CT_pi_kodi Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power5" ]
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power1" ]
 }
 
-//Dining room switched socket - upper fairy lights
+// 2 : table lamp 1
+Thing mqtt:topic:tableLamp1  "MQTT Thing: Table lamp 1 Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power2" ]
+}
+// Switch socketG1_3 "socketG1_3_3"  <poweroutlet_uk>  (gFairyLights) {mqtt=">[mosquitto:433Bridge/cmnd/Power3:command:*:MAP(onoffcases.map)]"}
+// 3 : table lamp 1
+Thing mqtt:topic:workLights  "MQTT Thing: workLights Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power3" ]
+}
+
+// 4 : Dining room switched socket - upper fairy lights
 Thing mqtt:topic:DR_FairyLights433Socket  "MQTT Thing: Dining Room Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power4" ]
 }
 
-//conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
+// 5 : conservatory fairy lights
+Thing mqtt:topic:CT_FairyLights433Socket  "MQTT Thing: Conservatory Fairy Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power5" ]
+}
+
+// 6 : DAB Radio
+Thing mqtt:topic:radio  "MQTT Thing: DAB Radio 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power6" ]
+}
+
+// 7 : Amplifier
+Thing mqtt:topic:CT_Soundbar433PowerSocket  "MQTT Thing: CT_Soundbar433PowerSocket 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power7" ]
+}
+
+// 8 : Conservatory TV
+Thing mqtt:topic:CT_TV433PowerSocket  "MQTT Thing: COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power8" ]
+}
+
+// 9 : conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
 Thing mqtt:topic:CT_Radiators  "MQTT Thing: Conservatory Radiators 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
 }
 
-//DAB Radio
-Thing mqtt:topic:radio  "MQTT Thing: DAB Radio 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power6" ]
-}
-
-//conservatory Fan
+// 10 : conservatory Fan
 Thing mqtt:topic:fan  "MQTT Thing: Fan 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power10" ]
 }
 
 
-//Amplifier
-Thing mqtt:topic:CT_Soundbar433PowerSocket  "MQTT Thing: CT_Soundbar433PowerSocket 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power7" ]
-}
 
-//Conservatory TV
-Thing mqtt:topic:CT_TV433PowerSocket  "MQTT Thing: COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power8" ]
-}
 
-//zone1 power socket
+// 14 : zone1 power socket
 Thing mqtt:topic:zone1ControllerPower  "MQTT Thing: Zone 1 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Garage" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power14" ]
 }
 
-//zone3 power socket
+// 15 : zone3 power socket
 Thing mqtt:topic:zone3ControllerPower  "MQTT Thing: Zone 3 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power15" ]
 }
 
-//outside sensor power socket
+// 16 : outside sensor power socket
 Thing mqtt:topic:outsideSensorPower  "MQTT Thing: Outside sensor Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power16" ]
 }
 
-//table lamp 1
-Thing mqtt:topic:tableLamp1  "MQTT Thing: Table lamp 1 Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power2" ]
-}

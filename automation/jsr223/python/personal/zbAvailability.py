@@ -18,19 +18,7 @@ def zb_sensor_init(event):
     
     events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "offline")
 
-# Zb_THPSensor_01_Timer = null
-#      Zb_THSensor_01_Timer = null
-#      Zb_THSensor_02_Timer = null
-#      Zb_THSensor_03_Timer = null
-#      Zb_THSensor_04_Timer = null
 
-#      ZbRouter_01_Reachable.postUpdate("Offline")
-#      Zb_THPSensor_01_reachable.postUpdate("Offline")
-#      Zb_THSensor_01_reachable.postUpdate("Offline")
-#      Zb_THSensor_02_reachable.postUpdate("Offline")
-#      Zb_THSensor_03_reachable.postUpdate("Offline")
-#      Zb_THSensor_04_reachable.postUpdate("Offline")
-#      logInfo("monitor ZB Router", "ZB Router STARTUP clear timers")
 
 @rule("monitor ZB  temp sensor availability", description="monitor ZB  availability", tags=["zigbee"])
 @when("Member of gTHSensorTemperatures received update")
@@ -44,6 +32,3 @@ def zbAvail(event):
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusMinutes(timeoutMinutes), lambda: events.postUpdate(newname, "Offline"))
     else:
         timers[event.itemName].reschedule(DateTime.now().plusMinutes(timeoutMinutes))
-
-
-# ! startup - clear timers
