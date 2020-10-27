@@ -41,4 +41,6 @@ def Scene_Goodnight(event):
     events.postUpdate("HL_Heating_PresetTempNormal", "17.0")
     events.sendCommand("Heating_UpdateHeaters", "ON")
     events.postUpdate("Scene_Goodnight", "OFF")
+    events.sendCommand("workLightsPowerSocket", "OFF")
+
     tgoodnight = ScriptExecution.createTimer(DateTime.now().plusSeconds(240), lambda: events.sendCommand("DR_FairyLights433Socket", "OFF"))
