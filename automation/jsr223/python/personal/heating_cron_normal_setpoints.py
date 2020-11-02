@@ -126,8 +126,8 @@ def heating_cron7(event):
     events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
-@rule("heating 08:00 am", description="heating 08:00 am", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 0 08 ? * MON-FRI *")
+@rule("heating 07:00 am", description="heating 7 am", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 0 07 ? * MON-FRI *")
 def heating_cron8(event):
     events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
