@@ -78,8 +78,8 @@ def conservatory_tv_on(event):
     if t_tvPowerOff is not None:
         t_tvPowerOff = None
 
-    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: events.sendCommand("amplifierStandby", "ON"))
-    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(40), lambda: events.sendCommand("amplifiervideo1", "ON"))
+    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierStandby", "ON"))
+    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifiervideo1", "ON"))
 
 
 @rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
