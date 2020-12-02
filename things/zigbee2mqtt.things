@@ -123,7 +123,7 @@ Thing mqtt:topic:THPSensor01 "Xiaomi THPSensor01" (mqtt:broker:MyMQTTBroker) @ "
 
 
 // ! THSensor01 (0x00158d0003fb1bdb): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
-Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBroker) @ "Front Room"
 {
     Type number : temperature            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.temperature" ]
     Type number : humidity            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.humidity" ]

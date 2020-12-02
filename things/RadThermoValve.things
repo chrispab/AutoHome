@@ -11,11 +11,15 @@ Thing mqtt:topic:conservatoryRadThermoValve  "MQTT Thing: Conservatory Radiator 
 Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
     Channels:
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        // Type number : temperature  [ stateTopic="mqtt:topic:THSensor01",  transformationPattern="JSONPATH:$.temperature" ]
+
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type switch : powerSwitch  [ stateTopic="frontRoom/stat/POWER" , commandTopic="frontRoom/cmnd/POWER", on="ON", off="OFF" ]
         Type string : reachable    [ stateTopic="frontRoom/tele/LWT" ]
         Type number : rssi         [ stateTopic="frontRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
+
+
 
 Thing mqtt:topic:hallRadThermoValve  "MQTT Thing: Hall Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Hall" {
     Channels:

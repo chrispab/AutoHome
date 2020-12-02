@@ -7,7 +7,7 @@ sleepTemp = 17
 
 liveTemp = 21
 lowTemp = 16
-morningTemp = 20
+morningTemp = 19
 midTemp = 21
 
 eveningTemp = 23
