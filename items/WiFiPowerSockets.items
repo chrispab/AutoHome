@@ -1,7 +1,7 @@
 Group gMQTT
 Group gWiFiPowerSockets
 Group gWiFiPowerSocketsReachable
-//Group gChristmasLights "Christmas Lights"
+Group gChristmasWifiPowerSockets
 
 
 //currently used for RPi mythtv_backend server
@@ -20,16 +20,16 @@ String WiFiSocket3Reachable "Socket three reachable" (gMQTT, gWiFiPowerSockets, 
 Number WiFiSocket3RSSI "Socket three RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:rssi" }
 
 
-Switch WiFiSocket4Power "Socket four" (gMQTT, gWiFiPowerSockets)  { channel = "mqtt:topic:WiFiSocket4:powerSwitch", autoupdate="false"  }
+Switch WiFiSocket4Power "Socket four" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets )  { channel = "mqtt:topic:WiFiSocket4:powerSwitch", autoupdate="false"  }
 String WiFiSocket4Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket4:Reachable" }
 Number WiFiSocket4RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:rssi" }
 Number WiFiSocket4Temperature	"WiFi Socket 4 Temperature"				{ channel = "mqtt:topic:WiFiSocket4:temperature" }
 Number WiFiSocket4_TemperatureSetpoint
 
-Switch WiFiSocket5Power "Bedroom Fan" (gMQTT, gWiFiPowerSockets) { ga="fan" [ roomHint="Bedroom" ], channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
+Switch WiFiSocket5Power "Bedroom Fan" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets) { ga="fan" [ roomHint="Bedroom" ], channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
 String WiFiSocket5Reachable "Socket five reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket5:Reachable" }
 Number WiFiSocket5RSSI "Socket five RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:rssi" }
 
-Switch WiFiSocket6Power "elsie fan" (gMQTT, gWiFiPowerSockets) { ga="fan" [ roomHint="Elsies Bedroom" ], channel = "mqtt:topic:WiFiSocket6:powerSwitch" }
+Switch WiFiSocket6Power "elsie fan" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets) { ga="fan" [ roomHint="Elsies Bedroom" ], channel = "mqtt:topic:WiFiSocket6:powerSwitch" }
 String WiFiSocket6Reachable "Socket 6 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket6:Reachable" }
 Number WiFiSocket6RSSI "Socket five RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket6:rssi" }

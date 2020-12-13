@@ -43,4 +43,4 @@ def Scene_Goodnight(event):
     events.postUpdate("Scene_Goodnight", "OFF")
     events.sendCommand("workLightsPowerSocket", "OFF")
 
-    tgoodnight = ScriptExecution.createTimer(DateTime.now().plusSeconds(240), lambda: events.sendCommand("DR_FairyLights433Socket", "OFF"))
+    tgoodnight = ScriptExecution.createTimer(DateTime.now().plusSeconds(300), lambda: events.sendCommand("DR_FairyLights433Socket", "OFF"))

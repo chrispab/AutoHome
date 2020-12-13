@@ -1,4 +1,7 @@
-// Group gChristmasLights (gWiFiPowerSockets)
+// Group gChristmasLights "Christmas Lights grp" (gChristmasWifiPowerSockets) { ga="Switch" }
+Switch ChristmasLightsProxy "Christmas Lights" { ga="Switch" }
+
+// Group gBR_Thermostat "Bedroom Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Bedroom" ] }
 
 // Group gColourBulbs (gIkeaLights)
 // Group gDimmerBulbs (gIkeaLights)
