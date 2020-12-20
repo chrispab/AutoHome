@@ -60,6 +60,12 @@ Thing mqtt:topic:fan  "MQTT Thing: Fan 433 socket" (mqtt:broker:MyMQTTBroker) @ 
 }
 
 
+// 4 : Dining room switched socket - upper fairy lights
+Thing mqtt:topic:xmasLights433Socket  "MQTT Thing: xmas Lights 433 socket" (mqtt:broker:MyMQTTBroker) @ "Dining Room" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power11" ]
+}
+
 
 
 // 14 : zone1 power socket

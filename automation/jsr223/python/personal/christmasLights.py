@@ -20,6 +20,8 @@ from core.actions import ScriptExecution
 def xmas_lights_on(event):
     xmas_lights_on.log.error("Turn ON the xmas lights via  proxy")
     events.sendCommand("gChristmasWifiPowerSockets", "ON")
+    events.sendCommand("xmasLights433Socket", "ON")
+    
 
 
 @rule("Turn OFF conservatory lights via proxy", description="Handles fan actions", tags=["conservatory", "fan"])
@@ -27,6 +29,8 @@ def xmas_lights_on(event):
 def xmas_lights__off(event):
     xmas_lights__off.log.error("Turn Off the xmas lights via proxy")
     events.sendCommand("gChristmasWifiPowerSockets", "OFF")
+    events.sendCommand("xmasLights433Socket", "OFF")
+
     # events.postUpdate("gConservatoryFairyLights", "OFF")
     # events.postUpdate("ZbColourBulb01Switch", "OFF")
     # events.sendCommand("workLightsPowerSocket", "OFF")
