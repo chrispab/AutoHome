@@ -68,6 +68,9 @@ Thing mqtt:topic:xmasLights433Socket  "MQTT Thing: xmas Lights 433 socket" (mqtt
 
 
 
+
+
+
 // 14 : zone1 power socket
 Thing mqtt:topic:zone1ControllerPower  "MQTT Thing: Zone 1 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Garage" {
     Channels:
