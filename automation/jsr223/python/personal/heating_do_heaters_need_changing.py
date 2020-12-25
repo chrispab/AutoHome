@@ -34,7 +34,7 @@ def checkIfHeatersNeedUpdating(event):
         LogAction.logWarn("Check if Heaters need changing", "HHH Reachable-Offline - leaving!!!   prefix: {} ", prefix)
         return #dont continue on and update the bolier control if this RTV is Offline
 
-    LogAction.logInfo("Check if Heaters need changing", "HHH current HeatingMode.state: {}  masterHeatingMode.state {}",
+    LogAction.logInfo("Check if Heaters need changing", "HHH current HeatingMode.state: {}  masterHeatingMode.state: {}",
                        HeatingMode.state, ir.getItem("masterHeatingMode").state)
 
     if (HeatingMode.state.toString() == "off") or (ir.getItem("masterHeatingMode").state.toString() == "off"):
