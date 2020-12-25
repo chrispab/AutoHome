@@ -37,7 +37,7 @@ def zone1WentOffline(event):
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 went offline")
 
     global t4
-    if items["tableLamp1.state"] == ON:
+    if items["tableLamp1"] == ON:
         events.sendCommand("tableLamp1", "OFF")
         t4 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
@@ -55,7 +55,7 @@ def zone1WentOnline(event):
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 came Online")
 
     global t5
-    if items["tableLamp1.state"] == ON:
+    if items["tableLamp1"] == ON:
         events.sendCommand("tableLamp1", "OFF")
         t5 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
@@ -72,7 +72,7 @@ def zone3WentOffline(event):
     NotificationAction.sendNotification("cbattisson@gmail.com","zone3 went offline")
 
     global t6
-    if items["tableLamp1.state"] == ON:
+    if items["tableLamp1"] == ON:
         events.sendCommand("tableLamp1", "OFF")
         t6 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
@@ -90,7 +90,7 @@ def zone3WentOnline(event):
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 3 came Online")
 
     global t7
-    if items["tableLamp1.state"] == ON:
+    if items["tableLamp1"] == ON:
         events.sendCommand("tableLamp1", "OFF")
         t7 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
         # t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket","OFF"))
