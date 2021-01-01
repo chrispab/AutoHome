@@ -1,33 +1,33 @@
 Thing mqtt:topic:BG_WiFiSocket_1  "MQTT Thing: BG WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state/pwr" , commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power", on="ON", off="OFF" ]
-        Type switch : powerSwitch_1  [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state/pwr1" , commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/1", on="ON", off="OFF" ]
-        Type switch : powerSwitch_2  [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state/pwr2" , commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/2", on="ON", off="OFF" ]
+        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" ,  transformationPattern="JSONPATH:$.pwr" ,  commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power", on="ON", off="OFF" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" ,  transformationPattern="JSONPATH:$.pwr1", commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/1", on="ON", off="OFF" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" ,  transformationPattern="JSONPATH:$.pwr2", commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/2", on="ON", off="OFF" ]
 }
 
 Thing mqtt:topic:BG_WiFiSocket_2  "MQTT Thing: BG WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state/pwr" , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power", on="ON", off="OFF" ]
-        Type switch : powerSwitch_1  [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state/pwr1" , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power/1", on="ON", off="OFF" ]
-        Type switch : powerSwitch_2  [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state/pwr2" , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power/2", on="ON", off="OFF" ]
+        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power", on="ON", off="OFF" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power/1", on="ON", off="OFF" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_2b_d7_a4_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_2b_d7_a4_a7_df_24/power/2", on="ON", off="OFF" ]
 }
 
 Thing mqtt:topic:BG_WiFiSocket_3  "MQTT Thing: BG WiFi Power Socket 3" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state/pwr" , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power", on="ON", off="OFF" ]
-        Type switch : powerSwitch_1  [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state/pwr1" , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power/1", on="ON", off="OFF" ]
-        Type switch : powerSwitch_2  [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state/pwr2" , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power/2", on="ON", off="OFF" ]
+        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power", on="ON", off="OFF" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power/1", on="ON", off="OFF" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_c1_82_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_c1_82_b9_a7_df_24/power/2", on="ON", off="OFF" ]
 }
 
 Thing mqtt:topic:BG_WiFiSocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state/pwr" , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power", on="ON", off="OFF" ]
-        Type switch : powerSwitch_1  [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state/pwr1" , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power/1", on="ON", off="OFF" ]
-        Type switch : powerSwitch_2  [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state/pwr2" , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power/2", on="ON", off="OFF" ]
+        Type switch : powerSwitch_Both  [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power", on="ON", off="OFF" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power/1", on="ON", off="OFF" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_27_86_b9_a7_df_24/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_27_86_b9_a7_df_24/power/2", on="ON", off="OFF" ]
 }
 // 'BG1' Broadlink device at '192.168.0.22' (MAC 2b:d7:a4:a7:df:24)  MQTT topic having prefix 'broadlink/BG1_2b_d7_a4_a7_df_24/' 
 // 'BG1' Broadlink device at '192.168.0.10' (MAC bd:54:fc:42:f7:c8)  MQTT topic having prefix 'broadlink/BG1_bd_54_fc_42_f7_c8/' - square edge
