@@ -94,6 +94,7 @@ Rule3 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperatur
 for cuts
 current:
 18:03:41 MQT: sonoff_water1/stat/RESULT = {"Rule1":"ON","Once":"OFF","StopOnError":"OFF","Free":409,"Rules":"ON Tele-DS18B20#Temperature>=24.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<24.9 DO power1 1 ENDON"}
+14:58:23 MQT: sonoff_water1/stat/RESULT = {"Rule2":"ON","Once":"OFF","StopOnError":"OFF","Free":242,"Rules":"ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish sonoff_water1/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON"}
 
 new
 Rule2 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish sonoff_water1/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON

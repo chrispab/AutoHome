@@ -84,35 +84,35 @@ def heating_cron4(event):
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 
-# @rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
-# @when("Time cron 0 30 05 ? * MON-FRI *")
-# def heating_cron5(event):
-#     temp = ir.getItem("Outside_Temperature").state
-    # if temp < 2.0:
-    #     heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
-    # events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
-    # events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    # events.sendCommand("Heating_UpdateHeaters", "ON")
+@rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 00 05 ? * MON-FRI *")
+def heating_cron5(event):
+    temp = ir.getItem("Outside_Temperature").state
+    if temp < 2.0:
+        heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
+    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    events.sendCommand("Heating_UpdateHeaters", "ON")
 
-# @rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
-# @when("Time cron 0 00 05 ? * MON-FRI *")
-# def heating_cron6(event):
-#     temp = ir.getItem("Outside_Temperature").state
-    # if temp < 5.0:
-    #     heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
-    # events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
-    # events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    # events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    # events.sendCommand("Heating_UpdateHeaters", "ON")
+@rule("start heating early if cold outside", description="start heating early if cold outside", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 30 05 ? * MON-FRI *")
+def heating_cron6(event):
+    temp = ir.getItem("Outside_Temperature").state
+    if temp < 5.0:
+        heating_cron1.log.error("check if cold enough to start heating", "starting cos outside temp = {}", temp)
+    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), highTemp)
+    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    events.sendCommand("Heating_UpdateHeaters", "ON")
 
 # @rule("NORMAL heating start - 07:30 am", description="NORMAL heating start - 06:10 am", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 0 07 ? * MON-FRI *")
