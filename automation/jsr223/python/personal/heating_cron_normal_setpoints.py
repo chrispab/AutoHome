@@ -19,6 +19,8 @@ HL_midTemp = 17
 maxTemp = 24
 highEvening = 22.5
 
+hallWeekDayTemp = 19
+
 #! master heating mode - NORMAL mode rules
 # @rule("cron test", description="cron test", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 22 21 ? * MON-FRI *")
@@ -135,7 +137,7 @@ def heating_cron8(event):
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), highTemp)
     events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), morningTemp)
     events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), highTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), hallWeekDayTemp)
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 @rule("heating 16:00 am", description="heating 16:00 am", tags=["heating", "cron"])# description and tags are optional
@@ -147,7 +149,7 @@ def heating_cron9(event):
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
     events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), morningTemp)
     events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
+    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), hallWeekDayTemp)
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 @rule("11:55pm weekdays", description="h11:30pm weekdays", tags=["heating", "cron"])# description and tags are optional

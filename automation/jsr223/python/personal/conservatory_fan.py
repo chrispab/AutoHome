@@ -10,15 +10,16 @@ import org.joda.time.DateTime as DateTime
 def conservatory_fan_cool(event):
     conservatory_fan_cool.log.info(">>>>>>>>>>>>>>>>>>conservatory_fan_ cool rulel now")
     setpoint = items["Conservatory_Fan_ON_Setpoint"]
-    turnOnTemp = setpoint
+    # turnOnTemp = setpoint
     temp = items["CT_Temperature"]
     sp = items["CT_TemperatureSetpoint"]
 
     conservatory_fan_cool.log.info(">>>>onservatory_fan_ cool rulel CHECKING")
-    if temp >= turnOnTemp:
+    if temp >= setpoint:
         events.sendCommand("CT_Fan433PowerSocket", "ON")
-    if temp < turnOnTemp:
+    if temp < setpoint:
         events.sendCommand("CT_Fan433PowerSocket", "OFF")
+        conservatory_fan_cool.log.error(">>>>onservatory_fan_ cool rulel turning fan off")
 
 
 @rule("conservatory fan circulate heat", description="Handles fan actions", tags=["conservatory", "fan"])
@@ -30,10 +31,10 @@ def conservatory_fan(event):
     currentTemp = items["CT_Temperature"]
     #     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
     if ((sp >= 20) and (currentTemp < (sp)) and (items["RecircFanEnable"] == ON)):
-        conservatory_fan.log.info("conservatory_fan rulel FAN ON NOW")
+        conservatory_fan.log.error("conservatory_fan rulel turn FAN ON NOW   ZZZZZ")
         events.sendCommand("CT_Fan433PowerSocket", "ON")
         fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
-            25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+            30), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
 
 
 @rule("React on Fan Pulse (FanPulseSwitch) change/update", description="React on Fan Pulse (FanPulseSwitch) change/update", tags=["conservatory", "fan"])

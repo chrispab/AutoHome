@@ -26,3 +26,11 @@ Switch pauseKodiBedroomProxy "pause bedroom kodi"
 
 String kodiBedroom_systemcommand "Systemcommand" { channel="kodi:kodi:KodiBedroom:systemcommand" }
 Switch shutdownKodiBedroomProxy "shutdown bedroom kodi"
+
+
+// ! Attic kodi
+Player kodiAttic_control "Kodi Pause"   { channel="kodi:kodi:KodiAttic:control" }
+Switch pauseKodiAtticProxy "pause Front Room kodi"
+
+String kodiAttic_systemcommand "Systemcommand" { channel="kodi:kodi:KodiAttic:systemcommand" }
+Switch shutdownKodiAtticProxy "shutdown KodiAttic"

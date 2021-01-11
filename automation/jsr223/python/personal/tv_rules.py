@@ -34,7 +34,7 @@ t_tvPowerOff = None
 
 def tv_startup_tbody():
     tvs_init.log.info(
-        "TV.rules Executing 'System started' rule for ALL rooms -  TV Initialize uninitialized virtual Items")
+        "TV.rules Executing 'System started' rule for ALL Kodi's and TVs -  Kodi, TVs Initialize uninitialized virtual Items")
     if items["vFR_TVKodi"] == NULL:
         events.postUpdate("vFR_TVKodi", "OFF")  # // set power up val
         tvs_init.log.info("TV.rules System started rule, change front room tv power state from NULL to OFF")
@@ -44,13 +44,15 @@ def tv_startup_tbody():
     if items["vCT_TVKodiSpeakers"] == NULL:
         events.postUpdate("vCT_TVKodiSpeakers", "OFF")  # // set power up val
         tvs_init.log.info("'System started' rule, change conservatory tv power state from NULL to OFF")
-
+    if items["vAT_TVKodi"] == NULL:
+        events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
+        tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
 # //FrontRoom Pi Kodi and TV on/off control
-@rule("System started - set all rooms TV settings", description="System started - set all rooms TV settings", tags=["tv"])
+@rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
 @when("System started")
 def tvs_init(event):
-    tvs_init.log.info("tvs_init")
+    tvs_init.log.info("System started - set all rooms TV startup settings")
     events.postUpdate("BridgeLightSensorState", "OFF")
     global tStartup
     if tStartup is None:
@@ -160,7 +162,7 @@ def FR_tv_on(event):
     events.postUpdate("shutdownKodiFrontRoomProxy", "ON")
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_frtvPowerOff is not None:
-        t_tfrvPowerOff = None
+        t_frtvPowerOff = None
     events.sendCommand("WiFiSocket2Power", "ON")
 
 
@@ -184,3 +186,42 @@ def frtvoffbody():
     events.sendCommand("WiFiSocket2Power", "OFF")
     # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_frtvPowerOff = None
+
+
+
+# ! Attic TV 
+@rule("Turn ON Attic Kodi-Pi, TV", description="Turn ON Attic Kodi-Pi, TV", tags=["tv"])
+@when("Item vAT_TVKodi received update ON")
+def AT_tv_on(event):
+    global t_attvPowerOff
+    AT_tv_on.log.info("AT_tv_on")
+    Voice.say("Turning on attic TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+    events.postUpdate("shutdownKodiAtticProxy", "ON")
+#     //check if a shutdown timer is running - then stop it before turning stuff on
+    if t_attvPowerOff is not None:
+        t_attvPowerOff = None
+    events.sendCommand("WiFiSocket5Power", "ON")
+
+
+t_attvPowerOff=None
+@rule("Turn OFF Attic Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
+@when("Item vAT_TVKodi changed from ON to OFF")
+def AT_tv_off(event):
+    AT_tv_off.log.info("front room_tv_off")
+    global t_attvPowerOff
+
+    Voice.say("Turning off attic TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    events.postUpdate("shutdownKodiAtticProxy", "OFF")
+    # events.sendCommand("amplifierStandby", "OFF")
+
+    if t_attvPowerOff is None:
+        t_attvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: attvoffbody())
+
+
+def attvoffbody():
+    global t_attvPowerOff
+    events.sendCommand("WiFiSocket5Power", "OFF")
+    # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
+    t_attvPowerOff = None
+
