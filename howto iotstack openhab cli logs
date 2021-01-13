@@ -1,0 +1,6 @@
+chris@OX7020:/mnt/nfs/iotstack/volumes/openhab/conf$ ssh pi@iotstack.local
+
+pi@iotstack:~ $ cd IOTstack
+docker exec -it openhab /openhab/runtime/bin/client -p habopen
+
+openhab> log:tail                                         
