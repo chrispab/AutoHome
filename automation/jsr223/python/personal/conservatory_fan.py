@@ -14,16 +14,18 @@ def conservatory_fan_cool(event):
     temp = items["CT_Temperature"]
     sp = items["CT_TemperatureSetpoint"]
 
-    conservatory_fan_cool.log.info(">>>>onservatory_fan_ cool rulel CHECKING")
-    if temp >= setpoint:
-        events.sendCommand("CT_Fan433PowerSocket", "ON")
-    if temp < setpoint:
-        events.sendCommand("CT_Fan433PowerSocket", "OFF")
-        conservatory_fan_cool.log.error(">>>>onservatory_fan_ cool rulel turning fan off")
+    conservatory_fan_cool.log.info(">>>> Conservatory_fan_ cool rulel CHECKING")
+
+    if items["CT_Heater"] != OFF:
+        if temp >= setpoint:
+            events.sendCommand("CT_Fan433PowerSocket", "ON")
+        if temp < setpoint:
+            events.sendCommand("CT_Fan433PowerSocket", "OFF")
+            conservatory_fan_cool.log.error(">>>> Conservatory_fan_ cool rulel turning fan off")
 
 
 @rule("conservatory fan circulate heat", description="Handles fan actions", tags=["conservatory", "fan"])
-@when("Time cron 0/55 * * * * ?")
+@when("Time cron 0 * * * * ?")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
     fanOnSecs = 110
@@ -33,8 +35,15 @@ def conservatory_fan(event):
     if ((sp >= 20) and (currentTemp < (sp)) and (items["RecircFanEnable"] == ON)):
         conservatory_fan.log.error("conservatory_fan rulel turn FAN ON NOW   ZZZZZ")
         events.sendCommand("CT_Fan433PowerSocket", "ON")
-        fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
-            30), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+        fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: ct_fan_body())
+
+def ct_fan_body():
+    # global t_attvPowerOff
+    # events.sendCommand("WiFiSocket5Power", "OFF")
+    events.sendCommand("CT_Fan433PowerSocket", "OFF")
+    conservatory_fan.log.error("conservatory_fan rulel turn FAN OFF NOW   XX")
+    # t_attvPowerOff = None
+
 
 
 @rule("React on Fan Pulse (FanPulseSwitch) change/update", description="React on Fan Pulse (FanPulseSwitch) change/update", tags=["conservatory", "fan"])
