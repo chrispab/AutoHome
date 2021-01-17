@@ -16,7 +16,7 @@ def conservatory_fan_cool(event):
 
     conservatory_fan_cool.log.info(">>>> Conservatory_fan_ cool rulel CHECKING")
 
-    if items["CT_Heater"] != OFF:
+    if items["CT_Heater"] != OFF: # prevent doinbg when heater is on - cos it may be recircing
         if temp >= setpoint:
             events.sendCommand("CT_Fan433PowerSocket", "ON")
         if temp < setpoint:
