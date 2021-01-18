@@ -32,7 +32,12 @@ def pir_light_on(event):
     # if items["pir01_illuminance_lux"] < DecimalType(30) or items["pir02_illuminance_lux"] < DecimalType(30):
         # events.sendCommand("ZbWhiteBulb01Switch", "ON")
         # events.sendCommand("ZbWhiteBulb01Dim", "100")
-        events.sendCommand("gKT_WiFiLightsPower", "ON")
+        # events.sendCommand("gKT_WiFiLightsPower", "ON")
+
+        if items["pir01_occupancy"] == ON:
+            events.sendCommand("KT_light_1_Power", "ON")
+        if items["pir02_occupancy"] == ON:
+            events.sendCommand("KT_light_2_Power", "ON")
 
 
 @rule("PIRsensor Turn OFF lights", description="PIRsensor Turn OFF lights", tags=["pir"])
@@ -46,9 +51,5 @@ def pir_light_off(event):
         pir_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: pir_off_body())
 
 def pir_off_body():
-    # pir_off_body.log.error(">>>> K lights off pre test")
-
     if items["pir01_occupancy"] == OFF and items["pir02_occupancy"] == OFF:
         events.sendCommand("gKT_WiFiLightsPower", "OFF")
-        # pir_off_body.log.error(">>>> K lights off POST test")
-        # events.sendCommand("ZbWhiteBulb01Dim", PercentType(50))
