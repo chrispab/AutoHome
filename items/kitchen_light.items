@@ -12,6 +12,10 @@ Number KT_light_1_RSSI "KT_light_1 RSSI" (gMQTT) { channel = "mqtt:topic:KT_ligh
 Switch KT_light_2_Power "KT_light_2" (gMQTT, gKT_WiFiLightsPower)  { channel = "mqtt:topic:KT_light_2:powerSwitch" }
 String KT_light_2_Reachable "KT_light_2 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_2:Reachable" }
 Number KT_light_2_RSSI "KT_light_2 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_2:rssi" }
+
+Switch KT_light_3_Power "KT_light_3" (gMQTT, gKT_WiFiLightsPower)  { channel = "mqtt:topic:KT_light_3:powerSwitch" }
+String KT_light_3_Reachable "KT_light_3 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_3:Reachable" }
+Number KT_light_3_RSSI "KT_light_3 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_3:rssi" }
 // Switch WiFiSocket2Power "Socket two" (gMQTT, gWiFiPowerSockets)  { channel = "mqtt:topic:WiFiSocket2:powerSwitch", autoupdate="false" }
 // String WiFiSocket2Reachable "Socket two reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket2:Reachable" }
 // Number WiFiSocket2RSSI "Socket two RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:rssi" }
