@@ -33,3 +33,8 @@ Number WiFiSocket5RSSI "Socket five RSSI" (gMQTT, gWiFiPowerSockets) { channel =
 Switch WiFiSocket6Power "elsie fan" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets) { ga="fan" [ roomHint="Elsies Bedroom" ], channel = "mqtt:topic:WiFiSocket6:powerSwitch" }
 String WiFiSocket6Reachable "Socket 6 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket6:Reachable" }
 Number WiFiSocket6RSSI "Socket five RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket6:rssi" }
+
+Switch wifi_socket_7_Power "wifi_socket_7" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets )  { channel = "mqtt:topic:wifi_socket_7:powerSwitch"}
+String wifi_socket_7_Reachable "wifi_socket_7 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:Reachable" }
+Number wifi_socket_7_RSSI "wifi_socket_7 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }
+Number wifi_socket_7_Temperature	"wifi_socket_7 Temperature"				{ channel = "mqtt:topic:wifi_socket_7:temperature" }

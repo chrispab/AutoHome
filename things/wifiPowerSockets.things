@@ -46,3 +46,11 @@ Thing mqtt:topic:WiFiSocket6  "MQTT Thing: WiFi Power Socket_6" (mqtt:broker:MyM
         Type string : Reachable    [ stateTopic="wiFiSocket6/tele/LWT"  ]
         Type number : rssi         [ stateTopic="wiFiSocket6/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
+Thing mqtt:topic:wifi_socket_7  "MQTT Thing: wifi_socket_7" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch  [ stateTopic="wifi_socket_7/stat/POWER" , commandTopic="wifi_socket_7/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : Reachable    [ stateTopic="wifi_socket_7/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="wifi_socket_7/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        Type number : temperature  [ stateTopic="wifi_socket_7/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20.Temperature" ]
+}
