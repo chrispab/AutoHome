@@ -26,4 +26,6 @@ Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:M
         Type string : heartBeat     [ stateTopic="Zone3/HeartBeat"  ]
         Type string : Reachable    [ stateTopic="Zone3/LWT"  ]
         Type number : rssi   [ stateTopic="Zone3/rssi" ]
+        Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta", commandTopic="Zone3/vent_on_delta/set" ]
+        Type number : vent_off_delta "zone3 vent_off_delta" [ stateTopic="Zone3/vent_off_delta", commandTopic="Zone3/vent_off_delta/set" ]
 }

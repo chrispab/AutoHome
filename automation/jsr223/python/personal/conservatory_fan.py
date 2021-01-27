@@ -2,6 +2,7 @@ from core.rules import rule
 from core.triggers import when
 from core.actions import ScriptExecution
 import org.joda.time.DateTime as DateTime
+# from java.time import ZonedDateTime as DateTime
 
 
 @rule("conservatory fan_cool rule", description="Handles fan actions", tags=["conservatory", "fan"])
@@ -25,24 +26,20 @@ def conservatory_fan_cool(event):
 
 
 @rule("conservatory fan circulate heat", description="Handles fan actions", tags=["conservatory", "fan"])
-@when("Time cron 0 * * * * ?")
+@when("Time cron 0 */5 * ? * *")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
-    fanOnSecs = 110
+    fanOnSecs = 120
     sp = items["CT_TemperatureSetpoint"]
     currentTemp = items["CT_Temperature"]
-    #     if ( (sp >= 20) && (currentTemp < (sp + 0.3)) && (RecircFanEnable.state == ON) )  {
     if ((sp >= 20) and (currentTemp < (sp)) and (items["RecircFanEnable"] == ON)):
-        conservatory_fan.log.error("conservatory_fan rulel turn FAN ON NOW   ZZZZZ")
+        conservatory_fan.log.error("conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ")
         events.sendCommand("CT_Fan433PowerSocket", "ON")
-        fan_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: ct_fan_body())
-
+        ScriptExecution.createTimer(DateTime.now().plusSeconds(fanOnSecs), lambda: ct_fan_body())
+                    # ScriptExecution.createTimer(DateTime.now().plusSeconds(120), lambda: (XiaomiMotionSensorBathroom_Motion_3(CLOSED)))
 def ct_fan_body():
-    # global t_attvPowerOff
-    # events.sendCommand("WiFiSocket5Power", "OFF")
     events.sendCommand("CT_Fan433PowerSocket", "OFF")
     conservatory_fan.log.error("conservatory_fan rulel turn FAN OFF NOW   XX")
-    # t_attvPowerOff = None
 
 
 
