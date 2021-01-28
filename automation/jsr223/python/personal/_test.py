@@ -2,7 +2,6 @@ from core.rules import rule
 from core.triggers import when
 from core.actions import LogAction
 from core.actions import ScriptExecution
-from org.joda.time import DateTime
 from java.time import ZonedDateTime as DateTime
 
 import org.openhab.io.openhabcloud.NotificationAction as NotificationAction

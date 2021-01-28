@@ -12,9 +12,9 @@ def boiler_control(event):
     boiler_control.log.warn("::Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
 
     # display any NUll heater states
-    if items["gRoomHeaterStates"] == NULL:
-        for item in ir.getItem("gTest").members:
-            LogAction.logInfo("boiler control", ":::Heater Item: {}, state: {}", item.itemName, item.itemState)
+    # if items["gRoomHeaterStates"] == NULL:
+    #     for item in ir.getItem("gTest").members:
+    #         LogAction.logInfo("boiler control", ":::Heater Item: {}, state: {}", item.itemName, item.itemState)
 
     if items["gAnyRoomHeaterOn"] == ON:
         # get list of ON heatees

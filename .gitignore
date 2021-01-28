@@ -12,3 +12,4 @@ automation/lib/python/core/osgi/__init__$py.class
 automation/lib/python/core/osgi/events$py.class
 automation/lib/python/personal/__init__$py.class
 automation/lib/python/personal/util$py.class
+automation/lib/python/core/date$py.class

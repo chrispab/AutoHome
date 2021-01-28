@@ -1,11 +1,11 @@
 from personal.util import send_info
 from core.rules import rule
 from core.triggers import when
-from org.eclipse.smarthome.core.library.types import PercentType
+# from org.eclipse.smarthome.core.library.types import PercentType
 from core.actions import PersistenceExtensions
 from core.actions import ScriptExecution
-import org.joda.time.DateTime as DateTime
 from core.actions import LogAction
+from java.time import ZonedDateTime as DateTime
 
 # var Boolean CLightsAreOn = false
 import personal.util

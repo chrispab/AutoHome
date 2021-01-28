@@ -1,8 +1,7 @@
 from core.rules import rule
 from core.triggers import when
 from core.actions import ScriptExecution
-import org.joda.time.DateTime as DateTime
-# from java.time import ZonedDateTime as DateTime
+from java.time import ZonedDateTime as DateTime
 
 
 @rule("conservatory fan_cool rule", description="Handles fan actions", tags=["conservatory", "fan"])

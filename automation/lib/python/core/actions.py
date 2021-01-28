@@ -18,7 +18,7 @@ from core import osgi
 __all__ = []
 
 OH1_ACTIONS = osgi.find_services("org.openhab.core.scriptengine.action.ActionService", None) or []
-OH2_ACTIONS = osgi.find_services("org.eclipse.smarthome.model.script.engine.action.ActionService", None) or []
+OH2_ACTIONS = osgi.find_services("org.openhab.core.model.script.engine.action.ActionService", None) or osgi.find_services("org.eclipse.smarthome.model.script.engine.action.ActionService", None) or []
 
 _MODULE = sys.modules[__name__]
 
@@ -31,17 +31,30 @@ for action in OH1_ACTIONS + OH2_ACTIONS:
 try:
     from org.openhab.core.model.script.actions import Exec
     from org.openhab.core.model.script.actions import HTTP
-    from org.openhab.core.model.script.actions import LogAction
     from org.openhab.core.model.script.actions import Ping
     from org.openhab.core.model.script.actions import ScriptExecution
 except:
     from org.eclipse.smarthome.model.script.actions import Exec
     from org.eclipse.smarthome.model.script.actions import HTTP
-    from org.eclipse.smarthome.model.script.actions import LogAction
     from org.eclipse.smarthome.model.script.actions import Ping
     from org.eclipse.smarthome.model.script.actions import ScriptExecution
 
-STATIC_IMPORTS = [Exec, HTTP, LogAction, Ping, ScriptExecution]
+try:
+    # OH3
+    from org.openhab.core.model.script.actions import Log
+    LogAction = Log
+except:
+    try:
+        # OH2 post ESH merge
+        from org.openhab.core.model.script.actions import LogAction
+        Log = LogAction
+    except:
+        # OH2 pre ESH merge
+        from org.eclipse.smarthome.model.script.actions import LogAction
+        Log = LogAction
+
+
+STATIC_IMPORTS = [Exec, HTTP, Log, LogAction, Ping, ScriptExecution]
 
 for action in STATIC_IMPORTS:
     name = str(action.simpleName)

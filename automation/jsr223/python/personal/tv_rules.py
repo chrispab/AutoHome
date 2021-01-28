@@ -1,13 +1,12 @@
 
 
-import org.joda.time.DateTime as DateTime
 from core.actions import ScriptExecution
 from core.rules import rule
 from core.triggers import when
+from java.time import ZonedDateTime as DateTime
 
 
 # voice support
-from org.eclipse.smarthome.core.library.types import PercentType
 from core.actions import Voice
 
 

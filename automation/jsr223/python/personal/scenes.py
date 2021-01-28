@@ -2,7 +2,7 @@ from core.actions import ScriptExecution
 from core.rules import rule
 from core.triggers import when
 from core.actions import LogAction
-import org.joda.time.DateTime as DateTime
+from java.time import ZonedDateTime as DateTime
 
 
 tsceneStartup = None

@@ -1,3 +1,4 @@
+# pylint: disable=super-init-not-called
 """
 This module provides functions for date and time conversions. The functions in
 this module can accept any of the following date types:
@@ -8,7 +9,7 @@ this module can accept any of the following date types:
     java.time.LocalDateTime
     java.util.Calendar
     java.util.Date
-    org.joda.time.DateTime
+    org.joda.time.DateTime  # OH2 only
     datetime.datetime (Python)
     org.eclipse.smarthome.core.library.types.DateTimeType
     org.openhab.core.library.types.DateTimeType
@@ -21,6 +22,39 @@ __all__ = [
 
 import sys
 import datetime
+import inspect
+
+from core.log import logging, LOG_PREFIX
+
+from java.time import LocalDateTime, ZonedDateTime
+from java.time import ZoneId, ZoneOffset
+from java.time.format import DateTimeFormatter
+from java.time.temporal.ChronoUnit import DAYS, HOURS, MINUTES, SECONDS
+from java.util import Calendar, Date, TimeZone
+
+try:
+    from org.joda.time import DateTime as JodaDateTime
+    from org.joda.time import DateTimeZone as JodaDateTimeZone
+except:
+    # OH3 does not have Joda Time
+    JodaDateTime = None
+    JodaDateTimeZone = None
+
+try:
+    from org.openhab.core.library.types import DateTimeType
+except:
+    DateTimeType = None
+
+try:
+    from org.eclipse.smarthome.core.library.types import DateTimeType as EclipseDateTimeType
+except:
+    EclipseDateTimeType = None
+
+try:
+    # if the compat1x bundle is not installed, the OH 1.x DateTimeType is not available
+    from org.openhab.core.library.types import DateTimeType as LegacyDateTimeType
+except:
+    LegacyDateTimeType = None
 
 if 'org.eclipse.smarthome.automation' in sys.modules or 'org.openhab.core.automation' in sys.modules:
     # Workaround for Jython JSR223 bug where dates and datetimes are converted
@@ -31,19 +65,7 @@ if 'org.eclipse.smarthome.automation' in sys.modules or 'org.openhab.core.automa
     remove_java_converter(datetime.date)
     remove_java_converter(datetime.datetime)
 
-from java.time import LocalDateTime, ZonedDateTime
-from java.time import ZoneId, ZoneOffset
-from java.time.format import DateTimeFormatter
-from java.time.temporal.ChronoUnit import DAYS, HOURS, MINUTES, SECONDS
-from org.joda.time import DateTime, DateTimeZone
-from java.util import Calendar, Date, TimeZone
-from org.eclipse.smarthome.core.library.types import DateTimeType as eclipseDateTime
 
-try:
-    # if the compat1x bundle is not installed, the OH 1.x DateTimeType is not available
-    from org.openhab.core.library.types import DateTimeType as legacyDateTime
-except:
-    legacyDateTime = None
 
 def format_date(value, format_string="yyyy-MM-dd'T'HH:mm:ss.SSxx"):
     """
@@ -71,10 +93,11 @@ def format_date(value, format_string="yyyy-MM-dd'T'HH:mm:ss.SSxx"):
     """
     return to_java_zoneddatetime(value).format(DateTimeFormatter.ofPattern(format_string))
 
-def days_between(value_from, value_to, calendar_days=False):
+
+def days_between(start_time, stop_time, calendar_days=False):
     """
-    Returns the number of days between ``value_from`` and ``value_to``.
-    Will return a negative number if ``value_from`` is after ``value__to``.
+    Returns the number of days between ``start_time`` and ``stop_time``.
+    Will return a negative number if ``start_time`` is after ``stop_time``.
 
     Examples:
         .. code-block::
@@ -82,23 +105,24 @@ def days_between(value_from, value_to, calendar_days=False):
             span_days = days_between(items["date_item"], ZonedDateTime.now())
 
     Args:
-        value_from: value to start from
-        value_to: value to measure to
+        start_time: value to start from
+        stop_time: value to measure to
         calendar_days (bool): if ``True``, the value returned will be the
             number of calendar days rather than 24-hour periods (default)
 
     Returns:
-        int: the number of days between ``value_from`` and ``value_to``
+        int: the number of days between ``start_time`` and ``stop_time``
     """
     if calendar_days:
-        return DAYS.between(to_java_zoneddatetime(value_from).toLocalDate().atStartOfDay(), to_java_zoneddatetime(value_to).toLocalDate().atStartOfDay())
+        return DAYS.between(to_java_zoneddatetime(start_time).toLocalDate().atStartOfDay(), to_java_zoneddatetime(stop_time).toLocalDate().atStartOfDay())
     else:
-        return DAYS.between(to_java_zoneddatetime(value_from), to_java_zoneddatetime(value_to))
+        return DAYS.between(to_java_zoneddatetime(start_time), to_java_zoneddatetime(stop_time))
 
-def hours_between(value_from, value_to):
+
+def hours_between(start_time, stop_time):
     """
-    Returns the number of hours between ``value_from`` and ``value_to``.
-    Will return a negative number if ``value_from`` is after ``value__to``.
+    Returns the number of hours between ``start_time`` and ``stop_time``.
+    Will return a negative number if ``start_time`` is after ``stop_time``.
 
     Examples:
         .. code-block::
@@ -106,18 +130,19 @@ def hours_between(value_from, value_to):
             span_hours = hours_between(items["date_item"], ZonedDateTime.now())
 
     Args:
-        value_from: value to start from
-        value_to: value to measure to
+        start_time: value to start from
+        stop_time: value to measure to
 
     Returns:
-        int: the number of hours between ``value_from`` and ``value_to``
+        int: the number of hours between ``start_time`` and ``stop_time``
     """
-    return HOURS.between(to_java_zoneddatetime(value_from), to_java_zoneddatetime(value_to))
+    return HOURS.between(to_java_zoneddatetime(start_time), to_java_zoneddatetime(stop_time))
 
-def minutes_between(value_from, value_to):
+
+def minutes_between(start_time, stop_time):
     """
-    Returns the number of minutes between ``value_from`` and ``value_to``.
-    Will return a negative number if ``value_from`` is after ``value__to``.
+    Returns the number of minutes between ``start_time`` and ``stop_time``.
+    Will return a negative number if ``start_time`` is after ``stop_time``.
 
     Examples:
         .. code-block::
@@ -125,18 +150,19 @@ def minutes_between(value_from, value_to):
             span_minutes = minutes_between(items["date_item"], ZonedDateTime.now())
 
     Args:
-        value_from: value to start from
-        value_to: value to measure to
+        start_time: value to start from
+        stop_time: value to measure to
 
     Returns:
-        int: the number of minutes between ``value_from`` and ``value_to``
+        int: the number of minutes between ``start_time`` and ``stop_time``
     """
-    return MINUTES.between(to_java_zoneddatetime(value_from), to_java_zoneddatetime(value_to))
+    return MINUTES.between(to_java_zoneddatetime(start_time), to_java_zoneddatetime(stop_time))
 
-def seconds_between(value_from, value_to):
+
+def seconds_between(start_time, stop_time):
     """
-    Returns the number of seconds between ``value_from`` and ``value_to``.
-    Will return a negative number if ``value_from`` is after ``value__to``.
+    Returns the number of seconds between ``start_time`` and ``stop_time``.
+    Will return a negative number if ``start_time`` is after ``stop_time``.
 
     Examples:
         .. code-block::
@@ -144,13 +170,58 @@ def seconds_between(value_from, value_to):
             span_seconds = seconds_between(items["date_item"], ZonedDateTime.now())
 
     Args:
-        value_from: value to start from
-        value_to: value to measure to
+        start_time: value to start from
+        stop_time: value to measure to
 
     Returns:
-        int: the number of seconds between ``value_from`` and ``value_to``
+        int: the number of seconds between ``start_time`` and ``stop_time``
     """
-    return SECONDS.between(to_java_zoneddatetime(value_from), to_java_zoneddatetime(value_to))
+    return SECONDS.between(to_java_zoneddatetime(start_time), to_java_zoneddatetime(stop_time))
+
+
+def human_readable_seconds(seconds):
+    """
+    Converts seconds into a human readable string of days, hours, minutes and
+    seconds.
+
+    Examples:
+        .. code-block::
+
+            message = human_readable_seconds(55555)
+            # 15 hours, 25 minutes and 55 seconds
+
+    Args:
+        seconds: the number of seconds
+
+    Returns:
+        str: a string in the format ``{} days, {} hours, {} minutes and {}
+        seconds``
+    """
+    seconds = int(round(seconds))
+    number_of_days = seconds//86400
+    number_of_hours = (seconds%86400)//3600
+    number_of_minutes = (seconds%3600)//60
+    number_of_seconds = (seconds%3600)%60
+
+    days_string = "{} day{}".format(number_of_days, "s" if number_of_days > 1 else "")
+    hours_string = "{} hour{}".format(number_of_hours, "s" if number_of_hours > 1 else "")
+    minutes_string = "{} minute{}".format(number_of_minutes, "s" if number_of_minutes > 1 else "")
+    seconds_string = "{} second{}".format(number_of_seconds, "s" if number_of_seconds > 1 else "")
+
+    return "{}{}{}{}{}{}{}".format(
+        days_string if number_of_days > 0 else "",
+        "" if number_of_days == 0 or (number_of_hours == 0 and number_of_minutes == 0) else (
+            " and " if (number_of_hours > 0 and number_of_minutes == 0 and number_of_seconds == 0) or (number_of_hours == 0 and number_of_minutes > 0 and number_of_seconds == 0) else ", "
+        ),
+        hours_string if number_of_hours > 0 else "",
+        "" if number_of_hours == 0 or number_of_minutes == 0 else (
+            " and " if number_of_minutes > 0 and number_of_seconds == 0 else ", "
+        ),
+        minutes_string if number_of_minutes > 0 else "",
+        " and " if number_of_seconds > 0 and (number_of_minutes > 0 or number_of_hours > 0 or number_of_days > 0) else "",
+        seconds_string if number_of_seconds > 0 else ""
+    )
+
 
 def to_java_zoneddatetime(value):
     """
@@ -199,16 +270,20 @@ def to_java_zoneddatetime(value):
     if isinstance(value, Date):
         return ZonedDateTime.ofInstant(value.toInstant(), ZoneId.ofOffset("GMT", ZoneOffset.ofHours(0 - value.getTimezoneOffset() / 60)))
     # Joda DateTime
-    if isinstance(value, DateTime):
+    if JodaDateTime and isinstance(value, JodaDateTime):
         return value.toGregorianCalendar().toZonedDateTime()
     # openHAB DateTimeType
-    if isinstance(value, eclipseDateTime):
+    if DateTimeType and isinstance(value, DateTimeType):
+        return to_java_zoneddatetime(value.getZonedDateTime())
+    # Eclipse Smarthome DateTimeType
+    if EclipseDateTimeType and isinstance(value, EclipseDateTimeType):
         return to_java_zoneddatetime(value.calendar)
-    # openHAB 1.x DateTimeType
-    if legacyDateTime and isinstance(value, legacyDateTime):
+    # Legacy (OH1.x compat) DateTimeType
+    if LegacyDateTimeType and isinstance(value, LegacyDateTimeType):
         return to_java_zoneddatetime(value.calendar)
 
     raise TypeError("Unknown type: {}".format(str(type(value))))
+
 
 def to_python_datetime(value):
     """
@@ -245,6 +320,7 @@ def to_python_datetime(value):
         _pythonTimezone(int(value_zoneddatetime.getOffset().getTotalSeconds() / 60))
     )
 
+
 class _pythonTimezone(datetime.tzinfo):
 
     def __init__(self, offset=0, name=""):
@@ -259,13 +335,14 @@ class _pythonTimezone(datetime.tzinfo):
         self.__name = name
 
     def utcoffset(self, value):
-        return datetime.timedelta(minutes = self.__offset)
+        return datetime.timedelta(minutes=self.__offset)
 
     def tzname(self, value):
         return self.__name
 
     def dst(self, value):
         return datetime.timedelta(0)
+
 
 def to_joda_datetime(value):
     """
@@ -283,18 +360,28 @@ def to_joda_datetime(value):
 
     Returns:
         org.joda.time.DateTime: the converted value
+        None: if ``org.joda.time`` is not available
 
     Raises:
         TypeError: if the type of ``value`` is not suported by this package
     """
-    if isinstance(value, DateTime):
+    if JodaDateTime is None:
+        frame = inspect.stack()[1]
+        logging.getLogger("{}.date".format(LOG_PREFIX)).warn(
+            "'{func}' ({file}:{line}) called 'to_joda_datetime' but Joda is not available"
+            .format(file=frame.filename, line=frame.lineno, func=frame.function)
+        )
+        del frame
+        return None
+
+    if isinstance(value, JodaDateTime):
         return value
 
     value_zoneddatetime = to_java_zoneddatetime(value)
-    return DateTime(
-        value_zoneddatetime.toInstant().toEpochMilli(),
-        DateTimeZone.forID(value_zoneddatetime.getZone().getId())
+    return JodaDateTime(value_zoneddatetime.toInstant().toEpochMilli(),
+        JodaDateTimeZone.forTimeZone(TimeZone.getTimeZone(value_zoneddatetime.getZone()))
     )
+
 
 def to_java_calendar(value):
     """
@@ -329,46 +416,3 @@ def to_java_calendar(value):
     new_calendar.set(Calendar.SECOND, value_zoneddatetime.getSecond())
     new_calendar.set(Calendar.MILLISECOND, int(value_zoneddatetime.getNano() / 1000000))
     return new_calendar
-
-def human_readable_seconds(seconds):
-    """
-    Converts seconds into a human readable string of days, hours, minutes and
-    seconds.
-
-    Examples:
-        .. code-block::
-
-            message = human_readable_seconds(55555)
-            # 15 hours, 25 minutes and 55 seconds
-
-    Args:
-        seconds: the number of seconds
-
-    Returns:
-        str: a string in the format ``{} days, {} hours, {} minutes and {}
-        seconds``
-    """
-    seconds = int(round(seconds))
-    number_of_days = seconds//86400
-    number_of_hours = (seconds%86400)//3600
-    number_of_minutes = (seconds%3600)//60
-    number_of_seconds = (seconds%3600)%60
-
-    days_string = "{} day{}".format(number_of_days, "s" if number_of_days > 1 else "")
-    hours_string = "{} hour{}".format(number_of_hours, "s" if number_of_hours > 1 else "")
-    minutes_string = "{} minute{}".format(number_of_minutes, "s" if number_of_minutes > 1 else "")
-    seconds_string = "{} second{}".format(number_of_seconds, "s" if number_of_seconds > 1 else "")
-
-    return "{}{}{}{}{}{}{}".format(
-        days_string if number_of_days > 0 else "",
-        "" if number_of_days == 0 or (number_of_hours == 0 and number_of_minutes == 0) else (
-            " and " if (number_of_hours > 0 and number_of_minutes == 0 and number_of_seconds == 0) or (number_of_hours == 0 and number_of_minutes > 0 and number_of_seconds == 0) else ", "
-        ),
-        hours_string if number_of_hours > 0 else "",
-        "" if number_of_hours == 0 or number_of_minutes == 0 else (
-            " and " if number_of_minutes > 0 and number_of_seconds == 0 else ", "
-        ),
-        minutes_string if number_of_minutes > 0 else "",
-        " and " if number_of_seconds > 0 and (number_of_minutes > 0 or number_of_hours > 0 or number_of_days > 0) else "",
-        seconds_string if number_of_seconds > 0 else ""
-    )

@@ -1,11 +1,10 @@
-import org.joda.time.DateTime as DateTime
+from java.time import ZonedDateTime as DateTime
 from core.actions import ScriptExecution
 from core.rules import rule
 from core.triggers import when
 from core.actions import Audio
 
 # voice support, new PercentType(50) 
-from org.eclipse.smarthome.core.library.types import PercentType
 from core.actions import Voice
 
 TimerPlayStream = None
