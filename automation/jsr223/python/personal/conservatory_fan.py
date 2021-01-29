@@ -21,7 +21,7 @@ def conservatory_fan_cool(event):
             events.sendCommand("CT_Fan433PowerSocket", "ON")
         if temp < setpoint:
             events.sendCommand("CT_Fan433PowerSocket", "OFF")
-            conservatory_fan_cool.log.error(">>>> Conservatory_fan_ cool rulel turning fan off")
+            conservatory_fan_cool.log.info(">>>> Conservatory_fan_ cool rulel turning fan off")
 
 
 @rule("conservatory fan circulate heat", description="Handles fan actions", tags=["conservatory", "fan"])

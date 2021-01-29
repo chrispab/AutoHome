@@ -1,4 +1,4 @@
-Switch RecircFanEnable "Enable Fan" <CT_Fan433PowerSocket> [ "Fan" ]
+Switch RecircFanEnable "Enable Fan" <CT_Fan433PowerSocket> 
 
 
 Switch FanPulseSwitch    "Fan Pulse" <CT_Fan433PowerSocket>

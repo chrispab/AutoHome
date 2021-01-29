@@ -6,7 +6,9 @@ chromecast:chromecast:GHM_FrontRoom       "Front Room GHM"   [ ipAddress="192.16
 
 
 chromecast:chromecast:GCC_Bedroom       "Bedroom GCC"   [ ipAddress="192.168.0.74" ]
-chromecast:chromecast:GCC_Conservatory      "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
+chromecast:chromecast:GCC_Conservatory  "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
+chromecast:chromecast:GCC_FrontRoom     "FrontRoom GCC"   [ ipAddress="192.168.0.40" ]
+chromecast:chromecast:GCC_Attic         "Attic GCC"   [ ipAddress="192.168.0.41" ]
 
 
 /* Chromecast Audio Group for my Google Home Mini's */
