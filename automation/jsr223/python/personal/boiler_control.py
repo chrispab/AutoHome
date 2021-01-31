@@ -3,12 +3,14 @@ from core.triggers import when
 from core.actions import LogAction
 
 
+
 @rule("If any heaters demand, turn Boiler ON else OFF", description="If heater demand turn on Boiler else off", tags=["boiler"])
-@when("Member of gRoomHeaterStates changed")
+@when("Member of gRoomHeaterStates changed") #only update if a heater demand changed - not often
+@when("Member of gRoomHeaterStates received update") #update if ANY heater demand updated - v often
 def boiler_control(event):
     boiler_control.log.error("::A Heater demand changed - updating boiler state:: ")
     LogAction.logWarn("Boiler_Control", ":::Item {} received update: {}", event.itemName, event.itemState)
-    LogAction.logWarn("Boiler_Control", "-> name:{}, prev:{}, now:{}", event.itemName, event.oldItemState, event.itemState)
+    # LogAction.logWarn("Boiler_Control", "-> name:{}, prev:{}, now:{}", event.itemName, event.oldItemState, event.itemState)
     boiler_control.log.warn("::Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
 
     # display any NUll heater states
@@ -23,8 +25,8 @@ def boiler_control(event):
         for item in listOfMembers:
             LogAction.logWarn("boiler control", ":::Heater Item: {}, is : {}", item.name, item.state)
 
-        LogAction.logInfo("Boiler_Control rule", "::-> at least 1 heater on -> Send boiler ON command")
+        LogAction.logError("Boiler_Control rule", "::-> at least 1 heater on -> Send boiler ON command")
         events.sendCommand("Boiler_Control", "ON")
     else:  # no rooms want heat so turn off boiler
-        LogAction.logInfo("Boiler_Control rule", ":: -> All heaters are off -> Send boiler OFF command")
+        LogAction.logError("Boiler_Control rule", ":: -> All heaters are off -> Send boiler OFF command")
         events.sendCommand("Boiler_Control", "OFF")

@@ -3,7 +3,7 @@ from core.triggers import when
 
 offTemp = 13.2
 minTemp = 13
-sleepTemp = 17
+sleepTemp = 16
 
 liveTemp = 21
 lowTemp = 16

@@ -9,7 +9,7 @@ from java.time import ZonedDateTime as DateTime
 @when("Member of gTemperatureSetpoints received update")
 @when("Member of gRoomTemperatures received update")
 def checkIfHeatersNeedUpdating(event):
-    checkIfHeatersNeedUpdating.log.info("HHH HeatingMode, Setpoint or Temperature updated")
+    checkIfHeatersNeedUpdating.log.error("HHH HeatingMode, Setpoint or Temperature updated")
 
     # get prefix eg FR, CT etc
     prefix = event.itemName[:event.itemName.rfind('_')]

@@ -11,6 +11,8 @@ Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:M
         Type string : heartBeat     [ stateTopic="Zone1/HeartBeat"  ]
         Type string : Reachable    [ stateTopic="Zone1/LWT"  ]
         Type number : rssi          [ stateTopic="Zone1/rssi" ]
+        Type number : vent_on_delta "zone1 vent_on_delta" [ stateTopic="Zone1/vent_on_delta", commandTopic="Zone1/vent_on_delta/set" ]
+        Type number : vent_off_delta "zone1 vent_off_delta" [ stateTopic="Zone1/vent_off_delta", commandTopic="Zone1/vent_off_delta/set" ]
 }
 
 Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {

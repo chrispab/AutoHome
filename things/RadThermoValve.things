@@ -1,4 +1,4 @@
-Thing mqtt:topic:conservatoryRadThermoValve  "MQTT Thing: Conservatory Radiator Thermostat Valve" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory Radiator Thermostat Valve" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
     Channels:
         Type number : temperature  [ stateTopic="433Bridge/Temperature"]
         Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
@@ -11,8 +11,6 @@ Thing mqtt:topic:conservatoryRadThermoValve  "MQTT Thing: Conservatory Radiator 
 Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
     Channels:
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
-        // Type number : temperature  [ stateTopic="mqtt:topic:THSensor01",  transformationPattern="JSONPATH:$.temperature" ]
-
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
         Type switch : powerSwitch  [ stateTopic="frontRoom/stat/POWER" , commandTopic="frontRoom/cmnd/POWER", on="ON", off="OFF" ]
         Type string : reachable    [ stateTopic="frontRoom/tele/LWT" ]

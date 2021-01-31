@@ -8,6 +8,8 @@ Switch	Zone1VentSpeedStatus	"Zone 1 Vent Speed Status"		<vent>					{ channel="mq
 Number	Zone1VentPercent		"Zone 1 Vent Percent"			<vent>					{ channel="mqtt:topic:zone1Controller:ventPercent" }
 String  Zone1Reachable          "Zone 1 reachable"              <network>               { channel="mqtt:topic:zone1Controller:Reachable" }
 Number	Zone1Rssi	    	    "Zone 1 RSSI"       			<vent>					{ channel="mqtt:topic:zone1Controller:rssi" }
+Number	Zone1_vent_on_delta	    "Zone 1 vent_on_delta"       	<vent>					{ channel="mqtt:topic:zone1Controller:vent_on_delta" }
+Number	Zone1_vent_off_delta	"Zone 1 vent_off_delta"       	<vent>				    { channel="mqtt:topic:zone1Controller:vent_off_delta" }
 
 Number	Zone2Temperature		"Zone 2 Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquittoz:Zone2/TemperatureStatus:state:default]"}
 Number	Zone2Humidity			"Zone 2 Humidity [%.1f ]"		<humidity>				{mqtt="<[mosquittoz:Zone2/HumidityStatus:state:default]"}
