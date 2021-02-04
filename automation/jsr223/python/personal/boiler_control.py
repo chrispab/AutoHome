@@ -5,7 +5,7 @@ from core.actions import LogAction
 
 
 @rule("If any heaters demand, turn Boiler ON else OFF", description="If heater demand turn on Boiler else off", tags=["boiler"])
-@when("Member of gRoomHeaterStates changed") #only update if a heater demand changed - not often
+# @when("Member of gRoomHeaterStates changed") #only update if a heater demand changed - not often
 @when("Member of gRoomHeaterStates received update") #update if ANY heater demand updated - v often
 def boiler_control(event):
     boiler_control.log.error("::A Heater demand changed - updating boiler state:: ")

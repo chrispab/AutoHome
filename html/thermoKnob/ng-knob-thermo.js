@@ -460,6 +460,7 @@
           trackWidth: 50,
           barWidth: 50,
           trackColor: "#000000",
+          // trackColor: "#00FF00",
           trackColorFull: "#00000040",
           barColor: "rgba(255,0,0,.5)",
           prevBarColor: "rgba(0,0,0,0)",

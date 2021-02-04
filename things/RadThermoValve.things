@@ -8,7 +8,7 @@ Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory Radiator Thermostat V
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
 }
 
-Thing mqtt:topic:frontRoomRadThermoValve  "MQTT Thing: Front Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
+Thing mqtt:topic:frontRoomRadThermoValve  "Front Room RTV" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
     Channels:
         Type number : temperature  [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="frontRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]

@@ -18,15 +18,16 @@ function monControl($scope) {
 	$scope.options = {
 		  skin: {
 			  type: 'simple',
-			  color: '#919191', //'ff6060' // observed
+			//   color: '#919191', //'ff6060' // observed
+			  color: '#51d151',
 			  width:20,
 			  spaceWidth:0,
 			  startAngle:-120,
 			  endAngle:120
 		  },
 		  trackWidth: 50,
-		  trackColor: '#919191',
-		  trackColorFull: '#91919130',
+		  trackColor: '#51d151',
+		  trackColorFull: '#51d15130',
 		  barWidth: 20,
 		  subText: {
 			enabled: true,
@@ -40,6 +41,7 @@ function monControl($scope) {
 		  prevBarColor: 'rgba(0,0,1,.2)',
 		  displayPrevious: true,
 		  barColor: '#FFAE1A', // setpoint
+		//   barColor: '#FFFFFF',
 		  textColor: '#d59116', // setpoint
 		  startAngle:$scope.label!=""?-120:-150,
 		  endAngle:  $scope.label!=""? 120: 150,

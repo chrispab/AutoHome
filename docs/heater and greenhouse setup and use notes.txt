@@ -107,10 +107,11 @@ current:
 
 
 
-new
-Rule2 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish sonoff_water1/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON
+**new**
+Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish sonoff_water1/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON
+Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_7/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON
 
-
+wifi_socket_7
 
 18:18:14 MQT: sonoff_water1/stat/STATUS = {"Status":{"Module":1,"FriendlyName":["sonoff_water1"],"Topic":"sonoff_water1","ButtonTopic":"0","Power":0,"PowerOnState":3,"LedState":1,"LedMask":"FFFF","SaveData":1,"SaveState":1,"SwitchTopic":"0","SwitchMode":[0,0,0,0,0,0,0,0],"ButtonRetain":0,"SwitchRetain":0,"SensorRetain":0,"PowerRetain":0}}
 18:18:14 MQT: sonoff_water1/stat/STATUS1 = {"StatusPRM":{"Baudrate":115200,"SerialConfig":"8N1","GroupTopic":"tasmotas","OtaUrl":"http://thehackbox.org/tasmota/release/tasmota.bin","RestartReason":"Software/System restart","Uptime":"0T00:01:42","StartupUTC":"2020-04-24T17:16:32","Sleep":50,"CfgHolder":4617,"BootCount":10,"BCResetTime":"2020-04-24T18:08:40","SaveCount":23,"SaveAddress":"F8000"}}
