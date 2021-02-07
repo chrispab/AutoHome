@@ -134,7 +134,7 @@ def bedroom_tv_off(event):
     bedroom_tv_off.log.info("bedroom_tv_off")
     global t_brtvPowerOff
 
-    Voice.say("Turning off Bedroom TV now", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    Voice.say("Turning off Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
     events.postUpdate("shutdownKodiBedroomProxy", "OFF")
 
     if t_brtvPowerOff is None:

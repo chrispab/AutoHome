@@ -1,4 +1,4 @@
-Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory Radiator Thermostat Valve" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
+Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory RTV" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
     Channels:
         Type number : temperature  [ stateTopic="433Bridge/Temperature"]
         Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
@@ -19,7 +19,7 @@ Thing mqtt:topic:frontRoomRadThermoValve  "Front Room RTV" (mqtt:broker:MyMQTTBr
 
 
 
-Thing mqtt:topic:hallRadThermoValve  "MQTT Thing: Hall Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Hall" {
+Thing mqtt:topic:hallRadThermoValve  "Hall RTV" (mqtt:broker:MyMQTTBroker) @ "Hall" {
     Channels:
         Type number : temperature  [ stateTopic="hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="hall/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
@@ -28,7 +28,7 @@ Thing mqtt:topic:hallRadThermoValve  "MQTT Thing: Hall Radiator Thermo Valve" (m
         Type number : rssi         [ stateTopic="hall/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-Thing mqtt:topic:elsiesRoomRadThermoValve  "MQTT Thing: Elsie's Room Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Elsie's Room" {
+Thing mqtt:topic:elsiesRoomRadThermoValve  "Elsie's RTV" (mqtt:broker:MyMQTTBroker) @ "Elsie's Room" {
     Channels:
         Type number : temperature  [ stateTopic="elsiesRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="elsiesRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
@@ -37,7 +37,7 @@ Thing mqtt:topic:elsiesRoomRadThermoValve  "MQTT Thing: Elsie's Room Radiator Th
         Type number : rssi         [ stateTopic="elsiesRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-Thing mqtt:topic:officeRadThermoValve  "MQTT Thing: Office Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Office" {
+Thing mqtt:topic:officeRadThermoValve  "Office RTV" (mqtt:broker:MyMQTTBroker) @ "Office" {
     Channels:
         Type number : temperature  [ stateTopic="office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="office/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
@@ -46,7 +46,7 @@ Thing mqtt:topic:officeRadThermoValve  "MQTT Thing: Office Radiator Thermo Valve
         Type number : rssi         [ stateTopic="office/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-Thing mqtt:topic:bedroomRadThermoValve  "MQTT Thing: Bedroom Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Bedroom" {
+Thing mqtt:topic:bedroomRadThermoValve  "Bedroom RTV" (mqtt:broker:MyMQTTBroker) @ "Bedroom" {
     Channels:
         Type number : temperature  [ stateTopic="bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="bedroom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
@@ -55,7 +55,7 @@ Thing mqtt:topic:bedroomRadThermoValve  "MQTT Thing: Bedroom Radiator Thermo Val
         Type number : rssi         [ stateTopic="bedroom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 
-Thing mqtt:topic:atticRadThermoValve  "MQTT Thing: Attic Radiator Thermo Valve" (mqtt:broker:MyMQTTBroker) @ "Attic" {
+Thing mqtt:topic:atticRadThermoValve  "Attic RTV" (mqtt:broker:MyMQTTBroker) @ "Attic" {
     Channels:
         Type number : temperature  [ stateTopic="attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
         Type number : humidity     [ stateTopic="attic/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]

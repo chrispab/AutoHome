@@ -1,4 +1,4 @@
-Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:MyMQTTBroker) @ "Garage" {
+Thing mqtt:topic:zone1Controller  "Zone 1 Controller" (mqtt:broker:MyMQTTBroker) @ "Garage" {
     Channels:
         Type number : temperature   [ stateTopic="Zone1/TemperatureStatus" ]
         Type number : humidity      [ stateTopic="Zone1/HumidityStatus" ]
@@ -13,9 +13,13 @@ Thing mqtt:topic:zone1Controller  "MQTT Thing: Zone 1 Controller" (mqtt:broker:M
         Type number : rssi          [ stateTopic="Zone1/rssi" ]
         Type number : vent_on_delta "zone1 vent_on_delta" [ stateTopic="Zone1/vent_on_delta", commandTopic="Zone1/vent_on_delta/set" ]
         Type number : vent_off_delta "zone1 vent_off_delta" [ stateTopic="Zone1/vent_off_delta", commandTopic="Zone1/vent_off_delta/set" ]
+        Type number : fan_on_delta "zone1 fan_on_delta" [ stateTopic="Zone1/fan_on_delta", commandTopic="Zone1/fan_on_delta/set" ]
+        Type number : fan_off_delta "zone1 fan_off_delta" [ stateTopic="Zone1/fan_off_delta", commandTopic="Zone1/fan_off_delta/set" ]
+        Type number : low_setpoint "zone1 low_setpoint" [ stateTopic="Zone1/low_setpoint", commandTopic="Zone1/low_setpoint/set" ]
+        Type number : high_setpoint "zone1 high_setpoint" [ stateTopic="Zone1/high_setpoint", commandTopic="Zone1/high_setpoint/set" ]
 }
 
-Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {
+Thing mqtt:topic:zone3Controller  "Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {
     Channels:
         Type number : temperature   [ stateTopic="Zone3/TemperatureStatus" ]
         Type number : humidity      [ stateTopic="Zone3/HumidityStatus" ]
@@ -30,4 +34,8 @@ Thing mqtt:topic:zone3Controller  "MQTT Thing: Zone 3 Controller" (mqtt:broker:M
         Type number : rssi   [ stateTopic="Zone3/rssi" ]
         Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta", commandTopic="Zone3/vent_on_delta/set" ]
         Type number : vent_off_delta "zone3 vent_off_delta" [ stateTopic="Zone3/vent_off_delta", commandTopic="Zone3/vent_off_delta/set" ]
+        Type number : fan_on_delta "zone3 fan_on_delta" [ stateTopic="Zone3/fan_on_delta", commandTopic="Zone3/fan_on_delta/set" ]
+        Type number : fan_off_delta "zone3 fan_off_delta" [ stateTopic="Zone3/fan_off_delta", commandTopic="Zone3/fan_off_delta/set" ]
+        Type number : low_setpoint "zone3 low_setpoint" [ stateTopic="Zone3/low_setpoint", commandTopic="Zone3/low_setpoint/set" ]
+        Type number : high_setpoint "zone3 high_setpoint" [ stateTopic="Zone3/high_setpoint", commandTopic="Zone3/high_setpoint/set" ]
 }

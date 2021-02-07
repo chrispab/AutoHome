@@ -28,7 +28,7 @@ def conservatory_fan_cool(event):
 @when("Time cron 0 */5 * ? * *")
 def conservatory_fan(event):
     conservatory_fan.log.info("conservatory_fan rulel now")
-    fanOnSecs = 180
+    fanOnSecs = 240
     sp = items["CT_TemperatureSetpoint"]
     currentTemp = items["CT_Temperature"]
     if ((sp >= 20) and (currentTemp < (sp)) and (items["RecircFanEnable"] == ON)):

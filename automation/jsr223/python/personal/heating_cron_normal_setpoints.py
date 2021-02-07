@@ -155,7 +155,7 @@ def heating_cron9(event):
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), highEvening)
     events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), morningTemp)
     events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), morningTemp)
+    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), BR_DayTemp)
     events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
     events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), hallWeekDayTemp)
     events.sendCommand("Heating_UpdateHeaters", "ON")
@@ -185,8 +185,8 @@ def heating_cron10(event):
     events.sendCommand("Heating_UpdateHeaters", "ON")
 
 
-@rule("730 am weekend", description="7:00 am weekend", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 30 7 ? * SAT,SUN *")
+@rule("7 am weekend", description="7:00 am weekend", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 0 7 ? * SAT,SUN *")
 def heating_cron11(event):
     events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
     events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), highEvening)
