@@ -1,8 +1,8 @@
 from core.rules import rule
 from core.triggers import when
 
-offTemp = 13.2
-minTemp = 13
+offTemp = 14
+minTemp = 14
 sleepTemp = 16
 
 liveTemp = 21
