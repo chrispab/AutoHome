@@ -13,7 +13,6 @@ from core.actions import Voice
 chargerTimer1 = None
 
 
-tStartup = None
 timer1 = None
 t_shutdown = None
 timer3 = None
@@ -29,7 +28,16 @@ t_ampStandbyON = None
 t_tvPowerOff = None
 
 # var shutDownWaitTime = 20 //wait for pi shutdown in secs, before turning off power socket
+tStartup = None
 
+@rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
+@when("System started")
+def tvs_init(event):
+    tvs_init.log.info("System started - set all rooms TV startup settings")
+    events.postUpdate("BridgeLightSensorState", "OFF")
+    global tStartup
+    if tStartup is None:
+        tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
 
 def tv_startup_tbody():
     tvs_init.log.info(
@@ -47,15 +55,6 @@ def tv_startup_tbody():
         events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
-# //FrontRoom Pi Kodi and TV on/off control
-@rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
-@when("System started")
-def tvs_init(event):
-    tvs_init.log.info("System started - set all rooms TV startup settings")
-    events.postUpdate("BridgeLightSensorState", "OFF")
-    global tStartup
-    if tStartup is None:
-        tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
 
 t_ampStandbyON = None
 t_ampVideo01 = None
