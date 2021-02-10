@@ -38,3 +38,8 @@ Switch wifi_socket_7_Power "wifi_socket_7" (gMQTT, gWiFiPowerSockets, gChristmas
 String wifi_socket_7_Reachable "wifi_socket_7 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:Reachable" }
 Number wifi_socket_7_RSSI "wifi_socket_7 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }
 Number wifi_socket_7_Temperature	"wifi_socket_7 Temperature"				{ channel = "mqtt:topic:wifi_socket_7:temperature" }
+
+Switch wifi_socket_8_Power "wifi_socket_8" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+String wifi_socket_8_Reachable "wifi_socket_8 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_8:Reachable" }
+Number wifi_socket_8_RSSI "wifi_socket_8 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_8:rssi" }
+Number wifi_socket_8_Temperature	"wifi_socket_8 Temperature"				{ channel = "mqtt:topic:wifi_socket_8:temperature" }
