@@ -1,0 +1,48 @@
+Group		gHeating_Presets
+
+
+Number CT_MorningTemp (gHeating_Presets)
+Number CT_DayTemp  (gHeating_Presets)
+Number CT_EveningTemp  (gHeating_Presets)
+Number CT_NightTemp  (gHeating_Presets)
+Number CT_OffTemp (gHeating_Presets)
+
+Number FR_MorningTemp (gHeating_Presets)
+Number FR_DayTemp  (gHeating_Presets)
+Number FR_EveningTemp  (gHeating_Presets)
+Number FR_NightTemp  (gHeating_Presets)
+Number FR_OffTemp (gHeating_Presets)
+
+Number HL_MorningTemp (gHeating_Presets)
+Number HL_DayTemp  (gHeating_Presets)
+Number HL_EveningTemp  (gHeating_Presets)
+Number HL_NightTemp  (gHeating_Presets)
+Number HL_OffTemp (gHeating_Presets)
+
+Number OF_MorningTemp (gHeating_Presets)
+Number OF_DayTemp  (gHeating_Presets)
+Number OF_EveningTemp  (gHeating_Presets)
+Number OF_NightTemp  (gHeating_Presets)
+Number OF_OffTemp (gHeating_Presets)
+
+Number BR_MorningTemp (gHeating_Presets)
+Number BR_DayTemp  (gHeating_Presets)
+Number BR_EveningTemp  (gHeating_Presets)
+Number BR_NightTemp  (gHeating_Presets)
+Number BR_OffTemp (gHeating_Presets)
+
+Number ER_MorningTemp (gHeating_Presets)
+Number ER_DayTemp  (gHeating_Presets)
+Number ER_EveningTemp  (gHeating_Presets)
+Number ER_NightTemp  (gHeating_Presets)
+Number ER_OffTemp (gHeating_Presets)
+// Number ER_DayTemp  (gHeating_Presets)
+
+Number AT_MorningTemp (gHeating_Presets)
+Number AT_DayTemp  (gHeating_Presets)
+Number AT_EveningTemp  (gHeating_Presets)
+Number AT_NightTemp  (gHeating_Presets)
+Number AT_OffTemp (gHeating_Presets)
+// Number AT_DayTemp  (gHeating_Presets)
+
+Number hallWeekDayTemp

@@ -1,4 +1,4 @@
-from personal.util import send_info
+# from personal.util import send_info
 from core.rules import rule
 from core.triggers import when
 # from org.eclipse.smarthome.core.library.types import PercentType

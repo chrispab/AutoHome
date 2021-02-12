@@ -7,5 +7,5 @@ Number ER_Humidity "Elsie's Room Humidity [%.1f °C]" <humidity> (gER_Thermostat
 // // // //additional params for use in openhab functions etc
 Switch ER_Heater "Elsie's Room Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:elsiesRoomRadThermoValve:powerSwitch" } 
 String ER_HeatingMode "Elsie's Room Heating Mode" <settings> (gHeatingModes)
-Number ER_Heating_PresetTempNormal "Elsie's Room Heating Preset (Normal Mode) [%.1f °C]"
+Number ER_Heating_PresetTempNormal "Elsie's Room Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String ER_RTVReachable "Elsie's Room Reachable" <qualityofservice> (gER_Thermostat,gRTVsReachable)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }

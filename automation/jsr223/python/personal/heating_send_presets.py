@@ -15,7 +15,7 @@ def send_heating_presets(event):
     LogAction.logError("monitor_heating_mode", "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZsend_hea   ting_presets{}", event.itemName)
     global offTemp
 
-    events.postUpdate("Heating_UpdateHeaters", "OFF")  # rest update heaters flag ready for next trigger (OFF-ON)
+    events.postUpdate("Heating_UpdateHeaters", "OFF")  #! reset update heaters flag ready for next trigger (OFF-ON)
     LogAction.logError("monitor_heating_mode", "MASTER Heating Mode: {}", ir.getItem("masterHeatingMode").state)
 
     if ir.getItem("masterHeatingMode").state.toString() == "auto":  # normal mode is under master control and folows 'normal' rules
@@ -26,7 +26,7 @@ def send_heating_presets(event):
             if ir.getItem(heatingModeItem.name).state.toString() == "auto":
                 heaterPrefix = heatingModeItem.name[0:heatingModeItem.name.rfind('_')+1]
                 ir.getItem(heaterPrefix+"TemperatureSetpoint").state = ir.getItem(heaterPrefix+"Heating_PresetTempNormal").state
-                LogAction.logError("monitor_heating_mode", "TemperatureSetpoint prefix:{}", heaterPrefix)
+                # LogAction.logError("monitor_heating_mode", "TemperatureSetpoint prefix:{}", heaterPrefix)
 
     elif ir.getItem("masterHeatingMode").state.toString() == "off":
         LogAction.logError("monitor_heating_mode", "processing case manual MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state)

@@ -1,4 +1,4 @@
-Group		Heating_PresetNormal_Group
+Group		gHeating_PresetTempNormal
 
 Group		gHeatingModes
 // Group		gThermostatModes
