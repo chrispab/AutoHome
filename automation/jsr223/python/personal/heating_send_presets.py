@@ -12,7 +12,7 @@ offTemp = 13
 @rule("React on message to send target temperatures to zone setpoints", description="React on message to send target temperatures to zone setpoints", tags=["Heating"])
 @when("Item Heating_UpdateHeaters received command ON")
 def send_heating_presets(event):
-    LogAction.logError("monitor_heating_mode", "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZsend_hea   ting_presets{}", event.itemName)
+    LogAction.logError("monitor_heating_mode", "React on message to send target temperatures to zone setpoints: {}", event.itemName)
     global offTemp
 
     events.postUpdate("Heating_UpdateHeaters", "OFF")  #! reset update heaters flag ready for next trigger (OFF-ON)
