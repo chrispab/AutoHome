@@ -18,6 +18,8 @@ def send_heating_presets(event):
     events.postUpdate("Heating_UpdateHeaters", "OFF")  #! reset update heaters flag ready for next trigger (OFF-ON)
     LogAction.logError("monitor_heating_mode", "MASTER Heating Mode: {}", ir.getItem("masterHeatingMode").state)
 
+
+    # ! Whats the current MASTER heating mode?
     if ir.getItem("masterHeatingMode").state.toString() == "auto":  # normal mode is under master control and folows 'normal' rules
         LogAction.logError("monitor_heating_mode", "processing case off MASTER Heating Mode: : {}", ir.getItem("masterHeatingMode").state)
 

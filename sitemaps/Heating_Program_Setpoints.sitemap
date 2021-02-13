@@ -1,0 +1,58 @@
+sitemap Heating_Program_Setpoints label="Heating_Program_Setpoints"
+{
+  
+  Frame label="CT" {
+    Setpoint item=CT_HPSP_Morning label="CT_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=CT_HPSP_Morning_H label="CT_HPSP_Morning_H [%.1f H]" minValue=0 maxValue=23 step=1
+    Setpoint item=CT_HPSP_Morning_M label="CT_HPSP_Morning_M [%.1f M]" minValue=0 maxValue=59 step=10
+
+    Setpoint item=CT_HPSP_Day label="CT_HPSP_Day  [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=CT_HPSP_Evening label="CT_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=CT_HPSP_Night label="CT_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=CT_HPSP_Min label="CT_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="FR" {
+    Setpoint item=FR_HPSP_Morning label="FR_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=FR_HPSP_Day label="FR_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=FR_HPSP_Evening label="FR_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=FR_HPSP_Night label="FR_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=FR_HPSP_Min label="FR_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="HL" {
+    Setpoint item=HL_HPSP_Morning label="HL_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=HL_HPSP_Day label="HL_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=HL_HPSP_Evening label="HL_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=HL_HPSP_Night label="HL_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=HL_HPSP_Min label="HL_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="OF" {
+    Setpoint item=OF_HPSP_Morning label="OF_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=OF_HPSP_Day label="OF_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=OF_HPSP_Evening label="OF_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=OF_HPSP_Night label="OF_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=OF_HPSP_Min label="OF_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="ER" {
+    Setpoint item=ER_HPSP_Morning label="ER_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=ER_HPSP_Day label="ER_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=ER_HPSP_Evening label="ER_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=ER_HPSP_Night label="ER_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=ER_HPSP_Min label="ER_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="BR" {
+    Setpoint item=BR_HPSP_Morning label="BR_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=BR_HPSP_Day label="BR_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=BR_HPSP_Evening label="BR_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=BR_HPSP_Night label="BR_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=BR_HPSP_Min label="BR_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+  Frame label="AT" {
+    Setpoint item=AT_HPSP_Morning label="AT_HPSP_Morning [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=AT_HPSP_Day label="AT_HPSP_Day [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=AT_HPSP_Evening label="AT_HPSP_Evening [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=AT_HPSP_Night label="AT_HPSP_Night [%.1f °C]" minValue=13 maxValue=26 step=0.5
+    Setpoint item=AT_HPSP_Min label="AT_HPSP_Min [%.1f °C]" minValue=13 maxValue=26 step=0.5
+  }
+
+  
+}

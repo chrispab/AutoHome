@@ -64,3 +64,9 @@ def conservatory_fan_override(event):
 def conservatory_fan_override_off(event):
     conservatory_fan_override_off.log.info("conservatory_fan_override off")
     events.sendCommand("CT_Fan433PowerSocket", "OFF")
+
+@rule("React on RecircFanEnable turned OFF", description="React on RecircFanEnable turned OFF", tags=["conservatory", "fan"])
+@when("Item RecircFanEnable changed from ON to OFF")
+def RecircFanEnable_off(event):
+    RecircFanEnable_off.log.info("React on RecircFanEnable turned OFF - switch off Fan")
+    events.sendCommand("CT_Fan433PowerSocket", "OFF")

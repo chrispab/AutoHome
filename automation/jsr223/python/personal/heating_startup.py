@@ -27,3 +27,47 @@ def heating_startup(event):
     if ir.getItem("Boiler_Control") == NULL: 
         events.postUpdate(ir.getItem("Boiler_Control"),"OFF")
         
+
+# // ! these must be set at least on first run to init them
+# //! then use each rooms program setpoint page to set
+# Number CT_MorningTemp (gHeating_Presets)
+# Number CT_DayTemp  (gHeating_Presets)
+# Number CT_EveningTemp  (gHeating_Presets)
+# Number CT_NightTemp  (gHeating_Presets)
+# Number CT_OffTemp (gHeating_Presets)
+
+# Number FR_MorningTemp (gHeating_Presets)
+# Number FR_DayTemp  (gHeating_Presets)
+# Number FR_EveningTemp  (gHeating_Presets)
+# Number FR_NightTemp  (gHeating_Presets)
+# Number FR_OffTemp (gHeating_Presets)
+
+# Number HL_MorningTemp (gHeating_Presets)
+# Number HL_DayTemp  (gHeating_Presets)
+# Number HL_EveningTemp  (gHeating_Presets)
+# Number HL_NightTemp  (gHeating_Presets)
+# Number HL_OffTemp (gHeating_Presets)
+
+# Number OF_MorningTemp (gHeating_Presets)
+# Number OF_DayTemp  (gHeating_Presets)
+# Number OF_EveningTemp  (gHeating_Presets)
+# Number OF_NightTemp  (gHeating_Presets)
+# Number OF_OffTemp (gHeating_Presets)
+
+# Number BR_MorningTemp (gHeating_Presets)
+# Number BR_DayTemp  (gHeating_Presets)
+# Number BR_EveningTemp  (gHeating_Presets)
+# Number BR_NightTemp  (gHeating_Presets)
+# Number BR_OffTemp (gHeating_Presets)
+
+# Number ER_MorningTemp (gHeating_Presets)
+# Number ER_DayTemp  (gHeating_Presets)
+# Number ER_EveningTemp  (gHeating_Presets)
+# Number ER_NightTemp  (gHeating_Presets)
+# Number ER_OffTemp (gHeating_Presets)
+
+# Number AT_MorningTemp (gHeating_Presets)
+# Number AT_DayTemp  (gHeating_Presets)
+# Number AT_EveningTemp  (gHeating_Presets)
+# Number AT_NightTemp  (gHeating_Presets)
+# Number AT_OffTemp (gHeating_Presets)
