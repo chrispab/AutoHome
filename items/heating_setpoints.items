@@ -8,50 +8,59 @@ Number CT_HPSP_Day  (gHeating_Presets)
 Number CT_HPSP_Evening  (gHeating_Presets)
 Number CT_HPSP_Night  (gHeating_Presets)
 Number CT_HPSP_Min (gHeating_Presets)
+Number CT_HPSP_WE_Morning (gHeating_Presets)
+Number CT_HPSP_WE_Evening  (gHeating_Presets)
 
 Number CT_HPSP_Morning_H (gHeating_Presets)
 Number CT_HPSP_Morning_M (gHeating_Presets)
+
 
 Number FR_HPSP_Morning (gHeating_Presets)
 Number FR_HPSP_Day  (gHeating_Presets)
 Number FR_HPSP_Evening  (gHeating_Presets)
 Number FR_HPSP_Night  (gHeating_Presets)
 Number FR_HPSP_Min (gHeating_Presets)
-
+Number FR_HPSP_WE_Morning (gHeating_Presets)
+Number FR_HPSP_WE_Evening  (gHeating_Presets)
 
 Number HL_HPSP_Morning (gHeating_Presets)
 Number HL_HPSP_Day  (gHeating_Presets)
 Number HL_HPSP_Evening  (gHeating_Presets)
 Number HL_HPSP_Night  (gHeating_Presets)
 Number HL_HPSP_Min (gHeating_Presets)
-
+Number HL_HPSP_WE_Morning (gHeating_Presets)
+Number HL_HPSP_WE_Evening  (gHeating_Presets)
 
 Number OF_HPSP_Morning (gHeating_Presets)
 Number OF_HPSP_Day  (gHeating_Presets)
 Number OF_HPSP_Evening  (gHeating_Presets)
 Number OF_HPSP_Night  (gHeating_Presets)
 Number OF_HPSP_Min (gHeating_Presets)
-
+Number OF_HPSP_WE_Morning (gHeating_Presets)
+Number OF_HPSP_WE_Evening  (gHeating_Presets)
 
 Number BR_HPSP_Morning (gHeating_Presets)
 Number BR_HPSP_Day  (gHeating_Presets)
 Number BR_HPSP_Evening  (gHeating_Presets)
 Number BR_HPSP_Night  (gHeating_Presets)
 Number BR_HPSP_Min (gHeating_Presets)
-
+Number BR_HPSP_WE_Morning (gHeating_Presets)
+Number BR_HPSP_WE_Evening  (gHeating_Presets)
 
 Number ER_HPSP_Morning (gHeating_Presets)
 Number ER_HPSP_Day  (gHeating_Presets)
 Number ER_HPSP_Evening  (gHeating_Presets)
 Number ER_HPSP_Night  (gHeating_Presets)
 Number ER_HPSP_Min (gHeating_Presets)
-
+Number ER_HPSP_WE_Morning (gHeating_Presets)
+Number ER_HPSP_WE_Evening  (gHeating_Presets)
 
 Number AT_HPSP_Morning (gHeating_Presets)
 Number AT_HPSP_Day  (gHeating_Presets)
 Number AT_HPSP_Evening  (gHeating_Presets)
 Number AT_HPSP_Night  (gHeating_Presets)
 Number AT_HPSP_Min (gHeating_Presets)
-
+Number AT_HPSP_WE_Morning (gHeating_Presets)
+Number AT_HPSP_WE_Evening  (gHeating_Presets)
 
 Number hallWeekDayTemp

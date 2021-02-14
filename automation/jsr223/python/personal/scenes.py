@@ -42,5 +42,6 @@ def Scene_Goodnight(event):
     events.sendCommand("Heating_UpdateHeaters", "ON")
     events.postUpdate("Scene_Goodnight", "OFF")
     events.sendCommand("workLightsPowerSocket", "OFF")
+    # events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
     tgoodnight = ScriptExecution.createTimer(DateTime.now().plusSeconds(300), lambda: events.sendCommand("ZbWhiteBulb01Switch", "OFF"))

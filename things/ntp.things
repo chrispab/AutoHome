@@ -1,3 +1,3 @@
-ntp:ntp:demo  [ hostname="nl.pool.ntp.org", refreshInterval=60, refreshNtp=30 ]
+ntp:ntp:demo  [ hostname="pool.ntp.org", refreshInterval=60, refreshNtp=30 ]
 
 //Thing mqtt:device:ESP01_Temperature  [ hostname="192.168.0.2", timeout="5000", ... ]

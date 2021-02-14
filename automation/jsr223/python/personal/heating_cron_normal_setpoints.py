@@ -2,36 +2,36 @@ from core.rules import rule
 from core.triggers import when
 from core.actions import LogAction
 
-offTemp = 13
-minTemp = 14
-sleepTemp = 16
+# offTemp = 13
+# minTemp = 14
+# sleepTemp = 16
 
-liveTemp = 21
-lowTemp = 16
-morningTemp = 19
-midTemp = 21
+# liveTemp = 21
+# lowTemp = 16
+# morningTemp = 19
+# midTemp = 21
 
-eveningTemp = 23
-highTemp = 22
-vhighTemp = 23
-wakeTemp = 19
+# eveningTemp = 23
+# highTemp = 22
+# vhighTemp = 23
+# wakeTemp = 19
 
-HL_midTemp = 17
-maxTemp = 24
-highEvening = 22.5
+# HL_midTemp = 17
+# maxTemp = 24
+# highEvening = 22.5
 
-hallWeekDayTemp = 19
-CT_MorningTemp = 22
-CT_DayTemp = 21
-CT_EveningTemp = 23
-CT_NightTemp = 14
+# hallWeekDayTemp = 19
+# CT_MorningTemp = 22
+# CT_DayTemp = 21
+# CT_EveningTemp = 23
+# CT_NightTemp = 14
 
-BR_DayTemp = 18
+# BR_DayTemp = 18
 
-FR_DayTemp = 14
-FR_EveningTemp = 14
-FR_NightTemp = 14
-FR_offTemp = minTemp
+# FR_DayTemp = 14
+# FR_EveningTemp = 14
+# FR_NightTemp = 14
+# FR_offTemp = minTemp
 
 
 
@@ -92,10 +92,7 @@ def heating_crontest(event):
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
 
-@rule("11:55pm weekdays", description="h11:30pm weekdays", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 59 23 ? * MON-FRI *")
-def heating_cron9(event):
-    night_heating()
+
 
 def night_heating():
     for item in ir.getItem("gHeating_PresetTempNormal").members:
@@ -106,40 +103,36 @@ def night_heating():
 
 #
 # ! WEEKENDS
-@rule("00:30 am weekend", description="h00:30 am wecekend", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 30 00 ? * SAT,SUN *")
-def heating_cron10(event):
-    night_heating()
+# @rule("00:30 am weekend", description="h00:30 am wecekend", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 30 00 ? * SAT,SUN *")
+# def heating_cron10(event):
+#     night_heating()
 
 
 @rule("7 am weekend", description="7:00 am weekend", tags=["heating", "cron"])# description and tags are optional
 @when("Time cron 0 30 6 ? * SAT,SUN *")
 def heating_cron11(event):
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highTemp)
-    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), highEvening)
-    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    events.sendCommand("Heating_UpdateHeaters", "ON")
+    for item in ir.getItem("gHeating_PresetTempNormal").members:
+        item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_WE_Morning").state # prefix =  # get prefix eg FR, CT etc
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_WE_Morning setpoint Item : {}, is now: {}", item.name, item.state)
+    events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
 @rule("4:30pm weekend", description="4:30pm weekend", tags=["heating", "cron"])# description and tags are optional
 @when("Time cron 0 30 16 ? * SAT,SUN *")
 def heating_cron12(event):
-    events.postUpdate(ir.getItem("CT_Heating_PresetTempNormal"), highEvening)
-    events.postUpdate(ir.getItem("FR_Heating_PresetTempNormal"), highEvening)
-    events.postUpdate(ir.getItem("ER_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("AT_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("BR_Heating_PresetTempNormal"), sleepTemp)
-    events.postUpdate(ir.getItem("OF_Heating_PresetTempNormal"), offTemp)
-    events.postUpdate(ir.getItem("HL_Heating_PresetTempNormal"), offTemp)
-    events.sendCommand("Heating_UpdateHeaters", "ON")
+    for item in ir.getItem("gHeating_PresetTempNormal").members:
+        item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_WE_Evening").state # prefix =  # get prefix eg FR, CT etc
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_WE_Evening setpoint Item : {}, is now: {}", item.name, item.state)
+    events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
 
 # ! EVERY DAY
-@rule("02.30 - all heating low", description="02.30 - all heating low", tags=["heating", "cron"])# description and tags are optional
-@when("Time cron 0 30 02 ? * * *")
-def heating_cron4(event):
-    night_heating()
+# @rule("02.30 - all heating low", description="02.30 - all heating low", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 30 02 ? * * *")
+# def heating_cron4(event):
+#     night_heating()
 
+@rule("12pm alldays", description="12pm alldays", tags=["heating", "cron"])# description and tags are optional
+@when("Time cron 0 0 0 ? * * *")
+def heating_cron9(event):
+    night_heating()
