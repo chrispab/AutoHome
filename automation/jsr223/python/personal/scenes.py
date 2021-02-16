@@ -25,11 +25,13 @@ tgoodnight = None
 @when("Item Scene_Goodnight changed from OFF to ON")
 def Scene_Goodnight(event):
     # Scene_Goodnight.log.info("::Boiler_Control rule -> A Heater recieved a command - updating boiler state::")
-    LogAction.logInfo("Scene_Goodnight", "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\goodnight going to bed")
+    LogAction.logInfo("Scene_Goodnight", "goodnight going to bed")
     global tgoodnight
 
     events.sendCommand("CT_FairyLights433Socket", "OFF")
     events.sendCommand("ZbColourBulb01Switch", "OFF")
+    events.sendCommand("ZbColourBulb02Switch", "OFF")
+
     events.sendCommand("radio", "OFF")
     events.sendCommand("vCT_TVKodiSpeakers", "OFF")
     events.postUpdate("CT_Heating_PresetTempNormal", "17.0")

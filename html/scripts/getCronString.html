@@ -1,0 +1,55 @@
+
+<html>
+<script language="JavaScript">
+    function getParam(param) {
+        var qs = (function (a) {
+            if (a == "") return {};
+            var b = {};
+            for (var i = 0; i < a.length; ++i) {
+                var p = a[i].split('=', 2);
+                if (p.length == 1)
+                    b[p[0]] = "";
+                else
+                    b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+            }
+            return b;
+        })(window.location.search.substr(1).split('&'));
+        return qs[param]
+    }
+
+    function checkInput(id) {
+        var x = document.getElementById(id).value;
+        if (isNaN(x)) {
+            document.getElementById(id).value = ""
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function resetInput(id) {
+        document.getElementById(id).value = ""
+    }
+
+    function httpGetAsync(theUrl) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+        xmlHttp.send(null);
+    }
+
+    function sendValue() {
+        if checkInput('textInput') {
+            url = "http://192.168.0.100:8080/CMD?" + getParam('item') + "=" + document.getElementById('textInput').value
+            httpGetAsync(url)
+            resetInput('textInput')
+        } else {
+            resetInput('textInput')
+        }
+    }
+</script>
+<form>
+    <input name="textInput" id="textInput" type="text" onChange="sendValue()">
+</form>
+
+</html>
