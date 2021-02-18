@@ -3,13 +3,14 @@ from core.triggers import when
 from core.actions import LogAction
 
 
+
 # ! MONDAY TO FRIDAY 
 @rule("heating cron weekday morning 1", description="heating cron weekday morning 1", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 0 5 ? * MON-FRI *")
 @when(ir.getItem("CRON_HPSP_Time_1").getState().toString())
 def heating_cron_morning_1(event):
     temp = ir.getItem("Outside_Temperature").getState().floatValue()
-    LogAction.logWarn("PRE  check if cold enough to start heating", "PRE outside  temp = {}", temp)
+    LogAction.logWarn("PRE check if cold enough to start heating", "PRE outside  temp = {}", temp)
     if (temp < 4.0):
         morning_heating()
 
@@ -19,7 +20,7 @@ def heating_cron_morning_1(event):
 @when(ir.getItem("CRON_HPSP_Time_2").getState().toString())
 def heating_cron_morning_2(event):
     temp = ir.getItem("Outside_Temperature").getState().floatValue()
-    LogAction.logWarn("PRE check if cold enough to start heating", "PRE outside  temp = {}", temp)
+    LogAction.logWarn("PRE  check if cold enough to start heating", "PRE outside  temp = {}", temp)
     if (temp < 10.0):
         morning_heating()
 
@@ -29,6 +30,7 @@ def heating_cron_morning_2(event):
 @when(ir.getItem("CRON_HPSP_Time_3").getState().toString())
 def heating_cron_morning(event):
     morning_heating()
+
 
 
 def morning_heating():

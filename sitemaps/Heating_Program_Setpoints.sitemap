@@ -2,12 +2,16 @@ sitemap Heating_Program_Setpoints label="Heating_Program_Setpoints"
 {
   Frame label="" {
     Text item=Temperature label="note: when changing any time, restart oh or reload rule" icon="temperature"
-    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_1&label=1 morning 1" height=1
-    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_2&label=2 morning 2" height=1
+
+    
+    // Switch item=pReloadCRON label="reload cron" icon="light"
+
+    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_1&label=1 Morning_Time 1" height=1
+    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_2&label=2 Morning_Time 2" height=1
 
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_3&label=3 Morning_Time" height=1
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_4&label=4 Day_Time" height=1
-    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_5&label=5 vening_Time" height=1
+    Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_5&label=5 Evening_Time" height=1
 
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_6&label=6 WE_Morning" height=1
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_7&label=7 WE_Evening" height=1
