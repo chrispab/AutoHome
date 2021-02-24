@@ -39,8 +39,8 @@ Items {
     Zone3VentPercent : strategy = everyUpdate
 
 
-    Boiler_Control :  strategy = everyUpdate
-
+    Boiler_Control :    strategy = everyUpdate
+    Boiler_Reachable  :  strategy = everyUpdate
     masterHeatingMode :  strategy = everyUpdate
 
     CT_HeatingMode                : strategy = everyUpdate
