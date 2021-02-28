@@ -12,3 +12,4 @@ Switch FR_Heater "Front Room Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoo
 String FR_HeatingMode "Front Room Heating Mode" <settings> (gHeatingModes)
 Number FR_Heating_PresetTempNormal "Front Room Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String FR_RTVReachable "Front Room Reachable" <qualityofservice> (gFR_Thermostat,gRTVsReachable)  { channel="mqtt:topic:frontRoomRadThermoValve:reachable" }
+Number FR_RTV_Rssi "FR RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:frontRoomRadThermoValve:rssi" }

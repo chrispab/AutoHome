@@ -23,3 +23,4 @@ Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeate
 String AT_HeatingMode "Attic Heating Mode" <settings> (gHeatingModes)
 Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
+Number AT_RTV_Rssi "attic RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:atticRadThermoValve:rssi" }

@@ -14,3 +14,4 @@ Switch OF_Heater "Office Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeat
 String OF_HeatingMode "Office Heating Mode" <settings> (gHeatingModes)
 Number OF_Heating_PresetTempNormal "Office Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String OF_RTVReachable "Office Reachable" <qualityofservice> (gOF_Thermostat,gRTVsReachable)  { channel="mqtt:topic:officeRadThermoValve:reachable" }
+Number OF_RTV_Rssi "Office RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:officeRadThermoValve:rssi" }

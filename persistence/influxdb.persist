@@ -41,6 +41,9 @@ Items {
 
     Boiler_Control :    strategy = everyUpdate
     Boiler_Reachable  :  strategy = everyUpdate
+    Boiler_Rssi :    strategy = everyUpdate
+
+
     masterHeatingMode :  strategy = everyUpdate
 
     CT_HeatingMode                : strategy = everyUpdate

@@ -11,3 +11,4 @@ Switch ER_Heater "Elsie's Room Heater"  <my_radiator>  (gRoomHeaterStates, gAnyR
 String ER_HeatingMode "Elsie's Room Heating Mode" <settings> (gHeatingModes)
 Number ER_Heating_PresetTempNormal "Elsie's Room Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String ER_RTVReachable "Elsie's Room Reachable" <qualityofservice> (gER_Thermostat,gRTVsReachable)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
+Number ER_RTV_Rssi "ER RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:elsiesRoomRadThermoValve:rssi" }
