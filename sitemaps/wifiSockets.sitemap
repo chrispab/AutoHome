@@ -1,27 +1,11 @@
 sitemap wifiSockets label="wifi sockets"
 {
     Frame {
-        // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
-        // Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
-        //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
-
-        //  Colorpicker item=Bulb3Colour label="Bulb 3 colour"
-        //  Colorpicker item=Bulb4Colour label="Bulb 4 colour"
-        // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
-        //Colorpicker item=ColourBulb1Colour label="C bulb 1 Color"
-        //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
-        // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
-        // Switch item=RemoteControlBatteryLow label="Battery low warning"
-        //// Switch item=ControlOutlet label="Power Switch"
-        //Switch item=ClipLightPower label="ClipLight switch"
-
         Switch item=WiFiSocket1Power label="mythtv backend wifi socket 1"
-        // Text item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"
-        // Text item=WiFiSocket1RSSI label="wifi socket 1 RSSI [%d %%]"
-                Switch item=WiFiSocket2Power label="front room kodi/tv wifi socket 2"
-        // Text item=WiFiSocket2Reachable label="wifi socket 2 reachable [%s]"
-        // Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
-                Switch item=WiFiSocket3Power label="bedroom kodi/tv wifi socket 3"
+
+        Switch item=wifi_socket_2_power label="front room kodi/tv wifi socket 2"
+
+        Switch item=wifi_socket_3_power label="bedroom kodi/tv wifi socket 3"
         Switch item=WiFiSocket4Power label="wifi socket 4"
             // String item=Zone3Reachable label="Reachable"
 

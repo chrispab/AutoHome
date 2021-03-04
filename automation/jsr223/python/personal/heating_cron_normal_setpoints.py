@@ -10,7 +10,7 @@ from core.actions import LogAction
 def heating_cron_morning_1(event):
     temp = ir.getItem("Outside_Temperature").getState().floatValue()
     LogAction.logWarn("PRE  check if cold enough to start heating", "PRE outside  temp = {}", temp)
-    if (temp < 4.0):
+    if (temp < 3.0):
         morning_heating()
 
 

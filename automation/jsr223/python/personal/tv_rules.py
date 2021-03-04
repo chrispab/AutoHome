@@ -117,7 +117,7 @@ def bedroom_tv_on(event):
 
     events.postUpdate("shutdownKodiBedroomProxy", "ON")
 
-    events.sendCommand("WiFiSocket3Power", "ON")
+    events.sendCommand("wifi_socket_3_power", "ON")
 
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_tvPowerOff is not None:
@@ -142,7 +142,7 @@ def bedroom_tv_off(event):
 
 def brtvoffbody():
     global t_brtvPowerOff
-    events.sendCommand("WiFiSocket3Power", "OFF")
+    events.sendCommand("wifi_socket_3_power", "OFF")
     # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_brtvPowerOff = None
 
@@ -161,7 +161,7 @@ def FR_tv_on(event):
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_frtvPowerOff is not None:
         t_frtvPowerOff = None
-    events.sendCommand("WiFiSocket2Power", "ON")
+    events.sendCommand("wifi_socket_2_power", "ON")
 
 
 t_frtvPowerOff=None
@@ -181,7 +181,7 @@ def fr_tv_off(event):
 
 def frtvoffbody():
     global t_frtvPowerOff
-    events.sendCommand("WiFiSocket2Power", "OFF")
+    events.sendCommand("wifi_socket_2_power", "OFF")
     # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_frtvPowerOff = None
 
@@ -199,7 +199,7 @@ def AT_tv_on(event):
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_attvPowerOff is not None:
         t_attvPowerOff = None
-    events.sendCommand("WiFiSocket5Power", "ON")
+    events.sendCommand("wifi_socket_5_power", "ON")
 
 
 t_attvPowerOff=None
@@ -219,7 +219,7 @@ def AT_tv_off(event):
 
 def attvoffbody():
     global t_attvPowerOff
-    events.sendCommand("WiFiSocket5Power", "OFF")
+    events.sendCommand("wifi_socket_5_power", "OFF")
     # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_attvPowerOff = None
 

@@ -114,9 +114,50 @@ Items {
     PIRState : strategy = everyUpdate    
     Water1_Temperature : strategy = everyUpdate   
 
-    WiFiSocket4Temperature  : strategy = everyUpdate
-    WiFiSocket4_TemperatureSetpoint : strategy = everyUpdate
-    WiFiSocket4Power : strategy = everyUpdate
+//mythtv server
+    wifi_socket_1_power : strategy = everyUpdate
+    wifi_socket_1_reachable : strategy = everyUpdate
+    wifi_socket_1_rssi : strategy = everyUpdate
+
+//front room tv kodi power
+    wifi_socket_2_power : strategy = everyUpdate
+    wifi_socket_2_reachable : strategy = everyUpdate
+    wifi_socket_2_rssi : strategy = everyUpdate
+
+
+//bedroom tv kodi power
+    wifi_socket_3_power : strategy = everyUpdate
+    wifi_socket_3_reachable : strategy = everyUpdate
+    wifi_socket_3_rssi : strategy = everyUpdate
+
+
+//greenhouse
+    wifi_socket_4_power : strategy = everyUpdate
+    wifi_socket_4_reachable : strategy = everyUpdate
+    wifi_socket_4_rssi : strategy = everyUpdate
+    wifi_socket_4_temperature  : strategy = everyUpdate
+
+
+//attic tv
+    wifi_socket_5_power : strategy = everyUpdate
+    wifi_socket_5_reachable : strategy = everyUpdate
+    wifi_socket_5_rssi : strategy = everyUpdate
+    //wifi_socket_5_temperature  : strategy = everyUpdate
+
+//attic tv
+    wifi_socket_6_power : strategy = everyUpdate
+    wifi_socket_6_reachable : strategy = everyUpdate
+    wifi_socket_6_rssi : strategy = everyUpdate
+//propagator
+    wifi_socket_7_power : strategy = everyUpdate
+    wifi_socket_7_reachable : strategy = everyUpdate
+    wifi_socket_7_rssi : strategy = everyUpdate
+    wifi_socket_7_temperature : strategy = everyUpdate
+
+    wifi_socket_8_power : strategy = everyUpdate
+    wifi_socket_8_reachable : strategy = everyUpdate
+    wifi_socket_8_rssi : strategy = everyUpdate
+    wifi_socket_8_temperature : strategy = everyUpdate
 
     Zb_THPSensor_01_temperature : strategy = everyUpdate	
     Zb_THPSensor_01_humidity : strategy = everyUpdate	
