@@ -59,6 +59,6 @@ def kodi_shutdown_BR(event):
 
 @rule("Shutdown Attic Kodi Pi Host", description="Shutdown Attic Kodi Pi Host", tags=["Kodi"])
 @when("Item shutdownKodiAtticProxy changed from ON to OFF")
-def kodi_shutdown_BR(event):
+def kodi_shutdown_AT(event):
     LogAction.logError("Shutdown Attic Kodi","Shutdown Attic Kodi: {}", event.itemName)
     events.sendCommand("kodiAttic_systemcommand","Shutdown")

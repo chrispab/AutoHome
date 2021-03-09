@@ -10,7 +10,7 @@ import org.openhab.io.openhabcloud.NotificationAction as NotificationAction
 @rule("outside sensor  startup", description="outside sensor ", tags=["Heating"])
 @when("System started")
 def outside_startup(event):
-    LogAction.logError("outside senso r  startup", "outside sensor  startup")
+    LogAction.logError("outside sensor  startup", "outside sensor  startup")
     if items["outsideReboots"] == NULL:
         # items["ousideReboots"] = DecimalType(0)
         events.postUpdate(ir.getItem("outsideReboots"), 0)

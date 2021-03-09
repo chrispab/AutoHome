@@ -1,4 +1,8 @@
-Group gConservatoryLights "Conservatory Light Group" (gIkeaLights, gFairyLights)
+// Group gConservatoryLights "Conservatory Light Group" (gIkeaLights, gFairyLights)
+
+
+Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
+
 
 Switch conservatoryLightsProxy "Conservatory Lighting "  [ "Lighting" ]  
 //     { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }

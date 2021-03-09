@@ -12,11 +12,29 @@ Group gRadiators
 Group gZoneControllerSockets
 
 
+
+//rf433_skt_1 - Conservatory pi  #1
+Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket 1"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
+
+//rf433_skt_2 - test tablelamp1
+Switch tableLamp1 "table lamp RF433 power socket 2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:rf433_skt_2:powerSwitch"}
+
+//rf433_skt_2 - test tablelamp1
+Switch workLightsPowerSocket "workLights RF433 power socket 3"  <poweroutlet_uk>  (gConservatory, gConservatoryLights) { channel="mqtt:topic:rf433_skt_3:powerSwitch" }
+
+
+
+
+
+
+
+
+
 //Dining room switched socket - upper fairy lights
 Switch DR_FairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:DR_FairyLights433Socket:powerSwitch" }
 
 //conservatory fairy lights
-Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
+Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gConservatoryLights, gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
@@ -42,8 +60,7 @@ Switch zone1ControllerPower "Zone one power"  <poweroutlet_uk> (gZoneControllerS
 //zone3 power socket
 Switch zone3ControllerPower "Zone three power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:zone3ControllerPower:powerSwitch" }
 
-//test tablelamp1
-Switch tableLamp1 "table lamp 1"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:tableLamp1:powerSwitch"}
+
 
 
 //outside temp sensor
@@ -55,10 +72,8 @@ Switch outsideSensorPower "socketG4_4_16"  <poweroutlet_uk> { channel="mqtt:topi
 // // front room Tree and Fireplace Lights
 // Switch socketG1_1 "socketG1_1_1"  <poweroutlet_uk> (gXmasLights, gFrontRoom) {mqtt=">[mosquitto:433Bridge/cmnd/Power1:command:*:MAP(onoffcases.map)]"}
 // CT_pi_kodi
-//Conservatory pi
-Switch CT_pi_kodiPowerSocket "CT_pi_kodi Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_pi_kodi:powerSwitch" }
 
-Switch workLightsPowerSocket "workLights Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:workLights:powerSwitch" }
+
 
 //landing switched socket - fairy lights
 // Switch socketG1_3 "socketG1_3_3"  <poweroutlet_uk>  (gFairyLights) {mqtt=">[mosquitto:433Bridge/cmnd/Power3:command:*:MAP(onoffcases.map)]"}

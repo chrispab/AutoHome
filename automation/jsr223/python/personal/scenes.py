@@ -25,8 +25,9 @@ tgoodnight = None
 @when("Item Scene_Goodnight changed from OFF to ON")
 def Scene_Goodnight(event):
     # Scene_Goodnight.log.info("::Boiler_Control rule -> A Heater recieved a command - updating boiler state::")
-    LogAction.logInfo("Scene_Goodnight", "goodnight going to bed")
+    LogAction.logError("Scene_Goodnight", "goodnight going to bed")
     global tgoodnight
+    global CT_HPSP_Night
 
     events.sendCommand("CT_FairyLights433Socket", "OFF")
     events.sendCommand("ZbColourBulb01Switch", "OFF")
@@ -34,13 +35,13 @@ def Scene_Goodnight(event):
 
     events.sendCommand("radio", "OFF")
     events.sendCommand("vCT_TVKodiSpeakers", "OFF")
-    events.postUpdate("CT_Heating_PresetTempNormal", CT_HPSP_Night)
-    events.postUpdate("FR_Heating_PresetTempNormal", FR_HPSP_Night)
-    events.postUpdate("ER_Heating_PresetTempNormal", ER_HPSP_Night)
-    events.postUpdate("AT_Heating_PresetTempNormal", AT_HPSP_Evening)
-    events.postUpdate("BR_Heating_PresetTempNormal", BR_HPSP_Night)
-    events.postUpdate("OF_Heating_PresetTempNormal", OF_HPSP_Night)
-    events.postUpdate("HL_Heating_PresetTempNormal", HL_HPSP_Night)
+    events.postUpdate("CT_Heating_PresetTempNormal", items["CT_HPSP_Night"].toString())
+    events.postUpdate("FR_Heating_PresetTempNormal", items["FR_HPSP_Night"].toString())
+    events.postUpdate("ER_Heating_PresetTempNormal", items["ER_HPSP_Night"].toString())
+    events.postUpdate("AT_Heating_PresetTempNormal", items["AT_HPSP_Night"].toString())
+    events.postUpdate("BR_Heating_PresetTempNormal", items["BR_HPSP_Night"].toString())
+    events.postUpdate("OF_Heating_PresetTempNormal", items["OF_HPSP_Night"].toString())
+    events.postUpdate("HL_Heating_PresetTempNormal", items["HL_HPSP_Night"].toString())
     events.sendCommand("Heating_UpdateHeaters", "ON")
     events.postUpdate("Scene_Goodnight", "OFF")
     events.sendCommand("workLightsPowerSocket", "OFF")

@@ -72,9 +72,9 @@ def conservatory_tv_on(event):
 
     events.sendCommand("CT_TV433PowerSocket", "ON")
     events.sendCommand("CT_Soundbar433PowerSocket", "ON")
-    events.sendCommand("CT_pi_kodiPowerSocket", "ON")
-# CT_pi_kodiPowerSocket
-#     //check if a shutdown timer is running - then stop it before turning stuff on
+    events.sendCommand("CT_rf433_skt_pi_kodi_power", "ON")
+
+
     if t_tvPowerOff is not None:
         t_tvPowerOff = None
 
@@ -100,7 +100,7 @@ def conservatory_tv_off(event):
 def tvoffbody():
     events.sendCommand("CT_TV433PowerSocket", "OFF")
     events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
-    events.sendCommand("CT_pi_kodiPowerSocket", "OFF")
+    events.sendCommand("CT_rf433_skt_pi_kodi_power", "OFF")
 
     t_tvPowerOff = None
 
@@ -206,14 +206,16 @@ t_attvPowerOff=None
 @rule("Turn OFF Attic Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vAT_TVKodi changed from ON to OFF")
 def AT_tv_off(event):
-    AT_tv_off.log.info("front room_tv_off")
+    AT_tv_off.log.info("attic_tv_off")
     global t_attvPowerOff
 
     Voice.say("Turning off attic TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
     events.postUpdate("shutdownKodiAtticProxy", "OFF")
     # events.sendCommand("amplifierStandby", "OFF")
 
-    if t_attvPowerOff is None:
+    #if the power switch socket is ON then we are OK to do the shutdown routine
+    #if items["wifi_socket_5_power"] == ON:
+    if t_attvPowerOff is None: #shutdown timer is not currently running
         t_attvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: attvoffbody())
 
 

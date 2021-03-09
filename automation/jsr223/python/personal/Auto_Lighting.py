@@ -1,6 +1,7 @@
 from core.rules import rule
 from core.triggers import when
 from core.actions import ScriptExecution
+from core.actions import LogAction
 
 
 @rule("auto lighting init", description="Handles fan actions", tags=["conservatory", "fan"])
