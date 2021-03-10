@@ -35,12 +35,15 @@ def auto_lighting_off_morning(event):
 @rule("auto_lighting_on_evening", description="Handles fan actions", tags=["conservatory", "fan"])
 @when("Item BridgeLightSensorState changed from ON to OFF")
 def auto_lighting_on_evening(event):
-    events.sendCommand("conservatoryLightsProxy", "ON")
+    # events.sendCommand("conservatoryLightsProxy", "ON")
+    events.sendCommand("gConservatoryLights", "ON")
+    
 
 # rule "2.30 am turn off lights if i forgot"
 
 
 @rule("auto_lighting_off_late", description="Handles fan actions", tags=["conservatory", "fan"])
-@when("Time cron 0 30 02 ? * * *")
+@when("Time cron 0 30 01 ? * * *")
 def auto_lighting_off_late(event):
-    events.sendCommand("conservatoryLightsProxy", "OFF")
+    # events.sendCommand("conservatoryLightsProxy", "OFF")
+    events.sendCommand("gConservatoryLights", "ON")
