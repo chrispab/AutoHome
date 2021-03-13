@@ -3,7 +3,8 @@
 
 Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
 
+// Group:Switch:AND(ON,OFF) gcolour "Conservatory Light Group" <switch>
 
-Switch conservatoryLightsProxy "Conservatory Lighting "  [ "Lighting" ]  
+Switch conservatoryLightsProxy "Conservatory Lighting "  [ "Lighting" ]
 //     { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
 Number ConservatoryLightTriggerLevel "Conservatory light trigger level"

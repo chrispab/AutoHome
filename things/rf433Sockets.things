@@ -16,6 +16,22 @@ Thing mqtt:topic:rf433_skt_3  "RF433 power socket 3" (mqtt:broker:MyMQTTBroker) 
 }
 
 
+// 7 : Amplifier
+Thing mqtt:topic:rf433_skt_7  "CT_Soundbar433PowerSocket 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power7" ]
+}
+
+// 8 : Conservatory TV
+Thing mqtt:topic:rf433_skt_8  "COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power8" ]
+}
+
+
+
+
+///////////////// below still to be converted to new format
 
 
 
@@ -35,18 +51,6 @@ Thing mqtt:topic:CT_FairyLights433Socket  "Conservatory Fairy Lights 433 socket"
 Thing mqtt:topic:radio  "DAB Radio 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power6" ]
-}
-
-// 7 : Amplifier
-Thing mqtt:topic:CT_Soundbar433PowerSocket  "CT_Soundbar433PowerSocket 433 Power socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power7" ]
-}
-
-// 8 : Conservatory TV
-Thing mqtt:topic:CT_TV433PowerSocket  "COnservatory TV Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power8" ]
 }
 
 // 9 : conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)

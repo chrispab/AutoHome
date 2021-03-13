@@ -19,16 +19,23 @@ Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket
 //rf433_skt_2 - test tablelamp1
 Switch tableLamp1 "table lamp RF433 power socket 2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:rf433_skt_2:powerSwitch"}
 
-//rf433_skt_2 - test tablelamp1
+//rf433_skt_3 - 
 Switch workLightsPowerSocket "workLights RF433 power socket 3"  <poweroutlet_uk>  (gConservatory, gConservatoryLights) { channel="mqtt:topic:rf433_skt_3:powerSwitch" }
 
 
+//rf433_skt_7 Amplifier
+Switch CT_Soundbar433PowerSocket "Amplifier RF433 power socket 7"  <poweroutlet_uk>  (gConservatory) { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:rf433_skt_7:powerSwitch" }
+
+//rf433_skt_8 Conservatory TV
+Switch CT_TV433PowerSocket "conservatory TV RF433 power socket 8"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_8:powerSwitch" }
 
 
 
 
 
 
+
+////////////////////////////below need convertying to new format ///////////////////////////////////////////
 
 //Dining room switched socket - upper fairy lights
 Switch DR_FairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:DR_FairyLights433Socket:powerSwitch" }
@@ -45,13 +52,6 @@ Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservator
 
 //conservatory Fan
 Switch CT_Fan433PowerSocket "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:fan:powerSwitch" }
-
-
-//Amplifier
-Switch CT_Soundbar433PowerSocket "Amplifier"  <poweroutlet_uk>  (gConservatory) { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:CT_Soundbar433PowerSocket:powerSwitch" }
-
-//Conservatory TV
-Switch CT_TV433PowerSocket "conservatory TV Power socket"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:CT_TV433PowerSocket:powerSwitch" }
 
 
 //zone1 power socket

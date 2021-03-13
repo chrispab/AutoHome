@@ -1,9 +1,26 @@
 {
-    "python.linting.ignorePatterns": [
-        "**/automation/**/python/core/**/*.py",
-        "**/automation/**/python/community/**/*.py"
+    // "python.linting.ignorePatterns": [
+    //     "**/automation/**/python/core/**/*.py",
+    //     "**/automation/**/python/community/**/*.py"
+    // ],
+    // General
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        80
     ],
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "/bin/python3"
+    "python.pythonPath": "/bin/python3",
+
+    // Python Type Hints
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.stubPath": "./automation/typings",
+    "python.autoComplete.extraPaths": [
+        "./automation/lib/python"
+    ],
+    "python.analysis.extraPaths": [
+        "./automation/lib/python"
+    ]
 }
