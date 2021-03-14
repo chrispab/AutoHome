@@ -1,7 +1,7 @@
 // Group gConservatoryLights "Conservatory Light Group" (gIkeaLights, gFairyLights)
 
 
-Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
+Group:Switch:OR(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
 
 // Group:Switch:AND(ON,OFF) gcolour "Conservatory Light Group" <switch>
 

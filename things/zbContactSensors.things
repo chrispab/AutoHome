@@ -1,0 +1,19 @@
+//--------------------------------------------------------------------------
+Thing mqtt:topic:contact01 "Contact 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type string : contact "Contact 01 contact"          [stateTopic="zigbee2mqtt/contact01", transformationPattern="JSONPATH:$.contact" ]
+    Type number : linkquality "Contact 01 LinkQuality"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Contact 01 battery"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Contact 01 voltage"   [ stateTopic="zigbee2mqtt/contact01",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Contact 01 Reachable"
+
+}
+Thing mqtt:topic:contact02 "Contact 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type string : contact "Contact 02 contact"          [stateTopic="zigbee2mqtt/contact02", transformationPattern="JSONPATH:$.contact" ]
+    Type number : linkquality "Contact 02 LinkQuality"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Contact 02 battery"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Contact 02 voltage"   [ stateTopic="zigbee2mqtt/contact02",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Contact 02 Reachable"
+
+}

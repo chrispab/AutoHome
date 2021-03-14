@@ -1,0 +1,65 @@
+// Jul 21 10:25:32 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:32: Device '0x00158d00053f5d8d' joined
+// Jul 21 10:25:32 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:32: Starting interview of '0x00158d00053f5d8d'
+// Jul 21 10:25:32 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:32: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"type":"device_connected","message":{"friendly_name":"0x00158d00053f5d8d"}}'
+// Jul 21 10:25:32 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:32: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"type":"pairing","message":"interview_started","meta":{"friendly_name":"0x00158d00053f5d8d"}}'
+// Jul 21 10:25:33 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:33: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"type":"device_announced","message":"announce","meta":{"friendly_name":"0x00158d00053f5d8d"}}'
+// Jul 21 10:25:33 pi3b npm[7542]: zigbee2mqtt:info  2020-07-21 10:25:33: MQTT publish: topic 'zigbee2mqtt/0x00158d00053f5d8d', payload '{"battery":100,"voltage":3055,"temperature":24.28,"humidity":87.27,"pressure":1018.7,"linkquality":126}'
+Thing mqtt:topic:THPSensor01 "Xiaomi THPSensor01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THPSensor01", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THPSensor01", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : pressure            [stateTopic="zigbee2mqtt/THPSensor01", transformationPattern="JSONPATH:$.pressure" ]
+    Type number : linkquality "Xiaomi Temp Humi pressure Sensor 01 LinkQuality" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi pressure Sensor 01 battery" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi pressure Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Xiaomi THPSensor01 Reachable"
+
+}
+
+
+// ! THSensor01 (0x00158d0003fb1bdb): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBroker) @ "Front Room"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THSensor01", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : linkquality "Xiaomi Temp Humi Sensor 01 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi Sensor 01 battery" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Xiaomi THSensor01 Reachable"
+    // Type timer  : timer "Xiaomi THSensor01 timer"
+
+}
+
+Thing mqtt:topic:THSensor02 "Xiaomi Temp Humi Sensor 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THSensor02", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THSensor02", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : linkquality "Xiaomi Temp Humi Sensor 02 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi Sensor 02 battery" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi Sensor 02 voltage" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Xiaomi THSensor02 Reachable"
+
+}
+
+Thing mqtt:topic:THSensor03 "Xiaomi Temp Humi Sensor 03" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THSensor03", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THSensor03", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : linkquality "Xiaomi Temp Humi Sensor 03 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi Sensor 03 Battery" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi Sensor 03 voltage" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Xiaomi THSensor03 Reachable"
+
+}
+
+Thing mqtt:topic:THSensor04 "Xiaomi Temp Humi Sensor 04" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : temperature            [stateTopic="zigbee2mqtt/THSensor04", transformationPattern="JSONPATH:$.temperature" ]
+    Type number : humidity            [stateTopic="zigbee2mqtt/THSensor04", transformationPattern="JSONPATH:$.humidity" ]
+    Type number : linkquality "Xiaomi Temp Humi Sensor 04 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Xiaomi Temp Humi Sensor 04 battery" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : voltage "Xiaomi Temp Humi Sensor 04 voltage" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "Xiaomi THSensor04 Reachable"
+
+}
+
