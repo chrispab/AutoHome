@@ -10,10 +10,3 @@ String	ZbBridgeLogMessage			"Zigbee2mqtt Bridge LogMessage"									(ZbBridge)		
 Number	ZbRouter_01_Quality		"Zigbee2mqtt router  LinkQuality [%d]"	<qualityofservice>	{channel="mqtt:topic:zigbeerouter01:linkquality"}
 String	ZbRouter_01_Reachable				"Zigbee2mqtt router Reachable"			{channel="mqtt:topic:zigbeerouter01:reachable"}
 
-
-//! ikea remote 01
-Group	gZbRemote01
-String	ZbRemote01Action			"remote 01 action: [%s]"										(gZbRemote01)								{channel="mqtt:topic:ikearemote01:action"}
-Number	ZbRemote01Quality			"Zb remote 1 LinkQuality [%d]"				<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:linkquality"}
-Number	ZbRemote01Battery			"Zb remote 1 battery [%d]"					<qualityofservice>	(gZbRemote1)								{channel="mqtt:topic:ikearemote01:battery"}
-

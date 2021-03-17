@@ -1,16 +1,11 @@
-    // Type color : color "Ikea Colour Bulb 02 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set" ]
-Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker)
 {
-    Type string : action            [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action" ]
+    Type string : action    "Ikea remote 1 action"        [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action" ]
+    Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "Ikea remote 1 battery" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
+}
+
     // Type string : arrow_left_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_left_click" ]
     // Type string : arrow_right_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_right_click" ]
     // Type string : brightness_up_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_up_click" ]
     // Type string : brightness_down_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_down_click" ]
-
-    Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.linkquality" ]
-    Type number : battery "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
-
-}
-
-
-

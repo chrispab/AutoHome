@@ -1,0 +1,10 @@
+// Group	gZbRemote01
+
+// String	ZbRemote01Action	"remote 01 action: [%s]"			(gZbRemote01)	{channel="mqtt:topic:ikearemote01:action"}
+// Number	ZbRemote01Quality	"Zb remote 1 LinkQuality [%d]"		(gZbRemote01)	{channel="mqtt:topic:ikearemote01:linkquality"}
+// Number	ZbRemote01Battery	"Zb remote 1 battery [%d]"			(gZbRemote01)	{channel="mqtt:topic:ikearemote01:battery"}
+
+
+String  zb_remote01_action    "remote 01 action: [%s]"    {channel="mqtt:topic:ikearemote01:action"}
+Number  zb_remote01_quality   "Zb remote 1 LinkQuality [%d]"  {channel="mqtt:topic:ikearemote01:linkquality"}
+Number  zb_remote01_battery   "Zb remote 1 battery [%d]"  {channel="mqtt:topic:ikearemote01:battery"}

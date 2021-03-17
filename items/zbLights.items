@@ -15,12 +15,12 @@ Number	ZbWhiteBulb02Quality		"Zb white bulb 2  LinkQuality [%d]"			<qualityofser
 //colour bulbs
 // Group gDimmerBulbs "Dimmer bulbs" (gIkeaLights) { ga="Light" [ roomHint="Conservatory" ] }
 
-Group	gZbColourBulbs		"zb colour bulbs"	(gZbAllBulbs)  { ga="Light" }
+Group   gZbColourBulbs		"zb colour bulbs"	(gZbAllBulbs)  { ga="Light" }
 Group:Switch:OR(ON,OFF) 	gColourBulbs		"colour bulbs"	(gAllBulbs)  { ga="Light"  }
 // Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
 
 
-Group	gZbColourBulbsColour
+Group:Color:OR(ON, OFF)		gZbColourBulbsColour
 Group	gZbColourBulbsDim
 Group	gZbColourBulbsSwitch
 
