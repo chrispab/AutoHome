@@ -2,8 +2,8 @@ from core.rules import rule
 from core.triggers import when
 from core.actions import LogAction
 
-
-# ! MONDAY TO FRIDAY 
+# !this file must be reloaded if any presets are changed to register the new cron times
+# ! MONDAY TO FRIDAY
 @rule("heating cron weekday morning 1", description="heating cron weekday morning 1", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 0 5 ? * MON-FRI *")
 @when(ir.getItem("CRON_HPSP_Time_1").getState().toString())
@@ -20,7 +20,7 @@ def heating_cron_morning_1(event):
 def heating_cron_morning_2(event):
     temp = ir.getItem("Outside_Temperature").getState().floatValue()
     LogAction.logWarn("PRE check if cold enough to start heating", "PRE outside  temp = {}", temp)
-    if (temp < 10.0):
+    if (temp < 7.0):
         morning_heating()
 
 
@@ -34,9 +34,9 @@ def heating_cron_morning(event):
 def morning_heating():
     for item in ir.getItem("gHeating_PresetTempNormal").members:
         item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_Morning").state # prefix =  # get prefix eg FR, CT etc
-        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Morning setpoint Item : {}, is now: {}", item.name, item.state)            
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Morning setpoint Item : {}, is now: {}", item.name, item.state)
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
-   
+
 
 @rule("heating 9 am", description="heating 8.30 am", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 0 9 ? * MON-FRI *")
@@ -44,7 +44,7 @@ def morning_heating():
 def heating_cron8(event):
     for item in ir.getItem("gHeating_PresetTempNormal").members:
         item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_Day").state # prefix =  # get prefix eg FR, CT etc
-        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Day setpoint Item : {}, is now: {}", item.name, item.state)            
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Day setpoint Item : {}, is now: {}", item.name, item.state)
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
 
@@ -54,7 +54,7 @@ def heating_cron8(event):
 def heating_cron9(event):
     for item in ir.getItem("gHeating_PresetTempNormal").members:
         item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_Evening").state # prefix =  # get prefix eg FR, CT etc
-        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Evening setpoint Item : {}, is now: {}", item.name, item.state)            
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Evening setpoint Item : {}, is now: {}", item.name, item.state)
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
 
@@ -90,6 +90,6 @@ def heating_cron9(event):
 def night_heating():
     for item in ir.getItem("gHeating_PresetTempNormal").members:
         item.state = ir.getItem( item.name[:item.name.find('_')] + "_HPSP_Night").state # prefix =  # get prefix eg FR, CT etc
-        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Night setpoint Item : {}, is now: {}", item.name, item.state)            
+        LogAction.logWarn("CRON set setpoints", "===> _HPSP_Night setpoint Item : {}, is now: {}", item.name, item.state)
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 

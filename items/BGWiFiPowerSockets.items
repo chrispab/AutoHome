@@ -5,5 +5,10 @@ Group gBGWiFiPowerSockets
 
 
 //currently used for RPi mythtv_backend server
-Switch BG_WiFiSocket_1_Power "BG Socket one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:BG_WiFiSocket_1:powerSwitch_1" }
-Switch BG_WiFiSocket_2_Power "BG Socket two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:BG_WiFiSocket_1:powerSwitch_2" }
+// Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket 1"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
+
+Switch bg_wifisocket_1_power "BG Socket one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
+Switch CT_pi_kodi_bg_wifisocket_1_power "BG Socket one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
+
+
+Switch bg_wifisocket_2_power "BG Socket two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_2" }

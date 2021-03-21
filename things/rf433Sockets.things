@@ -1,5 +1,5 @@
-// 1 conservaTOry kodi pi
-Thing mqtt:topic:rf433_skt_1  "RF433 power socket 1" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
+// 1 not in use - now a BG wifi socket
+Thing mqtt:topic:rf433_skt_1  "RF433 power socket 1" (mqtt:broker:MyMQTTBroker)  {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power1" ]
 }

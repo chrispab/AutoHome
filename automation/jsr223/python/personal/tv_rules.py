@@ -72,7 +72,7 @@ def conservatory_tv_on(event):
 
     events.sendCommand("CT_TV433PowerSocket", "ON")
     events.sendCommand("CT_Soundbar433PowerSocket", "ON")
-    events.sendCommand("CT_rf433_skt_pi_kodi_power", "ON")
+    events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "ON")
 
 
     if t_tvPowerOff is not None:
@@ -100,7 +100,7 @@ def conservatory_tv_off(event):
 def tvoffbody():
     events.sendCommand("CT_TV433PowerSocket", "OFF")
     events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
-    events.sendCommand("CT_rf433_skt_pi_kodi_power", "OFF")
+    events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "OFF")
 
     t_tvPowerOff = None
 
@@ -187,7 +187,7 @@ def frtvoffbody():
 
 
 
-# ! Attic TV 
+# ! Attic TV
 @rule("Turn ON Attic Kodi-Pi, TV", description="Turn ON Attic Kodi-Pi, TV", tags=["tv"])
 @when("Item vAT_TVKodi received update ON")
 def AT_tv_on(event):

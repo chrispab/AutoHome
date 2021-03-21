@@ -13,13 +13,13 @@ Group gZoneControllerSockets
 
 
 
-//rf433_skt_1 - Conservatory pi  #1
-Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket 1"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
+//rf433_skt_1 - not currently in use  #1
+// Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket 1"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
 
 //rf433_skt_2 - test tablelamp1
 Switch tableLamp1 "table lamp RF433 power socket 2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:rf433_skt_2:powerSwitch"}
 
-//rf433_skt_3 - 
+//rf433_skt_3 -
 Switch workLightsPowerSocket "workLights RF433 power socket 3"  <poweroutlet_uk>  (gConservatory, gConservatoryLights) { channel="mqtt:topic:rf433_skt_3:powerSwitch" }
 
 
