@@ -33,6 +33,42 @@ Thing mqtt:topic:bg_wifisocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:bro
 // 'BG1' Broadlink device at '192.168.0.10' (MAC bd:54:fc:42:f7:c8)  MQTT topic having prefix 'broadlink/BG1_bd_54_fc_42_f7_c8/' - square edge
 // 'BG1' Broadlink device at '192.168.0.18' (MAC c1:82:b9:a7:df:24)  MQTT topic having prefix 'broadlink/BG1_c1_82_b9_a7_df_24/'
 // 'BG1' Broadlink device at '192.168.0.23' (MAC 27:86:b9:a7:df:24)  MQTT topic having prefix 'broadlink/BG1_27_86_b9_a7_df_24/'
+
+Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_ec_cc_a4_a7_df_24/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_ec_cc_a4_a7_df_24/power" ]
+}
+
+Thing mqtt:topic:bg_wifiadapter_2  "MQTT Thing: BG WiFi Power Adapter 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_ec_c6_a4_a7_df_24/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_ec_c6_a4_a7_df_24/power" ]
+}
+// broadlink/SP4B_ec_cc_a4_a7_df_24/state/pwr
+// broadlink/SP4B_ec_cc_a4_a7_df_24/state
+// device_type: multiple_lookup,Found custom config,
+// looking for device(s)!,
+// [broadlink.switch.sp4b(('192.168.0.18', 80), mac=b'$\xdf\xa7\xa4\xcc\xec', devtype=20962, timeout=10, name='adapter', model='AHC/U-01', manufacturer='BG Electrical', is_locked=False), broadlink.switch.sp4b(('192.168.0.28', 80), mac=b'$\xdf\xa7\xa4\xc6\xec', devtype=20962, timeout=10, name='adapter', model='AHC/U-01', manufacturer='BG Electrical', is_locked=False), broadlink.switch.bg1(('192.168.0.10', 80), mac=b'\xc8\xf7B\xfcT\xbd', devtype=20963, timeout=10, name='socket', model='BG800/BG900', manufacturer='BG Electrical', is_locked=False)],
+// adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.18:80 / 24:DF:A7:A4:CC:EC) broadlink/ SP4B_ec_cc_a4_a7_df_24/,
+// [2021-03-25 19:55:30,267] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.18' (MAC ec:cc:a4:a7:df:24) and started listening for commands at MQTT topic having prefix 'broadlink/SP4B_ec_cc_a4_a7_df_24/' ,
+// adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.28:80 / 24:DF:A7:A4:C6:EC) broadlink/ SP4B_ec_c6_a4_a7_df_24/,
+// [2021-03-25 19:55:30,290] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.28' (MAC ec:c6:a4:a7:df:24) and started listening for commands at MQTT topic having prefix 'broadlink/SP4B_ec_c6_a4_a7_df_24/' ,
+// socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.10:80 / C8:F7:42:FC:54:BD) broadlink/ BG1_bd_54_fc_42_f7_c8/,
+// [2021-03-25 19:55:30,325] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.10' (MAC bd:54:fc:42:f7:c8) and started listening for commands at MQTT topic having prefix 'broadlink/BG1_bd_54_fc_42_f7_c8/' ,
+// TT broker: 192.168.0.100,
+// [2021-03-25 19:55:30,341] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#,
+// [2021-03-25 19:55:30,343] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_ec_cc_a4_a7_df_24/,SP4B_ec_c6_a4_a7_df_24/,BG1_bd_54_fc_42_f7_c8/,
+// [2021-03-25 19:55:30,344] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_ec_cc_a4_a7_df_24/,SP4B_ec_c6_a4_a7_df_24/,BG1_bd_54_fc_42_f7_c8/,
+// [2021-03-25 19:55:41,354] WARNING OOOOPS! MQTT disconnection,
+// [2021-03-25 19:55:52,370] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#,
+// [2021-03-25 19:55:52,373] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_ec_cc_a4_a7_df_24/,SP4B_ec_c6_a4_a7_df_24/,BG1_bd_54_fc_42_f7_c8/,
+// [2021-03-25 19:55:52,375] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_ec_cc_a4_a7_df_24/,SP4B_ec_c6_a4_a7_df_24/,BG1_bd_54_fc_42_f7_c8/,
+// [2021-03-25 19:56:00,326] DEBUG -Sending 'SP4B' state '{"pwr": 1, "maxworktime": 0, "childlock": 0}' to topic 'broadlink/SP4B_ec_c6_a4_a7_df_24/state',
+// [2021-03-25 19:56:00,373] DEBUG -Sending 'BG1' state '{"pwr": 1, "pwr1": 1, "pwr2": 0, "maxworktime": 0, "maxworktime1": 0, "maxworktime2": 0, "idcbrightness": 100, "childlock": 0, "childlock1": 0, "childlock2": 0, "childlock3": 0, "childlock4": 0}' to topic 'broadlink/BG1_bd_54_fc_42_f7_c8/state',
+// [2021-03-25 19:56:01,298] DEBUG -Sending 'SP4B' state '{"pwr": 1, "maxworktime": 0, "childlock": 0}' to topic 'broadlink/SP4B_ec_cc_a4_a7_df_24/state',
+// [2021-03-25 19:56:03,383] WARNING OOOOPS! MQTT disconnection
+
 // // Thing mqtt:topic:WiFiSocket2  "MQTT Thing: WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 // {
 //     Channels:

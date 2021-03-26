@@ -8,7 +8,7 @@ Dimmer	ZbWhiteBulb01Dim			"cyril"										(gZbWhiteBulb01)							{ga="Light", c
 Number	ZbWhiteBulb01Quality		"Zb white bulb 1  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:linkquality"}
 
 Group	gZbWhiteBulb02																				(gZbWhiteBulbs)
-Switch	ZbWhiteBulb02Switch			"Zb white bulb 2 switch [%s]"									(gZbWhiteBulb02, gConservatoryLights)							{channel="mqtt:topic:ikeabulb02:switch"}
+Switch	ZbWhiteBulb02Switch			"Zb white bulb 2 switch [%s]"									(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:switch"}
 Dimmer	ZbWhiteBulb02Dim			"arthur"										(gZbWhiteBulb02)							{ga="Light", channel="mqtt:topic:ikeabulb02:dimmer"}
 Number	ZbWhiteBulb02Quality		"Zb white bulb 2  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb02)							{channel="mqtt:topic:ikeabulb02:linkquality"}
 

@@ -12,3 +12,8 @@ Switch CT_pi_kodi_bg_wifisocket_1_power "BG Socket one" (gMQTT, gBGWiFiPowerSock
 
 
 Switch bg_wifisocket_2_power "BG Socket two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_2" }
+
+
+// mqtt:topic:bg_wifiadapter_1
+Switch bg_wifiadaptor_1_power "BG adapter 1" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_1:powerSwitch" }
+Switch bg_wifiadaptor_2_power "BG adapter 2" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_2:powerSwitch" }
