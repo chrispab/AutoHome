@@ -1,9 +1,9 @@
 Thing mqtt:topic:bg_wifisocket_1  "MQTT Thing: BG WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" , transformationPattern="JSONPATH:$.pwr" , commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power" ]
-        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" ,  transformationPattern="JSONPATH:$.pwr1", commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/1" ]
-        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_bd_54_fc_42_f7_c8/state" ,  transformationPattern="JSONPATH:$.pwr2", commandTopic="broadlink/BG1_bd_54_fc_42_f7_c8/power/2" ]
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" , transformationPattern="JSONPATH:$.pwr" , commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" ,  transformationPattern="JSONPATH:$.pwr1", commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power/1" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" ,  transformationPattern="JSONPATH:$.pwr2", commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power/2" ]
 }
 
 Thing mqtt:topic:bg_wifisocket_2  "MQTT Thing: BG WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
@@ -37,14 +37,16 @@ Thing mqtt:topic:bg_wifisocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:bro
 Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_ec_cc_a4_a7_df_24/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_ec_cc_a4_a7_df_24/power" ]
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/power" ]
 }
 
 Thing mqtt:topic:bg_wifiadapter_2  "MQTT Thing: BG WiFi Power Adapter 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_ec_c6_a4_a7_df_24/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_ec_c6_a4_a7_df_24/power" ]
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/power" ]
 }
+
+
 // broadlink/SP4B_ec_cc_a4_a7_df_24/state/pwr
 // broadlink/SP4B_ec_cc_a4_a7_df_24/state
 // device_type: multiple_lookup,Found custom config,
