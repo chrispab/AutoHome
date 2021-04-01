@@ -20,10 +20,10 @@ def zone3lightson(event):
 
     global t1, t2, t3
     if items["CT_FairyLights433Socket"] == ON:
-        events.sendCommand("CT_FairyLights433Socket", "OFF")
-        t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
-        t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("CT_FairyLights433Socket", "OFF"))
-        t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+        events.sendCommand("gZbColourBulbs", "OFF")
+        t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("gZbColourBulbs", "ON"))
+        t2 = ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("gZbColourBulbs", "OFF"))
+        t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("gZbColourBulbs", "ON"))
 
 
 
