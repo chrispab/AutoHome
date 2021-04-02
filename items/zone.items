@@ -34,6 +34,9 @@ Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topi
 String  Zone3Reachable          "Zone 3 reachable"              <network>               { channel="mqtt:topic:zone3Controller:Reachable" }
 Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topic:zone3Controller:rssi" }
 
+Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
+
+
 Number	Zone3_vent_on_delta	    "Zone 3 vent_on_delta"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_on_delta" }
 Number	Zone3_vent_off_delta	    "Zone 3 vent_off_delta"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_off_delta" }
 

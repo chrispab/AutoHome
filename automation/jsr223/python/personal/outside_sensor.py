@@ -19,24 +19,24 @@ def outside_startup(event):
 t1 = None
 
 
-# @rule("outside sensor goes offline", description="outside sensor goes offline", tags=["notification"])
-# @when("Item Outside_Reachable changed to \"Offline\"")
-# def OS_sensor_offline(event):
-#     OS_sensor_offline.log.error("outside sensor went offline")
-#     NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor gone offline")
+@rule("outside sensor goes offline", description="outside sensor goes offline", tags=["notification"])
+@when("Item Outside_Reachable changed to \"Offline\"")
+def OS_sensor_offline(event):
+    OS_sensor_offline.log.error("outside sensor went offline")
+    NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor gone offline")
 
-#     global t1
-#     if items["outsideReboots"] == NULL:
-#         events.postUpdate("ousideReboots", 0)
+    global t1
+    if items["outsideReboots"] == NULL:
+        events.postUpdate("ousideReboots", 0)
 
-#     events.sendCommand("outsideSensorPower", "OFF")
-#     t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand("outsideSensorPower", "ON"))
-#     events.postUpdate(ir.getItem("outsideReboots"), items["outsideReboots"].intValue() + 1)
+    events.sendCommand("outsideSensorPower", "OFF")
+    t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand("outsideSensorPower", "ON"))
+    events.postUpdate(ir.getItem("outsideReboots"), items["outsideReboots"].intValue() + 1)
 
 
-# @rule("outside sensor came online", description="outside sensor came online", tags=["notification"])
-# @when("Item Outside_Reachable changed to \"Online\"")
-# def OSOnline(event):
-#     OSOnline.log.error("outside sensor came online")
-#     NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor came online")
+@rule("outside sensor came online", description="outside sensor came online", tags=["notification"])
+@when("Item Outside_Reachable changed to \"Online\"")
+def OSOnline(event):
+    OSOnline.log.error("outside sensor came online")
+    NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor came online")
 
