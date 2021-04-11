@@ -25,6 +25,19 @@ def boiler_control(event):
         for item in listOfMembers:
             LogAction.logWarn("boiler control", ":::Heater Item: {}, is : {}", item.name, item.state)
 
+
+        # is th trv online?
+        # get prefix eg FR, CT etc
+        # prefix = event.itemName[:event.itemName.rfind('_')]
+        # Reachable = ir.getItem(prefix + "_RTVReachable")
+        # LogAction.logInfo("boiler control", "::::: Reachable   {} : {}", prefix, Reachable.state)
+        # if Reachable.state.toString() != "Online":  # is the trv actually online??
+        #     LogAction.logError("boiler control", "::::: ZZZZ---ZZZZ Reachable-Offline - leaving!!!!!   prefix: {} ", prefix)
+        #     LogAction.logError("Boiler_Control", ":: -> This TRV is offline -> Send boiler OFF command")
+        #     events.sendCommand("Boiler_Control", "OFF")
+        #     return #dont continue on and update the bolier control if this RTV is Offline
+
+
         LogAction.logError("Boiler_Control rule", "::-> at least 1 heater on -> Send boiler ON command")
         events.sendCommand("Boiler_Control", "ON")
     else:  # no rooms want heat so turn off boiler

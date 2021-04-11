@@ -30,9 +30,12 @@ def checkIfHeatersNeedUpdating(event):
     Reachable = ir.getItem(prefix + "_RTVReachable")
     LogAction.logInfo("Check if Heaters need changing", "HHH Reachable   {} : {}", prefix, Reachable.state)
 
+    #handle an offline TRV
     if Reachable.state.toString() != "Online":  # is the trv actually online??
-        LogAction.logWarn("Check if Heaters need changing", "HHH Reachable-Offline - leaving!!!   prefix: {} ", prefix)
-        return #dont continue on and update the bolier control if this RTV is Offline
+       LogAction.logError("Check if Heaters need changing", "HHH ZZZZ---ZZZZ Reachable-Offline - sending OFF, leaving!!!!!   prefix: {} ", prefix)
+       #turn this one off
+       events.sendCommand(Heater, "OFF")
+       return #dont continue on and update the bolier control if this RTV is Offline
 
     LogAction.logInfo("Check if Heaters need changing", "HHH current HeatingMode.state: {}  masterHeatingMode.state: {}",
                        HeatingMode.state, ir.getItem("masterHeatingMode").state)

@@ -20,7 +20,7 @@ def pir_change(event):
     # pir_change.log.error("pir01__occupancy received update")
     # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
-lights_timeout = 45
+lights_timeout = 15
 pir01_off_timer = None
 pir02_off_timer = None
 
@@ -38,7 +38,7 @@ def pir_light_on(event):
     if items["BridgeLightSensorLevel"] < items["ConservatoryLightTriggerLevel"] :
         if items["pir01_occupancy"] == ON:
             events.sendCommand("KT_light_1_Power", "ON")
-            pir_light_on.log.error("XXXXXXXX rxed occupancy ON XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx")            
+            pir_light_on.log.error("rxed occupancy ON ")
             if pir01_off_timer is not None and not pir01_off_timer.hasTerminated():
                 pir01_off_timer.cancel()
                 pir_light_on.log.error("CANCEL     STOP running pir01_off_timer")
@@ -77,11 +77,10 @@ def pir_off_body():
 def pir01_off_body():
     # pir_light_off.log.error("pir01_occupancy_off body : KT_light_1_Power: OFF ")
     LogAction.logError("pir01_occupancy_off", "pir01_occupancy_off body : KT_light_1_Power: OFF ")
-# LogAction.logInfo("boiler control", ":::Heater Item: {}, state: {}", item.itemName, item.itemState)
     events.sendCommand("KT_light_1_Power", "OFF")
 
 def pir02_off_body():
     # pir_light_off.log.error("pir02_occupancy_off body : KT_light_2_Power: OFF ")
     LogAction.logError("pir02_occupancy_off", "pir02_occupancy_off body : KT_light_2_Power: OFF ")
     events.sendCommand("KT_light_2_Power", "OFF")
-    events.sendCommand("KT_light_3_Power", "OFF")    
+    events.sendCommand("KT_light_3_Power", "OFF")
