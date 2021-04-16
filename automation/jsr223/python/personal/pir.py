@@ -20,7 +20,7 @@ def pir_change(event):
     # pir_change.log.error("pir01__occupancy received update")
     # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
-lights_timeout = 15
+lights_timeout = 5
 pir01_off_timer = None
 pir02_off_timer = None
 
