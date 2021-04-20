@@ -68,10 +68,10 @@ def conservatory_tv_on(event):
     global t_tvPowerOff
     conservatory_tv_on.log.info("conservatory_tv_on")
 
-    events.postUpdate("shutdownKodiConservatoryProxy", "ON")
+    # events.postUpdate("shutdownKodiConservatoryProxy", "ON")
 
     events.sendCommand("CT_TV433PowerSocket", "ON")
-    events.sendCommand("CT_Soundbar433PowerSocket", "ON")
+    events.sendCommand("amplifier_power", "ON")
     events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "ON")
 
 
@@ -90,7 +90,11 @@ def conservatory_tv_off(event):
     global t_tvPowerOff
 
     Voice.say("Turning off Conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
-    events.postUpdate("shutdownKodiConservatoryProxy", "OFF")
+
+    # events.postUpdate("shutdownKodiConservatoryProxy", "OFF") - this routine can be removed if this works
+    LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
+    events.sendCommand("kodiConservatory_systemcommand","Shutdown")
+
     events.sendCommand("amplifierStandby", "OFF")
 
     if t_tvPowerOff is None:
@@ -99,7 +103,7 @@ def conservatory_tv_off(event):
 
 def tvoffbody():
     events.sendCommand("CT_TV433PowerSocket", "OFF")
-    events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
+    events.sendCommand("amplifier_power", "OFF")
     events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "OFF")
 
     t_tvPowerOff = None

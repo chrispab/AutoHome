@@ -3,4 +3,14 @@ chris@OX7020:/mnt/nfs/iotstack/volumes/openhab/conf$ ssh pi@iotstack.local
 pi@iotstack:~ $ cd IOTstack
 docker exec -it openhab /openhab/runtime/bin/client -p habopen
 
-openhab> log:tail                                         
+openhab> log:tail
+
+
+broadlink-mqtt logs
+tail -f ~/IOTstack/volumes/broadlink-mqtt/mqtt.log
+
+
+zigbee2mqtt logs
+cd ~/IOTstack/volumes/zigbee2mqtt/data/log
+cd into latest date folder
+tail -f log.txt

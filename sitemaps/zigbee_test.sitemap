@@ -9,7 +9,7 @@ sitemap zigbee_test label="ZigBee Test"
     Frame label="TV" {
         Switch item= vCT_TVKodiSpeakers label="Conservatory TV Kodi, Speakers"
         // Switch item= conservatoryTVPower label="TV" icon="screen"
-        Switch item= CT_Soundbar433PowerSocket label="TV Soundbar" icon="receiver"
+        Switch item= amplifier_power label="TV Soundbar" icon="receiver"
         Switch item= radio label="Radio" icon="player"
         // Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
@@ -22,19 +22,19 @@ sitemap zigbee_test label="ZigBee Test"
     Frame label="Conservatory sockets" {
           Switch item= CT_FairyLights433Socket label="Conservatory Fairy Lights" icon="light"
         Switch item= DR_FairyLights433Socket label="Dining Room Fairy Lights" icon="light"
-    }  
+    }
      Frame label="Custom Items" {
           Switch item= Delayed_OFF_SW label="Delayed off Switch" icon="switch"
           Switch item= bridgeButton1 label="Bridge Button 1" icon="switch"
-    } 
+    }
   Frame {
     Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
     Text item= GRG_Temperature label="Greenhose Temperature : [%.1f °C]"
-    //Switch item= conservatoryTVPower label="TV Switch" 
+    //Switch item= conservatoryTVPower label="TV Switch"
     //Switch item= GoingToBed label="Going To Bed"
     Default item= BridgeLightSensorState label="Outside Light Level"
     Group item=gIkeaLights label="ikea"
   }
- 
+
 
 }
