@@ -1,8 +1,8 @@
 sitemap testing label="testing"
 {
     //Frame {
-        // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
-        // Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
+        // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]"
+        // Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]"
         //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
 
         //  Colorpicker item=Bulb3Colour label="Bulb 3 colour"
@@ -17,7 +17,7 @@ sitemap testing label="testing"
      Frame {
                 Switch item=pauseKodiConservatoryProxy label="con kodi pause"
 //Player item=kodiConservatory_control label="Kodi Pause"
-        Switch item=shutdownKodiConservatoryProxy label="con kodi shutdown"
+        // Switch item=shutdownKodiConservatoryProxy label="con kodi shutdown"
      }
 
 

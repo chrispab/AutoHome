@@ -5,6 +5,7 @@ from core.rules import rule
 from core.triggers import when
 from java.time import ZonedDateTime as DateTime
 
+from core.actions import LogAction
 
 # voice support
 from core.actions import Voice
@@ -67,6 +68,7 @@ t_ampVideo01 = None
 def conservatory_tv_on(event):
     global t_tvPowerOff
     conservatory_tv_on.log.info("conservatory_tv_on")
+    Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
     # events.postUpdate("shutdownKodiConservatoryProxy", "ON")
 

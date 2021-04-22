@@ -14,9 +14,9 @@ def kodi_startup(event):
         events.postUpdate(ir.getItem("shutdownKodiFrontRoomProxy"), "OFF")
         LogAction.logError("INIT KODI PROXY", "System started rule - change front room KodiPi proxy from NULL to OFF")
 
-    if ir.getItem("shutdownKodiConservatoryProxy").state == NULL:
-        events.postUpdate(ir.getItem("shutdownKodiConservatoryProxy"), "OFF")
-        LogAction.logError("INIT KODI PROXY", "System started rule - change Conservatory KodiPi proxy from NULL to OFF")
+    # if ir.getItem("shutdownKodiConservatoryProxy").state == NULL:
+    #     events.postUpdate(ir.getItem("shutdownKodiConservatoryProxy"), "OFF")
+    #     LogAction.logError("INIT KODI PROXY", "System started rule - change Conservatory KodiPi proxy from NULL to OFF")
 
     if ir.getItem("shutdownKodiBedroomProxy").state == NULL:
         events.postUpdate(ir.getItem("shutdownKodiBedroomProxy"), "OFF")
@@ -33,21 +33,21 @@ def kodi_startup(event):
 @when("Item pauseKodiFrontRoomProxy received update")
 def kodi_pause_FR(event):
     LogAction.logError("Pause FrontRoom Kodi","Pause FrontRoom Kodi: {}", event.itemName)
-    events.sendCommand("kodiFrontRoom_control","PAUSE")        
+    events.sendCommand("kodiFrontRoom_control","PAUSE")
 
 @rule("Shutdown FrontRoom Kodi Pi Host", description="Shutdown FrontRoom Kodi Pi Host", tags=["Kodi"])
 @when("Item shutdownKodiFrontRoomProxy changed from ON to OFF")
 def kodi_shutdown_FR(event):
     LogAction.logError("Shutdown FrontRoom Kodi","Shutdown FrontRoom Kodi: {}", event.itemName)
-    events.sendCommand("kodiFrontRoom_systemcommand","Shutdown") 
+    events.sendCommand("kodiFrontRoom_systemcommand","Shutdown")
 
 
 
-@rule("Shutdown Conservatory Kodi Pi Host", description="Shutdown Conservatory Kodi Pi Host", tags=["Kodi"])
-@when("Item shutdownKodiConservatoryProxy changed from ON to OFF")
-def kodi_shutdown_CT(event):
-    LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
-    events.sendCommand("kodiConservatory_systemcommand","Shutdown") 
+# @rule("Shutdown Conservatory Kodi Pi Host", description="Shutdown Conservatory Kodi Pi Host", tags=["Kodi"])
+# @when("Item shutdownKodiConservatoryProxy changed from ON to OFF")
+# def kodi_shutdown_CT(event):
+#     LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
+#     events.sendCommand("kodiConservatory_systemcommand","Shutdown")
 
 
 @rule("Shutdown bedroom Kodi Pi Host", description="Shutdown bedroom Kodi Pi Host", tags=["Kodi"])
