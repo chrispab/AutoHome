@@ -1,11 +1,4 @@
-// Group gMQTT
 Group gBGWiFiPowerSockets
-// Group gWiFiPowerSocketsReachable
-// Group gChristmasWifiPowerSockets
-
-
-//currently used for RPi mythtv_backend server
-// Switch CT_rf433_skt_pi_kodi_power "CT_rf433_skt_pi_kodi_power RF433 power socket 1"  <poweroutlet_uk>  (gConservatory) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
 Group gBG_socket_maxworktime_updates
 Group gBG_sockets_reachable
 
@@ -41,7 +34,7 @@ Number bg_wifisocket_4_maxworktime "BG Socket 4-maxworktime" (gMQTT, gBGWiFiPowe
 String bg_wifisocket_4_reachable "BG Socket 4-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_4:reachable" }
 
 
-// mqtt:topic:bg_wifiadapter_1
+// single adapters
 Switch bg_wifiadaptor_1_power "BG adapter 1" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_1:powerSwitch" }
 Number bg_wifiadaptor_1_maxworktime "BG adapter 1-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifiadapter_1:maxworktime" }
 String bg_wifiadaptor_1_reachable "BG adapter 1-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifiadapter_1:reachable" }

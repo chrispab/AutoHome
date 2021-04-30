@@ -1,0 +1,102 @@
+  looking at parent device '//devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.2/1-1.2.2':
+    KERNELS=="1-1.2.2"
+    SUBSYSTEMS=="usb"
+    DRIVERS=="usb"
+    ATTRS{devspec}=="  (null)"
+    ATTRS{rx_lanes}=="1"
+    ATTRS{idProduct}=="0265"
+    ATTRS{devnum}=="4"
+    ATTRS{maxchild}=="0"
+    ATTRS{busnum}=="1"
+    ATTRS{version}==" 2.00"
+    ATTRS{serial}=="0014053554"
+    ATTRS{devpath}=="1.2.2"
+    ATTRS{idVendor}=="2040"
+    ATTRS{bNumConfigurations}=="1"
+    ATTRS{manufacturer}=="HCW"
+    ATTRS{product}=="dualHD"
+    ATTRS{bmAttributes}=="80"
+    ATTRS{avoid_reset_quirk}=="0"
+    ATTRS{bDeviceClass}=="00"
+    ATTRS{bNumInterfaces}==" 1"
+    ATTRS{tx_lanes}=="1"
+    ATTRS{bMaxPacketSize0}=="64"
+    ATTRS{speed}=="480"
+    ATTRS{configuration}==""
+    ATTRS{bMaxPower}=="500mA"
+    ATTRS{bDeviceProtocol}=="00"
+    ATTRS{removable}=="unknown"
+    ATTRS{bcdDevice}=="0100"
+    ATTRS{quirks}=="0x0"
+    ATTRS{authorized}=="1"
+    ATTRS{ltm_capable}=="no"
+    ATTRS{urbnum}=="811273"
+    ATTRS{bDeviceSubClass}=="00"
+    ATTRS{bConfigurationValue}=="1"
+  looking at parent device '//devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.2/1-1.2.2':
+    KERNELS=="1-1.2.2"
+    SUBSYSTEMS=="usb"
+    DRIVERS=="usb"
+    ATTRS{bNumConfigurations}=="1"
+    ATTRS{bDeviceProtocol}=="00"
+    ATTRS{devnum}=="4"
+    ATTRS{version}==" 2.00"
+    ATTRS{bcdDevice}=="0100"
+    ATTRS{bMaxPacketSize0}=="64"
+    ATTRS{busnum}=="1"
+    ATTRS{maxchild}=="0"
+    ATTRS{product}=="dualHD"
+    ATTRS{ltm_capable}=="no"
+    ATTRS{bConfigurationValue}=="1"
+    ATTRS{devspec}=="  (null)"
+    ATTRS{idProduct}=="0265"
+    ATTRS{avoid_reset_quirk}=="0"
+    ATTRS{removable}=="unknown"
+    ATTRS{urbnum}=="776039"
+    ATTRS{tx_lanes}=="1"
+    ATTRS{rx_lanes}=="1"
+    ATTRS{devpath}=="1.2.2"
+    ATTRS{authorized}=="1"
+    ATTRS{bDeviceSubClass}=="00"
+    ATTRS{speed}=="480"
+    ATTRS{manufacturer}=="HCW"
+    ATTRS{bDeviceClass}=="00"
+    ATTRS{bMaxPower}=="500mA"
+    ATTRS{idVendor}=="2040"
+    ATTRS{bNumInterfaces}==" 1"
+    ATTRS{serial}=="0014053554"
+    ATTRS{bmAttributes}=="80"
+    ATTRS{configuration}==""
+    ATTRS{quirks}=="0x0"
+
+# /etc/udev/rules.d/10-dvb.rules
+#
+# To Ientify serial nos etc for a Device call
+# udevadm info -a -p $(udevadm info -q path -n /dev/dvb/adapter0/frontend0)
+#
+# Create a symlink /dev/dvb/adapterhd0 pointing to wintv dualhd tuner 0
+SUBSYSTEM=="dvb", ATTRS{idVendor}=="2040", ATTRS{idProduct}=="0265", ATTRS{urbnum}=="776039", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapterhd0/%%s $${K#*.}'", SYMLINK+="%c"
+
+
+# *** PCHDTV Digital ***
+SUBSYSTEM=="dvb", DRIVERS=="cx88-mpeg driver manager", ATTRS{subsystem_vendor}=="0x7063", ATTRS{subsystem_device}=="0x5500", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter_pchdtv/%%s $${K#*.}'", SYMLINK+="%c"
+
+
+
+# Create a symlink /dev/dvb/adapterhd1 pointing to wintv dualhd tuner 1
+SUBSYSTEM=="dvb", ATTRS{idVendor}=="2040", ATTRS{idProduct}=="0265", ATTRS{urbnum}=="811273", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapterhd1/%%s $${K#*.}'", SYMLINK+="%c"
+
+
+# /etc/udev/rules.d/10-dvb.rules
+#
+# To Ientify serial nos etc for a Device call
+# udevadm info -a -p $(udevadm info -q path -n /dev/dvb/adapter0/frontend0)
+#
+# Create a symlink /dev/dvb/wintvhd0 pointing to wintv dualhd tuner 0
+SUBSYSTEM=="dvb", ATTRS{manufacturer}=="Dvico", ATTRS{product}=="Bluebird", ATTRS{serial}=="0000d34b", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/wintvhd0/%%s $${K#*.}'", SYMLINK+="%c"
+
+# Create a symlink /dev/dvb/wintvhd1 pointing to wintv dualhd tuner 1
+SUBSYSTEM=="dvb", ATTRS{manufacturer}=="Dvico", ATTRS{product}=="Bluebird", ATTRS{serial}=="0000534b", PROGRAM="/bin/sh -c 'K=%k; K=$${K#dvb}; printf dvb/adapter101/%%s $${K#*.}'", SYMLINK+="%c"
+
+# Create a symlink /dev/dvb/adapter110 pointing to pinnacle tuner 0, and adapter111 for tuner 1
+SUBSYSTEM=="dvb", ATTRS{manufacturer}=="PINNACLE", ATTRS{product}=="PCTV 2001e", ATTRS{serial}=="12026013", PROGRAM="/bin/sh -c ' K=%k; K=$${K#dvb}; N=$${K#*.}; if [ ! -e /dev/dvb/adapter110/$N ] ; then  printf dvb/adapter110/%%s $${K#*.}; else printf dvb/adapter111/%%s $${K#*.}; fi ; exit 0'", SYMLINK+="%c"
