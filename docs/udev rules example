@@ -100,3 +100,22 @@ SUBSYSTEM=="dvb", ATTRS{manufacturer}=="Dvico", ATTRS{product}=="Bluebird", ATTR
 
 # Create a symlink /dev/dvb/adapter110 pointing to pinnacle tuner 0, and adapter111 for tuner 1
 SUBSYSTEM=="dvb", ATTRS{manufacturer}=="PINNACLE", ATTRS{product}=="PCTV 2001e", ATTRS{serial}=="12026013", PROGRAM="/bin/sh -c ' K=%k; K=$${K#dvb}; N=$${K#*.}; if [ ! -e /dev/dvb/adapter110/$N ] ; then  printf dvb/adapter110/%%s $${K#*.}; else printf dvb/adapter111/%%s $${K#*.}; fi ; exit 0'", SYMLINK+="%c"
+
+
+
+
+
+All things being equal, on a fresh installation of Ubuntu, running:
+
+sudo apt-get install mythtv-backend-master
+
+will install your MythTV master backend server. Unless you have done odd things to your network (or other) configuration, this will automatically expose the relevant services for remote connections from other machines on your local network.
+
+To run mythtv-setup on your backend from another machine, you need to run:
+
+ssh -X mythtv@yourservername mythtv-setup
+
+This will run mythtv-setup as the mythtv user. You may need to set a password for the mythtv user on your server before you can log in using it.
+
+One thing to remember is that this method still requires an X Server running on the machine you are connecting from.
+

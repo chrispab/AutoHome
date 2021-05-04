@@ -26,7 +26,7 @@ timer6 = None
 
 t_ampStandbyON = None
 
-t_tvPowerOff = None
+t_CTtvPowerOff = None
 
 # var shutDownWaitTime = 20 //wait for pi shutdown in secs, before turning off power socket
 tStartup = None
@@ -66,7 +66,7 @@ t_ampVideo01 = None
 @when("Item vCT_TVKodiSpeakers received update ON")
 @when("Item vCT_TVKodiSpeakers2 received update ON")
 def conservatory_tv_on(event):
-    global t_tvPowerOff
+    global t_CTtvPowerOff
     conservatory_tv_on.log.info("conservatory_tv_on")
     Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
@@ -77,8 +77,8 @@ def conservatory_tv_on(event):
     events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "ON")
 
 
-    if t_tvPowerOff is not None:
-        t_tvPowerOff = None
+    if t_CTtvPowerOff is not None:
+        t_CTtvPowerOff = None
 
     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierStandby", "ON"))
     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifiervideo1", "ON"))
@@ -89,7 +89,7 @@ def conservatory_tv_on(event):
 @when("Item vCT_TVKodiSpeakers2 received update OFF")
 def conservatory_tv_off(event):
     conservatory_tv_off.log.info("conservatory_tv_off")
-    global t_tvPowerOff
+    global t_CTtvPowerOff
 
     Voice.say("Turning off Conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
@@ -99,8 +99,8 @@ def conservatory_tv_off(event):
 
     events.sendCommand("amplifierStandby", "OFF")
 
-    if t_tvPowerOff is None:
-        t_tvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: tvoffbody())
+    if t_CTtvPowerOff is None:
+        t_CTtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: tvoffbody())
 
 
 def tvoffbody():
@@ -108,7 +108,7 @@ def tvoffbody():
     events.sendCommand("amplifier_power", "OFF")
     events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "OFF")
 
-    t_tvPowerOff = None
+    t_CTtvPowerOff = None
 
 
 
@@ -117,17 +117,22 @@ def tvoffbody():
 @rule("bedroom Pi Kodi and TV", description="bedroom Pi Kodi and TV", tags=["tv"])
 @when("Item vBR_TVKodi received update ON")
 def bedroom_tv_on(event):
-    global t_tvPowerOff
+    # global t_tvPowerOff
+    global t_brtvPowerOff
+
     bedroom_tv_on.log.info("bedroom_tv_on")
     Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
+    #!stop the off timer if it ewas previously tiggered so it dosent interrupt
+    if t_brtvPowerOff is not None:
+        t_brtvPowerOff = None
+    # t_brtvPowerOff=None
+
     events.postUpdate("shutdownKodiBedroomProxy", "ON")
-
     events.sendCommand("wifi_socket_3_power", "ON")
-
 #     //check if a shutdown timer is running - then stop it before turning stuff on
-    if t_tvPowerOff is not None:
-        t_tvPowerOff = None
+    # if t_tvPowerOff is not None:
+        # t_tvPowerOff = None
 
 
 
@@ -155,7 +160,7 @@ def brtvoffbody():
 
 
 
-# Bedroom Pi Kodi and TV on/off control
+# fr Pi Kodi and TV on/off control
 @rule("Turn ON FrontRoom Kodi-Pi, TV", description="Turn ON FrontRoom Kodi-Pi, TV", tags=["tv"])
 @when("Item vFR_TVKodi received update ON")
 def FR_tv_on(event):
