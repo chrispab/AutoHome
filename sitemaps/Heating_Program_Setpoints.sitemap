@@ -1,9 +1,9 @@
 sitemap Heating_Program_Setpoints label="Heating_Program_Setpoints"
 {
   Frame label="" {
-    Text item=Temperature label="note: when changing any time, restart oh or reload rule" icon="temperature"
+    Text item=Temperature label="After changing times restart OH  or reload heating_cron_normal_setpoints.py" icon="temperature"
 
-    
+
     // Switch item=pReloadCRON label="reload cron" icon="light"
 
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_1&label=1 Morning_Time 1" height=1
@@ -21,7 +21,7 @@ sitemap Heating_Program_Setpoints label="Heating_Program_Setpoints"
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_9&label=9 spare" height=1
     Webview icon=none url="http://192.168.0.100:8080/static/scripts/textinput.html?item=CRON_HPSP_Time_10&label=10 spare" height=1
 
-  }  
+  }
   Frame label="CT" {
     // String CT_HPSP_Morning_Time (gHeating_Presets)
     Setpoint item=CT_HPSP_Morning label="CT_HPSP_Morning [%.1f °C]" minValue=12 maxValue=26 step=0.5
@@ -97,5 +97,5 @@ sitemap Heating_Program_Setpoints label="Heating_Program_Setpoints"
     Setpoint item=AT_HPSP_WE_Evening label="AT_HPSP_WE_Evening [%.1f °C]" minValue=12 maxValue=26 step=0.5
   }
 
-  
+
 }

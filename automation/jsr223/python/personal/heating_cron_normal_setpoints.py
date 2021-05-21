@@ -2,6 +2,7 @@ from core.rules import rule
 from core.triggers import when
 from core.actions import LogAction
 
+
 # !this file must be reloaded if any presets are changed to register the new cron times
 # ! MONDAY TO FRIDAY
 @rule("heating cron weekday morning 1", description="heating cron weekday morning 1", tags=["heating", "cron"])# description and tags are optional

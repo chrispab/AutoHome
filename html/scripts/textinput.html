@@ -14,7 +14,7 @@
                     b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
             }
             return b;
-        })(window.location.search.substr(1).split('&'));       
+        })(window.location.search.substr(1).split('&'));
         return qs[param]
     }
     function httpGet(theUrl)
@@ -28,7 +28,7 @@
         xmlHttp.open("GET", theUrl, true);
         xmlHttp.setRequestHeader("Accept", "text/plain");
         xmlHttp.send();
-        return 
+        return
     }
     function httpPut(theUrl, theValue)
     {
@@ -56,7 +56,7 @@
 	<link rel="stylesheet" type="text/css" href="../../basicui/roboto.css" />
 	<link rel="stylesheet" type="text/css" href="../../basicui/smarthome.css" />
 	<script src="../../basicui/mdl/material.min.js"></script>
-	
+
 	<style>
 		form {
 			margin-bottom: 0;
@@ -73,11 +73,11 @@
 </head>
 <body class="mdl-color-text--grey-700" data-icon-type="svg">
 	<form action="JavaScript:sendValue()">
-		<div class="mdl-form__row mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
+		<div class="mdl-form__row mdl-cell mdl-cell--7-col mdl-cell--8-col-tablet">
 			<span class="mdl-form__icon">
 				<img data-icon="text" src="../../icon/text?format=svg" style="width:30px;"/>
 			</span>
-			<div class="mdl-form__label" id=label>
+			<div class="mdl-form__label" id=label size="25">
 			</div>
 			<div>
 				<input type="text" name="textInput" id="textInput" size="25">
