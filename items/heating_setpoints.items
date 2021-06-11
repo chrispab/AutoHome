@@ -16,6 +16,8 @@ String CRON_HPSP_Time_10  (gHeating_CRONTimes)
 
 Switch pReloadCRON
 
+Number AllHeatingOffTemp   // not yet used
+
 Number CT_HPSP_Morning (gHeating_Presets)
 Number CT_HPSP_Day  (gHeating_Presets)
 Number CT_HPSP_Evening  (gHeating_Presets)
@@ -23,6 +25,7 @@ Number CT_HPSP_Night  (gHeating_Presets)
 Number CT_HPSP_Min (gHeating_Presets)
 Number CT_HPSP_WE_Morning (gHeating_Presets)
 Number CT_HPSP_WE_Evening  (gHeating_Presets)
+
 
 
 

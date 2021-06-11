@@ -4,7 +4,7 @@ from core.actions import LogAction
 from core.actions import ScriptExecution
 from java.time import ZonedDateTime as DateTime
 
-offTemp = 13
+offTemp = 14
 
 #!cron job has requested we send updates to setpoints
 
@@ -21,9 +21,9 @@ def send_heating_presets(event):
 
     # ! Whats the current MASTER heating mode?
     if ir.getItem("masterHeatingMode").state.toString() == "auto":  # normal mode is under master control and folows 'normal' rules
-        LogAction.logError("monitor_heating_mode", "processing case off MASTER Heating Mode: : {}", ir.getItem("masterHeatingMode").state)
+        LogAction.logError("monitor_heating_mode", "PPPPPPPPPPPP processing case AUTO MASTER Heating Mode: : {}", ir.getItem("masterHeatingMode").state.toString())
 
-        # prefix eg FR_, CT_ etc    
+        # prefix eg FR_, CT_ etc
         for heatingModeItem in ir.getItem("gHeatingModes").members:
             if ir.getItem(heatingModeItem.name).state.toString() == "auto":
                 heaterPrefix = heatingModeItem.name[0:heatingModeItem.name.rfind('_')+1]
@@ -31,15 +31,15 @@ def send_heating_presets(event):
                 # LogAction.logError("monitor_heating_mode", "TemperatureSetpoint prefix:{}", heaterPrefix)
 
     elif ir.getItem("masterHeatingMode").state.toString() == "off":
-        LogAction.logError("monitor_heating_mode", "processing case manual MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state)
+        LogAction.logError("monitor_heating_mode", "PPPPPPPPPP    processing case OFF MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state.toString())
 
         for item in ir.getItem("gHeatingModes").members:
             events.postUpdate(item, "off")
         for item in ir.getItem("gTemperatureSetpoints").members:
-            events.postUpdate(item, "offTemp")
+            events.postUpdate(item, offTemp)
 
     elif ir.getItem("masterHeatingMode").state == "manual":
-        LogAction.logError("monitor_heating_mode", "processing case manual MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state)
+        LogAction.logError("monitor_heating_mode", "PPPPPPPPP processing case MANUAL MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state.toString())
 
     else:
-        LogAction.logError("monitor_heating_mode", "Heating Mode unknown:{}", ir.getItem("masterHeatingMode").state)
+        LogAction.logError("monitor_heating_mode", "Heating Mode unknown:{}", ir.getItem("masterHeatingMode").state.toString())
