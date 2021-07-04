@@ -16,7 +16,7 @@ reload(personal.util)
 @when("Item pir01_occupancy received update")
 @when("Item pir02_occupancy received update")
 def pir_change(event):
-   pir_change.log.error("pir_occupancy received update item : " + event.itemName + ", PREV: " + "PersistenceExtensions.previousState(ir.getItem(event.itemName), True)" + ", NOW: " + event.itemState.toString())
+   pir_change.log.debug("pir_occupancy received update item : " + event.itemName + ", PREV: " + "PersistenceExtensions.previousState(ir.getItem(event.itemName), True)" + ", NOW: " + event.itemState.toString())
     # pir_change.log.error("pir01__occupancy received update")
     # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
@@ -29,7 +29,7 @@ pir02_off_timer = None
 @when("Item pir01_occupancy received update ON")
 @when("Item pir02_occupancy received update ON")
 def pir_light_on(event):
-    pir_light_on.log.error("pir_occupancy received update. item : " + event.itemName + ": " +
+    pir_light_on.log.debug("pir_occupancy received update. item : " + event.itemName + ": " +
                           event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString())
 
     global pir01_off_timer
@@ -38,17 +38,17 @@ def pir_light_on(event):
     if items["BridgeLightSensorLevel"] < items["ConservatoryLightTriggerLevel"] :
         if items["pir01_occupancy"] == ON:
             events.sendCommand("KT_light_1_Power", "ON")
-            pir_light_on.log.error("rxed occupancy ON ")
+            pir_light_on.log.debug("rxed occupancy ON ")
             if pir01_off_timer is not None and not pir01_off_timer.hasTerminated():
                 pir01_off_timer.cancel()
-                pir_light_on.log.error("CANCEL     STOP running pir01_off_timer")
+                pir_light_on.log.debug("CANCEL     STOP running pir01_off_timer")
 
         if items["pir02_occupancy"] == ON:
             events.sendCommand("KT_light_2_Power", "ON")
             events.sendCommand("KT_light_3_Power", "ON")
             if pir02_off_timer is not None and not pir02_off_timer.hasTerminated():
                 pir02_off_timer.cancel()
-                pir_light_on.log.error("CANCEL     STOP running pir02_off_timer")
+                pir_light_on.log.debug("CANCEL     STOP running pir02_off_timer")
         # ! also stop any currently running lighht off timers
 
 # chargerTimer2 is not None and not chargerTimer2.hasTerminated():
@@ -57,17 +57,17 @@ def pir_light_on(event):
 @when("Item pir01_occupancy changed from ON to OFF") # or
 @when("Item pir02_occupancy changed from ON to OFF")
 def pir_light_off(event):
-    pir_light_off.log.error("///// pir_occupancy_off triggering item : " + event.itemName + " : " + event.itemState.toString())
+    pir_light_off.log.debug("///// pir_occupancy_off triggering item : " + event.itemName + " : " + event.itemState.toString())
 
     global pir01_off_timer
     global pir02_off_timer
 
     if event.itemName == "pir01_occupancy":
-        pir_light_off.log.error("pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF ")
+        pir_light_off.log.debug("pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF ")
         pir01_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir01_off_body())
 
     if event.itemName == "pir02_occupancy":
-        pir_light_off.log.error("pir02_occupancy : STARTING TIMER  KT_light_2&3_Power: OFF ")
+        pir_light_off.log.debug("pir02_occupancy : STARTING TIMER  KT_light_2&3_Power: OFF ")
         pir02_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir02_off_body())
 
 def pir_off_body():
@@ -76,11 +76,11 @@ def pir_off_body():
 
 def pir01_off_body():
     # pir_light_off.log.error("pir01_occupancy_off body : KT_light_1_Power: OFF ")
-    LogAction.logError("pir01_occupancy_off", "pir01_occupancy_off body : KT_light_1_Power: OFF ")
+    LogAction.logDebug("pir01_occupancy_off", "pir01_occupancy_off body : KT_light_1_Power: OFF ")
     events.sendCommand("KT_light_1_Power", "OFF")
 
 def pir02_off_body():
     # pir_light_off.log.error("pir02_occupancy_off body : KT_light_2_Power: OFF ")
-    LogAction.logError("pir02_occupancy_off", "pir02_occupancy_off body : KT_light_2_Power: OFF ")
+    LogAction.logDebug("pir02_occupancy_off", "pir02_occupancy_off body : KT_light_2_Power: OFF ")
     events.sendCommand("KT_light_2_Power", "OFF")
     events.sendCommand("KT_light_3_Power", "OFF")

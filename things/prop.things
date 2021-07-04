@@ -1,7 +1,7 @@
 Thing mqtt:topic:water1  "MQTT Thing: Water 1 Prop WiFi Power Socket" (mqtt:broker:MyMQTTBroker) @ "Garage"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="sonoff_water1/stat/POWER" , commandTopic="sonoff_water1/cmnd/POWER", on="ON", off="OFF" ]
+        Type switch : powerSwitch  [ stateTopic="sonoff_water1/stat/POWER" , commandTopic="sonoff_water1/cmnd/POWER", on="1", off="0"  ]
         Type string : Reachable    [ stateTopic="sonoff_water1/tele/LWT"  ]
         Type number : rssi         [ stateTopic="sonoff_water1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
         Type number : temperature  [ stateTopic="sonoff_water1/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20.Temperature" ]

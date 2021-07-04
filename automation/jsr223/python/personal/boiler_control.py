@@ -8,10 +8,10 @@ from core.actions import LogAction
 # @when("Member of gRoomHeaterStates changed") #only update if a heater demand changed - not often
 @when("Member of gRoomHeaterStates received update") #update if ANY heater demand updated - v often
 def boiler_control(event):
-    boiler_control.log.error("::A Heater demand changed - updating boiler state:: ")
-    LogAction.logWarn("Boiler_Control", ":::Item {} received update: {}", event.itemName, event.itemState)
+    boiler_control.log.debug("::A Heater demand changed - updating boiler state:: ")
+    LogAction.logDebug("Boiler_Control", ":::Item {} received update: {}", event.itemName, event.itemState)
     # LogAction.logWarn("Boiler_Control", "-> name:{}, prev:{}, now:{}", event.itemName, event.oldItemState, event.itemState)
-    boiler_control.log.warn("::Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
+    boiler_control.log.debug("::Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
 
     # display any NUll heater states
     # if items["gRoomHeaterStates"] == NULL:
@@ -21,9 +21,9 @@ def boiler_control(event):
     if items["gAnyRoomHeaterOn"] == ON:
         # get list of ON heatees
         listOfMembers = [item for item in ir.getItem("gRoomHeaterStates").members if item.state == ON]
-        LogAction.logWarn("boiler control", "::: LIST OF HEATERS ON :::")
+        LogAction.logDebug("boiler control", "::: LIST OF HEATERS ON :::")
         for item in listOfMembers:
-            LogAction.logWarn("boiler control", ":::Heater Item: {}, is : {}", item.name, item.state)
+            LogAction.logDebug("boiler control", ":::Heater Item: {}, is : {}", item.name, item.state)
 
 
         # is th trv online?
@@ -38,8 +38,8 @@ def boiler_control(event):
         #     return #dont continue on and update the bolier control if this RTV is Offline
 
 
-        LogAction.logError("Boiler_Control rule", "::-> at least 1 heater on -> Send boiler ON command")
+        LogAction.logDebug("Boiler_Control rule", "::-> at least 1 heater on -> Send boiler ON command")
         events.sendCommand("Boiler_Control", "ON")
     else:  # no rooms want heat so turn off boiler
-        LogAction.logError("Boiler_Control rule", ":: -> All heaters are off -> Send boiler OFF command")
+        LogAction.logDebug("Boiler_Control rule", ":: -> All heaters are off -> Send boiler OFF command")
         events.sendCommand("Boiler_Control", "OFF")

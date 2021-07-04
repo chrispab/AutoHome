@@ -1,14 +1,14 @@
 Thing mqtt:topic:KT_light_1  "MQTT Thing: KT_light_1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="KT_light_1/stat/POWER" , commandTopic="KT_light_1/cmnd/POWER", on="1", off="0"]
+        Type switch : powerSwitch  [ stateTopic="KT_light_1/stat/POWER" , commandTopic="KT_light_1/cmnd/POWER", on="1", off="0" ]
         Type string : Reachable    [ stateTopic="KT_light_1/tele/LWT"  ]
         Type number : rssi         [ stateTopic="KT_light_1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
 Thing mqtt:topic:KT_light_2  "MQTT Thing: KT_light_2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="KT_light_2/stat/POWER" , commandTopic="KT_light_2/cmnd/POWER", on="1", off="0"]
+        Type switch : powerSwitch  [ stateTopic="KT_light_2/stat/POWER" , commandTopic="KT_light_2/cmnd/POWER", on="1", off="0" ]
         Type string : Reachable    [ stateTopic="KT_light_2/tele/LWT"  ]
         Type number : rssi         [ stateTopic="KT_light_2/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
@@ -16,7 +16,7 @@ Thing mqtt:topic:KT_light_2  "MQTT Thing: KT_light_2" (mqtt:broker:MyMQTTBroker)
 Thing mqtt:topic:KT_light_3  "MQTT Thing: KT_light_3" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="KT_light_3/stat/POWER" , commandTopic="KT_light_3/cmnd/POWER", on="1", off="0"]
+        Type switch : powerSwitch  [ stateTopic="KT_light_3/stat/POWER" , commandTopic="KT_light_3/cmnd/POWER", on="1", off="0" ]
         Type string : Reachable    [ stateTopic="KT_light_3/tele/LWT"  ]
         Type number : rssi         [ stateTopic="KT_light_3/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }

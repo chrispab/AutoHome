@@ -1,5 +1,6 @@
 Thing mqtt:topic:outside  "MQTT Thing: Outside sensor" (mqtt:broker:MyMQTTBroker) @ "Outside" {
     Channels:
+        Type switch : powerSwitch  [ stateTopic="Outside_Sensor/stat/POWER" , commandTopic="Outside_Sensor/cmnd/POWER", on="1", off="0" ]
         Type number : temperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20-1.Temperature" ]
         Type number : shedTemperature  [ stateTopic="Outside_Sensor/tele/SENSOR",  transformationPattern="JSONPATH:$.DS18B20-2.Temperature" ]
         Type string : reachable    [ stateTopic="Outside_Sensor/tele/LWT" ]

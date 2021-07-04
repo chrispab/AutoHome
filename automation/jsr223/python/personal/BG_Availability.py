@@ -12,7 +12,7 @@ timeoutSeconds = 31  # use an appropriate value
 @rule("init BG avail status", description="zb temp sensors init", tags=["heating"])
 @when("System started")
 def init_BG_status(event):
-    init_BG_status.log.info("init_BG_status")
+    init_BG_status.log.debug("init_BG_status")
     for item in ir.getItem("gBG_sockets_reachable").members:
         events.postUpdate(item, "Offline")
 
@@ -24,11 +24,11 @@ def init_BG_status(event):
 @rule("update BG sockets Online/Offline status", description="monitor BG MQTT updates", tags=["BG"])
 @when("Member of gBG_socket_maxworktime_updates received update")
 def bgAvail(event):
-    LogAction.logError("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
+    LogAction.logDebug("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
     # create the 'reachable' item name e.g bg_wifisocket_4_maxworktime to bg_wifisocket_4_reachable
     newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     events.postUpdate(newname, "Online")  # use reachable not triggering event cos its temp
-    bgAvail.log.info("== item marked  ONLINE::")
+    bgAvail.log.debug("== BG sockets Online/Offline status marked  ONLINE::")
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(newname, "Offline"))

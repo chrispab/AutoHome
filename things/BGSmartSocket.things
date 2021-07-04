@@ -45,7 +45,7 @@ Thing mqtt:topic:bg_wifisocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:bro
 Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/power" ]
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/power" , on="1", off="0" ]
         Type number : maxworktime     [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
         Type string : reachable "BG WiFi Power Adapter 1"
 }
@@ -53,7 +53,7 @@ Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:b
 Thing mqtt:topic:bg_wifiadapter_2  "MQTT Thing: BG WiFi Power Adapter 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/power" ]
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/power" , on="1", off="0" ]
         Type number : maxworktime     [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
         Type string : reachable "BG WiFi Power Adapter 2"
 }
