@@ -2,12 +2,12 @@ Thing mqtt:topic:zone1Controller  "Zone 1 Controller" (mqtt:broker:MyMQTTBroker)
     Channels:
         Type number : temperature   [ stateTopic="Zone1/TemperatureStatus" ]
         Type number : humidity      [ stateTopic="Zone1/HumidityStatus" ]
-        Type switch : ventStatus    [ stateTopic="Zone1/VentStatus" ]
-        Type switch : ventSpeedStatus  [ stateTopic="Zone1/VentSpeedStatus" ]
+        Type switch : ventStatus    [ stateTopic="Zone1/VentStatus", on="1", off="0"  ]
+        Type switch : ventSpeedStatus  [ stateTopic="Zone1/VentSpeedStatus", on="1", off="0"  ]
         Type number : ventPercent   [ stateTopic="Zone1/VentPercent" ]
-        Type switch : fanStatus     [ stateTopic="Zone1/FanStatus" ]
-        Type switch : lightStatus   [ stateTopic="Zone1/LightStatus" ]
-        Type switch : heaterStatus  [ stateTopic="Zone1/HeaterStatus" ]
+        Type switch : fanStatus     [ stateTopic="Zone1/FanStatus", on="1", off="0"  ]
+        Type switch : lightStatus   [ stateTopic="Zone1/LightStatus" , on="1", off="0" ]
+        Type switch : heaterStatus  [ stateTopic="Zone1/HeaterStatus" , on="1", off="0" ]
         Type string : heartBeat     [ stateTopic="Zone1/HeartBeat"  ]
         Type string : Reachable    [ stateTopic="Zone1/LWT"  ]
         Type number : rssi          [ stateTopic="Zone1/rssi" ]
@@ -19,16 +19,18 @@ Thing mqtt:topic:zone1Controller  "Zone 1 Controller" (mqtt:broker:MyMQTTBroker)
         Type number : high_setpoint "zone1 high_setpoint" [ stateTopic="Zone1/high_setpoint", commandTopic="Zone1/high_setpoint/set" ]
 }
 
+//, on="1", off="0"
+
 Thing mqtt:topic:zone3Controller  "Zone 3 Controller" (mqtt:broker:MyMQTTBroker) @ "Shed" {
     Channels:
         Type number : temperature   [ stateTopic="Zone3/TemperatureStatus" ]
         Type number : humidity      [ stateTopic="Zone3/HumidityStatus" ]
-        Type switch : ventStatus    [ stateTopic="Zone3/VentStatus" ]
-        Type switch : ventSpeedStatus  [ stateTopic="Zone3/VentSpeedStatus" ]
+        Type switch : ventStatus    [ stateTopic="Zone3/VentStatus" , on="1", off="0"]
+        Type switch : ventSpeedStatus  [ stateTopic="Zone3/VentSpeedStatus" , on="1", off="0"]
         Type number : ventPercent   [ stateTopic="Zone3/VentPercent" ]
-        Type switch : fanStatus     [ stateTopic="Zone3/FanStatus" ]
-        Type switch : lightStatus   [ stateTopic="Zone3/LightStatus" ]
-        Type switch : heaterStatus  [ stateTopic="Zone3/HeaterStatus" ]
+        Type switch : fanStatus     [ stateTopic="Zone3/FanStatus", on="1", off="0" ]
+        Type switch : lightStatus   [ stateTopic="Zone3/LightStatus" , on="1", off="0"]
+        Type switch : heaterStatus  [ stateTopic="Zone3/HeaterStatus" , on="1", off="0"]
         Type string : heartBeat     [ stateTopic="Zone3/HeartBeat"  ]
         Type string : Reachable    [ stateTopic="Zone3/LWT"  ]
         Type number : rssi   [ stateTopic="Zone3/rssi" ]

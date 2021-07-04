@@ -12,7 +12,7 @@ def conservatory_fan_cool(event):
     setpoint = items["Conservatory_Fan_ON_Setpoint"]
     # turnOnTemp = setpoint
     temp = items["CT_Temperature"]
-    sp = items["CT_TemperatureSetpoint"]
+   # sp = items["CT_TemperatureSetpoint"]
 
     conservatory_fan_cool.log.debug(">>>> Conservatory_fan_ cool rulel CHECKING")
 

@@ -28,6 +28,7 @@ Number	Zone3Humidity			"Zone 3 Humidity [%.1f ]"		<humidity>				{ channel="mqtt:
 Switch	Zone3VentStatus			"Zone 3 Vent Status"			<fan>					{ channel="mqtt:topic:zone3Controller:ventStatus" }
 Switch	Zone3LightStatus		"Zone 3 Light Status"			<switch>				{ channel="mqtt:topic:zone3Controller:lightStatus" }
 Switch	Zone3HeaterStatus		"Zone 3 Heater Status"			<my_radiator>			{ channel="mqtt:topic:zone3Controller:heaterStatus" }
+// Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:topic:zone3Controller:fanStatus" [profile="transform:MAP", function="onoffcases.map"]}
 Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:topic:zone3Controller:fanStatus" }
 Switch	Zone3VentSpeedStatus	"Zone 3 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone3Controller:ventSpeedStatus" }
 Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topic:zone3Controller:ventPercent" }
