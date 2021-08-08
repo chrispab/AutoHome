@@ -12,7 +12,7 @@ timeoutMinutes = 45  # use an appropriate value
 @rule("zb temp sensors init", description="zb temp sensors init", tags=["heating"])
 @when("System started")
 def zb_sensor_init(event):
-    zb_sensor_init.log.info("zb_sensor_init")
+    zb_sensor_init.log.debug("zb_sensor_init")
     for item in ir.getItem("gZbTHSensorsReachable").members:
         events.postUpdate(item, "offline")
 
@@ -23,10 +23,10 @@ def zb_sensor_init(event):
 @rule("monitor ZB  temp sensor availability", description="monitor ZB  availability", tags=["zigbee"])
 @when("Member of gTHSensorTemperatures received update")
 def zbAvail(event):
-    LogAction.logInfo("gTHSensorTemperatures", "== gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
+    LogAction.logDebug("gTHSensorTemperatures", "== gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
     newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     events.postUpdate(newname, "Online")  # use reachable not triggering event cos its temp
-    zbAvail.log.info("== ZB  temp sensor availability marked  ONLINE::")
+    zbAvail.log.debug("== ZB  temp sensor availability marked  ONLINE::")
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusMinutes(timeoutMinutes), lambda: events.postUpdate(newname, "Offline"))

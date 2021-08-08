@@ -9,7 +9,8 @@ from java.time import ZonedDateTime as DateTime
 @when("Member of gTemperatureSetpoints received update")
 @when("Member of gRoomTemperatures received update")
 def checkIfHeatersNeedUpdating(event):
-    checkIfHeatersNeedUpdating.log.debug("HHH HeatingMode, Setpoint or Temperature updated")
+    # checkIfHeatersNeedUpdating.log.info("HHH HeatingMode, Setpoint or Temperature updated")
+    LogAction.logInfo("Check if Heaters need changing", "HHH HeatingMode, Setpoint or Temperature updated")
 
     # get prefix eg FR, CT etc
     prefix = event.itemName[:event.itemName.rfind('_')]
@@ -32,7 +33,7 @@ def checkIfHeatersNeedUpdating(event):
 
     #!handle an offline TRV
     if Reachable.state.toString() != "Online":  # is the trv actually online??
-       LogAction.logError("Check if Heaters need changing", "HHH ZZZZ---ZZZZ Reachable-Offline - sending OFF, leaving!!!!!   prefix: {} ", prefix)
+       LogAction.logDebug("Check if Heaters need changing", "HHH ZZZZ---ZZZZ Reachable-Offline - sending OFF, leaving!!!!!   prefix: {} ", prefix)
        #turn this one off
        events.sendCommand(Heater, "OFF")
        return #dont continue on and update the bolier control if this RTV is Offline

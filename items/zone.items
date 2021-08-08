@@ -8,8 +8,8 @@ Switch	Zone1VentSpeedStatus	"Zone 1 Vent Speed Status"		<vent>					{ channel="mq
 Number	Zone1VentPercent		"Zone 1 Vent Percent"			<vent>					{ channel="mqtt:topic:zone1Controller:ventPercent" }
 String  Zone1Reachable          "Zone 1 reachable"              <network>               { channel="mqtt:topic:zone1Controller:Reachable" }
 Number	Zone1Rssi	    	    "Zone 1 RSSI"       			<vent>					{ channel="mqtt:topic:zone1Controller:rssi" }
-Number	Zone1_vent_on_delta	    "Zone 1 vent_on_delta"       	<vent>					{ channel="mqtt:topic:zone1Controller:vent_on_delta" }
-Number	Zone1_vent_off_delta	"Zone 1 vent_off_delta"       	<vent>				    { channel="mqtt:topic:zone1Controller:vent_off_delta" }
+Number	Zone1_vent_on_delta_secs	    "Zone 1 vent_on_delta_secs"       	<vent>					{ channel="mqtt:topic:zone1Controller:vent_on_delta_secs" }
+Number	Zone1_vent_off_delta_secs	"Zone 1 vent_off_delta_secs"       	<vent>				    { channel="mqtt:topic:zone1Controller:vent_off_delta_secs" }
 
 Number	Zone2Temperature		"Zone 2 Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquittoz:Zone2/TemperatureStatus:state:default]"}
 Number	Zone2Humidity			"Zone 2 Humidity [%.1f ]"		<humidity>				{mqtt="<[mosquittoz:Zone2/HumidityStatus:state:default]"}
@@ -28,7 +28,6 @@ Number	Zone3Humidity			"Zone 3 Humidity [%.1f ]"		<humidity>				{ channel="mqtt:
 Switch	Zone3VentStatus			"Zone 3 Vent Status"			<fan>					{ channel="mqtt:topic:zone3Controller:ventStatus" }
 Switch	Zone3LightStatus		"Zone 3 Light Status"			<switch>				{ channel="mqtt:topic:zone3Controller:lightStatus" }
 Switch	Zone3HeaterStatus		"Zone 3 Heater Status"			<my_radiator>			{ channel="mqtt:topic:zone3Controller:heaterStatus" }
-// Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:topic:zone3Controller:fanStatus" [profile="transform:MAP", function="onoffcases.map"]}
 Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:topic:zone3Controller:fanStatus" }
 Switch	Zone3VentSpeedStatus	"Zone 3 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone3Controller:ventSpeedStatus" }
 Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topic:zone3Controller:ventPercent" }
@@ -38,12 +37,12 @@ Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topi
 Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
 
 
-Number	Zone3_vent_on_delta	    "Zone 3 vent_on_delta"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_on_delta" }
-Number	Zone3_vent_off_delta	    "Zone 3 vent_off_delta"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_off_delta" }
+Number	Zone3_vent_on_delta_secs	    "Zone 3 vent_on_delta_secs"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_on_delta_secs" }
+Number	Zone3_vent_off_delta_secs	    "Zone 3 vent_off_delta_secs"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_off_delta_secs" }
 
 // mqtt:topic:zone3Controller:vent_on_delta
-//         Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta", commandTopic="Zone3/vent_on_delta/set" ]
-//         Type number : vent_off_delta "zone3 vent_off_delta" [ stateTopic="Zone3/vent_off_delta", commandTopic="Zone3/vent_off_delta/set" ]
+//         Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta_secs", commandTopic="Zone3/vent_on_delta_secs/set" ]
+//         Type number : vent_off_delta "zone3 vent_off_delta" [ stateTopic="Zone3/vent_off_delta_secs", commandTopic="Zone3/vent_off_delta_secs/set" ]
 // Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.DS18B20-2.Temperature)]"}
 
 

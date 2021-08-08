@@ -1,9 +1,9 @@
 {
-    // "python.linting.ignorePatterns": [
-    //     "**/automation/**/python/core/**/*.py",
-    //     "**/automation/**/python/community/**/*.py"
-    // ],
-    // General
+    "python.linting.ignorePatterns": [
+        "**/automation/**/python/core/**/*.py",
+        "**/automation/**/python/community/**/*.py"
+    ],
+    //General
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "editor.renderWhitespace": "all",
