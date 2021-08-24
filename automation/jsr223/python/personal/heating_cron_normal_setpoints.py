@@ -25,6 +25,8 @@ def heating_cron_morning_2(event):
         morning_heating()
 
 
+
+
 @rule("heating cron weekday morning", description="heating cron weekday morning", tags=["heating", "cron"])# description and tags are optional
 # @when("Time cron 0 0 7 ? * MON-FRI *")
 @when(ir.getItem("CRON_HPSP_Time_3").getState().toString())
@@ -94,3 +96,17 @@ def night_heating():
         LogAction.logWarn("CRON set setpoints", "===> _HPSP_Night setpoint Item : {}, is now: {}", item.name, item.state)
     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 
+
+
+
+
+# con tue,wed,thur morn early
+@rule("conservatory early tue,wed,thurs", description="conservatory early tue,wed,thurs", tags=["heating", "cron"])# description and tags are optional
+# @when("Time cron 0 30 5 ? * TUE,WED,THU *")
+@when(ir.getItem("CRON_HPSP_Time_9").getState().toString())
+def heating_cron9(event):
+    # start just the conservatory early - see how to do just tue,wed,thurs
+    item = ir.getItem("CT_Heating_PresetTempNormal")
+    item.state = ir.getItem( "CT_HPSP_Morning").state # prefix =  # get prefix eg FR, CT etc
+    LogAction.logWarn("CRON conservatoryearly start", "===> _HPSP_Morning setpoint Item : {}, is now: {}", item.name, item.state)
+    events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
