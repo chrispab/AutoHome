@@ -4,12 +4,12 @@ Strategies {
     // get the data reduced for older values to keep database small
     everyHour : "0 0 * * * ?"
     everyDay : "0 0 0 * * ?"
-    
+
     default = everyUpdate
 }
 
 Items {
-    
+
     Zone1Temperature : strategy = everyUpdate
     Zone1Humidity : strategy = everyUpdate
     Zone1VentStatus : strategy = everyUpdate
@@ -51,7 +51,7 @@ Items {
     CT_Temperature : strategy = everyUpdate
     CT_Humidity : strategy = everyUpdate
     CT_Heater : strategy = everyUpdate
-    
+
     FR_HeatingMode                : strategy = everyUpdate
     FR_TemperatureSetpoint                : strategy = everyUpdate
     FR_Temperature : strategy = everyUpdate
@@ -94,7 +94,7 @@ Items {
 
     Heating_Mode                : strategy = everyUpdate
     Heating_PresetNormal_Group* : strategy = everyUpdate
-    
+
     Outside_Temperature : strategy = everyUpdate
     Outside_Humidity : strategy = everyUpdate
     Shed_Temperature : strategy = everyUpdate
@@ -108,11 +108,11 @@ Items {
     Plant1MoistureLevel : strategy = everyUpdate
     Plant1MoistureState : strategy = everyUpdate
     Plant2MoistureLevel : strategy = everyUpdate
-    Plant2MoistureState : strategy = everyUpdate    
+    Plant2MoistureState : strategy = everyUpdate
     Plant3MoistureLevel : strategy = everyUpdate
-    Plant3MoistureState : strategy = everyUpdate    
-    PIRState : strategy = everyUpdate    
-    Water1_Temperature : strategy = everyUpdate   
+    Plant3MoistureState : strategy = everyUpdate
+    PIRState : strategy = everyUpdate
+    Water1_Temperature : strategy = everyUpdate
 
 //mythtv server
     wifi_socket_1_power : strategy = everyUpdate
@@ -159,39 +159,40 @@ Items {
     wifi_socket_8_rssi : strategy = everyUpdate
     wifi_socket_8_temperature : strategy = everyUpdate
 
-    Zb_THPSensor_01_temperature : strategy = everyUpdate	
-    Zb_THPSensor_01_humidity : strategy = everyUpdate	
-    Zb_THPSensor_01_pressure : strategy = everyUpdate	
-    Zb_THPSensor_01_linkquality : strategy = everyUpdate	
-    Zb_THPSensor_01_battery : strategy = everyUpdate		
+    Zb_THPSensor_01_temperature : strategy = everyUpdate
+    Zb_THPSensor_01_humidity : strategy = everyUpdate
+    Zb_THPSensor_01_pressure : strategy = everyUpdate
+    Zb_THPSensor_01_linkquality : strategy = everyUpdate
+    Zb_THPSensor_01_battery : strategy = everyUpdate
     Zb_THPSensor_01_voltage : strategy = everyUpdate
 
 
-    Zb_THSensor_01_temperature : strategy = everyUpdate	
-    Zb_THSensor_01_humidity : strategy = everyUpdate	
-    Zb_THSensor_01_linkquality : strategy = everyUpdate	
-    Zb_THSensor_01_battery : strategy = everyUpdate		
+    Zb_THSensor_01_temperature : strategy = everyUpdate
+    Zb_THSensor_01_humidity : strategy = everyUpdate
+    Zb_THSensor_01_linkquality : strategy = everyUpdate
+    Zb_THSensor_01_battery : strategy = everyUpdate
     Zb_THSensor_01_voltage : strategy = everyUpdate
 
-    Zb_THSensor_02_temperature : strategy = everyUpdate	
-    Zb_THSensor_02_humidity : strategy = everyUpdate	
-    Zb_THSensor_02_linkquality : strategy = everyUpdate	
-    Zb_THSensor_02_battery : strategy = everyUpdate		
+    Zb_THSensor_02_temperature : strategy = everyUpdate
+    Zb_THSensor_02_humidity : strategy = everyUpdate
+    Zb_THSensor_02_linkquality : strategy = everyUpdate
+    Zb_THSensor_02_battery : strategy = everyUpdate
     Zb_THSensor_02_voltage : strategy = everyUpdate
 
 
-    Zb_THSensor_03_temperature : strategy = everyUpdate	
-    Zb_THSensor_03_humidity : strategy = everyUpdate	
-    Zb_THSensor_03_linkquality : strategy = everyUpdate	
-    Zb_THSensor_03_battery : strategy = everyUpdate		
+    Zb_THSensor_03_temperature : strategy = everyUpdate
+    Zb_THSensor_03_humidity : strategy = everyUpdate
+    Zb_THSensor_03_linkquality : strategy = everyUpdate
+    Zb_THSensor_03_battery : strategy = everyUpdate
     Zb_THSensor_03_voltage : strategy = everyUpdate
 
 
-    Zb_THSensor_04_temperature : strategy = everyUpdate	
-    Zb_THSensor_04_humidity : strategy = everyUpdate	
-    Zb_THSensor_04_linkquality : strategy = everyUpdate	
-    Zb_THSensor_04_battery : strategy = everyUpdate		
+    Zb_THSensor_04_temperature : strategy = everyUpdate
+    Zb_THSensor_04_humidity : strategy = everyUpdate
+    Zb_THSensor_04_linkquality : strategy = everyUpdate
+    Zb_THSensor_04_battery : strategy = everyUpdate
     Zb_THSensor_04_voltage : strategy = everyUpdate
-    
+
     pir01_illuminance_lux : strategy = everyUpdate
+    co2sensor_01_ppm : strategy = everyUpdate
 }
