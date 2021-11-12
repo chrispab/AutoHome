@@ -203,14 +203,40 @@ def frtvoffbody():
 @when("Item vAT_TVKodi received update ON")
 def AT_tv_on(event):
     global t_attvPowerOff
+
+    # get any current playing url
+    GHMVolume = ir.getItem("GHM_Conservatory_Volume")
+
+    # get current play vol
+    itemVolume = ir.getItem("GHM_Conservatory_Volume")
+    prevVolume = events.storeStates(itemVolume)
+
+    # say message @ 50% voil
     AT_tv_on.log.info("AT_tv_on")
-    Voice.say("Turning on attic TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    # Voice.say("Turning on attic TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+    sendCommand(itemVolume, PercentType(80))
+    message="Turning on attic TV"
+    ScriptExecution.createTimer(DateTime.now().plusMillis(500), lambda: Voice.say(message))
 
     events.postUpdate("shutdownKodiAtticProxy", "ON")
+
+    # restore prev vol
+    ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))
+
+    # play prev stream - if any
+
+    #https://community.openhab.org/t/playsound-volume-oddity-and-google-home-speakers-as-audio-sink/73791/6
+    # itemVolume = ir.getItem("LivingRoom_GH_Volume")
+    # prevVolume = events.storeStates(itemVolume)
+    # sendCommand(itemVolume, PercentType(80))
+    # ScriptExecution.createTimer(DateTime.now().plusMillis(500), lambda: Voice.say(message))
+    # ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))
+
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_attvPowerOff is not None:
         t_attvPowerOff = None
     events.sendCommand("wifi_socket_5_power", "ON")
+
 
 
 t_attvPowerOff=None

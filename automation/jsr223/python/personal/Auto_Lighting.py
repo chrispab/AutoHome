@@ -13,16 +13,18 @@ def auto_lighting_init(event):
 # rule "if dark in morning turn on conservatory lights"
 
 
-@rule("auto_lighting_on_morning", description="Handles fan actions", tags=["conservatory"])
-@when("Time cron 0 30 07 ? * * *")
+@rule("auto_lighting_on_morning", description="auto conservatory lights", tags=["conservatory"])
+@when("Time cron 0 00 07 ? * * *")
 def auto_lighting_on_morning(event):
     if items["BridgeLightSensorState"] == OFF:
-        # events.sendCommand("conservatoryLightsProxy", "OFF")
-        # events.sendCommand("conservatoryLightsProxy", "ON")
         events.sendCommand("gConservatoryLights", "ON")
 
 # rule "turn off lights (if on) when daylight rises"
-
+@rule("auto cvty  lights on t,w,thurs early", description="auto conservatory lights", tags=["conservatory"])
+@when("Time cron 0 30 6 ? * TUE,WED,THU *")
+def auto_lighting_on_morning(event):
+    if items["BridgeLightSensorState"] == OFF:
+        events.sendCommand("gConservatoryLights", "ON")
 
 @rule("auto_lighting_off_morning", description="Handles fan actions", tags=["conservatory"])
 @when("Item BridgeLightSensorState changed from OFF to ON")
