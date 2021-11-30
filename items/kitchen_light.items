@@ -2,7 +2,7 @@
 Group gKT_WiFiLightsPower
 Group gKT_WiFiLightsReachable
 // Group gChristmasWifiPowerSockets
-Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"colour bulbs"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
+Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
 
 
 
