@@ -14,7 +14,7 @@ Switch wifi_socket_2_power "front room tv kodi power" (gMQTT, gWiFiPowerSockets)
 String wifi_socket_2_reachable "front room tv kodi reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket2:reachable" }
 Number wifi_socket_2_rssi "front room tv kodi RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket2:rssi" }
 
-
+// bedroom tv
 Switch wifi_socket_3_power "bedroom tv and kodi power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:powerSwitch"  }
 String wifi_socket_3_reachable "bedroom tv and kodi reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket3:reachable" }
 Number wifi_socket_3_rssi "bedroom tv and kodi RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:rssi" }
@@ -36,7 +36,7 @@ Switch wifi_socket_6_power "Socket 6  power" (gMQTT, gWiFiPowerSockets, gChristm
 String wifi_socket_6_reachable "Socket 6 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket6:reachable" }
 Number wifi_socket_6_rssi "Socket 6 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket6:rssi" }
 
-
+//propagator
 Switch wifi_socket_7_power "propagator power" (gMQTT, gWiFiPowerSockets, gChristmasWifiPowerSockets )  { channel = "mqtt:topic:wifi_socket_7:powerSwitch"}
 String wifi_socket_7_reachable "propagator  reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:reachable" }
 Number wifi_socket_7_rssi "propagator  RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }

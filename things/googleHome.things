@@ -1,8 +1,0 @@
-chromecast:chromecast:GHM_Attic     "Attic GHM"    [ ipAddress="192.168.0.75" ]
-// chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
-chromecast:chromecast:GHM_Bedroom	      "Bedroom GHM" [ ipAddress="192.168.0.77" ]
-chromecast:chromecast:GHM_ElsiesRoom        "Elsie's Room GHM"  [ ipAddress="192.168.0.76" ]
-chromecast:chromecast:GHM_FrontRoom       "Front Room GHM"   [ ipAddress="192.168.0.78" ]
-
-
-chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
