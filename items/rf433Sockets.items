@@ -6,7 +6,7 @@ Group gFairyLights
 Group gXmasLights
 Group gConservatory
 Group gConservatoryFairyLights
-Group gChristmasLights
+// Group gChristmasLights
 
 Group gRadiators
 Group gZoneControllerSockets

@@ -1,7 +1,13 @@
-// Group gChristmasLights "Christmas Lights grp" (gChristmasWifiPowerSockets) { ga="Switch" }
-Switch ChristmasLightsProxy "Christmas Lights" { ga="Switch" }
+// Group gChristmasLights "Christmas Lights" { ga="Switch" }
+Group:Switch:OR(ON,OFF) gChristmasLights "Christmas Lights" (gChristmasWifiPowerSockets) { ga="Switch" }
+
+// Switch ChristmasLightsProxy "Christmas Lights" { ga="Switch" }
 
 // Group gBR_Thermostat "Bedroom Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Bedroom" ] }
 
 // Group gColourBulbs (gIkeaLights)
-// Group gDimmerBulbs (gIkeaLights)
+// Group gDimmerBulbs (gIkeaLights
+
+
+Switch tree_lights_bg_wifisocket_4_1_power "BG Socket 4-one" (gMQTT, gBGWiFiPowerSockets, gChristmasLights)  { channel = "mqtt:topic:bg_wifisocket_4:powerSwitch_1" }
+Switch tree_lights_bg_wifisocket_4_2_power "BG Socket 4-two" (gMQTT, gBGWiFiPowerSockets, gChristmasLights)  { channel = "mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
