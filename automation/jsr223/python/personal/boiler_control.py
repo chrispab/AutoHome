@@ -3,15 +3,14 @@ from core.triggers import when
 from core.actions import LogAction
 
 
-
 @rule("If any heaters demand, turn Boiler ON else OFF", description="If heater demand turn on Boiler else off", tags=["boiler"])
 # @when("Member of gRoomHeaterStates changed") #only update if a heater demand changed - not often
 @when("Member of gRoomHeaterStates received update") #update if ANY heater demand updated - v often
 def boiler_control(event):
-    boiler_control.log.debug("::A Heater demand changed - updating boiler state:: ")
-    LogAction.logDebug("Boiler_Control", ":::Item {} received update: {}", event.itemName, event.itemState)
+    # boiler_control.log.debug("::A Heater demand changed - updating boiler state:: ")
+    # LogAction.logInfo("Boiler_Control", ":::Member of gRoomHeaterStates received update, Item {} updated to: {}", event.itemName, event.itemState)
     # LogAction.logWarn("Boiler_Control", "-> name:{}, prev:{}, now:{}", event.itemName, event.oldItemState, event.itemState)
-    boiler_control.log.debug("::++++++++++++++++++++++++++++++++++++++++++++++++++++++++Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
+    # boiler_control.log.debug(":::Boiler_Control triggering item: " + event.itemName + ", State: " + event.itemState.toString())
 
     # display any NUll heater states
     # if items["gRoomHeaterStates"] == NULL:
@@ -38,12 +37,12 @@ def boiler_control(event):
         #     return #dont continue on and update the bolier control if this RTV is Offline
 
 
-        LogAction.logDebug("Boiler_Control rule", "++++++++++::-> at least 1 heater on -> Send boiler ON command")
+        LogAction.logDebug("Boiler_Control rule", ":::-> at least 1 heater on -> Send boiler ON command")
         events.sendCommand("Boiler_Control", "ON")
         # events.sendCommand("fan_heater", "ON")
 
     else:  # no rooms want heat so turn off boiler
-        LogAction.logDebug("Boiler_Control rule", "...................:: -> All heaters are off -> Send boiler OFF command")
+        LogAction.logDebug("Boiler_Control rule", "::: -> All heaters are off -> Send boiler OFF command")
         events.sendCommand("Boiler_Control", "OFF")
         # events.sendCommand("fan_heater", "OFF")
 
@@ -51,15 +50,15 @@ def boiler_control(event):
     if items["CT_Heater"] == ON:
         # get list of ON heatees
         listOfMembers = [item for item in ir.getItem("gRoomHeaterStates").members if item.state == ON]
-        boiler_control.log.debug("???::: LIST OF HEATERS ON :::???")
+        boiler_control.log.debug("::: LIST OF HEATERS ON :::")
         for item in listOfMembers:
             # boiler_control.log.debug(":::Heater Item: {}, is : {}", item.name, item.state)
             LogAction.logDebug(":::Heater Item: {}, is : {}", item.name, item.state)
-        boiler_control.log.debug("++++++++++::-> fan_heater on -> Send fan_heater ON command")
+        boiler_control.log.debug(":::-> fan_heater on -> Send fan_heater ON command")
         # events.sendCommand("Boiler_Control", "ON")
         events.sendCommand("fan_heater", "ON")
 
     else:  # no rooms want heat so turn off boiler
-        boiler_control.log.debug("--------------------------------------:: -> All fan_heater off -> Send fan_heater OFF command")
+        boiler_control.log.debug("::: -> fan_heater off -> Send fan_heater OFF command")
         # events.sendCommand("Boiler_Control", "OFF")
         events.sendCommand("fan_heater", "OFF")

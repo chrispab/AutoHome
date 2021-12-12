@@ -24,11 +24,13 @@ def init_BG_status(event):
 @rule("update BG sockets Online/Offline status", description="monitor BG MQTT updates", tags=["BG"])
 @when("Member of gBG_socket_maxworktime_updates received update")
 def bgAvail(event):
-    LogAction.logDebug("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
+   ## # LogAction.logDebug("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
+
+    # bgAvail.log.debug("!!!!bbb gBG_socket_maxworktime_updates  Item " + event.itemName + "received  update: " + event.itemState.toString())
     # create the 'reachable' item name e.g bg_wifisocket_4_maxworktime to bg_wifisocket_4_reachable
     newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     events.postUpdate(newname, "Online")  # use reachable not triggering event cos its temp
-    bgAvail.log.debug("== BG sockets Online/Offline status marked  ONLINE::")
+    # bgAvail.log.debug("== BG sockets Online/Offline status marked  ONLINE::")
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(newname, "Offline"))

@@ -8,7 +8,7 @@ from java.time import ZonedDateTime as DateTime
 @when("Item CT_Temperature changed")
 @when("Item Conservatory_Fan_ON_Setpoint changed")
 def conservatory_fan_cool(event):
-    conservatory_fan_cool.log.debug(">>>>>>>>>>>>>>>>>>conservatory_fan_ cool rulel now")
+    # conservatory_fan_cool.log.debug("conservatory_fan_ cool rulel now")
     setpoint = items["Conservatory_Fan_ON_Setpoint"]
     # turnOnTemp = setpoint
     temp = items["CT_Temperature"]
