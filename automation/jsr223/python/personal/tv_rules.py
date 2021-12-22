@@ -235,7 +235,9 @@ def AT_tv_on(event):
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_attvPowerOff is not None:
         t_attvPowerOff = None
-    events.sendCommand("wifi_socket_5_power", "ON")
+
+
+    # events.sendCommand("wifi_socket_5_power", "ON")
 
 
 
@@ -251,14 +253,16 @@ def AT_tv_off(event):
     # events.sendCommand("amplifierStandby", "OFF")
 
     #if the power switch socket is ON then we are OK to do the shutdown routine
-    #if items["wifi_socket_5_power"] == ON:
     if t_attvPowerOff is None: #shutdown timer is not currently running
         t_attvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: attvoffbody())
 
 
 def attvoffbody():
     global t_attvPowerOff
-    events.sendCommand("wifi_socket_5_power", "OFF")
+
+    # events.sendCommand("wifi_socket_5_power", "OFF")
+
+
     # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_attvPowerOff = None
 
