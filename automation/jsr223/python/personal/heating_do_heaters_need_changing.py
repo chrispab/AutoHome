@@ -48,10 +48,11 @@ def checkIfHeatersNeedUpdating(event):
         LogAction.logDebug("Check if Heaters need changing", "HHH Turn heater OFF for {}  cos its Heating Mode is {}", prefix, HeatingMode.state)
         events.sendCommand(Heater, "OFF")
 
+    #* if alowwed to be on, check if need to turn on heater
     elif (HeatingMode.state.toString() == "auto") or (HeatingMode.state.toString() == "manual"):
         LogAction.logDebug("Check if Heaters need changing", "HHH mode is auto or manual")
         LogAction.logDebug("Check if Heaters need changing", "HHH Heater.itemName: {}", Heater)
-
+        checkIfHeatersNeedUpdating.log.debug(":::-> Check if Heaters need changing  HHH mode is auto or manual")
         setpoint = TSetpoint.state
         turnOnTemp = setpoint  # - 0.2// calculate the turn on/off temperatures
         turnOffTemp = setpoint  # + 0.1

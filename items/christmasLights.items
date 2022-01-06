@@ -20,3 +20,5 @@ Switch xmas_lights_bg_wifisocket_6_2_power "BG Socket 6-two" (gMQTT, gBGWiFiPowe
 
 Switch xmas_lights_bg_wifisocket_7_1_power "BG Socket 7-one" (gMQTT, gBGWiFiPowerSockets, gChristmasLights)  { channel = "mqtt:topic:bg_wifisocket_7:powerSwitch_1" }
 Switch xmas_lights_bg_wifisocket_7_2_power "BG Socket 7-two" (gMQTT, gBGWiFiPowerSockets, gChristmasLights)  { channel = "mqtt:topic:bg_wifisocket_7:powerSwitch_2" }
+
+Switch rf433xmas_sockets "rf433xmas_sockets RF433 power socket 2"  <poweroutlet_uk>  (gChristmasLights) {channel="mqtt:topic:rf433_skt_2:powerSwitch"}
