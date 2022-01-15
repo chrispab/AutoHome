@@ -16,11 +16,11 @@ reload(personal.util)
 @when("Item pir01_occupancy received update")
 @when("Item pir02_occupancy received update")
 def pir_change(event):
-   pir_change.log.debug("pir_occupancy received update item : " + event.itemName + ", PREV: " + "PersistenceExtensions.previousState(ir.getItem(event.itemName), True)" + ", NOW: " + event.itemState.toString())
+   pir_change.log.debug("*********pir_occupancy received update item : " + event.itemName + ", PREV: " + "PersistenceExtensions.previousState(ir.getItem(event.itemName), True)" + ", NOW: " + event.itemState.toString())
     # pir_change.log.error("pir01__occupancy received update")
     # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
-lights_timeout = 60
+lights_timeout = 120
 pir01_off_timer = None
 pir02_off_timer = None
 
@@ -30,7 +30,7 @@ pir02_off_timer = None
 @when("Item pir02_occupancy received update ON")
 def pir_light_on(event):
     pir_light_on.log.debug("pir_occupancy received update. item : " + event.itemName + ": " +
-                          event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString())
+    event.itemState.toString() + ": " + items["pir01_illuminance_lux"].toString())
 
     global pir01_off_timer
     global pir02_off_timer
@@ -44,6 +44,7 @@ def pir_light_on(event):
                 pir_light_on.log.debug("CANCEL     STOP running pir01_off_timer")
 
         if items["pir02_occupancy"] == ON:
+        # if items["pir01_occupancy"] == ON:
             events.sendCommand("KT_light_2_Power", "ON")
             events.sendCommand("KT_light_3_Power", "ON")
             if pir02_off_timer is not None and not pir02_off_timer.hasTerminated():
@@ -67,6 +68,7 @@ def pir_light_off(event):
         pir01_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir01_off_body())
 
     if event.itemName == "pir02_occupancy":
+    # if event.itemName == "pir01_occupancy":
         pir_light_off.log.debug("pir02_occupancy : STARTING TIMER  KT_light_2&3_Power: OFF ")
         pir02_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir02_off_body())
 
