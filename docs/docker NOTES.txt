@@ -1,0 +1,48 @@
+install IOTStack on RPi4
+
+https://sensorsiot.github.io/IOTstack/Getting-Started/
+
+openhab docker info: https://hub.docker.com/r/openhab/openhab/
+
+
+https://www.openhab.org/docs/installation/docker.html#updating-the-image
+
+https://sensorsiot.github.io/IOTstack/Basic_setup/
+
+starting your IOTstack¶
+
+To start the stack:
+
+$ cd ~/IOTstack
+$ docker-compose up -d
+
+
+stopping your IOTstack¶
+
+Stopping aka "downing" the stack stops and deletes all containers, and removes the internal network:
+
+$ cd ~/IOTstack
+$ docker-compose down
+
+To stop the stack without removing containers, run:
+
+$ cd ~/IOTstack
+$ docker-compose stop
+
+
+updating images not built from Dockerfiles¶
+
+If new versions of this type of image become available on DockerHub, your local IOTstack copies can be updated by a pull command:
+
+$ cd ~/IOTstack
+$ docker-compose pull
+$ docker-compose up -d
+$ docker system prune
+
+The pull downloads any new images. It does this without disrupting the running stack.
+
+The up -d notices any newly-downloaded images, builds new containers, and swaps old-for-new. There is barely any downtime for affected containers.
+
+
+problem with JDK clock
+https://community.openhab.org/t/docker-openhab-3-2-0-snapshot-stuck-at-unhealthy-with-openjdk-client-vm-warning-no-monotonic-clock-was-available/128865
