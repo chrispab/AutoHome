@@ -16,6 +16,9 @@ Rule1 ON Tele-DS18B20#Temperature>=25.5 DO power1 0 ENDON ON Tele-DS18B20#Temper
 
 Rule1 ON Tele-DS18B20#Temperature>=24.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<24.9 DO power1 1 ENDON
 
+Rule1 ON Tele-DS18B20#Temperature>=24.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<24.9 DO power1 1 ENDON
+
+
 for greenhouse:
 Rule1 ON Tele-DS18B20#Temperature>=8.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<8.9 DO power1 1 ENDON
 Rule1 ON Tele-DS18B20#Temperature>=8.9 DO power1 0 ENDON ON Tele-DS18B20#Temperature<8.9 DO power1 1 ENDON
@@ -25,15 +28,15 @@ Rule1 ON Tele-DS18B20#Temperature>=7.9 DO power1 0 ENDON ON Tele-DS18B20#Tempera
 Rule2 ON DS18B20#Temperature>=7.9 DO power1 0 ENDON ON DS18B20#Temperature<7.9 DO power1 1 ENDON
 Rule2 ON DS18B20#Temperature>=8.0 DO power1 0 ENDON ON DS18B20#Temperature<8.0 DO power1 1 ENDON
 
-Rule2 
-IF DS18B20#Temperature 
-ON DS18B20#Temperature>=7.9 DO power1 0 ENDON 
+Rule2
+IF DS18B20#Temperature
+ON DS18B20#Temperature>=7.9 DO power1 0 ENDON
 ON DS18B20#Temperature<7.9 DO power1 1 ENDON
 ENDIF
 
-Rule2 
+Rule2
 ON DS18B20#Temperature DO publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value%
-ON DS18B20#Temperature>=7.0 DO power1 0 ENDON 
+ON DS18B20#Temperature>=7.0 DO power1 0 ENDON
 ON DS18B20#Temperature<7.0 DO power1 1 ENDON
 
 
@@ -65,22 +68,22 @@ https://groups.google.com/forum/#!searchin/sonoffusers/rules$20temperature$20sen
 https://groups.google.com/forum/#!searchin/sonoffusers/rule$20break/sonoffusers/XqPC256tecs/Yg1ncx9gCgAJ
 rule1 On BH1750#Illuminance!=%Var1% Do Var1 %value% EndOn On Var1#State Do WebSend [192.168.2.37] Var1 %value% EndOn
 
-rule1 
-On DS18B20#Temperature!=%Var1% Do Var1 %value% EndOn 
+rule1
+On DS18B20#Temperature!=%Var1% Do Var1 %value% EndOn
 On Var1#State Do WebSend [192.168.2.37] Var1 %value% EndOn
 
-Rule2 
+Rule2
 ON DS18B20#Temperature==%Var1% DO Var1 %value% break
 ON DS18B20#Temperature!=%Var1% DO Var1 %value% ENDON
 On Var1#State Do publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value%
-ON DS18B20#Temperature>=7.0 DO power1 0 ENDON 
+ON DS18B20#Temperature>=7.0 DO power1 0 ENDON
 ON DS18B20#Temperature<7.0 DO power1 1 ENDON
 
-Rule3 
-ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK 
-ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value% ENDON 
+Rule3
+ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK
+ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value% ENDON
 On Var1#State Do publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value% ENDON
-ON DS18B20#Temperature>=7.0 DO power1 0 ENDON 
+ON DS18B20#Temperature>=7.0 DO power1 0 ENDON
 ON DS18B20#Temperature<7.0 DO power1 1 ENDON
 
 Rule3 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO Var1 %value% ENDON On Var1#State Do publish wiFiSocket4/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=7.0 DO power1 0 ENDON ON DS18B20#Temperature<7.0 DO power1 1 ENDON
