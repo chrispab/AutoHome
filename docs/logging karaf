@@ -1,0 +1,11 @@
+https://crazyivan359.github.io/openhab-helper-libraries/Getting%20Started/Installation.html
+
+Use the Karaf logging commands to enable debug logging for automation:
+log:set DEBUG org.openhab.core.automation. Leave this on for setup and testing,
+but you may want to set to WARN when everything is setup.
+For older openHAB builds before the ESH reintegration (older than snapshot 1566 and 2.5M2), you will need to change this to org.eclipse.smarthome.automation.
+
+Enable debug logging for jsr223: log:set DEBUG jsr223. This is the default logger used in the examples and the helper libraries.
+
+log:set WARN org.openhab.core.automation
+log:set DEBUG jsr223
