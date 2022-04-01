@@ -4,7 +4,7 @@ Group gKT_WiFiLightsReachable
 // Group gChristmasWifiPowerSockets
 Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
 
-
+Number KT_cupboard_lights_timeout
 
 //currently used for RPi mythtv_backend server
 Switch KT_light_1_Power "KT_light_1" (gMQTT, gKT_WiFiLightsPower, gKT_cupboardLights)  { channel = "mqtt:topic:KT_light_1:powerSwitch" }

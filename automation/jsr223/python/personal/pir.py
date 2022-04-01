@@ -58,19 +58,19 @@ def pir_light_on(event):
 @when("Item pir01_occupancy changed from ON to OFF") # or
 @when("Item pir02_occupancy changed from ON to OFF")
 def pir_light_off(event):
-    pir_light_off.log.debug("///// pir_occupancy_off triggering item : " + event.itemName + " : " + event.itemState.toString())
+    pir_light_off.log.debug("///// pir_occupancy_off, triggering item : " + event.itemName + " : " + event.itemState.toString())
 
     global pir01_off_timer
     global pir02_off_timer
 
     if event.itemName == "pir01_occupancy":
-        pir_light_off.log.debug("pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF ")
-        pir01_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir01_off_body())
+        pir_light_off.log.debug("pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off timer is: " + items["KT_cupboard_lights_timeout"].toString())
+        pir01_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(items["KT_cupboard_lights_timeout"].intValue()), lambda: pir01_off_body())
 
     if event.itemName == "pir02_occupancy":
     # if event.itemName == "pir01_occupancy":
-        pir_light_off.log.debug("pir02_occupancy : STARTING TIMER  KT_light_2&3_Power: OFF ")
-        pir02_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(lights_timeout), lambda: pir02_off_body())
+        pir_light_off.log.debug("pir02_occupancy : STARTING TIMER  KT_light_2&3_Power: OFF , off timer is: " + items["KT_cupboard_lights_timeout"].toString())
+        pir02_off_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(items["KT_cupboard_lights_timeout"].intValue()), lambda: pir02_off_body())
 
 def pir_off_body():
     if items["pir01_occupancy"] == OFF and items["pir02_occupancy"] == OFF:
