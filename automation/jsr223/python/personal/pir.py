@@ -18,9 +18,10 @@ reload(personal.util)
 def pir_change(event):
    pir_change.log.debug("*********pir_occupancy received update item : " + event.itemName + ", PREV: " + "PersistenceExtensions.previousState(ir.getItem(event.itemName), True)" + ", NOW: " + event.itemState.toString())
     # pir_change.log.error("pir01__occupancy received update")
-    # send_info("test", pir_change.log)                                                                                                #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
+    # send_info("test", pir_change.log)
+    # #PersistenceExtensions.previousState(ir.getItem("Weather_SolarRadiation"), True).state
 
-lights_timeout = 120
+# lights_timeout = 120
 pir01_off_timer = None
 pir02_off_timer = None
 

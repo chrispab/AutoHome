@@ -1,13 +1,15 @@
 Thing mqtt:topic:amplifier  "MQTT Thing: ir amplifier" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
     Type switch : standby "ir amplifier standby" [ stateTopic="irbridge/amplifier/standby", commandTopic="irbridge/amplifier/standby", on="on", off="off" ]
+    Type switch : power_on "ir amplifier power on" [ stateTopic="irbridge/amplifier/power_on", commandTopic="irbridge/amplifier/power_on", on="on", off="off" ]
+    Type switch : power_off "ir amplifier power off" [ stateTopic="irbridge/amplifier/power_off", commandTopic="irbridge/amplifier/power_off", on="on", off="off" ]
     Type switch : video1 "ir amplifier video1" [ stateTopic="irbridge/amplifier/video1", commandTopic="irbridge/amplifier/video1", on="on", off="off" ]
     Type switch : aux "ir amplifier aux" [ stateTopic="irbridge/amplifier/aux", commandTopic="irbridge/amplifier/aux", on="on", off="off" ]
     Type switch : tuner "ir amplifier tuner" [ stateTopic="irbridge/amplifier/tuner", commandTopic="irbridge/amplifier/tuner", on="on", off="off" ]
-    Type switch : tape1 "ir amplifier source tape1" [ stateTopic="irbridge/amplifier/tape1", commandTopic="irbridge/amplifier/tape1", on="on", off="off" ]
+    Type switch : tape1 "ir amplifier source tape1" [ stateTopic="irbridge/amplifier/tape1_mon", commandTopic="irbridge/amplifier/tape1_mon", on="on", off="off" ]
     Type switch : mute "ir amplifier mute" [ stateTopic="irbridge/amplifier/mute", commandTopic="irbridge/amplifier/mute", on="on", off="off" ]
-    Type switch : volumeup "ir amplifier volume up" [ stateTopic="irbridge/amplifier/volumeup", commandTopic="irbridge/amplifier/volumeup", on="on", off="off" ]
-    Type switch : volumedown "ir amplifier volume down" [ stateTopic="irbridge/amplifier/volumedown", commandTopic="irbridge/amplifier/volumedown", on="on", off="off" ]
+    Type switch : volumeup "ir amplifier volume up" [ stateTopic="irbridge/amplifier/volume_up", commandTopic="irbridge/amplifier/volume_up", on="on", off="off" ]
+    Type switch : volumedown "ir amplifier volume down" [ stateTopic="irbridge/amplifier/volume_down", commandTopic="irbridge/amplifier/volume_down", on="on", off="off" ]
     Type number : code "ir amplifier control code" [ stateTopic="irbridge/amplifier/code", commandTopic="irbridge/amplifier/code" ]
 
 
