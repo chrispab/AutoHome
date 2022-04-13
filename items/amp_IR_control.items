@@ -34,3 +34,4 @@ Switch amptestSwitch "amp test switch"
 //     label: '=(items.amplifierPowerOn.state === "ON" ) ? "-on-" : "-off-"'
 
 //   label: '=(items.amplifierPowerOff.state === "ON") ? "-on-" : "-off-"'
+// label: '=(items.amplifierPowerOff.state != "UNDEF" ) ? "Transmitting..." : "."'

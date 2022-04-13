@@ -13,7 +13,8 @@ command="SELECT value::integer INTO temp FROM measurement; DROP MEASUREMENT meas
 influx -database 'openhab' -execute "$(sed "s#measurement#$m#g" <<< $command)"
 
 
-I must admit, I encountered the same problem and worked around it, instead of raising an issue. I changed the type of my historic data to integer by storing it to a temporary measurement:
+I must admit, I encountered the same problem and worked around it, instead of raising an issue. I changed the type of my historic data to integer
+by storing it to a temporary measurement:
 
 
 docker exec -it influxdb influx
@@ -25,7 +26,27 @@ select value::integer into Flur_Bell_Lock from Flur_Bell_Lock2
 
 select value::integer into FR_Heater2 from FR_Heater
 drop measurement FR_Heater
+
 select value::integer into Zone3FanStatus from Zone3FanStatus2
 drop measurement Zone3FanStatus2
 
 Zone3VentSpeedStatus
+
+# trimming data from Soil1_Moisture series
+use openhab_db
+
+Run either in UI or cmd line: > SHOW MEASUREMENTS gives you the list of your items.
+
+list the entries of an item table with
+
+> SELECT * FROM Soil1_Moisture
+
+
+// delete all before
+// 1649774502282000000 98.4
+// 1649774507285000000 98.9
+// 1649774512290000000 100
+
+https://community.openhab.org/t/how-to-delete-data-from-influxdb-tables/63366
+
+DELETE FROM Soil1_Moisture WHERE time < 1649792496694000000
