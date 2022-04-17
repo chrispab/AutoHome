@@ -26,7 +26,10 @@ timer6 = None
 
 t_ampStandbyON = None
 
-t_CTtvPowerOff = None
+
+t_ampStandbyON = None
+t_ampVideo01 = None
+
 
 # var shutDownWaitTime = 20 //wait for pi shutdown in secs, before turning off power socket
 tStartup = None
@@ -57,11 +60,9 @@ def tv_startup_tbody():
         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
 
-t_ampStandbyON = None
-t_ampVideo01 = None
+#######################################
+t_CTtvPowerOff = None
 
-
-# //Conservatory Pi Kodi and TV on/off control
 @rule("Conservatory Pi Kodi and TV amp on", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vCT_TVKodiSpeakers received update ON")
 @when("Item vCT_TVKodiSpeakers2 received update ON")
@@ -81,6 +82,7 @@ def conservatory_tv_on(event):
     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifierVideo1", "ON"))
 
 
+#------------------------------------
 @rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vCT_TVKodiSpeakers received update OFF")
 @when("Item vCT_TVKodiSpeakers2 received update OFF")
@@ -99,6 +101,7 @@ def conservatory_tv_off(event):
         t_CTtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: tvoffbody())
 
 def tvoffbody():
+    global t_CTtvPowerOff
     events.sendCommand("CT_TV433PowerSocket", "OFF")
     events.sendCommand("bg_wifisocket_3_1_power", "OFF") #amp ir bridge hdmi audio extractor
     events.sendCommand("bg_wifisocket_1_1_power", "OFF") # kodi pi
@@ -106,7 +109,7 @@ def tvoffbody():
 
 
 
-
+#############################################
 # Bedroom Pi Kodi and TV on/off control
 @rule("bedroom Pi Kodi and TV", description="bedroom Pi Kodi and TV", tags=["tv"])
 @when("Item vBR_TVKodi received update ON")
