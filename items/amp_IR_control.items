@@ -1,14 +1,14 @@
-Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby" }
-Switch amplifierPowerOn "amplifier Power On" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_on", expire="1s"}//
-Switch amplifierPowerOff "amplifier Power Off" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_off", expire="1s"}//
-Switch amplifierMute "amplifier mute" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute", expire="1s" }
-Switch amplifierVideo1 "amplifier video one" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1", expire="1s" }
-Switch amplifierTuner "amplifier tuner" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner", expire="1s" }
-Switch amplifierAux "amplifier bluetooth" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux", expire="1s" }
-Switch amplifierVolumeUp "amplifier volume up" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup", expire="1s" }
-Switch amplifierVolumeDown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown", expire="1s" }
+// Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby", expire="1s,command=OFF" }
+Switch amplifierPowerOn "amplifier Power On" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_on", expire="1s,command=OFF"}//
+Switch amplifierPowerOff "amplifier Power Off" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_off", expire="1s,command=OFF"}//
+Switch amplifierMute "amplifier mute" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute", expire="1s,command=OFF" }
+Switch amplifierVideo1 "amplifier video one" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1", expire="1s,command=OFF"}
+Switch amplifierTuner "amplifier tuner" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner", expire="1s,command=OFF"}
+Switch amplifierAux "amplifier aux" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux", expire="1s,command=OFF" }
+Switch amplifierVolumeUp "amplifier volume up" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup", expire="1s,command=OFF" }
+Switch amplifierVolumeDown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown", expire="1s,command=OFF" }
 
-Switch amplifier_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1", expire="1s" }
+Switch amplifier_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1", expire="1s,command=OFF" }
 
 
 Number amplifiercode    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }

@@ -16,8 +16,6 @@ def init_BG_status(event):
     for item in ir.getItem("gBG_sockets_reachable").members:
         events.postUpdate(item, "Offline")
 
-    # events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "offline")
-
 
 # when a BG socket MQTT 'maxworktime' update comes in from device - updates frequency determined by broadlink2mqtt
 # use maxworktime as the value to monitor as using a pwr state may also come from rule updates etc and be a false presence
@@ -36,3 +34,4 @@ def bgAvail(event):
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(newname, "Offline"))
     else:
         timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
+

@@ -1,6 +1,7 @@
 Group gBGWiFiPowerSockets
 Group gBG_socket_maxworktime_updates
 Group gBG_sockets_reachable
+Group gbg
 
 //!double socket 1
 Switch bg_wifisocket_1_1_power "BG Socket one-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
@@ -18,9 +19,12 @@ Number bg_wifisocket_2_maxworktime "BG Socket 2-maxworktime" (gMQTT, gBGWiFiPowe
 String bg_wifisocket_2_reachable "BG Socket 2-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_2:reachable" }
 
 
-//double socket 3
-Switch bg_wifisocket_3_1_power "BG Socket three-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
-Switch amplifier_power "BG Socket three-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
+//double socket
+//left - 3-1  Amplifier
+Switch bg_wifisocket_3_1_power "BG Socket three-one" (gMQTT, gBGWiFiPowerSockets, gbg)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
+// Switch bg_wifisocket_3_1_power "Amplifier Power" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
+// String bg_wifisocket_3_1_device  "device name being controlled " { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1", expire="1s,HIFI power"}
+
 
 Switch bg_wifisocket_3_2_power "BG Socket three-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_2" }
 Number bg_wifisocket_3_maxworktime "BG Socket 3-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_3:maxworktime" }

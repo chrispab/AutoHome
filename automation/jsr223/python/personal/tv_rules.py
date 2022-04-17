@@ -70,18 +70,15 @@ def conservatory_tv_on(event):
     conservatory_tv_on.log.info("conservatory_tv_on")
     Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
-    # events.postUpdate("shutdownKodiConservatoryProxy", "ON")
-
-    events.sendCommand("CT_TV433PowerSocket", "ON")
-    events.sendCommand("amplifier_power", "ON")
-    events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "ON")
-
+    events.sendCommand("CT_TV433PowerSocket", "ON") #tv
+    events.sendCommand("bg_wifisocket_3_1_power", "ON") #amp ir bridge hdmi audio extractor
+    events.sendCommand("bg_wifisocket_1_1_power", "ON") # kodi pi
 
     if t_CTtvPowerOff is not None:
         t_CTtvPowerOff = None
 
-    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierStandby", "ON"))
-    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifiervideo1", "ON"))
+    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierPowerOn", "ON"))
+    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifierVideo1", "ON"))
 
 
 @rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
@@ -96,18 +93,15 @@ def conservatory_tv_off(event):
     # events.postUpdate("shutdownKodiConservatoryProxy", "OFF") - this routine can be removed if this works
     LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
     events.sendCommand("kodiConservatory_systemcommand","Shutdown")
-
-    events.sendCommand("amplifierStandby", "OFF")
+    events.sendCommand("amplifierPowerOff", "ON")
 
     if t_CTtvPowerOff is None:
         t_CTtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(30), lambda: tvoffbody())
 
-
 def tvoffbody():
     events.sendCommand("CT_TV433PowerSocket", "OFF")
-    events.sendCommand("amplifier_power", "OFF")
-    events.sendCommand("CT_pi_kodi_bg_wifisocket_1_power", "OFF")
-
+    events.sendCommand("bg_wifisocket_3_1_power", "OFF") #amp ir bridge hdmi audio extractor
+    events.sendCommand("bg_wifisocket_1_1_power", "OFF") # kodi pi
     t_CTtvPowerOff = None
 
 

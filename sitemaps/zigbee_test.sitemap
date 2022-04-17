@@ -9,7 +9,7 @@ sitemap zigbee_test label="ZigBee Test"
     Frame label="TV" {
         Switch item= vCT_TVKodiSpeakers label="Conservatory TV Kodi, Speakers"
         // Switch item= conservatoryTVPower label="TV" icon="screen"
-        Switch item= amplifier_power label="TV Soundbar" icon="receiver"
+        Switch item= bg_wifisocket_3_1_power label="Amplifier" icon="receiver"
         Switch item= radio label="Radio" icon="player"
         // Switch item= socketG4_1 label="Mythtv backend Pi server"
         Switch item= Scene_Goodnight label="scene-goodnight, turn off tv then lights etc"
