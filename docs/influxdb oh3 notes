@@ -49,4 +49,6 @@ list the entries of an item table with
 
 https://community.openhab.org/t/how-to-delete-data-from-influxdb-tables/63366
 
-DELETE FROM Soil1_Moisture WHERE time < 1649814933827000000
+DELETE FROM Soil1_Moisture WHERE time < 1650233745809000000
+
+DELETE FROM Soil1_Moisture_2 WHERE time = 1650288180388000000

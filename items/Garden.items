@@ -1,6 +1,6 @@
-Number  Soil1_Moisture      "Soil 1 Moisture"          (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
-Number  Soil1_Moisture_Raw      "Soil 1 Moisture"          (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw"}
-Number  Soil1_Moisture_2      "Soil 1 Moisture"          (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
+Number  Soil1_Moisture      "Soil 1 Moisture 1"          (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
+Number  Soil1_Moisture_Raw      "Soil 1 Moisture raw"          (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw"}
+Number  Soil1_Moisture_2      "Soil 1 Moisture 2"          (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
 
 String  Soil1_Reachable     "Soil 1 Moisture reachable"     (gMQTT)     { channel = "mqtt:topic:soil1:Reachable" }
 

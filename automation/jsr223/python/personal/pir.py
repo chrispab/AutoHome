@@ -39,13 +39,12 @@ def pir_light_on(event):
     if items["BridgeLightSensorLevel"] < items["ConservatoryLightTriggerLevel"] :
         if items["pir01_occupancy"] == ON:
             events.sendCommand("KT_light_1_Power", "ON")
-            pir_light_on.log.debug("rxed occupancy ON ")
+            pir_light_on.log.debug("rxed pir01_occupancy ON ")
             if pir01_off_timer is not None and not pir01_off_timer.hasTerminated():
                 pir01_off_timer.cancel()
                 pir_light_on.log.debug("CANCEL     STOP running pir01_off_timer")
 
         if items["pir02_occupancy"] == ON:
-        # if items["pir01_occupancy"] == ON:
             events.sendCommand("KT_light_2_Power", "ON")
             events.sendCommand("KT_light_3_Power", "ON")
             if pir02_off_timer is not None and not pir02_off_timer.hasTerminated():
