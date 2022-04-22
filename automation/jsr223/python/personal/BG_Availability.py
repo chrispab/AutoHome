@@ -31,7 +31,7 @@ def bgAvail(event):
     # bgAvail.log.debug("== BG sockets Online/Offline status marked  ONLINE::")
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
-        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(newname, "Offline"))
+        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(item_name_reachable, "Offline"))
     else:
         timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
 
