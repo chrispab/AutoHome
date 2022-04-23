@@ -7,6 +7,7 @@ Thing mqtt:topic:soil1  "MQTT Thing: Soil 1 Moisture level" (mqtt:broker:MyMQTTB
         Type number : Moisture  [ stateTopic="soil1/moisture" ]
         Type number : Moisture2  [ stateTopic="soil1/moisture_2" ]
         Type number : Moisture3  [ stateTopic="soil1/moisture_3" ]
+        Type number : Moisture4  [ stateTopic="soil1/moisture_4" ]
 
         Type number : MoistureRaw  [ stateTopic="soil1/moisture_raw" ]
 

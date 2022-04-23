@@ -62,21 +62,21 @@ def conservatory_fan_cool(event):
                 conservatory_fan_cool.log.debug(">>>> Conservatory_fan_ cool rulel turning fan off")
 
 
-@rule("React on Fan cooling recirc ENABLE turned on ON", description="React on Fan cooling recirc ENABLE turned on ON", tags=["conservatory", "fan"])
+# @rule("React on Fan cooling recirc ENABLE turned on ON", description="React on Fan cooling recirc ENABLE turned on ON", tags=["conservatory", "fan"])
+# # @when("Item CT_Fan_Cooling_enable changed from OFF to ON")
 # @when("Item CT_Fan_Cooling_enable changed from OFF to ON")
-@when("Item CT_Fan_Cooling_enable changed from OFF to ON")
-def conservatory_fan_cool_recirc_on(event):
-    # if items["CT_Heater"] != ON: # prevent doinbg when heater is on - cos it may be recircing
-    conservatory_fan_cool_recirc_on.log.debug("conservatory_fan_cool_recirc_on - no action required")
-        # events.sendCommand("CT_Fan433PowerSocket", "ON")
+# def conservatory_fan_cool_recirc_on(event):
+#     # if items["CT_Heater"] != ON: # prevent doinbg when heater is on - cos it may be recircing
+#     conservatory_fan_cool_recirc_on.log.debug("conservatory_fan_cool_recirc_on - no action required")
+#         # events.sendCommand("CT_Fan433PowerSocket", "ON")
 
-@rule("React on Fan cooling recirc ENABLE turned off", description="React on Fan cooling recirc ENABLE turned off", tags=["conservatory", "fan"])
-# @when("Item CT_Fan_Cooling_enable changed from OFF to ON")
-@when("Item CT_Fan_Cooling_enable changed from ON to OFF")
-def conservatory_fan_cool_recirc_on(event):
-    # if items["CT_Heater"] != ON: # prevent doinbg when heater is on - cos it may be recircing
-    conservatory_fan_cool_recirc_on.log.debug("conservatory_fan_cool_recirc_on - CT_Fan433PowerSocket OFF")
-    events.sendCommand("CT_Fan433PowerSocket", "OFF")
+# @rule("React on Fan cooling recirc ENABLE turned off", description="React on Fan cooling recirc ENABLE turned off", tags=["conservatory", "fan"])
+# # @when("Item CT_Fan_Cooling_enable changed from OFF to ON")
+# @when("Item CT_Fan_Cooling_enable changed from ON to OFF")
+# def conservatory_fan_cool_recirc_on(event):
+#     # if items["CT_Heater"] != ON: # prevent doinbg when heater is on - cos it may be recircing
+#     conservatory_fan_cool_recirc_on.log.debug("conservatory_fan_cool_recirc_on - CT_Fan433PowerSocket OFF")
+#     events.sendCommand("CT_Fan433PowerSocket", "OFF")
 
 
 
@@ -96,12 +96,12 @@ def conservatory_fan_cool_recirc_on(event):
 
 
 
-@rule("React on Fan Pulse (FanPulseSwitch) change/update", description="React on Fan Pulse (FanPulseSwitch) change/update", tags=["conservatory", "fan"])
-@when("Item FanPulseSwitch changed from OFF to ON")
-def conservatory_fan_pulse(event):
-    conservatory_fan_pulse.log.debug("conservatory_fan rulel now")
-    events.sendCommand("CT_Fan433PowerSocket", "ON")
+# @rule("React on Fan Pulse (FanPulseSwitch) change/update", description="React on Fan Pulse (FanPulseSwitch) change/update", tags=["conservatory", "fan"])
+# @when("Item FanPulseSwitch changed from OFF to ON")
+# def conservatory_fan_pulse(event):
+#     conservatory_fan_pulse.log.debug("conservatory_fan rulel now")
+#     events.sendCommand("CT_Fan433PowerSocket", "ON")
 
-    fan_pulse_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
-        25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
+#     fan_pulse_timer = ScriptExecution.createTimer(DateTime.now().plusSeconds(
+#         25), lambda: events.sendCommand("CT_Fan433PowerSocket", "OFF"))
 
