@@ -5,7 +5,7 @@ from core.triggers import when
 @rule("ikea remote testing", description="Handles ike remote actions", tags=["Ikea Remote"])
 @when("Item ZbRemote01Action received update")
 def ikea_remote(event):
-    ikea_remote.log.info("IKEA remote TEST")
+    ikea_remote.log.info("IKEA remote  TEST")
     ikea_remote.log.info("Remote01 rules==> Value: " + event.itemState.toString())
 
     if event.itemState.toString() == "toggle":

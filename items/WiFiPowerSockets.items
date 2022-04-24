@@ -27,7 +27,7 @@ Number wifi_socket_4_temperature	"WiFi Socket 4 Temperature"				{ channel = "mqt
 Number wifi_socket_4_temperatureSetpoint
 
 //xmas lights
-Switch wifi_socket_5_power "attic tv & kodi power" (gMQTT, gWiFiPowerSockets, gChristmasLights) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
+Switch wifi_socket_5_power "attic tv & kodi power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
 String wifi_socket_5_reachable "attic tv reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket5:reachable" }
 Number wifi_socket_5_rssi "attic tv RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:rssi" }
 

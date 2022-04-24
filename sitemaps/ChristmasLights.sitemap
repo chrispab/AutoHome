@@ -1,14 +1,14 @@
 sitemap ChristmasLights label="Christmas Lights"
 {
    Frame label="All Christmas Lights" {
-          Switch item=gChristmasLights label="all Christmas Lights" icon="light"
+        //   Switch item=gChristmasLights label="all Christmas Lights" icon="light"
          // Group item=gXmasLights label="Xmas Lights Group"
- } 
+ }
 
 //  Frame label="individual" {
     Frame label="Front Room Lights" {
           Switch item= WiFiSocket1Power label="Tree Lights" icon="light"
- }  
+ }
 
 
 
