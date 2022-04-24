@@ -141,6 +141,7 @@ rules.JSRule({
       items.getItem("CT_Fan433PowerSocket").sendCommand("ON");
       actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), function() {
         items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+        items.getItem('FanPulseSwitch').sendCommand('OFF');
         console.error("*********************************  fan pulse CT_Fan433PowerSocket OFF");
       });
 

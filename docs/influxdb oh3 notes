@@ -52,3 +52,4 @@ https://community.openhab.org/t/how-to-delete-data-from-influxdb-tables/63366
 DELETE FROM Soil1_Moisture WHERE time < 1650233745809000000
 
 DELETE FROM Soil1_Moisture_2 WHERE time = 1650288180388000000
+DELETE FROM Soil1_Moisture_5 WHERE time < 1650747600041000000
