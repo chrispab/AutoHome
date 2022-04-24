@@ -79,7 +79,7 @@ def conservatory_tv_on(event):
         t_CTtvPowerOff = None
 
     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierPowerOn", "ON"))
-    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(50), lambda: events.sendCommand("amplifierVideo1", "ON"))
+    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifierVideo1", "ON"))
 
 
 #------------------------------------

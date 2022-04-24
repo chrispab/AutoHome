@@ -195,6 +195,8 @@ Items {
 
     pir01_illuminance_lux : strategy = everyUpdate
     co2sensor_01_ppm : strategy = everyUpdate
+    pir01_occupancy : strategy = everyUpdate
+    pir02_occupancy : strategy = everyUpdate
 
     Soil1_Moisture_Raw : strategy = everyUpdate
     Soil1_Moisture : strategy = everyUpdate
