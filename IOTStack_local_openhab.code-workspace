@@ -5,11 +5,11 @@
 		}
 	],
 	"settings": {
-		// "openhab.host" : "192.168.0.100",
-		// "openhab.port": 8080,
-		// "openhab.remoteLspPort": 5007,
 		"openhab.useRestApi": true,
-		// "openhab.languageserver.remoteLspPort": 5007,
 		"openhab.connection.host": "192.168.0.100",
-		"openhab.connection.port": 8080
+		"openhab.connection.port": 8080,
+		"openhab.connection.basicAuth.username": "",
+		"openhab.connection.basicAuth.password": "",
+		"openhab.languageserver.remoteEnabled": true,
+		"openhab.languageserver.remotePort": 5008,
 	}}

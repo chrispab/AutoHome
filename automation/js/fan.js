@@ -22,7 +22,7 @@ rules.JSRule({
   name: "conservatory fan circulate heat Cron",
   description: "conservatory fan circulate heat Cron",
   triggers: [triggers.GenericCronTrigger("0 0/5 * * * ?")],
-  execute: data => {
+  execute: (data) => {
     console.error("ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ");
     fanOnSecs = 240;
     setPoint = items.getItem("CT_TemperatureSetpoint").state;
