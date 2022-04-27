@@ -26,7 +26,12 @@ rules.JSRule({
   ],
   execute: (data) => {
     console.error("ON ON ON =======  pir_occupancy received update itemName : " + data.itemName + ", state: " + items.getItem(data.itemName).state + ", PREV state: " + items.getItem(data.itemName).history.previousState() );
-    if (items.getItem("BridgeLightSensorLevel").state < items.getItem("ConservatoryLightTriggerLevel").state) {
+    console.error("BridgeLightSensorLevel: " + items.getItem("BridgeLightSensorLevel").rawState);
+    console.error("ConservatoryLightTriggerLevel: " + items.getItem("ConservatoryLightTriggerLevel").rawState);
+    console.error("pir01_occupancy: " + items.getItem("pir01_occupancy").state);
+
+    if ((items.getItem("BridgeLightSensorLevel").rawState) < (items.getItem("ConservatoryLightTriggerLevel").rawState)) {
+      console.error("pir01_occupancy inner: " + items.getItem("pir01_occupancy").state);
       if (items.getItem("pir01_occupancy").state == "ON") {
         items.getItem("KT_light_1_Power").sendCommand("ON");
         console.error("ON ON ON ======= rxed pir01_occupancy ON");
@@ -46,6 +51,8 @@ rules.JSRule({
         }
       }
     }
+    console.error("pir01_occupancy: end");
+
   },
 });
 
@@ -62,13 +69,13 @@ rules.JSRule({
       if ( data.itemName == "pir01_occupancy") {
         console.error("update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: " + items.getItem("KT_cupboard_lights_timeout").state.toString());
         let now = time.ZonedDateTime.now();
-        pir01_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").state), pir1_off_body);
+        pir01_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").rawState), pir1_off_body);
         console.error("update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END");
       }
       if ( data.itemName == "pir02_occupancy") {
-        console.error("update=========== : STARTING TIMER KT_light_2&3_Power : OFF, off timer is: " + items.getItem("KT_cupboard_lights_timeout").state.toString());
+        console.error("update=========== : STARTING TIMER KT_light_2&3_Power : OFF, off timer is: " + items.getItem("KT_cupboard_lights_timeout").state);
         let now = time.ZonedDateTime.now();
-        pir02_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").state), pir2_off_body);
+        pir02_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").rawState), pir2_off_body);
         console.error("update===========pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END");
       }
     }
