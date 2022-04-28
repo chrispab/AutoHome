@@ -55,12 +55,7 @@ rules.JSRule({
   description: "Fan heat recirc ENABLE turned ON",
   triggers: [triggers.ItemStateChangeTrigger("CT_Fan_Heating_circulate_enable", "OFF", "ON")],
   execute: (data) => {
-    // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");
-    // items.getItem("ZbWhiteBulb02Switch").sendCommand("OFF");
-    // actions.NotificationAction.sendNotification(email, "Balcony lights are  OFF");
     console.error("*********************************  conservatory_fan_heat_recirc_on - no action required");
-    // console.error("*********************************  conservatory_fan_cool_recirc_off - - CT_Fan433PowerSocket OFF");
-    // items.getItem("CT_Fan433PowerSocket").sendCommand("OFF");
   },
 });
 
@@ -76,11 +71,7 @@ rules.JSRule({
   description: "Fan heat recirc ENABLE turned off",
   triggers: [triggers.ItemStateChangeTrigger("CT_Fan_Heating_circulate_enable", "ON", "OFF")],
   execute: (data) => {
-    // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");
-    // items.getItem("ZbWhiteBulb02Switch").sendCommand("OFF");
-    // actions.NotificationAction.sendNotification(email, "Balcony lights are  OFF");
     console.error("*********************************  conservatory_fan_heat_recirc_off - CT_Fan433PowerSocket OFF");
-    // console.error("*********************************  conservatory_fan_cool_recirc_off - - CT_Fan433PowerSocket OFF");
     items.getItem("CT_Fan433PowerSocket").sendCommand("OFF");
   },
 });
@@ -146,10 +137,6 @@ rules.JSRule({
   description: "Fan cooling  ENABLE turned ON",
   triggers: [triggers.ItemStateChangeTrigger("CT_Fan_Cooling_enable", "OFF", "ON")],
   execute: (data) => {
-    // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");
-    // items.getItem("ZbWhiteBulb02Switch").sendCommand("OFF");
-    // actions.NotificationAction.sendNotification(email, "Balcony lights are  OFF");
-    // console.info("*********************************  conservatory_fan_cool_recirc_on - no action required");
     console.error("*********************************  conservatory_fan_cool_recirc_on - no action required");
   },
 });
@@ -165,10 +152,6 @@ rules.JSRule({
   description: "Fan cooling  ENABLE turned OFF",
   triggers: [triggers.ItemStateChangeTrigger("CT_Fan_Cooling_enable", "ON", "OFF")],
   execute: (data) => {
-    // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");
-    // items.getItem("ZbWhiteBulb02Switch").sendCommand("OFF");
-    // actions.NotificationAction.sendNotification(email, "Balcony lights are  OFF");
-    // console.info("*********************************  conservatory_fan_cool_recirc_off - - CT_Fan433PowerSocket OFF");
     console.error("*********************************  conservatory_fan_cool_recirc_off - - CT_Fan433PowerSocket OFF");
     items.getItem("CT_Fan433PowerSocket").sendCommand("OFF");
   },

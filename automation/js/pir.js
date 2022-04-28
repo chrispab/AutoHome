@@ -34,7 +34,7 @@ rules.JSRule({
       console.error("pir01_occupancy inner: " + items.getItem("pir01_occupancy").state);
       if (items.getItem("pir01_occupancy").state == "ON") {
         items.getItem("KT_light_1_Power").sendCommand("ON");
-        console.error("ON ON ON ======= rxed pir01_occupancy ON");
+        console.error("ON ON ON ======= rxed pir01_occupancy KT_light_1_Power ON");
         //cancrl the off timer if running
         if( pir01_off_timer && pir01_off_timer.isActive()){
           pir01_off_timer.cancel();
@@ -44,7 +44,7 @@ rules.JSRule({
       if (items.getItem("pir02_occupancy").state == "ON") {
         items.getItem("KT_light_2_Power").sendCommand("ON");
         items.getItem("KT_light_3_Power").sendCommand("ON");
-        console.error("ON ON ON ======= rxed pir02_occupancy ON");
+        console.error("ON ON ON ======= rxed pir02_occupancy KT_light_2 3_PowerON");
         if( pir02_off_timer && pir02_off_timer.isActive()){
           pir02_off_timer.cancel();
           console.error("ON ON ON ======= CANCEL     STOP running pir02_off_timer");
