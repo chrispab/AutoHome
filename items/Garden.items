@@ -5,6 +5,7 @@ Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqt
 Number  Soil1_Moisture_4    "Soil 1 Moisture 4"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture4"}
 Number  Soil1_Moisture_5    "Soil 1 Moisture 5"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture5"}
 Number  Soil1_Moisture_6    "Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
+Number  Soil1_Moisture_xxx    "xxx Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
 
 String  Soil1_Reachable     "Soil 1 Moisture reachable" (gMQTT)   { channel = "mqtt:topic:soil1:Reachable" }
 

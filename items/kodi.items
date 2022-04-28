@@ -34,13 +34,13 @@ Switch shutdownKodiAtticProxy "shutdown KodiAttic"
 
 
 //kodi conservatory
-Player kodiConservatory_control "Kodi  Pause"   { channel="kodi:kodi:KodiConservatory:control" }
+Player kodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
 Switch pauseKodiConservatoryProxy "pause conservatory kodi"
-String kodiConservatory_systemcommand "Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
+String kodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
 //kodi bindingg items
 Switch KodiConservatory_mute                  "Mute"                      { channel="kodi:kodi:KodiConservatory:mute" }
 Dimmer KodiConservatory_volume                "Volume [%d]"               { channel="kodi:kodi:KodiConservatory:volume" }
-Player KodiConservatory_control               "Control"                   { channel="kodi:kodi:KodiConservatory:control" }
+// Player KodiConservatory_control               "Control"                   { channel="kodi:kodi:KodiConservatory:control" }
 Switch KodiConservatory_stop                  "Stop"                      { channel="kodi:kodi:KodiConservatory:stop" }
 String KodiConservatory_title                 "Title [%s]"                { channel="kodi:kodi:KodiConservatory:title" }
 String KodiConservatory_showtitle             "Show title [%s]"           { channel="kodi:kodi:KodiConservatory:showtitle" }

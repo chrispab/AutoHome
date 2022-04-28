@@ -18,12 +18,12 @@ rules.JSRule({
         //     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierPowerOn", "ON"))
         actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
             items.getItem("amplifierPowerOn").sendCommand("ON");
-            console.error("STEREO - turn on amp");
+            console.error("STEREO - IR turn on amp from standby");
         });
         //     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifierVideo1", "ON"))
         actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(40), function () {
             items.getItem("amplifierAux").sendCommand("ON");
-            console.error("STEREO - switch to aux source");
+            console.error("STEREO - IR amp switch to aux source");
         });
     },
 });

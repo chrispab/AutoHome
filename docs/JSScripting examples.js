@@ -1,4 +1,30 @@
-        //timer creation
+//e.g rule
+rules.JSRule({
+    name: "turn OFF conservatory stereo",
+    description: "turn OFF conservatory stereo",
+    triggers: [
+    triggers.ItemStateUpdateTrigger("vCT_stereo", "OFF"),
+    ],
+    execute: (data) => {
+        console.error("Turning OFF stereo - kodi, amp, and bridges");
+        items.getItem("kodiConservatory_systemcommand").sendCommand("Shutdown");//shutdown CT Pi
+        items.getItem("bg_wifisocket_3_1_power").sendCommand("OFF");//amp ir bridge hdmi audio extractor
+        console.error("STEREO - turned OFF amp, and bridges");
+        //if stereo off timer is not defined or completed, restart the stereo off timer
+        if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
+            CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(60), function () {
+                items.getItem("bg_wifisocket_1_1_power").sendCommand("OFF");//kodi pi
+                console.error("STEREO - turned OFF kodi");
+            });
+        }
+    },
+});
+
+
+
+
+
+//timer creation
         //if stereo off timer is not defined or completed, restart the stereo off timer
         if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
             CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(60), function () {
