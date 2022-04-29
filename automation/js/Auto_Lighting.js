@@ -34,19 +34,20 @@ rules.JSRule({
 // def auto_lighting_on_morning(event):
 //     if items["BridgeLightSensorState"] == OFF:
 //         events.sendCommand("gConservatoryLights", "ON")
-rules.JSRule({
-    name: "CRON auto turn On conservatory lights early early MORNING",
-    description: "CRON auto turn On conservatory lights early MORNING",
-    triggers: [
-        triggers.GenericCronTrigger("0 30 0 * * ?")
-    ],
-    execute: (data) => {
-        if (items.getItem("gConservatoryLights").state == "OFF") {
-            console.error("CRON auto turn On conservatory lights early MORNING");
-            items.getItem("gConservatoryLights").sendCommand("ON");
-        }
-    },
-});
+//! renenable when back in office
+// rules.JSRule({
+//     name: "CRON auto turn On conservatory lights early early MORNING",
+//     description: "CRON auto turn On conservatory lights early MORNING",
+//     triggers: [
+//         triggers.GenericCronTrigger("0 30 06 * * ?")
+//     ],
+//     execute: (data) => {
+//         if (items.getItem("gConservatoryLights").state == "OFF") {
+//             console.error("CRON auto turn On conservatory lights early MORNING");
+//             items.getItem("gConservatoryLights").sendCommand("ON");
+//         }
+//     },
+// });
 
 
 // @rule("auto_lighting_off_morning", description="Handles fan actions", tags=["conservatory"])
@@ -64,7 +65,7 @@ rules.JSRule({
     ],
     execute: (data) => {
         console.error("turn OFF conservatory lights when ambient light level high");
-        items.getItem("conservatoryLightsProxy").sendCommand("OFF");
+        items.getItem("gConservatoryLights").sendCommand("OFF");
         items.getItem("gColourBulbs").sendCommand("OFF");
     },
 });

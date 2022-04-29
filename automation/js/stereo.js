@@ -43,7 +43,7 @@ rules.JSRule({
         //if stereo off timer is not defined or completed, restart the stereo off timer
         if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
             CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(60), function () {
-                items.getItem("bg_wifisocket_1_1_power").sendCommand("OFF");//kodi pi
+                items.getItem("bg_wifisocket_1_1_power").sendCommand("OFF");//CT kodi pi
                 console.error("STEREO - turned OFF kodi");
             });
         }
