@@ -94,7 +94,7 @@ def conservatory_tv_off(event):
 
     # events.postUpdate("shutdownKodiConservatoryProxy", "OFF") - this routine can be removed if this works
     LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
-    events.sendCommand("kodiConservatory_systemcommand","Shutdown")
+    events.sendCommand("KodiConservatory_systemcommand","Shutdown")
     events.sendCommand("amplifierPowerOff", "ON")
 
     if t_CTtvPowerOff is None:

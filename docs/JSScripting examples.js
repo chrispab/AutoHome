@@ -37,3 +37,28 @@ rules.JSRule({
                 console.error("STEREO - turned OFF amp, kodi and brideges");
             });
         }
+
+
+        code usage in YAML: view of a component/widget
+        visible: =items.TV_Powered.state === 'ON' && items.TV_Input.state === 'HDMI1'
+
+        visible: =items.KodiConservatory_fanart.state
+
+
+        KodiConservatory_fanart
+
+
+        component: oh-slider-card
+        config:
+          item: KodiConservatory_currenttime
+          outline: true
+          title: track time
+          max: =items.KodiConservatory_duration
+        slots: null
+
+        footer: =items.KodiConservatory_album.state
+
+        =items.KodiConservatory_ctp.state.intValue()
+
+        =items.CT_Temperature.state
+

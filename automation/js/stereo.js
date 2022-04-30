@@ -16,13 +16,13 @@ rules.JSRule({
         }
 
         //     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifierPowerOn", "ON"))
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
-            items.getItem("amplifierPowerOn").sendCommand("ON");
+        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), function () {
+            items.getItem("amplifierPowerOn").sendCommand("ON");// IR code
             console.error("STEREO - IR turn on amp from standby");
         });
         //     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifierVideo1", "ON"))
         actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(40), function () {
-            items.getItem("amplifierAux").sendCommand("ON");
+            items.getItem("amplifierAux").sendCommand("ON");//IR code
             console.error("STEREO - IR amp switch to aux source");
         });
     },
@@ -37,7 +37,7 @@ rules.JSRule({
     ],
     execute: (data) => {
         console.error("Turning OFF stereo - kodi, amp, and bridges");
-        items.getItem("kodiConservatory_systemcommand").sendCommand("Shutdown");//shutdown CT Pi
+        items.getItem("KodiConservatory_systemcommand").sendCommand("Shutdown");//shutdown CT Pi
         items.getItem("bg_wifisocket_3_1_power").sendCommand("OFF");//amp ir bridge hdmi audio extractor
         console.error("STEREO - turned OFF amp, and bridges");
         //if stereo off timer is not defined or completed, restart the stereo off timer

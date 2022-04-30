@@ -17,6 +17,8 @@ Thing kodi:kodi:KodiConservatory "Kodi Conservatory" @ "Conservatory" [ipAddress
         Type string : title [ title="openHAB  - Weather", icon="sun_clouds" ]
         Type string : album [ title="openHAB - Weather", icon="sun_clouds" ]
         Type string : artist [ title="openHAB - Weather", icon="sun_clouds" ]
+        Type player : control  [ title="openHAB - Weather", icon="sun_clouds" ]
+
 
 }
 // String KodiConservatory_title                 "Title [%s]"                { channel="kodi:kodi:KodiConservatory:title" }

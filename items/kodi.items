@@ -28,15 +28,15 @@ Player kodiAttic_control "Kodi Pause"   { channel="kodi:kodi:KodiAttic:control" 
 Switch pauseKodiAtticProxy "pause Front Room kodi"
 
 String kodiAttic_systemcommand "Systemcommand" { channel="kodi:kodi:KodiAttic:systemcommand" }
-Switch shutdownKodiAtticProxy "shutdown KodiAttic"
+Switch shutdownKodiAtticProxy "shutdown  KodiAttic"
 
 
 
 
 //kodi conservatory
-Player kodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
+Player KodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
 Switch pauseKodiConservatoryProxy "pause conservatory kodi"
-String kodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
+String KodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
 //kodi bindingg items
 Switch KodiConservatory_mute                  "Mute"                      { channel="kodi:kodi:KodiConservatory:mute" }
 Dimmer KodiConservatory_volume                "Volume [%d]"               { channel="kodi:kodi:KodiConservatory:volume" }
