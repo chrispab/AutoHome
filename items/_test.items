@@ -11,7 +11,6 @@ Switch testSwitch1 "test switch1"
 Switch Virtual_Switch_1 "virtual switch 1"
 
 
-Number outsideReboots    "outsideReboots"
 
 Number HL_WD_1_hrs "HL_WD_1_hrs"
 Number HL_WD_1_mins "HL_WD_1_mins"

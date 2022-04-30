@@ -12,7 +12,6 @@ import org.openhab.io.openhabcloud.NotificationAction as NotificationAction
 def outside_startup(event):
     LogAction.logError("outside sensor  startup", "outside sensor  startup")
     if items["outsideReboots"] == NULL:
-        # items["ousideReboots"] = DecimalType(0)
         events.postUpdate(ir.getItem("outsideReboots"), 0)
 
 
