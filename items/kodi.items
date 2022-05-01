@@ -62,6 +62,6 @@ String KodiConservatory_genrelist             "Genres [%s]"               { chan
 Image  KodiConservatory_thumbnail                                         { channel="kodi:kodi:KodiConservatory:thumbnail" }
 Image  KodiConservatory_fanart                                            { channel="kodi:kodi:KodiConservatory:fanart" }
 Number:Time KodiConservatory_currenttime      "Current Time [%d %unit%]"  { channel="kodi:kodi:KodiConservatory:currenttime" }
-Number:Dimensionless KodiConservatory_ctp     "Current Time [%d %unit%]"  { channel="kodi:kodi:KodiConservatory:currenttimepercentage" }
+Number:Dimensionless KodiConservatory_ctp     "Current Time [%d ]"  { channel="kodi:kodi:KodiConservatory:currenttimepercentage" }
 Number:Time KodiConservatory_duration         "Duration [%d %unit%]"      { channel="kodi:kodi:KodiConservatory:duration" }
 String KodiConservatory_playnotification      "Play notification URI"     { channel="kodi:kodi:KodiConservatory:playnotification" }

@@ -7,8 +7,10 @@
 // }
 
 // Thing mail:smtp:samplesmtp [ hostname="smtp.example.com", sender="mail@example.com", security="SSL", username="user", password="pass" ]
-Thing mail:smtp:gmail [ hostname="smtp.gmail.com", port="587", sender="cbattisson@gmail.com", security="STARTTLS", username="cbattisson@gmail.com", password="qofmdkqykvzxtgwf" ]
+Thing mail:smtp:gmail [ hostname="smtp.gmail.com", sender="cbattisson@gmail.com", port="587", security="STARTTLS", username="cbattisson@gmail.com", password="kslm ngyk ikzl pmgw" ]
 // Thing mail:smtp:samplesmtp [ hostname="smtp.example.com", sender="mail@example.com", security="SSL", username="user", password="pass" ]
 // Thing mail:smtp:gmail [ hostname="smtp.gmail.com", sender="myemail@addr", port="587", security="STARTTLS", username="xxxxxxxxxx@gmail.com", password="mypassword" ]
 // app password for openhab in gamil
 //qofmdkqykvzxtgwf
+
+//kslmngykikzlpmgw

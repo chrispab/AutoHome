@@ -20,8 +20,23 @@ rules.JSRule({
     },
 });
 
+//cron
+rules.JSRule({
+    name: "CRON Hello World",
+    description: "CRON Hello World",
+    triggers: [
+        triggers.GenericCronTrigger("0/15 * * * * ?")
+    ],
+    execute: (data) => {
+        if (items.getItem("gConservatoryLights").state == "OFF") {
+            console.error("CRON Hello  World");
+            // items.getItem("gConservatoryLights").sendCommand("ON");
 
-
+            // var {alerting} = require('personal');
+            // alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
+        }
+    },
+});
 
 
 //timer creation
@@ -62,3 +77,29 @@ rules.JSRule({
 
         =items.CT_Temperature.state
 
+
+        //sending emails
+        var {alerting} = require('personal');
+        alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
+
+
+        component: oh-gauge-card
+        config:
+          item: KodiConservatory_currenttime
+          min: 0
+          max: =items.KodiConservatory_duration.rawState.intValue()
+          outline: true
+          title: Track %
+          type: circle
+          valueTextColor: red
+        slots: null
+        component: oh-gauge-card
+        config:
+          item: KodiConservatory_currenttime
+          min: 0
+          max: =items.KodiConservatory_duration.rawState.intValue()
+          outline: true
+          title: Track %
+          type: circle
+          valueTextColor: red
+        slots: null

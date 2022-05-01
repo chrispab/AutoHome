@@ -3,7 +3,7 @@ rules.JSRule({
     name: "turn ON conservatory stereo",
     description: "turn ON conservatory stereo",
     triggers: [
-    triggers.ItemStateUpdateTrigger("vCT_stereo", "ON"),
+    triggers.ItemStateChangeTrigger("vCT_stereo", "OFF", "ON"),
     ],
     execute: (data) => {
         console.error("Turning on stereo - kodi, amp,and selecting Aux" );
@@ -33,7 +33,9 @@ rules.JSRule({
     name: "turn OFF conservatory stereo",
     description: "turn OFF conservatory stereo",
     triggers: [
-    triggers.ItemStateUpdateTrigger("vCT_stereo", "OFF"),
+    // triggers.ItemStateUpdateTrigger("vCT_stereo", "OFF"),
+    triggers.ItemStateChangeTrigger("vCT_stereo", "ON", "OFF"),
+
     ],
     execute: (data) => {
         console.error("Turning OFF stereo - kodi, amp, and bridges");

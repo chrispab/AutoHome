@@ -23,6 +23,9 @@ rules.JSRule({
         if (items.getItem("gConservatoryLights").state == "OFF") {
             console.error("CRON auto turn On conservatory lights MORNING");
             items.getItem("gConservatoryLights").sendCommand("ON");
+
+            var {alerting} = require('personal');
+            alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
         }
     },
 });
@@ -67,6 +70,9 @@ rules.JSRule({
         console.error("turn OFF conservatory lights when ambient light level high");
         items.getItem("gConservatoryLights").sendCommand("OFF");
         items.getItem("gColourBulbs").sendCommand("OFF");
+
+        var {alerting} = require('personal');
+        alerting.sendInfo('auto turn OFF conservatory lights');
     },
 });
 
@@ -88,6 +94,9 @@ rules.JSRule({
         console.error("turn ON conservatory lights when ambient light level low");
         // items.getItem("conservatoryLightsProxy").sendCommand("ON");
         items.getItem("gConservatoryLights").sendCommand("ON");
+
+        var {alerting} = require('personal');
+        alerting.sendInfo('auto turn ON conservatory lights if getting dark');
     },
 });
 
@@ -108,5 +117,8 @@ rules.JSRule({
         console.error("CRON turn OFF conservatory lights when late - maybe forgot");
         items.getItem("gConservatoryLights").sendCommand("OFF");
         items.getItem("gColourBulbs").sendCommand("OFF");
+
+        var {alerting} = require('personal');
+        alerting.sendInfo('CRON auto turn OFF conservatory lights');
     },
 });

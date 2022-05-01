@@ -108,7 +108,7 @@ rules.JSRule({
     console.error("**********************conservatory_fan_ cool rulel - check if cooling fan reqd");
 
     var {alerting} = require('personal');
-    alerting.sendInfo('EMAIL IS NOW WORKING FROM OPENHAB');
+    // alerting.sendInfo('FROM fan OPENHABvv');
     // alerting.sendAlert('The following Chromecast devices are now in use');
 
     if (items.getItem("CT_Fan_Cooling_enable").state == "ON") {
