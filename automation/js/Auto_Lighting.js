@@ -14,13 +14,14 @@
 //     if items["BridgeLightSensorState"] == OFF:
 //         events.sendCommand("gConservatoryLights", "ON")
 rules.JSRule({
-    name: "CRON auto turn On conservatory lights MORNING",
-    description: "CRON auto turn On conservatory lights MORNING",
+    name: "CRON auto turn On conservatory lights MORNING if dark",
+    description: "CRON auto turn On conservatory lights MORNING if dark",
     triggers: [
         triggers.GenericCronTrigger("0 0 07 * * ?")
     ],
     execute: (data) => {
-        if (items.getItem("gConservatoryLights").state == "OFF") {
+        if (items.getItem("BridgeLightSensorState").state == "OFF") {        //!only turn on if dark
+
             console.error("CRON auto turn On conservatory lights MORNING");
             items.getItem("gConservatoryLights").sendCommand("ON");
 

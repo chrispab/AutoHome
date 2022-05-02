@@ -103,3 +103,35 @@ rules.JSRule({
           type: circle
           valueTextColor: red
         slots: null
+        component: oh-gauge-card
+        config:
+          min: 0
+          max: =items.KodiConservatory_duration.rawState.intValue()
+          outline: true
+          title: Track time
+          type: circle
+          valueTextColor: red
+          value: =items.KodiConservatory_currenttime.rawState.intValue()
+          valueText: =items.KodiConservatory_currenttime.state
+        slots: null
+        =items.KodiConservatory_duration.split(' ')[0].intValue()
+        =items.KodiConservatory_duration.state.split(' ')[0]
+
+        =(Number.parseFloat(items.MainFloor_Humidity.state.split(" ")[0]) < 35) ? "red" : (Number.parseFloat(items.MainFloor_Humidity.state.split(" ")[0]) < 75) ? "yellow" : "blue"
+
+        =Number.parseInt(items.KodiConservatory_duration.state.split(' ')[0])
+        KodiConservatory_currenttime
+        =Number.parseFloat(items.KodiConservatory_currenttime.state.split(' ')[0])
+        component: oh-gauge-card
+        config:
+          min: 0
+          max: =Number.parseFloat(items.KodiConservatory_duration.state.split(' ')[0])
+          outline: true
+          title: Track time
+          type: circle
+          valueTextColor: red
+          value: =Number.parseFloat(items.KodiConservatory_currenttime.state.split(' ')[0])
+          valueText: =items.KodiConservatory_currenttime.state
+        slots: null
+        =items.KodiConservatory_ctp.state.toString()
+        =Number.parseInt(items.KodiConservatory_ctp.state.split(' ')[0])

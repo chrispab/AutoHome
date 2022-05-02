@@ -4,6 +4,6 @@ Switch	vFR_TVKodi	"Front room TV"			<switch>	(gFrontRoom)		{ ga="Switch" [ roomH
 Switch	vFR_TVKodi2	"Lounge TV"			<switch>	(gFrontRoom)		{ ga="Switch" [ roomHint="Front Room" ] }
 
 Switch	vCT_TVKodiSpeakers	"Conservatory TV"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
-Switch	vCT_TVKodiSpeakers2	"the telly"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
+Switch	vCT_TVKodiSpeakers2	"telly"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
 
 Switch	vAT_TVKodi		"Attic TV"		<switch>	(gAttic)			{ synonyms="Attic Telly", ga="Switch" [ roomHint="Attic" ] }
