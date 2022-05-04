@@ -1,19 +1,13 @@
-// from core.rules import rule
-// from core.triggers import when
-// from core.actions import LogAction
-// from core.actions import ScriptExecution
-// from java.time import ZonedDateTime as DateTime
-
-// import org.openhab.io.openhabcloud.NotificationAction as NotificationAction
-
-
 // @rule("outside sensor  startup", description="outside sensor ", tags=["Heating"])
 // @when("System started")
 // def outside_startup(event):
 //     LogAction.logError("outside sensor  startup", "outside sensor  startup")
 //     if items["outsideReboots"] == NULL:
 //         events.postUpdate(ir.getItem("outsideReboots"), 0)
-
+scriptLoaded = function () {
+    console.error("scriptLoaded init outside sensor stuff");
+    // loadedDate = Date.now();
+  };
 
 // t1 = None
 
@@ -31,6 +25,27 @@
 //     events.sendCommand("outsideSensorPower", "OFF")
 //     t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand("outsideSensorPower", "ON"))
 //     events.postUpdate(ir.getItem("outsideReboots"), items["outsideReboots"].intValue() + 1)
+rules.JSRule({
+    name: "outside sensor went offline",
+    description: "outside sensor went offline",
+    triggers: [
+        triggers.ItemStateUpdateTrigger("Outside_Reachable", "Offline"),
+    ],
+    execute: (data) => {
+        console.error("outside sensor went offline");
+        var {alerting} = require('personal');
+        alerting.sendInfo('outside sensor went offline');
+        // alerting.sendAlert('Outside_Reachable gone Online');
+
+        if (items.getItem("ousideReboots").state == "NULL"){
+            items.getItem("ousideReboots").postUpdate("OFF");
+        }
+        // items.getItem("outsideSensorPower").sendCommand("OFF");
+
+
+    },
+});
+
 
 
 // @rule("outside sensor came online", description="outside sensor came online", tags=["notification"])
@@ -38,4 +53,17 @@
 // def OSOnline(event):
 //     OSOnline.log.error("outside sensor came online")
 //     NotificationAction.sendNotification("cbattisson@gmail.com", "outside sensor came online")
+rules.JSRule({
+    name: "outside sensor came online",
+    description: "outside sensor came online",
+    triggers: [
+        triggers.ItemStateUpdateTrigger("Outside_Reachable", "Online"),
+    ],
+    execute: (data) => {
+        console.error("Outside_Reachable gone Online");
+        var {alerting} = require('personal');
+        alerting.sendInfo('Outside_Reachable gone Online');
+        // alerting.sendAlert('Outside_Reachable gone Online');
+    },
+});
 
