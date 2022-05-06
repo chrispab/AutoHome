@@ -3,5 +3,10 @@ Number		Outside_Humidity			"Outside Humidity [%.1f °C]"				<humidity>		{ channe
 Number	    Shed_Temperature		    "Shed Temperature [%.1f °C]"	            <temperature>  	{ channel="mqtt:topic:outside:shedTemperature"}
 Number outsideReboots    "outsideReboots"
 
-String Outside_Reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable" }
-Number Outside_RSSI "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:rssi" }
+String Outside_Reachable "outside Sensor socket reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable" }
+Number Outside_RSSI "outside Sensor socket RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:rssi" }
+Switch Outside_power "Outside_power" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:outside:powerSwitch" }
+
+
+Number Outside_ReachableNumber "outside Sensor reachable number" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachableNumber" }
+Switch Outside_ReachableSwitch "outside Sensor reachable Switch" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachableSwitch" }
