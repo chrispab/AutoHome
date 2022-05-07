@@ -9,14 +9,14 @@
 // rtsp://192.168.0.13:554/stream1
 // rtsp://192.168.0.13/stream1
 
-Thing ipcamera:onvif:tapo
-    [
-        ipAddress="192.168.0.13",
-        onvifPort="2020",
-        username="tapoc210",
-        password="chutn3y",
-        port="80",
-        onvifMediaProfile="0",
-        ffmpegInput="rtsp://192.168.0.13/stream1",
-        onvifMediaProfile="1"
-    ]
+// Thing ipcamera:onvif:tapo
+//     [
+//         ipAddress="192.168.0.13",
+//         onvifPort="2020",
+//         username="tapoc210",
+//         password="chutn3y",
+//         port="80",
+//         onvifMediaProfile="0",
+//         ffmpegInput="rtsp://192.168.0.13/stream1",
+//         onvifMediaProfile="1"
+//     ]
