@@ -97,7 +97,7 @@ Items {
 
     Outside_Temperature : strategy = everyUpdate
     Outside_Humidity : strategy = everyUpdate
-    Outside_Reachable : strategy = everyUpdate
+    Outside_ReachableNumber : strategy = everyUpdate
     Shed_Temperature : strategy = everyUpdate
     Bridge_Temperature : strategy = everyUpdate
     Bridge_Humidity : strategy = everyUpdate
