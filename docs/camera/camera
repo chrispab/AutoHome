@@ -1,0 +1,20 @@
+component: widget:ClickableCameraImage
+config:
+  thumbnailURL: http://192.168.0.100:8080/ipcamera/c04fbb59d2/ipcamera.jpg
+  streamURL: "      http://192.168.0.100:8080/ipcamera/c04fbb59d2/ipcamera.mjpeg "
+  camera: ONVIFIPCamera
+  switchItem: ONVIFIPCamera_MotionAlarm
+  showSettings: true
+  showAlarms: true
+
+
+// You need to add a camera account in the settings in the Tapo app. Create whatever credentials you want.
+// Then use the credentials, rtsp port 554 and onvif port 2020 in BI.
+//  rtsp://user:password@192.168.123.106/h264Preview_01_sub”,
+
+// https://www.youtube.com/watch?v=9kBakyre3WA
+
+// https://community.openhab.org/t/cant-get-ip-camera-tapo-c200-to-work-although-its-thing-is-online/119916
+
+// rtsp://192.168.0.13:554/stream1
+// rtsp://192.168.0.13/stream1

@@ -1,0 +1,8 @@
+// ipcamera:onvif:c04fbb59d2
+
+
+String BabyCamGotoPreset "Goto Preset" { channel="ipcamera:onvif:tapo:gotoPreset" }
+Dimmer BabyCamPan "Pan [%d] left/right" { channel="ipcamera:onvif:tapo:pan" }
+Dimmer BabyCamTilt "Tilt [%d] up/down" { channel="ipcamera:onvif:tapo:tilt" }
+Dimmer BabyCamZoom "Zoom [%d] in/out" { channel="ipcamera:onvif:tapo:zoom" }
+
