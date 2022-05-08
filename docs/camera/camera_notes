@@ -42,3 +42,45 @@ configuration:
   hlsOutOptions: -strict -2 -f lavfi -i aevalsrc=0 -acodec aac -vcodec copy
     -hls_flags delete_segments -hls_time 2 -hls_list_size 4
   username: tapoc210
+
+
+//installing ffmpeg
+//container command line
+docker exec -it openhab /bin/bash
+root@iotstack:/openhab# apt-get update
+root@iotstack:/openhab# apt-get install ffmpeg
+
+
+//working
+UID: ipcamera:onvif:camera1
+label: camera1
+thingTypeUID: ipcamera:onvif
+configuration:
+  mjpegOptions: -q:v 5 -r 2 -vf scale=640:-2 -update 1
+  ipAddress: 192.168.0.202
+  updateImageWhen: "0"
+  onvifPort: 2020
+  gifPreroll: 0
+  ffmpegLocation: /usr/bin/ffmpeg
+  ipWhitelist: DISABLE
+  mp4OutOptions: -c:v copy -c:a copy
+  pollTime: 1000
+  password: chutn3y
+  port: 80
+  snapshotOptions: -an -vsync vfr -q:v 2 -update 1
+  ptzContinuous: false
+  onvifMediaProfile: 0
+  username: tapoc210
+  hlsOutOptions: -strict -2 -f lavfi -i aevalsrc=0 -acodec aac -vcodec copy
+    -hls_flags delete_segments -hls_time 2 -hls_list_size 4
+  gifOutOptions: -r 2 -filter_complex
+    scale=-2:360:flags=lanczos,setpts=0.5*PTS,split[o1][o2];[o1]palettegen[p];[o2]fifo[o3];[o3][p]paletteuse
+
+
+http://192.168.0.100:8080/ipcamera/camera1/ipcamera.jpg
+
+
+
+    http://192.168.0.100:8080/ipcamera/camera1/ipcamera.mjpeg
+
+

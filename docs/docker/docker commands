@@ -1,0 +1,2 @@
+//container command line
+docker exec -it openhab /bin/bash

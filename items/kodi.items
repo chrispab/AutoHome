@@ -56,7 +56,7 @@ String KodiConservatory_notification          "Notification"              { chan
 // String KodiConservatory_weather-notification  "Weather Notification"      { channel="kodi:kodi:KodiConservatory:weather-notification" }
 String KodiConservatory_input                 "Input"                     { channel="kodi:kodi:KodiConservatory:input" }
 String KodiConservatory_inputtext             "Inputtext"                 { channel="kodi:kodi:KodiConservatory:inputtext" }
-String KodiConservatory_systemcommand         "Systemcommand"             { channel="kodi:kodi:KodiConservatory:systemcommand" }
+// String KodiConservatory_systemcommand         "Systemcommand"             { channel="kodi:kodi:KodiConservatory:systemcommand" }
 String KodiConservatory_mediatype             "Mediatype [%s]"            { channel="kodi:kodi:KodiConservatory:mediatype" }
 String KodiConservatory_genrelist             "Genres [%s]"               { channel="kodi:kodi:KodiConservatory:genreList" }
 Image  KodiConservatory_thumbnail                                         { channel="kodi:kodi:KodiConservatory:thumbnail" }
