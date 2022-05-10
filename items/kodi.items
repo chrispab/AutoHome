@@ -34,6 +34,9 @@ Switch shutdownKodiAtticProxy "shutdown  KodiAttic"
 
 
 //kodi conservatory
+String KodiConservatoryStatus "Conservatory Kodi online status"
+Switch KodiConservatoryStatust "Conservatory Kodi online status"
+
 Player KodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
 Switch pauseKodiConservatoryProxy "pause conservatory kodi"
 String KodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }

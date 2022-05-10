@@ -1,0 +1,17 @@
+widget
+
+label:  "=(items[props.heatingStateItem].state == 'ON') ? 'f7:flame_fill' : 'f7:flame'"Open Conservatory Kodi Web Page
+  label:  "=(items['KodiConservatoryStatus'].state == 'ONLINE') ? 'Open Conservatory Kodi Web Page' : 'Kodi offline'"
+='(items["KodiConservatoryStatus"].state == "ONLINE") ? "Open Conservatory Kodi Web Page" : "Kodi offline"'
+
+label:  "=(items['KodiConservatoryStatus'].state == 'ONLINE') ? 'Open Conservatory Kodi Web Page' : 'Kodi offline'"
+title: '=(items[props.lightItem + "_Brightness"])  ? "item exists " : "item doesn't exist"'
+
+(items["KodiConservatoryStatus"].state == "ONLINE") ? "Open Conservatory Kodi Web Page" : "Kodi offline"
+
+  label: =(items["KodiConservatoryStatus"].state == "ONLINE") ? "Open Conservatory Kodi Web Page" : "Kodi offline"
+
+
+  in a widget config field
+=(items.KodiConservatoryStatus.state == "ONLINE") ? "Open Conservatory Kodi Web Page" : "Kodi offline"
+=(items.KodiConservatoryStatus.state == 'ONLINE') ? 'Open Conservatory Kodi Web Page' : 'Kodi offline'

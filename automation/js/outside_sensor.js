@@ -26,19 +26,20 @@ scriptLoaded = function () {
 //     t1 = ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand("outsideSensorPower", "ON"))
 //     events.postUpdate(ir.getItem("outsideReboots"), items["outsideReboots"].intValue() + 1)
 rules.JSRule({
-    name: "outside sensor went offline",
+    name: "outside sensor went offlineZZ",
     description: "outside sensor went offline",
     triggers: [
         triggers.ItemStateUpdateTrigger("Outside_Reachable", "Offline"),
     ],
     execute: (data) => {
-        console.error("outside sensor went offline");
+        console.error("outside sensor went offline YY");
         var {alerting} = require('personal');
-        alerting.sendInfo('outside sensor went offline');
+        alerting.sendInfo('outside sensor went offline MM');
         // alerting.sendAlert('Outside_Reachable gone Online');
 
-        if (items.getItem("ousideReboots").state == "NULL"){
-            items.getItem("ousideReboots").postUpdate("OFF");
+        if (items.getItem("outsideReboots").state == "NULL"){
+            console.error("++++++++++++++++++++++Checking outsideRebbots is NULL?");
+            items.getItem("outsideReboots").postUpdate("OFF");
         }
         // items.getItem("outsideSensorPower").sendCommand("OFF");
 

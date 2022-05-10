@@ -83,4 +83,6 @@ http://192.168.0.100:8080/ipcamera/camera1/ipcamera.jpg
 
     http://192.168.0.100:8080/ipcamera/camera1/ipcamera.mjpeg
 
-
+Always look at the log files with TRACE enabled, as any FFmpeg and camera errors may not reach the INFO logs. To enable TRACE logging, enter this in the openHAB console
+log:set TRACE org.openhab.binding.ipcamera
+log:set INFO org.openhab.binding.ipcamera

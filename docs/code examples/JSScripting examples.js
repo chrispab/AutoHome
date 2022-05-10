@@ -66,3 +66,10 @@ alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');//emai
 alerting.sendAlert('CRON auto turn On conservatory lights MORNING if OFF');
 
 
+
+Querying the status of a thing
+
+const thingStatusInfo = actions.Things.getThingStatusInfo("zwave:serial_zstick:512");
+console.log("Thing status",thingStatusInfo.getStatus());
+
+
