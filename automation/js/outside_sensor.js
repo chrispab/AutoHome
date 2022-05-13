@@ -34,7 +34,7 @@ rules.JSRule({
     execute: (data) => {
         console.error("outside sensor went offline YY");
         var {alerting} = require('personal');
-        alerting.sendInfo('outside sensor went offline MM');
+        alerting.sendInfo('outside sensor went offline');
         // alerting.sendAlert('Outside_Reachable gone Online');
 
         if (items.getItem("outsideReboots").state == "NULL"){
@@ -61,9 +61,9 @@ rules.JSRule({
         triggers.ItemStateUpdateTrigger("Outside_Reachable", "Online"),
     ],
     execute: (data) => {
-        console.error("Outside_Reachable gone Online");
+        console.error("outside sensor came online");
         var {alerting} = require('personal');
-        alerting.sendInfo('Outside_Reachable gone Online');
+        alerting.sendInfo('outside sensor came online');
         // alerting.sendAlert('Outside_Reachable gone Online');
     },
 });

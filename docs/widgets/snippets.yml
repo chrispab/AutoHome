@@ -15,3 +15,14 @@ title: '=(items[props.lightItem + "_Brightness"])  ? "item exists " : "item does
   in a widget config field
 =(items.KodiConservatoryStatus.state == "ONLINE") ? "Open Conservatory Kodi Web Page" : "Kodi offline"
 =(items.KodiConservatoryStatus.state == 'ONLINE') ? 'Open Conservatory Kodi Web Page' : 'Kodi offline'
+
+
+from=now-3d&to=now;3d,from=now-1w&to=now;1w,from=now-1d&to=now;24h,from=now-3h&to=now;3hr,from=now-1h&to=now;1hr
+from=now-1w&to=now;1w,from=now-3d&to=now;3d,from=now-1d&to=now;24hr,from=now-8h&to=now;8hr,from=now-4h&to=now;4hr,from=now-1h&to=now;1hr
+
+
+itemVolume = ir.getItem("LivingRoom_GH_Volume")
+prevVolume = events.storeStates(itemVolume)
+sendCommand(itemVolume, PercentType(80))
+ScriptExecution.createTimer(DateTime.now().plusMillis(500), lambda: Voice.say(message))
+ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))

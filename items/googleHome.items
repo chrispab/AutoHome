@@ -10,7 +10,9 @@ String GHM_Conservatory_MediaTitle	         "Media Title"	                    { 
 Player GHM_Conservatory_MediaControl           "GHM_Conservatory _MediaControl"  (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:control" }
 Switch GHM_Conservatory_Stop           "GHM_Conservatory _Stop "               (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:stop" }
 String GHM_Conservatory_App           "GHM_Conservatory _App "               (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:appName" }
-Dimmer GHM_Conservatory_Volume           "GHM_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:volume" }
+
+Dimmer GHM_Conservatory_Volume           "GHM_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:audio:GHM_Conservatory:volume" }
+
 Player GHM_Conservatory_Player           "GHM_Conservatory Player"                            (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:control" }
 Switch GHM_Conservatory_Idle             "GHM_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:idling" }
 String GHM_Conservatory_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHM_Conservatory:playuri" }

@@ -118,7 +118,26 @@ def bedroom_tv_on(event):
     global t_brtvPowerOff
 
     bedroom_tv_on.log.info("bedroom_tv_on")
-    Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+    message = "Turning on Bedroom TV"
+    # itemVolume = ir.getItem("GHM_Conservatory_Volume")
+    # prevVolume = itemVolume
+    #endCommand(itemVolume, PercentType(80))
+    # itemVolume=(PercentType(80))
+    # events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(80))
+
+    # Voice.say("hi", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(80))
+    # events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(80))
+    # ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: Voice.say(message, "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory"))
+    # ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(30)))
+
+    # Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+    itemVolume = ir.getItem("GHM_Conservatory_Volume")
+    prevVolume = events.storeStates(itemVolume)
+    events.sendCommand(itemVolume, PercentType(80))
+    ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: Voice.say(message))
+    ScriptExecution.createTimer(DateTime.now().plusSeconds(10), lambda: events.restoreStates(prevVolume))
 
     #!stop the off timer if it ewas previously tiggered so it dosent interrupt
     if t_brtvPowerOff is not None:
@@ -132,8 +151,10 @@ def bedroom_tv_on(event):
         # t_tvPowerOff = None
 
 
+# def restoreVol(itemVolume, prevVolume):
+#     itemVolume = prevVolume
 
-#
+# #
 t_brtvPowerOff=None
 @rule("Turn OFF bedroom Kodi-Pi, TV", description="System started - set all rooms TV settings", tags=["tv"])
 @when("Item vBR_TVKodi received update OFF")
