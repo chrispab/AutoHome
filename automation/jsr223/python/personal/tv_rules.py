@@ -71,7 +71,7 @@ def conservatory_tv_on(event):
     conservatory_tv_on.log.info("conservatory_tv_on")
     Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
-    events.sendCommand("CT_TV433PowerSocket", "ON") #tv
+    events.sendCommand("CT_TV_Power", "ON") #tv
     events.sendCommand("bg_wifisocket_3_1_power", "ON") #amp ir bridge hdmi audio extractor
     events.sendCommand("bg_wifisocket_1_1_power", "ON") # kodi pi
 
@@ -102,7 +102,7 @@ def conservatory_tv_off(event):
 
 def tvoffbody():
     global t_CTtvPowerOff
-    events.sendCommand("CT_TV433PowerSocket", "OFF")
+    events.sendCommand("CT_TV_Power", "OFF")
     events.sendCommand("bg_wifisocket_3_1_power", "OFF") #amp ir bridge hdmi audio extractor
     events.sendCommand("bg_wifisocket_1_1_power", "OFF") # kodi pi
     t_CTtvPowerOff = None

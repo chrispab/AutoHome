@@ -11,6 +11,7 @@
 		"openhab.connection.basicAuth.username": "",
 		"openhab.connection.basicAuth.password": "",
 		"openhab.languageserver.remoteEnabled": true,
-		"openhab.languageserver.remotePort": 5008,
+		// "openhab.languageserver.remotePort": 5008,
+		"openhab.languageserver.remotePort": 5007,
 		"openhab.connection.authToken": "oh.oh3token.BqQu4Zw9cBqlmW2wmchcSDvLKh6YMPSc3ySnEyOufQPdg3zD7pzQmspdhKio9DYpH0KJXg2JllJwv7jUKw",
 	}}

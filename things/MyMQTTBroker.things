@@ -1,24 +1,7 @@
-Bridge mqtt:broker:MyMQTTBroker "MQTT Broker: Pi Mosquitto" 
-[ 
+Bridge mqtt:broker:MyMQTTBroker "MQTT Broker: Pi Mosquitto"
+[
     host="192.168.0.100",
     port=1883,
     lwtRetain=false,
-    secure=false 
+    secure=false
 ]
-    // {
-    // //   Thing topic fluksosensors {
-    // //    Channels:
-    // //      Type number : newfluksowatt "Watt"   [ stateTopic="/sensor/8e345fa8179478ce5716514b46373af3/gauge:state:REGEX(.*,(.*),.*)"]
-    // //     }
-    // }
-
-
-// Bridge mqtt:broker:myMQTTBroker [ host="IPofBroker", secure=false, username="myUser", password="myPassword" , clientID="myMQTTClient" ]
-// {
-//     Thing topic wifi_socket  "Light_TH" {
-//     Channels:
-//         Type switch : powerSwitch  [ stateTopic="stat/sonoff_TH/POWER" , transformationPattern="JSONPATH:$.POWER" , commandTopic="cmnd/sonoff_TH/POWER", on="ON", off="OFF" ]
-//         Type string : Version [stateTopic="stat/sonoff_TH/STATUS2", transformationPattern="JSONPATH:$.StatusFWR.Version"]
-//         Type string : Temperature [stateTopic="tele/sonoff_TH/SENSOR", transformationPattern="JSONPATH:$.AM2301.Temperature"]
-//       }
-// }    

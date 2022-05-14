@@ -7,27 +7,4 @@ Thing kodi:kodi:KodiAttic "Kodi Attic" @ "Attic" [ipAddress="192.168.0.114", por
 
 
 
-Thing kodi:kodi:KodiConservatory "Kodi Conservatory" @ "Conservatory" [ipAddress="192.168.0.112", port=9090] {
-// Thing kodi:kodi:myKodi "Kodi" @ "Living Room" [ipAddress="192.168.1.100", port=9090] {
-    Channels:
-        // Type pvr-open-tv : pvr-open-tv [ group="All channels" ]
-        // Type shownotification : error-notification [ title="openHAB - Error", icon="error" ]
-        // Type shownotification : weather-notification [ title="openHAB - Weather", icon="sun_clouds" ]
-
-        Type string : title [ title="openHAB  - Weather", icon="sun_clouds" ]
-        Type string : album [ title="openHAB - Weather", icon="sun_clouds" ]
-        Type string : artist [ title="openHAB - Weather", icon="sun_clouds" ]
-        Type player : control  [ title="openHAB - Weather", icon="sun_clouds" ]
-
-
-}
-// String KodiConservatory_title                 "Title [%s]"                { channel="kodi:kodi:KodiConservatory:title" }
-// String KodiConservatory_showtitle             "Show title [%s]"           { channel="kodi:kodi:KodiConservatory:showtitle" }
-// String KodiConservatory_album                 "Album [%s]"                { channel="kodi:kodi:KodiConservatory:album" }
-// String KodiConservatory_artist                "Artist [%s]"               { channel="kodi:kodi:KodiConservatory:artist" }
-// Thing kodi:kodi:wz "Kodi" @ "Wohnzimmer" [ipAddress="xxx.xxx.xxx.xxx", port="9090"] {
-//     Channels:
-//         Type pvr-open-tv : pvr-open-tv [
-//             group="Alle Kanäle"
-//         ]
-// }
+// Thing kodi:kodi:KodiConservatory "Kodi Conservatory" @ "Conservatory" [ipAddress="192.168.0.112", port=9090]
