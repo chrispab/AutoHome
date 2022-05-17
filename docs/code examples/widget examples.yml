@@ -78,3 +78,7 @@
         slots: null
         =items.KodiConservatory_ctp.state.toString()
         =Number.parseInt(items.KodiConservatory_ctp.state.split(' ')[0])
+
+
+
+  timerange: from=now-2w&to=now;2w,from=now-1w&to=now;1w,from=now-3d&to=now;3d,from=now-1d&to=now;24hr,from=now-8h&to=now;8hr,from=now-4h&to=now;4hr,from=now-1h&to=now;1hr

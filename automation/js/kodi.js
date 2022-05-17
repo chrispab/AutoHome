@@ -4,32 +4,32 @@
 scriptLoaded = function () {
     console.error("======set KodiConservatory status scriptLoaded");
     // loadedDate = Date.now();
-    console.error("set KodiConservatory status ");
-    const thingStatusInfo = actions.Things.getThingStatusInfo("kodi:kodi:KodiConservatory");
-    console.error("Thing KodiConservatory status",thingStatusInfo.getStatus());
+    console.error("startup- set Kodi_CT_Online_Status status ");
+    const thingStatusInfo = actions.Things.getThingStatusInfo("kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb");
+    console.error("Thing Kodi_CT_Online_Status status",thingStatusInfo.getStatus());
 
     if (thingStatusInfo.getStatus().toString()=="ONLINE"){
-        items.getItem("KodiConservatoryStatus").postUpdate("ONLINE");
+        items.getItem("Kodi_CT_Online_Status").postUpdate("ONLINE");
     }else{
-        items.getItem("KodiConservatoryStatus").postUpdate("OFFLINE");
+        items.getItem("Kodi_CT_Online_Status").postUpdate("OFFLINE");
     }
   };
 
 rules.JSRule({
-    name: "set KodiConservatory status",
-    description: "set KodiConservatory status",
+    name: "set Kodi_CT_Online_Status status",
+    description: "set Kodi_CT_Online_Status status",
     triggers: [
-    triggers.ThingStatusChangeTrigger('kodi:kodi:KodiConservatory'),
+    triggers.ThingStatusChangeTrigger('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb'),
     ],
     execute: (data) => {
-        console.error("set KodiConservatory status");
-        const thingStatusInfo = actions.Things.getThingStatusInfo("kodi:kodi:KodiConservatory");
-        console.error("Thing KodiConservatory status",thingStatusInfo.getStatus());
+        console.error("set Kodi_CT_Online_Status status");
+        const thingStatusInfo = actions.Things.getThingStatusInfo("kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb");
+        console.error("Thing Kodi_CT_Online_Status status",thingStatusInfo.getStatus());
 
         if (thingStatusInfo.getStatus().toString()=="ONLINE"){
-            items.getItem("KodiConservatoryStatus").postUpdate("ONLINE");
+            items.getItem("Kodi_CT_Online_Status").postUpdate("ONLINE");
         }else{
-            items.getItem("KodiConservatoryStatus").postUpdate("OFFLINE");
+            items.getItem("Kodi_CT_Online_Status").postUpdate("OFFLINE");
         }
 
     },

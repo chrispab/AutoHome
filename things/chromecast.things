@@ -1,4 +1,4 @@
-Thing chromecast:chromecast:GCC_Conservatory  "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
+// Thing chromecast:chromecast:GCC_Conservatory  "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
 
 Thing chromecast:chromecast:GCC_FrontRoom     "FrontRoom GCC"   [ ipAddress="192.168.0.40" ]
 

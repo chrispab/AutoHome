@@ -41,14 +41,14 @@ String GHH_Kitchen_PlayURI	         "PlayURI"	                    { channel="chr
 
 
 // GCC_Conservatory
-Image GCC_Conservatory_Image	         "Image"	                    { channel="chromecast:chromecast:GCC_Conservatory:image" }
-String GCC_Conservatory_MediaArtist	         "Media Artist"	                    { channel="chromecast:chromecast:GCC_Conservatory:subtitle" }
-String GCC_Conservatory_MediaTitle	         "Media Title"	                    { channel="chromecast:chromecast:GCC_Conservatory:title" }
-Player GCC_Conservatory_MediaControl           "GCC_Conservatory _MediaControl"  (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:control" }
-Switch GCC_Conservatory_Stop           "GCC_Conservatory _Stop "               (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:stop" }
-String GCC_Conservatory_App           "GCC_Conservatory _App "               (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:appName" }
-Dimmer GCC_Conservatory_Volume           "GCC_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:volume" }
-Player GCC_Conservatory_Player           "GCC_Conservatory Player"                            (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:control" }
-Switch GCC_Conservatory_Idle             "GCC_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:idling" }
-String GCC_Conservatory_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GCC_Conservatory:playuri" }
+// Image GCC_Conservatory_Image	         "Image"	                    { channel="chromecast:chromecast:GCC_Conservatory:image" }
+// String GCC_Conservatory_MediaArtist	         "Media Artist"	                    { channel="chromecast:chromecast:GCC_Conservatory:subtitle" }
+// String GCC_Conservatory_MediaTitle	         "Media Title"	                    { channel="chromecast:chromecast:GCC_Conservatory:title" }
+// Player GCC_Conservatory_MediaControl           "GCC_Conservatory _MediaControl"  (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:control" }
+// Switch GCC_Conservatory_Stop           "GCC_Conservatory _Stop "               (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:stop" }
+// String GCC_Conservatory_App           "GCC_Conservatory _App "               (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:appName" }
+// Dimmer GCC_Conservatory_Volume           "GCC_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:volume" }
+// Player GCC_Conservatory_Player           "GCC_Conservatory Player"                            (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:control" }
+// Switch GCC_Conservatory_Idle             "GCC_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GCC_Conservatory:idling" }
+// String GCC_Conservatory_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GCC_Conservatory:playuri" }
 

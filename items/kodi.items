@@ -34,37 +34,37 @@ Switch shutdownKodiAtticProxy "shutdown  KodiAttic"
 
 
 //kodi conservatory
-String KodiConservatoryStatus "Conservatory Kodi online status"
-Switch KodiConservatoryStatust "Conservatory Kodi online status"
+String Kodi_CT_Online_Status "Conservatory Kodi online status"
+// Switch KodiConservatoryStatust "Conservatory Kodi online status"
 
-Player KodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
+// Player KodiConservatory_control "CT Kodi Control"   { channel="kodi:kodi:KodiConservatory:control" }
 Switch pauseKodiConservatoryProxy "pause conservatory kodi"
-String KodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
+// String KodiConservatory_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:KodiConservatory:systemcommand" }
 //kodi bindingg items
-Switch KodiConservatory_mute                  "Mute"                      { channel="kodi:kodi:KodiConservatory:mute" }
-Dimmer KodiConservatory_volume                "Volume [%d]"               { channel="kodi:kodi:KodiConservatory:volume" }
-// Player KodiConservatory_control               "Control"                   { channel="kodi:kodi:KodiConservatory:control" }
-Switch KodiConservatory_stop                  "Stop"                      { channel="kodi:kodi:KodiConservatory:stop" }
-String KodiConservatory_title                 "Title [%s]"                { channel="kodi:kodi:KodiConservatory:title" }
-String KodiConservatory_showtitle             "Show title [%s]"           { channel="kodi:kodi:KodiConservatory:showtitle" }
-String KodiConservatory_album                 "Album [%s]"                { channel="kodi:kodi:KodiConservatory:album" }
-String KodiConservatory_artist                "Artist [%s]"               { channel="kodi:kodi:KodiConservatory:artist" }
-String KodiConservatory_playuri               "Play URI"                  { channel="kodi:kodi:KodiConservatory:playuri" }
-String KodiConservatory_playfavorite          "Play favorite"             { channel="kodi:kodi:KodiConservatory:playfavorite" }
-String KodiConservatory_pvropentv             "Play PVR TV channel"       { channel="kodi:kodi:KodiConservatory:pvr-open-tv" }
-String KodiConservatory_pvropenradio          "Play PVR Radio channel"    { channel="kodi:kodi:KodiConservatory:pvr-open-radio" }
-String KodiConservatory_pvrchannel            "PVR channel [%s]"          { channel="kodi:kodi:KodiConservatory:pvr-channel" }
-String KodiConservatory_notification          "Notification"              { channel="kodi:kodi:KodiConservatory:shownotification" }
-// String KodiConservatory_error-notification    "Error Notification"        { channel="kodi:kodi:KodiConservatory:error-notification" }
-// String KodiConservatory_weather-notification  "Weather Notification"      { channel="kodi:kodi:KodiConservatory:weather-notification" }
-String KodiConservatory_input                 "Input"                     { channel="kodi:kodi:KodiConservatory:input" }
-String KodiConservatory_inputtext             "Inputtext"                 { channel="kodi:kodi:KodiConservatory:inputtext" }
-// String KodiConservatory_systemcommand         "Systemcommand"             { channel="kodi:kodi:KodiConservatory:systemcommand" }
-String KodiConservatory_mediatype             "Mediatype [%s]"            { channel="kodi:kodi:KodiConservatory:mediatype" }
-String KodiConservatory_genrelist             "Genres [%s]"               { channel="kodi:kodi:KodiConservatory:genreList" }
-Image  KodiConservatory_thumbnail                                         { channel="kodi:kodi:KodiConservatory:thumbnail" }
-Image  KodiConservatory_fanart                                            { channel="kodi:kodi:KodiConservatory:fanart" }
-Number:Time KodiConservatory_currenttime      "Current Time [%d %unit%]"  { channel="kodi:kodi:KodiConservatory:currenttime" }
-Number:Dimensionless KodiConservatory_ctp     "Current Time [%d ]"  { channel="kodi:kodi:KodiConservatory:currenttimepercentage" }
-Number:Time KodiConservatory_duration         "Duration [%d %unit%]"      { channel="kodi:kodi:KodiConservatory:duration" }
-String KodiConservatory_playnotification      "Play notification URI"     { channel="kodi:kodi:KodiConservatory:playnotification" }
+// Switch KodiConservatory_mute                  "Mute"                      { channel="kodi:kodi:KodiConservatory:mute" }
+// Dimmer KodiConservatory_volume                "Volume [%d]"               { channel="kodi:kodi:KodiConservatory:volume" }
+// // Player KodiConservatory_control               "Control"                   { channel="kodi:kodi:KodiConservatory:control" }
+// Switch KodiConservatory_stop                  "Stop"                      { channel="kodi:kodi:KodiConservatory:stop" }
+// String KodiConservatory_title                 "Title [%s]"                { channel="kodi:kodi:KodiConservatory:title" }
+// String KodiConservatory_showtitle             "Show title [%s]"           { channel="kodi:kodi:KodiConservatory:showtitle" }
+// String KodiConservatory_album                 "Album [%s]"                { channel="kodi:kodi:KodiConservatory:album" }
+// String KodiConservatory_artist                "Artist [%s]"               { channel="kodi:kodi:KodiConservatory:artist" }
+// String KodiConservatory_playuri               "Play URI"                  { channel="kodi:kodi:KodiConservatory:playuri" }
+// String KodiConservatory_playfavorite          "Play favorite"             { channel="kodi:kodi:KodiConservatory:playfavorite" }
+// String KodiConservatory_pvropentv             "Play PVR TV channel"       { channel="kodi:kodi:KodiConservatory:pvr-open-tv" }
+// String KodiConservatory_pvropenradio          "Play PVR Radio channel"    { channel="kodi:kodi:KodiConservatory:pvr-open-radio" }
+// String KodiConservatory_pvrchannel            "PVR channel [%s]"          { channel="kodi:kodi:KodiConservatory:pvr-channel" }
+// String KodiConservatory_notification          "Notification"              { channel="kodi:kodi:KodiConservatory:shownotification" }
+// // String KodiConservatory_error-notification    "Error Notification"        { channel="kodi:kodi:KodiConservatory:error-notification" }
+// // String KodiConservatory_weather-notification  "Weather Notification"      { channel="kodi:kodi:KodiConservatory:weather-notification" }
+// String KodiConservatory_input                 "Input"                     { channel="kodi:kodi:KodiConservatory:input" }
+// String KodiConservatory_inputtext             "Inputtext"                 { channel="kodi:kodi:KodiConservatory:inputtext" }
+// // String KodiConservatory_systemcommand         "Systemcommand"             { channel="kodi:kodi:KodiConservatory:systemcommand" }
+// String KodiConservatory_mediatype             "Mediatype [%s]"            { channel="kodi:kodi:KodiConservatory:mediatype" }
+// String KodiConservatory_genrelist             "Genres [%s]"               { channel="kodi:kodi:KodiConservatory:genreList" }
+// Image  KodiConservatory_thumbnail                                         { channel="kodi:kodi:KodiConservatory:thumbnail" }
+// Image  KodiConservatory_fanart                                            { channel="kodi:kodi:KodiConservatory:fanart" }
+// Number:Time KodiConservatory_currenttime      "Current Time [%d %unit%]"  { channel="kodi:kodi:KodiConservatory:currenttime" }
+// Number:Dimensionless KodiConservatory_ctp     "Current Time [%d ]"  { channel="kodi:kodi:KodiConservatory:currenttimepercentage" }
+// Number:Time KodiConservatory_duration         "Duration [%d %unit%]"      { channel="kodi:kodi:KodiConservatory:duration" }
+// String KodiConservatory_playnotification      "Play notification URI"     { channel="kodi:kodi:KodiConservatory:playnotification" }
