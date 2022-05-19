@@ -82,3 +82,35 @@
 
 
   timerange: from=now-2w&to=now;2w,from=now-1w&to=now;1w,from=now-3d&to=now;3d,from=now-1d&to=now;24hr,from=now-8h&to=now;8hr,from=now-4h&to=now;4hr,from=now-1h&to=now;1hr
+
+
+title: '=(props.item) ? "State of " + props.item : "Set props to test!"'
+
+title: "=props.title + ', ' + (items[props.moisture_pc].state) + ', ' + (items[props.moisture_raw].state)"
+
+
+
+                      - component: oh-button
+                        config:
+                          color: '=((items[props.onBtnItem].state == "ON") || (items[props.onBtnItem].state > 0)) ? props.btnTextColor : "blue"'
+                          fill: "=(items[props.onBtnItem].state == 'ON')  ? true : false"
+                          outline: true
+                          round: false
+                          small: true
+                          action: command
+                          actionItem: =props.onBtnItem
+                          actionCommand: ON
+                          text: on
+                          style:
+                            font-size: min(max(5px, 2.1vw), 20px)
+                            width: auto
+                            height: auto
+
+IRRemote_prefix
+
+color: '=((items[props.IRRemote_prefix + "PowerOn"].state == "ON")) ? props.btnTextColor : "blue"'
+fill: "=(items[props.IRRemote_prefix + 'PowerOn'].state == 'ON')  ? true : false"
+actionItem: =props.IRRemote_prefix + "PowerOn"
+
+color: '=((items[props.IRRemote_prefix + "PowerOff"].state == "ON")) ? props.btnTextColor : "blue"'
+actionItem: =props.IRRemote_prefix + "PowerOff"

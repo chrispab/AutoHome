@@ -9,6 +9,9 @@ Switch amplifier_IR_VolumeUp "amplifier volume up" (gMQTT) { ga="switch" [ roomH
 Switch amplifier_IR_VolumeDown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown", expire="1s,command=OFF" }
 Switch amplifier_IR_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1", expire="1s,command=OFF" }
 
+Switch amplifier_IR_reachable "amplifier reachable" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:reachable" }
+Number amplifier_IR_rssi    "ir amplifier rssi" { channel = "mqtt:topic:amplifier:rssi" }
+
 
 Number amplifier_IR_code    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }
 

@@ -11,6 +11,8 @@ Thing mqtt:topic:amplifier  "MQTT Thing: ir amplifier" (mqtt:broker:MyMQTTBroker
     Type switch : volumeup "ir amplifier volume up" [ stateTopic="irbridge/amplifier/volume_up", commandTopic="irbridge/amplifier/volume_up", on="on", off="off" ]
     Type switch : volumedown "ir amplifier volume down" [ stateTopic="irbridge/amplifier/volume_down", commandTopic="irbridge/amplifier/volume_down", on="on", off="off" ]
     Type number : code "ir amplifier control code" [ stateTopic="irbridge/amplifier/code", commandTopic="irbridge/amplifier/code" ]
+    Type switch : reachable "ir amplifier reachable" [ stateTopic="irbridge/LWT", on="Online", off="Offline" ]
+    Type number : rssi "ir amplifier control rssi" [ stateTopic="irbridge/rssi" ]
 
 
 
