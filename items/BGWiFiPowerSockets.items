@@ -4,9 +4,10 @@ Group gBG_sockets_reachable
 Group gbg
 
 //!double socket 1
+//CT kodi, amp, ir bridge, hdmi audio extractor
 Switch bg_wifisocket_1_1_power "BG Socket one-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
 Switch CT_pi_kodi_bg_wifisocket_1_power "BG Socket one-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
-
+//TV
 Switch bg_wifisocket_1_2_power "BG Socket one-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_2" }
 Number bg_wifisocket_1_maxworktime "BG Socket 1-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_1:maxworktime" }
 String bg_wifisocket_1_reachable "BG Socket 1-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_1:reachable" }
