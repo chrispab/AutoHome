@@ -46,19 +46,20 @@ def boiler_control(event):
         events.sendCommand("Boiler_Control", "OFF")
         # events.sendCommand("fan_heater", "OFF")
 
-    #is it conservatory heat demand?
-    if items["CT_Heater"] == ON:
-        # get list of ON heatees
-        listOfMembers = [item for item in ir.getItem("gRoomHeaterStates").members if item.state == ON]
-        boiler_control.log.debug("::: LIST OF HEATERS ON :::")
-        for item in listOfMembers:
-            # boiler_control.log.debug(":::Heater Item: {}, is : {}", item.name, item.state)
-            LogAction.logDebug(":::Heater Item: {}, is : {}", item.name, item.state)
-        boiler_control.log.debug(":::-> fan_heater on -> Send fan_heater ON command")
-        # events.sendCommand("Boiler_Control", "ON")
-        events.sendCommand("fan_heater", "ON")
+# #conservatory fan heater
+#     #is it conservatory heat demand?
+#     if items["CT_Heater"] == ON:
+#         # get list of ON heatees
+#         listOfMembers = [item for item in ir.getItem("gRoomHeaterStates").members if item.state == ON]
+#         boiler_control.log.debug("::: LIST OF HEATERS ON :::")
+#         for item in listOfMembers:
+#             # boiler_control.log.debug(":::Heater Item: {}, is : {}", item.name, item.state)
+#             LogAction.logDebug(":::Heater Item: {}, is : {}", item.name, item.state)
+#         boiler_control.log.debug(":::-> fan_heater on -> Send fan_heater ON command")
+#         # events.sendCommand("Boiler_Control", "ON")
+#         events.sendCommand("fan_heater", "ON")
 
-    else:  # no rooms want heat so turn off boiler
-        boiler_control.log.debug("::: -> fan_heater off -> Send fan_heater OFF command")
-        # events.sendCommand("Boiler_Control", "OFF")
-        events.sendCommand("fan_heater", "OFF")
+#     else:  # no rooms want heat so turn off boiler
+#         boiler_control.log.debug("::: -> fan_heater off -> Send fan_heater OFF command")
+#         # events.sendCommand("Boiler_Control", "OFF")
+#         events.sendCommand("fan_heater", "OFF")
