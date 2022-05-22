@@ -41,6 +41,7 @@ rules.JSRule({
         console.error("Turning OFF stereo - kodi, amp, and bridges");
         items.getItem("Kodi_CT_SendSystemCommand").sendCommand("Shutdown");//shutdown CT Pi
         // console.error("err 2");
+        items.getItem("amplifier_IR_PowerOff").sendCommand("ON");
 
         // items.getItem("bg_wifisocket_3_1_power").sendCommand("OFF");//amp ir bridge hdmi audio extractor
         console.error("STEREO - turned OFF amp, and bridges");
