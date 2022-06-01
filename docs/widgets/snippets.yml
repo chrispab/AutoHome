@@ -26,3 +26,22 @@ prevVolume = events.storeStates(itemVolume)
 sendCommand(itemVolume, PercentType(80))
 ScriptExecution.createTimer(DateTime.now().plusMillis(500), lambda: Voice.say(message))
 ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))
+
+
+
+=props.IRRemote_prefix + "PowerOn"
+
+          color: '=(items[props.reachableItem].state == "ON" ? "green" : "red")'
+        iconF7: '=(items[props.reachableItem].state == "ON" ? "wifi" : "wifi_exclamationmark")'
+
+        vars.var1
+
+        '=props.btnColor ? props.btnColor : "black"'
+
+        '=(items[props.reachableItem].state == "ON" ? "green" : "red")'
+
+        IRRemote_prefix+'rssi'
+
+        btnActiveColor
+
+        '=((items[props.IRRemote_prefix + "Aux"].state == "ON")) ? props.btnActiveColor'
