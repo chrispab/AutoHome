@@ -1,0 +1,11 @@
+Switch  iotstack_server_reachable  "iotstack_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:pingdevice:iotstack_server:online" }
+Switch  mosquitto_server_reachable  "mosquitto_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:servicedevice:mosquitto:online" }
+
+// Thing network:servicedevice:mosquitto [ hostname="192.168.0.100", port=1883 ]
+Switch  mythtv_server_reachable  "mythtv_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:pingdevice:mythtv_server:online" }
+
+
+Switch  dev_server_reachable  "dev_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:pingdevice:dev_server:online" }
+Switch  nas_server_reachable  "nas_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:pingdevice:dev_server:online" }
+
+Switch  backuppi_server_reachable  "backuppi_reachable"  <network>  (Online_Service) ["Service_Check"]  { channel="network:pingdevice:backuppi_server:online" }
