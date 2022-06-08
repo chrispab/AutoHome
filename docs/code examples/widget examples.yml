@@ -114,3 +114,38 @@ actionItem: =props.IRRemote_prefix + "PowerOn"
 
 color: '=((items[props.IRRemote_prefix + "PowerOff"].state == "ON")) ? props.btnTextColor : "blue"'
 actionItem: =props.IRRemote_prefix + "PowerOff"
+
+
+  title: '=(items[props.rollup].state == "ON") ? props.title_good : "Offline Services:"'
+slots:
+  default:
+    - component: oh-list
+      slots:
+        default:
+          - component: oh-repeater
+            config:
+              #filter: items[loop.item.name].state != "ON" && items[loop.item.name].state != "OL"
+              for: item
+              fragment: true
+              itemTags: =props.tags
+              sourceType: itemsWithTags
+            slots:
+              default:
+                - component: oh-list-item
+                  config:
+                    badge: OFFLINE
+                    badgeColor: red
+                    icon: f7:wifi_slash
+                    iconColor: red
+                    item: =loop.item.name
+                    title: =loop.item.label
+'=(items[props.rollup].state == "ON") ? props.title_good : "Offline Services:"'
+
+                    badge: '=(items[loop.item].state == "ON") ? "ONLINE" : "OFFLINE"'
+                    badgeColor: red
+                    icon: f7:wifi_slash
+                    iconColor: red
+                    item: =loop.item.name
+                    title: =loop.item.label
+
+'=(items[loop.item.name].state == "ON") ? "red" : "green"'
