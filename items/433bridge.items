@@ -6,3 +6,6 @@ Switch	BridgeLightSensorState	"Light Sensor State"				<light>					{ channel="mqt
 Switch	PIRState				"Bridge PIR sensor"					<light>					{ channel="mqtt:topic:bridge:pirState" }
 
 
+Switch  Bridge433_reachable      "433 Bridge reachable" (Online_Service) ["Service_Check"] { channel = "mqtt:topic:bridge:reachable" }
+Number  Bridge433_rssi           "433Bridge rssi" { channel = "mqtt:topic:bridge:rssi" }
+

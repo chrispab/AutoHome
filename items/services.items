@@ -1,5 +1,7 @@
 Group:Switch:OR(OFF,ON)    Online_Service // online Services
 
+Group:Switch:OR(OFF,ON)    gOnline_Support_Services // online Services
+
 // Switch                      Paul                        "HostState Paul"                                                        <network>   (Online)            { channel="network:pingdevice:paul:online" }
 // DateTime                    Paul_lastseen               "Paul WLAN lastseen [%1$td.%1$tm.%1$tY %1$tH:%1$tM:%1$tS Uhr]"          <time>      (FG_TimeLineRRD)    { channel="network:pingdevice:paul:lastseen" }
 // Number:Time                 Paul_ResponseTime           "Paul responsetime"                                                     <time>      (FG_TimeLineRRD)    { channel="network:pingdevice:paul:latency" }
