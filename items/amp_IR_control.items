@@ -9,7 +9,7 @@ Switch amplifier_IR_VolumeUp "amplifier volume up" (gMQTT) { ga="switch" [ roomH
 Switch amplifier_IR_VolumeDown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown", expire="1s,command=OFF" }
 Switch amplifier_IR_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1", expire="1s,command=OFF" }
 
-Switch amplifier_IR_reachable "amplifier IR bridge" (gOnline_Support_Services, gMQTT_reachable) ["Support_Service_Status"] { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:reachable" }
+Switch amplifier_IR_reachable "amplifier IR bridge" (gServices_Support_Online, gMQTT_reachable) ["Support_Service_Status"] { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:reachable" }
 Number amplifier_IR_rssi    "ir amplifier rssi" { channel = "mqtt:topic:amplifier:rssi" }
 
 

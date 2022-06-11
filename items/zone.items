@@ -6,7 +6,7 @@ Switch	Zone1LightStatus		"Zone 1 Light Status"			<switch>				{ channel="mqtt:top
 Switch	Zone1HeaterStatus		"Zone 1 Heater Status"			<my_radiator>			{ channel="mqtt:topic:zone1Controller:heaterStatus" }
 Switch	Zone1VentSpeedStatus	"Zone 1 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone1Controller:ventSpeedStatus" }
 Number	Zone1VentPercent		"Zone 1 Vent Percent"			<vent>					{ channel="mqtt:topic:zone1Controller:ventPercent" }
-Switch  Zone1Reachable          "Zone 1"              <network>    (Online_Service) ["Service_Check"]             { channel="mqtt:topic:zone1Controller:Reachable" }
+Switch  Zone1Reachable          "Zone 1"              <network>    (gServices_Core_Online) ["Service_Core_Check"]             { channel="mqtt:topic:zone1Controller:Reachable" }
 Number	Zone1Rssi	    	    "Zone 1 RSSI"       			<vent>					{ channel="mqtt:topic:zone1Controller:rssi" }
 Number	Zone1_vent_on_delta_secs	    "Zone 1 vent_on_delta_secs"       	<vent>					{ channel="mqtt:topic:zone1Controller:vent_on_delta_secs" }
 Number	Zone1_vent_off_delta_secs	"Zone 1 vent_off_delta_secs"       	<vent>				    { channel="mqtt:topic:zone1Controller:vent_off_delta_secs" }
@@ -31,7 +31,7 @@ Switch	Zone3HeaterStatus		"Zone 3 Heater Status"			<my_radiator>			{ channel="mq
 Switch	Zone3FanStatus			"Zone 3 fan Status"				<fan_ceiling>			{ channel="mqtt:topic:zone3Controller:fanStatus" }
 Switch	Zone3VentSpeedStatus	"Zone 3 Vent Speed Status"		<vent>					{ channel="mqtt:topic:zone3Controller:ventSpeedStatus" }
 Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topic:zone3Controller:ventPercent" }
-Switch  Zone3Reachable          "Zone 3"              <network>      (Online_Service) ["Service_Check"]          { channel="mqtt:topic:zone3Controller:Reachable" }
+Switch  Zone3Reachable          "Zone 3"              <network>      (gServices_Core_Online) ["Service_Core_Check"]          { channel="mqtt:topic:zone3Controller:Reachable" }
 Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topic:zone3Controller:rssi" }
 
 Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
