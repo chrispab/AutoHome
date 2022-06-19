@@ -60,54 +60,54 @@ def tv_startup_tbody():
         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
 
-#######################################
-t_CTtvPowerOff = None
+# #######################################
+# t_CTtvPowerOff = None
 
-@rule("Conservatory Pi Kodi and TV amp on", description="System started - set all rooms TV settings", tags=["tv"])
-@when("Item vCT_TVKodiSpeakers received update ON")
-@when("Item vCT_TVKodiSpeakers2 received update ON")
-def conservatory_tv_on(event):
-    global t_CTtvPowerOff
-    conservatory_tv_on.log.info("conservatory_tv_on")
-    Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+# @rule("Conservatory Pi Kodi and TV amp on", description="System started - set all rooms TV settings", tags=["tv"])
+# @when("Item vCT_TVKodiSpeakers received update ON")
+# @when("Item vCT_TVKodiSpeakers2 received update ON")
+# def conservatory_tv_on(event):
+#     global t_CTtvPowerOff
+#     conservatory_tv_on.log.info("conservatory_tv_on")
+#     Voice.say("Turning on conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
-    # events.sendCommand("CT_TV_Power", "ON") #tv
-    events.sendCommand("bg_wifisocket_1_2_power", "ON") #tv
-    events.sendCommand("bg_wifisocket_1_1_power", "ON") # kodi pi,amp ir bridge hdmi audio extractor
+#     # events.sendCommand("CT_TV_Power", "ON") #tv
+#     events.sendCommand("bg_wifisocket_1_2_power", "ON") #tv
+#     events.sendCommand("bg_wifisocket_1_1_power", "ON") # kodi pi,amp ir bridge hdmi audio extractor
 
-    if t_CTtvPowerOff is not None:
-        t_CTtvPowerOff = None
+#     if t_CTtvPowerOff is not None:
+#         t_CTtvPowerOff = None
 
-    t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifier_IR_PowerOn", "ON"))
-    t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifier_IR_Video1", "ON"))
-
-
-#------------------------------------
-@rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
-@when("Item vCT_TVKodiSpeakers received update OFF")
-@when("Item vCT_TVKodiSpeakers2 received update OFF")
-def conservatory_tv_off(event):
-    conservatory_tv_off.log.info("conservatory_tv_off")
-    global t_CTtvPowerOff
-
-    Voice.say("Turning off Conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
-
-    # events.postUpdate("shutdownKodiConservatoryProxy", "OFF") - this routine can be removed if this works
-    LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
-    events.sendCommand("Kodi_CT_SendSystemCommand","Shutdown")
-    events.sendCommand("amplifier_IR_PowerOff", "ON")
-    events.sendCommand("bg_wifisocket_1_2_power", "OFF") #tv
+#     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifier_IR_PowerOn", "ON"))
+#     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifier_IR_Video1", "ON"))
 
 
-    if t_CTtvPowerOff is None:
-        t_CTtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: tvoffbody())
+# #------------------------------------
+# @rule("Conservatory Pi Kodi and TV amp off", description="System started - set all rooms TV settings", tags=["tv"])
+# @when("Item vCT_TVKodiSpeakers received update OFF")
+# @when("Item vCT_TVKodiSpeakers2 received update OFF")
+# def conservatory_tv_off(event):
+#     conservatory_tv_off.log.info("conservatory_tv_off")
+#     global t_CTtvPowerOff
 
-def tvoffbody():
-    global t_CTtvPowerOff
-    # events.sendCommand("CT_TV_Power", "OFF")
-    # events.sendCommand("bg_wifisocket_1_2_power", "OFF") #tv
-    events.sendCommand("bg_wifisocket_1_1_power", "OFF") # kodi pi,amp ir bridge hdmi audio extractor
-    t_CTtvPowerOff = None
+#     Voice.say("Turning off Conservatory TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
+
+#     # events.postUpdate("shutdownKodiConservatoryProxy", "OFF") - this routine can be removed if this works
+#     LogAction.logError("Shutdown Conservatory Kodi","Shutdown Conservatory Kodi: {}", event.itemName)
+#     events.sendCommand("Kodi_CT_SendSystemCommand","Shutdown")
+#     events.sendCommand("amplifier_IR_PowerOff", "ON")
+#     events.sendCommand("bg_wifisocket_1_2_power", "OFF") #tv
+
+
+#     if t_CTtvPowerOff is None:
+#         t_CTtvPowerOff = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: tvoffbody())
+
+# def tvoffbody():
+#     global t_CTtvPowerOff
+#     # events.sendCommand("CT_TV_Power", "OFF")
+#     # events.sendCommand("bg_wifisocket_1_2_power", "OFF") #tv
+#     events.sendCommand("bg_wifisocket_1_1_power", "OFF") # kodi pi,amp ir bridge hdmi audio extractor
+#     t_CTtvPowerOff = None
 
 
 
@@ -122,18 +122,6 @@ def bedroom_tv_on(event):
     bedroom_tv_on.log.info("bedroom_tv_on")
 
     message = "Turning on Bedroom TV"
-    # itemVolume = ir.getItem("GHM_Conservatory_Volume")
-    # prevVolume = itemVolume
-    #endCommand(itemVolume, PercentType(80))
-    # itemVolume=(PercentType(80))
-    # events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(80))
-
-    # Voice.say("hi", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(80))
-    # events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(80))
-    # ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: Voice.say(message, "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory"))
-    # ScriptExecution.createTimer(DateTime.now().plusSeconds(15), lambda: events.sendCommand(ir.getItem("GHM_Conservatory_Volume"), PercentType(30)))
-
-    # Voice.say("Turning on Bedroom TV", "voicerss:enGB", "chromecast:chromecast:GHM_Conservatory", PercentType(50))
 
     itemVolume = ir.getItem("GHM_Conservatory_Volume")
     prevVolume = events.storeStates(itemVolume)
@@ -148,13 +136,7 @@ def bedroom_tv_on(event):
 
     events.postUpdate("shutdownKodiBedroomProxy", "ON")
     events.sendCommand("wifi_socket_3_power", "ON")
-#     //check if a shutdown timer is running - then stop it before turning stuff on
-    # if t_tvPowerOff is not None:
-        # t_tvPowerOff = None
 
-
-# def restoreVol(itemVolume, prevVolume):
-#     itemVolume = prevVolume
 
 # #
 t_brtvPowerOff=None
@@ -243,15 +225,6 @@ def AT_tv_on(event):
     # restore prev vol
     ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))
 
-    # play prev stream - if any
-
-    #https://community.openhab.org/t/playsound-volume-oddity-and-google-home-speakers-as-audio-sink/73791/6
-    # itemVolume = ir.getItem("LivingRoom_GH_Volume")
-    # prevVolume = events.storeStates(itemVolume)
-    # sendCommand(itemVolume, PercentType(80))
-    # ScriptExecution.createTimer(DateTime.now().plusMillis(500), lambda: Voice.say(message))
-    # ScriptExecution.createTimer(DateTime.now().plusSeconds(3), lambda: events.restoreStates(prevVolume))
-
 #     //check if a shutdown timer is running - then stop it before turning stuff on
     if t_attvPowerOff is not None:
         t_attvPowerOff = None
@@ -280,9 +253,5 @@ def AT_tv_off(event):
 def attvoffbody():
     global t_attvPowerOff
 
-    # events.sendCommand("wifi_socket_5_power", "OFF")
-
-
-    # events.sendCommand("CT_Soundbar433PowerSocket", "OFF")
     t_attvPowerOff = None
 

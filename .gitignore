@@ -16,3 +16,4 @@ automation/lib/python/core/date$py.class
 automation/typings/
 secret.txt
 things/mail.things
+node_modules
