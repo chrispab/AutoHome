@@ -16,4 +16,12 @@ automation/lib/python/core/date$py.class
 automation/typings/
 secret.txt
 things/mail.things
-node_modules
+/automation/js/node_modules/**/*.*
+/automation/js/node_modules/**/LICENSE
+/automation/js/node_modules/**/LICENSE-MIT
+/automation/js/node_modules/**/license
+/automation/js/node_modules/**/bin
+!automation/js/node_modules/personal/alerting.js
+!automation/js/node_modules/personal/index.js
+!automation/js/node_modules/personal/package.json
+

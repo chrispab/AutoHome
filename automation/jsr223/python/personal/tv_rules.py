@@ -230,8 +230,6 @@ def AT_tv_on(event):
         t_attvPowerOff = None
 
 
-    # events.sendCommand("wifi_socket_5_power", "ON")
-
 
 
 t_attvPowerOff=None

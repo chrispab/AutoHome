@@ -56,7 +56,7 @@ rules.JSRule({
   execute: (data) => {
     console.error('**********************conservatory_fan_ cool rulel - check if cooling fan reqd');
 
-    var { alerting } = require('personal');
+    // var { alerting } = require('personal');
     // alerting.sendInfo('FROM fan OPENHABvv');
     // alerting.sendAlert('The following Chromecast devices are now in use');
 
