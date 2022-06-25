@@ -35,6 +35,15 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('vCT_stereo', 'ON', 'OFF'),
   ],
   execute: (data) => {
+    //! if being turned off by ct tv coming on then dont do the normal off routine
+    if (items.getItem('vCT_TVKodiSpeakers').state == 'ON') {
+      // someone is turning on ct tv
+      console.error(
+        'CT tv being turned on - STereo is ON - so dont switch off the stereo - kodi, amp, and bridges reused'
+      );
+      // items.getItem('vCT_stereo').postUpdate('OFF'); //turn off virt trigger
+      return;
+    }
     console.error('Turning OFF stereo - kodi, amp, and bridges');
     items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); //shutdown CT Pi
     // console.error("err 2");

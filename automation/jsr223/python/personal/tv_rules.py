@@ -37,7 +37,7 @@ tStartup = None
 @rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
 @when("System started")
 def tvs_init(event):
-    tvs_init.log.info("System started - set all rooms TV startup settings")
+    tvs_init.log.info("System started - set all rooms  TV startup settings")
     events.postUpdate("BridgeLightSensorState", "OFF")
     global tStartup
     if tStartup is None:

@@ -65,6 +65,9 @@ rules.JSRule({
   description: 'turn ON conservatory TV',
   triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON')],
   execute: (data) => {
+    //check if stereo already on - some stuff already on!
+    items.getItem('vCT_stereo').postUpdate('OFF'); //turn off stereo virt trigger button
+
     console.error('Turning on CT - TV - kodi, amp, ir bridge');
     items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); //tv
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
@@ -112,13 +115,14 @@ rules.JSRule({
     items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); //shutdown CT Pi
     console.error('sent command - shutdown kodi');
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
+    items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 
     console.error('tv - turned OFF amp, and bridges');
     //if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
       CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
         items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); //CT kodi, amp, ir bridge, hdmi audio extractor
-        items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
+        // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 
         items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); //turn off virt trigger
         console.error('turned off kodi power');
