@@ -120,7 +120,7 @@ rules.JSRule({
     console.error('tv - turned OFF amp, and bridges');
     //if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
-      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
+      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), function () {
         items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); //CT kodi, amp, ir bridge, hdmi audio extractor
         // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 

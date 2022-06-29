@@ -73,3 +73,6 @@ const thingStatusInfo = actions.Things.getThingStatusInfo("zwave:serial_zstick:5
 console.log("Thing status",thingStatusInfo.getStatus());
 
 
+https://community.openhab.org/t/some-js-scripting-ui-rules-examples/131305/2
+
+https://next.openhab.org/addons/automation/jsscripting/
