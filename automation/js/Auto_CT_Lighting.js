@@ -82,11 +82,11 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('BridgeLightSensorLevel')],
   execute: (data) => {
     console.error('.......................................monitor 433 bridge light sensor');
-    console.error('.......................................previous light sensor: ' + previousLightSensorLevel);
+    console.error('.......................................previousLightSensorLevel: ' + previousLightSensorLevel);
     currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-    console.error('.......................................current light sensor: ' + currentLightSensorLevel);
+    console.error('.......................................currentLightSensorLevel: ' + currentLightSensorLevel);
     console.error(
-      '.......................................current SETPOINT: ' +
+      '.......................................CT_Auto_Lighting_Trigger_SetPoint: ' +
         items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state
     );
 
@@ -100,25 +100,35 @@ rules.JSRule({
 
     previousLightSensorLevel = currentLightSensorLevel;
 
+    console.error('...............................currentLightSensorLevel: ' + currentLightSensorLevel);
+    console.error(
+      '...............................CT_Auto_Lighting_Trigger_SetPoint: ' +
+        items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state
+    );
+    console.error(
+      '...............................BridgeLightSensorTrend: ' + items.getItem('BridgeLightSensorTrend').state
+    );
+    console.error('...............................CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state);
+
     //ambient light below trigger level and trend going down - its getting dark
     if (
-      currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state &&
-      items.getItem('BridgeLightSensorTrend').state == 'OFF'
+      currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState &&
+      items.getItem('BridgeLightSensorTrend').state == 'OFF' //down getting darker
     ) {
       items.getItem('CT_LightDark_State').sendCommand('OFF');
       console.error(
-        '...................................1CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
+        '...................................1 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
       );
     }
 
     //ambient light above trigger level and trend going up - its getting light
     if (
-      currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state &&
-      items.getItem('BridgeLightSensorTrend').state == 'ON'
+      currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState &&
+      items.getItem('BridgeLightSensorTrend').state == 'ON' //up getting lighter
     ) {
       items.getItem('CT_LightDark_State').sendCommand('ON');
       console.error(
-        '...................................2CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
+        '...............................2 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
       );
     }
   },

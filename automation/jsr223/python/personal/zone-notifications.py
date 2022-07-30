@@ -52,7 +52,7 @@ def zone3lightson(event):
 
         ScriptExecution.createTimer(DateTime.now().plusSeconds(4), lambda: events.sendCommand("gZbColourBulbsColour", "240,100,100"))
 
-        t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("gColourBulbs", "OFF"))
+        t3 = ScriptExecution.createTimer(DateTime.now().plusSeconds(8), lambda: events.sendCommand("gColourBulbs", "OFF"))
         ScriptExecution.createTimer(DateTime.now().plusSeconds(6), lambda: events.sendCommand("gZbColourBulbsColour", "0,100,100"))
 
 
