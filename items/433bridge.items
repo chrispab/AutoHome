@@ -5,6 +5,9 @@ Number	BridgeLightSensorLevel	"Light Sensor Level"				<light>					{ channel="mqt
 Switch	BridgeLightSensorState	"Light Sensor State"				<light>					{ channel="mqtt:topic:bridge:lightSensorState" }
 Switch	PIRState				"Bridge PIR sensor"					<light>					{ channel="mqtt:topic:bridge:pirState" }
 
+Switch	BridgeLightSensorTrend	"Light Sensor State Trend"
+Number CT_Auto_Lighting_Trigger_SetPoint "Conservatory auto light trigger setpoint"
+Switch	CT_LightDark_State	"Light dark calculated State"
 
 Switch  Bridge433_reachable      "433 Bridge reachable" (gServices_Core_Online) ["Service_Core_Check"] { channel = "mqtt:topic:bridge:reachable" }
 Number  Bridge433_rssi           "433Bridge rssi" { channel = "mqtt:topic:bridge:rssi" }
