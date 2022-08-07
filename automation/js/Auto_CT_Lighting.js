@@ -117,7 +117,9 @@ rules.JSRule({
     ) {
       items.getItem('CT_LightDark_State').sendCommand('OFF');
       console.error(
-        '...................................1 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
+        '...................................1 CT_LightDark_State: ' +
+          items.getItem('CT_LightDark_State').state +
+          ' - dark'
       );
     }
 
@@ -128,7 +130,7 @@ rules.JSRule({
     ) {
       items.getItem('CT_LightDark_State').sendCommand('ON');
       console.error(
-        '...............................2 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state
+        '...............................2 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state + ' - light'
       );
     }
   },
