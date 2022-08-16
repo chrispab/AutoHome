@@ -45,6 +45,14 @@ rules.JSRule({
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
     });
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(6), function () {
+      items.getItem('KT_light_1_Power').sendCommand('ON'); //IR code
+      console.error('KT_light_1_Power');
+    });
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), function () {
+      items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
+      console.error('KT_light_1_Power');
+    });
   },
 });
 

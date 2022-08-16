@@ -23,7 +23,7 @@ def zb_sensor_init(event):
 @rule("monitor ZB  temp sensor availability", description="monitor ZB  availability", tags=["zigbee"])
 @when("Member of gTHSensorTemperatures received update")
 def zbAvail(event):
-    LogAction.logDebug("gTHSensorTemperatures", "== gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
+    LogAction.logError("gTHSensorTemperatures", "$$$$$$$$$$$$$$$$$$$==========gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
     newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     events.postUpdate(newname, "Online")  # use reachable not triggering event cos its temp
     zbAvail.log.debug("== ZB  temp sensor availability marked  ONLINE::")

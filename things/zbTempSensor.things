@@ -41,7 +41,7 @@ Thing mqtt:topic:THSensor02 "Xiaomi Temp Humi Sensor 02" (mqtt:broker:MyMQTTBrok
 
 }
 
-Thing mqtt:topic:THSensor03 "Xiaomi Temp Humi Sensor 03" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+Thing mqtt:topic:THSensor03 "Xiaomi Temp Humi Sensor 03" (mqtt:broker:MyMQTTBroker) @ "Bedroom"
 {
     Type number : temperature            [stateTopic="zigbee2mqtt/THSensor03", transformationPattern="JSONPATH:$.temperature" ]
     Type number : humidity            [stateTopic="zigbee2mqtt/THSensor03", transformationPattern="JSONPATH:$.humidity" ]
