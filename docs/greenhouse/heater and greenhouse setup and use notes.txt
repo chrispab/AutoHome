@@ -114,6 +114,9 @@ current:
 Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish sonoff_water1/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON
 Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_7/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=24.9 DO power1 0 ENDON ON DS18B20#Temperature<24.9 DO power1 1 ENDON
 
+#21.1C
+Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_7/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=21.1 DO power1 0 ENDON ON DS18B20#Temperature<21.1 DO power1 1 ENDON
+
 wifi_socket_7
 
 18:18:14 MQT: sonoff_water1/stat/STATUS = {"Status":{"Module":1,"FriendlyName":["sonoff_water1"],"Topic":"sonoff_water1","ButtonTopic":"0","Power":0,"PowerOnState":3,"LedState":1,"LedMask":"FFFF","SaveData":1,"SaveState":1,"SwitchTopic":"0","SwitchMode":[0,0,0,0,0,0,0,0],"ButtonRetain":0,"SwitchRetain":0,"SensorRetain":0,"PowerRetain":0}}
@@ -126,3 +129,9 @@ wifi_socket_7
 18:18:15 MQT: sonoff_water1/stat/STATUS7 = {"StatusTIM":{"UTC":"2020-04-24T17:18:15","Local":"2020-04-24T18:18:15","StartDST":"2020-03-29T01:00:00","EndDST":"2020-10-25T02:00:00","Timezone":99,"Sunrise":"05:45","Sunset":"20:20"}}
 18:18:15 MQT: sonoff_water1/stat/STATUS10 = {"StatusSNS":{"Time":"2020-04-24T18:18:15"}}
 18:18:15 MQT: sonoff_water1/stat/STATUS11 = {"StatusSTS":{"Time":"2020-04-24T18:18:15","Uptime":"0T00:01:43","UptimeSec":103,"Heap":24,"SleepMode":"Dynamic","Sleep":50,"LoadAvg":19,"MqttCount":1,"POWER":"OFF","Wifi":{"AP":1,"SSId":"notwork","BSSId":"BA:3C:9D:D4:64:B5","Channel":11,"RSSI":14,"Signal":-93,"LinkCount":1,"Downtime":"0T00:00:09"}}}
+
+
+#21.1C
+Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_7/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=21.1 DO power1 0 ENDON ON DS18B20#Temperature<21.1 DO power1 1 ENDON
+
+wifi_socket_7

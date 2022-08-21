@@ -14,9 +14,9 @@ timeoutMinutes = 45  # use an appropriate value
 def zb_sensor_init(event):
     zb_sensor_init.log.debug("zb_sensor_init")
     for item in ir.getItem("gZbTHSensorsReachable").members:
-        events.postUpdate(item, "offline")
+        events.postUpdate(item, "OFF")
 
-    events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "offline")
+    events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "OFF")
 
 
 
@@ -25,10 +25,10 @@ def zb_sensor_init(event):
 def zbAvail(event):
     LogAction.logError("gTHSensorTemperatures", "$$$$$$$$$$$$$$$$$$$==========gTHSensorTemperatures  Item {} received  update: {}", event.itemName, event.itemState)
     newname = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
-    events.postUpdate(newname, "Online")  # use reachable not triggering event cos its temp
+    events.postUpdate(newname, "ON")  # use reachable not triggering event cos its temp
     zbAvail.log.debug("== ZB  temp sensor availability marked  ONLINE::")
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
-        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusMinutes(timeoutMinutes), lambda: events.postUpdate(newname, "Offline"))
+        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusMinutes(timeoutMinutes), lambda: events.postUpdate(newname, "OFF"))
     else:
         timers[event.itemName].reschedule(DateTime.now().plusMinutes(timeoutMinutes))

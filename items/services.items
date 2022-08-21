@@ -2,3 +2,4 @@ Group:Switch:OR(OFF,ON)    gServices_Core_Online // online Services
 
 Group:Switch:OR(OFF,ON)    gServices_Support_Online // online Services
 
+Group:Switch:OR(OFF,ON)    gHeating_Temp_Sensors_Online // online Services
