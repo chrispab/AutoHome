@@ -23,7 +23,7 @@ rules.JSRule({
     //check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); //turn off stereo virt trigger button
 
-    console.error('££££££££vv££££££££. If any heaters demand, turn Boiler ON else OFF');
+    console.error('££££££££============££££££££. If any heaters demand, turn Boiler ON else OFF');
 
     //below will list all items and states in a group
     var whatitis = '';

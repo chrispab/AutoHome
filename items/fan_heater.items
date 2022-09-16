@@ -1,0 +1,3 @@
+Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+Number fan_heater_temperature_sensor	"fan_heater_temperature_sensor"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
+Number fan_heater_ON_Setpoint "fan_heater on setponit [%.1f °C]"    <degreesc>

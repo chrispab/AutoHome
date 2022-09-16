@@ -54,4 +54,4 @@ Switch wifi_socket_8_power "wifi_socket_8 pwr" (gMQTT, gWiFiPowerSockets )  { ch
 String wifi_socket_8_reachable "wifi_socket_8 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_8:reachable" }
 Number wifi_socket_8_rssi "wifi_socket_8 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_8:rssi" }
 Number wifi_socket_8_temperature	"wifi_socket_8 Temperature"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
-Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+// Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
