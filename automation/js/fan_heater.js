@@ -5,7 +5,9 @@ rules.JSRule({
         // triggers.GroupStateUpdateTrigger('gRoomHeaterStates', 'OFF', 'ON'),
         triggers.ItemStateChangeTrigger('fan_heater_temperature_sensor'),
         triggers.ItemStateChangeTrigger('CT_Temperature'),
-        triggers.ItemStateChangeTrigger('fan_heater_ON_Setpoint')
+        triggers.ItemStateChangeTrigger('fan_heater_ON_Setpoint'),
+        triggers.ItemStateChangeTrigger('fan_heater_enable')
+
     ],
     execute: (data) => {
 
@@ -29,7 +31,7 @@ rules.JSRule({
 
       setPoint = items.getItem('fan_heater_ON_Setpoint').state;
       temp = items.getItem('CT_Temperature').state;
-      if (items.getItem('CT_Heater') != 'ON') {
+      if ((items.getItem('CT_Heater') != 'ON') && (items.getItem('fan_heater_enable').state =='ON') ){
         if (temp < setPoint) {
           items.getItem('fan_heater').sendCommand('ON');
           console.error('>>>>- fan_heater_ON_Setpoint turning heater ON');
