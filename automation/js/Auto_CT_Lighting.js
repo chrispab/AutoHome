@@ -4,6 +4,7 @@
 // def auto_lighting_init(event):
 //     auto_lighting_init.log.info("auto_lighting_init")
 //     events.postUpdate("BridgeLightSensorState", "OFF")
+var { alerting } = require('personal');
 
 rules.JSRule({
   name: 'CRON auto turn On conservatory lights MORNING if dark',
@@ -16,7 +17,6 @@ rules.JSRule({
       console.error('CRON auto turn On conservatory lights MORNING');
       items.getItem('gConservatoryLights').sendCommand('ON');
 
-      var { alerting } = require('personal');
       alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
     }
   },
@@ -31,7 +31,7 @@ rules.JSRule({
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
 
-    var { alerting } = require('personal');
+    // var { alerting } = require('personal');
     alerting.sendInfo('CRON auto turn OFF conservatory lights');
   },
 });
@@ -45,7 +45,7 @@ rules.JSRule({
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
 
-    var { alerting } = require('personal');
+    // var { alerting } = require('personal');
     alerting.sendInfo('auto turn OFF conservatory lights');
   },
 });
@@ -59,7 +59,7 @@ rules.JSRule({
     // items.getItem("conservatoryLightsProxy").sendCommand("ON");
     items.getItem('gConservatoryLights').sendCommand('ON');
 
-    var { alerting } = require('personal');
+    // var { alerting } = require('personal');
     alerting.sendInfo('auto turn ON conservatory lights if getting dark');
   },
 });

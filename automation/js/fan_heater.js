@@ -1,3 +1,6 @@
+var { utils } = require('personal');
+
+
 rules.JSRule({
     name: 'fan heater check',
     description: 'If fan heater check demand turn on fan heater check',
@@ -28,6 +31,7 @@ rules.JSRule({
           ', PREV state: ' +
           items.getItem('fan_heater_temperature_sensor').history.previousState()
       );
+        utils.showItem(data);
 
       setPoint = items.getItem('fan_heater_ON_Setpoint').state;
       temp = items.getItem('CT_Temperature').state;
