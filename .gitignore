@@ -24,4 +24,6 @@ things/mail.things
 !automation/js/node_modules/personal/alerting.js
 !automation/js/node_modules/personal/index.js
 !automation/js/node_modules/personal/package.json
+!automation/js/node_modules/personal/utils.js
+
 
