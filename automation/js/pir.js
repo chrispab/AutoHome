@@ -30,7 +30,7 @@ rules.JSRule({
   ],
   execute: (data) => {
     console.error(
-      '========================================================================ON ON ON =======  pir_occupancy received update itemName : ' +
+      'ON ON ON =======  pir_occupancy received update itemName : ' +
         data.itemName +
         ', state: ' +
         items.getItem(data.itemName).state +

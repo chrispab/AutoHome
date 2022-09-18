@@ -14,8 +14,9 @@
 //     init_BG_status.log.debug("init_BG_status")
 //     for item in ir.getItem("gBG_sockets_reachable").members:
 //         events.postUpdate(item, "Offline")
+// var { items } = require("@runtime");
 scriptLoaded = function () {
-  console.error('scriptLoaded - init BG avail statuss');
+  console.error('scriptLoaded - init BG avail statuses');
   //below will list all items and states in a group
   var whatitis = '';
   items.getItem('gBG_sockets_reachable').members.forEach(function (batt) {

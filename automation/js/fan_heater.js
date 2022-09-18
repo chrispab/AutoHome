@@ -1,6 +1,7 @@
 var { utils } = require('personal');
-
-
+// var  utils  = require('./utils.js');
+// const { showItem } = require('./utils.js');
+var logger = log('fan_heater.js');
 rules.JSRule({
     name: 'fan heater check',
     description: 'If fan heater check demand turn on fan heater check',
@@ -13,16 +14,16 @@ rules.JSRule({
 
     ],
     execute: (data) => {
-
+      logger.warn('________If fan heater check demand turn on fan heater check');
       console.error('________If fan heater check demand turn on fan heater check');
-      console.error(
-        'FAN HEATER TRIGGGER data info: ' +
-          data.itemName +
-          ', state: ' +
-          items.getItem(data.itemName).state +
-          ', PREV state: ' +
-          items.getItem(data.itemName).history.previousState()
-      );
+      // console.error(
+      //   'FAN HEATER TRIGGGER data info: ' +
+      //     data.itemName +
+      //     ', state: ' +
+      //     items.getItem(data.itemName).state +
+      //     ', PREV state: ' +
+      //     items.getItem(data.itemName).history.previousState()
+      // );
       console.error(
         '_FAN HEATER temp data info: ' +
         items.getItem('fan_heater_temperature_sensor').label +
@@ -32,6 +33,7 @@ rules.JSRule({
           items.getItem('fan_heater_temperature_sensor').history.previousState()
       );
         utils.showItem(data);
+        // showItem(data);
 
       setPoint = items.getItem('fan_heater_ON_Setpoint').state;
       temp = items.getItem('CT_Temperature').state;

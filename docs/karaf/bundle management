@@ -1,9 +1,13 @@
-bundle:list
-bundle: stop <id number>
-bundle: start <id number>
+bundle:list # to get id of bundle to restasrt
+bundle:stop <id number>
+bundle:start <id number>
 
 
 openHAB Add-ons :: Bundles :: Automation :: JSScripting
+
+156 │ Active │  80 │ 3.3.0                  │ openHAB Core :: Bundles :: Automation Script Modules
+157 │ Active │  80 │ 3.3.0                  │ openHAB Core :: Bundles :: Automation Script RuleSupport
+
 
 
 
