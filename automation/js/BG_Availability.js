@@ -15,12 +15,16 @@
 //     for item in ir.getItem("gBG_sockets_reachable").members:
 //         events.postUpdate(item, "Offline")
 // var { items } = require("@runtime");
+const { items } = require('openhab');
+
+const logger = log('fan_heater.js');
+
 scriptLoaded = function () {
-  console.error('scriptLoaded - init BG avail statuses');
-  //below will list all items and states in a group
-  var whatitis = '';
-  items.getItem('gBG_sockets_reachable').members.forEach(function (batt) {
-    whatitis = whatitis + batt.label + ': ' + batt.state + '\r\n';
+  logger.warn('scriptLoaded - init BG avail statuses');
+  // below will list all items and states in a group
+  let whatitis = '';
+  items.getItem('gBG_sockets_reachable').members.forEach((batt) => {
+    whatitis = `${whatitis + batt.label}: ${batt.state}\r\n`;
   });
 
   console.error('startup- set Kodi_CT_Online_Status status ');
