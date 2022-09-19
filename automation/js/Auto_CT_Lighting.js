@@ -1,10 +1,10 @@
-//!TODO
+//! TODO
 // @rule("auto lighting init", description="Handles fan actions", tags=["conservatory"])
 // @when("System started")
 // def auto_lighting_init(event):
 //     auto_lighting_init.log.info("auto_lighting_init")
 //     events.postUpdate("BridgeLightSensorState", "OFF")
-var { alerting } = require('personal');
+const { alerting } = require('personal');
 
 rules.JSRule({
   name: 'CRON auto turn On conservatory lights MORNING if dark',
@@ -12,7 +12,7 @@ rules.JSRule({
   triggers: [triggers.GenericCronTrigger('0 0 07 * * ?')],
   execute: (data) => {
     if (items.getItem('CT_LightDark_State').state == 'OFF') {
-      //!only turn on if dark
+      //! only turn on if dark
 
       console.error('CRON auto turn On conservatory lights MORNING');
       items.getItem('gConservatoryLights').sendCommand('ON');
@@ -64,16 +64,16 @@ rules.JSRule({
   },
 });
 
-var previousLightSensorLevel = null;
-var currentLightSensorLevel = null;
+let previousLightSensorLevel = null;
+let currentLightSensorLevel = null;
 
 scriptLoaded = function () {
   console.error('scriptLoaded - set all CT auto lightings items etc');
 
   previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
   currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); //going up
-  items.getItem('CT_LightDark_State').sendCommand('ON'); //its light in conservatory
+  items.getItem('BridgeLightSensorTrend').sendCommand('OFF'); // going up
+  items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
 };
 
 rules.JSRule({
@@ -82,12 +82,11 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('BridgeLightSensorLevel')],
   execute: (data) => {
     console.error('.......................................monitor 433 bridge light sensor');
-    console.error('.......................................previousLightSensorLevel: ' + previousLightSensorLevel);
+    console.error(`.......................................previousLightSensorLevel: ${previousLightSensorLevel}`);
     currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-    console.error('.......................................currentLightSensorLevel: ' + currentLightSensorLevel);
+    console.error(`.......................................currentLightSensorLevel: ${currentLightSensorLevel}`);
     console.error(
-      '.......................................CT_Auto_Lighting_Trigger_SetPoint: ' +
-        items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state
+      `.......................................CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
     );
 
     if (currentLightSensorLevel > previousLightSensorLevel) {
@@ -100,37 +99,35 @@ rules.JSRule({
 
     previousLightSensorLevel = currentLightSensorLevel;
 
-    console.error('...............................currentLightSensorLevel: ' + currentLightSensorLevel);
+    console.error(`...............................currentLightSensorLevel: ${currentLightSensorLevel}`);
     console.error(
-      '...............................CT_Auto_Lighting_Trigger_SetPoint: ' +
-        items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state
+      `...............................CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
     );
     console.error(
-      '...............................BridgeLightSensorTrend: ' + items.getItem('BridgeLightSensorTrend').state
+      `...............................BridgeLightSensorTrend: ${items.getItem('BridgeLightSensorTrend').state}`,
     );
-    console.error('...............................CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state);
+    console.error(`...............................CT_LightDark_State: ${items.getItem('CT_LightDark_State').state}`);
 
-    //ambient light below trigger level and trend going down - its getting dark
+    // ambient light below trigger level and trend going down - its getting dark
     if (
-      currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState &&
-      items.getItem('BridgeLightSensorTrend').state == 'OFF' //down getting darker
+      currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
+      && items.getItem('BridgeLightSensorTrend').state == 'OFF' // down getting darker
     ) {
       items.getItem('CT_LightDark_State').sendCommand('OFF');
       console.error(
-        '...................................1 CT_LightDark_State: ' +
-          items.getItem('CT_LightDark_State').state +
-          ' - dark'
+        `...................................1 CT_LightDark_State: ${items.getItem('CT_LightDark_State').state
+        } - dark`,
       );
     }
 
-    //ambient light above trigger level and trend going up - its getting light
+    // ambient light above trigger level and trend going up - its getting light
     if (
-      currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState &&
-      items.getItem('BridgeLightSensorTrend').state == 'ON' //up getting lighter
+      currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
+      && items.getItem('BridgeLightSensorTrend').state == 'ON' // up getting lighter
     ) {
       items.getItem('CT_LightDark_State').sendCommand('ON');
       console.error(
-        '...............................2 CT_LightDark_State: ' + items.getItem('CT_LightDark_State').state + ' - light'
+        `...............................2 CT_LightDark_State: ${items.getItem('CT_LightDark_State').state} - light`,
       );
     }
   },

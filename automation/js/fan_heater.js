@@ -18,7 +18,7 @@ rules.JSRule({
     console.error('________If fan heater check demand turn on fan heater check');
 
     console.error(
-      `_FAN HEATER temp data info: ${items.getItem('fan_heater_temperature_sensor').label
+      `FAN HEATER temp data info: ${items.getItem('fan_heater_temperature_sensor').label
       }, state: ${items.getItem('fan_heater_temperature_sensor').state
       }, PREV state: ${items.getItem('fan_heater_temperature_sensor').history.previousState()}`,
     );
@@ -32,7 +32,7 @@ rules.JSRule({
         items.getItem('fan_heater').sendCommand('ON');
         console.error('>>>>- fan_heater_ON_Setpoint turning heater ON');
       }
-      if (temp >= setPoint) {
+      if (temp >= (setPoint + 0.1)) {
         items.getItem('fan_heater').sendCommand('OFF');
         console.error('>>>>- fan_heater_ON_Setpoint turning heater OFF');
       }
