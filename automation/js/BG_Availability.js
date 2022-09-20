@@ -14,13 +14,13 @@
 //     init_BG_status.log.debug("init_BG_status")
 //     for item in ir.getItem("gBG_sockets_reachable").members:
 //         events.postUpdate(item, "Offline")
-// var { items } = require("@runtime");
-const { items } = require('openhab');
+// const { items } = require('@runtime');
+// const { time, items } = require('openhab-js');
 
-const logger = log('fan_heater.js');
+const logger = log('BG_Availability.js');
 
 scriptLoaded = function () {
-  logger.warn('++++++++++++++++++++++++scriptLoaded - init BG avail statusess');
+  logger.warn('scriptLoaded - init BG avail statusess');
   // below will list all items and states in a group
   let whatitis = '';
   items.getItem('gBG_sockets_reachable').members.forEach((batt) => {
