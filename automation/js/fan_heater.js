@@ -1,4 +1,4 @@
-const { utils } = require('personal');
+const { myutils } = require('personal');
 // var  utils  = require('./utils.js');
 // const { showItem } = require('./utils.js');
 const logger = log('fan_heater.js');
@@ -22,22 +22,24 @@ rules.JSRule({
       }, state: ${items.getItem('fan_heater_temperature_sensor').state
       }, PREV state: ${items.getItem('fan_heater_temperature_sensor').history.previousState()}`,
     );
-    utils.showItem(data);
+    myutils.showItem(data);
     // showItem(data);
 
-    const setPoint = items.getItem('fan_heater_ON_Setpoint').state;
+    const setPoint = items.getItem('fan_heater_ON_Setpoint').rawState;
     console.warn(`________fan_heater_ON_Setpoint: ${setPoint}`);
-    const temp = items.getItem('CT_Temperature').state;
+    const temp = items.getItem('CT_Temperature').rawState;
     console.warn(`________CT_Temperature: ${temp}`);
 
-    if ((items.getItem('CT_Heater') !== 'ON') && (items.getItem('fan_heater_enable').state === 'ON')) {
+    if ((items.getItem('CT_Heater').state == 'OFF') && (items.getItem('fan_heater_enable').state == 'ON')) {
+      console.warn('________PAST THE GATE');
       if (temp < setPoint) {
         items.getItem('fan_heater').sendCommand('ON');
-        console.warn('>>>>- fan_heater_ON_Setpoint turning heater ON');
-      }
-      if (temp >= (setPoint + 0.1)) {
+        console.warn('>>>>- temp < setPoint turning heater ON');
+      } else if (temp > (setPoint)) {
         items.getItem('fan_heater').sendCommand('OFF');
-        console.warn('>>>>-. fan_heater_ON_Setpoint turning heater OFF');
+        console.warn('<<<< -. temp > (setPoint) turning heater OFF');
+      } else {
+        console.warn('==== -. temp none of on or off');
       }
     }
   },

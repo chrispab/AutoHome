@@ -14,20 +14,31 @@
 //     init_BG_status.log.debug("init_BG_status")
 //     for item in ir.getItem("gBG_sockets_reachable").members:
 //         events.postUpdate(item, "Offline")
-// const { items } = require('@runtime');
+
 // const { time, items } = require('openhab-js');
+const {
+  log, items,
+} = require('openhab');
+const { myutils } = require('personal');
 
 const logger = log('BG_Availability.js');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded - init BG avail statusess');
-  // below will list all items and states in a group
-  let whatitis = '';
-  items.getItem('gBG_sockets_reachable').members.forEach((batt) => {
-    whatitis = `${whatitis + batt.label}: ${batt.state}\r\n`;
-  });
+  // const { items } = require('@runtime');#
+  console.log(items);
+  logger.warn('scriptLoaded -   init  BG avail statusesss');
+  myutils.showGroupMembers('gBG_sockets_reachable');
 
-  console.error(`scriptLoaded - init BG avail statusess: ${whatitis}`);
+  // below will list all items and states in a group
+  // let whatitis = '\n';
+  items.getItem('gBG_sockets_reachable').members.forEach((item) => {
+    // whatitis = `${whatitis + batt.label}: ${batt.state}\r\n`;
+    item.postUpdate('Offline');
+  });
+  // console.error(`scriptLoaded - init  BG avail statusess: ${whatitis}`);
+
+  myutils.showGroupMembers('gBG_sockets_reachable');
+
   const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
   // console.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
 

@@ -9,7 +9,7 @@ timers = {}
 timeoutSeconds = 31  # use an appropriate value
 
 
-@rule("init BG avail status", description="zb temp sensors init", tags=["heating"])
+@rule("init BG  avail status", description="zb t emp sensors init", tags=["heating"])
 @when("System started")
 def init_BG_status(event):
     init_BG_status.log.debug("init_BG_status")
