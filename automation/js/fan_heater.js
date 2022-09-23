@@ -29,6 +29,8 @@ rules.JSRule({
     console.warn(`________fan_heater_ON_Setpoint: ${setPoint}`);
     const temp = items.getItem('CT_Temperature').rawState;
     console.warn(`________CT_Temperature: ${temp}`);
+    console.warn(`________CT_Heater: ${items.getItem('CT_Heater').state}`);
+    console.warn(`________fan_heater_enable: ${items.getItem('fan_heater_enable').state}`);
 
     if ((items.getItem('CT_Heater').state == 'OFF') && (items.getItem('fan_heater_enable').state == 'ON')) {
       console.warn('________PAST THE GATE');

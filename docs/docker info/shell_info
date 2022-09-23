@@ -1,0 +1,85 @@
+openhab> shell:info
+Karaf
+  Karaf version               4.3.7
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.17.200.v20220215-2237
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 11.0.15+10
+  Version                     11.0.15
+  Vendor                      Eclipse Adoptium
+  Pid                         29
+  Uptime                      19 hours
+  Process CPU time            3 hours 16 minutes
+  Process CPU load            0.00
+  System CPU load             0.75
+  Open file descriptors       870
+  Max file descriptors        1,048,576
+  Total compile time          6 minutes
+Threads
+  Live threads                280
+  Daemon threads              147
+  Peak                        354
+  Total started               252063
+Memory
+  Current heap size           525,514 kbytes
+  Maximum heap size           1,548,288 kbytes
+  Committed heap size         572,416 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 3682, Time = 1 minute
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      34,056
+  Total classes loaded        45,644
+  Total classes unloaded      11,588
+Operating system
+  Name                        Linux version 5.10.103-v7l+
+  Architecture                arm
+  Processors                  4
+openhab>
+
+
+
+
+
+openhab> shell:info
+Karaf
+  Karaf version               4.3.7
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.17.200.v20220215-2237
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 11.0.15+10
+  Version                     11.0.15
+  Vendor                      Eclipse Adoptium
+  Pid                         133
+  Uptime                      10 minutes
+  Process CPU time            12 minutes
+  Process CPU load            0.00
+  System CPU load             0.75
+  Open file descriptors       205
+  Max file descriptors        1,048,576
+  Total compile time          5 minutes
+Threads
+  Live threads                114
+  Daemon threads              51
+  Peak                        128
+  Total started               702
+Memory
+  Current heap size           101,665 kbytes
+  Maximum heap size           983,040 kbytes
+  Committed heap size         126,976 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 198, Time = 5.297 seconds
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      19,262
+  Total classes loaded        19,444
+  Total classes unloaded      182
+Operating system
+  Name                        Linux version 5.10.103-v7l+
+  Architecture                arm
+  Processors                  4
+openhab>
