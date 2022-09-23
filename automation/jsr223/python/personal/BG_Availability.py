@@ -9,12 +9,12 @@ timers = {}
 timeoutSeconds = 31  # use an appropriate value
 
 
-@rule("init BG  avail status", description="zb t emp sensors init", tags=["heating"])
-@when("System started")
-def init_BG_status(event):
-    init_BG_status.log.debug("init_BG_status")
-    for item in ir.getItem("gBG_sockets_reachable").members:
-        events.postUpdate(item, "Offline")
+# @rule("init BG  avail status", description="zb t emp sensors init", tags=["heating"])
+# @when("System started")
+# def init_BG_status(event):
+#     init_BG_status.log.debug("init_BG_status")
+#     for item in ir.getItem("gBG_sockets_reachable").members:
+#         events.postUpdate(item, "Offline")
 
 
 # when a BG socket MQTT 'maxworktime' update comes in from device - updates frequency determined by broadlink2mqtt

@@ -29,24 +29,12 @@ scriptLoaded = function () {
   logger.warn('scriptLoaded -   init  BG avail statusesss');
   myutils.showGroupMembers('gBG_sockets_reachable');
 
-  // below will list all items and states in a group
-  // let whatitis = '\n';
   items.getItem('gBG_sockets_reachable').members.forEach((item) => {
     // whatitis = `${whatitis + batt.label}: ${batt.state}\r\n`;
     item.postUpdate('Offline');
   });
-  // console.error(`scriptLoaded - init  BG avail statusess: ${whatitis}`);
 
   myutils.showGroupMembers('gBG_sockets_reachable');
-
-  const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
-  // console.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
-
-  // if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
-  //   items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
-  // } else {
-  //   items.getItem('Kodi_CT_Online_Status').postUpdate('OFFLINE');
-  // }
 };
 
 // # when a BG socket MQTT 'maxworktime' update comes in from device - updates frequency determined by broadlink2mqtt
@@ -66,3 +54,48 @@ scriptLoaded = function () {
 //         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(item_name_reachable, "Offline"))
 //     else:
 //         timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
+rules.JSRule({
+  name: 'update BG sockets Online/Offline status',
+  description: 'monitor BG MQTT updates',
+  triggers: [triggers.GroupStateUpdateTrigger('gBG_socket_maxworktime_updates')],
+  execute: (data) => {
+    // check if stereo already on - some stuff already on!
+    // items.getItem('vCT_stereo').postUpdate('OFF'); //turn off stereo virt trigger button
+    console.warn(`triggering item name: ${data.itemName}`);
+    myutils.showGroupMembers('gBG_socket_maxworktime_updates');
+
+    // console.error('££££££££============££££££££. If any heaters demand, turn Boiler ON else OFF');
+
+    // below will list all items and states in a group
+    // var whatitis = '';
+    // items.getItem('gRoomHeaterStates').members.forEach(function (batt) {
+    //   whatitis = whatitis + batt.label + ': ' + batt.state + '\r\n';
+    // });
+
+    // foreach (var light in items.getItem('AllChristmasLights').members) {
+    //     light.sendCommandIfDifferent(newState);
+    //   }
+    // if (whatitis != '') {
+    //!
+    // console.error('\r\nGroup list: \r\n' + whatitis);
+
+    // }
+
+    // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); //tv
+    // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
+
+    // if there is a request to turn off the tv in progress cancel it as we want it on!
+    // if (CT_TV_off_timer && CT_TV_off_timer.isActive()) {
+    //   CT_TV_off_timer.cancel();
+    // }
+
+    // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), function () {
+    //   items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
+    //   console.error('STEREO - IR turn on amp from standby');
+    // });
+    // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
+    //   items.getItem('amplifier_IR_Video1').sendCommand('ON'); //IR code
+    //   console.error('STEREO - IR amp switch to amplifier_IR_Video1 source');
+    // });
+  },
+});
