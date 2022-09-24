@@ -44,5 +44,11 @@ rules.JSRule({
         console.warn('==== -. temp none of on or off');
       }
     }
+
+    if (items.getItem('fan_heater_enable').state == 'OFF') {
+      console.warn('________items.getItem(fan_heater_enable).state == OFF');
+
+      items.getItem('fan_heater').sendCommand('OFF');
+    }
   },
 });
