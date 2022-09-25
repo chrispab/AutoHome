@@ -66,35 +66,24 @@ rules.JSRule({
     console.warn(`update BG sockets Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     myutils.showGroupMembers('gBG_socket_maxworktime_updates');
 
-    //     # bgAvail.log.debug("!!!!bbb gBG_socket_maxworktime_updates  Item " + event.itemName + "received  update: " + event.itemState.toString())
-    //     # create the 'reachable' item name e.g bg_wifisocket_4_maxworktime to bg_wifisocket_4_reachable
-    //     item_name_reachable = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
     console.warn(`get id part of item reachable: ${stub} `);
 
     items.getItem(itemNameReachable).postUpdate('Online');
     console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
-    //     if event.itemName not in timers or timers[event.itemName].hasTerminated():
-    // if (timers.some((obj) => itemNameReachable in obj)) {
-    // if (timers.some((obj) => obj.itemNameReachable == itemNameReachable)) {
+
     if (timers.hasOwnProperty(itemNameReachable)) {
       // console.warn(`***--- itemNameReachable FOUND property/key in timers array: ${itemNameReachable} `);
       console.warn(`**--- FOUND property/key in timers array, RESTART THE TIMER: ${itemNameReachable} `, timers[itemNameReachable]);
 
       if (timers[itemNameReachable].hasTerminated()) { // RESTART timer
         console.warn(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
-        // timers[itemNameReachable] = setTimeout(() => { items.getItem(itemNameReachable).postUpdate('Offline'); }, (timeoutSeconds * 1000));
       }
       // NOT YET terminated STILL RUNNING...
-      // timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
       timers[itemNameReachable].reschedule(timeUtils.toDateTime((timeoutSeconds * 1000)), // , () => {
-        // items.getItem(itemNameReachable).postUpdate('Offline');
-        // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
-        // }
       );
     } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-      // timers[itemNameReachable] = setTimeout(() => { items.getItem(itemNameReachable).postUpdate('Offline'); }, (timeoutSeconds * 1000));
       timers[itemNameReachable] = actions.ScriptExecution.createTimer(timeUtils.toDateTime((timeoutSeconds * 1000)), () => {
         items.getItem(itemNameReachable).postUpdate('Offline');
         console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);

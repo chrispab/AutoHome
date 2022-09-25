@@ -22,19 +22,19 @@ timeoutSeconds = 31  # use an appropriate value
 @rule("update BG sockets Online/Offline status", description="monitor BG MQTT updates", tags=["BG"])
 @when("Member of gBG_socket_maxworktime_updates received update")
 def bgAvail(event):
-   ## # LogAction.logDebug("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
+    LogAction.logDebug("gBG_socket_maxworktime_updates", "!!!! gBG_socket_maxworktime_updates  Item {} received  update: {}", event.itemName, event.itemState)
 
     # bgAvail.log.debug("!!!!bbb gBG_socket_maxworktime_updates  Item " + event.itemName + "received  update: " + event.itemState.toString())
     # create the 'reachable' item name e.g bg_wifisocket_4_maxworktime to bg_wifisocket_4_reachable
-    item_name_reachable = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
-    events.postUpdate(item_name_reachable, "Online")  # use reachable not triggering event cos its temp
+    # item_name_reachable = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
+    # events.postUpdate(item_name_reachable, "Online")  # use reachable not triggering event cos its temp
 
-    # bgAvail.log.debug("===  BG sockets Online/Offline status marked  Online:: ")
-    # LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: ")
-    LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: {}", item_name_reachable)
+    # # bgAvail.log.debug("===  BG sockets Online/Offline status marked  Online:: ")
+    # # LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: ")
+    # LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: {}", item_name_reachable)
 
-    if event.itemName not in timers or timers[event.itemName].hasTerminated():
-        timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(item_name_reachable, "Offline"))
-    else:
-        timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
+    # if event.itemName not in timers or timers[event.itemName].hasTerminated():
+    #     timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(item_name_reachable, "Offline"))
+    # else:
+    #     timers[event.itemName].reschedule(DateTime.now().plusSeconds(timeoutSeconds))
 
