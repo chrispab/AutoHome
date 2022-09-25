@@ -28,7 +28,10 @@ def bgAvail(event):
     # create the 'reachable' item name e.g bg_wifisocket_4_maxworktime to bg_wifisocket_4_reachable
     item_name_reachable = event.itemName[:event.itemName.rfind('_')+1] + "reachable"
     events.postUpdate(item_name_reachable, "Online")  # use reachable not triggering event cos its temp
-    # bgAvail.log.debug("== BG sockets Online/Offline status marked  ONLINE::")
+
+    # bgAvail.log.debug("===  BG sockets Online/Offline status marked  Online:: ")
+    # LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: ")
+    LogAction.logInfo("gBG_socket_maxworktime_updates", "===  BG sockets Online/Offline status marked  Online:: {}", item_name_reachable)
 
     if event.itemName not in timers or timers[event.itemName].hasTerminated():
         timers[event.itemName] = ScriptExecution.createTimer(DateTime.now().plusSeconds(timeoutSeconds), lambda: events.postUpdate(item_name_reachable, "Offline"))
