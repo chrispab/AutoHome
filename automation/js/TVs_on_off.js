@@ -25,6 +25,10 @@
 //         events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
 //         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
+const {
+  log, items, rules,
+} = require('openhab');
+
 scriptLoaded = function () {
   console.error('System started - set all rooms TV startup settings');
 
@@ -59,30 +63,30 @@ scriptLoaded = function () {
 //     t_ampStandbyON = ScriptExecution.createTimer(DateTime.now().plusSeconds(45), lambda: events.sendCommand("amplifier_IR_PowerOn", "ON"))
 //     t_ampVideo01 = ScriptExecution.createTimer(DateTime.now().plusSeconds(60), lambda: events.sendCommand("amplifier_IR_Video1", "ON"))
 
-var CT_TV_off_timer = null;
+let CT_TV_off_timer = null;
 rules.JSRule({
   name: 'turn ON conservatory TV',
   description: 'turn ON conservatory TV',
   triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON')],
   execute: (data) => {
-    //check if stereo already on - some stuff already on!
-    items.getItem('vCT_stereo').postUpdate('OFF'); //turn off stereo virt trigger button
+    // check if stereo already on - some stuff already on!
+    items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
 
     console.error('Turning on CT - TV - kodi, amp, ir bridge');
-    items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); //tv
+    items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
 
-    //if there is a request to turn off the tv in progress cancel it as we want it on!
+    // if there is a request to turn off the tv in progress cancel it as we want it on!
     if (CT_TV_off_timer && CT_TV_off_timer.isActive()) {
       CT_TV_off_timer.cancel();
     }
 
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), function () {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       console.error('STEREO - IR turn on amp from standby');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), function () {
-      items.getItem('amplifier_IR_Video1').sendCommand('ON'); //IR code
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+      items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
       console.error('STEREO - IR amp switch to amplifier_IR_Video1 source');
     });
   },
@@ -112,19 +116,19 @@ rules.JSRule({
   triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'ON', 'OFF')],
   execute: (data) => {
     console.error('Turning OFF tv - kodi, amp, and bridges');
-    items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); //shutdown CT Pi
+    items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi
     console.error('sent command - shutdown kodi');
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
-    items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
+    items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
 
     console.error('tv - turned OFF amp, and bridges');
-    //if stereo off timer is not defined or completed, restart the stereo off timer
+    // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
-      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), function () {
-        items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); //CT kodi, amp, ir bridge, hdmi audio extractor
+      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
+        items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
         // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 
-        items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); //turn off virt trigger
+        items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
         console.error('turned off kodi power');
       });
     }
