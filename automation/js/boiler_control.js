@@ -11,7 +11,7 @@ rules.JSRule({
   execute: (event) => {
     console.error('£££: If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
 
-    myutils.showEvent(event);
+    // myutils.showEvent(event);
 
     // if items["gAnyRoomHeaterOn"] == ON:
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {

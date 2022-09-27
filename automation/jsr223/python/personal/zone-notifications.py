@@ -64,7 +64,7 @@ t4 = None
 
 
 @rule("Zone 1 went Offline", description="Zone 1 went Offline", tags=["notification"])
-@when("Item Zone1Reachable changed to \"Offline\"")
+@when("Item Zone1Reachable changed to OFF")
 def zone1WentOffline(event):
     zone1WentOffline.log.warn("Zone 1 went Offline")
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 went offline")
@@ -82,7 +82,7 @@ t5 = None
 
 
 @rule("Zone 1 came Online", description="Zone 1 came Online", tags=["notification"])
-@when("Item Zone1Reachable changed to \"Online\"")
+@when("Item Zone1Reachable changed to ON")
 def zone1WentOnline(event):
     zone1WentOnline.log.warn("Zone 1 went Online")
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 came Online")
@@ -99,7 +99,7 @@ t6 = None
 
 
 @rule("Zone 3 went Offline", description="Zone 3 went Offline", tags=["notification"])
-@when("Item Zone3Reachable changed to \"Offline\"")
+@when("Item Zone3Reachable changed to OFF")
 def zone3WentOffline(event):
     zone3WentOffline.log.warn("Zone 1 went Offline")
     NotificationAction.sendNotification("cbattisson@gmail.com","zone3 went offline")
@@ -117,7 +117,7 @@ t7 = None
 
 
 @rule("Zone 3 came Online", description="Zone 3 came Online", tags=["notification"])
-@when("Item Zone3Reachable changed to \"Online\"")
+@when("Item Zone3Reachable changed to ON")
 def zone3WentOnline(event):
     zone3WentOnline.log.warn("Zone 3 went Online")
     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 3 came Online")

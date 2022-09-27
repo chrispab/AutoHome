@@ -33,11 +33,11 @@ rules.JSRule({
     console.warn(`________fan_heater_enable: ${items.getItem('fan_heater_enable').state}`);
 
     if ((items.getItem('CT_Heater').state == 'OFF') && (items.getItem('fan_heater_enable').state == 'ON')) {
-      console.warn('________PAST THE GATE');
+      console.warn('_____mvm___PAST THE GATE');
       if (temp < setPoint) {
         items.getItem('fan_heater').sendCommand('ON');
         console.warn('>>>>- temp < setPoint turning heater ON');
-      } else if (temp > (setPoint)) {
+      } else if (temp >= (setPoint)) {
         items.getItem('fan_heater').sendCommand('OFF');
         console.warn('<<<< -. temp > (setPoint) turning heater OFF');
       } else {
