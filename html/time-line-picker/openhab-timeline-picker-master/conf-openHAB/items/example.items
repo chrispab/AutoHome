@@ -1,0 +1,3 @@
+Group   gTimepicker
+Group   gTimepickerObserver
+String  TransferItem                "[%s]"          (gTimepicker)
