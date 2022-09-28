@@ -9,7 +9,7 @@ const { alerting } = require('personal');
 rules.JSRule({
   name: 'CRON auto turn On conservatory lights MORNING if dark',
   description: 'CRON auto turn On conservatory lights MORNING if dark',
-  triggers: [triggers.GenericCronTrigger('0 0 07 * * ?')],
+  triggers: [triggers.GenericCronTrigger('0 30 06 * * ?')],
   execute: (data) => {
     if (items.getItem('CT_LightDark_State').state == 'OFF') {
       //! only turn on if dark

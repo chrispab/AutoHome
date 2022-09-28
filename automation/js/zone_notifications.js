@@ -3,8 +3,8 @@ scriptLoaded = function () {
   loadedDate = Date.now();
 };
 
-var pir01_off_timer = null;
-var pir02_off_timer = null;
+const pir01_off_timer = null;
+const pir02_off_timer = null;
 rules.JSRule({
   name: 'zone3 lights on',
   description: 'zone3 lights on',
@@ -16,76 +16,91 @@ rules.JSRule({
   ],
   execute: (data) => {
     console.error(
-      'ON ON ON =======  zone3 lights on : ' +
-        data.itemName +
-        ', state: ' +
-        items.getItem(data.itemName).state +
-        ', PREV state: ' +
-        items.getItem(data.itemName).history.previousState()
+      `ON ON ON =======  zone3 lights on : ${data.itemName
+      }, state: ${items.getItem(data.itemName).state
+      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
 
     items.getItem('KT_light_1_Power').sendCommand('ON');
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), function () {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2), function () {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); //IR code
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2), () => {
+      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3), function () {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3), () => {
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(4), function () {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); //IR code
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(4), () => {
+      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(5), function () {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(5), () => {
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(6), function () {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); //IR code
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(6), () => {
+      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
       console.error('KT_light_1_Power');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), function () {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), () => {
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
     });
   },
 });
 
-//   rules.JSRule({
-//     name: "PIRsensor ON to OFF - start the lights off timer",
-//     description: "PIRsensor start OFF lights timer",
-//     triggers: [
-//       triggers.ItemStateChangeTrigger("pir01_occupancy", "ON","OFF"),
-//       triggers.ItemStateChangeTrigger("pir02_occupancy", "ON","OFF"),
-//     ],
-//     execute: (data) => {
-//       console.error("update =======  pir_occupancy received update itemName : " + data.itemName + ", state: " + items.getItem(data.itemName).state + ", PREV state: " + items.getItem(data.itemName).history.previousState() );
-//         if ( data.itemName == "pir01_occupancy") {
-//           console.error("update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: " + items.getItem("KT_cupboard_lights_timeout").state.toString());
-//           let now = time.ZonedDateTime.now();
-//           pir01_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").rawState), pir1_off_body);
-//           console.error("update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END");
-//         }
-//         if ( data.itemName == "pir02_occupancy") {
-//           console.error("update=========== : STARTING TIMER KT_light_2&3_Power : OFF, off timer is: " + items.getItem("KT_cupboard_lights_timeout").state);
-//           let now = time.ZonedDateTime.now();
-//           pir02_off_timer = actions.ScriptExecution.createTimer(now.plusSeconds(items.getItem("KT_cupboard_lights_timeout").rawState), pir2_off_body);
-//           console.error("update===========pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END");
-//         }
-//       }
-//   });
+// t4 = None
 
-//   function pir1_off_body() {
-//     console.error('===================================================The timer is over.pir1_off_body');
-//     items.getItem("KT_light_1_Power").sendCommand("OFF");
-//   }
-//   function pir2_off_body() {
-//     console.error('====================================================The timer is over.pir2_off_body');
-//     items.getItem("KT_light_2_Power").sendCommand("OFF");
-//     items.getItem("KT_light_3_Power").sendCommand("OFF");
-//   }
+// @rule("Zone 1 went Offline", description="Zone 1 went Offline", tags=["notification"])
+// @when("Item Zone1Reachable changed to OFF")
+// def zone1WentOffline(event):
+//     zone1WentOffline.log.warn("Zone 1 went Offline")
+//     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 went offline")
+
+//     global t4
+//     if items["tableLamp1"] == ON:
+//         events.sendCommand("tableLamp1", "OFF")
+//         t4 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+
+// t5 = None
+
+// @rule("Zone 1 came Online", description="Zone 1 came Online", tags=["notification"])
+// @when("Item Zone1Reachable changed to ON")
+// def zone1WentOnline(event):
+//     zone1WentOnline.log.warn("Zone 1 went Online")
+//     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 came Online")
+
+//     global t5
+//     if items["tableLamp1"] == ON:
+//         events.sendCommand("tableLamp1", "OFF")
+//         t5 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+
+// t6 = None
+
+// @rule("Zone 3 went Offline", description="Zone 3 went Offline", tags=["notification"])
+// @when("Item Zone3Reachable changed to OFF")
+// def zone3WentOffline(event):
+//     zone3WentOffline.log.warn("Zone 1 went Offline")
+//     NotificationAction.sendNotification("cbattisson@gmail.com","zone3 went offline")
+
+//     global t6
+//     if items["tableLamp1"] == ON:
+//         events.sendCommand("tableLamp1", "OFF")
+//         t6 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+
+// t7 = None
+
+// @rule("Zone 3 came Online", description="Zone 3 came Online", tags=["notification"])
+// @when("Item Zone3Reachable changed to ON")
+// def zone3WentOnline(event):
+//     zone3WentOnline.log.warn("Zone 3 went Online")
+//     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 3 came Online")
+
+//     global t7
+//     if items["tableLamp1"] == ON:
+//         events.sendCommand("tableLamp1", "OFF")
+//         t7 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
