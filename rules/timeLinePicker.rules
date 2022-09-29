@@ -31,7 +31,7 @@ import java.util.ArrayList
 // -------------------- part of config -----------------------------------------------------------------------
 
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(
-    "TransferItem1" -> newArrayList('Thermostat1','Thermostat2'),
+    "TransferItem1" -> newArrayList('Thermostat1','fan_heater_enable','Thermostat2'),
     "TransferItem2" -> newArrayList('LightSwitch45')
 )
 
