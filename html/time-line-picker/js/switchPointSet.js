@@ -1,15 +1,17 @@
 // timeline/ timepicker control
 // version 0.7.4
-// ToSe 
+// ToSe
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-Vue.component('time-scale',{
-  template: '<div @mouseup="mouseLeftUp()" style="height: 20px; padding: 10px;; padding-right: 30px;"><div class="day"><div class="scale"><div class="unit" v-for="(i,index) in _range()" @mousedown="mouseLeftDown(i)" @mouseover="mouseMove(i)" :style="{background: scaleColors[initValue[indexLine].value[i]], width: scaleSegmentWidth}"><div class="one" :class="{lineR: (i+1) % 4 == 0, lineL: i == 0}"></div><div class="two" :class="{lineR: (i+1) % 2 == 0, lineL: i == 0}"></div><div class="three" :class="{lineL: i == 0}"></div><div class="three" :class="{lineL: i == 1}" :style="{background: _eventBackground(i)}"></div></div></div></div></div>',
-  data: function() {
+Vue.component('time-scale', {
+  template: '<div @mouseup="mouseLeftUp()" style="height: 20px; padding: 10px;; padding-right: 30px;"><div class="day"><div class="scale" @touchstart="touchStart" @touchend="touchEnd" @touchmove="touchMove"><div class="unit" v-for="(i,index) in _range()" :data-tpidx="i" @mousedown="mouseLeftDown(i)" @mouseover="mouseMove(i)" :style="{background: scaleColors[initValue[indexLine].value[i]], width: scaleSegmentWidth}"><div class="one" :class="{lineR: (i+1) % 4 == 0, lineL: i == 0}"></div><div class="two" :class="{lineR: (i+1) % 2 == 0, lineL: i == 0}"></div><div class="three" :class="{lineL: i == 0}"></div><div class="three" :class="{lineL: i == 1}" :style="{background: _eventBackground(i)}"></div></div></div></div></div>',
+  data: function () {
     return {
-      mouseLeftPressed: false
-    }   
+      mouseLeftPressed: false,
+      touchStarted: false,
+      previousDragIndex: -1
+    }
   },
   props: {
     indexLine: 0,
@@ -22,40 +24,83 @@ Vue.component('time-scale',{
     },
     scaleColors: {
       type: Array,
-      default: function() { return [] }
+      default: function () { return [] }
     },
     initValue: {
       type: Object,
-      default: function() { return {} }
+      default: function () { return {} }
     }
   },
   computed: {
-    scaleSegmentWidth: function() {
+    scaleSegmentWidth: function () {
       return ('calc(100% / 96 * ' + this.zoomFactor + ')')
     }
   },
   methods: {
-     mouseMove(index) {
-      if (this.mouseLeftPressed) {
+    touchStart(event) {
+      this.previousDragIndex = -1
+      this.touchStarted = true
+    },
+    touchEnd(event) {
+      this.previousDragIndex = -1
+      this.touchStarted = false
+    },
+    touchMove(event) {
+      if (!this.touchStarted) {
+        return
+      }
+      var touchLocation = event.touches[0];
+      let el = document.elementFromPoint(touchLocation.clientX, touchLocation.clientY);
+      let unitElement = el.parentElement
+      if (unitElement && unitElement.className === "unit") {
+        // Touch over scale
+        let index = unitElement.getAttribute("data-tpidx")
         let setState = (this.eventTrigger && (this.currSwitchstate == 0)) ? (-1) : this.currSwitchstate;
-        Vue.set(this.initValue[this.indexLine]['value'], index, setState);
+        if (this.previousDragIndex > 0) {
+          let start = Math.min(this.previousDragIndex, index)
+          let end = Math.max(this.previousDragIndex, index)
+          for (let i = start; i <= end; i++) {
+            Vue.set(this.initValue[this.indexLine]['value'], i, setState);
+          }
+        } else {
+          Vue.set(this.initValue[this.indexLine]['value'], index, setState);
+        }
+        this.previousDragIndex = index
+        event.preventDefault()
+      } else {
+        // Touch over wrong element
+        this.previousDragIndex = -1
+        this.touchStarted = false
+      }
+    },
+    mouseMove(index) {
+      if (this.mouseLeftPressed) {
+        let setState = (this.eventTrigger && (this.currSwitchstate == 0)) ? (-1) : this.currSwitchstate
+        let start = Math.min(this.previousDragIndex, index)
+        let end = Math.max(this.previousDragIndex, index)
+        for (let i = start; i <= end; i++) {
+          Vue.set(this.initValue[this.indexLine]['value'], i, setState)
+        }
+        this.previousDragIndex = index
       }
     },
     mouseLeftDown(index) {
       this.mouseLeftPressed = true;
+      this.previousDragIndex = index;
       let setState = (this.eventTrigger && (this.currSwitchstate == 0)) ? (-1) : this.currSwitchstate;
       Vue.set(this.initValue[this.indexLine]['value'], index, setState);
     },
     mouseLeftUp() {
-        this.mouseLeftPressed = false;
+      this.mouseLeftPressed = false;
+      this.previousDragIndex = -1;
     },
-    _eventBackground: function(index) {
+    _eventBackground: function (index) {
       if (this.initValue[this.indexLine].value[index] == (-1)) {
         return (this.scaleColors[0])
       }
     },
-    _range : function() {
-      let start = (this.currTime - (24 / this.zoomFactor/2))
+    _range: function () {
+      let start = (this.currTime - (24 / this.zoomFactor / 2))
       if (start < 0) start = 0
       if ((start + (24 / this.zoomFactor)) > 24) start = (24 - (24 / this.zoomFactor))
       start = start * 4
@@ -65,9 +110,9 @@ Vue.component('time-scale',{
   }
 })
 
-Vue.component('tl-inactive',{
-  template:'<div id="overlayDisable"><div id="overlayDisableContent"><div>{{line1}}</div><div>{{line2}}: {{lastState}}</div><div id="reactivate" class="activation" @click="reactivate"><div>{{line3}}</div></div></div></div>',
-  data: function() {
+Vue.component('tl-inactive', {
+  template: '<div id="overlayDisable"><div id="overlayDisableContent"><div>{{line1}}</div><div>{{line2}}: {{lastState}}</div><div id="reactivate" class="activation" @click="reactivate"><div>{{line3}}</div></div></div></div>',
+  data: function () {
     return {
       line1: '',
       line2: '',
@@ -81,7 +126,7 @@ Vue.component('tl-inactive',{
     },
     lastState: String
   },
-  created: function() {
+  created: function () {
     this.line1 = prefs.languages[this.lang].inactive.line1;
     this.line2 = prefs.languages[this.lang].inactive.line2;
     this.line3 = prefs.languages[this.lang].inactive.line3;
@@ -99,13 +144,13 @@ new Vue({
     device: '',               // variables for presentation zoom slider and slider for shift timeintervall in sitemap
     orientation: 'portrait',  //
     zoomVisible: false,       //
-    zoomForced: 'auto',       // 
+    zoomForced: 'auto',       //
     zoomFactor: 0,            //
-    currTime:  12,            //
+    currTime: 12,            //
     initValue: {},            // buffer for data structure
     numberScales: 0,
     yAxisLabel: [],
-    timeScale: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'],
+    timeScale: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
     urlParamItemName: '',
     secPrompt: false,         // security prompt befor switch points will changed
     ip: '',
@@ -125,25 +170,25 @@ new Vue({
     debounceTimer: null       // debonce timer for activation/deactivation
   }),
   computed: {
-    zoomFactor1: function() {
+    zoomFactor1: function () {
       return (this.zoomFactor == 0) ? 1 : this.zoomFactor * 3
     },
-    currTime1: function() {
+    currTime1: function () {
       return this.currTime * 1
     },
-    currTimeScale: function() {
-      let startIndex = this.currTime - (24 /this.zoomFactor1 / 2)
+    currTimeScale: function () {
+      let startIndex = this.currTime - (24 / this.zoomFactor1 / 2)
       if (startIndex < 0) startIndex = 0
       if ((startIndex + (24 / this.zoomFactor1)) > 24) startIndex = (24 - (24 / this.zoomFactor1))
-      let endIndex = startIndex + (24 /this.zoomFactor1)
-      return this.timeScale.filter((val,index) => ((this.zoomFactor1 == 1) && (index % 2 == 0)) || ((this.zoomFactor1 != 1) && ((index >= startIndex) && (index <= endIndex))))
+      let endIndex = startIndex + (24 / this.zoomFactor1)
+      return this.timeScale.filter((val, index) => ((this.zoomFactor1 == 1) && (index % 2 == 0)) || ((this.zoomFactor1 != 1) && ((index >= startIndex) && (index <= endIndex))))
     },
-    xAxisTimeScale: function() {
+    xAxisTimeScale: function () {
       let calculatedLabel = []
       if ((this.device == 'Mobile') && (this.orientation == 'portrait')) {
-        calculatedLabel = this.timeScale.filter((val,index) => (index % 4 == 0))
+        calculatedLabel = this.timeScale.filter((val, index) => (index % 4 == 0))
       } else {
-        calculatedLabel = this.timeScale.filter((val,index) => (index % 2 == 0))
+        calculatedLabel = this.timeScale.filter((val, index) => (index % 2 == 0))
       }
       return calculatedLabel;
     }
@@ -152,9 +197,10 @@ new Vue({
     let urlParams = new URLSearchParams(window.location.search);
     this.urlParamItemName = urlParams.get('transferItem');
     let yAxis = (urlParams.get('yAxisLabel')).split(',');
-    let openHAB_ip = urlParams.get('ip');
+    // let openHAB_ip = urlParams.get('ip');
+    let openHAB_ip = urlParams.has('ip') ? urlParams.get('ip') : location.host;
     this.stateParam = urlParams.get('states');
-    let colorSet =urlParams.get('colorset');
+    let colorSet = urlParams.get('colorset');
     this.deactivation = ((urlParams.get('deactivation') != null) && (urlParams.get('deactivation') == 'true')) ? true : false;
 
     // set language then selected else default: en
@@ -182,7 +228,7 @@ new Vue({
         if (urlParams.get('event') != 'yes') {
           csArray.unshift('#000')
         }
-        csArray.forEach( (color, index) => {
+        csArray.forEach((color, index) => {
           if (index < this.scaleValueColors.length) {
             this.scaleValueColors[index] = '#' + color;
           }
@@ -203,7 +249,7 @@ new Vue({
     } else {
       this.scaleValueColors.shift();                    // event mode no -> remove the predefined color for manual mode
     }
-    
+
     // check dark mode
     if (urlParams.get('dark') == 'yes') this.darkMode = true;
     this.switchStatesCount = this.switchStates.length;
@@ -215,30 +261,30 @@ new Vue({
 
     // set label for y axis and note the language select; default is german
     let yLabel = this._selectLang(this.currLang);
-    if (yAxis.includes('17')) this.yAxisLabel.push({'key' : '17', 'label' : yLabel[0]});
-    if (yAxis.includes('15')) this.yAxisLabel.push({'key' : '15', 'label' : yLabel[1]});
-    if (yAxis.includes('1')) this.yAxisLabel.push({'key' : '1', 'label' : yLabel[2]});
-    if (yAxis.includes('2')) this.yAxisLabel.push({'key' : '2', 'label' : yLabel[3]});
-    if (yAxis.includes('3')) this.yAxisLabel.push({'key' : '3', 'label' : yLabel[4]});
-    if (yAxis.includes('4')) this.yAxisLabel.push({'key' : '4', 'label' : yLabel[5]});
-    if (yAxis.includes('5')) this.yAxisLabel.push({'key' : '5', 'label' : yLabel[6]});
-    if (yAxis.includes('6')) this.yAxisLabel.push({'key' : '6', 'label' : yLabel[7]});
-    if (yAxis.includes('7')) this.yAxisLabel.push({'key' : '7', 'label' : yLabel[8]});
-    if (yAxis.includes('67')) this.yAxisLabel.push({'key' : '67', 'label' : yLabel[9]});
+    if (yAxis.includes('17')) this.yAxisLabel.push({ 'key': '17', 'label': yLabel[0] });
+    if (yAxis.includes('15')) this.yAxisLabel.push({ 'key': '15', 'label': yLabel[1] });
+    if (yAxis.includes('1')) this.yAxisLabel.push({ 'key': '1', 'label': yLabel[2] });
+    if (yAxis.includes('2')) this.yAxisLabel.push({ 'key': '2', 'label': yLabel[3] });
+    if (yAxis.includes('3')) this.yAxisLabel.push({ 'key': '3', 'label': yLabel[4] });
+    if (yAxis.includes('4')) this.yAxisLabel.push({ 'key': '4', 'label': yLabel[5] });
+    if (yAxis.includes('5')) this.yAxisLabel.push({ 'key': '5', 'label': yLabel[6] });
+    if (yAxis.includes('6')) this.yAxisLabel.push({ 'key': '6', 'label': yLabel[7] });
+    if (yAxis.includes('7')) this.yAxisLabel.push({ 'key': '7', 'label': yLabel[8] });
+    if (yAxis.includes('67')) this.yAxisLabel.push({ 'key': '67', 'label': yLabel[9] });
     this.numberScales = this.yAxisLabel.length;
 
     // init for initValue, because the delay from promise throws error while rendering
-    for ( let i = 1; i < (this.numberScales + 1); i++) {
-      Vue.set(this.initValue,i,{'key' : this.yAxisLabel[i - 1].key, 'value' : this._initArray(96) });
+    for (let i = 1; i < (this.numberScales + 1); i++) {
+      Vue.set(this.initValue, i, { 'key': this.yAxisLabel[i - 1].key, 'value': this._initArray(96) });
     }
-    Vue.set(this.initValue,99,this.switchStates.toString())
-    Vue.set(this.initValue,100,{
-      'event' : this.eventTrigger,
-      'lastItemState' : (-1),
-      'inactive' : false
+    Vue.set(this.initValue, 99, this.switchStates.toString())
+    Vue.set(this.initValue, 100, {
+      'event': this.eventTrigger,
+      'lastItemState': (-1),
+      'inactive': false
     })
 
-    this.$http.get(this.ip + this.urlParamItemName +'/state').then(response => {
+    this.$http.get(this.ip + this.urlParamItemName + '/state').then(response => {
       this.apiRequestBody = response.body;
 
       if ((typeof this.apiRequestBody === 'object') && (response.status === 200)) {
@@ -249,7 +295,7 @@ new Vue({
             let storedStates = this.apiRequestBody[99].split(',');
 
             if (storedStates.length == this.switchStatesCount) {
-              for (let i=0; i < this.switchStatesCount; i++) {
+              for (let i = 0; i < this.switchStatesCount; i++) {
                 if (this.switchStates[i] != storedStates[i]) this.statesChanged = 1;
               };
             } else {
@@ -264,9 +310,9 @@ new Vue({
           }
         }
         if (this.apiRequestBody[100] !== null) {
-          if (this.apiRequestBody[100].event != this.eventTrigger) this.statesChanged = 1;                                    // check integrity of event parameter   
+          if (this.apiRequestBody[100].event != this.eventTrigger) this.statesChanged = 1;                                    // check integrity of event parameter
           if (this.apiRequestBody[100].inactive == true) {                                                                    // check state of inactive
-            this.tl_inactive = true;                                         
+            this.tl_inactive = true;
             if (this.apiRequestBody[100].lastState != '') this.tl_inactive_lastState = this.apiRequestBody[100].lastState;    // state befor timeline inactivated
           }
         }
@@ -304,8 +350,9 @@ new Vue({
     });
   },
   mounted() {
-    this.$nextTick(function() {
+    this.$nextTick(function () {
       window.addEventListener('resize', this.screenChanged);
+
       //Init
       this.screenChanged();
     })
@@ -316,16 +363,16 @@ new Vue({
   methods: {
     _initArray(n) {
       var arr = [];
-      let defaultState = (this.eventTrigger) ? (-1) : 0; 
-      for(let i = 0; i < n; i++) arr.push(defaultState);
+      let defaultState = (this.eventTrigger) ? (-1) : 0;
+      for (let i = 0; i < n; i++) arr.push(defaultState);
       return arr;
     },
     _initValueArray() {
-      for ( let i = 1; i < (this.numberScales + 1); i++) {
+      for (let i = 1; i < (this.numberScales + 1); i++) {
         // init data set
-        Vue.set(this.initValue,i,{
-          'key' : this.yAxisLabel[i - 1].key,
-          'value' : (typeof this.apiRequestBody[i] !== 'undefined') ? this.apiRequestBody[i].value : this._initArray(96)
+        Vue.set(this.initValue, i, {
+          'key': this.yAxisLabel[i - 1].key,
+          'value': (typeof this.apiRequestBody[i] !== 'undefined') ? this.apiRequestBody[i].value : this._initArray(96)
         });
       }
     },
@@ -343,14 +390,14 @@ new Vue({
       this.secPrompt = true;
     },
     saveInterval() {
-      this.$http.post(this.ip + this.urlParamItemName,  JSON.stringify(this.initValue), {'headers': {"Accept": "application/json","content-type": "text/plain"}}).then(response => {
+      this.$http.post(this.ip + this.urlParamItemName, JSON.stringify(this.initValue), { 'headers': { "Accept": "application/json", "content-type": "text/plain" } }).then(response => {
         // get status
         console.log(response.status);
         // get status text
         console.log(response.statusText);
       }, response => {
-      // error callback
-      console.log(response)
+        // error callback
+        console.log(response)
       });
       this.secPrompt = false;
     },
@@ -373,9 +420,9 @@ new Vue({
         if (oThis.tl_inactive) {
           this.$http.get(oThis.ip + 'TimelineHelper/state').then(response => {
             if ((typeof response.body === 'object') && (response.status === 200)) {
-              if (response.body[oThis.urlParamItemName] != undefined){
+              if (response.body[oThis.urlParamItemName] != undefined) {
                 if (response.body[oThis.urlParamItemName]["inactiveLastValue"] != undefined)
-                oThis.tl_inactive_lastState = response.body[oThis.urlParamItemName]["inactiveLastValue"];
+                  oThis.tl_inactive_lastState = response.body[oThis.urlParamItemName]["inactiveLastValue"];
               };
             } else {
               console.log('item TimelineHelper, data strucktur is not valid')
@@ -394,9 +441,9 @@ new Vue({
     screenChanged(event) {
       //this.screenWidth = document.documentElement.clientWidth;
       //this.screen Height = document.documentElement.clientWidth;
-      
+
       // recognize device type
-      if(navigator.userAgent.match(/mobile/i)) {
+      if (navigator.userAgent.match(/mobile/i)) {
         this.device = 'Mobile';
       } else if (navigator.userAgent.match(/iPad|Android|Touch/i)) {
         this.device = 'Tablet';
@@ -404,12 +451,12 @@ new Vue({
         this.device = 'Desktop';
       }
       // set zoom variables for presentation in sitemap
-      this.zoomVisible = ((this.device != 'Desktop') && (this.zoomForced != 'no')) ? true : false;  
-      if (this.zoomForced == 'force') this.zoomVisible = true;  
+      this.zoomVisible = ((this.device != 'Desktop') && (this.zoomForced != 'no')) ? true : false;
+      if (this.zoomForced == 'force') this.zoomVisible = true;
 
       // recognize device orientation
-      if (window.matchMedia("(orientation: portrait)").matches) this.orientation = 'portrait' 
-      if (window.matchMedia("(orientation: landscape)").matches) this.orientation = 'landscape' 
+      if (window.matchMedia("(orientation: portrait)").matches) this.orientation = 'portrait'
+      if (window.matchMedia("(orientation: landscape)").matches) this.orientation = 'landscape'
     }
   }
 })

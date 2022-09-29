@@ -1,0 +1,10 @@
+Group gTimepicker
+Group gTimepickerObserver
+String TimelineHelper "[%s]"
+String TransferItem1 "[%s]"      (gTimepicker)
+String TransferItem2 "[%s]"      (gTimepicker)
+
+Switch Thermostat1                     (gTimepicker)
+Switch Thermostat2                     (gTimepicker)
+Switch item2                     (gTimepicker)
+Dimmer item3                     (gTimepicker)

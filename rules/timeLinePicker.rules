@@ -1,10 +1,10 @@
-import org.eclipse.smarthome.model.script.ScriptServiceUtil
+import org.openhab.core.model.script.ScriptServiceUtil
 import java.util.HashMap
 import java.util.ArrayList
 
 // timeline/ timepicker control
-// version 0.7.4
-// ToSe 
+// version 0.8.1
+// ToSe
 //
 // init values & customize for you own enviroment
 // -----------------------------------------------------------------------------------------------------------
@@ -24,14 +24,14 @@ import java.util.ArrayList
 //     "TransferItem2" -> newArrayList('item3')
 //     ...                                                                  // enum all TransferItems
 //     // you control as many widgets as you need
-// )
+// )jj
 //
 //
 
 // -------------------- part of config -----------------------------------------------------------------------
 
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(
-    "TransferItem1" -> newArrayList('Thermostat1','Thermostat2'), 
+    "TransferItem1" -> newArrayList('Thermostat1','Thermostat2'),
     "TransferItem2" -> newArrayList('LightSwitch45')
 )
 
@@ -72,18 +72,18 @@ val Procedures$Procedure2<String,String> persistSwitchState = [ currSwitchPlanNa
       helpData_result = helpData_result + currSwitchPlanName + '":{"inactiveLastValue": "' + newState.toString + '"}}'
     }
     TimelineHelper.sendCommand(helpData_result)
-  }	
+  }
 ]
 
 ////////// rules ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 rule "timeLine picker 1"
 when
   Member of gTimepicker changed or
-//  Time cron "0/15 * * ? * * *" or            // for debug, trigger eatch 15 seconds
+//  Time cron "0/15 * * ? * * *" or            // for debug, trigger each 15 seconds
   Time cron "0 0/15 * 1/1 * ? *"
 then
-  var Number currTimeInterval = (now.getMinuteOfDay() / 15).intValue
-  var Number currDay = now.getDayOfWeek()
+  var Number currTimeInterval = ((now.getHour()*60 + now.getMinute())/15).intValue
+  var Number currDay = now.getDayOfWeek.getValue()
 
   gTimepicker.members.forEach[ currSwitchPlan |
     if ((currSwitchPlan.state !== NULL) && (timePicker.keySet().contains(currSwitchPlan.name))) {
@@ -138,7 +138,7 @@ then
 
               if (event == 'true') {
                 var Boolean itemInGroupHit = false
-                gTimepickerObserver.getMembers().filter[ i | i == currItem].forEach[ i | 
+                gTimepickerObserver.getMembers().filter[ i | i == currItem].forEach[ i |
                   itemInGroupHit = true
                 ]
                 if (newStateString != '-1') {

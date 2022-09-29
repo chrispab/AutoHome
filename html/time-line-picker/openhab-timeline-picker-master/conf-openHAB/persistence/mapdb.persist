@@ -1,7 +1,0 @@
-Strategies {
-  default = everyUpdate
-}
-
-Items {
-  gTimepicker* : strategy = everyChange, restoreOnStartup
-}
