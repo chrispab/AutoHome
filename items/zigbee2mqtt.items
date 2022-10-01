@@ -8,5 +8,5 @@ String	ZbBridgeLogMessage			"Zigbee2mqtt Bridge LogMessage"									(ZbBridge)		
 
 // String	ZbRouter_01_State				"Zigbee2mqtt router State"			{channel="mqtt:topic:zigbeerouter01:reachable"}
 Number	ZbRouter_01_Quality		"Zigbee2mqtt router  LinkQuality [%d]"	<qualityofservice>	{channel="mqtt:topic:zigbeerouter01:linkquality"}
-String	ZbRouter_01_Reachable				"Zigbee2mqtt router Reachable"			{channel="mqtt:topic:zigbeerouter01:reachable"}
+String	ZbRouter_01_Reachable    "Zigbee2mqtt router Reachable"
 

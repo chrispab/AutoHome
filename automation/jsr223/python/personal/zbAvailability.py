@@ -16,7 +16,7 @@ def zb_sensor_init(event):
     for item in ir.getItem("gZbTHSensorsReachable").members:
         events.postUpdate(item, "OFF")
 
-    events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "Offline")
+    # events.postUpdate(ir.getItem("ZbRouter_01_Reachable"), "Offline")
 
 
 
