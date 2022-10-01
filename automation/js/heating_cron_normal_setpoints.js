@@ -30,13 +30,13 @@ function morning_heating() {
 rules.JSRule({
   name: 'CRON heating cron 1',
   description: 'CRON heating cron 1',
-  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_1').getState().toString())],
+  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_1').state.toString())],
   execute: (data) => {
     //     temp = ir.getItem("Outside_Temperature").getState().floatValue()
     //     LogAction.logWarn("PRE  check if cold enough to start heating", "PRE outside  temp = {}", temp)
     //     if (temp < 10.0):
     //         morning_heating()
-    const temp = items.getItem('Outside_Temperature').getState().floatValue();
+    const temp = items.getItem('Outside_Temperature').state().floatValue();
     logger.warn(`PRE  check if cold enough to start heating: ${temp} `);
     if (temp < 10.0) {
       morning_heating();
@@ -54,7 +54,7 @@ rules.JSRule({
 rules.JSRule({
   name: 'CRON heating cron 2',
   description: 'CRON heating cron 2',
-  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_2').getState().toString())],
+  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_2').state.toString())],
   execute: (data) => {
     const temp = items.getItem('Outside_Temperature').getState().floatValue();
     logger.warn(`PRE  check if cold enough to start heating: ${temp} `);
@@ -70,7 +70,7 @@ rules.JSRule({
 rules.JSRule({
   name: 'CRON heating cron 3',
   description: 'CRON heating cron 3',
-  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_3').getState().toString())],
+  triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_3').state.toString())],
   execute: (data) => {
     logger.warn('start heating CRON_HPSP_Time_3: ');
     morning_heating();

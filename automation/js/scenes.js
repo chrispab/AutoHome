@@ -88,8 +88,8 @@ rules.JSRule({
     //     events.sendCommand("workLightsPowerSocket", "OFF")
     //     tgoodnight = ScriptExecution.createTimer(DateTime.now().plusSeconds(300), lambda: events.sendCommand("ZbWhiteBulb01Switch", "OFF"))
     items.getItem('Scene_Goodnight').postUpdate('OFF');
-    items.getItem('workLightsPowerSocket').postUpdate('OFF');
-    tgoodnight = actions.ScriptExecution.createTimer(timeUtils.toDateTime((30 * 1000)), () => {
+    items.getItem('workLightsPowerSocket').sendCommand('OFF');
+    tgoodnight = actions.ScriptExecution.createTimer(timeUtils.toDateTime((300 * 1000)), () => {
       items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
     });
   },
