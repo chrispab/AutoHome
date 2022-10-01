@@ -34,30 +34,30 @@ t_ampVideo01 = None
 # var shutDownWaitTime = 20 //wait for pi shutdown in secs, before turning off power socket
 tStartup = None
 
-@rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
-@when("System started")
-def tvs_init(event):
-    tvs_init.log.info("System started - set all rooms  TV startup settings")
-    events.postUpdate("BridgeLightSensorState", "OFF")
-    global tStartup
-    if tStartup is None:
-        tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
+# @rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
+# @when("System started")
+# def tvs_init(event):
+#     tvs_init.log.info("System started - set all rooms  TV startup settings")
+#     events.postUpdate("BridgeLightSensorState", "OFF")
+#     global tStartup
+#     if tStartup is None:
+#         tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
 
-def tv_startup_tbody():
-    tvs_init.log.info(
-        "TV.rules Executing 'System started' rule for ALL Kodi's and TVs -  Kodi, TVs Initialize uninitialized virtual Items")
-    if items["vFR_TVKodi"] == NULL:
-        events.postUpdate("vFR_TVKodi", "OFF")  # // set power up val
-        tvs_init.log.info("TV.rules System started rule, change front room tv power state from NULL to OFF")
-    if items["vBR_TVKodi"] == NULL:
-        events.postUpdate("vBR_TVKodi", "OFF")  # // set power up val
-        tvs_init.log.info("System started' rule, change bedroom tv power state from NULL to OFF")
-    if items["vCT_TVKodiSpeakers"] == NULL:
-        events.postUpdate("vCT_TVKodiSpeakers", "OFF")  # // set power up val
-        tvs_init.log.info("'System started' rule, change conservatory tv power state from NULL to OFF")
-    if items["vAT_TVKodi"] == NULL:
-        events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
-        tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
+# def tv_startup_tbody():
+#     tvs_init.log.info(
+#         "TV.rules Executing 'System started' rule for ALL Kodi's and TVs -  Kodi, TVs Initialize uninitialized virtual Items")
+#     if items["vFR_TVKodi"] == NULL:
+#         events.postUpdate("vFR_TVKodi", "OFF")  # // set power up val
+#         tvs_init.log.info("TV.rules System started rule, change front room tv power state from NULL to OFF")
+#     if items["vBR_TVKodi"] == NULL:
+#         events.postUpdate("vBR_TVKodi", "OFF")  # // set power up val
+#         tvs_init.log.info("System started' rule, change bedroom tv power state from NULL to OFF")
+#     if items["vCT_TVKodiSpeakers"] == NULL:
+#         events.postUpdate("vCT_TVKodiSpeakers", "OFF")  # // set power up val
+#         tvs_init.log.info("'System started' rule, change conservatory tv power state from NULL to OFF")
+#     if items["vAT_TVKodi"] == NULL:
+#         events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
+#         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
 
 
 # #######################################

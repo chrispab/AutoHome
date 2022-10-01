@@ -7,7 +7,7 @@ const logger = log('BG_Availability.js');
 
 scriptLoaded = function () {
   // const { items } = require('@runtime');#
-  console.log(items);
+  // console.log(items);
   logger.warn('scriptLoaded -   init   BG avail statusesss');
   // myutils.showGroupMembers('gBG_sockets_reachable');
 
@@ -16,7 +16,7 @@ scriptLoaded = function () {
     item.postUpdate('Offline');
   });
 
-  myutils.showGroupMembers('gBG_sockets_reachable');
+  // myutils.showGroupMembers('gBG_sockets_reachable');
 };
 
 const timers = {};// [];

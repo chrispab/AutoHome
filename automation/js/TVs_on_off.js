@@ -1,14 +1,42 @@
-// tStartup = None
+const {
+  log, items, rules, actions, time,
+} = require('openhab');
+const { timeUtils } = require('openhab_rules_tools');
 
-// @rule("System started - set all rooms TV startup settings", description="System started - set all rooms TV settings", tags=["tv"])
-// @when("System started")
-// def tvs_init(event):
-//     tvs_init.log.info("System started - set all rooms TV startup settings")
-//     events.postUpdate("BridgeLightSensorState", "OFF")
-//     global tStartup
-//     if tStartup is None:
-//         tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
+let tStartup;
+scriptLoaded = function () {
+  console.error('scriptLoaded - System started - set all rooms TV startup settings');
 
+  console.error('startup- set Kodi_CT_Online_Status status ');
+  const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
+  console.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
+
+  if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
+    items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
+  } else {
+    items.getItem('Kodi_CT_Online_Status').postUpdate('OFFLINE');
+  }
+
+  if (!tStartup) {
+    // tStartup = ScriptExecution.createTimer(DateTime.now().plusSeconds(5), lambda: tv_startup_tbody())
+    tStartup = actions.ScriptExecution.createTimer(timeUtils.toDateTime((5 * 1000)), () => {
+      tv_startup_tbody();
+    });
+  }
+};
+// scriptLoaded = function () {
+//   console.error('System started - set all rooms TV startup settings');
+
+//   console.error('startup- set Kodi_CT_Online_Status status ');
+//   const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
+//   console.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
+
+//   if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
+//     items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
+//   } else {
+//     items.getItem('Kodi_CT_Online_Status').postUpdate('OFFLINE');
+//   }
+// };
 // def tv_startup_tbody():
 //     tvs_init.log.info(
 //         "TV.rules Executing 'System started' rule for ALL Kodi's and TVs -  Kodi, TVs Initialize uninitialized virtual Items")
@@ -24,24 +52,22 @@
 //     if items["vAT_TVKodi"] == NULL:
 //         events.postUpdate("vAT_TVKodi", "OFF")  # // set power up val
 //         tvs_init.log.info("TV.rules System started rule, change Attic TV and kodi power state from NULL to OFF")
+function tv_startup_tbody() {
+  console.error('tv_startup_tbody()');
 
-const {
-  log, items, rules,
-} = require('openhab');
-
-scriptLoaded = function () {
-  console.error('System started - set all rooms TV startup settings');
-
-  console.error('startup- set Kodi_CT_Online_Status status ');
-  const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
-  console.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
-
-  if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
-    items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
-  } else {
-    items.getItem('Kodi_CT_Online_Status').postUpdate('OFFLINE');
+  if (items.getItem('vFR_TVKodi').state === 'NULL') {
+    items.getItem('vFR_TVKodi').postUpdate('OFF');
   }
-};
+  if (items.getItem('vBR_TVKodi').state === 'NULL') {
+    items.getItem('vBR_TVKodi').postUpdate('OFF');
+  }
+  if (items.getItem('vCT_TVKodiSpeakers').state === 'NULL') {
+    items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF');
+  }
+  if (items.getItem('vAT_TVKodi').state === 'NULL') {
+    items.getItem('vAT_TVKodi').postUpdate('OFF');
+  }
+}
 
 // #######################################
 // t_CTtvPowerOff = None
@@ -124,13 +150,16 @@ rules.JSRule({
     console.error('tv - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
-      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
-        items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
-        // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
+      CT_TV_off_timer = actions.ScriptExecution.createTimer(
+        time.ZonedDateTime.now().plusSeconds(25),
+        () => {
+          items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
+          // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 
-        items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
-        console.error('turned off kodi power');
-      });
+          items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
+          console.error('turned off kodi power');
+        },
+      );
     }
   },
 });

@@ -9,19 +9,19 @@ rules.JSRule({
   description: 'If any heaters demanding heat, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gRoomHeaterStates')],
   execute: (event) => {
-    console.error('£££: If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
+    // console.error('£££: If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
 
     // myutils.showEvent(event);
 
     // if items["gAnyRoomHeaterOn"] == ON:
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
-      console.error('£££:show heaters group, demand turn boiler ON');
+      // console.error('£££:show heaters group, demand turn boiler ON');
 
-      myutils.showGroupMembers('gRoomHeaterStates');
+      // myutils.showGroupMembers('gRoomHeaterStates');
       items.getItem('Boiler_Control').sendCommand('ON');
     } else {
-      console.error('£££:show heaters group, NO demand turn boiler OFF');
-      myutils.showGroupMembers('gRoomHeaterStates');
+      // console.error('£££:show heaters group, NO demand turn boiler OFF');
+      // myutils.showGroupMembers('gRoomHeaterStates');
       items.getItem('Boiler_Control').sendCommand('OFF');
     }
   },

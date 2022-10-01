@@ -81,32 +81,32 @@ rules.JSRule({
   description: 'monitor 433 bridge light sensor',
   triggers: [triggers.ItemStateUpdateTrigger('BridgeLightSensorLevel')],
   execute: (event) => {
-    console.error('monitor 433 bridge light sensor');
-    console.error(`previousLightSensorLevel: ${previousLightSensorLevel}`);
+    // console.error('monitor 433 bridge light sensor');
+    // console.error(`previousLightSensorLevel: ${previousLightSensorLevel}`);
     currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-    console.error(`currentLightSensorLevel: ${currentLightSensorLevel}`);
-    console.error(
-      `CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
-    );
+    // console.error(`currentLightSensorLevel: ${currentLightSensorLevel}`);
+    // console.error(
+    //   `CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
+    // );
 
     if (currentLightSensorLevel > previousLightSensorLevel) {
       items.getItem('BridgeLightSensorTrend').sendCommand('ON');
-      console.error('...trend: UP');
+      // console.error('...trend: UP');
     } else {
       items.getItem('BridgeLightSensorTrend').sendCommand('OFF');
-      console.error('...trend: DOWN');
+      // console.error('...trend: DOWN');
     }
 
     previousLightSensorLevel = currentLightSensorLevel;
 
-    console.error(`currentLightSensorLevel: ${currentLightSensorLevel}`);
-    console.error(
-      `CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
-    );
-    console.error(
-      `BridgeLightSensorTrend: ${items.getItem('BridgeLightSensorTrend').state}`,
-    );
-    console.error(`CT_LightDark_State: ${items.getItem('CT_LightDark_State').state}`);
+    // console.error(`currentLightSensorLevel: ${currentLightSensorLevel}`);
+    // console.error(
+    //   `CT_Auto_Lighting_Trigger_SetPoint: ${items.getItem('CT_Auto_Lighting_Trigger_SetPoint').state}`,
+    // );
+    // console.error(
+    //   `BridgeLightSensorTrend: ${items.getItem('BridgeLightSensorTrend').state}`,
+    // );
+    // console.error(`CT_LightDark_State: ${items.getItem('CT_LightDark_State').state}`);
 
     // ambient light below trigger level and trend going down - its getting dark
     if (
@@ -114,10 +114,10 @@ rules.JSRule({
       && items.getItem('BridgeLightSensorTrend').state == 'OFF' // down getting darker
     ) {
       items.getItem('CT_LightDark_State').sendCommand('OFF');
-      console.error(
-        `CT_LightDark_State: ${items.getItem('CT_LightDark_State').state
-        } - dark`,
-      );
+      // console.error(
+      //   `CT_LightDark_State: ${items.getItem('CT_LightDark_State').state
+      //   } - dark`,
+      // );
     }
 
     // ambient light above trigger level and trend going up - its getting light
@@ -126,9 +126,9 @@ rules.JSRule({
       && items.getItem('BridgeLightSensorTrend').state == 'ON' // up getting lighter
     ) {
       items.getItem('CT_LightDark_State').sendCommand('ON');
-      console.error(
-        `CT_LightDark_State: ${items.getItem('CT_LightDark_State').state} - light`,
-      );
+      // console.error(
+      //   `CT_LightDark_State: ${items.getItem('CT_LightDark_State').state} - light`,
+      // );
     }
   },
 });
