@@ -35,14 +35,16 @@ function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
     const roomPrefix = `${destinationItem.name.toString().substr(0, destinationItem.name.indexOf('_'))}`;// get first index of '_'
     logger.warn(`>>> roomPrefix : ${roomPrefix} `);
     logger.warn(`>>> presetTimeOfDaySuffix : ${presetTimeOfDaySuffix} `);
-    logger.warn(`>> destination preset item name  : ${destinationItem.name} `);
+    logger.warn(`>>> destination preset item name  : ${destinationItem.name} `);
     // presetTimeOfDaySuffix , e.g. 'Morning', 'Evening', 'Day','Night', 'WE_Morning','WE_Evening'
-    destinationItem.state = `${roomPrefix}_HPSP_${presetTimeOfDaySuffix}`;
+    // destinationItem.state = `${roomPrefix}_HPSP_${presetTimeOfDaySuffix}`;// eg CT_HPSP_Morning
+    // const sourceNewSetpoint = `${roomPrefix}_HPSP_${presetTimeOfDaySuffix}`;// eg CT_HPSP_Morning
+
     logger.warn(`>> destination setpoint Item : ${destinationItem.name}, is now: : ${destinationItem.state} `);
 
     // build the string representing the source item name - (from the web page)
     // so we can get its state/value and  pass to the respective preset
-    const sourceRoomTempItemName = `${roomPrefix}_${presetIDString}_${presetTimeOfDaySuffix}`;
+    const sourceRoomTempItemName = `${roomPrefix}_${presetIDString}_${presetTimeOfDaySuffix}`;// eg CT_HPSP_Morning
     logger.warn(`>> source web page temp preset item name  : ${sourceRoomTempItemName} `);
     const sourceItem = items.getItem(sourceRoomTempItemName);
     // sourceItem.state = `${roomPrefix}_HPSP_${presetTimeOfDaySuffix}`;
