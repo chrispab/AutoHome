@@ -27,7 +27,7 @@ rules.JSRule({
         break;
       case 'manual':
         logger.error('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!make all rooms - manual - MASTER Heating Mode :');
-        items.getItem('gHeatingModes').sendCommand('manual');
+        // items.getItem('gHeatingModes').sendCommand('manual');
         // todo do not override mode if manual
         break;
       case 'auto':

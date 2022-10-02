@@ -3,27 +3,21 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('boiler ctl.js');
+const logger = log('boiler control.js');
 const { timeUtils } = require('openhab_rules_tools');
 
 rules.JSRule({
-  name: 'If any heaters demand, turn Boiler ON else OFF',
+  name: 'If any heaters on, turn Boiler ON else OFF',
   description: 'If any heaters demanding heat, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gRoomHeaterStates')],
-  execute: (event) => {
-    // console.error('£££: If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
+  execute: () => {
+    logger.warn('If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
 
-    // myutils.showEvent(event);
-
-    // if items["gAnyRoomHeaterOn"] == ON:
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
-      logger.error('£££:demand turn boiler ON');
-
-      // myutils.showGroupMembers('gRoomHeaterStates');
+      logger.warn('A heater is ON - turn boiler ON');
       items.getItem('Boiler_Control').sendCommand('ON');
     } else {
-      logger.error('£££:NO demand turn boiler OFF');
-      // myutils.showGroupMembers('gRoomHeaterStates');
+      logger.warn('All heaters OFF - turn boiler OFF');
       items.getItem('Boiler_Control').sendCommand('OFF');
     }
   },
