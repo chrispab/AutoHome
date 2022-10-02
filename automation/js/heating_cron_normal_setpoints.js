@@ -28,14 +28,10 @@ function morning_heating() {
 // @when(ir.getItem("CRON_HPSP_Time_1").getState().toString())
 // def heating_cron_morning_1(event):
 rules.JSRule({
-  name: 'CRON heating cron 1',
+  name: 'CRON: update current room heating setpoints - 1',
   description: 'CRON heating cron 1',
   triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_1').state.toString())],
   execute: (data) => {
-    //     temp = ir.getItem("Outside_Temperature").getState().floatValue()
-    //     LogAction.logWarn("PRE  check if cold enough to start heating", "PRE outside  temp = {}", temp)
-    //     if (temp < 10.0):
-    //         morning_heating()
     const temp = items.getItem('Outside_Temperature').state().floatValue();
     logger.warn(`PRE  check if cold enough to start heating: ${temp} `);
     if (temp < 10.0) {
@@ -52,7 +48,7 @@ rules.JSRule({
 //     if (temp < 12.0):
 //         morning_heating()
 rules.JSRule({
-  name: 'CRON heating cron 2',
+  name: 'CRON: update current room heating setpoints - 2',
   description: 'CRON heating cron 2',
   triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_2').state.toString())],
   execute: (data) => {
@@ -68,7 +64,7 @@ rules.JSRule({
 // def heating_cron_morning(event):
 //     morning_heating()
 rules.JSRule({
-  name: 'CRON heating cron 3',
+  name: 'CRON: update current room heating setpoints - 3',
   description: 'CRON heating cron 3',
   triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_3').state.toString())],
   execute: (data) => {
@@ -85,13 +81,13 @@ rules.JSRule({
 //         LogAction.logWarn("CRON set setpoints", "===> _HPSP_Day setpoint Item : {}, is now: {}", item.name, item.state)
 //     events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
 rules.JSRule({
-  name: 'CRON heating cron 4',
+  name: 'CRON: update current room heating setpoints - 4',
   description: 'CRON heating cron 4',
   // triggers: [triggers.GenericCronTrigger(items.getItem('CRON_HPSP_Time_3').state.toString())],
   triggers: [triggers.GenericCronTrigger('0/30 * * * * *')],
-  execute: (data) => {
+  execute: () => {
     // logger.warn('start heating CRON_HPSP_Time_4');
-    logger.warn('-----------------CRON TEST EVERY MINUTE--------------------');
+    logger.warn('----------------CRON TEST EVERY MINUTE--------------------');
     updateRoomSetPoints('gHeating_PresetTempNormal', 'Morning');
     // updateRoomSetPoints('gHeating_PresetTempNormal', 'WE_Morning');
     // updateRoomSetPoints('gHeating_PresetTempNormal', 'Night');
@@ -111,8 +107,9 @@ function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
   const presetIDString = 'HPSP';
   logger.warn(`>> HeatingPresetTempsGroup passed in: ${gHeatingPresetTemps} `);
   myutils.showGroupMembers(gHeatingPresetTemps);
-  // get each room heating preset temp e.g. state/value of 'CT_HPSP_Morning' from th the settings webpage
-  // and assign to the respective  preset(within the gHeating_PresetTempNormal group - passed in as gHeatingPresetTemps),
+  // get each room heating preset temp e.g. state/value of 'CT_HPSP_Morning' from
+  // the settings webpage and assign to the respective
+  // preset(within the gHeating_PresetTempNormal group)- passed in as gHeatingPresetTemps),
   // e.g. CT_Heating_PresetTempNormal = state/value of 'CT_HPSP_Morning'
   items.getItem(gHeatingPresetTemps).members.forEach((destinationItem) => {
     // get the string parts we need to build the webpage var to get temp from
@@ -145,9 +142,8 @@ function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
 
     logger.warn(`>> HeatingPresetTempsGroup now contains: ${gHeatingPresetTemps} `);
     myutils.showGroupMembers(gHeatingPresetTemps);
-
-    logger.warn('\n');
   });
+  logger.warn('\n');
   // now send those presets defined by params passed in above to the actual room heaters (note only get updated if master mode is 'auto'
   // actually processed in file 'heating_send_presets)
   items.getItem('Heating_UpdateHeaters').postUpdate('ON');
