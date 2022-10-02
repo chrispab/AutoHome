@@ -1,8 +1,3 @@
-// from core.rules import rule
-// from core.triggers import when
-// from core.actions import LogAction
-// from core.actions import ScriptExecution
-// from java.time import ZonedDateTime as DateTime
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
@@ -10,11 +5,7 @@ const { myutils } = require('personal');
 
 const logger = log('BG_Availability.js');
 const { timeUtils } = require('openhab_rules_tools');
-// @rule("Check if Heaters need changing etc", description="Check if Heaters need changing etc", tags=["heating"])
-// @when("Member of gHeatingModes received update")
-// @when("Member of gTemperatureSetpoints received update")
-// @when("Member of gRoomTemperatures received update")
-// def checkIfHeatersNeedUpdating(event):
+
 rules.JSRule({
   name: 'Check if Heaters need changing etc',
   description: 'Check if Heaters need changing etc',
