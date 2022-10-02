@@ -73,6 +73,8 @@ rules.JSRule({
     //     events.postUpdate("HL_Heating_PresetTempNormal", items["HL_HPSP_Night"].toString())
     //     events.sendCommand("Heating_UpdateHeaters", "OFF")
     //     events.sendCommand("Heating_UpdateHeaters", "ON")
+    // get temp values from the web page defining room temp presets
+    // and update 'XX_Heating_PresetTempNormal' items
     items.getItem('CT_Heating_PresetTempNormal').postUpdate(items.getItem('CT_HPSP_Night').toString());
     items.getItem('FR_Heating_PresetTempNormal').postUpdate(items.getItem('FR_HPSP_Night').toString());
     items.getItem('ER_Heating_PresetTempNormal').postUpdate(items.getItem('ER_HPSP_Night').toString());

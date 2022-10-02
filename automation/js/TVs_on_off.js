@@ -217,7 +217,7 @@ rules.JSRule({
 });
 function turnOnTV(onOffProxyItem, powerControlItem, message, tvPowerOffTimer) {
   logger.error(`Turning on Pi Kodi and TV:${message}`);
-  Voice.say(message);
+  // Voice.say(message);
 
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
