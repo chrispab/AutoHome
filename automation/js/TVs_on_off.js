@@ -1,5 +1,5 @@
 const {
-  log, items, rules, actions, time, triggers, Voice,
+  log, items, rules, actions, time, triggers,
 } = require('openhab');
 const { timeUtils } = require('openhab_rules_tools');
 
@@ -42,6 +42,7 @@ scriptLoaded = function () {
       tv_startup_tbody();
     });
   }
+  // actions.Voice.say('hi, this is a message');
 };
 
 let CT_TV_off_timer;
@@ -104,7 +105,7 @@ rules.JSRule({
 });
 function turnOnTV(onOffProxyItem, powerControlItem, message, tvPowerOffTimer) {
   logger.error(`Turning on Pi Kodi and TV:${message}`);
-  // Voice.say(message);
+  actions.Voice.say(message);
 
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
@@ -114,6 +115,30 @@ function turnOnTV(onOffProxyItem, powerControlItem, message, tvPowerOffTimer) {
   items.getItem(onOffProxyItem).postUpdate('ON');
   items.getItem(powerControlItem).sendCommand('ON');
 }
+
+let tvPowerOffTimer;
+function turnOffTV(onOffProxyItem, powerControlItem, message) {
+  logger.error(`Turning off Pi Kodi and TV:${message}`);
+  actions.Voice.say(message);
+
+  // if off timer undefined start for pi shutdown
+  if (!(tvPowerOffTimer === undefined)) {
+    tvPowerOffTimer = actions.ScriptExecution.createTimer(
+      time.ZonedDateTime.now().plusSeconds(30),
+      () => {
+        //     events.sendCommand("wifi_socket_3_power", "OFF")
+        items.getItem(powerControlItem).sendCommand('OFF');
+        //     t_brtvPowerOff = None
+        // undefine the off timer
+        // tvPowerOffTimer = undefined;
+      },
+    );
+  }
+
+  items.getItem(onOffProxyItem).postUpdate('OFF');
+  // items.getItem(powerControlItem).sendCommand('ON');
+}
+
 let t_brtvPowerOff;
 rules.JSRule({
   name: 'turn ON bedroom Pi Kodi and TV',
@@ -122,8 +147,8 @@ rules.JSRule({
   execute: (data) => {
     logger.error('Turning on bedroom Pi Kodi and TV');
 
-    // const message = 'Turning on Bedroom TV';
-    // Voice.say(message);
+    const message = 'Turning on Bedroom TV';
+    actions.Voice.say(message);
 
     turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', 'Turning on Bedroom TV', t_brtvPowerOff);
   },
@@ -136,7 +161,7 @@ rules.JSRule({
   execute: (data) => {
     logger.error('Turning off bedroom Pi Kodi and TV');
     turnOffTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', 'Turning off Bedroom TV', t_brtvPowerOff);
-    // Voice.say('Turning off Bedroom TV');
+    // actions.Voice.say('Turning off Bedroom TV');
     // items.getItem('shutdownKodiBedroomProxy').postUpdate('OFF');
   },
 });
@@ -160,29 +185,6 @@ rules.JSRule({
     turnOffTV('shutdownKodiFrontRoomProxy', 'wifi_socket_2_power', 'Turning off FrontRoom TV');
   },
 });
-
-let tvPowerOffTimer;
-function turnOffTV(onOffProxyItem, powerControlItem, message) {
-  logger.error(`Turning off Pi Kodi and TV:${message}`);
-  // Voice.say(message);
-
-  // if off timer undefined start for pi shutdown
-  if (!(tvPowerOffTimer === undefined)) {
-    tvPowerOffTimer = actions.ScriptExecution.createTimer(
-      time.ZonedDateTime.now().plusSeconds(30),
-      () => {
-        //     events.sendCommand("wifi_socket_3_power", "OFF")
-        items.getItem(powerControlItem).sendCommand('OFF');
-        //     t_brtvPowerOff = None
-        // undefine the off timer
-        // tvPowerOffTimer = undefined;
-      },
-    );
-  }
-
-  items.getItem(onOffProxyItem).postUpdate('OFF');
-  // items.getItem(powerControlItem).sendCommand('ON');
-}
 
 rules.JSRule({
   name: 'Turn ON Attic Kodi-Pi, TV',
