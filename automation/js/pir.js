@@ -1,6 +1,13 @@
+const {
+  log, items, rules, actions, time, triggers,
+} = require('openhab');
+const { timeUtils } = require('openhab_rules_tools');
+
+const logger = log('pir');
+
 scriptLoaded = function () {
-  console.log('PIR MONITOR scriptLoaded function');
-  loadedDate = Date.now();
+  logger.warn('scriptLoaded - pir');
+  // loadedDate = Date.now();
 };
 
 rules.JSRule({
@@ -8,19 +15,25 @@ rules.JSRule({
   description: 'monitor any PIR occupancy updates..v..',
   triggers: [triggers.ItemStateUpdateTrigger('pir01_occupancy'), triggers.ItemStateUpdateTrigger('pir02_occupancy')],
   execute: (data) => {
-    console.error(
-      'PIR MONITOR -  pir_occupancy received update itemName : ' +
-        data.itemName +
-        ', state: ' +
-        items.getItem(data.itemName).state +
-        ', PREV state: ' +
-        items.getItem(data.itemName).history.previousState()
+    logger.warn(
+      `PIR MONITOR -  pir_occupancy received update itemName : ${data.itemName
+      }, state: ${items.getItem(data.itemName).state
+      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
   },
 });
+function pir1_off_body() {
+  logger.warn('===The timer is over.pir1_off_body');
+  items.getItem('KT_light_1_Power').sendCommand('OFF');
+}
+function pir2_off_body() {
+  logger.warn('===The timer is over.pir2_off_body');
+  items.getItem('KT_light_2_Power').sendCommand('OFF');
+  items.getItem('KT_light_3_Power').sendCommand('OFF');
+}
 
-var pir01_off_timer = null;
-var pir02_off_timer = null;
+let pir01_off_timer = null;
+let pir02_off_timer = null;
 rules.JSRule({
   name: 'pir01 or 02 updated with ON',
   description: 'pir01 or 02  - Turn ON lights, cancel off timers  ',
@@ -29,42 +42,55 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('pir02_occupancy', 'ON'),
   ],
   execute: (data) => {
-    console.error(
-      'ON ON ON =======  pir_occupancy received update itemName : ' +
-        data.itemName +
-        ', state: ' +
-        items.getItem(data.itemName).state +
-        ', PREV state: ' +
-        items.getItem(data.itemName).history.previousState()
+    logger.warn(
+      `-pir_occupancy received update itemName : ${data.itemName
+      }, state: ${items.getItem(data.itemName).state
+      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
-    console.error('==========BridgeLightSensorLevel: ' + items.getItem('BridgeLightSensorLevel').rawState);
-    console.error(
-      '==========ConservatoryLightTriggerLevel: ' + items.getItem('ConservatoryLightTriggerLevel').rawState
+    logger.warn(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
+    logger.warn(
+      `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     );
-    console.error('==========pir01_occupancy: ' + items.getItem('pir01_occupancy').state);
+    logger.warn(`-pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
-      console.error('pir01_occupancy inner: ' + items.getItem('pir01_occupancy').state);
-      if (items.getItem('pir01_occupancy').state == 'ON') {
+      logger.warn(`pir01_occupancy inner: ${items.getItem('pir01_occupancy').state}`);
+      if (items.getItem('pir01_occupancy').state === 'ON') {
         items.getItem('KT_light_1_Power').sendCommand('ON');
-        console.error('ON ON ON ======= rxed pir01_occupancy KT_light_1_Power ON');
-        //cancrl the off timer if running
-        if (pir01_off_timer && pir01_off_timer.isActive()) {
-          pir01_off_timer.cancel();
-          console.error('ON ON ON ======= CANCEL     STOP running pir01_off_timer');
+        logger.warn('-rxed pir01_occupancy KT_light_1_Power ON');
+        // // cancrl the off timer if running
+        // if (pir01_off_timer && pir01_off_timer.isActive()) {
+        //   pir01_off_timer.cancel();
+        //   logger.warn('-CANCEL STOP running pir01_off_timer');
+        // }
+
+        // if timer is null, start it
+        pir01_off_timer = null;
+        if (pir01_off_timer == null || pir01_off_timer === undefined) {
+          const now = time.ZonedDateTime.now();
+          pir01_off_timer = actions.ScriptExecution.createTimer(
+            now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
+            pir1_off_body,
+          );
+          logger.warn('===pir01_occupancy: STARTING OFF TIMER KT_light_1_Power');
+        } else { // else retrigger it, it exists
+          const now = time.ZonedDateTime.now();
+          logger.warn('===pir01_occupancy: retrigger  TIMER KT_light_1_Power');
+          pir01_off_timer.reschedule(now.plusSeconds(20));
         }
       }
-      if (items.getItem('pir02_occupancy').state == 'ON') {
+
+      if (items.getItem('pir02_occupancy').state === 'ON') {
         items.getItem('KT_light_2_Power').sendCommand('ON');
         items.getItem('KT_light_3_Power').sendCommand('ON');
-        console.error('ON ON ON ======= rxed pir02_occupancy KT_light_2 3_PowerON');
+        logger.warn('-rxed pir02_occupancy KT_light_2 3_PowerON');
         if (pir02_off_timer && pir02_off_timer.isActive()) {
           pir02_off_timer.cancel();
-          console.error('ON ON ON ======= CANCEL     STOP running pir02_off_timer');
+          logger.warn('-CANCEL STOP running pir02_off_timer');
         }
       }
     }
-    console.error('pir01_occupancy: end');
+    logger.warn('pir01_occupancy: end');
   },
 });
 
@@ -76,47 +102,32 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('pir02_occupancy', 'ON', 'OFF'),
   ],
   execute: (data) => {
-    console.error(
-      'update =======  pir_occupancy received update itemName : ' +
-        data.itemName +
-        ', state: ' +
-        items.getItem(data.itemName).state +
-        ', PREV state: ' +
-        items.getItem(data.itemName).history.previousState()
+    logger.warn(
+      `update =======  pir_occupancy received update itemName : ${data.itemName
+      }, state: ${items.getItem(data.itemName).state
+      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
-    if (data.itemName == 'pir01_occupancy') {
-      console.error(
-        'update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: ' +
-          items.getItem('KT_cupboard_lights_timeout').state.toString()
-      );
-      let now = time.ZonedDateTime.now();
-      pir01_off_timer = actions.ScriptExecution.createTimer(
-        now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
-        pir1_off_body
-      );
-      console.error('update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END');
-    }
+    // if (data.itemName == 'pir01_occupancy') {
+    //   logger.warn(
+    //     `update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,
+    //   );
+    //   const now = time.ZonedDateTime.now();
+    //   pir01_off_timer = actions.ScriptExecution.createTimer(
+    //     now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
+    //     pir1_off_body,
+    //   );
+    //   logger.warn('update===========pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END');
+    // }
     if (data.itemName == 'pir02_occupancy') {
-      console.error(
-        'update=========== : STARTING TIMER KT_light_2&3_Power : OFF, off timer is: ' +
-          items.getItem('KT_cupboard_lights_timeout').state
+      logger.warn(
+        `update=========== : STARTING TIMER KT_light_2&3_Power : OFF, off timer is: ${items.getItem('KT_cupboard_lights_timeout').state}`,
       );
-      let now = time.ZonedDateTime.now();
+      const now = time.ZonedDateTime.now();
       pir02_off_timer = actions.ScriptExecution.createTimer(
         now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
-        pir2_off_body
+        pir2_off_body,
       );
-      console.error('update===========pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END');
+      logger.warn('update===========pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END');
     }
   },
 });
-
-function pir1_off_body() {
-  console.error('===================================================The timer is over.pir1_off_body');
-  items.getItem('KT_light_1_Power').sendCommand('OFF');
-}
-function pir2_off_body() {
-  console.error('====================================================The timer is over.pir2_off_body');
-  items.getItem('KT_light_2_Power').sendCommand('OFF');
-  items.getItem('KT_light_3_Power').sendCommand('OFF');
-}

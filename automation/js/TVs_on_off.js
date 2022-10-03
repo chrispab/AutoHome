@@ -25,11 +25,11 @@ function tv_startup_tbody() {
 }
 
 scriptLoaded = function () {
-  logger.error('scriptLoaded - System started - set all rooms TV startup settings');
+  logger.warn('scriptLoaded - System started - set all rooms TV startup settings');
 
-  logger.error('startup- set Kodi_CT_Online_Status status ');
+  logger.warn('startup- set Kodi_CT_Online_Status status ');
   const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
-  logger.error('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
+  logger.warn('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
 
   if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
     items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
@@ -47,47 +47,44 @@ scriptLoaded = function () {
 let tvPowerOffTimer;
 
 function turnOnTV(onOffProxyItem, powerControlItem, message) {
-  logger.error(`Turning on Pi Kodi and TV:${message}`);
+  logger.warn(`Turning on Pi Kodi and TV:${message}`);
   actions.Voice.say(message);
 
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
     tvPowerOffTimer.cancel();// = undefined;
   }
-
   items.getItem(onOffProxyItem).postUpdate('ON');
   items.getItem(powerControlItem).sendCommand('ON');
 }
 
 function turnOffTV(onOffProxyItem, powerControlItem, message) {
-  logger.error(`Turning off Pi Kodi and TV:${message}`);
+  logger.warn(`Turning off Pi Kodi and TV:${message}`);
   actions.Voice.say(message);
 
-  // if off timer undefined start for pi shutdown
-  if (!(tvPowerOffTimer === undefined)) {
-    tvPowerOffTimer = actions.ScriptExecution.createTimer(
-      time.ZonedDateTime.now().plusSeconds(30),
-      () => {
-        //     events.sendCommand("wifi_socket_3_power", "OFF")
-        items.getItem(powerControlItem).sendCommand('OFF');
-        //     t_brtvPowerOff = None
-        // undefine the off timer
-        // tvPowerOffTimer = undefined;
-      },
-    );
-  }
-
   items.getItem(onOffProxyItem).postUpdate('OFF');
-  // items.getItem(powerControlItem).sendCommand('ON');
-}
 
+  // if off timer undefined start for pi shutdown
+  // if (!(tvPowerOffTimer === undefined)) {
+  tvPowerOffTimer = actions.ScriptExecution.createTimer(
+    time.ZonedDateTime.now().plusSeconds(30),
+    () => {
+      items.getItem(powerControlItem).sendCommand('OFF');
+      //     t_brtvPowerOff = None
+      // undefine the off timer
+      // tvPowerOffTimer = undefined;
+    },
+  );
+  // }
+}
+// ==================== turn ON bedroom Pi Kodi and TV
 let t_brtvPowerOff;
 rules.JSRule({
   name: 'turn ON bedroom Pi Kodi and TV',
   description: 'turn ON bedroom Pi Kodi and TV',
   triggers: [triggers.ItemStateUpdateTrigger('vBR_TVKodi', 'ON')],
-  execute: (data) => {
-    logger.error('Turning on bedroom Pi Kodi and TV');
+  execute: () => {
+    logger.warn('Turning on bedroom Pi Kodi and TV');
 
     const message = 'Turning on Bedroom TV';
     actions.Voice.say(message);
@@ -96,6 +93,18 @@ rules.JSRule({
   },
 });
 
+// ==============Turn OFF bedroom Kodi-Pi, TV
+rules.JSRule({
+  name: 'Turn OFF bedroom Kodi-Pi, TV',
+  description: 'Turn OFF bedroom Kodi-Pi, TV',
+  triggers: [triggers.ItemStateUpdateTrigger('vBR_TVKodi', 'OFF')],
+  execute: () => {
+    logger.warn('Turning off bedroom Pi Kodi and TV');
+    turnOffTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', 'Turning off Bedroom TV');
+  },
+});
+
+// ==================Conservatory TV
 let CT_TV_off_timer;
 
 rules.JSRule({
@@ -157,18 +166,6 @@ rules.JSRule({
         },
       );
     }
-  },
-});
-
-rules.JSRule({
-  name: 'Turn OFF bedroom Kodi-Pi, TV',
-  description: 'Turn OFF bedroom Kodi-Pi, TV',
-  triggers: [triggers.ItemStateUpdateTrigger('vBR_TVKodi', 'OFF')],
-  execute: (data) => {
-    logger.error('Turning off bedroom Pi Kodi and TV');
-    turnOffTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', 'Turning off Bedroom TV');
-    // actions.Voice.say('Turning off Bedroom TV');
-    // items.getItem('shutdownKodiBedroomProxy').postUpdate('OFF');
   },
 });
 
