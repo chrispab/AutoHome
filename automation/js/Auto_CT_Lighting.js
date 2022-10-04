@@ -1,3 +1,11 @@
+const {
+  log, items, rules, actions, triggers,
+} = require('openhab');
+const { myutils } = require('personal');
+
+const logger = log('auto CT lights');
+const { timeUtils } = require('openhab_rules_tools');
+
 //! TODO
 // @rule("auto lighting init", description="Handles fan actions", tags=["conservatory"])
 // @when("System started")

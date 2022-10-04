@@ -24,7 +24,7 @@ function tv_startup_tbody() {
   }
 }
 
-scriptLoaded = function () {
+scriptLoaded = function scriptLoaded() {
   logger.warn('scriptLoaded - System started - set all rooms TV startup settings');
 
   logger.warn('startup- set Kodi_CT_Online_Status status ');
@@ -78,7 +78,7 @@ function turnOffTV(onOffProxyItem, powerControlItem, message) {
   // }
 }
 // ==================== turn ON bedroom Pi Kodi and TV
-let t_brtvPowerOff;
+// let t_brtvPowerOff;
 rules.JSRule({
   name: 'turn ON bedroom Pi Kodi and TV',
   description: 'turn ON bedroom Pi Kodi and TV',
@@ -175,7 +175,7 @@ rules.JSRule({
   name: 'Turn ON FrontRoom Kodi-Pi, TV',
   description: 'Turn ON FrontRoom Kodi-Pi, TV',
   triggers: [triggers.ItemStateUpdateTrigger('vFR_TVKodi', 'ON')],
-  execute: (data) => {
+  execute: () => {
     turnOnTV('shutdownKodiFrontRoomProxy', 'wifi_socket_2_power', 'Turning on FrontRoom TV');
   },
 });
@@ -184,7 +184,7 @@ rules.JSRule({
   name: 'Turn OFF FrontRoom Kodi-Pi, TV',
   description: 'Turn OFF FrontRoom Kodi-Pi, TV',
   triggers: [triggers.ItemStateUpdateTrigger('vFR_TVKodi', 'OFF')],
-  execute: (data) => {
+  execute: () => {
     turnOffTV('shutdownKodiFrontRoomProxy', 'wifi_socket_2_power', 'Turning off FrontRoom TV');
   },
 });
@@ -193,7 +193,7 @@ rules.JSRule({
   name: 'Turn ON Attic Kodi-Pi, TV',
   description: 'Turn ON Attic Kodi-Pi, TV',
   triggers: [triggers.ItemStateUpdateTrigger('vAT_TVKodi', 'ON')],
-  execute: (data) => {
+  execute: () => {
     turnOnTV('shutdownKodiAtticProxy', ' ', 'Turning on Attic TV');
   },
 });
@@ -202,7 +202,7 @@ rules.JSRule({
   name: 'Turn OFF Attic Kodi-Pi, TV',
   description: 'Turn OFF Attic Kodi-Pi, TV',
   triggers: [triggers.ItemStateUpdateTrigger('vAT_TVKodi', 'OFF')],
-  execute: (data) => {
+  execute: () => {
     turnOffTV('shutdownKodiAtticProxy', ' ', 'Turning off Attic TV');
   },
 });

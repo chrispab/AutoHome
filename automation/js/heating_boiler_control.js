@@ -11,8 +11,8 @@ rules.JSRule({
   description: 'If any heaters demanding heat, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gRoomHeaterStates')],
   execute: () => {
-    logger.warn('If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
-
+    logger.warn('__If any heaters demanding heat, turn Boiler ON else turn boiler OFF');
+    logger.warn(`_________gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
       logger.warn('A heater is ON - turn boiler ON');
       items.getItem('Boiler_Control').sendCommand('ON');
