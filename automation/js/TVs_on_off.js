@@ -104,13 +104,14 @@ rules.JSRule({
   },
 });
 
-// ==================Conservatory TV
+// ==================Conservatory TV ON
 let CT_TV_off_timer;
 
 rules.JSRule({
   name: 'turn ON conservatory TV',
   description: 'turn ON conservatory TV',
-  triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON')],
+  triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON'),
+  triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'OFF', 'ON')],
   execute: () => {
     actions.Voice.say('Turning on CT - TV - kodi, amp, ir bridge');
     // check if stereo already on - some stuff already on!
@@ -137,11 +138,12 @@ rules.JSRule({
     });
   },
 });
-
+// ==================Conservatory TV OFF
 rules.JSRule({
   name: 'turn OFF conservatory tv',
   description: 'turn OFF conservatory tv',
-  triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'ON', 'OFF')],
+  triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'ON', 'OFF'),
+  triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'ON', 'OFF')],
   execute: () => {
     actions.Voice.say('Turning OFF tv - kodi, amp, and bridges');
     turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'here we go TV off');
