@@ -1,3 +1,4 @@
+Group   gCT_TVKodiSpeakers
 Switch	vBR_TVKodi		"Bedroom TV"		<switch>	(gBedroom)			{ ga="Switch" [ roomHint="Bedroom" ] }
 
 Switch	vFR_TVKodi	"Front room TV"			<switch>	(gFrontRoom)		{ ga="Switch" [ roomHint="Front Room" ] }

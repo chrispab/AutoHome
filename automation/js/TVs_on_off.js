@@ -113,7 +113,6 @@ rules.JSRule({
   triggers: [triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON'),
   triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'OFF', 'ON')],
   execute: () => {
-    // actions.Voice.say('Turning on CT - TV - kodi, amp, ir bridge');
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
     turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on CT - TV - kodi, amp, ir bridge'); // turn off power
