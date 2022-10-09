@@ -1,5 +1,5 @@
 const {
-  log, items, rules, actions,
+  log, items, rules, actions, triggers,
 } = require('openhab');
 const { myutils } = require('personal');
 

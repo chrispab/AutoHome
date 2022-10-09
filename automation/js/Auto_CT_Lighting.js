@@ -1,10 +1,10 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
+// const { myutils } = require('personal');
 
 const logger = log('auto CT lights');
-const { timeUtils } = require('openhab_rules_tools');
+// const { timeUtils } = require('openhab_rules_tools');
 
 const { alerting } = require('personal');
 
@@ -14,7 +14,7 @@ rules.JSRule({
   triggers: [triggers.GenericCronTrigger('0 30 06 * * ?')],
   execute: () => {
     if (items.getItem('CT_LightDark_State').state == 'OFF') {
-      console.error('CRON auto turn On conservatory lights MORNING');
+      logger.error('CRON auto turn On conservatory lights MORNING');
       items.getItem('gConservatoryLights').sendCommand('ON');
       alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
     }
@@ -25,8 +25,8 @@ rules.JSRule({
   name: 'CRON auto turn OFF conservatory lights',
   description: 'CRON turn OFF conservatory lights when late - maybe forgot',
   triggers: [triggers.GenericCronTrigger('0 30 01 * * ?')],
-  execute: (data) => {
-    console.error('CRON turn OFF conservatory lights when late - maybe forgot');
+  execute: () => {
+    logger.error('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('CRON auto turn OFF conservatory lights');
@@ -37,8 +37,8 @@ rules.JSRule({
   name: 'auto turn OFF conservatory lights',
   description: 'turn OFF conservatory lights when ambient light level high',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'OFF', 'ON')],
-  execute: (data) => {
-    console.error('...........................turn OFF conservatory lights when ambient light level high');
+  execute: () => {
+    logger.error('...........................turn OFF conservatory lights when ambient light level high');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('auto turn OFF conservatory lights');
@@ -49,8 +49,8 @@ rules.JSRule({
   name: 'auto turn ON conservatory lights',
   description: 'turn ON conservatory lights when ambient light level low',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'ON', 'OFF')],
-  execute: (data) => {
-    console.error('...........................turn ON conservatory lights when ambient light level low');
+  execute: () => {
+    logger.error('...........................turn ON conservatory lights when ambient light level low');
     items.getItem('gConservatoryLights').sendCommand('ON');
     alerting.sendInfo('auto turn ON conservatory lights if getting dark');
   },
@@ -60,19 +60,19 @@ let previousLightSensorLevel = null;
 let currentLightSensorLevel = null;
 
 scriptLoaded = function () {
-  console.error('scriptLoaded - set all CT auto lightings items etc');
+  logger.error('scriptLoaded - set all CT auto lightings items etc');
 
   previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
   currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  items.getItem('BridgeLightSensorTrend').sendCommand('OFF'); // going down
-  items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
+  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); // going down
+  items.getItem('CT_LightDark_State').sendCommand('ON'); // its light in conservatory
 };
 
 rules.JSRule({
   name: 'monitor 433 bridge light sensor',
   description: 'monitor 433 bridge light sensor',
   triggers: [triggers.ItemStateUpdateTrigger('BridgeLightSensorLevel')],
-  execute: (event) => {
+  execute: () => {
     currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
 
     if (currentLightSensorLevel > previousLightSensorLevel) {

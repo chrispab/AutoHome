@@ -42,8 +42,8 @@ scriptLoaded = function scriptLoaded() {
       tv_startup_tbody();
     });
   }
-  // actions.Voice.say('hi, this is a message');
 };
+
 let tvPowerOffTimer;
 
 function turnOnTV(onOffProxyItem, powerControlItem, message) {
@@ -85,10 +85,7 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('vBR_TVKodi', 'ON')],
   execute: () => {
     logger.warn('Turning on bedroom Pi Kodi and TV');
-
     const message = 'Turning on Bedroom TV';
-    // actions.Voice.say(message);
-
     turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
   },
 });
@@ -115,7 +112,7 @@ rules.JSRule({
   execute: () => {
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
-    turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on CT - TV - kodi, amp, ir bridge'); // turn off power
+    turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning onconservatory TV'); // turn off power
     logger.warn('Turning on CT - TV - kodi, amp, ir bridge');
     items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
@@ -145,7 +142,7 @@ rules.JSRule({
   triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'ON', 'OFF')],
   execute: () => {
     // actions.Voice.say('Turning OFF tv - kodi, amp, and bridges');
-    turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF tv - kodi, amp, and bridges');
+    turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory');
 
     logger.warn('Turning OFF tv - kodi, amp, and bridges');
     items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi
