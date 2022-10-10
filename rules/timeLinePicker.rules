@@ -31,8 +31,10 @@ import java.util.ArrayList
 // -------------------- part of config -----------------------------------------------------------------------
 
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(
-    "TransferItem1" -> newArrayList('Thermostat1','fan_heater_enable','Thermostat2'),
-    "TransferCTHeating" -> newArrayList('vCT_HeatingMode')
+    "Transfer_fan_heater_enable" -> newArrayList('vFanHeater_Enable'),
+    "Transfer_CT_HeatingMode" -> newArrayList('vCT_HeatingMode'),
+    "Transfer_AT_HeatingMode" -> newArrayList('vAT_HeatingMode')
+
 )
 
 // -------------------- end of config ------------------------------------------------------------------------
@@ -79,11 +81,13 @@ val Procedures$Procedure2<String,String> persistSwitchState = [ currSwitchPlanNa
 rule "timeLine picker 1"
 when
   Member of gTimepicker changed or
-//  Time cron "0/15 * * ? * * *" or            // for debug, trigger each 15 seconds
+  // Time cron "0/15 * * ? * * *" or            // for debug, trigger each 15 seconds
   Time cron "0 0/15 * 1/1 * ? *"
 then
   var Number currTimeInterval = ((now.getHour()*60 + now.getMinute())/15).intValue
   var Number currDay = now.getDayOfWeek.getValue()
+
+  logInfo("timeLine picker", "___>>> IN THE LOOP")
 
   gTimepicker.members.forEach[ currSwitchPlan |
     if ((currSwitchPlan.state !== NULL) && (timePicker.keySet().contains(currSwitchPlan.name))) {

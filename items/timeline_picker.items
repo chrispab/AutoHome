@@ -1,0 +1,15 @@
+Group gTimepicker
+Group gTimepickerObserver
+String TimelineHelper "[%s]"
+
+String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
+String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
+String Transfer_AT_HeatingMode "[%s]"      (gTimepicker)
+
+// Switch Thermostat1                     (gTimepicker)
+// Switch Thermostat2                     (gTimepicker)
+// Switch item2                     (gTimepicker)
+// Dimmer item3                     (gTimepicker)
+String vFanHeater_Enable                     (gTimepicker)
+String vCT_HeatingMode                     (gTimepicker)
+String vAT_HeatingMode                     (gTimepicker)
