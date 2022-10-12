@@ -112,7 +112,7 @@ rules.JSRule({
   execute: () => {
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
-    turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning onconservatory TV'); // turn off power
+    turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
     logger.warn('Turning on CT - TV - kodi, amp, ir bridge');
     items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor

@@ -13,3 +13,6 @@ String Transfer_AT_HeatingMode "[%s]"      (gTimepicker)
 String vFanHeater_Enable                     (gTimepicker)
 String vCT_HeatingMode                     (gTimepicker)
 String vAT_HeatingMode                     (gTimepicker)
+
+
+Switch fan_heater_timeline_disable
