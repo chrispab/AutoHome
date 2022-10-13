@@ -33,8 +33,8 @@ import java.util.ArrayList
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(
     "Transfer_fan_heater_enable" -> newArrayList('vFanHeater_Enable'),
     "Transfer_CT_HeatingMode" -> newArrayList('vCT_HeatingMode'),
-    "Transfer_AT_HeatingMode" -> newArrayList('vAT_HeatingMode')
-
+    "Transfer_AT_HeatingMode" -> newArrayList('vAT_HeatingMode'),
+    "Transfer_CT_SetPoint_auto" -> newArrayList('v_CT_SetPoint_auto')
 )
 
 // -------------------- end of config ------------------------------------------------------------------------

@@ -6,6 +6,10 @@ String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
 String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
 String Transfer_AT_HeatingMode "[%s]"      (gTimepicker)
 
+//experimental heating programs
+String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker)
+String v_CT_SetPoint_auto                     (gTimepicker)
+
 // Switch Thermostat1                     (gTimepicker)
 // Switch Thermostat2                     (gTimepicker)
 // Switch item2                     (gTimepicker)

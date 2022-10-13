@@ -26,10 +26,7 @@ Number CT_HPSP_Min (gHeating_Presets)
 Number CT_HPSP_WE_Morning (gHeating_Presets)
 Number CT_HPSP_WE_Evening  (gHeating_Presets)
 
-
-
-
-
+//==================================================
 Number FR_HPSP_Morning (gHeating_Presets)
 Number FR_HPSP_Day  (gHeating_Presets)
 Number FR_HPSP_Evening  (gHeating_Presets)
@@ -79,3 +76,8 @@ Number AT_HPSP_WE_Morning (gHeating_Presets)
 Number AT_HPSP_WE_Evening  (gHeating_Presets)
 
 Number hallWeekDayTemp
+
+//======================
+// new timeline ct setpoints for auto
+
+Number CT_Setpoint_auto_min
