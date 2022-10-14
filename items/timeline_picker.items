@@ -34,7 +34,7 @@ String v_CT_SetPoint_auto                     (gTimepicker)
 
 //======================
 // new timeline ct setpoints for auto
-Group gHeating_CT_Setpoints_auto
+Group:Number:SUM gHeating_CT_Setpoints_auto
 Number CT_Setpoint_auto_min  (gHeating_CT_Setpoints_auto)
 Number CT_Setpoint_auto_morning  (gHeating_CT_Setpoints_auto)
 Number CT_Setpoint_auto_day  (gHeating_CT_Setpoints_auto)

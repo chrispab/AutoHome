@@ -35,7 +35,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gHeating_CT_Setpoints_auto')],
   execute: (event) => {
     logger.error('handle trigger from timeline gHeating_CT_Setpoints_auto temp label updates');
-    // myutils.showEvent(event);
+    myutils.showEvent(event);
     // const masterHeatingModeItemState = items.getItem('masterHeatingMode').state.toString();
     const v_CT_Setpoint_auto_text = items.getItem('v_CT_SetPoint_auto').state.toString();
 
@@ -43,7 +43,7 @@ rules.JSRule({
     logger.warn(`__**>> gHeating_CT_Setpoints_auto triggering item : ${itemName}`);
     logger.warn('__**>> handle gHeating_CT_Setpoints_auto update from timeline or script source');
     // logger.warn('__**>> handle v_CT_SetPoint_auto update from timeline or script source');
-    logger.warn(`__**>> itemName.state : ${items.getItem('itemName').state}`);
+    logger.warn(`__**>> itemName.state : ${items.getItem(itemName).state}`);
     logger.warn(`__**>> v_CT_Setpoint_auto_text : ${v_CT_Setpoint_auto_text}`);
 
     // items.getItem('CT_Setpoint').sendCommand(items.getItem(CT_Setpoint_auto).state);
