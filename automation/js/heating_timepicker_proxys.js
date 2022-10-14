@@ -17,14 +17,3 @@ rules.JSRule({
     items.getItem('fan_heater_enable').sendCommand(items.getItem(data.itemName).state);
   },
 });
-
-rules.JSRule({
-  name: 'If any timepicker',
-  description: 'If any heaters demanding heat, turn Boiler ON else turn boiler OFF',
-  triggers: [triggers.ItemStateUpdateTrigger('vCT_HeatingMode')],
-  execute: () => {
-    logger.warn('__If any timepicker');
-    logger.warn(`vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
-    items.getItem('CT_HeatingMode').sendCommand(items.getItem('vCT_HeatingMode').state);
-  },
-});

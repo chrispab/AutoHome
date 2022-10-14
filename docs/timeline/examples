@@ -138,3 +138,28 @@ config:
   +"&lang="+((props.language)?props.language:"nl")
   +"&colorset="+((props.colorset)?props.colorset:"ffea00,2D83C4,d000ff,1eff00,ff0000")
   +"&deactivation="+((props.deactivation)?props.deactivation:"true")
+
+
+
+
+
+
+
+
+
+
+rules.JSRule({
+  name: 'handle vCT_HeatingMode update from timeline or script source',
+  description: 'handle vCT_HeatingMode update from timeline or script source',
+  triggers: [triggers.GroupStateUpdateTrigger('gHeating_CT_Setpoints_auto')],
+  execute: (event) => {
+    myutils.showEvent(event);
+    const { itemName } = event;
+    logger.warn(`__**> gHeating_CT_Setpoints_auto triggering item : ${itemName}`);
+    logger.warn('__**> handle gHeating_CT_Setpoints_auto update from timeline or script source');
+    logger.warn(`__**> vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
+
+    // send mode sent to actual CT_HeatingMode
+    items.getItem('CT_HeatingMode').sendCommand(items.getItem('vCT_HeatingMode').state);
+  },
+});

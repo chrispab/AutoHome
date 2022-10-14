@@ -3,20 +3,41 @@ Group gTimepickerObserver
 String TimelineHelper "[%s]"
 
 String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
-String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
+
 String Transfer_AT_HeatingMode "[%s]"      (gTimepicker)
 
-//experimental heating programs
-String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker)
-String v_CT_SetPoint_auto                     (gTimepicker)
+
 
 // Switch Thermostat1                     (gTimepicker)
 // Switch Thermostat2                     (gTimepicker)
 // Switch item2                     (gTimepicker)
 // Dimmer item3                     (gTimepicker)
 String vFanHeater_Enable                     (gTimepicker)
-String vCT_HeatingMode                     (gTimepicker)
 String vAT_HeatingMode                     (gTimepicker)
 
 
 Switch fan_heater_timeline_disable
+
+
+
+//== CT items
+String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
+String vCT_HeatingMode                     (gTimepicker)
+
+//===========
+//experimental heating programs
+String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker)
+
+//proxy item to monitor any op from Transfer_CT_SetPoint_auto
+String v_CT_SetPoint_auto                     (gTimepicker)
+
+
+//======================
+// new timeline ct setpoints for auto
+Group gHeating_CT_Setpoints_auto
+Number CT_Setpoint_auto_min  (gHeating_CT_Setpoints_auto)
+Number CT_Setpoint_auto_morning  (gHeating_CT_Setpoints_auto)
+Number CT_Setpoint_auto_day  (gHeating_CT_Setpoints_auto)
+Number CT_Setpoint_auto_evening  (gHeating_CT_Setpoints_auto)
+Number CT_Setpoint_auto_night  (gHeating_CT_Setpoints_auto)
+Number CT_Setpoint_auto_max  (gHeating_CT_Setpoints_auto)

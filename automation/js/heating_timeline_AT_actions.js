@@ -10,16 +10,27 @@ const { toToday } = require('openhab_rules_tools/timeUtils');
 function getCurrentSetpoints() { }
 
 rules.JSRule({
-  name: 'handle trigger from timeline CT Setpoit_auto updates',
-  description: 'handle trigger from timeline CT Setpoit_auto updates',
+  name: 'handle vAT_HeatingMode update from timeline or script source',
+  description: 'handle vAT_HeatingMode update from timeline or script source',
+  triggers: [triggers.ItemStateUpdateTrigger('vAT_HeatingMode')],
+  execute: () => {
+    logger.warn('__');
+    logger.warn(`vAT_HeatingMode: ${items.getItem('vAT_HeatingMode').state}`);
+    // items.getItem('vAT_HeatingMode').sendCommand(items.getItem('vAT_HeatingMode').state);
+  },
+});
+
+rules.JSRule({
+  name: 'handle trigger from timeline AT Setpoit_auto updates',
+  description: 'handle trigger from timeline AT Setpoit_auto updates',
   triggers: [
-    triggers.ItemStateUpdateTrigger('v_CT_SetPoint_auto'),
+    triggers.ItemStateUpdateTrigger('v_AT_SetPoint_auto'),
   ],
   execute: (event) => {
-    logger.error('handle trigger from timeline CT Setpoit_auto updates');
+    logger.error('handle trigger from timeline AT Setpoit_auto updates');
     // myutils.showEvent(event);
     // const masterHeatingModeItemState = items.getItem('masterHeatingMode').state.toString();
-    const CT_Setpoint_auto = items.getItem('v_CT_SetPoint_auto').state.toString();
+    const CT_Setpoint_auto = items.getItem('v_AT_SetPoint_auto').state.toString();
 
     const setPoints = getCurrentSetpoints();
 
