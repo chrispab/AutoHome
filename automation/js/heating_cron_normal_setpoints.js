@@ -19,7 +19,7 @@ const { timeUtils } = require('openhab_rules_tools');
 // roomPresetTimeOfDaySuffix , e.g. 'Morning', 'Evening', 'Day','Night', 'WE_Morning','WE_Evening'
 function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
   const presetIDString = 'HPSP';
-  logger.warn(`>> HeatingPresetTempsGroup passed in: ${gHeatingPresetTemps} `);
+  logger.warn(`>> CRON--HEATING--CRON JOB: HeatingPresetTempsGroup passed in: ${gHeatingPresetTemps} `);
   myutils.showGroupMembers(gHeatingPresetTemps);
   // get each room heating preset temp e.g. state/value of 'CT_HPSP_Morning' from
   // the settings webpage and assign to the respective
@@ -52,7 +52,11 @@ function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
     logger.warn(`>>== asssigningg sourceItem setpoint: ${sourceItem.name}, STATE: : ${sourceItem.state} `);
     logger.warn(`>>== to destination preset: ${destinationItem.name}, STATE: : ${destinationItem.state} `);
     // destinationItem.state = sourceItem.state;
-    destinationItem.postUpdate(sourceItem.state);
+    if (roomPrefix === 'CT') {
+      logger.error(`>>== EXCLUDE: NOT updating CT destination setpoint temperature preset by OLD CRON method, handled by new timelines. NAME: ${destinationItem.name}, STATE: : ${destinationItem.state} `);
+    } else {
+      destinationItem.postUpdate(sourceItem.state);
+    }
     logger.warn(`>>== destination preset now is: ${destinationItem.name}, STATE: : ${destinationItem.state} `);
     logger.warn(`>> HeatingPresetTempsGroup now contains: ${gHeatingPresetTemps} `);
     myutils.showGroupMembers(gHeatingPresetTemps);

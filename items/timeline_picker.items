@@ -24,12 +24,16 @@ Switch fan_heater_timeline_disable
 String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
 String vCT_HeatingMode                     (gTimepicker)
 
-//===========
-//experimental heating programs
-String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker)
+
+// Group has update when any timeline Setpoint Proxy is updated
+Group gHeatingTimelineSetpointUpdateProxys
+
+//===========CT Setpoint items
+String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
 
 //proxy item to monitor any op from Transfer_CT_SetPoint_auto
-String v_CT_SetPoint_auto                     (gTimepicker)
+// range of min, morning, day, evening, night, max
+String v_CT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
 
 //======================
