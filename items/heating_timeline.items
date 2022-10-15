@@ -1,0 +1,51 @@
+Group gTimepicker
+Group gTimepickerObserver
+String TimelineHelper "[%s]"
+
+String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
+
+String Transfer_AT_HeatingMode "[%s]"      (gTimepicker)
+
+
+
+// Switch Thermostat1                     (gTimepicker)
+// Switch Thermostat2                     (gTimepicker)
+// Switch item2                     (gTimepicker)
+// Dimmer item3                     (gTimepicker)
+String vFanHeater_Enable                     (gTimepicker)
+Switch fan_heater_timeline_disable
+
+
+
+
+String v_AT_HeatingMode_update_by_timeline                     (gTimepicker)
+
+
+
+// Group has update when any timeline Setpoint Proxy is updated
+Group gHeatingTimelineSetpointUpdateProxys
+// Group has update when any timeline Heating Mode Proxy is updated
+Group gHeatingTimelineHeatingModeUpdateProxys
+
+
+//== CT items
+// used internally by timeLinePicker.rules
+String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
+//  used internally by timeLinePicker, also monitored outside to pick up updates from the timelines
+String v_CT_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+
+//===========CT Setpoint items
+String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
+//proxy item to monitor any op from Transfer_CT_SetPoint_auto
+String v_CT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+
+//======================
+// new timeline ct setpoints for auto
+//  'min, cool, comfort, warm, hot, max'
+Group:Number:SUM gHeating_Setpoint_auto_updates_webui
+Number CT_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)

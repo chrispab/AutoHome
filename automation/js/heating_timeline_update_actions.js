@@ -4,8 +4,8 @@ const {
 const { myutils } = require('personal');
 
 const logger = log('master-mode-changed');
-const { timeUtils } = require('openhab_rules_tools');
-const { toToday } = require('openhab_rules_tools/timeUtils');
+// const { timeUtils } = require('openhab_rules_tools');
+// const { toToday } = require('openhab_rules_tools/timeUtils');
 
 /**
  * Get setpoint for a location based roomPrefix
@@ -23,7 +23,7 @@ const { toToday } = require('openhab_rules_tools/timeUtils');
  * BR_Setpoint_auto_night
  *
  * @param {string} roomPrefix  CT, BR, FR, AT, OF, HL, ER, DR, KT
- * @param {string} setpointTag min, morning, day, evening, night, max
+ * @param {string} setpointTag 'min, cool, comfort, warm, hot, max'
  * @return {number} temperature setpoint
  */
 function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
@@ -31,7 +31,7 @@ function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
   const setPointItemName = `${roomPrefix}_Setpoint_auto_${setpointTag}`;
   logger.warn(`---->>>> setPointItemName found : ${setPointItemName}`);
 
-  return items.getItem(setPointItemName).state;
+  return items.getItem(setPointItemName).state;// return setpoint temperature value
 }
 
 //= ===========setpoints
@@ -39,6 +39,7 @@ function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
 
 /**
  * When a setpoint is updated by a timeline automatic update
+ * the corrsponding room thermostat setpoint is updated to that value
  *
  * incoming triggers of the form:
  * v_<roomPrefix>_SetPoint_auto, triggered by a timeline change update
@@ -66,12 +67,14 @@ rules.JSRule({
     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
     logger.warn(`--->>> roomPrefix : ${roomPrefix}`);
 
-    // setpointTempTag is one of min, morning, day, evening, night, max
-    // - "receivedState": "evening",
+    // setpointTempTag is one of 'min, morning, day, evening, night, max' tags
+    // other possible tag, 'cold, cool, comfort, warm, hot'
+    // other possible tag, 'min, cool, comfort, warm, hot, max'
+    // - "event.receivedState": "evening",
     const setpointTemperatureTag = event.receivedState.toString();
     logger.warn(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);
 
-    // e.g 'CT' , 'evening'
+    // e.g given  'CT' , 'evening', returns temp for CT_Setpoint_auto_evening, e.g. 17.4
     const setPointTemperature = getSetpointAutoTempForRoom(roomPrefix, setpointTemperatureTag);
     logger.warn(`--->>> setPointTemperature found : ${setPointTemperature}`);
 
@@ -81,54 +84,66 @@ rules.JSRule({
     items.getItem(setPointItemName).sendCommand(setPointTemperature);
   },
 });
+
+//= ============ When a setpoint is updated by clicking on interface setpoint buttons
 /**
- * When a setpoint is updated, either by clicking on interface sepoint buttons ,
- * or when updated by a timeline automatic update
+ * When a setpoint is updated by clicking on interface setpoint buttons ,
+ * or when updated by a script
  *
  * incoming triggers from
- * v_<roomPrefix>_SetPoint_auto, triggered by a timeline chang update
- *  - part of group - gHeating
- * or
  * <roomPrefix>_Setpoint_auto_<setpointTag>
+ * e.g 'CT_Setpoint_auto_morning', member of gHeating_Setpoint_auto_updates_webui
  */
 rules.JSRule({
   name: 'handle when a auto program setpoint is updated by a setpoint changed from webui',
   description: 'handle when a auto program setpoint is updated by a setpoint changed from webui',
-  triggers: [triggers.GroupStateUpdateTrigger('gHeating_CT_Setpoints_auto')],
+  triggers: [triggers.GroupStateUpdateTrigger('gHeating_Setpoint_auto_updates_webui')],
   execute: (event) => {
     logger.error('handle when a auto program setpoint is updated by a setpoint changed from webui');
     myutils.showEvent(event);
-    // const masterHeatingModeItemState = items.getItem('masterHeatingMode').state.toString();
-    const v_CT_Setpoint_auto_text = items.getItem('v_CT_SetPoint_auto').state.toString();
+    // e.g. "itemName": "CT_Setpoint_auto_min"
 
     const { itemName } = event;
 
-    logger.warn(`__**>> gHeating_CT_Setpoints_auto triggering item : ${itemName}`);
-    // logger.warn('__**>> handle when a auto program setpoint is updated from a setpoint changed from webui');
-    // logger.warn('__**>> handle v_CT_SetPoint_auto update from timeline or script source');
+    logger.warn(`__**>> gHeating_Setpoint_auto_updates_webui triggering item : ${itemName}`);
+
     logger.warn(`__**>> itemName.state : ${items.getItem(itemName).state}`);
-    logger.warn(`__**>> v_CT_Setpoint_auto_text : ${v_CT_Setpoint_auto_text}`);
-
-    // items.getItem('CT_Setpoint').sendCommand(items.getItem(CT_Setpoint_auto).state);
-
-    // incoming event in format  "itemName": "CT_Setpoint_auto_morning"
-    // now get the actual temp setpoint from the corresponding setpoit item
-    // e.g
-    // convert label from setpoit timeline to a temperature vales e.g. 'min' to 17.0
-    const setPointTemperature = getSetpointAutoTempForRoom('CT', 'evening');
   },
 });
 
 //= ============== heating mode
-rules.JSRule({
-  name: 'handle vCT_HeatingMode update from timeline or script source',
-  description: 'handle vCT_HeatingMode update from timeline or script source',
-  triggers: [triggers.ItemStateUpdateTrigger('vCT_HeatingMode')],
-  execute: () => {
-    logger.warn('__> handle vCT_HeatingMode update from timeline or script source');
-    logger.warn(`__> vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
+// TODO just responds to CT, update to be generic
+// rules.JSRule({
+//   name: 'handle v_CT_HeatingMode_update_by_timeline update from timeline or script source',
+//   description: 'handle v_CT_HeatingMode_update_by_timeline update from timeline or script source',
+//   triggers: [triggers.ItemStateUpdateTrigger('v_CT_HeatingMode_update_by_timeline')],
+//   execute: () => {
+//     logger.warn('.............__> handle vCT_HeatingMode update from timeline or script source');
+//     logger.warn(`..............__> v_CT_HeatingMode_update_by_timeline: ${items.getItem('v_CT_HeatingMode_update_by_timeline').state}`);
 
+//     // send mode sent to actual CT_HeatingMode
+//     items.getItem('CT_HeatingMode').sendCommand(items.getItem('v_CT_HeatingMode_update_by_timeline').state);
+//   },
+// });
+// NEW
+// update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
+rules.JSRule({
+  name: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
+  description: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
+  triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineHeatingModeUpdateProxys')],
+  execute: (event) => {
+    logger.warn('???__>>>>>>>>>>>>>>>>>>>>>>> handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source');
+    // logger.warn(`???__> vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
+    myutils.showEvent(event);
+
+    // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
+    // bui;ld the 'real' thermostat heting mode item name
+    // get roomprefix
+    const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
+    const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
+    logger.warn(`???__>>>>>>>>>>>>>>>>>>>>>>>  roomPrefix : ${roomPrefix}`);
+    const targetItemName = `${roomPrefix}_HeatingMode`;
     // send mode sent to actual CT_HeatingMode
-    items.getItem('CT_HeatingMode').sendCommand(items.getItem('vCT_HeatingMode').state);
+    items.getItem(targetItemName).sendCommand(event.receivedState);
   },
 });

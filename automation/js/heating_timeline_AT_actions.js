@@ -7,8 +7,6 @@ const logger = log('master-mode-changed');
 const { timeUtils } = require('openhab_rules_tools');
 const { toToday } = require('openhab_rules_tools/timeUtils');
 
-function getCurrentSetpoints() { }
-
 rules.JSRule({
   name: 'handle vAT_HeatingMode update from timeline or script source',
   description: 'handle vAT_HeatingMode update from timeline or script source',
@@ -32,7 +30,7 @@ rules.JSRule({
     // const masterHeatingModeItemState = items.getItem('masterHeatingMode').state.toString();
     const CT_Setpoint_auto = items.getItem('v_AT_SetPoint_auto').state.toString();
 
-    const setPoints = getCurrentSetpoints();
+    // const setPoints = getCurrentSetpoints();
 
     switch (CT_Setpoint_auto) {
       case 'off':
