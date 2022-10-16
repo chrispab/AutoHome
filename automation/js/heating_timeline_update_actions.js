@@ -102,29 +102,30 @@ rules.JSRule({
     logger.error('handle when a auto program setpoint is updated by a setpoint changed from webui');
     myutils.showEvent(event);
     // e.g. "itemName": "CT_Setpoint_auto_min"
+    const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
 
-    const { itemName } = event;
+    //! only update the thermostt temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
+    // is same as current active one, v_<roomPrefix>_SetPoint_auto_update_by_timeline
+    const temperatureSetpointTagOfTrigger = event.itemName.toString().substr(event.itemName.lastIndexOf('_') + 1);// get all after last '_'
+    const activeTemperatureSetpointTag = items.getItem(`v_${roomPrefix}_SetPoint_auto_update_by_timeline`).state;
+    logger.warn(`__**>> temperatureSetpointTagOfTrigger : ${temperatureSetpointTagOfTrigger}`);
 
-    logger.warn(`__**>> gHeating_Setpoint_auto_updates_webui triggering item : ${itemName}`);
+    logger.warn(`__**>> activeTemperatureSetpointTag : ${activeTemperatureSetpointTag}`);
+    if (temperatureSetpointTagOfTrigger === activeTemperatureSetpointTag) {
+      // const { itemName } = event;
+      const setpointToSendToThermostat = event.receivedState;
 
-    logger.warn(`__**>> itemName.state : ${items.getItem(itemName).state}`);
+      // build thermostat item name, e.g. 'CT_Setpoint', from 'CT_Setpoint_auto_comfort'
+      const targetSetpointItemName = `${roomPrefix}_TemperatureSetpoint`;
+      items.getItem(targetSetpointItemName).sendCommand(setpointToSendToThermostat);
+      logger.warn(`__**>> setpointToSendToThermostat : ${setpointToSendToThermostat}`);
+
+      logger.warn(`__**>> targetSetpointItemName : ${targetSetpointItemName}`);
+    }
   },
 });
 
 //= ============== heating mode
-// TODO just responds to CT, update to be generic
-// rules.JSRule({
-//   name: 'handle v_CT_HeatingMode_update_by_timeline update from timeline or script source',
-//   description: 'handle v_CT_HeatingMode_update_by_timeline update from timeline or script source',
-//   triggers: [triggers.ItemStateUpdateTrigger('v_CT_HeatingMode_update_by_timeline')],
-//   execute: () => {
-//     logger.warn('.............__> handle vCT_HeatingMode update from timeline or script source');
-//     logger.warn(`..............__> v_CT_HeatingMode_update_by_timeline: ${items.getItem('v_CT_HeatingMode_update_by_timeline').state}`);
-
-//     // send mode sent to actual CT_HeatingMode
-//     items.getItem('CT_HeatingMode').sendCommand(items.getItem('v_CT_HeatingMode_update_by_timeline').state);
-//   },
-// });
 // NEW
 // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
 rules.JSRule({
