@@ -17,7 +17,7 @@ rules.JSRule({
       logger.warn('A heater is ON - turn boiler ON');
       items.getItem('Boiler_Control').sendCommand('ON');
     } else {
-      logger.warn('All heaters OFF - turn boiler OFF');
+      logger.warn('All heaters are OFF - turn boiler OFF');
       items.getItem('Boiler_Control').sendCommand('OFF');
     }
   },

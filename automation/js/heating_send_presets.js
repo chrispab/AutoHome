@@ -1,8 +1,3 @@
-// from core.rules import rule
-// from core.triggers import when
-// from core.actions import LogAction
-// from core.actions import ScriptExecution
-// from java.time import ZonedDateTime as DateTime
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
@@ -16,10 +11,6 @@ const offTemp = 14;
 
 // #!cron job has requested we send updates to setpoints
 
-// @rule("React on message to send target temperatures to zone setpoints", description="React on message to send target temperatures to zone setpoints", tags=["Heating"])
-// @when("Item Heating_UpdateHeaters received command ON")
-// def send_heating_presets(event):
-//     global offTemp
 rules.JSRule({
   name: 'Request to update room heater setpoints from new(possibly) target temperatures-e.g. from CRON job',
   description: 'Request to update room heater setpoints from new(possibly) target temperatures-e.g. from CRON job',
@@ -63,7 +54,14 @@ rules.JSRule({
             logger.error(`roomHeaterSetpointItem state: ${roomHeaterSetpointItem.state}`);
             const setpointPresetToApply = items.getItem(`${heaterPrefix}_Heating_PresetTempNormal`).state;
             logger.error(`setpointPresetToApply: ${setpointPresetToApply}`);
-            roomHeaterSetpointItem.postUpdate(setpointPresetToApply);
+
+            // skip if impl;emented in new timeline method
+            if (heaterPrefix === 'CT') {
+              logger.error(`>>== EXCLUDE: Heating_UpdateHeaters, NOT updating CT destination setpoint temperature preset by OLD Heating_UpdateHeaters method, handled by new timelines. NAME: ${roomHeaterSetpointItem.name}, STATE: : ${roomHeaterSetpointItem.state} `);
+            } else {
+              roomHeaterSetpointItem.postUpdate(setpointPresetToApply);
+            }
+
             logger.error(`roomHeaterSetpointItem state NOW: ${roomHeaterSetpointItem.state}`);
           } else {
             // todo: if room off leave room alone   // if room manual - leave it alone

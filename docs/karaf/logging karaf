@@ -9,3 +9,8 @@ Enable debug logging for jsr223: log:set DEBUG jsr223. This is the default logge
 
 log:set WARN org.openhab.core.automation
 log:set DEBUG jsr223
+
+https://community.openhab.org/t/event-state-logging-in-events-log-dosnt-work/137937
+
+log:list
+
