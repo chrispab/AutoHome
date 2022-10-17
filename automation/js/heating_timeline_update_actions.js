@@ -12,15 +12,10 @@ const logger = log('master-mode-changed');
  * and temperature setpoint tag
  * returned value = value of the relevant setpoint item
  *
- * the room setpoint item name format is:
- * <roomPrefix>_Setpoint_auto_<SetpointTag>
- * <roomPrefix> is one of :
- * CT, BR, FR, AT, OF, HL, ER, DR, KT
- * <SetpointTag> is one of:
- * min, morning, day, evening, night, max
- * e.g :
- * CT_Setpoint_auto_evening
- * BR_Setpoint_auto_night
+ * the room setpoint item name format is: <roomPrefix>_Setpoint_auto_<SetpointTag>
+ * <roomPrefix> is one of : CT, BR, FR, AT, OF, HL, ER, DR, KT
+ * <SetpointTag> is one of: min, morning, day, evening, night, max
+ * e.g : CT_Setpoint_auto_evening, BR_Setpoint_auto_night
  *
  * @param {string} roomPrefix  CT, BR, FR, AT, OF, HL, ER, DR, KT
  * @param {string} setpointTag 'min, cool, comfort, warm, hot, max'
