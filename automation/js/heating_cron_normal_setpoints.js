@@ -52,7 +52,7 @@ function updateRoomSetPoints(gHeatingPresetTemps, presetTimeOfDaySuffix) {
     logger.warn(`>>== asssigningg sourceItem setpoint: ${sourceItem.name}, STATE: : ${sourceItem.state} `);
     logger.warn(`>>== to destination preset: ${destinationItem.name}, STATE: : ${destinationItem.state} `);
     // destinationItem.state = sourceItem.state;
-    if ((roomPrefix === 'CT') || (roomPrefix === 'AT')) {
+    if ((roomPrefix === 'CT') || (roomPrefix === 'AT') || (roomPrefix === 'OF')) {
       logger.error(`....>>== EXCLUDE: NOT updating  destination setpoint temperature preset by OLD CRON method, handled by new timelines. NAME: ${destinationItem.name}, STATE: : ${destinationItem.state} `);
     } else {
       destinationItem.postUpdate(sourceItem.state);

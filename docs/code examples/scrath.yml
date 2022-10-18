@@ -1,0 +1,235 @@
+config:
+  label: heating_OF_timelines
+  sidebar: true
+  visibleTo:
+    - role:administrator
+blocks:
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Office
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: OF_HeatingMode
+                        heatingStateItem: OF_Heater
+                        location: OF
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: OF_RTVReachable
+                        rssiItem: OF_RTV_Rssi
+                        setpointItem: OF_TemperatureSetpoint
+                        tempItem: OF_Temperature
+                        trendItem: OF_Temperature
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_min
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_min
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_cool
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_cool
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_comfort
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_comfort
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_warm
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_warm
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_hot
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_hot
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_max
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_max
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: v_OF_SetPoint_auto_update_by_timeline
+                        title: current v OF setpoint auto
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
+                        states: min,cool,comfort,warm,hot,max
+                        title: Office Heating Setpoints
+                        transfer_item: Transfer_OF_SetPoint_auto
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,008000,87CEFA
+                        states: off,manual,auto
+                        title: Office Heating Modes
+                        transfer_item: Transfer_OF_HeatingMode
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_min
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_min
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_cool
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_cool
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_comfort
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_comfort
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_warm
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_warm
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_hot
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_hot
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: OF_Setpoint_auto_max
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: OF_Setpoint_auto_max
+masonry: null
+grid: []
+canvas: []
