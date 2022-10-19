@@ -32,7 +32,7 @@ rules.JSRule({
       tempdiff = diff / 2;
       items.getItem('CT_Temperature_monitor').sendCommand(oldTemp + tempdiff);
       logger.error(`5 DDDDD ===================>CT_Temperature_monitor: ${items.getItem('CT_Temperature_monitor').state}`);
-    } else { // new temp is less than oldTemp
+    } else if (diff < 0) { // new temp is more than oldTemp
       // so sub 1/2 diff from  temp monitor
       tempdiff = diff / 2;
       items.getItem('CT_Temperature_monitor').sendCommand(oldTemp + tempdiff);
