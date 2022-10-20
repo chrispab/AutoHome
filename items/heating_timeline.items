@@ -83,3 +83,25 @@ Number OF_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
 Number OF_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
 Number OF_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
 Number OF_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+
+//============== BR bedroom Office items ======================================================
+// used internally by timeLinePicker.rules
+String Transfer_BR_HeatingMode "[%s]"      (gTimepicker)
+//  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
+String v_BR_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+
+//=========== Setpoint items
+String Transfer_BR_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
+//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+String v_BR_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+
+//======================
+// new timeline setpoints for auto
+//  'min, cool, comfort, warm, hot, max'
+// Group:Number:SUM gHeating_Setpoint_auto_updates_webui
+Number BR_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)

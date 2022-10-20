@@ -37,8 +37,9 @@ val HashMap<String,ArrayList<String>> timePicker = newHashMap(
     "Transfer_AT_SetPoint_auto" -> newArrayList('v_AT_SetPoint_auto_update_by_timeline'),
     "Transfer_CT_SetPoint_auto" -> newArrayList('v_CT_SetPoint_auto_update_by_timeline'),
     "Transfer_OF_SetPoint_auto" -> newArrayList('v_OF_SetPoint_auto_update_by_timeline'),
-    "Transfer_OF_HeatingMode" -> newArrayList('v_OF_HeatingMode_update_by_timeline')
-
+    "Transfer_OF_HeatingMode" -> newArrayList('v_OF_HeatingMode_update_by_timeline'),
+    "Transfer_BR_SetPoint_auto" -> newArrayList('v_BR_SetPoint_auto_update_by_timeline'),
+    "Transfer_BR_HeatingMode" -> newArrayList('v_BR_HeatingMode_update_by_timeline')
 )
 
 // -------------------- end of config ------------------------------------------------------------------------

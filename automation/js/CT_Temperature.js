@@ -7,6 +7,17 @@ const logger = log('smooth-ct-temp');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
+scriptLoaded = function () {
+  // const { items } = require('@runtime');#
+  // console.log(items);
+  logger.warn('scriptLoaded - init CT temp filter');
+  // myutils.showGroupMembers('gBG_sockets_reachable');
+
+  items.getItem('CT_Temperature_monitor').sendCommand(0);
+  const oldTemp = items.getItem('CT_Temperature_monitor').rawState;
+  logger.error(`1 ===================>STARTUP oldtemp is: ${oldTemp}`);
+};
+
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
@@ -14,32 +25,40 @@ rules.JSRule({
   execute: () => {
     // logger.warn('__');
     // get previous reading
-    let oldTemp = items.getItem('CT_Temperature_monitor').state;
+    let oldTemp = items.getItem('CT_Temperature_monitor').rawState;
     logger.error(`1 ===================>oldtemp is: ${oldTemp}`);
-    const rawTemp = items.getItem('CT_Temperature_raw').state;
-    if (oldTemp === 'NULL') {
+    const rawTemp = items.getItem('CT_Temperature_raw').rawState;
+    if (oldTemp === 'NULL' || oldTemp < 5) {
       oldTemp = rawTemp;
-      logger.error(`2 ===================>oldtemp is: ${oldTemp}`);
+      logger.error(`2 ===================>reset oldtemp is: ${oldTemp}`);
     }
     logger.error(`3 ===================>OLDCT_Temperature : ${oldTemp}`);
     logger.error(`4 ===================>CT_Temperature_raw: ${rawTemp}`);
     // items.getItem('CT_Temperature_monitor').sendCommand(rawTemp);
-
+    let newTemp;
     const diff = oldTemp - rawTemp;
-    let tempdiff;
-    if (diff > 0) { // newTemp is less than oldTemp
+
+    let tempdiff = diff / 2;
+    logger.error(`5 ===================> temp diff: ${tempdiff}`);
+
+    if (diff > 0) { // newTemp is less than oldTemp, eg, old = 21, raw=22, old-raw = (+)1
       // so we neeed to add 1/2 diff to temp monitor
       tempdiff = diff / 2;
-      items.getItem('CT_Temperature_monitor').sendCommand(oldTemp + tempdiff);
-      logger.error(`5 DDDDD ===================>CT_Temperature_monitor: ${items.getItem('CT_Temperature_monitor').state}`);
-    } else if (diff < 0) { // new temp is more than oldTemp
+      newTemp = oldTemp - tempdiff;
+      newTemp = newTemp.toFixed(2);
+      logger.error(`6 ===================> newTemp: ${newTemp}`);
+      items.getItem('CT_Temperature_monitor').sendCommand(newTemp);
+      logger.error(`7 DDDDD ===================>CT_Temperature_monitor: ${items.getItem('CT_Temperature_monitor').state}`);
+    } else if (diff <= 0) { // new temp is more than oldTemp
       // so sub 1/2 diff from  temp monitor
       tempdiff = diff / 2;
-      items.getItem('CT_Temperature_monitor').sendCommand(oldTemp + tempdiff);
-      logger.error(`6 UUUUU ===================>CT_Temperature_monitor: ${items.getItem('CT_Temperature_monitor').state}`);
-    }
+      newTemp = oldTemp - tempdiff;
+      newTemp = newTemp.toFixed(2);
 
-    // items.getItem('vAT_HeatingMode').sendCommand(items.getItem('vAT_HeatingMode').state);
+      logger.error(`8 ===================> newTemp: ${newTemp}`);
+      items.getItem('CT_Temperature_monitor').sendCommand(newTemp);
+      logger.error(`9 UUUUU ===================>CT_Temperature_monitor: ${items.getItem('CT_Temperature_monitor').state}`);
+    }
   },
 });
 
