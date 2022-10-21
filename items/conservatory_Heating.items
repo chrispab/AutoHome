@@ -5,7 +5,8 @@ Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) { ga="Thermostat" 
 String CT_ThermostatMode "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number CT_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 // Number CT_TemperatureSetpoint "Conservatory Setpoint [%.1f °C]" <heating> (gCT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint", channel="mqtt:topic:conservatoryRadThermoValve:setpoint" }
-Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+// Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)
 Number CT_Temperature_monitor
 Number CT_Temperature_raw "Conservatory Temperature [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
 
