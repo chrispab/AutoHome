@@ -210,4 +210,6 @@ Items {
     bg_wifiadaptor_1_power : strategy = everyUpdate
     bg_wifiadaptor_2_power : strategy = everyUpdate
 
+    CT_Temperature_raw : strategy = everyUpdate
+
 }

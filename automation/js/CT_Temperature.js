@@ -14,6 +14,8 @@ scriptLoaded = function () {
   logger.error(`1 ==> STARTUP temp is: ${temp}`);
 };
 
+const divisor = 3;
+
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
@@ -35,8 +37,8 @@ rules.JSRule({
     const diff = prevTemp - rawTemp;
     logger.error(`6 ==> temp diff : ${diff}`);
 
-    const tempdiff = diff / 2;
-    logger.error(`5 ==> temp diff/2 : ${tempdiff}`);
+    const tempdiff = diff / divisor;
+    logger.error(`5 ==> temp diff/divisor : ${tempdiff}`);
 
     let newTemp = prevTemp - tempdiff;
     logger.error(`5 ==> new temp : ${newTemp}`);
