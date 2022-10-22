@@ -8,18 +8,18 @@ const logger = log('auto CT lights');
 
 const { alerting } = require('personal');
 
-rules.JSRule({
-  name: 'CRON auto turn On conservatory lights MORNING if dark',
-  description: 'CRON auto turn On conservatory lights MORNING if dark',
-  triggers: [triggers.GenericCronTrigger('0 30 06 * * ?')],
-  execute: () => {
-    if (items.getItem('CT_LightDark_State').state == 'OFF') {
-      logger.error('CRON auto turn On conservatory lights MORNING');
-      items.getItem('gConservatoryLights').sendCommand('ON');
-      alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
-    }
-  },
-});
+// rules.JSRule({
+//   name: 'CRON auto turn On conservatory lights MORNING if dark',
+//   description: 'CRON auto turn On conservatory lights MORNING if dark',
+//   triggers: [triggers.GenericCronTrigger('0 30 06 * * ?')],
+//   execute: () => {
+//     if (items.getItem('CT_LightDark_State').state == 'OFF') {
+//       logger.error('CRON auto turn On conservatory lights MORNING');
+//       items.getItem('gConservatoryLights').sendCommand('ON');
+//       alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
+//     }
+//   },
+// });
 
 rules.JSRule({
   name: 'CRON auto turn OFF conservatory lights',

@@ -1,22 +1,26 @@
-// const {
-//   log, items, rules, actions, triggers,
-// } = require('openhab');
-// const { myutils } = require('personal');
+const {
+  log, items, rules, actions, triggers,
+} = require('openhab');
+const { myutils } = require('personal');
 
-// const logger = log('master-mode-changed');
-// const { timeUtils } = require('openhab_rules_tools');
-// const { toToday } = require('openhab_rules_tools/timeUtils');
+const logger = log('master-mode-changed');
+const { timeUtils } = require('openhab_rules_tools');
+const { toToday } = require('openhab_rules_tools/timeUtils');
+const { alerting } = require('personal');
 
-// rules.JSRule({
-//   name: 'handle vAT_HeatingMode update from timeline or script source',
-//   description: 'handle vAT_HeatingMode update from timeline or script source',
-//   triggers: [triggers.ItemStateUpdateTrigger('vAT_HeatingMode')],
-//   execute: () => {
-//     logger.warn('__');
-//     logger.warn(`vAT_HeatingMode: ${items.getItem('vAT_HeatingMode').state}`);
-//     // items.getItem('vAT_HeatingMode').sendCommand(items.getItem('vAT_HeatingMode').state);
-//   },
-// });
+rules.JSRule({
+  name: 'handle vAT_HeatingMode update from timeline or script source',
+  description: 'handle vAT_HeatingMode update from timeline or script source',
+  triggers: [triggers.ItemStateUpdateTrigger('v_CT_MorningLighting_update_by_timeline')],
+  execute: () => {
+    // logger.warn('__');
+    logger.warn(`v_CT_MorningLighting_update_by_timeline: ${items.getItem('v_CT_MorningLighting_update_by_timeline').state}`);
+    if (items.getItem('CT_LightDark_State').state === 'OFF') {
+      items.getItem('gConservatoryLights').sendCommand('ON');
+      alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
+    }
+  },
+});
 
 // rules.JSRule({
 //   name: 'handle trigger from timeline AT Setpoit_auto updates',
