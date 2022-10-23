@@ -8,19 +8,20 @@ const logger = log('auto CT lights');
 
 const { alerting } = require('personal');
 
-// rules.JSRule({
-//   name: 'CRON auto turn On conservatory lights MORNING if dark',
-//   description: 'CRON auto turn On conservatory lights MORNING if dark',
-//   triggers: [triggers.GenericCronTrigger('0 30 06 * * ?')],
-//   execute: () => {
-//     if (items.getItem('CT_LightDark_State').state == 'OFF') {
-//       logger.error('CRON auto turn On conservatory lights MORNING');
-//       items.getItem('gConservatoryLights').sendCommand('ON');
-//       alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
-//     }
-//   },
-// });
+let previousLightSensorLevel = null;
+let currentLightSensorLevel = null;
 
+// when script reloaded, set auto detection lighting to suitable defaults
+scriptLoaded = function () {
+  logger.error('scriptLoaded - set all CT auto lighting items');
+
+  previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
+  currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
+  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); // going down
+  items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
+};
+
+// turn off CT lights when late - in case forgot to turn off
 rules.JSRule({
   name: 'CRON auto turn OFF conservatory lights',
   description: 'CRON turn OFF conservatory lights when late - maybe forgot',
@@ -33,41 +34,35 @@ rules.JSRule({
   },
 });
 
+// turn off conservatory lights when it goes from dark to light
 rules.JSRule({
-  name: 'auto turn OFF conservatory lights',
-  description: 'turn OFF conservatory lights when ambient light level high',
+  name: 'auto turn OFF conservatory lights when goes from dark to light',
+  description: 'turn OFF conservatory lights when ambient light level when goes from dark to light',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'OFF', 'ON')],
   execute: () => {
-    logger.error('...........................turn OFF conservatory lights when ambient light level high');
+    logger.error('turn OFF conservatory lights when ambient light level when goes from dark to light');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendInfo('auto turn OFF conservatory lights');
+    alerting.sendInfo('turn OFF conservatory lights when ambient light level when goes from dark to light');
   },
 });
 
+// turn ON conservatory lights when it goes from light to dark
 rules.JSRule({
-  name: 'auto turn ON conservatory lights',
-  description: 'turn ON conservatory lights when ambient light level low',
+  name: 'auto turn ON conservatory lights when when goes from light to dark',
+  description: 'turn ON conservatory lights when ambient light level goes from light to dark',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'ON', 'OFF')],
   execute: () => {
-    logger.error('...........................turn ON conservatory lights when ambient light level low');
+    logger.error('turn ON conservatory lights when ambient light level goes from light to dark');
     items.getItem('gConservatoryLights').sendCommand('ON');
-    alerting.sendInfo('auto turn ON conservatory lights if getting dark');
+    alerting.sendInfo('auto turn ON conservatory lights  when ambient light level goes from light to dark');
   },
 });
 
-let previousLightSensorLevel = null;
-let currentLightSensorLevel = null;
-
-scriptLoaded = function () {
-  logger.error('scriptLoaded - set all CT auto lightings items etc');
-
-  previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); // going down
-  items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
-};
-
+// when bridge sends an update to abient light sensor level
+// - set bridge light sensor trend to ON if light going up, set to OFF if going down
+// - also set CT_LightDark_State to ON(light) if trend up and above detection threshold
+// - also set CT_LightDark_State to OFF(dark) if trend down and below detection threshold
 rules.JSRule({
   name: 'monitor 433 bridge light sensor',
   description: 'monitor 433 bridge light sensor',
@@ -84,10 +79,10 @@ rules.JSRule({
     }
 
     previousLightSensorLevel = currentLightSensorLevel;
-
+    // ambient light below trigger level and trend going down - its getting dark
     if (
       currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
-      && items.getItem('BridgeLightSensorTrend').state == 'OFF' // down getting darker
+      && items.getItem('BridgeLightSensorTrend').state === 'OFF' // down getting darker
     ) {
       items.getItem('CT_LightDark_State').sendCommand('OFF');
     }
@@ -95,7 +90,7 @@ rules.JSRule({
     // ambient light above trigger level and trend going up - its getting light
     if (
       currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
-      && items.getItem('BridgeLightSensorTrend').state == 'ON' // up getting lighter
+      && items.getItem('BridgeLightSensorTrend').state === 'ON' // up getting lighter
     ) {
       items.getItem('CT_LightDark_State').sendCommand('ON');
     }
