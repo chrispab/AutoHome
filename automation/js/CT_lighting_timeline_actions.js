@@ -12,7 +12,7 @@ const { alerting } = require('personal');
 rules.JSRule({
   name: 'when CT lights TIMELINE COMES ON(timeline OFF->ON), lights on if dark',
   description: 'when CT lights TIMELINE allow(timeline OFF->ON), lights on if dark',
-  triggers: [triggers.ItemStateUpdateTrigger('v_CT_MorningLighting_update_by_timeline', 'OFF', 'ON')],
+  triggers: [triggers.ItemStateChangeTrigger('v_CT_MorningLighting_update_by_timeline', 'OFF', 'ON')],
   execute: () => {
     // logger.warn('__');
     logger.error(`VVVVVVVVV  v_CT_MorningLighting_update_by_timeline: ${items.getItem('v_CT_MorningLighting_update_by_timeline').state}`);

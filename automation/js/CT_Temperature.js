@@ -14,7 +14,7 @@ scriptLoaded = function () {
   logger.error(`1 ==> STARTUP temp is: ${temp}`);
 };
 
-const divisor = 3;
+const divisor = 4;
 
 rules.JSRule({
   name: 'smooth out CT temperature readings',
