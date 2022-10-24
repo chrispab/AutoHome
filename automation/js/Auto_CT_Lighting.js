@@ -17,7 +17,7 @@ scriptLoaded = function () {
 
   previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
   currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); // going down
+  items.getItem('BridgeLightSensorTrend').sendCommand('ON'); //
   items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
 };
 

@@ -17,8 +17,8 @@ rules.JSRule({
     // logger.warn('__');
     logger.error(`VVVVVVVVV  v_CT_MorningLighting_update_by_timeline: ${items.getItem('v_CT_MorningLighting_update_by_timeline').state}`);
 
-    items.getItem('gConservatoryLights').sendCommand('ON');
-    alerting.sendInfo('CT timeline auto lights allow(timeline OFF->ON) - turn On conservatory lights if DARK');
+    // items.getItem('gConservatoryLights').sendCommand('ON');
+    // alerting.sendInfo('CT timeline auto lights allow(timeline OFF->ON) - turn On conservatory lights if DARK');
 
     if (items.getItem('CT_LightDark_State').state === 'OFF') {
       items.getItem('gConservatoryLights').sendCommand('ON');
