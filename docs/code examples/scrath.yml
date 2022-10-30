@@ -1,5 +1,5 @@
 config:
-  label: heating_FR_timelines
+  label: heating_ER_timelines
   sidebar: true
   visibleTo:
     - role:administrator
@@ -30,97 +30,97 @@ blocks:
                   default:
                     - component: widget:Thermostat-Control-dev6
                       config:
-                        Title: Front Room
+                        Title: Elsie's Room
                         heatingModeArray: auto,manual,off
-                        heatingModeItem: FR_HeatingMode
-                        heatingStateItem: FR_Heater
-                        location: FR
+                        heatingModeItem: ER_HeatingMode
+                        heatingStateItem: ER_Heater
+                        location: ER
                         maximumTemp: "26"
                         minimumTemp: "13"
-                        reachableStateItem: FR_RTVReachable
-                        rssiItem: FR_RTV_Rssi
-                        setpointItem: FR_TemperatureSetpoint
-                        tempItem: FR_Temperature
-                        trendItem: FR_Temperature
+                        reachableStateItem: ER_RTVReachable
+                        rssiItem: ER_RTV_Rssi
+                        setpointItem: ER_TemperatureSetpoint
+                        tempItem: ER_Temperature
+                        trendItem: ER_Temperature
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_min
+                        item: ER_Setpoint_auto_min
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_min
+                        title: ER_Setpoint_auto_min
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_cool
+                        item: ER_Setpoint_auto_cool
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_cool
+                        title: ER_Setpoint_auto_cool
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_comfort
+                        item: ER_Setpoint_auto_comfort
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_comfort
+                        title: ER_Setpoint_auto_comfort
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_warm
+                        item: ER_Setpoint_auto_warm
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_warm
+                        title: ER_Setpoint_auto_warm
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_hot
+                        item: ER_Setpoint_auto_hot
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_hot
+                        title: ER_Setpoint_auto_hot
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_max
+                        item: ER_Setpoint_auto_max
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_max
+                        title: ER_Setpoint_auto_max
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-label-card
                       config:
-                        item: v_FR_SetPoint_auto_update_by_timeline
+                        item: v_ER_SetPoint_auto_update_by_timeline
                         title: current v ct setpoint auto
         - component: oh-grid-row
           config: {}
@@ -134,8 +134,8 @@ blocks:
                       config:
                         colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
                         states: min,cool,comfort,warm,hot,max
-                        title: Front Room Heating Setpoints
-                        transfer_item: Transfer_FR_SetPoint_auto
+                        title: Elsie's Room Heating Setpoints
+                        transfer_item: Transfer_ER_SetPoint_auto
         - component: oh-grid-row
           config: {}
           slots:
@@ -152,8 +152,8 @@ blocks:
                       config:
                         colorset: A9A9A9,008000,87CEFA
                         states: off,manual,auto
-                        title: Front Room Heating Modes
-                        transfer_item: Transfer_FR_HeatingMode
+                        title: Elsie's Room Heating Modes
+                        transfer_item: Transfer_ER_HeatingMode
         - component: oh-grid-row
           config: {}
           slots:
@@ -164,72 +164,72 @@ blocks:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_min
+                        item: ER_Setpoint_auto_min
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_min
+                        title: ER_Setpoint_auto_min
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_cool
+                        item: ER_Setpoint_auto_cool
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_cool
+                        title: ER_Setpoint_auto_cool
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_comfort
+                        item: ER_Setpoint_auto_comfort
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_comfort
+                        title: ER_Setpoint_auto_comfort
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_warm
+                        item: ER_Setpoint_auto_warm
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_warm
+                        title: ER_Setpoint_auto_warm
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_hot
+                        item: ER_Setpoint_auto_hot
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_hot
+                        title: ER_Setpoint_auto_hot
               - component: oh-grid-col
                 config: {}
                 slots:
                   default:
                     - component: oh-knob-card
                       config:
-                        item: FR_Setpoint_auto_max
+                        item: ER_Setpoint_auto_max
                         max: 25
                         min: 13
                         releaseOnly: true
                         stepSize: 0.1
-                        title: FR_Setpoint_auto_max
+                        title: ER_Setpoint_auto_max
 masonry: null
 grid: []
 canvas: []

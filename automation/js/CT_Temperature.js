@@ -9,12 +9,13 @@ const logger = log('smooth-ct-temp');
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded - init CT temp filter');
-  items.getItem('CT_Temperature').sendCommand(-1.1);
-  const temp = items.getItem('CT_Temperature').rawState;
-  logger.error(`1 ==> STARTUP temp is: ${temp}`);
+  const temp = items.getItem('CT_Temperature').state;
+  items.getItem('CT_Temperature').sendCommand(temp);
+
+  logger.error(`0 ==> STARTUP temp is: ${temp}`);
 };
 
-const divisor = 4;
+const divisor = 5;
 
 rules.JSRule({
   name: 'smooth out CT temperature readings',
