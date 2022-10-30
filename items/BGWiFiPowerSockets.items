@@ -64,6 +64,21 @@ Switch bg_wifisocket_7_2_power "BG Socket 7-two" (gMQTT, gBGWiFiPowerSockets)  {
 Number bg_wifisocket_7_maxworktime "BG Socket 7-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_7:maxworktime" }
 String bg_wifisocket_7_reachable "BG Socket 7-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_7:reachable" }
 
+// broadlink/BG1_a0_43_b0_ac_8c_8f skt 8
+//double socket 8
+Switch bg_wifisocket_8_1and2_power "BG Socket 8-one and two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_8:powerSwitch_1and2" }
+Switch bg_wifisocket_8_1_power "BG Socket 8-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_8:powerSwitch_1" }
+Switch bg_wifisocket_8_2_power "BG Socket 8-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_8:powerSwitch_2" }
+Number bg_wifisocket_8_maxworktime "BG Socket 8-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_8:maxworktime" }
+String bg_wifisocket_8_reachable "BG Socket 8-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_8:reachable" }
+
+// broadlink/BG1_a0_43_b0_97_ed_66
+//double socket 9
+Switch bg_wifisocket_9_1and2_power "BG Socket 9-one and two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_1and2" }
+Switch bg_wifisocket_9_1_power "BG Socket 9-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_1" }
+Switch bg_wifisocket_9_2_power "BG Socket 9-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
+Number bg_wifisocket_9_maxworktime "BG Socket 9-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_9:maxworktime" }
+String bg_wifisocket_9_reachable "BG Socket 9-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_9:reachable" }
 
 
 // single adapters

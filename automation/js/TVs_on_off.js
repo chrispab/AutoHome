@@ -142,7 +142,7 @@ rules.JSRule({
   triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'ON', 'OFF')],
   execute: () => {
     // actions.Voice.say('Turning OFF tv - kodi, amp, and bridges');
-    turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory');
+    turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory TV');
 
     logger.warn('Turning OFF tv - kodi, amp, and bridges');
     items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi
