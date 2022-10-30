@@ -2,12 +2,6 @@
   "folders": [
     {
       "path": "."
-    },
-    {
-      "path": "../../../../../../nas_local/projects/python-broadlink"
-    },
-    {
-      "path": "../../../../../../nas_local/projects/git/broadlink-mqtt"
     }
   ],
   "settings": {

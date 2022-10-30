@@ -56,11 +56,11 @@ rules.JSRule({
             logger.error(`setpointPresetToApply: ${setpointPresetToApply}`);
 
             // skip if impl;emented in new timeline method
-            if ((heaterPrefix === 'CT') || (heaterPrefix === 'AT') || (heaterPrefix === 'OF') || (heaterPrefix === 'BR') || (heaterPrefix === 'FR')) {
-              logger.error(`....>>== EXCLUDE: Heating_UpdateHeaters, NOT updating destination setpoint temperature preset by OLD Heating_UpdateHeaters method, handled by new timelines. NAME: ${roomHeaterSetpointItem.name}, STATE: : ${roomHeaterSetpointItem.state} `);
-            } else {
-              roomHeaterSetpointItem.postUpdate(setpointPresetToApply);
-            }
+            // if ((heaterPrefix === 'CT') || (heaterPrefix === 'AT') || (heaterPrefix === 'OF') || (heaterPrefix === 'BR') || (heaterPrefix === 'FR')) {
+            logger.error(`....>>== EXCLUDE: Heating_UpdateHeaters, NOT updating destination setpoint temperature preset by OLD Heating_UpdateHeaters method, handled by new timelines. NAME: ${roomHeaterSetpointItem.name}, STATE: : ${roomHeaterSetpointItem.state} `);
+            // } else {
+            // roomHeaterSetpointItem.postUpdate(setpointPresetToApply);
+            // }
 
             logger.error(`roomHeaterSetpointItem state NOW: ${roomHeaterSetpointItem.state}`);
           } else {
