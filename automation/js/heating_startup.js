@@ -26,7 +26,7 @@ scriptLoaded = function () {
   });
 
   items.getItem('gThermostatModes').members.forEach((item) => {
-    if (!item) {
+    if (item.state === 'NULL') {
       item.postUpdate('heat');
     }
   });

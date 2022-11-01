@@ -5,7 +5,7 @@ Switch fan_heater_enable "fan_heater_enable"
 
 
 // https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
-//thermostat definition formatted for Google home, assistant use
+// thermostat definition formatted for Google home, assistant use
 // Group gFH_Thermostat "Fan Heater Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
 // String FH_ThermostatMode "Fan Heater Thermostat Mode" <settings> (gFH_Thermostat, gThermostatModes) { ga="thermostatMode" }
 // Number FH_TemperatureSetpoint "Fan Heater Setpoint [%.1f °C]" <heating> (gFH_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }

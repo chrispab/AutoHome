@@ -4,9 +4,6 @@ const {
 // const { myutils } = require('personal');
 
 const logger = log('outside_sensor');
-// const { timeUtils } = require('openhab_rules_tools');
-
-// const { alerting } = require('personal');
 
 scriptLoaded = function () {
   logger.error('scriptLoaded init outside sensor stuff');
@@ -19,7 +16,7 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Offline'),
   ],
-  execute: (data) => {
+  execute: () => {
     logger.error('outside sensor went offline YY');
     // const { alerting } = require('personal');
     // alerting.sendInfo('outside sensor went offline');
@@ -39,7 +36,7 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Online'),
   ],
-  execute: (data) => {
+  execute: () => {
     logger.error('outside sensor came online');
     // const { alerting } = require('personal');
     // alerting.sendInfo('outside sensor came online');

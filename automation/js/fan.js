@@ -71,8 +71,8 @@ rules.JSRule({
 
     if (items.getItem('CT_Fan_Cooling_enable').state == 'ON') {
       logger.debug('conservatory_fan_ cool rulel - detected CT_Fan_Cooling_enable   ON');
-      setPoint = items.getItem('Conservatory_Fan_ON_Setpoint').state;
-      temp = items.getItem('CT_Temperature').state;
+      const setPoint = items.getItem('Conservatory_Fan_ON_Setpoint').state;
+      const temp = items.getItem('CT_Temperature').state;
       if (items.getItem('CT_Heater') != 'ON') {
         if (temp >= setPoint) {
           items.getItem('CT_Fan433PowerSocket').sendCommand('ON');
