@@ -18,4 +18,4 @@ String CT_HeatingMode "Conservatory Heating Mode" <settings> (gHeatingModes) //(
 Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 
 String CT_RTVReachable "Conservatory Reachable" <qualityofservice> (gCT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }
-Number CT_RTV_Rssi "CT RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:conservatoryRadThermoValve:rssi" }
+Number CT_RTV_Rssi "CT RTV RSSI [%.1f]" <qualityofservice> (gCT_Thermostat) { channel="mqtt:topic:conservatoryRadThermoValve:rssi" }

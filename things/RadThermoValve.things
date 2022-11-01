@@ -1,3 +1,13 @@
+Thing mqtt:topic:fanHeater  "Fan Heater" (mqtt:broker:MyMQTTBroker) {
+    Channels:
+        Type number : temperature  [ stateTopic="433Bridge/Temperature"]
+        Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
+        // Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
+        // Type string : reachable    [ stateTopic="433Bridge/LWT" ]
+        // Type number : rssi         [ stateTopic="433Bridge/rssi" ]
+}
+
+
 Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory RTV" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
     Channels:
         Type number : temperature  [ stateTopic="433Bridge/Temperature"]
@@ -5,9 +15,9 @@ Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory RTV" (mqtt:broker:MyM
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power9" ]
         Type string : reachable    [ stateTopic="433Bridge/LWT" ]
         Type number : rssi         [ stateTopic="433Bridge/rssi" ]
-
-
 }
+
+
 
 Thing mqtt:topic:frontRoomRadThermoValve  "Front Room RTV" (mqtt:broker:MyMQTTBroker) @ "Front Room" {
     Channels:

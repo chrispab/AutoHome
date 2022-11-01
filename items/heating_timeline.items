@@ -12,12 +12,10 @@ Group gHeatingTimelineHeatingModeUpdateProxys
 Group:Number:SUM gHeating_Setpoint_auto_updates_webui
 
 
-
 //============== FAN HEATER items ==============================================
 String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
 String vFanHeater_Enable                     (gTimepicker)
 Switch fan_heater_timeline_disable
-
 
 
 //============== CT items ======================================================
