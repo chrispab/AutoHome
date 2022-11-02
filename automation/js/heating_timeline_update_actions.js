@@ -139,7 +139,7 @@ rules.JSRule({
     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
     logger.warn(`???__>>>>>>>>>>>>>>>>>>>>>>>  roomPrefix : ${roomPrefix}`);
     const targetItemName = `${roomPrefix}_HeatingMode`;
-    // send mode sent to actual CT_HeatingMode
+    // send mode sent to actual _HeatingMode
     items.getItem(targetItemName).sendCommand(event.receivedState);
   },
 });

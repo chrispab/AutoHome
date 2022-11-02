@@ -34,7 +34,7 @@ rules.JSRule({
     // console.warn(`________CT_Heater: ${items.getItem('CT_Heater').state}`);
     // console.warn(`________fan_heater_enable: ${items.getItem('fan_heater_enable').state}`);
 
-    if (items.getItem('fan_heater_enable').state == 'ON') {
+    if (items.getItem('fan_heater_enable').state === 'ON') {
       // console.warn('_____mvm___PAST THE GATE');
       if (temp < setPoint) {
         items.getItem('FH_Heater').sendCommand('ON');
@@ -47,7 +47,7 @@ rules.JSRule({
       }
     }
 
-    if (items.getItem('fan_heater_enable').state == 'OFF') {
+    if (items.getItem('fan_heater_enable').state === 'OFF') {
       // console.warn('________items.getItem(fan_heater_enable).state == OFF');
 
       items.getItem('fan_heater').sendCommand('OFF');
