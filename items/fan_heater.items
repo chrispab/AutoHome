@@ -4,8 +4,8 @@ Number fan_heater_ON_Setpoint "fan_heater on setponit [%.1f °C]"    <degreesc>
 Switch fan_heater_enable "fan_heater_enable"
 
 
-// https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
-// thermostat definition formatted for Google home, assistant use
+// // https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
+// // thermostat definition formatted for Google home, assistant use
 // Group gFH_Thermostat "Fan Heater Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
 // String FH_ThermostatMode "Fan Heater Thermostat Mode" <settings> (gFH_Thermostat, gThermostatModes) { ga="thermostatMode" }
 // Number FH_TemperatureSetpoint "Fan Heater Setpoint [%.1f °C]" <heating> (gFH_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
@@ -22,3 +22,23 @@ Switch fan_heater_enable "fan_heater_enable"
 
 // String FH_RTVReachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gRTVsReachable)  { channel="mqtt:topic:wifi_socket_8:reachable" }
 // Number FH_RTV_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:wifi_socket_8:rssi" }
+
+// https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
+// thermostat definition formatted for Google home, assistant use
+Group gFH_Thermostat "Fan Heater Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
+String FH_ThermostatMode "Fan Heater Thermostat Mode" <settings> (gFH_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number FH_TemperatureSetpoint "Fan Heater Setpoint [%.1f °C]" <heating> (gFH_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number FH_Temperature "Fan Heater Temperature [%.1f °C]" <temperature> (gFH_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+// Number FH_Temperature "Fan Heater Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)
+// Number FH_Temperature_monitor
+// Number FH_Temperature_raw "Fan Heater Temperature rawz [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number FH_Humidity "Fan Heater Humidity [%.1f °C]" <humidity> (gFH_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+
+//additional params for use in openhab functions etc
+// Switch FH_Heater "Fan Heater Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+Switch FH_Heater "Fan Heater Heater"  <my_radiator>   (gRoomHeaterStates) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+String FH_HeatingMode "Fan Heater Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
+Number FH_Heating_PresetTempNormal "Fan Heater Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+
+String FH_RTVReachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gRTVsReachable)  { channel="mqtt:topic:wifi_socket_8:reachable" }
+Number FH_RTV_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:wifi_socket_8:rssi" }

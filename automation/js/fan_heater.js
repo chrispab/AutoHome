@@ -7,11 +7,13 @@ rules.JSRule({
   description: 'If fan heater check demand turn on fan heater check',
   triggers: [
     // triggers.GroupStateUpdateTrigger('gRoomHeaterStates', 'OFF', 'ON'),
-    triggers.ItemStateChangeTrigger('fan_heater_temperature_sensor'),
-    triggers.ItemStateChangeTrigger('CT_Temperature'),
-    triggers.ItemStateChangeTrigger('fan_heater_ON_Setpoint'),
+    // triggers.ItemStateChangeTrigger('fan_heater_temperature_sensor'),
+    triggers.ItemStateChangeTrigger('FH_Temperature'),
+    // triggers.ItemStateChangeTrigger('CT_Temperature'),
+    // triggers.ItemStateChangeTrigger('fan_heater_ON_Setpoint'),
+    // triggers.ItemStateChangeTrigger('fan_heater_enable'),
+    triggers.ItemStateChangeTrigger('FH_TemperatureSetpoint'),
     triggers.ItemStateChangeTrigger('fan_heater_enable'),
-
   ],
   execute: (data) => {
     // logger.warn('________If fan heater check demand turn on fan heater check ');
@@ -25,9 +27,9 @@ rules.JSRule({
     // myutils.showItem(data);
     // showItem(data);
 
-    const setPoint = items.getItem('fan_heater_ON_Setpoint').rawState;
+    const setPoint = items.getItem('FH_TemperatureSetpoint').rawState;
     // console.warn(`________fan_heater_ON_Setpoint: ${setPoint}`);
-    const temp = items.getItem('CT_Temperature').rawState;
+    const temp = items.getItem('FH_Temperature').rawState;
     // console.warn(`________CT_Temperature: ${temp}`);
     // console.warn(`________CT_Heater: ${items.getItem('CT_Heater').state}`);
     // console.warn(`________fan_heater_enable: ${items.getItem('fan_heater_enable').state}`);
@@ -35,10 +37,10 @@ rules.JSRule({
     if (items.getItem('fan_heater_enable').state == 'ON') {
       // console.warn('_____mvm___PAST THE GATE');
       if (temp < setPoint) {
-        items.getItem('fan_heater').sendCommand('ON');
+        items.getItem('FH_Heater').sendCommand('ON');
         // console.warn('>>>>- temp < setPoint turning heater ON');
       } else if (temp >= (setPoint)) { // (items.getItem('CT_Heater').state == 'OFF') && (
-        items.getItem('fan_heater').sendCommand('OFF');
+        items.getItem('FH_Heater').sendCommand('OFF');
         // console.warn('<<<< -. temp > (setPoint) turning heater OFF');
       } else {
         // console.warn('==== -. temp none of on or off');
