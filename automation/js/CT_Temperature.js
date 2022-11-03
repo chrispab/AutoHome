@@ -48,6 +48,8 @@ rules.JSRule({
     logger.error(`6 ==> new temp after rounding: ${newTemp}`);
 
     items.getItem('CT_Temperature').sendCommand(newTemp);
+    items.getItem('FH_Temperature').sendCommand(newTemp);
+
     logger.error(`7 ==> CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
   },
 });
