@@ -1,10 +1,10 @@
-const {
-  log, items, rules, actions, triggers,
-} = require('openhab');
-const { myutils } = require('personal');
+// const {
+//   log, items, rules, actions, triggers,
+// } = require('openhab');
+// const { myutils } = require('personal');
 
-const logger = log('cron setpoints.js');
-const { timeUtils } = require('openhab_rules_tools');
+// const logger = log('cron setpoints.js');
+// const { timeUtils } = require('openhab_rules_tools');
 
 // !this file must be reloaded if any presets are changed to register the new cron times
 
