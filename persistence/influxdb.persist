@@ -18,6 +18,10 @@ Items {
     Zone1HeaterStatus : strategy = everyUpdate
     Zone1VentSpeedStatus : strategy = everyUpdate
     Zone1VentPercent : strategy = everyUpdate
+    Zone1_vent_on_delta_secs : strategy = everyUpdate
+    Zone1_vent_off_delta_secs : strategy = everyUpdate
+    Zone1_low_setpoint : strategy = everyUpdate
+    Zone1_high_setpoint : strategy = everyUpdate
 
     Zone2Temperature : strategy = everyUpdate
     Zone2Humidity : strategy = everyUpdate
@@ -37,7 +41,10 @@ Items {
     Zone3HeaterStatus : strategy = everyUpdate
     Zone3VentSpeedStatus : strategy = everyUpdate
     Zone3VentPercent : strategy = everyUpdate
-
+    Zone3_vent_on_delta_secs : strategy = everyUpdate
+    Zone3_vent_off_delta_secs : strategy = everyUpdate
+    Zone3_low_setpoint : strategy = everyUpdate
+    Zone3_high_setpoint : strategy = everyUpdate
 
     Boiler_Control :    strategy = everyUpdate
     Boiler_Reachable  :  strategy = everyUpdate
