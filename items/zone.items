@@ -35,13 +35,12 @@ Switch	Zone3VentSpeedStatus	"Zone 3 Vent Speed Status"		<vent>					{ channel="mq
 Number	Zone3VentPercent		"Zone 3 Vent Percent"			<vent>					{ channel="mqtt:topic:zone3Controller:ventPercent" }
 Switch  Zone3Reachable          "Zone 3 Reachable"              <network>      (gServices_Core_Online) ["Service_Core_Check"]          { channel="mqtt:topic:zone3Controller:Reachable" }
 Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topic:zone3Controller:rssi" }
-
-Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
-
 Number	Zone3_vent_on_delta_secs	    "Zone 3 vent_on_delta_secs"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_on_delta_secs" }
 Number	Zone3_vent_off_delta_secs	    "Zone 3 vent_off_delta_secs"       	<vent>					{ channel="mqtt:topic:zone3Controller:vent_off_delta_secs" }
 Number	Zone3_low_setpoint	    "Zone 3 low_setpoint"       	<temperature>					{ channel="mqtt:topic:zone3Controller:low_setpoint" }
 Number	Zone3_high_setpoint	    "Zone 3 high_setpoint"       	<temperature>					{ channel="mqtt:topic:zone3Controller:high_setpoint" }
+
+Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
 
 // mqtt:topic:zone3Controller:vent_on_delta
 //         Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta_secs", commandTopic="Zone3/vent_on_delta_secs/set" ]

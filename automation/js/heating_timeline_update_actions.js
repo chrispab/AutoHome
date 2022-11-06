@@ -62,10 +62,9 @@ rules.JSRule({
     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
     logger.warn(`--->>> roomPrefix : ${roomPrefix}`);
 
-    // setpointTempTag is one of 'min, morning, day, evening, night, max' tags
-    // other possible tag, 'cold, cool, comfort, warm, hot'
+    // setpointTempTag is one of
     // other possible tag, 'min, cool, comfort, warm, hot, max'
-    // - "event.receivedState": "evening",
+    // - "event.receivedState": "comfort",
     const setpointTemperatureTag = event.receivedState.toString();
     logger.warn(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);
 
@@ -97,17 +96,20 @@ rules.JSRule({
     logger.error('handle when a auto program setpoint is updated by a setpoint changed from webui');
     myutils.showEvent(event);
     // e.g. "itemName": "CT_Setpoint_auto_min"
+    // roomPrefix = 'CT'
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
 
-    //! only update the thermostt temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
+    // only update the thermostt temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
     // is same as current active one, v_<roomPrefix>_SetPoint_auto_update_by_timeline
+    // E.G. MIN 1,.COOL 2 ETC
     const temperatureSetpointTagOfTrigger = event.itemName.toString().substr(event.itemName.lastIndexOf('_') + 1);// get all after last '_'
     const activeTemperatureSetpointTag = items.getItem(`v_${roomPrefix}_SetPoint_auto_update_by_timeline`).state;
-    logger.warn(`__**>> temperatureSetpointTagOfTrigger : ${temperatureSetpointTagOfTrigger}`);
 
+    logger.warn(`__**>> temperatureSetpointTagOfTrigger : ${temperatureSetpointTagOfTrigger}`);
     logger.warn(`__**>> activeTemperatureSetpointTag : ${activeTemperatureSetpointTag}`);
+
     if (temperatureSetpointTagOfTrigger === activeTemperatureSetpointTag) {
-      // const { itemName } = event;
+      //
       const setpointToSendToThermostat = event.receivedState;
 
       // build thermostat item name, e.g. 'CT_Setpoint', from 'CT_Setpoint_auto_comfort'
