@@ -17,7 +17,7 @@ rules.JSRule({
     logger.warn(`....item value : ${event.receivedState}`);
     logger.warn(`...gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
-      logger.warn('....A heater is ON - turn boiler ON');
+      logger.warn('....A heater is ON - it is turn boiler ON');
 
       items.getItem('Boiler_Control').sendCommand('ON');
     } else {

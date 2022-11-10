@@ -25,3 +25,7 @@ Number FH_Heating_PresetTempNormal "Fan Heater Heating Preset (Normal Mode) [%.1
 
 String FH_RTVReachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gRTVsReachable)  { channel="mqtt:topic:wifi_socket_8:reachable" }
 Number FH_RTV_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:wifi_socket_8:rssi" }
+
+Switch FH_LinkSetpointToCTSetpoint "Link Fan Heater setpoint to CT Setpoint"
+Number FH_Link_TrackingOffset "FH_Link_TrackingOffset"
+
