@@ -19,6 +19,7 @@ Number FH_Humidity "Fan Heater Humidity [%.1f °C]" <humidity> (gFH_Thermostat, 
 
 //additional params for use in openhab functions etc
 // Switch FH_Heater "Fan Heater Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+//! gAnyRoomHeaterOn has been removed so never triggers gas boiler - cos its a fan heater
 Switch FH_Heater "Fan Heater Heater"  <my_radiator>   (gRoomHeaterStates) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 String FH_HeatingMode "Fan Heater Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
 Number FH_Heating_PresetTempNormal "Fan Heater Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
