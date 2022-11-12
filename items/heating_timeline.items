@@ -241,5 +241,12 @@ Number AT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
 Number AT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
 Number AT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
 Number AT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+
+Number AT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 

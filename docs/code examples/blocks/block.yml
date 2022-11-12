@@ -1,0 +1,14 @@
+component: oh-grid-row
+config: {}
+slots:
+  default:
+    - component: oh-grid-col
+      config: {}
+      slots:
+        default:
+          - component: widget:timeline_V2
+            config:
+              colorset: A9A9A9,008000,87CEFA
+              states: off,manual,auto
+              title: Attic Heating Modes
+              transfer_item: Transfer_AT_HeatingMode
