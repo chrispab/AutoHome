@@ -6,6 +6,7 @@ Group gZbTHSensorsBattery
 Group gZbTHSensorsVoltage
 
 
+
 Group	gZb_THPSensor_01
 Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Pressure Sensor 01 Temperature"   (gZb_THPSensor_01, gTHSensorTemperatures)							{channel="mqtt:topic:THPSensor01:temperature"}
 Number	Zb_THPSensor_01_humidity    "Xiaomi Temp Humi Pressure Sensor 01 Humidity"      (gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:humidity"}

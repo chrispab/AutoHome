@@ -31,12 +31,12 @@ String Transfer_FH_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline r
 String v_FH_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
 // timeline setpoints for auto - 'min, cool, comfort, warm, hot, max'
-Number FH_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
+// Number FH_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
 
 Number FH_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
 Number FH_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
@@ -60,12 +60,12 @@ String v_CT_SetPoint_auto_update_by_timeline                     (gTimepicker, g
 
 // new timeline ct setpoints for auto
 //  'min, cool, comfort, warm, hot, max'
-Number CT_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
 
 Number CT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
 Number CT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
@@ -235,12 +235,12 @@ String Transfer_AT_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline r
 String v_AT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
 // timeline setpoints for auto - 'min, cool, comfort, warm, hot, max'
-Number AT_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
+// Number AT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
 
 Number AT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
 Number AT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
