@@ -1,11 +1,36 @@
 const {
-  log, items, rules, actions, triggers,
+  log, items, rules, actions, time, triggers,
 } = require('openhab');
 const { myutils } = require('personal');
 
 const logger = log('heater change?');
 const { timeUtils } = require('openhab_rules_tools');
 
+let CT_boost_timer;
+
+function boostit(HeaterItem) {
+  actions.Voice.say('BOOST  ON');
+  // turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory TV');
+
+  logger.warn('BOOST ON');
+  HeaterItem.sendCommand('ON');
+  if (!CT_boost_timer || !CT_boost_timer.isActive()) {
+    CT_boost_timer = actions.ScriptExecution.createTimer(
+      time.ZonedDateTime.now().plusSeconds(60),
+      () => {
+        // items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
+        items.getItem('CT_Boost').sendCommand('OFF'); // tv
+
+        // items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
+        logger.warn('BOOST OFF');
+        actions.Voice.say('BOOST OFF');
+        HeaterItem.sendCommand('OFF');
+      },
+    );
+  }
+}
+// if gHeatingModes, gTemperatureSetpoints ,gRoomTemperatures are updated
+// figure out if a room heater needs turning on
 rules.JSRule({
   name: 'Check if Heaters need changing etc',
   description: 'Check if Heaters need changing etc',
@@ -13,10 +38,14 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gTemperatureSetpoints'),
     triggers.GroupStateUpdateTrigger('gRoomTemperatures'),
+    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'),
+
   ],
   execute: (event) => {
     logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
+    console.log(event);
 
+    const action = 'default';
     //     # get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
 
@@ -32,6 +61,14 @@ rules.JSRule({
     const HeaterItem = items.getItem(`${roomPrefix}_Heater`);
     logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
 
+    // const BoostItem = items.getItem(`${roomPrefix}_Boost`);
+    // if (BoostItem) {
+    //   logger.warn(`>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
+    //   if (event.itemName === BoostItem.name) {
+    //     action = 'boost';
+    //   }
+    // }
+
     const ReachableItem = items.getItem(`${roomPrefix}_RTVReachable`);
     logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
 
@@ -45,6 +82,19 @@ rules.JSRule({
     }
 
     logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
+
+    // check if booster has gone fron OFF to ON (defined by trigger
+    // can be boost,
+    switch (action) {
+      case 'boost':
+        logger.warn('>BBBBOOOOOOOOSTING');
+        boostit(HeaterItem);
+        // return;
+        break;
+
+      default:
+        break;
+    }
 
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
