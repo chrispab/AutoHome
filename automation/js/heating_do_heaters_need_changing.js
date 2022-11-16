@@ -4,31 +4,48 @@ const {
 const { myutils } = require('personal');
 
 const logger = log('heater change?');
-const { timeUtils } = require('openhab_rules_tools');
+const { countdownTimer, timeUtils } = require('openhab_rules_tools');
 
 let CT_boost_timer;
+const boost_minutes = 30 * 60;
 
-function boostit(HeaterItem) {
-  actions.Voice.say('BOOST  ON');
-  // turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory TV');
+function stopIt(HeaterItem) {
+  actions.Voice.say('hello');
+  items.getItem('CT_Boost').sendCommand('OFF'); // tv
+  logger.warn('BOOST OFF');
+  actions.Voice.say('BOOST OFF');
+  HeaterItem.sendCommand('OFF');
+  logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
+}
 
-  logger.warn('BOOST ON');
-  HeaterItem.sendCommand('ON');
-  if (!CT_boost_timer || !CT_boost_timer.isActive()) {
-    CT_boost_timer = actions.ScriptExecution.createTimer(
-      time.ZonedDateTime.now().plusSeconds(60),
-      () => {
-        // items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
-        items.getItem('CT_Boost').sendCommand('OFF'); // tv
+function boost(command, HeaterItem) {
+  if (command === 'ON') {
+    actions.Voice.say('BOOST  ON');
+    logger.warn(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
+    HeaterItem.sendCommand('ON');
 
-        // items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
-        logger.warn('BOOST OFF');
-        actions.Voice.say('BOOST OFF');
-        HeaterItem.sendCommand('OFF');
-      },
-    );
+    const timer = new countdownTimer.CountdownTimer('10s', stopIt, 'CT_Boost_Countdown');
+
+    // if (!CT_boost_timer || !CT_boost_timer.isActive()) {
+    //   CT_boost_timer = actions.ScriptExecution.createTimer(
+    //     time.ZonedDateTime.now().plusSeconds(boost_minutes),
+    //     () => {
+    //       items.getItem('CT_Boost').sendCommand('OFF'); // tv
+    //       logger.warn('BOOST OFF');
+    //       actions.Voice.say('BOOST OFF');
+    //       HeaterItem.sendCommand('OFF');
+    //       logger.warn(`timeer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
+    //     },
+    //   );
+    // }
+  }
+  if (command === 'OFF') {
+    actions.Voice.say('Stopping BOOST');
+    logger.warn(`stopping BOOST , sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
+    HeaterItem.sendCommand('OFF');
   }
 }
+
 // if gHeatingModes, gTemperatureSetpoints ,gRoomTemperatures are updated
 // figure out if a room heater needs turning on
 rules.JSRule({
@@ -38,15 +55,15 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gTemperatureSetpoints'),
     triggers.GroupStateUpdateTrigger('gRoomTemperatures'),
-    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'),
-
+    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
+    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
   execute: (event) => {
     logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
     console.log(event);
 
-    const action = 'default';
-    //     # get prefix eg FR, CT etc
+    let action = 'default';
+    // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
 
     const heatingModeItem = items.getItem(`${roomPrefix}_HeatingMode`);
@@ -61,18 +78,11 @@ rules.JSRule({
     const HeaterItem = items.getItem(`${roomPrefix}_Heater`);
     logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
 
-    // const BoostItem = items.getItem(`${roomPrefix}_Boost`);
-    // if (BoostItem) {
-    //   logger.warn(`>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
-    //   if (event.itemName === BoostItem.name) {
-    //     action = 'boost';
-    //   }
-    // }
-
     const ReachableItem = items.getItem(`${roomPrefix}_RTVReachable`);
     logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
 
-    // !handle an offline TRV - return #dont continue on and update the bolier control if this RTV is Offline
+    // !handle an offline TRV - return
+    // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
       logger.warn(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
@@ -81,18 +91,46 @@ rules.JSRule({
       return;
     }
 
+    const BoostItem = items.getItem(`${roomPrefix}_Boost`, true);// return null if missing
+    if (BoostItem) {
+      logger.error(`>>>>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
+      if (event.itemName === BoostItem.name) {
+        if (BoostItem.state === 'ON') {
+          action = 'boostOn';
+        } else if (BoostItem.state === 'OFF') {
+          action = 'boostOff';
+        }
+      } else {
+        logger.error('>BoostItem could not be found - ooooooppps not defined yet????');
+      }
+    }
+
     logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
-    // check if booster has gone fron OFF to ON (defined by trigger
+    // check if booster has gone fron OFF to ON  or versa (defined by trigger
     // can be boost,
     switch (action) {
-      case 'boost':
+      case 'boostOn':
         logger.warn('>BBBBOOOOOOOOSTING');
-        boostit(HeaterItem);
-        // return;
+        boost('ON', HeaterItem);
+        return;
+        break;
+
+      case 'boostOff':
+        logger.warn('>BBBBOOOOOOOOSTING  OFFFFFF');
+        boost('OFF', HeaterItem);
+        return;
         break;
 
       default:
+        // if its not a boost button triggering rule
+        // check if that rooms boost is active - if so leave alone to contin ue
+        // boioitsting
+        if (BoostItem && BoostItem.state === 'ON') { // if the boostitem exists for thisroom
+          // leave well alone this room
+          logger.warn('>>...........heater boosting so leave alone');
+          return;
+        }
         break;
     }
 
