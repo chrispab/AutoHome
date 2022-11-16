@@ -10,7 +10,7 @@ let CT_boost_timer;
 const boost_minutes = 30 * 60;
 
 function stopIt(HeaterItem) {
-  actions.Voice.say('hello');
+  // actions.Voice.say('hello');
   items.getItem('CT_Boost').sendCommand('OFF'); // tv
   logger.warn('BOOST OFF');
   actions.Voice.say('BOOST OFF');
@@ -24,7 +24,7 @@ function boost(command, HeaterItem) {
     logger.warn(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
     HeaterItem.sendCommand('ON');
 
-    const timer = new countdownTimer.CountdownTimer('10s', stopIt, 'CT_Boost_Countdown');
+    const timer = new countdownTimer.CountdownTimer('30m', (() => { stopIt(HeaterItem); }), 'CT_Boost_Countdown');
 
     // if (!CT_boost_timer || !CT_boost_timer.isActive()) {
     //   CT_boost_timer = actions.ScriptExecution.createTimer(
