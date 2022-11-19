@@ -6,35 +6,36 @@ const { myutils } = require('personal');
 const logger = log('heater change?');
 const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
 
-let CT_boost_timer;
+// let CT_boost_timer;
 const boost_minutes = 30 * 60;
 
-let timer;// = null;// = null;
+// let timer;// = null;// = null;
 // const tm = new timerMgr.TimerMgr();
 
-function stopIt(HeaterItem) {
-  // actions.Voice.say('hello');
-  items.getItem('CT_Boost').sendCommand('OFF'); // tv
-  logger.warn('....BOOST OFF');
-  actions.Voice.say('BOOST OFF');
-  HeaterItem.sendCommand('OFF');
-  logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
-}
+// function stopIt(HeaterItem) {
+//   // actions.Voice.say('hello');
+//   logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
 
-function boost(command, HeaterItem) {
-  if (command === 'ON') {
-    actions.Voice.say('....BOOST  ON');
-    logger.warn(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
-    HeaterItem.sendCommand('ON');
+//   items.getItem('CT_Boost').sendCommand('OFF'); // tv
+//   logger.warn('....BOOST OFF');
+//   actions.Voice.say('BOOST OFF');
+//   HeaterItem.sendCommand('OFF');
+// }
 
-    timer = new countdownTimer.CountdownTimer('30m', (() => { stopIt(HeaterItem); }), 'CT_Boost_Countdown');
-  }
-  if (command === 'OFF') {
-    actions.Voice.say('Stopping BOOST');
-    logger.warn(`stopping BOOST , sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
-    HeaterItem.sendCommand('OFF');
-  }
-}
+// function boost(command, HeaterItem) {
+//   if (command === 'ON') {
+//     actions.Voice.say('....BOOST  ON');
+//     logger.warn(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
+//     HeaterItem.sendCommand('ON');
+
+//     timer = new countdownTimer.CountdownTimer('15s', (() => { stopIt(HeaterItem); }), 'CT_Boost_Countdown');
+//   }
+//   if (command === 'OFF') {
+//     actions.Voice.say('Stopping BOOST');
+//     logger.warn(`stopping BOOST , sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
+//     HeaterItem.sendCommand('OFF');
+//   }
+// }
 
 // if gHeatingModes, gTemperatureSetpoints ,gRoomTemperatures are updated
 // figure out if a room heater needs turning on
@@ -45,8 +46,8 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gTemperatureSetpoints'),
     triggers.GroupStateUpdateTrigger('gRoomTemperatures'),
-    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
-    triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
+    // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
+    // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
   execute: (event) => {
     console.log(event);
