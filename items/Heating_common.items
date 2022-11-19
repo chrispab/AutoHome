@@ -11,7 +11,7 @@ Group       gRoomHeaterStates
 Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
 Group       gRTVsReachable
 // Group:Switch:AND(ON, OFF) FullyAutomatic "Fully Automatic [ (%d) ]" <switch>
-Group gHeaterBoosters
+Group :Switch:OR(ON,OFF) gHeaterBoosters
 
 DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
 

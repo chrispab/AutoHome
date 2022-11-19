@@ -4,15 +4,18 @@ const {
 const { myutils } = require('personal');
 
 const logger = log('heater change?');
-const { countdownTimer, timeUtils } = require('openhab_rules_tools');
+const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
 
 let CT_boost_timer;
 const boost_minutes = 30 * 60;
 
+let timer;// = null;// = null;
+// const tm = new timerMgr.TimerMgr();
+
 function stopIt(HeaterItem) {
   // actions.Voice.say('hello');
   items.getItem('CT_Boost').sendCommand('OFF'); // tv
-  logger.warn('BOOST OFF');
+  logger.warn('....BOOST OFF');
   actions.Voice.say('BOOST OFF');
   HeaterItem.sendCommand('OFF');
   logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
@@ -20,24 +23,11 @@ function stopIt(HeaterItem) {
 
 function boost(command, HeaterItem) {
   if (command === 'ON') {
-    actions.Voice.say('BOOST  ON');
+    actions.Voice.say('....BOOST  ON');
     logger.warn(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
     HeaterItem.sendCommand('ON');
 
-    const timer = new countdownTimer.CountdownTimer('30m', (() => { stopIt(HeaterItem); }), 'CT_Boost_Countdown');
-
-    // if (!CT_boost_timer || !CT_boost_timer.isActive()) {
-    //   CT_boost_timer = actions.ScriptExecution.createTimer(
-    //     time.ZonedDateTime.now().plusSeconds(boost_minutes),
-    //     () => {
-    //       items.getItem('CT_Boost').sendCommand('OFF'); // tv
-    //       logger.warn('BOOST OFF');
-    //       actions.Voice.say('BOOST OFF');
-    //       HeaterItem.sendCommand('OFF');
-    //       logger.warn(`timeer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
-    //     },
-    //   );
-    // }
+    timer = new countdownTimer.CountdownTimer('30m', (() => { stopIt(HeaterItem); }), 'CT_Boost_Countdown');
   }
   if (command === 'OFF') {
     actions.Voice.say('Stopping BOOST');
@@ -59,9 +49,8 @@ rules.JSRule({
     triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
   execute: (event) => {
-    logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
     console.log(event);
-
+    logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
     let action = 'default';
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
@@ -92,7 +81,7 @@ rules.JSRule({
     }
 
     const BoostItem = items.getItem(`${roomPrefix}_Boost`, true);// return null if missing
-    if (BoostItem) {
+    if (BoostItem && (event.itemName === BoostItem.name)) {
       logger.error(`>>>>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
       if (event.itemName === BoostItem.name) {
         if (BoostItem.state === 'ON') {
@@ -126,7 +115,7 @@ rules.JSRule({
         // if its not a boost button triggering rule
         // check if that rooms boost is active - if so leave alone to contin ue
         // boioitsting
-        if (BoostItem && BoostItem.state === 'ON') { // if the boostitem exists for thisroom
+        if (BoostItem && BoostItem.state === 'ON' && (event.itemName !== BoostItem.name)) { // if the boostitem exists for thisroom
           // leave well alone this room
           logger.warn('>>...........heater boosting so leave alone');
           return;
