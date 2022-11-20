@@ -19,4 +19,6 @@ String CT_RTVReachable "Conservatory Reachable" <qualityofservice> (gCT_Thermost
 Number CT_RTV_Rssi "CT RTV RSSI [%.1f]" <qualityofservice> (gCT_Thermostat) { channel="mqtt:topic:conservatoryRadThermoValve:rssi" }
 
 Switch CT_Boost "Conservatory Heater boost"     (gHeaterBoosters,gAnyRoomHeaterOn)//(gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
+Switch v_CT_Boost "Conservatory virtual Heater boost"
+
 Number CT_Boost_Countdown "CT_Boost_Countdown"
