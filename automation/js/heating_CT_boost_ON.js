@@ -8,7 +8,7 @@ const logger = log('boost ct');
 // eslint-disable-next-line no-var
 var CT_boost_timer;
 // eslint-disable-next-line no-var
-var boost_time = '30s';
+var boost_time = '30m';
 
 function stopBoost() {
   actions.Voice.say('timer over,  BOOST OFF');
@@ -65,14 +65,15 @@ rules.JSRule({
         actions.Voice.say('turning ct boost on');
         logger.error(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
         HeaterItem.sendCommand('ON');
+        items.getItem('CT_Boost').sendCommand('ON');
         logger.error('>ct BOOSTING');
         CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
       } else if (event.newState === 'OFF') { // gone ON->OFF
         logger.error('>v_CT_Boost changed on->off');
-        actions.Voice.say('manually   Stopping BOOST');
+        // actions.Voice.say('manually   Stopping BOOST');
         // if  here then its by clicking the boost off button so
         // cancel timer   // and turn stuff off
-        logger.error('manual....BOOST OFF ');
+        // logger.error('manual....BOOST OFF ');
         // if (!CT_boost_timer.isRunning()) {
         //   CT_boost_timer.cancel();
         // }

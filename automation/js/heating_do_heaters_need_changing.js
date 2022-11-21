@@ -52,6 +52,16 @@ rules.JSRule({
 
     logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
+    //! add if boost on - skip
+    // if this heater is currently in being boosted, then just l;eave it alone and move on
+    const BoostItem = items.getItem(`${roomPrefix}_Boost`, true);// get boost item for this heater, return null if missing
+    if (BoostItem && BoostItem.state.toString() === 'ON') {
+      logger.error(`...........................>>>>Boosting item -->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
+      if (BoostItem.state === 'ON') { // in a boost period
+        return;
+      }
+    }
+    logger.error('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
       logger.warn(`>>Heater mode is auto or manual : ${heatingModeItem.state.toString()}`);
