@@ -8,7 +8,7 @@ const logger = log('boost ct');
 // eslint-disable-next-line no-var
 var CT_boost_timer;
 // eslint-disable-next-line no-var
-var boost_time = '30m';
+var boost_time = '15m';
 
 function stopBoost() {
   actions.Voice.say('timer over,  BOOST OFF');
