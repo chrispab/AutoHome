@@ -69,7 +69,7 @@ rules.JSRule({
         CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
       } else if (event.newState === 'OFF') { // gone ON->OFF
         logger.error('>v_CT_Boost changed on->off');
-        actions.Voice.say('manually   Stopping BOOST');
+        actions.Voice.say('Stopping conservatory BOOST');
         // if  here then its by clicking the boost off button so
         // cancel timer   // and turn stuff off
         logger.error('manual....BOOST OFF ');
@@ -77,6 +77,7 @@ rules.JSRule({
         //   CT_boost_timer.cancel();
         // }
         items.getItem('CT_Boost').sendCommand('OFF'); // tv
+        HeaterItem.sendCommand('OFF');
       } else {
         logger.error('(v_ct OFF. timer does NOT exist');
       }

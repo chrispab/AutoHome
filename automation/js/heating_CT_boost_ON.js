@@ -8,16 +8,19 @@ const logger = log('boost ct');
 // eslint-disable-next-line no-var
 var CT_boost_timer;
 // eslint-disable-next-line no-var
-var boost_time = '15m';
+var boost_time = '1m';
 
 function stopBoost() {
-  actions.Voice.say('timer over,  BOOST OFF');
+  actions.Voice.say('timer over, conservatory BOOST OFF');
   // logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
   logger.error('BOOST timer over');
   // if (CT_boost_timer) {
   // logger.error('stopBoost timer ');
   // CT_boost_timer.cancel();//will error cos of this
   items.getItem('CT_Boost').sendCommand('OFF'); // tv
+  items.getItem('v_CT_Boost').sendCommand('OFF');
+  items.getItem('CT_Heater').sendCommand('OFF'); // tv
+  // HeaterItem.sendCommand('OFF');
   // HeaterItem.sendCommand('OFF');
   // } else {
   //   logger.error('stopBoost timer does NOT exist');
@@ -62,7 +65,7 @@ rules.JSRule({
       // if (event.itemName === BoostItem.name) {
       if (event.newState === 'ON') { // gone Off->ON
         logger.error('>v_CT_Boost changed off->on');
-        actions.Voice.say('turning ct boost on');
+        actions.Voice.say('conservatory boost on');
         logger.error(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
         HeaterItem.sendCommand('ON');
         items.getItem('CT_Boost').sendCommand('ON');
