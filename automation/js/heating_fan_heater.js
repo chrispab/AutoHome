@@ -28,13 +28,13 @@ rules.JSRule({
       logger.warn('________tracking to CT setpoint');
       // get ct sp and copy to fh sp - offset
       let CT_SP = items.getItem('CT_TemperatureSetpoint').rawState;
-      const FH_item = items.getItem('FH_TemperatureSetpoint');
+      const FH_TemperatureSetpoint_item = items.getItem('FH_TemperatureSetpoint');
 
       // add offest
       const offset = items.getItem('FH_Link_TrackingOffset').rawState;
       CT_SP -= offset;
       // copy/track
-      FH_item.sendCommand(CT_SP);
+      FH_TemperatureSetpoint_item.sendCommand(CT_SP);
     }
   },
 });
@@ -61,17 +61,17 @@ rules.JSRule({
       // console.warn('_____mvm___PAST THE GATE');
       if (temp < setPoint) {
         items.getItem('FH_Heater').sendCommand('ON');
-        // console.warn('>>>>- temp < setPoint turning heater ON');
+        console.warn('>>>>- temp < setPoint turning heater ON');
       } else if (temp >= (setPoint)) { // (items.getItem('CT_Heater').state == 'OFF') && (
         items.getItem('FH_Heater').sendCommand('OFF');
-        // console.warn('<<<< -. temp > (setPoint) turning heater OFF');
+        console.warn('<<<< -. temp > (setPoint) turning heater OFF');
       } else {
         // console.warn('==== -. temp none of on or off');
       }
     }
 
     if (items.getItem('fan_heater_enable').state === 'OFF') {
-      // console.warn('________items.getItem(fan_heater_enable).state == OFF');
+      console.warn('________items.getItem(fan_heater_enable).state == OFF');
       items.getItem('fan_heater').sendCommand('OFF');
     }
   },
