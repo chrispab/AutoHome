@@ -25,8 +25,8 @@ function stopBoost() {
 }
 
 rules.JSRule({
-  name: 'Check if v_CT_Boost button clicked',
-  description: 'Check if v_CT_Boost button clicked',
+  name: 'Check if v_CT_Boost button clicked ON->OFF',
+  description: 'Check if v_CT_Boost button clicked ON->OFF',
   triggers: [
     // triggers.ItemStateChangeTrigger('v_CT_Boost', 'OFF', 'ON'), // on edges only
     triggers.ItemStateChangeTrigger('v_CT_Boost', 'ON', 'OFF'),
@@ -60,14 +60,15 @@ rules.JSRule({
     if (BoostItem) {
       logger.error(`>>>>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
       // if (event.itemName === BoostItem.name) {
-      if (event.newState === 'ON') { // gone Off->ON
-        logger.error('>v_CT_Boost changed off->on');
-        actions.Voice.say('turning ct boost on');
-        logger.error(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
-        HeaterItem.sendCommand('ON');
-        logger.error('>ct BOOSTING');
-        CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
-      } else if (event.newState === 'OFF') { // gone ON->OFF
+      // if (event.newState === 'ON') { // gone Off->ON
+      //   logger.error('>v_CT_Boost changed off->on');
+      //   actions.Voice.say('turning ct boost on');
+      //   logger.error(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
+      //   HeaterItem.sendCommand('ON');
+      //   logger.error('>ct BOOSTING');
+      //   CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
+      // }
+      if (event.newState === 'OFF') { // gone ON->OFF
         logger.error('>v_CT_Boost changed on->off');
         actions.Voice.say('Stopping conservatory BOOST');
         // if  here then its by clicking the boost off button so
