@@ -19,7 +19,7 @@ rules.JSRule({
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
   execute: (event) => {
-    console.log(event);
+    // console.log(event);
     logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
     const action = 'default';
     // get prefix eg FR, CT etc

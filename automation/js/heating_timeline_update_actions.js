@@ -46,7 +46,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineSetpointUpdateProxys')],
   execute: (event) => {
     logger.error('--->>> handle - auto program setpoint is updated by a timeline');
-    myutils.showEvent(event);
+    // myutils.showEvent(event);
 
     const { itemName } = event;
 

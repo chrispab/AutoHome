@@ -8,21 +8,21 @@ const logger = log('boost ct');
 // eslint-disable-next-line no-var
 var CT_boost_timer;
 // eslint-disable-next-line no-var
-var boost_time = '30s';
+// var boost_time = '30s';
 
-function stopBoost() {
-  actions.Voice.say('timer over,  BOOST OFF');
-  // logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
-  logger.error('BOOST timer over');
-  // if (CT_boost_timer) {
-  // logger.error('stopBoost timer ');
-  // CT_boost_timer.cancel();//will error cos of this
-  items.getItem('CT_Boost').sendCommand('OFF'); // tv
-  // HeaterItem.sendCommand('OFF');
-  // } else {
-  //   logger.error('stopBoost timer does NOT exist');
-  // }
-}
+// function stopBoost() {
+//   actions.Voice.say('timer over,  BOOST OFF');
+//   // logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
+//   logger.error('BOOST timer over');
+//   // if (CT_boost_timer) {
+//   // logger.error('stopBoost timer ');
+//   // CT_boost_timer.cancel();//will error cos of this
+//   items.getItem('CT_Boost').sendCommand('OFF'); // tv
+//   // HeaterItem.sendCommand('OFF');
+//   // } else {
+//   //   logger.error('stopBoost timer does NOT exist');
+//   // }
+// }
 
 rules.JSRule({
   name: 'Check if v_CT_Boost button clicked ON->OFF',
