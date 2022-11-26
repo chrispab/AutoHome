@@ -3,7 +3,7 @@ Group	gAllBulbs																					(gZb)
 Group	gZbWhiteBulbs																				(gZbAllBulbs)
 
 Group	gZbWhiteBulb01																				(gZbWhiteBulbs)
-Switch	ZbWhiteBulb01Switch			"Zb white bulb 1 switch [%s]"									(gZbWhiteBulb01,gConservatoryFairyLights, gConservatoryLights)	{channel="mqtt:topic:ikeabulb01:switch"}
+Switch	ZbWhiteBulb01Switch			"Zb white bulb 1 switch [%s]"									(gZbWhiteBulb01,gConservatoryFairyLights)	{channel="mqtt:topic:ikeabulb01:switch"}//, gConservatoryLights
 Dimmer	ZbWhiteBulb01Dim			"cyril"										(gZbWhiteBulb01)							{ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
 Number	ZbWhiteBulb01Quality		"Zb white bulb 1  LinkQuality [%d]"			<qualityofservice>	(gZbWhiteBulb01)							{channel="mqtt:topic:ikeabulb01:linkquality"}
 

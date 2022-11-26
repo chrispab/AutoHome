@@ -23,10 +23,10 @@ Thing mqtt:topic:pir02 "PIR 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 }
 Thing mqtt:topic:pir03 "PIR 03" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
-    Type switch : occupancy "PIR 03 occupancy"          [stateTopic="zigbee2mqtt/pir03", transformationPattern="JS:truefalse2onoff_battery_low.js" ]
+    Type switch : occupancy "PIR 03 occupancy"          [stateTopic="zigbee2mqtt/pir03", transformationPattern="JS:truefalse2onoff_occupancy.js" ]
     Type number : linkquality "PIR 03 LinkQuality"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.linkquality" ]
-    Type number : battery "PIR 03 battery"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.battery" ]
-    Type switch : battery_low "PIR 03 battery_low"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.battery_low" ]
+    Type number : battery "PIR 03 battery"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.battery_low" ]
+    Type switch : battery_low "PIR 03 battery_low"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.truefalse2onoff_battery_low" ]
     Type switch : tamper "PIR 03 tamper"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.tamper" ]
     Type number : voltage "PIR 03 voltage"   [ stateTopic="zigbee2mqtt/pir03",  transformationPattern="JSONPATH:$.voltage" ]
     Type string : reachable "PIR 03 Reachable"
@@ -34,10 +34,10 @@ Thing mqtt:topic:pir03 "PIR 03" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 }
 Thing mqtt:topic:pir04 "PIR 04" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
-    Type switch : occupancy "PIR 04 occupancy"          [stateTopic="zigbee2mqtt/pir04", transformationPattern="JS:truefalse2onoff_battery_low.js" ]
+    Type switch : occupancy "PIR 04 occupancy"          [stateTopic="zigbee2mqtt/pir04", transformationPattern="JS:truefalse2onoff_occupancy.js" ]
     Type number : linkquality "PIR 04 LinkQuality"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "PIR 04 battery"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.battery" ]
-    Type switch : battery_low "PIR 04 battery_low"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.battery_low" ]
+    Type switch : battery_low "PIR 04 battery_low"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.truefalse2onoff_battery_low" ]
     Type switch : tamper "PIR 04 tamper"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.tamper" ]
     Type number : voltage "PIR 04 voltage"   [ stateTopic="zigbee2mqtt/pir04",  transformationPattern="JSONPATH:$.voltage" ]
     Type string : reachable "PIR 04 Reachable"
