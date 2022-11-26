@@ -30,14 +30,6 @@ String Transfer_FH_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline r
 //proxy item to monitor any op from Transfer_CT_SetPoint_auto
 String v_FH_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
-// timeline setpoints for auto - 'min, cool, comfort, warm, hot, max'
-// Number FH_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
-// Number FH_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
-// Number FH_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
-// Number FH_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
-// Number FH_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
-// Number FH_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
-
 Number FH_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
 Number FH_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
 Number FH_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
@@ -152,13 +144,12 @@ String Transfer_FR_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline r
 String v_FR_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-//  'min, cool, comfort, warm, hot, max'
-Number FR_Setpoint_auto_min  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_cool  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_comfort  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_warm  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_hot  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 //============== OF Office items ======================================================

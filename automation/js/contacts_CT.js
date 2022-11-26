@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { timeUtils } = require('openhab_rules_tools');
 
-const logger = log('TVs on off.js');
+const logger = log('contact01.js');
 
 let tStartup;
 
@@ -24,8 +24,12 @@ rules.JSRule({
   triggers: [triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'true', 'false')],
   execute: () => {
     logger.warn('CT contact01 went false');
-    const message = 'Hey Elsie, youve left the back door open. Please close it, or get a cuffing';
-    actions.Voice.say(message);
+    // const message = 'Hey Elsie, youve left the back door open. Please close it, or get a cuffing';
+    const vol = actions.Audio.getMasterVolume();
+    actions.Audio.increaseMasterVolume(100);
+    actions.Audio.playSound('fart-08.mp3');
+    actions.Audio.setMasterVolume(vol);
+    // actions.Voice.say(message);
     // turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
   },
 });

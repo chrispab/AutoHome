@@ -1,0 +1,233 @@
+config:
+  label: heating_FR_timelines
+  sidebar: true
+  visibleTo:
+    - role:administrator
+blocks:
+  - component: oh-block
+    config:
+      title: Front room Heating Control
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Front room
+                        boostItem: v_FR_Boost
+                        boostStateItem: FR_Boost
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: FR_HeatingMode
+                        heatingStateItem: FR_Heater
+                        location: FR
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: FR_RTVReachable
+                        rssiItem: FR_RTV_Rssi
+                        setpointItem: FR_TemperatureSetpoint
+                        tempItem: FR_Temperature
+                        trendItem: FR_Temperature
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: FR_Boost_Countdown
+                        title: front room boost countdown
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-clock-card
+                      config: {}
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: group
+                        actionGroupPopupItem: gRoomHeaterStates
+                        color: red
+                        icon: f7:flame
+                        iconColor: "=(items.Boiler_Control.state == 'ON') ? 'red' : 'blue'"
+                        item: Boiler_Control
+                        outline: true
+                        title: Boiler
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: widget:master_heating_mode_select
+                      config:
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: masterHeatingMode
+                        location: master
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerCoordSystem: time
+                        actionAnalyzerItems:
+                          - Outside_Temperature
+                        expandable: false
+                        item: Outside_Temperature
+                        noBorder: false
+                        outline: true
+                        title: Outside sensor
+                        trendItem: Outside_Temperature
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: Boiler_Control
+                        outline: true
+                        title: boiler
+  - component: oh-block
+    config:
+      title: Auto Heating Setpoints
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#A9A9A9"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_1
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#87CEFA"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_2
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#008000"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_3
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#FFD700"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_4
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#FF8C00"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_5
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#DC143C"
+                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
+                        setpointItem: FR_Setpoint_auto_6
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: v_FR_SetPoint_auto_update_by_timeline
+                        outline: true
+                        title: current front room setpoint
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
+                        states: 1,2,3,4,5,6,7
+                        title: Front room Heating Setpoints
+                        transfer_item: Transfer_FR_SetPoint_auto
+  - component: oh-block
+    config:
+      title: Heating Modes Changes
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,008000,87CEFA
+                        states: off,manual,auto
+                        title: Front room Heating Modes
+                        transfer_item: Transfer_FR_HeatingMode
+masonry: null
+grid: []
+canvas: []

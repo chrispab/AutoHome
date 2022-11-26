@@ -14,3 +14,13 @@ Number	pir02_linkquality	"pir02_linkquality" (gZb_pir)   {channel="mqtt:topic:pi
 Number	pir02_battery		"pir02_battery"    (gZb_pir)   {channel="mqtt:topic:pir02:battery"}
 Number	pir02_voltage		"pir02_voltage"	(gZb_pir)	{channel="mqtt:topic:pir02:voltage"}
 String	pir02_reachable	"pir02_reachable"			{channel="mqtt:topic:pir02:reachable"}
+
+// Number	pir02_illuminance	"pir02_illuminance"	(gZb_pir)   {channel="mqtt:topic:pir02:illuminance"}
+// Number	pir02_illuminance_lux	"pir02_illuminance_lux"	(gZb_pir)   {channel="mqtt:topic:pir02:illuminance_lux"}
+Switch	pir03_occupancy	"pir03_occupancy"	(gZb_pir)   {channel="mqtt:topic:pir03:occupancy"}
+Number	pir03_linkquality	"pir03_linkquality" (gZb_pir)   {channel="mqtt:topic:pir03:linkquality"}
+Number	pir03_battery		"pir03_battery"    (gZb_pir)   {channel="mqtt:topic:pir03:battery"}
+Switch	pir03_battery_low	"pir03_battery_low"	(gZb_pir)   {channel="mqtt:topic:pir03:battery_low"}
+Number	pir03_voltage		"pir03_voltage"	(gZb_pir)	{channel="mqtt:topic:pir03:voltage"}
+Switch	pir03_tamper	"pir03_tamper"	(gZb_pir)   {channel="mqtt:topic:pir03:tamper"}
+String	pir03_reachable	"pir03_reachable"			{channel="mqtt:topic:pir03:reachable"}
