@@ -13,8 +13,13 @@ rules.JSRule({
   triggers: [triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'false', 'true')],
   execute: () => {
     logger.warn('CT contact01 went true');
-    const message = 'Thanks else';
-    actions.Voice.say(message);
+    // const message = 'Thanks else';
+    // actions.Voice.say(message);
+    const vol = actions.Audio.getMasterVolume();
+    actions.Audio.increaseMasterVolume(100);
+    actions.Audio.playSound('fart-03.mp3');
+    actions.Audio.setMasterVolume(vol);
+
     // turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
   },
 });
