@@ -5,9 +5,11 @@ const {
 } = require('openhab');
 
 scriptLoaded = function () {
-  console.log('script loaded - test-js');
+  console.log('script loaded - startup jobs');
   // loadedDate = Date.now();
   // actions.Audio.playSound('fart-03.mp3');
+  actions.Audio.setMasterVolume(0.5);
+
   actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
 };
 

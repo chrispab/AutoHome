@@ -14,7 +14,7 @@ rules.JSRule({
     logger.warn('CT contact01 went false');
     // const message = 'Hey Elsie, youve left the back door open. Please close it, or get a cuffing';
     vol = actions.Audio.getMasterVolume();
-    actions.Audio.increaseMasterVolume(100);
+    actions.Audio.setMasterVolume(0.9);
     actions.Audio.playSound('fart-08.mp3');
     // actions.Audio.setMasterVolume(vol);
     // actions.Voice.say(message);
@@ -30,7 +30,7 @@ rules.JSRule({
     // const message = 'Thanks else';
     // actions.Voice.say(message);
     // vol = actions.Audio.getMasterVolume();
-    actions.Audio.increaseMasterVolume(100);
+    // actions.Audio.increaseMasterVolume(100);
     actions.Audio.playSound('fart-03.mp3');
     actions.Audio.setMasterVolume(vol);
 
