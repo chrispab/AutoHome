@@ -1,12 +1,12 @@
 config:
-  label: heating_FR_timelines
+  label: heating_BR_timelines
   sidebar: true
   visibleTo:
     - role:administrator
 blocks:
   - component: oh-block
     config:
-      title: Front room Heating Control
+      title: Bedroom Heating Control
     slots:
       default:
         - component: oh-grid-row
@@ -21,20 +21,20 @@ blocks:
                   default:
                     - component: widget:Thermostat-Control-dev6
                       config:
-                        Title: Front room
-                        boostItem: v_FR_Boost
-                        boostStateItem: FR_Boost
+                        Title: Bedroom
+                        boostItem: v_BR_Boost
+                        boostStateItem: BR_Boost
                         heatingModeArray: auto,manual,off
-                        heatingModeItem: FR_HeatingMode
-                        heatingStateItem: FR_Heater
-                        location: FR
+                        heatingModeItem: BR_HeatingMode
+                        heatingStateItem: BR_Heater
+                        location: BR
                         maximumTemp: "26"
                         minimumTemp: "13"
-                        reachableStateItem: FR_RTVReachable
-                        rssiItem: FR_RTV_Rssi
-                        setpointItem: FR_TemperatureSetpoint
-                        tempItem: FR_Temperature
-                        trendItem: FR_Temperature
+                        reachableStateItem: BR_RTVReachable
+                        rssiItem: BR_RTV_Rssi
+                        setpointItem: BR_TemperatureSetpoint
+                        tempItem: BR_Temperature
+                        trendItem: BR_Temperature
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -43,8 +43,8 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: FR_Boost_Countdown
-                        title: front room boost countdown
+                        item: BR_Boost_Countdown
+                        title: br boosst countdown
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -127,8 +127,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#A9A9A9"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_1
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_1
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -138,8 +138,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#87CEFA"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_2
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_2
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -149,8 +149,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#008000"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_3
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_3
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -160,8 +160,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FFD700"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_4
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_4
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -171,8 +171,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FF8C00"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_5
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_5
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -182,8 +182,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#DC143C"
-                        setpointAutoStateItem: v_FR_SetPoint_auto_update_by_timeline
-                        setpointItem: FR_Setpoint_auto_6
+                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
+                        setpointItem: BR_Setpoint_auto_6
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -192,9 +192,9 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: v_FR_SetPoint_auto_update_by_timeline
+                        item: v_BR_SetPoint_auto_update_by_timeline
                         outline: true
-                        title: current front room setpoint
+                        title: current bedroom setpoint
         - component: oh-grid-row
           config: {}
           slots:
@@ -207,8 +207,8 @@ blocks:
                       config:
                         colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
                         states: 1,2,3,4,5,6,7
-                        title: Front room Heating Setpoints
-                        transfer_item: Transfer_FR_SetPoint_auto
+                        title: Bedroom Heating Setpoints
+                        transfer_item: Transfer_BR_SetPoint_auto
   - component: oh-block
     config:
       title: Heating Modes Changes
@@ -226,8 +226,8 @@ blocks:
                       config:
                         colorset: A9A9A9,008000,87CEFA
                         states: off,manual,auto
-                        title: Front room Heating Modes
-                        transfer_item: Transfer_FR_HeatingMode
+                        title: Bedroom Heating Modes
+                        transfer_item: Transfer_BR_HeatingMode
 masonry: null
 grid: []
 canvas: []

@@ -26,11 +26,6 @@ function pir04_off_body() {
   logger.warn('===The timer is over.pir04_off_body');
   items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
 }
-// function pir2_off_body() {
-//   logger.warn('===The timer is over.pir2_off_body');
-//   items.getItem('KT_light_2_Power').sendCommand('OFF');
-//   items.getItem('KT_light_3_Power').sendCommand('OFF');
-// }
 
 let pir04_off_timer = null;
 // let pir02_off_timer = null;
@@ -53,7 +48,7 @@ rules.JSRule({
     );
     logger.warn(`-pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
 
-    if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
+    if (items.getItem('CT_LightDark_State').state === 'OFF') {
       logger.warn(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
       if (items.getItem('pir04_occupancy').state === 'ON') {
         items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
@@ -64,18 +59,7 @@ rules.JSRule({
           logger.warn('-CANCEL STOP running pir04_off_timer');
         }
       }
-
-      // if (items.getItem('pir02_occupancy').state === 'ON') {
-      //   items.getItem('KT_light_2_Power').sendCommand('ON');
-      //   items.getItem('KT_light_3_Power').sendCommand('ON');
-      //   logger.warn('-rxed pir02_occupancy KT_light_2 3_PowerON');
-      //   if (pir02_off_timer && pir02_off_timer.isActive()) {
-      //     pir02_off_timer.cancel();
-      //     logger.warn('-CANCEL STOP running pir02_off_timer');
-      //   }
-      // }
     }
-    // logger.warn('pir01_occupancy: end');
   },
 });
 
@@ -103,16 +87,5 @@ rules.JSRule({
       );
       logger.warn('-pir04_occupancy: STARTING TIMER KT_light_1_Power: OFF END');
     }
-    // if (data.itemName === 'pir04_occupancy') {
-    //   logger.warn(
-    //     `-STARTING TIMER KT_light_2&3_Power : OFF, off timer is: ${items.getItem('KT_cupboard_lights_timeout').state}`,
-    //   );
-    //   const now = time.ZonedDateTime.now();
-    //   pir02_off_timer = actions.ScriptExecution.createTimer(
-    //     now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
-    //     pir2_off_body,
-    //   );
-    //   // logger.warn('-pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END');
-    // }
   },
 });

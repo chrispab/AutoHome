@@ -8,7 +8,7 @@ scriptLoaded = function () {
   console.log('script loaded - startup jobs');
   // loadedDate = Date.now();
   // actions.Audio.playSound('fart-03.mp3');
-  actions.Audio.setMasterVolume(0.5);
+  // actions.Audio.setMasterVolume(0.5);
 
   actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
 };
@@ -20,10 +20,5 @@ rules.JSRule({
   execute: () => {
     // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
     actions.Audio.playSound('fart-03.mp3');
-    // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");
-    // items.getItem("ZbWhiteBulb02Switch").sendCommand("OFF");
-    // actions.NotificationAction.sendNotification(email, "Balcony lights are  OFF");
-    // console.info("*********************************  ZbWhiteBulb01Switch  OFF");
-    // console.debug("*********************************  ZbWhiteBulb01Switch  OFF")
   },
 });

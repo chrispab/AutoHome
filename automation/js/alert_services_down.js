@@ -15,10 +15,6 @@ const { alerting } = require('personal');
 scriptLoaded = function () {
   // logger.error('scriptLoaded - set all CT auto lighting items');
 
-  // previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  // currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
-  // items.getItem('BridgeLightSensorTrend').sendCommand('ON'); //
-  // items.getItem('CT_LightDark_State').sendCommand('OFF'); // its light in conservatory
 };
 
 // turn off conservatory lights when it goes from dark to light
