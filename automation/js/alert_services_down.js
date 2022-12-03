@@ -23,9 +23,9 @@ rules.JSRule({
   description: 'alert when service changed',
   triggers: [triggers.GroupStateChangeTrigger('gServices_Core_Online')],
   execute: (event) => {
-    logger.error('gServices_Core_Online');
+    logger.error(`alert when service offline   gServices_Core_Online==: ${JSON.stringify(event)}`);
     // items.getItem('gConservatoryLights').sendCommand('OFF');
     // items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendInfo(`alert when service offline   gServices_Core_Online==: ${JSON.stringify(event)}`);
+    // alerting.sendInfo(`alert when service offline   gServices_Core_Online==: ${JSON.stringify(event)}`);
   },
 });

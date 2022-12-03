@@ -40,22 +40,15 @@ rules.JSRule({
   ],
   execute: () => {
     logger.warn('CT contact01 went false');
-    // eslint-disable-next-line max-len
-    // const message = 'Hey Elsie, youve left the back door open. Please close it, or get a cuffing';
+
     vol = actions.Audio.getMasterVolume();
     let newVol = vol;
     newVol = 1.0;
     logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
 
-    // actions.Audio.increaseMasterVolume(0.9);
     actions.Audio.setMasterVolume(newVol);
 
-    // actions.Audio.playSound('fart-08.mp3');
     actions.Audio.playSound(randomFartString());
-
-    // actions.Audio.setMasterVolume(vol);
-    // actions.Voice.say(message);
-    // turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
   },
 });
 rules.JSRule({
@@ -67,16 +60,10 @@ rules.JSRule({
   ],
   execute: () => {
     logger.warn('CT contact01 went true');
-    // const message = 'Thanks else';
-    // actions.Voice.say(message);
-    // vol = actions.Audio.getMasterVolume();
-    // actions.Audio.increaseMasterVolume(100);
-    // actions.Audio.playSound('fart-03.mp3');#
+
     actions.Audio.playSound(randomFartString());
 
     actions.Audio.setMasterVolume(vol);
     logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
-
-    // turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
   },
 });

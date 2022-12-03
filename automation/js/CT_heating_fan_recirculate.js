@@ -21,7 +21,7 @@ rules.JSRule({
     const setPoint = items.getItem('CT_TemperatureSetpoint').state;
     const temp = items.getItem('CT_Temperature').state;
     // and heater on
-    if (setPoint >= 18 && temp < setPoint && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
+    if (((setPoint >= 18 && temp < setPoint) || items.getItem('CT_Heater').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
       logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ');
       items.getItem('CT_Fan433PowerSocket').sendCommand('ON');
 

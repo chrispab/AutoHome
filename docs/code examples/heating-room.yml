@@ -1,12 +1,12 @@
 config:
-  label: heating_BR_timelines
+  label: heating_ER_timelines
   sidebar: true
   visibleTo:
     - role:administrator
 blocks:
   - component: oh-block
     config:
-      title: Bedroom Heating Control
+      title: Elsies room Heating Control
     slots:
       default:
         - component: oh-grid-row
@@ -21,20 +21,20 @@ blocks:
                   default:
                     - component: widget:Thermostat-Control-dev6
                       config:
-                        Title: Bedroom
-                        boostItem: v_BR_Boost
-                        boostStateItem: BR_Boost
+                        Title: Elsies room
+                        boostItem: v_ER_Boost
+                        boostStateItem: ER_Boost
                         heatingModeArray: auto,manual,off
-                        heatingModeItem: BR_HeatingMode
-                        heatingStateItem: BR_Heater
-                        location: BR
+                        heatingModeItem: ER_HeatingMode
+                        heatingStateItem: ER_Heater
+                        location: ER
                         maximumTemp: "26"
                         minimumTemp: "13"
-                        reachableStateItem: BR_RTVReachable
-                        rssiItem: BR_RTV_Rssi
-                        setpointItem: BR_TemperatureSetpoint
-                        tempItem: BR_Temperature
-                        trendItem: BR_Temperature
+                        reachableStateItem: ER_RTVReachable
+                        rssiItem: ER_RTV_Rssi
+                        setpointItem: ER_TemperatureSetpoint
+                        tempItem: ER_Temperature
+                        trendItem: ER_Temperature
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -43,8 +43,8 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: BR_Boost_Countdown
-                        title: br boosst countdown
+                        item: ER_Boost_Countdown
+                        title: er boosst countdown
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -53,33 +53,6 @@ blocks:
                   default:
                     - component: oh-clock-card
                       config: {}
-              - component: oh-grid-col
-                config:
-                  width: "100"
-                  xlarge: "10"
-                slots:
-                  default:
-                    - component: oh-label-card
-                      config:
-                        action: group
-                        actionGroupPopupItem: gRoomHeaterStates
-                        color: red
-                        icon: f7:flame
-                        iconColor: "=(items.Boiler_Control.state == 'ON') ? 'red' : 'blue'"
-                        item: Boiler_Control
-                        outline: true
-                        title: Boiler
-              - component: oh-grid-col
-                config:
-                  width: "100"
-                  xlarge: "10"
-                slots:
-                  default:
-                    - component: widget:master_heating_mode_select
-                      config:
-                        heatingModeArray: auto,manual,off
-                        heatingModeItem: masterHeatingMode
-                        location: master
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -104,11 +77,52 @@ blocks:
                   xlarge: "10"
                 slots:
                   default:
-                    - component: oh-toggle-card
+                    - component: widget:master_heating_mode_select
                       config:
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: masterHeatingMode
+                        location: master
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "5"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: group
+                        actionGroupPopupItem: gRoomHeaterStates
+                        color: red
+                        icon: f7:flame
+                        iconColor: "=(items.Boiler_Control.state == 'ON') ? 'red' : 'blue'"
                         item: Boiler_Control
                         outline: true
-                        title: boiler
+                        title: Boiler
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: FH_LinkSetpointToCTSetpoint
+                        outline: true
+                        title: link FH setpoint to CT setpoint
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: FH_Link_TrackingOffset
+                        max: 3
+                        min: 0
+                        outline: true
+                        stepSize: 0.1
+                        title: FH_Link_TrackingOffset
   - component: oh-block
     config:
       title: Auto Heating Setpoints
@@ -127,8 +141,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#A9A9A9"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_1
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_1
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -138,8 +152,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#87CEFA"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_2
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_2
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -149,8 +163,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#008000"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_3
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_3
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -160,8 +174,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FFD700"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_4
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_4
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -171,8 +185,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FF8C00"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_5
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_5
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -182,8 +196,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#DC143C"
-                        setpointAutoStateItem: v_BR_SetPoint_auto_update_by_timeline
-                        setpointItem: BR_Setpoint_auto_6
+                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
+                        setpointItem: ER_Setpoint_auto_6
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -192,9 +206,9 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: v_BR_SetPoint_auto_update_by_timeline
+                        item: v_ER_SetPoint_auto_update_by_timeline
                         outline: true
-                        title: current bedroom setpoint
+                        title: current elsies room setpoint
         - component: oh-grid-row
           config: {}
           slots:
@@ -207,8 +221,24 @@ blocks:
                       config:
                         colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
                         states: 1,2,3,4,5,6,7
-                        title: Bedroom Heating Setpoints
-                        transfer_item: Transfer_BR_SetPoint_auto
+                        title: Elsies room Heating Setpoints
+                        transfer_item: Transfer_ER_SetPoint_auto
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-webframe-card
+                      config:
+                        height: 800
+                        src: http://iotstack.local:3000/d/yOmyTiZgz/ct_heating_graph_v2?orgId=1&kiosk=tv&viewPanel=2
   - component: oh-block
     config:
       title: Heating Modes Changes
@@ -226,8 +256,8 @@ blocks:
                       config:
                         colorset: A9A9A9,008000,87CEFA
                         states: off,manual,auto
-                        title: Bedroom Heating Modes
-                        transfer_item: Transfer_BR_HeatingMode
+                        title: Elsies room Heating Modes
+                        transfer_item: Transfer_ER_HeatingMode
 masonry: null
 grid: []
 canvas: []
