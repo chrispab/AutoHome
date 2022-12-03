@@ -14,6 +14,8 @@ const max = 29;// num farts-1
 function randomFartString() {
   // generate  number in range 1 to max
   number = Math.round(Math.random() * max) + 1;
+  // number = Math.round(num * 10)/10;
+
   logger.warn(`VVV - fart number  : ${number}`);
   // if len = 1, fs = '0'+`${number}`
   if (number.toString().length === 1) {

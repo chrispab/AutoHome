@@ -3,7 +3,6 @@ Thing mqtt:topic:rf433_skt_1  "RF433 power socket 1" (mqtt:broker:MyMQTTBroker) 
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power1" ]
 }
-
 // 2 : table lamp 1
 Thing mqtt:topic:rf433_skt_2  "RF433 power socket 2" (mqtt:broker:MyMQTTBroker) @ "Conservatory" {
     Channels:
