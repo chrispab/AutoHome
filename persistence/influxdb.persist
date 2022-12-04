@@ -59,6 +59,12 @@ Items {
     CT_Humidity : strategy = everyUpdate
     CT_Heater : strategy = everyUpdate
 
+    DR_HeatingMode                : strategy = everyUpdate
+    DR_TemperatureSetpoint                : strategy = everyUpdate
+    DR_Temperature : strategy = everyUpdate
+    DR_Humidity : strategy = everyUpdate
+    DR_Heater : strategy = everyUpdate
+
     FR_HeatingMode                : strategy = everyUpdate
     FR_TemperatureSetpoint                : strategy = everyUpdate
     FR_Temperature : strategy = everyUpdate
@@ -83,21 +89,17 @@ Items {
     OF_Humidity : strategy = everyUpdate
     OF_Heater : strategy = everyUpdate
 
-
-    AT_HeatingMode : strategy = everyUpdate
-    AT_TemperatureSetpoint : strategy = everyUpdate
-    AT_Temperature : strategy = everyUpdate
-    AT_Humidity : strategy = everyUpdate
-    AT_Heater : strategy = everyUpdate
-
     ER_HeatingMode : strategy = everyUpdate
     ER_TemperatureSetpoint : strategy = everyUpdate
     ER_Temperature : strategy = everyUpdate
     ER_Humidity : strategy = everyUpdate
     ER_Heater : strategy = everyUpdate
 
-
-
+    AT_HeatingMode : strategy = everyUpdate
+    AT_TemperatureSetpoint : strategy = everyUpdate
+    AT_Temperature : strategy = everyUpdate
+    AT_Humidity : strategy = everyUpdate
+    AT_Heater : strategy = everyUpdate
 
     Heating_Mode                : strategy = everyUpdate
     Heating_PresetNormal_Group* : strategy = everyUpdate
@@ -111,15 +113,19 @@ Items {
 
     GRG_Temperature : strategy = everyUpdate
     GRG_Humidity : strategy = everyUpdate
+
     BridgeLightSensorLevel : strategy = everyUpdate
     BridgeLightSensorState : strategy = everyUpdate
+
     Plant1MoistureLevel : strategy = everyUpdate
     Plant1MoistureState : strategy = everyUpdate
     Plant2MoistureLevel : strategy = everyUpdate
     Plant2MoistureState : strategy = everyUpdate
     Plant3MoistureLevel : strategy = everyUpdate
     Plant3MoistureState : strategy = everyUpdate
+
     PIRState : strategy = everyUpdate
+
     Water1_Temperature : strategy = everyUpdate
 
 //mythtv server
