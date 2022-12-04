@@ -1,12 +1,12 @@
 config:
-  label: heating_ER_timelines
+  label: heating_OF_timelines
   sidebar: true
   visibleTo:
     - role:administrator
 blocks:
   - component: oh-block
     config:
-      title: Elsies room Heating Control
+      title: Office Heating Control
     slots:
       default:
         - component: oh-grid-row
@@ -21,20 +21,20 @@ blocks:
                   default:
                     - component: widget:Thermostat-Control-dev6
                       config:
-                        Title: Elsies room
-                        boostItem: v_ER_Boost
-                        boostStateItem: ER_Boost
+                        Title: Office
+                        boostItem: v_OF_Boost
+                        boostStateItem: OF_Boost
                         heatingModeArray: auto,manual,off
-                        heatingModeItem: ER_HeatingMode
-                        heatingStateItem: ER_Heater
-                        location: ER
+                        heatingModeItem: OF_HeatingMode
+                        heatingStateItem: OF_Heater
+                        location: OF
                         maximumTemp: "26"
                         minimumTemp: "13"
-                        reachableStateItem: ER_RTVReachable
-                        rssiItem: ER_RTV_Rssi
-                        setpointItem: ER_TemperatureSetpoint
-                        tempItem: ER_Temperature
-                        trendItem: ER_Temperature
+                        reachableStateItem: OF_RTVReachable
+                        rssiItem: OF_RTV_Rssi
+                        setpointItem: OF_TemperatureSetpoint
+                        tempItem: OF_Temperature
+                        trendItem: OF_Temperature
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -43,7 +43,7 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: ER_Boost_Countdown
+                        item: OF_Boost_Countdown
                         title: er boosst countdown
               - component: oh-grid-col
                 config:
@@ -141,8 +141,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#A9A9A9"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_1
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_1
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -152,8 +152,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#87CEFA"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_2
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_2
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -163,8 +163,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#008000"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_3
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_3
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -174,8 +174,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FFD700"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_4
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_4
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -185,8 +185,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#FF8C00"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_5
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_5
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -196,8 +196,8 @@ blocks:
                     - component: widget:setpoint_control_v1
                       config:
                         PrimaryColour: "#DC143C"
-                        setpointAutoStateItem: v_ER_SetPoint_auto_update_by_timeline
-                        setpointItem: ER_Setpoint_auto_6
+                        setpointAutoStateItem: v_OF_SetPoint_auto_update_by_timeline
+                        setpointItem: OF_Setpoint_auto_6
               - component: oh-grid-col
                 config:
                   width: "100"
@@ -206,9 +206,9 @@ blocks:
                   default:
                     - component: oh-label-card
                       config:
-                        item: v_ER_SetPoint_auto_update_by_timeline
+                        item: v_OF_SetPoint_auto_update_by_timeline
                         outline: true
-                        title: current elsies room setpoint
+                        title: current dining room setpoint
         - component: oh-grid-row
           config: {}
           slots:
@@ -221,8 +221,8 @@ blocks:
                       config:
                         colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
                         states: 1,2,3,4,5,6,7
-                        title: Elsies room Heating Setpoints
-                        transfer_item: Transfer_ER_SetPoint_auto
+                        title: Office Heating Setpoints
+                        transfer_item: Transfer_OF_SetPoint_auto
   - component: oh-block
     config: {}
     slots:
@@ -256,8 +256,8 @@ blocks:
                       config:
                         colorset: A9A9A9,008000,87CEFA
                         states: off,manual,auto
-                        title: Elsies room Heating Modes
-                        transfer_item: Transfer_ER_HeatingMode
+                        title: Office Heating Modes
+                        transfer_item: Transfer_OF_HeatingMode
 masonry: null
 grid: []
 canvas: []

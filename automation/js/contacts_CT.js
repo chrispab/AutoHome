@@ -30,7 +30,7 @@ function randomFartString() {
   return fartString;
 }
 
-let vol = 0.5;
+const vol = 0.5;
 rules.JSRule({
   name: 'CT contact01 went fasle',
   description: 'CT contact01 went false',
@@ -41,12 +41,12 @@ rules.JSRule({
   execute: () => {
     logger.warn('CT contact01 went false');
 
-    vol = actions.Audio.getMasterVolume();
-    let newVol = vol;
-    newVol = 1.0;
-    logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
+    // vol = actions.Audio.getMasterVolume();
+    // let newVol = vol;
+    // newVol = 1.0;
+    // logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
 
-    actions.Audio.setMasterVolume(newVol);
+    // actions.Audio.setMasterVolume(newVol);
 
     actions.Audio.playSound(randomFartString());
   },
@@ -63,7 +63,7 @@ rules.JSRule({
 
     actions.Audio.playSound(randomFartString());
 
-    actions.Audio.setMasterVolume(vol);
-    logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
+    // actions.Audio.setMasterVolume(vol);
+    // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
   },
 });
