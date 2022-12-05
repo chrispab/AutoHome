@@ -85,8 +85,8 @@ rules.JSRule({
  * or when updated by a script
  *
  * incoming triggers from
- * <roomPrefix>_Setpoint_auto_<setpointTag>
- * e.g 'CT_Setpoint_auto_morning', member of gHeating_Setpoint_auto_updates_webui
+ * <roomPrefix>_Setpoint_auto_<N>
+
  */
 rules.JSRule({
   name: 'handle when a auto program setpoint is updated by a setpoint changed from webui',
