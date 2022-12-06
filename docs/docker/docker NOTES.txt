@@ -17,6 +17,8 @@ $ cd ~/IOTstack
 $ docker-compose up -d
 
 
+
+
 stopping your IOTstack¶
 
 Stopping aka "downing" the stack stops and deletes all containers, and removes the internal network:
@@ -36,6 +38,7 @@ If new versions of this type of image become available on DockerHub, your local 
 
 $ cd ~/IOTstack
 $ docker-compose pull
+docker-compose up -d «container»
 $ docker-compose up -d
 $ docker system prune
 

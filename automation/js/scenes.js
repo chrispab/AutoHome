@@ -36,15 +36,15 @@ rules.JSRule({
 
     // get temp values from the web   page defining room temp presets
     // and update 'XX_Heating_PresetTempNormal' items
-    items.getItem('CT_Heating_PresetTempNormal').postUpdate(items.getItem('CT_HPSP_Night').toString());
-    items.getItem('FR_Heating_PresetTempNormal').postUpdate(items.getItem('FR_HPSP_Night').toString());
-    items.getItem('ER_Heating_PresetTempNormal').postUpdate(items.getItem('ER_HPSP_Night').toString());
-    items.getItem('AT_Heating_PresetTempNormal').postUpdate(items.getItem('AT_HPSP_Night').toString());
-    items.getItem('BR_Heating_PresetTempNormal').postUpdate(items.getItem('BR_HPSP_Night').toString());
-    items.getItem('OF_Heating_PresetTempNormal').postUpdate(items.getItem('OF_HPSP_Night').toString());
-    items.getItem('HL_Heating_PresetTempNormal').postUpdate(items.getItem('HL_HPSP_Night').toString());
-    items.getItem('Heating_UpdateHeaters').sendCommand('OFF');
-    items.getItem('Heating_UpdateHeaters').sendCommand('ON');
+    // items.getItem('CT_Heating_PresetTempNormal').postUpdate(items.getItem('CT_HPSP_Night').toString());
+    // items.getItem('FR_Heating_PresetTempNormal').postUpdate(items.getItem('FR_HPSP_Night').toString());
+    // items.getItem('ER_Heating_PresetTempNormal').postUpdate(items.getItem('ER_HPSP_Night').toString());
+    // items.getItem('AT_Heating_PresetTempNormal').postUpdate(items.getItem('AT_HPSP_Night').toString());
+    // items.getItem('BR_Heating_PresetTempNormal').postUpdate(items.getItem('BR_HPSP_Night').toString());
+    // items.getItem('OF_Heating_PresetTempNormal').postUpdate(items.getItem('OF_HPSP_Night').toString());
+    // items.getItem('HL_Heating_PresetTempNormal').postUpdate(items.getItem('HL_HPSP_Night').toString());
+    // items.getItem('Heating_UpdateHeaters').sendCommand('OFF');
+    // items.getItem('Heating_UpdateHeaters').sendCommand('ON');
 
     items.getItem('Scene_Goodnight').postUpdate('OFF');
     items.getItem('workLightsPowerSocket').sendCommand('OFF');
