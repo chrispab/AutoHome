@@ -135,3 +135,11 @@ wifi_socket_7
 Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_7/tele/SENSOR/DS18B20/Temperature %value% ENDON ON DS18B20#Temperature>=21.1 DO power1 0 ENDON ON DS18B20#Temperature<21.1 DO power1 1 ENDON
 
 wifi_socket_7
+
+# no pub temp
+Rule1 ON DS18B20#Temperature==%Var1% DO Var1 %value% BREAK ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value% ENDON ON DS18B20#Temperature>=21.1 DO power1 0 ENDON ON DS18B20#Temperature<21.1 DO power1 1 ENDON
+
+new
+Rule2 ON tele-DS18B20#Temperature<21.1 DO power1 1 BREAK ON tele-DS18B20#Temperature>=21.1 DO  power1 0 BREAK ENDON
+
+
