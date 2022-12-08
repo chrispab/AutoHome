@@ -63,7 +63,7 @@ rules.JSRule({
     logger.warn(`--->>> roomPrefix : ${roomPrefix}`);
 
     // setpointTempTag is one of
-    // other possible tag, 'min, cool, comfort, warm, hot, max'
+    // other possible tag, '1 to 6
     // - "event.receivedState": "comfort",
     const setpointTemperatureTag = event.receivedState.toString();
     logger.warn(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);

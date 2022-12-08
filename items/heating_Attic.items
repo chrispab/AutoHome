@@ -5,8 +5,8 @@ Number AT_Temperature "Attic Temperature [%.1f °C]" <temperature> (gAT_Thermost
 Number AT_Humidity "Attic Humidity [%.1f °C]" <humidity> (gAT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
 
 // // // // //additional params for use in openhab functions etc
-Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" } 
+Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }
 String AT_HeatingMode "Attic Heating Mode" <settings> (gHeatingModes)
 Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
-Number AT_RTV_Rssi "attic RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:atticRadThermoValve:rssi" }
+Number AT_RTV_Rssi "attic RTV RSSI [%.1f]" <qualityofservice> (gAT_Thermostat) { channel="mqtt:topic:atticRadThermoValve:rssi" }
