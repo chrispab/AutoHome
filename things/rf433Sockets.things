@@ -1,4 +1,4 @@
-// 1 not in use - now a BG wifi socket
+// 1 not in use - now a BG wifi socket temp dining room rad control
 Thing mqtt:topic:rf433_skt_1  "RF433 power socket 1" (mqtt:broker:MyMQTTBroker)  {
     Channels:
         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power1" ]
