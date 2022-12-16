@@ -65,10 +65,10 @@ rules.JSRule({
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
       logger.warn(`>>Heater mode is auto or manual : ${heatingModeItem.state.toString()}`);
-      const setpoint = SetpointItem.state;
+      const setpoint = SetpointItem.rawState;
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
-      const temp = TemperatureItem.state; //  # get the current temperature
+      const temp = TemperatureItem.rawState; //  # get the current temperature
       if (temp >= turnOffTemp) {
         logger.error(`>>>SendCommand to ${roomPrefix}_Heater, HeaterItem OFF`);
         HeaterItem.sendCommand('OFF');
