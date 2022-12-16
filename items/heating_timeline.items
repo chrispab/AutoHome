@@ -43,12 +43,13 @@ Number FH_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 // used internally by timeLinePicker.rules
 String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
 //  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
-String v_CT_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+// String v_CT_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+String v_CT_HeatingMode_update_by_timeline  (gTimepicker)
 
 //CT Setpoint items
-String Transfer_CT_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
+String Transfer_CT_SetPoint_auto "[%s]"     (gTimepicker) //name of timeline rules item
 //proxy item to monitor any op from Transfer_CT_SetPoint_auto
-String v_CT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+String v_CT_SetPoint_auto_update_by_timeline    (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline ct setpoints for auto
 

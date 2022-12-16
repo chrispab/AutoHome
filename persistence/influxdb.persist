@@ -225,4 +225,7 @@ Items {
 
     CT_Temperature_raw : strategy = everyUpdate
 
+    v_DR_HeatingMode_update_by_timeline : strategy = everyUpdate
+    v_DR_SetPoint_auto_update_by_timeline : strategy = everyUpdate
+
 }

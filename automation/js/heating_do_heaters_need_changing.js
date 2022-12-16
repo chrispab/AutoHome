@@ -70,10 +70,10 @@ rules.JSRule({
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.state; //  # get the current temperature
       if (temp >= turnOffTemp) {
-        logger.warn(`>>>SendCommand to ${roomPrefix}_Heater, HeaterItem OFF`);
+        logger.error(`>>>SendCommand to ${roomPrefix}_Heater, HeaterItem OFF`);
         HeaterItem.sendCommand('OFF');
       } else if (temp < turnOnTemp) {
-        logger.warn(`>>>SendCommand to: ${roomPrefix}, HeaterItem On`);
+        logger.error(`>>>SendCommand to: ${roomPrefix}, HeaterItem On`);
         HeaterItem.sendCommand('ON');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {
