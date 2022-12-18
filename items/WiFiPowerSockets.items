@@ -2,7 +2,6 @@
 
 Group gWiFiPowerSockets
 Group gWiFiPowerSocketsReachable
-Group gChristmasWifiPowerSockets
 
 
 //currently used for RPi mythtv_backend server

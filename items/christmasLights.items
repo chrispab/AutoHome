@@ -1,3 +1,5 @@
+Group gChristmasWifiPowerSockets
+
 Group:Switch:OR(ON,OFF) gChristmasLights "Christmas Lights" (gChristmasWifiPowerSockets) { ga="Switch" }
 
 

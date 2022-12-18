@@ -42,9 +42,3 @@ Number	Zone3_high_setpoint	    "Zone 3 high_setpoint"       	<temperature>					{
 
 Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
 
-// mqtt:topic:zone3Controller:vent_on_delta
-//         Type number : vent_on_delta "zone3 vent_on_delta" [ stateTopic="Zone3/vent_on_delta_secs", commandTopic="Zone3/vent_on_delta_secs/set" ]
-//         Type number : vent_off_delta "zone3 vent_off_delta" [ stateTopic="Zone3/vent_off_delta_secs", commandTopic="Zone3/vent_off_delta_secs/set" ]
-// Number	Shed_Temperature		"Shed Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquitto:Outside_Sensor/tele/SENSOR:state:JSONPATH($.DS18B20-2.Temperature)]"}
-
-

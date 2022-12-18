@@ -1,6 +1,5 @@
 Group gKT_WiFiLightsPower
 Group gKT_WiFiLightsReachable
-// Group gChristmasWifiPowerSockets
 Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
 
 Number KT_cupboard_lights_timeout
