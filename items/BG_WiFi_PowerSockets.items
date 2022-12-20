@@ -23,9 +23,6 @@ String bg_wifisocket_2_reachable "BG Socket 2-reachable" (gMQTT, gBGWiFiPowerSoc
 //double socket
 //left - 3-1  Amplifier
 Switch bg_wifisocket_3_1_power "BG Socket three-one" (gMQTT, gBGWiFiPowerSockets, gbg)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
-// Switch bg_wifisocket_3_1_power "Amplifier Power" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1" }
-// String bg_wifisocket_3_1_device  "device name being controlled " { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_1", expire="1s,HIFI power"}
-
 //not used yet
 Switch bg_wifisocket_3_2_power "BG Socket three-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_2" }
 Switch CT_TV_Power "CT_TV_Power" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_3:powerSwitch_2" }

@@ -11,7 +11,7 @@ rules.JSRule({
   description: 'when any heater states updated, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gRoomHeaterStates')],
   execute: (event) => {
-    logger.warn('...when any heater states updated, turn Boiler ON else turn boiler OFF');
+    logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
     // console.log(event);
     logger.warn(`....triggering item : ${event.itemName}`);
     logger.warn(`....item value : ${event.receivedState}`);
