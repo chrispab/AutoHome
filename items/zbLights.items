@@ -22,6 +22,8 @@ Group:Switch:OR(ON,OFF) 	gColourBulbs		"colour bulbs switch"	(gAllBulbs)
 
 
 Group:Color:OR(ON, OFF)		gZbColourBulbsColour "both colour bulbs"	{ ga="Light" }
+
+Group  gLightCyclers
 Group	gZbColourBulbsDim
 Group	gZbColourBulbsSwitch
 
@@ -30,11 +32,15 @@ Switch	ZbColourBulb01Switch		"clip bulb"									(gZbColourBulb01, gZbColourBulb
 // Dimmer	ZbColourBulb01Dim			"Zb colour bulb 01 dim [%d]"									(gZbColourBulb01, gZbColourBulbsDim)		{channel="mqtt:topic:ikeacolourbulb01:dimmer"}
 Number	ZbColourBulb01Quality		"Zb colour bulb 01  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb01)							{channel="mqtt:topic:ikeacolourbulb01:linkquality"}
 Color	ZbColourBulb01Colour		"metal clip colour bulb"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
+Color	ZbColourBulb01_RGB		"colour bulb1"										(gZbColourBulb01, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
+Switch ZbColourBulb01_CYCLE  "colour bulb1 cycle switch" (gLightCyclers)
 
 Group	gZbColourBulb02 (gZbColourBulbs)
 Switch	ZbColourBulb02Switch		"Zb colour bulb 02 switch [%s]"									(gZbColourBulb02, gZbColourBulbsSwitch, gColourBulbs)							{channel="mqtt:topic:ikeacolourbulb02:switch"}
 // Dimmer	ZbColourBulb02Dim			"Zb colour bulb 02 dim [%d]"									(gZbColourBulb02, gZbColourBulbsDim)		{channel="mqtt:topic:ikeacolourbulb02:dimmer"}
 Number	ZbColourBulb02Quality		"Zb colour bulb 02  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb02)							{channel="mqtt:topic:ikeacolourbulb02:linkquality"}
 Color	ZbColourBulb02Colour		"plastic clip colour bulb"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Color	ZbColourBulb02_RGB		"colour bulb2"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Switch ZbColourBulb02_CYCLE  "colour bulb2 cycle switch" (gLightCyclers)
 
 // Color   ZbColourBulb02Colour "Color M24 lamp [%s]"  (gZbColourBulb02, gZbColourBulbsColour) {ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}

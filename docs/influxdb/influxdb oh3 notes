@@ -1,20 +1,3 @@
-image links
-
-http://device-address:8080/static/image.png
-
-a relative URL is enough. Example: “/static/image.png” .This also works remotely via myopenhab.org 7
-
-
-
-To access the terminal for influxdb execute ./services/influxdb/terminal.sh. Here you can set additional parameters or create other databases.
-
-command="SELECT value::integer INTO temp FROM measurement; DROP MEASUREMENT measurement; SELECT value::integer INTO measurement FROM temp; DROP MEASUREMENT temp;"
-
-influx -database 'openhab' -execute "$(sed "s#measurement#$m#g" <<< $command)"
-
-
-I must admit, I encountered the same problem and worked around it, instead of raising an issue. I changed the type of my historic data to integer
-by storing it to a temporary measurement:
 
 
 docker exec -it influxdb influx
@@ -49,7 +32,26 @@ list the entries of an item table with
 
 https://community.openhab.org/t/how-to-delete-data-from-influxdb-tables/63366
 
+SELECT * FROM Outside_Temperature WHERE value < -10
+
+DELETE FROM Outside_Temperature WHERE time = 1671816909933000000
+
+DELETE FROM Outside_Temperature WHERE time = 1671816960204000000
+
+
 DELETE FROM Soil1_Moisture WHERE time < 1650233745809000000
 
 DELETE FROM Soil1_Moisture_2 WHERE time = 1650288180388000000
 DELETE FROM Soil1_Moisture_5 WHERE time < 1650747600041000000
+
+
+
+To access the terminal for influxdb execute ./services/influxdb/terminal.sh. Here you can set additional parameters or create other databases.
+
+command="SELECT value::integer INTO temp FROM measurement; DROP MEASUREMENT measurement; SELECT value::integer INTO measurement FROM temp; DROP MEASUREMENT temp;"
+
+influx -database 'openhab' -execute "$(sed "s#measurement#$m#g" <<< $command)"
+
+
+I must admit, I encountered the same problem and worked around it, instead of raising an issue. I changed the type of my historic data to integer
+by storing it to a temporary measurement:
