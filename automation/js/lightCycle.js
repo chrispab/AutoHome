@@ -13,7 +13,7 @@ const {
   ON, OFF, PercentType, OnOffType, HSBType, DecimalType, RGBType, ChronoUnit,
 } = require('@runtime');
 // val cycleSat = new PercentType(75)
-const sat = new PercentType(75);
+const sat = new PercentType(100);
 // val cycleBright = new PercentType(100)
 const bright = new PercentType(100);
 // val pause = 200
@@ -101,7 +101,7 @@ rules.JSRule({
             hue = 0;
             direction *= -1;
           }
-          logger.error('CycleColor - sendCommand(new HSBType(new DecimalType(hue),  sat, bright))');
+          logger.error(`CycleColor - sendCommand(HSBType) H: ${hue.toString()}, S:${sat.toString()}, B: ${bright.toString()}`);
           // light.sendCommand(new RGBType.fromHSB(new HSBType(new DecimalType(hue), sat, bright)));
           // events.sendCommand('Huecolorlamp2TestLeuchte_Farbe', Hue.toString() + "," + Saturation.toString() + "," + Brightness.toString());
           light1.sendCommand(`${hue.toString()},${sat.toString()},${bright.toString()}`);
