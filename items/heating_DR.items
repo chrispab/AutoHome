@@ -3,24 +3,11 @@
 Group gDR_Thermostat "Dining Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Dining Room" ] }
 String DR_ThermostatMode "Dining Room Thermostat Mode" <settings> (gDR_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number DR_TemperatureSetpoint "Dining Room Setpoint [%.1f °C]" <heating> (gDR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number DR_Temperature "Dining Room Temperature rawz [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:diningRoomRadThermoValve:temperature" }
+Number DR_Humidity "Dining Room Humidity [%.1f °C]" <humidity> (gDR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:diningRoomRadThermoValve:humidity" }
 
-// Number CT_Temperature "Conservatory Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gRoomTemperatures)S
-// Number CT_Temperature_monitor
-Number DR_Temperature "Dining Room Temperature rawz [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
-
-Number DR_Humidity "Dining Room Humidity [%.1f °C]" <humidity> (gDR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
-
-// //additional params for use in openhab functions etc
-// Switch DR_Heater "Dining Room Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
-Switch DR_Heater "Dining Room Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:rf433_skt_1:powerSwitch" }
-
+//additional params for use in openhab functions etc
+Switch DR_Heater "Dining Room Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
 String DR_HeatingMode "Dining Room Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
-// Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
-
-String DR_RTVReachable "Dining Room Reachable" <qualityofservice> (gCT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:conservatoryRadThermoValve:reachable" }
-Number DR_RTV_Rssi "DR RTV RSSI [%.1f]" <qualityofservice> (gCT_Thermostat) { channel="mqtt:topic:conservatoryRadThermoValve:rssi" }
-
-// Switch CT_Boost "Conservatory Heater boost"  <my_radiator>   (gHeaterBoosters,gAnyRoomHeaterOn,gRoomHeaterStates)//(gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
-// Switch v_CT_Boost "Conservatory virtual Heater boost"
-
-// Number CT_Boost_Countdown "CT_Boost_Countdown"
+String DR_RTVReachable "Dining Room Reachable" <qualityofservice> (gCT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
+Number DR_RTV_Rssi "DR RTV RSSI [%.1f]" <qualityofservice> (gCT_Thermostat) { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }

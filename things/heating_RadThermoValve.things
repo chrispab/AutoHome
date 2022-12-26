@@ -18,15 +18,14 @@ Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory RTV" (mqtt:broker:MyM
 }
 
 
-// Thing mqtt:topic:diningRoomRadThermoValve  "Dining Room RTV" (mqtt:broker:MyMQTTBroker)  @ "Dining Room" {
-    // Channels:
-//         Type number : temperature  [ stateTopic="433Bridge/Temperature"]
-//         Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
-        // Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power1" ]
-//         Type string : reachable    [ stateTopic="433Bridge/LWT" ]
-//         Type number : rssi         [ stateTopic="433Bridge/rssi" ]
-// }
-
+Thing mqtt:topic:diningRoomRadThermoValve  "Dining Room RTV" (mqtt:broker:MyMQTTBroker) @ "Dining room" {
+    Channels:
+        Type number : temperature  [ stateTopic="diningRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Temperature" ]
+        Type number : humidity     [ stateTopic="diningRoom/tele/SENSOR",  transformationPattern="JSONPATH:$.AM2301.Humidity" ]
+        Type switch : powerSwitch  [ stateTopic="diningRoom/stat/POWER" , commandTopic="diningRoom/cmnd/POWER", on="ON", off="OFF" ]
+        Type string : reachable    [ stateTopic="diningRoom/tele/LWT"  ]
+        Type number : rssi         [ stateTopic="diningRoom/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+}
 
 
 

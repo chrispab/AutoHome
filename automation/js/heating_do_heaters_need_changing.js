@@ -20,7 +20,7 @@ rules.JSRule({
   ],
   execute: (event) => {
     // console.log(event);
-    logger.warn('>Mode, setpoint or temp changed. Do any Heaters need changing etc?');
+    logger.warn('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     const action = 'default';
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
@@ -41,14 +41,19 @@ rules.JSRule({
     logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
+    // !if ANY trvs are unreachable - turn off hetarer to prevent false demand
+    // not just the calkkling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
       logger.warn(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
+
+      items.getItem('HL_Heater').sendCommand('OFF');
       // dont continue on and update the bolier control if this RTV is Offline
       return;
     }
+    items.getItem('HL_Heater').sendCommand('OFF');
 
     logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 

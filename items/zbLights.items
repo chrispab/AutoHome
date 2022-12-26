@@ -40,7 +40,9 @@ Switch	ZbColourBulb02Switch		"Zb colour bulb 02 switch [%s]"									(gZbColourB
 // Dimmer	ZbColourBulb02Dim			"Zb colour bulb 02 dim [%d]"									(gZbColourBulb02, gZbColourBulbsDim)		{channel="mqtt:topic:ikeacolourbulb02:dimmer"}
 Number	ZbColourBulb02Quality		"Zb colour bulb 02  LinkQuality [%d]"		<qualityofservice>	(gZbColourBulb02)							{channel="mqtt:topic:ikeacolourbulb02:linkquality"}
 Color	ZbColourBulb02Colour		"plastic clip colour bulb"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
-Color	ZbColourBulb02_RGB		"colour bulb2"										(gZbColourBulb02, gZbColourBulbsColour)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Color	ZbColourBulb02_RGB		"colour bulb2"										(gZbColourBulb02)		{ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
 Switch ZbColourBulb02_CYCLE  "colour bulb2 cycle switch" (gLightCyclers)
 
 // Color   ZbColourBulb02Colour "Color M24 lamp [%s]"  (gZbColourBulb02, gZbColourBulbsColour) {ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
+Number	lightCyclerHueStepSize		"lightCyclerHueStepSize"
+Number	lightCyclerIntervalMillis		"lightCyclerIntervalMillis"
