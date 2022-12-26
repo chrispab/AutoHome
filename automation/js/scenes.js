@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('BG_Availability.js');
+const logger = log('scenes');
 const { timeUtils } = require('openhab_rules_tools');
 
 let tsceneStartup;

@@ -51,7 +51,7 @@ rules.JSRule({
     //         light.sendCommand(OFF)
     //         return;
     //     }
-    if (event.newState !== 'ON') {
+    if (items.getItem('ZbColourBulb02_CYCLE').state !== 'ON') {
       logger.error('CycleColor - light.sendCommand(OFF),., return;');
       light1.sendCommand(OFF);
       light2.sendCommand(OFF);
@@ -91,11 +91,11 @@ rules.JSRule({
         logger.error('CycleColor - while the cycle flag is ON and the light remains ON, move the color');
         myutils.showItem(light1);
         // if (event.newState === 'ON' && light.state === 'ON') {
-        if (event.newState === 'ON') {
+        if (items.getItem('ZbColourBulb02_CYCLE').state.toString() === 'ON') {
           hue += (items.getItem('lightCyclerHueStepSize').rawState * direction);
 
-          if (hue >= 360) {
-            hue = 360;
+          if (hue >= 359) {
+            hue = 359;
             direction *= -1;
           } else if (hue <= 0) {
             hue = 0;

@@ -3,20 +3,20 @@ const {
 } = require('openhab');
 const { timeUtils } = require('openhab_rules_tools');
 
-const logger = log('pir');
+const logger = log('pir04');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded - pir 03 04');
+  logger.warn('scriptLoaded - pir 04');
   // loadedDate = Date.now();
 };
 
 rules.JSRule({
   name: 'sonoff PIR MONITOR',
   description: 'monitor any sonoff PIR occupancy updates..v..',
-  triggers: [triggers.ItemStateUpdateTrigger('pir03_occupancy')],
+  triggers: [triggers.ItemStateUpdateTrigger('pir04_occupancy')],
   execute: (data) => {
     logger.warn(
-      `PIR sonoff MONITOR -  pir_occupancy received update itemName : ${data.itemName
+      `PIR sonoff MONITOR -  pir_occupancy04 received update itemName : ${data.itemName
       }, state: ${items.getItem(data.itemName).state
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
@@ -28,7 +28,7 @@ function pir04_off_body() {
 }
 
 let pir04_off_timer = null;
-// let pir02_off_timer = null;
+
 rules.JSRule({
   name: 'pir04 updated with ON',
   description: 'pir04  - Turn ON lights, cancel off timers  ',
@@ -46,13 +46,13 @@ rules.JSRule({
     logger.warn(
       `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     );
-    logger.warn(`-pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
+    logger.warn(`-pir04_occupancy: ${items.getItem('pir04_occupancy').state}`);
 
     if (items.getItem('CT_LightDark_State').state === 'OFF') {
       logger.warn(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
       if (items.getItem('pir04_occupancy').state === 'ON') {
         items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
-        logger.warn('-rxed pir01_occupancy KT_light_1_Power ON');
+        logger.warn("ZbWhiteBulb01Switch').sendCommand('ON')");
         // cancrl the off timer if running
         if (pir04_off_timer && pir04_off_timer.isActive()) {
           pir04_off_timer.cancel();
@@ -77,15 +77,15 @@ rules.JSRule({
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
     if (data.itemName === 'pir04_occupancy') {
-      logger.warn(
-        `-pir04_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,
-      );
+      // logger.warn(
+      //   `-pir04_occupancy: STARTING TIMER : OFF, off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,
+      // );
       const now = time.ZonedDateTime.now();
       pir04_off_timer = actions.ScriptExecution.createTimer(
         now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
         pir04_off_body,
       );
-      logger.warn('-pir04_occupancy: STARTING TIMER KT_light_1_Power: OFF END');
+      logger.warn('-pir04_occupancy: STARTING TIMER  OFF END');
     }
   },
 });
