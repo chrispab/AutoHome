@@ -17,12 +17,7 @@ let sat = new PercentType(100);
 // val cycleBright = new PercentType(100)
 let bright = new PercentType(100);
 // val pause = 200
-const pause = 200;
 // var Map<String, Timer> cycleTimers = newHashMap
-function cycle_timer_body() {
-  logger.warn('===The timer is over.pir04_off_body');
-  items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
-}
 
 let cycle_timer = null;
 // rule "A light color cycle"
@@ -36,24 +31,26 @@ rules.JSRule({
     triggers.GroupStateChangeTrigger('gLightCyclers'),
   ],
   execute: (event) => {
-    // Get the light associate?d with this cycler
-    //     val light = ScriptServiceUtil.getItemRegistry.getItem(triggeringItem.name.replace("CYCLE", "RGB"))
+    // Get the light associated with this cycler
     myutils.showEvent(event);
     // const light = items.getItem(event.itemName.toString().replace('CYCLE', 'RGB'));
-    const light1 = items.getItem('ZbColourBulb01_RGB');
-    const light2 = items.getItem('ZbColourBulb02_RGB');
+    const light1 = items.getItem('ZbColourBulb01_color');
+    const light2 = items.getItem('ZbColourBulb02_color');
 
     // myutils.showItem(light);
     // utils.dumpObject(light1, true);
     // myutils.showItem(light1);
-    //     // turn off the cycling
+    // turn off the cycling
     if (items.getItem('ZbColourBulb02_CYCLE').state.toString() !== 'ON') {
       logger.error('CycleColor - light.sendCommand(OFF),., returning');
-      light1.sendCommand('OFF');
-      light2.sendCommand('OFF');
+
       if (cycle_timer) {
         cycle_timer.cancel();
       }
+      // light1.sendCommand('OFF');
+      // light2.sendCommand('OFF');
+      light1.sendCommand('0,0,0');
+      light2.sendCommand('0,0,0');
       return;
     }
     // Start cycling
@@ -64,8 +61,8 @@ rules.JSRule({
     // turn on the light if it isn't already
     //     if(light.getStateAs(OnOffType) != ON) light.sendCommand(ON)
     // if (light.state(OnOffType) !== ON) light.sendCommand(ON);
-    if (light1.state !== ON) light1.sendCommand(ON);
-    if (light2.state !== ON) light2.sendCommand(ON);
+    if (light1.state !== 'ON') light1.sendCommand('ON');
+    if (light2.state !== 'ON') light2.sendCommand('ON');
 
     //     cycleTimers.get(triggeringItem.name)?.cancel // if there is a timer already running, cancel it
     // if there is a timer already running, cancel it
@@ -101,11 +98,11 @@ rules.JSRule({
           // cycle_timer.reschedule(tnow.plus(1000, java.time.temporal.ChronoUnit.MILLIS));
         } else {
           logger.error('CycleColor - cycle flag off');
-          light1.sendCommand('OFF');
-          light2.sendCommand('OFF');
           if (cycle_timer) {
             cycle_timer.cancel();
           }
+          light1.sendCommand('OFF');
+          light2.sendCommand('OFF');
         }
       },
     );
