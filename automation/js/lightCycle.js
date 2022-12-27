@@ -13,9 +13,9 @@ const {
   ON, OFF, PercentType, OnOffType, HSBType, DecimalType, RGBType, ChronoUnit,
 } = require('@runtime');
 // val cycleSat = new PercentType(75)
-const sat = new PercentType(100);
+let sat = new PercentType(100);
 // val cycleBright = new PercentType(100)
-const bright = new PercentType(100);
+let bright = new PercentType(100);
 // val pause = 200
 const pause = 200;
 // var Map<String, Timer> cycleTimers = newHashMap
@@ -44,30 +44,23 @@ rules.JSRule({
     const light2 = items.getItem('ZbColourBulb02_RGB');
 
     // myutils.showItem(light);
-    utils.dumpObject(light1, true);
-    myutils.showItem(light1);
+    // utils.dumpObject(light1, true);
+    // myutils.showItem(light1);
     //     // turn off the cycling
-    //     if(triggeringItem.state != ON) {
-    //         light.sendCommand(OFF)
-    //         return;
-    //     }
-    if (items.getItem('ZbColourBulb02_CYCLE').state !== 'ON') {
-      logger.error('CycleColor - light.sendCommand(OFF),., return;');
-      light1.sendCommand(OFF);
-      light2.sendCommand(OFF);
-
+    if (items.getItem('ZbColourBulb02_CYCLE').state.toString() !== 'ON') {
+      logger.error('CycleColor - light.sendCommand(OFF),., returning');
+      light1.sendCommand('OFF');
+      light2.sendCommand('OFF');
       if (cycle_timer) {
         cycle_timer.cancel();
       }
       return;
     }
     // Start cycling
-    //     logInfo("CycleColor", "Color Loop Activated")
     logger.error('CycleColor - Color Loop Activated');
-    //     var hue = 0
-    //     val direction = 1
+
     let hue = 0;
-    let direction = 1;
+    const direction = 1;
     // turn on the light if it isn't already
     //     if(light.getStateAs(OnOffType) != ON) light.sendCommand(ON)
     // if (light.state(OnOffType) !== ON) light.sendCommand(ON);
@@ -81,7 +74,6 @@ rules.JSRule({
     }
 
     // create a timer to trigger immediately
-    //     cycleTimers.put(triggeringItem.name, createTimer(now, [ |
     const now = time.ZonedDateTime.now();
     cycle_timer = actions.ScriptExecution.createTimer(
       now.plusSeconds(1),
@@ -89,33 +81,33 @@ rules.JSRule({
       // while the cycle flag is ON and the light remains ON, move the color
       () => {
         logger.error('CycleColor - while the cycle flag is ON and the light remains ON, move the color');
-        myutils.showItem(light1);
+        // myutils.showItem(light1);
         // if (event.newState === 'ON' && light.state === 'ON') {
         if (items.getItem('ZbColourBulb02_CYCLE').state.toString() === 'ON') {
           hue += (items.getItem('lightCyclerHueStepSize').rawState * direction);
-
           if (hue >= 359) {
-            hue = 359;
-            direction *= -1;
-          } else if (hue <= 0) {
-            hue = 0;
-            direction *= -1;
+            hue -= 359;
           }
-          logger.error(`CycleColor - sendCommand(HSBType) H: ${hue.toString()}, S:${sat.toString()}, B: ${bright.toString()}`);
-          // light.sendCommand(new RGBType.fromHSB(new HSBType(new DecimalType(hue), sat, bright)));
-          // events.sendCommand('Huecolorlamp2TestLeuchte_Farbe', Hue.toString() + "," + Saturation.toString() + "," + Brightness.toString());
+
+          sat = items.getItem('lightCyclerSaturation').rawState;
+          bright = items.getItem('lightCyclerBrightness').rawState;
+
+          logger.error(`CycleColor - sendCommand(HSBType) H: ${hue.toString()}, S: ${sat.toString()}, B: ${bright.toString()}`);
           light1.sendCommand(`${hue.toString()},${sat.toString()},${bright.toString()}`);
           light2.sendCommand(`${hue.toString()},${sat.toString()},${bright.toString()}`);
 
           const tnow = time.ZonedDateTime.now();
-          // cycle_timer.reschedule(tnow.plusSeconds(1));// Set the timer to run again
           cycle_timer.reschedule(tnow.plus(items.getItem('lightCyclerIntervalMillis').rawState, time.ChronoUnit.MILLIS));
-          // dt.plus(1, ChronoUnit.MILLIS); java.time.temporal.ChronoUnit.whatevermethodyouwant()
           // cycle_timer.reschedule(tnow.plus(1000, java.time.temporal.ChronoUnit.MILLIS));
-        } else cycle_timer.cancel();// set the timer to null now that we are done
+        } else {
+          logger.error('CycleColor - cycle flag off');
+          light1.sendCommand('OFF');
+          light2.sendCommand('OFF');
+          if (cycle_timer) {
+            cycle_timer.cancel();
+          }
+        }
       },
-      //     ]))
     );
-    // end
   },
 });
