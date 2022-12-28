@@ -29,7 +29,7 @@ Channels:
     Type switch : switch "Ikea Colour Bulb 01 Switch" [ stateTopic="zigbee2mqtt/ikeacolourbulb01", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
     // Type dimmer : dimmer "Ikea Colour Bulb 01 Dimmer" [ stateTopic="zigbee2mqtt/ikeacolourbulb01", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", min=0, max=100, step=1, transformationPatternOut="JS:openhabdimmer2zigbeebridge.js", transformationPattern="JS:tradfri2openhab.js" ]
     Type number : linkquality "Ikea Colour Bulb 01 LinkQuality" [ stateTopic="zigbee2mqtt/ikeacolourbulb01",  transformationPattern="JSONPATH:$.linkquality" ]
-    Type color : color "Ikea Colour Bulb 01 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb01", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", colorMode="XYY", transformationPattern="JSONPATH:$.color", transformationPatternOut="JS:XYY_to_json.js" ]
+    Type color : color "Ikea Colour Bulb 01 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb01/ignore", commandTopic="zigbee2mqtt/ikeacolourbulb01/set", colorMode="XYY", transformationPattern="JSONPATH:$.color", transformationPatternOut="JS:XYY_to_json.js" ]
 }
 // Thing mqtt:topic:ikeacolourbulb02 "IKEA Colour Bulb 02" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 // {
@@ -58,5 +58,7 @@ Thing mqtt:topic:ikeacolourbulb02 "Ikea Colour Bulb 02" (mqtt:broker:MyMQTTBroke
 Channels:
     Type switch : switch "Ikea Colour Bulb 02 Switch" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", transformationPattern="JSONPATH:$.state", transformationPatternOut="JS:switch2zigbee2mqtt.js"]
     Type number : linkquality "Ikea Colour Bulb 02 LinkQuality" [ stateTopic="zigbee2mqtt/ikeacolourbulb02",  transformationPattern="JSONPATH:$.linkquality" ]
-    Type color : color "Ikea Colour Bulb 02 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", transformationPattern="JSONPATH:$.color", colorMode="XYY", transformationPatternOut="JS:XYY_to_json.js" ]
+    Type color : color "Ikea Colour Bulb 02 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb02/ignore", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", transformationPattern="JSONPATH:$.color.*", colorMode="XYY", transformationPatternOut="JS:XYY_to_json.js" ]
+    // Type color : color "Ikea Colour Bulb 02 Color" [ stateTopic="zigbee2mqtt/ikeacolourbulb02", commandTopic="zigbee2mqtt/ikeacolourbulb02/set", colorMode="XYY", transformationPatternOut="JS:XYY_to_json.js" ]
+
 }

@@ -36,7 +36,8 @@ rules.JSRule({
     // const light = items.getItem(event.itemName.toString().replace('CYCLE', 'RGB'));
     const light1 = items.getItem('ZbColourBulb01_color');
     const light2 = items.getItem('ZbColourBulb02_color');
-
+    const light1_switch = items.getItem('ZbColourBulb01_switch');
+    const light2_switch = items.getItem('ZbColourBulb02_switch');
     // myutils.showItem(light);
     // utils.dumpObject(light1, true);
     // myutils.showItem(light1);
@@ -47,10 +48,10 @@ rules.JSRule({
       if (cycle_timer) {
         cycle_timer.cancel();
       }
-      // light1.sendCommand('OFF');
-      // light2.sendCommand('OFF');
-      light1.sendCommand('0,0,0');
-      light2.sendCommand('0,0,0');
+      light1_switch.sendCommand('OFF');
+      light2_switch.sendCommand('OFF');
+      // light1.sendCommand('0,0,0');
+      // light2.sendCommand('0,0,0');
       return;
     }
     // Start cycling
@@ -61,8 +62,8 @@ rules.JSRule({
     // turn on the light if it isn't already
     //     if(light.getStateAs(OnOffType) != ON) light.sendCommand(ON)
     // if (light.state(OnOffType) !== ON) light.sendCommand(ON);
-    if (light1.state !== 'ON') light1.sendCommand('ON');
-    if (light2.state !== 'ON') light2.sendCommand('ON');
+    if (light1_switch.state !== 'ON') light1_switch.sendCommand('ON');
+    if (light2_switch.state !== 'ON') light2_switch.sendCommand('ON');
 
     //     cycleTimers.get(triggeringItem.name)?.cancel // if there is a timer already running, cancel it
     // if there is a timer already running, cancel it
@@ -74,14 +75,15 @@ rules.JSRule({
     const now = time.ZonedDateTime.now();
     cycle_timer = actions.ScriptExecution.createTimer(
       now.plusSeconds(1),
-      // cycle_timer_body,
       // while the cycle flag is ON and the light remains ON, move the color
       () => {
         logger.error('CycleColor - while the cycle flag is ON and the light remains ON, move the color');
         // myutils.showItem(light1);
-        // if (event.newState === 'ON' && light.state === 'ON') {
-        if (items.getItem('ZbColourBulb02_CYCLE').state.toString() === 'ON') {
-          hue += (items.getItem('lightCyclerHueStepSize').rawState * direction);
+        if (event.newState === 'ON' && light1_switch.state === 'ON') {
+          // if (items.getItem('ZbColourBulb02_CYCLE').state.toString() === 'ON') {
+          // hue += (items.getItem('lightCyclerHueStepSize').rawState * direction);
+          hue += (items.getItem('lightCyclerHueStepSize').rawState);
+
           if (hue >= 359) {
             hue -= 359;
           }
@@ -101,8 +103,8 @@ rules.JSRule({
           if (cycle_timer) {
             cycle_timer.cancel();
           }
-          light1.sendCommand('OFF');
-          light2.sendCommand('OFF');
+          light1_switch.sendCommand('OFF');
+          light2_switch.sendCommand('OFF');
         }
       },
     );
