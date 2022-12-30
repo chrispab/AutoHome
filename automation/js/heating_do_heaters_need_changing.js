@@ -28,8 +28,8 @@ rules.JSRule({
     const heatingModeItem = items.getItem(`${roomPrefix}_HeatingMode`);
     logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
 
-    const SetpointItem = items.getItem(`${roomPrefix}_TemperatureSetpoint`);
-    logger.warn(`>SetpointItem.name: ${SetpointItem.name} : ,  Setpoint.state: ${SetpointItem.state}`);
+    const setpointItem = items.getItem(`${roomPrefix}_TemperatureSetpoint`);
+    logger.warn(`>setpointItem.name: ${setpointItem.name} : ,  Setpoint.state: ${setpointItem.state}`);
 
     const TemperatureItem = items.getItem(`${roomPrefix}_Temperature`);
     logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
@@ -70,7 +70,7 @@ rules.JSRule({
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
       logger.warn(`>>Heater mode is auto or manual : ${heatingModeItem.state.toString()}`);
-      const setpoint = SetpointItem.rawState;
+      const setpoint = setpointItem.rawState;
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature

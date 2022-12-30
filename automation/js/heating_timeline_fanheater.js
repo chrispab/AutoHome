@@ -14,6 +14,6 @@ const { timeUtils } = require('openhab_rules_tools');
 //     logger.warn('__>>timeline trigger');
 //     logger.warn(`__>>data triggger item : ${items.getItem(data.itemName).name}`);
 //     logger.warn(`__>>data triggger item state: ${items.getItem(data.itemName).state}`);
-//     items.getItem('fan_heater_enable').sendCommand(items.getItem(data.itemName).state);
+//     items.getItem('FH_enable').sendCommand(items.getItem(data.itemName).state);
 //   },
 // });

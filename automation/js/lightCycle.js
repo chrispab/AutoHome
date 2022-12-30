@@ -58,7 +58,7 @@ rules.JSRule({
     logger.error('CycleColor - Color Loop Activated');
 
     let hue = 0;
-    const direction = 1;
+    // const direction = 1;
     // turn on the light if it isn't already
     //     if(light.getStateAs(OnOffType) != ON) light.sendCommand(ON)
     // if (light.state(OnOffType) !== ON) light.sendCommand(ON);
