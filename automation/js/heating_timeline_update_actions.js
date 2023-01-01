@@ -125,23 +125,23 @@ rules.JSRule({
 //= ============== heating mode
 // NEW
 // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
-rules.JSRule({
-  name: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
-  description: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
-  triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineHeatingModeUpdateProxys')],
-  execute: (event) => {
-    logger.warn('???__>>>>>>>>>>>>>>>>>>>>>>> handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source');
-    // logger.warn(`???__> vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
-    myutils.showEvent(event);
+// rules.JSRule({
+//   name: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
+//   description: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
+//   triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineHeatingModeUpdateProxys')],
+//   execute: (event) => {
+//     logger.warn('???__>>>>>>>>>>>>>>>>>>>>>>> handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source');
+//     // logger.warn(`???__> vCT_HeatingMode: ${items.getItem('vCT_HeatingMode').state}`);
+//     myutils.showEvent(event);
 
-    // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
-    // bui;ld the 'real' thermostat heting mode item name
-    // get roomprefix
-    const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
-    const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    logger.warn(`???__>>>>>>>>>>>>>>>>>>>>>>>  roomPrefix : ${roomPrefix}`);
-    const targetItemName = `${roomPrefix}_HeatingMode`;
-    // send mode sent to actual _HeatingMode
-    items.getItem(targetItemName).sendCommand(event.receivedState);
-  },
-});
+//     // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
+//     // bui;ld the 'real' thermostat heting mode item name
+//     // get roomprefix
+//     const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
+//     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
+//     logger.warn(`???__>>>>>>>>>>>>>>>>>>>>>>>  roomPrefix : ${roomPrefix}`);
+//     const targetItemName = `${roomPrefix}_HeatingMode`;
+//     // send mode sent to actual _HeatingMode
+//     items.getItem(targetItemName).sendCommand(event.receivedState);
+//   },
+// })
