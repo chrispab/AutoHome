@@ -42,18 +42,17 @@ rules.JSRule({
     // utils.dumpObject(light1, true);
     // myutils.showItem(light1);
     // turn off the cycling
-    if (items.getItem('ZbColourBulb02_CYCLE').state.toString() !== 'ON') {
-      logger.error('CycleColor - light.sendCommand(OFF),., returning');
 
-      if (cycle_timer) {
-        cycle_timer.cancel();
-      }
-      light1_switch.sendCommand('OFF');
-      light2_switch.sendCommand('OFF');
-      // light1.sendCommand('0,0,0');
-      // light2.sendCommand('0,0,0');
-      return;
-    }
+    // if (items.getItem('ZbColourBulb02_CYCLE').state.toString() !== 'ON') {
+    //   logger.error('CycleColor - light.sendCommand(OFF),., returning');
+    //   if (cycle_timer) {
+    //     cycle_timer.cancel();
+    //   }
+    //   light1_switch.sendCommand('OFF');
+    //   light2_switch.sendCommand('OFF');
+    //   return;
+    // }
+
     // Start cycling
     logger.error('CycleColor - Color Loop Activated');
 

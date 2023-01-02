@@ -99,7 +99,7 @@ rules.JSRule({
     // roomPrefix = 'CT'
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
 
-    // only update the thermostt temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
+    // only update the thermosat temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
     // is same as current active one, v_<roomPrefix>_SetPoint_auto_update_by_timeline
     // E.G. MIN 1,.COOL 2 ETC
     const temperatureSetpointTagOfTrigger = event.itemName.toString().substr(event.itemName.lastIndexOf('_') + 1);// get all after last '_'
@@ -125,6 +125,7 @@ rules.JSRule({
 //= ============== heating mode
 // NEW
 // update real thermostst HeatingMode from incoming 'v_XX_HeatingMode
+//! commented out to disable mode changes
 // rules.JSRule({
 //   name: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
 //   description: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
