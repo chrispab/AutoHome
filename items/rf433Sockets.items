@@ -44,13 +44,12 @@ Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (g
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
-Switch CT_Radiators "Conservatory Radiators"  <poweroutlet_uk> { channel="mqtt:topic:CT_Radiators:powerSwitch" }
+// Switch CT_Radiators "Conservatory Radiators"  <poweroutlet_uk> { channel="mqtt:topic:CT_Radiators:powerSwitch" }
 
 //DAB Radio
 Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:radio:powerSwitch" }
 
-//conservatory Fan
-Switch CT_Fan433PowerSocket "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:fan:powerSwitch" }
+
 
 
 //zone1 power socket

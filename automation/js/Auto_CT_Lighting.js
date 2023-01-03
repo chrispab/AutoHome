@@ -79,7 +79,7 @@ rules.JSRule({
     }
 
     previousLightSensorLevel = currentLightSensorLevel;
-    // ambient light below trigger level and trend going down - its getting dark
+    // ambient light below trigger level and trend going down - its getting darker
     if (
       currentLightSensorLevel < items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
       && items.getItem('BridgeLightSensorTrend').state === 'OFF' // down getting darker
@@ -87,7 +87,7 @@ rules.JSRule({
       items.getItem('CT_LightDark_State').sendCommand('OFF');
     }
 
-    // ambient light above trigger level and trend going up - its getting light
+    // ambient light above trigger level and trend going up - its getting lighter
     if (
       currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
       && items.getItem('BridgeLightSensorTrend').state === 'ON' // up getting lighter

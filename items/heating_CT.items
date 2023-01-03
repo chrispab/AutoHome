@@ -11,7 +11,7 @@ Number CT_Temperature_raw "Conservatory Temperature rawz [%.1f °C]" <temperatur
 Number CT_Humidity "Conservatory Humidity [%.1f °C]" <humidity> (gCT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 
 //additional params for use in openhab functions etc
-Switch CT_Heater "Conservatory Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch" }
+Switch CT_Heater "Conservatory Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:bg_wifisocket_4:powerSwitch_1" }
 String CT_HeatingMode "Conservatory Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
 Number CT_Heating_PresetTempNormal "Conservatory Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 
