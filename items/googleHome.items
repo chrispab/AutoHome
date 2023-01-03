@@ -1,9 +1,6 @@
 
-/* Assistenten (Alexa, Google Home, ...)  */
-
 Group gGHM "Google Home Minis" <computer>
 
-// Google Home Mini Bathroom - minimum items required for this tutorial
 Image GHM_Conservatory_Image	         "Image"	                    { channel="chromecast:chromecast:GHM_Conservatory:image" }
 String GHM_Conservatory_MediaArtist	         "Media Artist"	                    { channel="chromecast:chromecast:GHM_Conservatory:subtitle" }
 String GHM_Conservatory_MediaTitle	         "Media Title"	                    { channel="chromecast:chromecast:GHM_Conservatory:title" }
@@ -17,16 +14,9 @@ Player GHM_Conservatory_Player           "GHM_Conservatory Player"              
 Switch GHM_Conservatory_Idle             "GHM_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:idling" }
 String GHM_Conservatory_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHM_Conservatory:playuri" }
 
-// Power Switch - You need to adapt this to your setup - this is the power switch I turn on in case the Google Home is not already switched on
-// Switch Switch_DG_Bath_Google_Home        "Google Home Bath"         <recorder>			(gAssistenten) [ "Switchable" ] 	{ knx="<6/0/1" }
 
-// Motion Detector
 Switch Send_Audio_to_GHM   "Send_Audio_to_GHM" //          <presence>
-//  (Motion_DG)                  { knx="<16/0/0" }
 
-// Groups for motion detector
-// Group 	 Motion         "Motion"                <present>       (All)
-// Group 	 Motion_DG      "Motion Upper Level"  	<present>       (Motion)
 
 Image GHH_Kitchen_Image	         "Image"	                    { channel="chromecast:chromecast:GHH_Kitchen:image" }
 String GHH_Kitchen_MediaArtist	         "Media Artist"	                    { channel="chromecast:chromecast:GHH_Kitchen:subtitle" }
