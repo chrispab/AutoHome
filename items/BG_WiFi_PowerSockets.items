@@ -35,8 +35,7 @@ Switch bg_wifisocket_4_1_power "BG Socket 4-one" (gMQTT, gBGWiFiPowerSockets)  {
 Switch bg_wifisocket_4_2_power "BG Socket 4-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
 Number bg_wifisocket_4_maxworktime "BG Socket 4-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_4:maxworktime" }
 String bg_wifisocket_4_reachable "BG Socket 4-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)  { channel = "mqtt:topic:bg_wifisocket_4:reachable" }
-//conservatory Fan
-Switch CT_Fan433PowerSocket "fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
+
 
 //double socket 5
 Switch bg_wifisocket_5_1and2_power "BG Socket 5-one and two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_5:powerSwitch_1and2" }

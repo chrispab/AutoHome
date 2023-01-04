@@ -34,11 +34,11 @@ rules.JSRule({
       const temp = items.getItem('CT_Temperature').state;
       if (items.getItem('CT_Heater') != 'ON') {
         if (temp >= setPoint) {
-          items.getItem('CT_Fan433PowerSocket').sendCommand('ON');
+          items.getItem('CT_fan_power').sendCommand('ON');
           logger.debug('>>>> Conservatory_fan_ cool rulel turning fan ON');
         }
         if (temp < setPoint) {
-          items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+          items.getItem('CT_fan_power').sendCommand('OFF');
           logger.debug('>>>> Conservatory_fan_ cool rulel turning fan off');
         }
       }
@@ -60,8 +60,8 @@ rules.JSRule({
   description: 'Fan cooling  ENABLE turned OFF',
   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Cooling_enable', 'ON', 'OFF')],
   execute: (data) => {
-    logger.debug('conservatory_fan_cool_recirc_off - - CT_Fan433PowerSocket OFF');
-    items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+    logger.debug('conservatory_fan_cool_recirc_off - - CT_fan_power OFF');
+    items.getItem('CT_fan_power').sendCommand('OFF');
   },
 });
 
@@ -70,12 +70,12 @@ rules.JSRule({
   description: 'Fan Pulse (FanPulseSwitch) change/update',
   triggers: [triggers.ItemStateChangeTrigger('FanPulseSwitch', 'OFF', 'ON')],
   execute: (data) => {
-    logger.error('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPp fan pulse CT_Fan433PowerSocket ON');
-    items.getItem('CT_Fan433PowerSocket').sendCommand('ON');
+    logger.error('fan pulse CT_fan_power ON');
+    items.getItem('CT_fan_power').sendCommand('ON');
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
-      items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+      items.getItem('CT_fan_power').sendCommand('OFF');
       items.getItem('FanPulseSwitch').sendCommand('OFF');
-      logger.debug('fan pulse CT_Fan433PowerSocket OFF');
+      logger.debug('fan pulse CT_fan_power OFF');
     });
   },
 });

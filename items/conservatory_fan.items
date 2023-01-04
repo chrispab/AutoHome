@@ -1,0 +1,14 @@
+Switch RecircFanEnable "Enable Fan"
+
+
+Switch FanPulseSwitch    "Fan Pulse"
+
+
+Switch FanOnOverride    "Fan ON - Override"
+Switch CT_Fan_Cooling_enable    "CT_Fan_Cooling_enable"
+Switch CT_Fan_Heating_circulate_enable    "CT_Fan_Heating_circulate"
+
+
+Number Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit [%.1f °C]"    <degreesc>
+//conservatory Fan
+Switch CT_fan_power "conservatory fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:bg_wifisocket_4:powerSwitch_2" }

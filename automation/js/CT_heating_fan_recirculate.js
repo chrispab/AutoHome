@@ -23,10 +23,10 @@ rules.JSRule({
     // and heater on
     if (((setPoint >= 18 && temp < setPoint) || items.getItem('CT_Heater').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
       logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ');
-      items.getItem('CT_Fan433PowerSocket').sendCommand('ON');
+      items.getItem('CT_fan_power').sendCommand('ON');
 
       actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(fanOnSecs), () => {
-        items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+        items.getItem('CT_fan_power').sendCommand('OFF');
         // items.getItem("FanPulseSwitch").sendCommand("OFF");
         logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory_fan recic heat turn FAN OFF NOW   ');
       });
@@ -48,7 +48,7 @@ rules.JSRule({
   description: 'Fan heat recirc ENABLE turned off',
   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'ON', 'OFF')],
   execute: (data) => {
-    logger.debug('conservatory_fan_heat_recirc_off - CT_Fan433PowerSocket OFF');
-    items.getItem('CT_Fan433PowerSocket').sendCommand('OFF');
+    logger.debug('conservatory_fan_heat_recirc_off - CT_fan_power OFF');
+    items.getItem('CT_fan_power').sendCommand('OFF');
   },
 });

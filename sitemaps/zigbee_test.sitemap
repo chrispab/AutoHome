@@ -16,7 +16,7 @@ sitemap zigbee_test label="ZigBee Test"
     }
 
     Frame label="Recirc Fan" {
-          Switch item= CT_Fan433PowerSocket label="Fan" icon="CT_Fan433PowerSocket"
+          Switch item= CT_fan_power label="Fan" icon="fan"
           Switch item=RecircFanEnable label="Recirc Fan Enable" icon="switch"
     }
     Frame label="Conservatory sockets" {
