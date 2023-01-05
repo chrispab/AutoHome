@@ -7,6 +7,6 @@ Number HL_Humidity "Hall Humidity [%.1f °C]" <humidity> (gHL_Thermostat, gRoomH
 // //additional params for use in openhab functions etc
 Switch HL_Heater "Hall Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:hallRadThermoValve:powerSwitch" }
 String HL_HeatingMode "Hall Heating Mode" <settings> (gHeatingModes)
-Number HL_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+// Number HL_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String HL_RTVReachable "Hall Reachable" <qualityofservice> (gHL_Thermostat,gRTVsReachable)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
 Number HL_RTV_Rssi "HL RTV RSSI [%.1f]" <qualityofservice> (gHL_Thermostat) { channel="mqtt:topic:hallRadThermoValve:rssi" }

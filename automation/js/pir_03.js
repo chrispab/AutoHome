@@ -12,7 +12,9 @@ scriptLoaded = function () {
 
 function pir03_off_body() {
   logger.warn('===The timer is over.pir03_off_body');
-  items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
+  // items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
+  // items.getItem('ZbColourBulb01_switch').sendCommand('OFF');
+  items.getItem('gDiningRoomAutoLights').sendCommand('OFF');
 }
 
 let pir03_off_timer = null;
@@ -39,8 +41,13 @@ rules.JSRule({
     if (items.getItem('CT_LightDark_State').state === 'OFF') {
       logger.warn(`pir03_occupancy inner: ${items.getItem('pir03_occupancy').state}`);
       if (items.getItem('pir03_occupancy').state === 'ON') {
-        items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
+        // items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
+        items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+
         logger.warn("items.getItem('ZbWhiteBulb01Switch').sendCommand('ON')");
+
+        // items.getItem('ZbColourBulb01_switch').sendCommand('ON');
+
         // cancrl the off timer if running
         if (pir03_off_timer && pir03_off_timer.isActive()) {
           pir03_off_timer.cancel();

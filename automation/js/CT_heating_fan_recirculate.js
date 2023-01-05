@@ -22,13 +22,13 @@ rules.JSRule({
     const temp = items.getItem('CT_Temperature').state;
     // and heater on
     if (((setPoint >= 18 && temp < setPoint) || items.getItem('CT_Heater').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
-      logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ');
+      // logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ');
       items.getItem('CT_fan_power').sendCommand('ON');
 
       actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(fanOnSecs), () => {
         items.getItem('CT_fan_power').sendCommand('OFF');
         // items.getItem("FanPulseSwitch").sendCommand("OFF");
-        logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory_fan recic heat turn FAN OFF NOW   ');
+        // logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory_fan recic heat turn FAN OFF NOW   ');
       });
     }
   },

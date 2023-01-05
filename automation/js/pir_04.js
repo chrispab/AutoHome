@@ -1,13 +1,11 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-const { timeUtils } = require('openhab_rules_tools');
 
 const logger = log('pir04');
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded - pir 04');
-  // loadedDate = Date.now();
 };
 
 rules.JSRule({
@@ -22,12 +20,14 @@ rules.JSRule({
     );
   },
 });
+
 function pir04_off_body() {
-  logger.warn('===The timer is over.pir04_off_body');
-  items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
+  logger.warn('===  pir04_off_body');
+  // items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
+  items.getItem('gDiningRoomAutoLights').sendCommand('OFF');
 }
 
-let pir04_off_timer = null;
+const pir04_off_timer = null;
 
 rules.JSRule({
   name: 'pir04 updated with ON',
@@ -51,7 +51,8 @@ rules.JSRule({
     if (items.getItem('CT_LightDark_State').state === 'OFF') {
       logger.warn(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
       if (items.getItem('pir04_occupancy').state === 'ON') {
-        items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
+        // items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
+        items.getItem('gDiningRoomAutoLights').sendCommand('ON');
         logger.warn("ZbWhiteBulb01Switch').sendCommand('ON')");
         // cancrl the off timer if running
         if (pir04_off_timer && pir04_off_timer.isActive()) {
@@ -64,7 +65,7 @@ rules.JSRule({
 });
 
 rules.JSRule({
-  name: 'PIRsensor 04ON to OFF - start the lights off timer',
+  name: 'PIRsensor 04 ON to OFF - start the lights off timer',
   description: 'PIRsensor start OFF lights timer',
   triggers: [
     triggers.ItemStateChangeTrigger('pir04_occupancy', 'ON', 'OFF'),

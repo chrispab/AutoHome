@@ -28,7 +28,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
   execute: (event) => {
     logger.warn(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
-    myutils.showGroupMembers('gTHSensorTemperatures');
+    // myutils.showGroupMembers('gTHSensorTemperatures');
 
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;

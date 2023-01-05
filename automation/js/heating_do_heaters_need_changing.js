@@ -20,25 +20,25 @@ rules.JSRule({
   ],
   execute: (event) => {
     // console.log(event);
-    logger.warn('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
-    const action = 'default';
+    // logger.warn('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
+    // const action = 'default';
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
 
     const heatingModeItem = items.getItem(`${roomPrefix}_HeatingMode`);
-    logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
+    // logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
 
     const setpointItem = items.getItem(`${roomPrefix}_TemperatureSetpoint`);
-    logger.warn(`>setpointItem.name: ${setpointItem.name} : ,  Setpoint.state: ${setpointItem.state}`);
+    // logger.warn(`>setpointItem.name: ${setpointItem.name} : ,  Setpoint.state: ${setpointItem.state}`);
 
     const TemperatureItem = items.getItem(`${roomPrefix}_Temperature`);
-    logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
+    // logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
 
     const HeaterItem = items.getItem(`${roomPrefix}_Heater`);
-    logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
+    // logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
 
     const ReachableItem = items.getItem(`${roomPrefix}_RTVReachable`);
-    logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
+    // logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
     // !if ANY trvs are unreachable - turn off hetarer to prevent false demand
@@ -55,7 +55,7 @@ rules.JSRule({
     }
     items.getItem('HL_Heater').sendCommand('OFF');
 
-    logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
+    // logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     //! add if boost on - skip
     // if this heater is currently in being boosted, then just l;eave it alone and move on
@@ -69,23 +69,23 @@ rules.JSRule({
     logger.error('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
-      logger.warn(`>>Heater mode is auto or manual : ${heatingModeItem.state.toString()}`);
+      // logger.warn(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
       const setpoint = setpointItem.rawState;
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
       if (temp >= turnOffTemp) {
-        logger.error(`>>>SendCommand to ${roomPrefix}_Heater, HeaterItem OFF`);
+        logger.warn(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
       } else if (temp < turnOnTemp) {
-        logger.error(`>>>SendCommand to: ${roomPrefix}, HeaterItem On`);
+        logger.warn(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {
       if ((items.getItem('masterHeatingMode').state.toString() === 'off')) {
-        logger.warn('>>>ZZZZ---ZZZZ HHH Master Heating Mode is OFF!!!!! :');
+        logger.warn('Heating change... Master Heating Mode is OFF!');
       }
-      logger.warn(`>>>Turn heater OFF for  ${roomPrefix}  cos its Heating Mode is  ${heatingModeItem.state}`);
+      logger.warn(`Heating change...Turn ${roomPrefix} heater OFF, :. its Heating Mode is  ${heatingModeItem.state}`);
       HeaterItem.sendCommand('OFF');
     }
   },
