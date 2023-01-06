@@ -7,7 +7,6 @@ const logger = log('outside_sensor');
 
 scriptLoaded = function () {
   logger.error('scriptLoaded init outside sensor stuff');
-  // loadedDate = Date.now();
 };
 
 rules.JSRule({
@@ -18,15 +17,10 @@ rules.JSRule({
   ],
   execute: () => {
     logger.error('outside sensor went offline YY');
-    // const { alerting } = require('personal');
-    // alerting.sendInfo('outside sensor went offline');
-    // alerting.sendAlert('Outside_Reachable gone Online');
-
     if (items.getItem('outsideReboots').state == 'NULL') {
       logger.error('++++++++++++++++++++++Checking outsideRebbots is NULL?');
       items.getItem('outsideReboots').postUpdate('OFF');
     }
-    // items.getItem("outsideSensorPower").sendCommand("OFF");
   },
 });
 
@@ -38,9 +32,6 @@ rules.JSRule({
   ],
   execute: () => {
     logger.error('outside sensor came online');
-    // const { alerting } = require('personal');
-    // alerting.sendInfo('outside sensor came online');
-    // alerting.sendAlert('Outside_Reachable gone Online');
   },
 });
 rules.JSRule({
@@ -50,11 +41,6 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Temperature'),
   ],
   execute: (event) => {
-    // logger.error('outside sensor temperature update');
-    logger.error(`.....outside sensor temperature update : ${event.receivedState}`);
-    // console.log(event);
-    // const { alerting } = require('personal');
-    // alerting.sendInfo('outside sensor came online');
-    // alerting.sendAlert('Outside_Reachable gone Online');
+    logger.warn(`Outside sensor temperature update : ${event.receivedState} C`);
   },
 });

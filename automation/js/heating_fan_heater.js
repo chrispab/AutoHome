@@ -67,7 +67,7 @@ rules.JSRule({
     }
 
     if (items.getItem('FH_enable').state.toString() === 'ON') {
-      console.error('######################################################_____mvm___PAST THE GATE');
+      // console.error('######################################################_____mvm___PAST THE GATE');
       if ((items.getItem('Outside_Temperature').rawState <= items.getItem('FH_outside_temperature_enable').rawState)) {
         const setPoint = items.getItem('FH_TemperatureSetpoint').rawState;
         console.warn(`________FH_TemperatureSetpoint: ${setPoint}`);

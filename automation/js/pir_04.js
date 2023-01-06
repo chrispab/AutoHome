@@ -27,7 +27,7 @@ function pir04_off_body() {
   items.getItem('gDiningRoomAutoLights').sendCommand('OFF');
 }
 
-const pir04_off_timer = null;
+let pir04_off_timer = null;
 
 rules.JSRule({
   name: 'pir04 updated with ON',

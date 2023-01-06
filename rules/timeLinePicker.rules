@@ -103,7 +103,7 @@ then
   var Number currTimeInterval = ((now.getHour()*60 + now.getMinute())/15).intValue
   var Number currDay = now.getDayOfWeek.getValue()
 
-  logInfo("timeLine picker", "___>>> IN THE LOOP")
+  // logInfo("timeLine picker", "___>>> IN THE LOOP")
 
   gTimepicker.members.forEach[ currSwitchPlan |
     if ((currSwitchPlan.state !== NULL) && (timePicker.keySet().contains(currSwitchPlan.name))) {

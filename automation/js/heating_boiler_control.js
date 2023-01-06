@@ -18,12 +18,19 @@ rules.JSRule({
     // logger.warn(`....item value : ${event.receivedState}`);
     // logger.warn(`...gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
-      logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 Heater is ON -> sending boiler ON command`);
-
-      items.getItem('Boiler_Control').sendCommand('ON');
-    } else {
-      logger.warn(`boiler control....trigger: ${event.itemName}-(${event.receivedState}), All heaters are OFF -> sending boiler OFF command`);
+      // logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 Heater is ON -> sending boiler ON command`);
+      // if boiler off, send on command
+      if (items.getItem('Boiler_Control').state.toString() === 'OFF') {
+        logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
+        items.getItem('Boiler_Control').sendCommand('ON');
+      } else {
+        logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
+      }
+    } else if (items.getItem('Boiler_Control').state.toString() === 'ON') {
+      logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler is ON so sending boiler OFF command`);
       items.getItem('Boiler_Control').sendCommand('OFF');
+    } else {
+      logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
     }
   },
 });

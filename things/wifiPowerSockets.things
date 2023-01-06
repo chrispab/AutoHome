@@ -1,7 +1,7 @@
 Thing mqtt:topic:WiFiSocket1  "MQTT Thing: WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="wiFiSocket1/stat/POWER" , commandTopic="wiFiSocket1/cmnd/POWER" , on="1", off="0" ]
+        Type switch : powerSwitch  [ stateTopic="wiFiSocket1/stat/POWER" , commandTopic="wiFiSocket1/cmnd/POWER"]
         Type string : reachable    [ stateTopic="wiFiSocket1/tele/LWT"  ]
         Type number : rssi         [ stateTopic="wiFiSocket1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
@@ -9,7 +9,7 @@ Thing mqtt:topic:WiFiSocket1  "MQTT Thing: WiFi Power Socket 1" (mqtt:broker:MyM
 Thing mqtt:topic:WiFiSocket2  "MQTT Thing: WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="wiFiSocket2/stat/POWER" , commandTopic="wiFiSocket2/cmnd/POWER" , on="1", off="0" ]
+        Type switch : powerSwitch  [ stateTopic="wiFiSocket2/stat/POWER" , commandTopic="wiFiSocket2/cmnd/POWER"]
         Type string : reachable    [ stateTopic="wiFiSocket2/tele/LWT"  ]
         Type number : rssi         [ stateTopic="wiFiSocket2/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }

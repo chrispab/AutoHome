@@ -1,7 +1,7 @@
 Thing mqtt:topic:boiler  "MQTT Thing: Boiler control" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
-        Type switch : powerSwitch  [ stateTopic="boiler/stat/POWER", on="1", off="0", commandTopic="boiler/cmnd/POWER", on="1", off="0"]
+        Type switch : powerSwitch  [ stateTopic="boiler/stat/POWER", commandTopic="boiler/cmnd/POWER"]
         Type string : reachable    [ stateTopic="boiler/tele/LWT"  ]
         Type number : rssi         [ stateTopic="boiler/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
 }
