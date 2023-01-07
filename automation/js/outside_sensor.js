@@ -2,11 +2,12 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 // const { myutils } = require('personal');
-
+// log:set WARN org.openhab.automation.openhab-js.outside_sensor
+// log:set DEBUG org.openhab.automation.openhab-js.outside_sensor
 const logger = log('outside_sensor');
 
 scriptLoaded = function () {
-  logger.error('scriptLoaded init outside sensor stuff');
+  logger.warn('scriptLoaded init outside sensor stuff');
 };
 
 rules.JSRule({
@@ -16,7 +17,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Offline'),
   ],
   execute: () => {
-    logger.error('outside sensor went offline YY');
+    logger.error('outside sensor went offline');
     if (items.getItem('outsideReboots').state == 'NULL') {
       logger.error('++++++++++++++++++++++Checking outsideRebbots is NULL?');
       items.getItem('outsideReboots').postUpdate('OFF');
@@ -31,7 +32,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Online'),
   ],
   execute: () => {
-    logger.error('outside sensor came online');
+    logger.warn('outside sensor came online');
   },
 });
 rules.JSRule({
@@ -41,6 +42,6 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Temperature'),
   ],
   execute: (event) => {
-    logger.warn(`Outside sensor temperature update : ${event.receivedState} C`);
+    logger.debug(`Outside sensor temperature update : ${event.receivedState} C`);
   },
 });

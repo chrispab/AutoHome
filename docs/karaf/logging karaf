@@ -14,3 +14,15 @@ https://community.openhab.org/t/event-state-logging-in-events-log-dosnt-work/137
 
 log:list
 
+
+Use logging levels to help control what gets logged. If you use a unique logger name per rule or related group of rules then you can put a lot of the testing and information log statements at the debug level. When working on those rules change the logging config to DEBUG just for that logger. When done move the level back to INFO and all that noise will go away.
+
+log:set DEBUG boiler
+log:set WARN boiler
+log:set DEBUG org.openhab.automation.script.boiler
+log:set WARN org.openhab.automation.openhab-js.boiler
+log:set DEBUG org.openhab.automation.openhab-js.boiler
+
+you should always have a dedicated rule that in turn initializes all of your items and variables to a
+proper default state.
+Run it on OH startup and whenever things have gone wrong and you need or want to reset the system.

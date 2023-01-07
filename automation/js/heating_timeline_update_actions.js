@@ -94,7 +94,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gHeating_Setpoint_auto_updates_webui')],
   execute: (event) => {
     logger.error('handle when a auto program setpoint is updated by a setpoint changed from webui');
-    myutils.showEvent(event);
+    // myutils.showEvent(event);
     // e.g. "itemName": "CT_Setpoint_auto_min"
     // roomPrefix = 'CT'
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));

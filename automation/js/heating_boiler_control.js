@@ -3,7 +3,9 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('boiler control.js');
+// log:set WARN org.openhab.automation.openhab-js.boiler
+// log:set DEBUG org.openhab.automation.openhab-js.boiler
+const logger = log('boiler');
 const { timeUtils } = require('openhab_rules_tools');
 
 rules.JSRule({
@@ -14,11 +16,10 @@ rules.JSRule({
     // logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
     // console.log(event);
     // myutils.showEvent(event);
-    // logger.warn(`....triggering item : ${event.itemName}`);
-    // logger.warn(`....item value : ${event.receivedState}`);
-    // logger.warn(`...gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
+    logger.debug(`....triggering item : ${event.itemName}`);
+    logger.debug(`....item value : ${event.receivedState}`);
+    logger.debug(`...gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
-      // logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 Heater is ON -> sending boiler ON command`);
       // if boiler off, send on command
       if (items.getItem('Boiler_Control').state.toString() === 'OFF') {
         logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
