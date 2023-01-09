@@ -16,17 +16,17 @@ function randomFartString() {
   number = Math.round(Math.random() * max) + 1;
   // number = Math.round(num * 10)/10;
 
-  logger.warn(`VVV - fart number  : ${number}`);
+  logger.debug(`VVV - fart number  : ${number}`);
   // if len = 1, fs = '0'+`${number}`
   if (number.toString().length === 1) {
     numString = `0${number.toString()}`;
   } else {
     numString = number.toString();
   }
-  logger.warn(`VVV - numString  : ${numString}`);
+  logger.debug(`VVV - numString  : ${numString}`);
 
   fartString = `farts/fart-${numString}.mp3`;
-  logger.warn(`VVV - fart string  : ${fartString}`);
+  logger.warn(`contact01 - fart string  : ${fartString}`);
   return fartString;
 }
 
@@ -39,7 +39,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('v_test_switch_01', 'ON', 'OFF'),
   ],
   execute: () => {
-    logger.warn('CT contact01 went false');
+    logger.debug('CT contact01 went false');
 
     // vol = actions.Audio.getMasterVolume();
     // let newVol = vol;
@@ -59,7 +59,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('v_test_switch_01', 'OFF', 'ON'),
   ],
   execute: () => {
-    logger.warn('CT contact01 went true');
+    logger.debug('CT contact01 went true');
 
     actions.Audio.playSound(randomFartString());
 

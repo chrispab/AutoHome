@@ -27,12 +27,12 @@ rules.JSRule({
   description: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
   execute: (event) => {
-    logger.warn(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+    logger.debug(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
 
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
-    logger.warn(`get id part of item reachable: ${stub} `);
+    logger.debug(`get id part of item reachable: ${stub} `);
 
     items.getItem(itemNameReachable).postUpdate('ON');
     // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);

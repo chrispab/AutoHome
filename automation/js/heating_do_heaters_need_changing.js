@@ -66,7 +66,7 @@ rules.JSRule({
         return;
       }
     }
-    logger.error('>>>>no boost item defined for this heater, process as normal');
+    logger.debug('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
       // logger.warn(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);

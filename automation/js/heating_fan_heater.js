@@ -4,7 +4,7 @@ const {
 const { myutils } = require('personal');
 // var  utils  = require('./utils.js');
 // const { showItem } = require('./utils.js');
-const logger = log('fan_heater.js');
+const logger = log('fan_heater');
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded - init ft ct sp link');
@@ -25,10 +25,10 @@ rules.JSRule({
 
   ],
   execute: (data) => {
-    logger.warn('________Link fan heater setpoint to CT setpoint triggered');
+    logger.debug('________Link fan heater setpoint to CT setpoint triggered');
     if (items.getItem('FH_LinkSetpointToCTSetpoint').state === 'ON') {
       // track
-      logger.warn('________tracking to CT setpoint');
+      logger.debug('________tracking to CT setpoint');
       // get ct sp and copy to fh sp - offset
       let CT_SP = items.getItem('CT_TemperatureSetpoint').rawState;
       const FH_TemperatureSetpoint_item = items.getItem('FH_TemperatureSetpoint');
@@ -58,10 +58,10 @@ rules.JSRule({
 
   ],
   execute: (data) => {
-    logger.warn('________If fan heater demand turn on fan heater');
+    logger.debug('________If fan heater demand turn on fan heater');
 
     if (items.getItem('FH_enable').state.toString() === 'OFF') {
-      console.warn('________items.getItem(FH_enable).state == OFF');
+      logger.debug('________items.getItem(FH_enable).state == OFF');
       items.getItem('fan_heater').sendCommand('OFF');
       return;
     }
@@ -70,15 +70,15 @@ rules.JSRule({
       // console.error('######################################################_____mvm___PAST THE GATE');
       if ((items.getItem('Outside_Temperature').rawState <= items.getItem('FH_outside_temperature_enable').rawState)) {
         const setPoint = items.getItem('FH_TemperatureSetpoint').rawState;
-        console.warn(`________FH_TemperatureSetpoint: ${setPoint}`);
+        logger.debug(`________FH_TemperatureSetpoint: ${setPoint}`);
         const temp = items.getItem('FH_Temperature').rawState;
 
         if (temp < setPoint) {
           items.getItem('FH_Heater').sendCommand('ON');
-          console.warn('>>>>- temp < setPoint turning heater ON');
+          logger.debug('>>>>- temp < setPoint turning heater ON');
         } else if (temp >= (setPoint)) { // (items.getItem('CT_Heater').state == 'OFF') && (
           items.getItem('FH_Heater').sendCommand('OFF');
-          console.warn('<<<< -. temp > (setPoint) turning heater OFF');
+          logger.debug('<<<< -. temp > (setPoint) turning heater OFF');
         } else {
           // console.warn('==== -. temp none of on or off');
         }
@@ -86,7 +86,7 @@ rules.JSRule({
         items.getItem('FH_Heater').sendCommand('OFF');
       }
     } else {
-      console.error('NOT_____mvm___PAST THE GATE');
+      logger.debug('NOT_____mvm___PAST THE GATE');
     }
   },
 });
