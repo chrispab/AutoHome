@@ -1,0 +1,5 @@
+openhab> log:tail
+19:49:27.912 [INFO ] [arketplace.MarketplaceBundleInstaller] - Reinstalling missing marketplace bundle: marketplace:134770
+19:49:28.061 [WARN ] [arketplace.MarketplaceBundleInstaller] - Failed reinstalling add-on from cache
+org.openhab.core.addon.marketplace.MarketplaceHandlerException: Cannot install bundle from marketplace cache: A bundle is already installed with the name "org.openhab.automation.jsscriptingnashorn" and version "3.3.0.202204022241"
+        at org.openhab.core.addon.
