@@ -10,18 +10,6 @@ scriptLoaded = function () {
   // loadedDate = Date.now();
 };
 
-// rules.JSRule({
-//   name: 'PIR MONITOR',
-//   description: 'monitor any PIR occupancy updates..v..',
-//   triggers: [triggers.ItemStateUpdateTrigger('pir01_occupancy'), triggers.ItemStateUpdateTrigger('pir02_occupancy')],
-//   execute: (data) => {
-//     logger.warn(
-//       `PIR MONITOR -  pir_occupancy received update itemName : ${data.itemName
-//       }, state: ${items.getItem(data.itemName).state
-//       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
-//     );
-//   },
-// });
 function pir1_off_body() {
   logger.warn('===The timer is over.pir1_off_body');
   items.getItem('KT_light_1_Power').sendCommand('OFF');

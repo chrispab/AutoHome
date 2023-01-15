@@ -14,10 +14,10 @@ scriptLoaded = function () {
 rules.JSRule({
   name: 'conservatory fan circulate heat Cron',
   description: 'conservatory fan circulate heat Cron',
-  triggers: [triggers.GenericCronTrigger('0 0/5 * * * ?')],
+  triggers: [triggers.GenericCronTrigger('0 0/4 * * * ?')],
   execute: () => {
-    logger.debug('ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ');
-    const fanOnSecs = 60;
+    logger.warn('ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ');
+    const fanOnSecs = 20;
     const setPoint = items.getItem('CT_TemperatureSetpoint').state;
     const temp = items.getItem('CT_Temperature').state;
     // and heater on

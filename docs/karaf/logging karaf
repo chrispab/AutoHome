@@ -26,3 +26,7 @@ log:set DEBUG org.openhab.automation.openhab-js.boiler
 you should always have a dedicated rule that in turn initializes all of your items and variables to a
 proper default state.
 Run it on OH startup and whenever things have gone wrong and you need or want to reset the system.
+
+
+
+shell:info
