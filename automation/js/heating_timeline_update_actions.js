@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('master-mode-changed');
+const logger = log('auto_program_setpoint_UPDATE');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
@@ -35,6 +35,7 @@ function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
 /**
  * When a setpoint is updated by a timeline automatic update
  * the corrsponding room thermostat setpoint is updated to that value
+ * Should only occur when the heater mode is 'auto', not update when 'off' or 'manual']
  *
  * incoming triggers of the form:
  * v_<roomPrefix>_SetPoint_auto, triggered by a timeline change update
@@ -45,7 +46,7 @@ rules.JSRule({
   description: 'handle - auto program setpoint is updated by a timeline',
   triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineSetpointUpdateProxys')],
   execute: (event) => {
-    logger.error('--->>> handle - auto program setpoint is updated by a timeline');
+    logger.error('--->>> handle - heater auto program setpoint is updated by a timeline');
     // myutils.showEvent(event);
 
     const { itemName } = event;
@@ -56,19 +57,18 @@ rules.JSRule({
     // incoming event in format "itemName": "v_CT_SetPoint_auto_update_by_timeline",
     // now get the actual temp setpoint from the corresponding setpoit item
     // e.g
-    // convert label from setpoit timeline to a temperature vales e.g. 'min' to 17.0
     // roomPrefix is first 2 chars of triggering item name
     const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
     logger.warn(`--->>> roomPrefix : ${roomPrefix}`);
 
-    // setpointTempTag is one of
-    // other possible tag, '1 to 6
-    // - "event.receivedState": "comfort",
+    //! ONLY update auto setpoint if heater mode is 'auto'
+
+    // setpointTempTag is one  possible tag, '1 to 6
     const setpointTemperatureTag = event.receivedState.toString();
     logger.warn(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);
 
-    // e.g given  'CT' , 'evening', returns temp for CT_Setpoint_auto_evening, e.g. 17.4
+    // e.g given  'CT' , '2', returns temp for CT_Setpoint_auto_2, e.g. 17.4
     const setPointTemperature = getSetpointAutoTempForRoom(roomPrefix, setpointTemperatureTag);
     logger.warn(`--->>> setPointTemperature found : ${setPointTemperature}`);
 

@@ -17,7 +17,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Offline'),
   ],
   execute: () => {
-    logger.error('outside sensor went offline');
+    logger.warn('outside sensor went offline');
     if (items.getItem('outsideReboots').state == 'NULL') {
       logger.error('++++++++++++++++++++++Checking outsideRebbots is NULL?');
       items.getItem('outsideReboots').postUpdate('OFF');

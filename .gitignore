@@ -27,3 +27,5 @@ things/mail.things
 !automation/js/node_modules/personal/utils.js
 
 
+exec.whitelist
+misc/exec.whitelist
