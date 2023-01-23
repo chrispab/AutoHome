@@ -48,7 +48,7 @@ rules.JSRule({
     );
     logger.warn(`-pir04_occupancy: ${items.getItem('pir04_occupancy').state}`);
 
-    if (items.getItem('CT_LightDark_State').state === 'OFF') {
+    if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('DR_Auto_Lighting_Trigger_SetPoint').rawState) {
       logger.warn(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
       if (items.getItem('pir04_occupancy').state === 'ON') {
         // items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');

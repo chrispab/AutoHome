@@ -15,7 +15,7 @@ const Cloud_Test_Timer = null;
 
 scriptLoaded = function () {
   logger.error('scriptLoaded - logreadernewCustomEvent');
-  alerting.sendInfo('scriptLoadedx;;vvvvvvvvvvvvbbbxxxxx');
+  alerting.sendInfo('scriptLoadedx;;.........');
 };
 
 rules.JSRule({
@@ -37,7 +37,7 @@ rules.JSRule({
 
     // Set the testing status message
     // myopenHAB_Connection.postUpdate('Testing');
-    items.getItem('myopenHAB_Connection').postUpdate('Testing');
+    // items.getItem('myopenHAB_Connection').postUpdate('Testing');
     alerting.sendInfo('myopenHAB_Connection reconnected');
 
     // Post a command to reset myopenHAB_Connection through the cloud
