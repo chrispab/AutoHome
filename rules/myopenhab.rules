@@ -1,9 +1,47 @@
+//https://community.openhab.org/t/how-to-automatically-restart-cloud-connector-after-an-unexpected-disconnection/143199
+
+// var Timer Cloud_Test_Timer = null
+
+// rule "Restart cloud connector following an unsuccessful reconnection"
+// when
+//     Channel "logreader:reader:openhabcloud:newCustomEvent" triggered
+// then
+//     sendNotification("cbattisson@gmail.com", "openHAB Cloud rule- newCustomEvent triggered")
+//     //Cancel any running timers. This is in case you have multiple disconnections/reconnections in a short time frame.
+//     Cloud_Test_Timer?.cancel
+
+//     //Set the testing status message
+//     myopenHAB_Connection.postUpdate("Testing")
+
+//     //Post a command to reset myopenHAB_Connection through the cloud
+//     Post_Test_Command.sendCommand(ON)
+
+//     //Wait 300 seconds, then restart the cloud connector if myopenHAB_Connection has not been updated to "Online" by the REST command
+//     Cloud_Test_Timer = createTimer(now.plusSeconds(300),
+//     [|
+//         if (myopenHAB_Connection.state == "Testing")
+//         {
+//             logInfo("openHAB Cloud", "Restarting cloud connector due to unsuccessful reconnection")
+//             sendNotification("cbattisson@gmail.com", "openHAB Cloud connector restarted")
+//             Restart_Cloud_Connector.sendCommand(ON)
+//         }
+//         else
+//         {
+//             logInfo("openHAB Cloud", "Successful reconnection to myopenHAB")
+//         }
+//     ])
+// end
+
+
+
 var Timer Cloud_Test_Timer = null
+var Counter = null
 
 rule "Restart cloud connector following an unsuccessful reconnection"
 when
     Channel "logreader:reader:openhabcloud:newCustomEvent" triggered
 then
+    sendNotification("cbattisson@gmail.com", "openHAB Cloud rule- newCustomEvent triggered")
     //Cancel any running timers. This is in case you have multiple disconnections/reconnections in a short time frame.
     Cloud_Test_Timer?.cancel
 
@@ -19,12 +57,18 @@ then
         if (myopenHAB_Connection.state == "Testing")
         {
             logInfo("openHAB Cloud", "Restarting cloud connector due to unsuccessful reconnection")
-            sendNotification("cbattisson@gmail.com", "openHAB Cloud connector restarted")
+            sendNotification("russ@scatterthought.com", "Cloud connector restarted after " + myopenHAB_Connection_Success.state.toString + " successful reconnections")
             Restart_Cloud_Connector.sendCommand(ON)
+            myopenHAB_Connection_Success.postUpdate(0)
         }
         else
         {
-            logInfo("openHAB Cloud", "Successful reconnection to myopenHAB")
+            //Initialize the counter so that the rule won't fail due to a NULL value
+            if (myopenHAB_Connection_Success.state == "NULL") { myopenHAB_Connection_Success.postUpdate(0) }
+            //Increment the counter after a successful reconnection
+            var Counter = ((myopenHAB_Connection_Success.state as Number) + 1)
+            myopenHAB_Connection_Success.postUpdate(Counter.toString)
+            // logInfo("openHAB Cloud", "Successful reconnections to myopenHAB: " + Counter.toString)
         }
     ])
 end
