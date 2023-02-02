@@ -11,6 +11,7 @@ let number = 0;
 let fartString;
 let numString;
 const max = 29;// num farts-1
+
 function randomFartString() {
   // generate  number in range 1 to max
   number = Math.round(Math.random() * max) + 1;
