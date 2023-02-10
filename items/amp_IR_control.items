@@ -1,13 +1,17 @@
+// Group gIRRemoteButtons
+Group :Switch:OR(ON,OFF) gIRRemoteButtons
+
+
 // Switch amplifierStandby "amplifier Standby" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby", expire="1s,command=OFF" }
-Switch amplifier_IR_PowerOn "amplifier Power On" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_on", expire="1s,command=OFF"}//
-Switch amplifier_IR_PowerOff "amplifier Power Off" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_off", expire="1s,command=OFF"}//
-Switch amplifier_IR_Mute "amplifier mute" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute", expire="1s,command=OFF" }
-Switch amplifier_IR_Video1 "amplifier video one" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1", expire="1s,command=OFF"}
-Switch amplifier_IR_Tuner "amplifier tuner" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner", expire="1s,command=OFF"}
-Switch amplifier_IR_Aux "amplifier aux" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux", expire="1s,command=OFF" }
-Switch amplifier_IR_VolumeUp "amplifier volume up" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup", expire="1s,command=OFF" }
-Switch amplifier_IR_VolumeDown "amplifier volume down" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown", expire="1s,command=OFF" }
-Switch amplifier_IR_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1", expire="1s,command=OFF" }
+Switch amplifier_IR_PowerOn "amplifier Power On"  (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_on"}//
+Switch amplifier_IR_PowerOff "amplifier Power Off" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:power_off"}//
+Switch amplifier_IR_Mute "amplifier mute" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:mute"}
+Switch amplifier_IR_Video1 "amplifier video one" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:video1"}
+Switch amplifier_IR_Tuner "amplifier tuner" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tuner"}
+Switch amplifier_IR_Aux "amplifier aux" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:aux"}
+Switch amplifier_IR_VolumeUp "amplifier volume up" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumeup"}
+Switch amplifier_IR_VolumeDown "amplifier volume down" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:volumedown"}
+Switch amplifier_IR_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1"}
 
 Switch amplifier_IR_reachable "amplifier IR bridge" (gServices_Support_Online, gMQTT_reachable) ["Support_Service_Status"] { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:reachable" }
 Number amplifier_IR_rssi    "ir amplifier rssi" { channel = "mqtt:topic:amplifier:rssi" }

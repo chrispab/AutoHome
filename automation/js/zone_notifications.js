@@ -15,11 +15,11 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('Zone3LightStatusAlt', 'OFF', 'ON'),
   ],
   execute: (data) => {
-    console.error(
-      `ON ON ON =======  zone3 lights on : ${data.itemName
-      }, state: ${items.getItem(data.itemName).state
-      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
-    );
+    // console.error(
+    //   `ON ON ON =======  zone3 lights on : ${data.itemName
+    //   }, state: ${items.getItem(data.itemName).state
+    //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
+    // );
 
     items.getItem('KT_light_1_Power').sendCommand('ON');
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
