@@ -7,9 +7,7 @@ String GHM_Conservatory_MediaTitle	         "Media Title"	                    { 
 Player GHM_Conservatory_MediaControl           "GHM_Conservatory _MediaControl"  (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:control" }
 Switch GHM_Conservatory_Stop           "GHM_Conservatory _Stop "               (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:stop" }
 String GHM_Conservatory_App           "GHM_Conservatory _App "               (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:appName" }
-
 Dimmer GHM_Conservatory_Volume           "GHM_Conservatory Volume "              <soundvolume> (gGHM) { channel="chromecast:audio:GHM_Conservatory:volume" }
-
 Player GHM_Conservatory_Player           "GHM_Conservatory Player"                            (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:control" }
 Switch GHM_Conservatory_Idle             "GHM_Conservatory"                     <network> (gGHM) { channel="chromecast:chromecast:GHM_Conservatory:idling" }
 String GHM_Conservatory_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHM_Conservatory:playuri" }
@@ -29,6 +27,18 @@ Player GHH_Kitchen_Player           "GHH_Kitchen Player"                        
 Switch GHH_Kitchen_Idle             "GHH_Kitchen"                     <network> (gGHM) { channel="chromecast:chromecast:GHH_Kitchen:idling" }
 String GHH_Kitchen_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHH_Kitchen:playuri" }
 
+
+//chromecast:chromecast:GHM_FrontRoom
+Image GHM_FrontRoom_Image	         "Image"	                    { channel="chromecast:chromecast:GHM_FrontRoom:image" }
+String GHM_FrontRoom_MediaArtist	         "Media Artist"	                    { channel="chromecast:chromecast:GHM_FrontRoom:subtitle" }
+String GHM_FrontRoom_MediaTitle	         "Media Title"	                    { channel="chromecast:chromecast:GHM_FrontRoom:title" }
+Player GHM_FrontRoom_MediaControl           "GHM_FrontRoom _MediaControl"  (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:control" }
+Switch GHM_FrontRoom_Stop           "GHM_FrontRoom _Stop "               (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:stop" }
+String GHM_FrontRoom_App           "GHM_FrontRoom _App "               (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:appName" }
+Dimmer GHM_FrontRoom_Volume           "GHM_FrontRoom Volume "              <soundvolume> (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:volume" }
+Player GHM_FrontRoom_Player           "GHM_FrontRoom Player"                            (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:control" }
+Switch GHM_FrontRoom_Idle             "GHM_FrontRoom"                     <network> (gGHM) { channel="chromecast:chromecast:GHM_FrontRoom:idling" }
+String GHM_FrontRoom_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHM_FrontRoom:playuri" }
 
 // GCC_Conservatory
 // Image GCC_Conservatory_Image	         "Image"	                    { channel="chromecast:chromecast:GCC_Conservatory:image" }
