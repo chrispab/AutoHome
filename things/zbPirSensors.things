@@ -43,3 +43,14 @@ Thing mqtt:topic:pir04 "PIR 04" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
     Type string : reachable "PIR 04 Reachable"
 
 }
+Thing mqtt:topic:pir05 "PIR 05" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type switch : occupancy "PIR 05 occupancy"          [stateTopic="zigbee2mqtt/pir05", transformationPattern="JS:truefalse2onoff_occupancy.js" ]
+    Type number : linkquality "PIR 05 LinkQuality"   [ stateTopic="zigbee2mqtt/pir05",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "PIR 05 battery"   [ stateTopic="zigbee2mqtt/pir05",  transformationPattern="JSONPATH:$.battery" ]
+    Type switch : battery_low "PIR 05 battery_low"   [ stateTopic="zigbee2mqtt/pir05",  transformationPattern="JS:truefalse2onoff_battery_low.js" ]
+    Type switch : tamper "PIR 05 tamper"   [ stateTopic="zigbee2mqtt/pir05",  transformationPattern="JS:truefalse2onoff_tamper.js" ]
+    Type number : voltage "PIR 05 voltage"   [ stateTopic="zigbee2mqtt/pir05",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "PIR 05 Reachable"
+
+}

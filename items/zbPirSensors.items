@@ -34,3 +34,12 @@ Switch    pir04_battery_low    "pir04_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir04_voltage        "pir04_voltage"    (gZb_pir)    {channel="mqtt:topic:pir04:voltage"}
 Switch    pir04_tamper    "pir04_tamper"    (gZb_pir)   {channel="mqtt:topic:pir04:tamper"}
 String    pir04_reachable    "pir04_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir04:reachable"}
+
+
+Switch    pir05_occupancy    "pir05_occupancy"    (gZb_pir)   {channel="mqtt:topic:pir05:occupancy"}
+Number    pir05_linkquality    "pir05_linkquality" (gZb_pir)   {channel="mqtt:topic:pir05:linkquality"}
+Number    pir05_battery        "pir05_battery"    (gZb_pir)   {channel="mqtt:topic:pir05:battery"}
+Switch    pir05_battery_low    "pir05_battery_low"    (gZb_pir)   {channel="mqtt:topic:pir05:battery_low"}
+Number    pir05_voltage        "pir05_voltage"    (gZb_pir)    {channel="mqtt:topic:pir05:voltage"}
+Switch    pir05_tamper    "pir05_tamper"    (gZb_pir)   {channel="mqtt:topic:pir05:tamper"}
+String    pir05_reachable    "pir05_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir05:reachable"}
