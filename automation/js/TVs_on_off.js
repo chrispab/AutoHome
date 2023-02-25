@@ -44,12 +44,38 @@ scriptLoaded = function scriptLoaded() {
   }
 };
 
+
+function tv_alert() {
+  items.getItem('KT_light_1_Power').sendCommand('ON');
+  actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
+    items.getItem('KT_light_1_Power').sendCommand('OFF');
+    console.error('KT_light_1_Power');
+  });
+  actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2), () => {
+    items.getItem('KT_light_1_Power').sendCommand('ON');
+    console.error('KT_light_1_Power');
+  });
+  actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3), () => {
+    items.getItem('KT_light_1_Power').sendCommand('OFF');
+    console.error('KT_light_1_Power');
+  });
+  actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(4), () => {
+    items.getItem('KT_light_1_Power').sendCommand('ON');
+    console.error('KT_light_1_Power');
+  });
+  actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(5), () => {
+    items.getItem('KT_light_1_Power').sendCommand('OFF');
+    console.error('KT_light_1_Power');
+  });
+}
+
+
 let tvPowerOffTimer;
 
 function turnOnTV(onOffProxyItem, powerControlItem, message) {
   logger.warn(`Turning on Pi Kodi and TV:${message}`);
-  actions.Voice.say(message);
-
+  // actions.Voice.say(message);
+  tv_alert();
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
     tvPowerOffTimer.cancel();// = undefined;
@@ -60,7 +86,8 @@ function turnOnTV(onOffProxyItem, powerControlItem, message) {
 
 function turnOffTV(onOffProxyItem, powerControlItem, message) {
   logger.warn(`Turning off Pi Kodi and TV:${message}`);
-  actions.Voice.say(message);
+  // actions.Voice.say(message);
+  tv_alert();
 
   items.getItem(onOffProxyItem).postUpdate('OFF');
 
