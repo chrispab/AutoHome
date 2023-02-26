@@ -1,17 +1,17 @@
 Group    gZb_pir
 Group gZbPIRSensorsReachable
 
+Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir)   {channel="mqtt:topic:pir01:occupancy"}
 Number    pir01_illuminance    "pir01_illuminance"    (gZb_pir)   {channel="mqtt:topic:pir01:illuminance"}
 Number    pir01_illuminance_lux    "pir01_illuminance_lux"    (gZb_pir)   {channel="mqtt:topic:pir01:illuminance_lux"}
-Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir)   {channel="mqtt:topic:pir01:occupancy"}
 Number    pir01_linkquality    "pir01_linkquality" (gZb_pir)   {channel="mqtt:topic:pir01:linkquality"}
 Number    pir01_battery        "pir01_battery"    (gZb_pir)   {channel="mqtt:topic:pir01:battery"}
 Number    pir01_voltage        "pir01_voltage"    (gZb_pir)    {channel="mqtt:topic:pir01:voltage"}
 String    pir01_reachable    "pir01_reachable"    (gZbPIRSensorsReachable)        {channel="mqtt:topic:pir01:reachable"}
 
+Switch    pir02_occupancy    "pir02_occupancy"    (gZb_pir)   {channel="mqtt:topic:pir02:occupancy"}
 Number    pir02_illuminance    "pir02_illuminance"    (gZb_pir)   {channel="mqtt:topic:pir02:illuminance"}
 Number    pir02_illuminance_lux    "pir02_illuminance_lux"    (gZb_pir)   {channel="mqtt:topic:pir02:illuminance_lux"}
-Switch    pir02_occupancy    "pir02_occupancy"    (gZb_pir)   {channel="mqtt:topic:pir02:occupancy"}
 Number    pir02_linkquality    "pir02_linkquality" (gZb_pir)   {channel="mqtt:topic:pir02:linkquality"}
 Number    pir02_battery        "pir02_battery"    (gZb_pir)   {channel="mqtt:topic:pir02:battery"}
 Number    pir02_voltage        "pir02_voltage"    (gZb_pir)    {channel="mqtt:topic:pir02:voltage"}
