@@ -47,28 +47,27 @@ scriptLoaded = function scriptLoaded() {
 // timeUtils.toDateTime((500))
 function tv_alert() {
   items.getItem('KT_light_1_Power').sendCommand('ON');
-  // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
+  console.error('KT_light_1_Power ON');
   actions.ScriptExecution.createTimer(timeUtils.toDateTime((1 * 500)), () => {
-
     items.getItem('KT_light_1_Power').sendCommand('OFF');
-    console.error('KT_light_1_Power');
+    console.error('KT_light_1_Power OFF');
   });
   actions.ScriptExecution.createTimer(timeUtils.toDateTime((2 * 500)), () => {
     items.getItem('KT_light_1_Power').sendCommand('ON');
-    console.error('KT_light_1_Power');
+    console.error('KT_light_1_Power ON');
   });
   actions.ScriptExecution.createTimer(timeUtils.toDateTime((3 * 500)), () => {
     items.getItem('KT_light_1_Power').sendCommand('OFF');
-    console.error('KT_light_1_Power');
+    console.error('KT_light_1_Power OFF');
   });
-  actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('ON');
-    console.error('KT_light_1_Power');
-  });
-  actions.ScriptExecution.createTimer(timeUtils.toDateTime((5 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('OFF');
-    console.error('KT_light_1_Power');
-  });
+  //   actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
+  //     items.getItem('KT_light_1_Power').sendCommand('ON');
+  //     console.error('KT_light_1_Power ON');
+  //   });
+  //   actions.ScriptExecution.createTimer(timeUtils.toDateTime((5 * 500)), () => {
+  //     items.getItem('KT_light_1_Power').sendCommand('OFF');
+  //     console.error('KT_light_1_Power OFF');
+  // });
 }
 
 
