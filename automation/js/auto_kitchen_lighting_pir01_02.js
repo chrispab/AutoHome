@@ -44,7 +44,7 @@ rules.JSRule({
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
       logger.debug(`pir01_occupancy inner: ${items.getItem('pir01_occupancy').state}`);
       if (items.getItem('pir01_occupancy').state === 'ON') {
-        items.getItem('KT_light_1_Power').sendCommand('ON');
+        items.getItem('KT_light_1_Power').sendCommand('ON');//! on
         logger.warn('-rxed pir01_occupancy KT_light_1_Power ON');
         // cancrl the off timer if running
         if (pir01_off_timer && pir01_off_timer.isActive()) {
@@ -99,13 +99,22 @@ rules.JSRule({
     logger.warn(
       `${data.itemName}: STARTING off TIMER , off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,
     );
+
+    //!set off timer duration based on bridge light level and /or time of day
+    // if(items.getItem('BridgeLightSensorLevel').rawState < )
+    if (items.getItem('CT_LightDark_State').state === "OFF") {
+      offTimerDuration = 120;
+    } else {
+      offTimerDuration = 3;
+    }
     if (data.itemName === 'pir01_occupancy') {
       // logger.warn(
       //   `-pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF, off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,
       // );
       const now = time.ZonedDateTime.now();
       pir01_off_timer = actions.ScriptExecution.createTimer(
-        now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
+        // now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
+        now.plusSeconds(offTimerDuration),
         pir1_off_body,
       );
       // logger.warn('-pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END');

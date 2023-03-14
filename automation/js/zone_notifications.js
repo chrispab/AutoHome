@@ -20,6 +20,7 @@ rules.JSRule({
     //   }, state: ${items.getItem(data.itemName).state
     //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     // );
+    currentState = items.getItem('KT_light_1_Power').state;
 
     items.getItem('KT_light_1_Power').sendCommand('ON');
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
@@ -49,6 +50,10 @@ rules.JSRule({
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), () => {
       items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
       console.error('KT_light_1_Power');
+    });
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(8), () => {
+      items.getItem('KT_light_1_Power').sendCommand(currentState);
+      console.error('KT_light_1_Power restore original state');
     });
   },
 });

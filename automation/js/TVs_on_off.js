@@ -46,6 +46,8 @@ scriptLoaded = function scriptLoaded() {
 
 // timeUtils.toDateTime((500))
 function tv_alert() {
+  currentState = items.getItem('KT_light_1_Power').state;
+
   items.getItem('KT_light_1_Power').sendCommand('ON');
   console.error('KT_light_1_Power ON');
   actions.ScriptExecution.createTimer(timeUtils.toDateTime((1 * 500)), () => {
@@ -60,6 +62,12 @@ function tv_alert() {
     items.getItem('KT_light_1_Power').sendCommand('OFF');
     console.error('KT_light_1_Power OFF');
   });
+
+  actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
+    items.getItem('KT_light_1_Power').sendCommand(currentState);
+    console.error('KT_light_1_Power restore original state');
+  });
+
   //   actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
   //     items.getItem('KT_light_1_Power').sendCommand('ON');
   //     console.error('KT_light_1_Power ON');
