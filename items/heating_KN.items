@@ -1,0 +1,18 @@
+// // https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
+// //thermostat definition formatted for Google home, assistant use
+// Group gKN_Thermostat "kitchen Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="kitchen" ] }
+// String KN_ThermostatMode "kitchen Thermostat Mode" <settings> (gKN_Thermostat, gThermostatModes) { ga="thermostatMode" }
+// Number KN_TemperatureSetpoint "Kitchen Setpoint [%.1f °C]" <heating> (gKN_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+
+// Number KN_Temperature "Kitchen Temperature rawz [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:kitchenRadThermoValve:temperature" }
+
+// Number KN_Humidity "Kitchen Humidity [%.1f °C]" <humidity> (gKN_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:kitchenRadThermoValve:humidity" }
+
+// //additional params for use in openhab functions etc
+// Switch KN_Heater "Kitchen Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:kitchenRadThermoValve:powerSwitch" }
+// String KN_HeatingMode "Kitchen Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
+// Number KN_Heating_PresetTempNormal "Kitchen Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+
+// String KN_RTVReachable "Kitchen Reachable" <qualityofservice> (gKN_Thermostat,gRTVsReachable)  { channel="mqtt:topic:kitchenRadThermoValve:reachable" }
+// Number KN_RTV_Rssi "CT RTV RSSI [%.1f]" <qualityofservice> (gKN_Thermostat) { channel="mqtt:topic:kitchenRadThermoValve:rssi" }
+
