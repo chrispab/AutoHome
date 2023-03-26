@@ -3,6 +3,8 @@ Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker)
     Type string : action    "Ikea remote 1 action"        [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action" ]
     Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Ikea remote 1 battery" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
+    Type number : update_progress [ stateTopic="zigbee2mqtt/ikearemote01/update-progress"]
+
 }
 
     // Type string : arrow_left_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_left_click" ]

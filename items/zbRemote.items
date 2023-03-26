@@ -8,3 +8,4 @@ String	ZbRemote01Action	"remote 01 action: [%s]"			(gZbRemote01)	{channel="mqtt:
 String  zb_remote01_action    "remote 01 action: [%s]"    {channel="mqtt:topic:ikearemote01:action"}
 Number  zb_remote01_quality   "Zb remote 1 LinkQuality [%d]"  {channel="mqtt:topic:ikearemote01:linkquality"}
 Number  zb_remote01_battery   "Zb remote 1 battery [%d]"  {channel="mqtt:topic:ikearemote01:battery"}
+Number zb_remote01_update_progress {channel="mqtt:topic:ikearemote01:update_progress"}
