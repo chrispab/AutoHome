@@ -7,6 +7,8 @@ Number  Soil1_Moisture_5    "Soil 1 Moisture 5"     (gMQTT)       { channel="mqt
 Number  Soil1_Moisture_6    "Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
 Number  Soil1_Moisture_xxx    "xxx Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
 
+Number  Soil1_Moisture_OH_1    "Soil 1 Moisture OH 1 processed"
+
 String  Soil1_Reachable     "Soil 1 Moisture reachable" (gMQTT)   { channel = "mqtt:topic:soil1:Reachable" }
 
 String UI_Refresh_Timer

@@ -219,6 +219,7 @@ Items {
     Soil1_Moisture_4 : strategy = everyUpdate
     Soil1_Moisture_5 : strategy = everyUpdate
     Soil1_Moisture_6 : strategy = everyUpdate
+    Soil1_Moisture_OH_1 : strategy = everyUpdate
 
     bg_wifiadaptor_1_power : strategy = everyUpdate
     bg_wifiadaptor_2_power : strategy = everyUpdate
