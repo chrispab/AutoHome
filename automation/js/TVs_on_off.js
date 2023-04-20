@@ -2,7 +2,7 @@ const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
 const { timeUtils } = require('openhab_rules_tools');
-
+const { myutils } = require('personal');
 const logger = log('TVs on off.js');
 
 let tStartup;
@@ -43,6 +43,41 @@ scriptLoaded = function scriptLoaded() {
     });
   }
 };
+
+
+function tv_alert_func() {
+  currentState = items.getItem('KT_light_1_Power').state;
+
+  items.getItem('KT_light_1_Power').sendCommand('ON');
+  console.error('KT_light_1_Power ON');
+  actions.ScriptExecution.createTimer(timeUtils.toDateTime((1 * 500)), () => {
+    items.getItem('KT_light_1_Power').sendCommand('OFF');
+    console.error('KT_light_1_Power OFF');
+  });
+  actions.ScriptExecution.createTimer(timeUtils.toDateTime((2 * 500)), () => {
+    items.getItem('KT_light_1_Power').sendCommand('ON');
+    console.error('KT_light_1_Power ON');
+  });
+  actions.ScriptExecution.createTimer(timeUtils.toDateTime((3 * 500)), () => {
+    items.getItem('KT_light_1_Power').sendCommand('OFF');
+    console.error('KT_light_1_Power OFF');
+  });
+
+  actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
+    items.getItem('KT_light_1_Power').sendCommand(currentState);
+    console.error('KT_light_1_Power restore original state');
+  });
+
+  //   actions.ScriptExecution.createTimer(timeUtils.toDateTime((4 * 500)), () => {
+  //     items.getItem('KT_light_1_Power').sendCommand('ON');
+  //     console.error('KT_light_1_Power ON');
+  //   });
+  //   actions.ScriptExecution.createTimer(timeUtils.toDateTime((5 * 500)), () => {
+  //     items.getItem('KT_light_1_Power').sendCommand('OFF');
+  //     console.error('KT_light_1_Power OFF');
+  // });
+}
+
 
 // timeUtils.toDateTime((500))
 function tv_alert() {
@@ -179,6 +214,8 @@ rules.JSRule({
   execute: () => {
     // actions.Voice.say('Turning OFF tv - kodi, amp, and bridges');
     turnOffTV('vCT_stereo', 'bg_wifisocket_1_1_power', 'Turning OFF conservatory TV');
+
+    // myutils.toggleItem('KT_light_1_Power', 5, 1000, logger);
 
     logger.warn('Turning OFF tv - kodi, amp, and bridges');
     items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi

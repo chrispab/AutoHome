@@ -29,13 +29,13 @@ const logger = log('soil1_moisture');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
-scriptLoaded = function () {
-    logger.warn('scriptLoaded - init soil1_moisture');
-    const temp = items.getItem('Soil1_Moisture_Raw').state;
-    items.getItem('CT_Temperature').sendCommand(temp);
+// scriptLoaded = function () {
+//     logger.warn('scriptLoaded - init soil1_moisture');
+//     const temp = items.getItem('Soil1_Moisture_Raw').state;
+//     items.getItem('CT_Temperature').sendCommand(temp);
 
-    logger.warn(`0 ==> STARTUP temp is: ${temp}`);
-};
+//     logger.warn(`0 ==> STARTUP temp is: ${temp}`);
+// };
 
 function limitSensorValue(reading, min_limit, max_limit) {
     if (reading > max_limit) {
@@ -48,7 +48,7 @@ function limitSensorValue(reading, min_limit, max_limit) {
 }
 
 const divisor = 8;
-const RAW_0PC_DRY = 2500.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+const RAW_0PC_DRY = 2600.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
 const RAW_100PC_WET = 1570.0;//1725, 1712,1631,1630,1570
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 

@@ -4,15 +4,16 @@ const {
 const { myutils } = require('personal');
 
 const logger = log('smooth-ct-temp');
-// const { timeUtils } = require('openhab_rules_tools');
-// const { toToday } = require('openhab_rules_tools/timeUtils');
+
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded - init CT temp filter');
-  const temp = items.getItem('CT_Temperature').state;
-  items.getItem('CT_Temperature').sendCommand(temp);
+  // const temp = items.getItem('CT_Temperature').state;
+  // const temp = items.getItem('CT_Temperature').state;
+  items.getItem('CT_Temperature').sendCommand(19);
+  items.getItem('CT_Temperature_raw').sendCommand(19);
 
-  logger.warn(`0 ==> STARTUP temp is: ${temp}`);
+  // logger.warn(`0 ==> STARTUP temp is: ${temp}`);
 };
 
 const divisor = 8;
@@ -53,6 +54,6 @@ rules.JSRule({
 
     // logger.error(`7 ==> CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
 
-    logger.warn(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
+    // logger.warn(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
   },
 });
