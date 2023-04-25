@@ -19,7 +19,7 @@ Switch DR_TRV_rf433_skt_1 "CT_rf433_skt_1 power socket 1"  <poweroutlet_uk>  (gC
 Switch tableLamp1 "table lamp RF433 power socket 2"  <poweroutlet_uk>  (gXmasLights, gDiningRoom) {channel="mqtt:topic:rf433_skt_2:powerSwitch"}
 
 //rf433_skt_3 -
-Switch workLightsPowerSocket "workLights RF433 power socket 3"  <poweroutlet_uk>  (gConservatory, gConservatoryLights) { channel="mqtt:topic:rf433_skt_3:powerSwitch" }
+Switch workLightsPowerSocket "workLights RF433 power socket 3"  <poweroutlet_uk>  (gConservatory, gConservatoryLights)  ["Switch","Light"] { channel="mqtt:topic:rf433_skt_3:powerSwitch" }
 
 
 //rf433_skt_7 Amplifier
@@ -40,7 +40,7 @@ Switch CT_TV433PowerSocket "conservatory TV RF433 power socket 8"  <poweroutlet_
 Switch DR_FairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gFairyLights, gDiningRoom, gConservatoryFairyLights) { channel="mqtt:topic:DR_FairyLights433Socket:powerSwitch" }
 
 //conservatory fairy lights
-Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gConservatoryLights, gFairyLights, gConservatory, gConservatoryFairyLights) { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
+Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gConservatoryLights, gFairyLights, gConservatory, gConservatoryFairyLights)  ["Switch","Light"] { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing
