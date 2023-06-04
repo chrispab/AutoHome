@@ -2,6 +2,7 @@ const {
     log, items, rules, actions, triggers,
 } = require('openhab');
 const { myutils } = require('personal');
+const { alerting } = require('personal');
 
 const logger = log('soil1_moisture');
 
@@ -52,44 +53,38 @@ rules.JSRule({
     triggers: [
         triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
 
-        triggers.ItemStateChangeTrigger('Soil1_Moisture_OH_1'),
+        triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
     ],
     execute: (data) => {
         currentState = items.getItem('KT_light_1_Power').state;
-        currentMoisture = items.getItem('Soil1_Moisture_OH_1').state;
+        currentMoisture = items.getItem('Soil1_Moisture_OH_1').rawState;
 
-        items.getItem('KT_light_1_Power').sendCommand('ON');
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1), () => {
-            items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2), () => {
-            items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3), () => {
-            items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(4), () => {
-            items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(5), () => {
-            items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(6), () => {
-            items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), () => {
-            items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            console.error('KT_light_1_Power');
-        });
-        actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(8), () => {
-            items.getItem('KT_light_1_Power').sendCommand(currentState);
-            console.error('KT_light_1_Power restore original state');
-        });
+
+        // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
+        if (currentMoisture < 30) {
+            alerting.sendInfo('zone 3 moisture low');
+            // secs = 0.5;
+            // items.getItem('KT_light_1_Power').sendCommand('ON');
+            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1 * secs), () => {
+            //     items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
+            //     console.error('KT_light_1_Power');
+            // });
+            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2 * secs), () => {
+            //     items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
+            //     console.error('KT_light_1_Power');
+            // });
+            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3 * secs), () => {
+            //     items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
+            //     console.error('KT_light_1_Power');
+            // });
+
+
+            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(8 * secs), () => {
+            //     items.getItem('KT_light_1_Power').sendCommand(currentState);
+            //     console.error('KT_light_1_Power restore original state');
+            // });
+        }
+
+
     },
 });
