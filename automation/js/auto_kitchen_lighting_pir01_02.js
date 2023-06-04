@@ -103,9 +103,9 @@ rules.JSRule({
     //!set off timer duration based on bridge light level and /or time of day
     // if(items.getItem('BridgeLightSensorLevel').rawState < )
     if (items.getItem('CT_LightDark_State').state === "OFF") {
-      offTimerDuration = 120;
+      offTimerDuration = items.getItem('KT_cupboard_lights_timeout').rawState;
     } else {
-      offTimerDuration = 3;
+      offTimerDuration = items.getItem('KT_cupboard_lights_timeout').rawState / 3;
     }
     if (data.itemName === 'pir01_occupancy') {
       // logger.warn(

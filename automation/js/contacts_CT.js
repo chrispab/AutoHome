@@ -41,15 +41,17 @@ rules.JSRule({
   ],
   execute: () => {
     logger.debug('CT contact01 went false');
+    if (items.getItem('vFartDoorEnable').state.toString() === 'ON') {
+      // vol = actions.Audio.getMasterVolume();
+      // let newVol = vol;
+      // newVol = 1.0;
+      // logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
 
-    // vol = actions.Audio.getMasterVolume();
-    // let newVol = vol;
-    // newVol = 1.0;
-    // logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
+      // actions.Audio.setMasterVolume(newVol);
 
-    // actions.Audio.setMasterVolume(newVol);
+      actions.Audio.playSound(randomFartString());
+    }
 
-    actions.Audio.playSound(randomFartString());
   },
 });
 rules.JSRule({
@@ -60,11 +62,14 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('v_test_switch_01', 'OFF', 'ON'),
   ],
   execute: () => {
-    logger.debug('CT contact01 went true');
+    if (items.getItem('vFartDoorEnable').state.toString() === 'ON') {
 
-    actions.Audio.playSound(randomFartString());
+      logger.debug('CT contact01 went true');
 
-    // actions.Audio.setMasterVolume(vol);
-    // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
+      actions.Audio.playSound(randomFartString());
+
+      // actions.Audio.setMasterVolume(vol);
+      // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
+    }
   },
 });

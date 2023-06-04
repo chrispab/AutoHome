@@ -1,5 +1,5 @@
 scriptLoaded = function () {
-  console.log('zone3 lights on scriptLoaded function');
+  console.log('zone3 notifications scriptLoaded function');
   loadedDate = Date.now();
 };
 
@@ -57,6 +57,7 @@ rules.JSRule({
     });
   },
 });
+
 
 // t4 = None
 
