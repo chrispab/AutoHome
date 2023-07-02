@@ -52,8 +52,8 @@ rules.JSRule({
     description: 'zone3 moisture low',
     triggers: [
         triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
-
-        triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
+        // triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
+        triggers.GenericCronTrigger("0 0 * ? * * *"),
     ],
     execute: (data) => {
         currentState = items.getItem('KT_light_1_Power').state;
@@ -61,8 +61,8 @@ rules.JSRule({
 
 
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
-        if (currentMoisture < 30) {
-            alerting.sendInfo('zone 3 moisture low');
+        if (currentMoisture < 15) {
+            alerting.sendInfo(`zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
             // secs = 0.5;
             // items.getItem('KT_light_1_Power').sendCommand('ON');
             // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1 * secs), () => {
