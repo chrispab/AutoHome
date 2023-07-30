@@ -48,8 +48,11 @@ rules.JSRule({
       // logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
 
       // actions.Audio.setMasterVolume(newVol);
+  // generate  number in range 1 to max
+      if( Math.random() > 0.8){
+        actions.Audio.playSound(randomFartString());
+      }
 
-      actions.Audio.playSound(randomFartString());
     }
 
   },
@@ -66,8 +69,9 @@ rules.JSRule({
 
       logger.debug('CT contact01 went true');
 
-      actions.Audio.playSound(randomFartString());
-
+      if( Math.random() > 0.8){
+        actions.Audio.playSound(randomFartString());
+      }
       // actions.Audio.setMasterVolume(vol);
       // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
     }
