@@ -229,4 +229,77 @@ Items {
     v_DR_HeatingMode_update_by_timeline : strategy = everyUpdate
     v_DR_SetPoint_auto_update_by_timeline : strategy = everyUpdate
 
+
+    // systeminfo
+    Network_AdapterName : strategy = everyUpdate
+    Network_Name : strategy = everyUpdate
+    Network_IP : strategy = everyUpdate
+    Network_Mac : strategy = everyUpdate
+    Network_DataSent : strategy = everyUpdate
+    Network_DataReceived : strategy = everyUpdate
+    Network_PacketsSent : strategy = everyUpdate
+    Network_PacketsReceived : strategy = everyUpdate
+
+
+    CPU_Name : strategy = everyUpdate
+    CPU_Description : strategy = everyUpdate
+    CPU_Load : strategy = everyUpdate
+    CPU_Load1 : strategy = everyUpdate
+    CPU_Load5 : strategy = everyUpdate
+    CPU_Load15 : strategy = everyUpdate
+    CPU_Threads : strategy = everyUpdate
+    CPU_Uptime : strategy = everyUpdate
+
+
+    Drive_Name : strategy = everyUpdate
+    Drive_Model : strategy = everyUpdate
+    Drive_Serial : strategy = everyUpdate
+
+
+    Storage_Name : strategy = everyUpdate
+    Storage_Type : strategy = everyUpdate
+    Storage_Description : strategy = everyUpdate
+    Storage_Available : strategy = everyUpdate
+    Storage_Used : strategy = everyUpdate
+    Storage_Total : strategy = everyUpdate
+    Storage_Available_Percent : strategy = everyUpdate
+    Storage_Used_Percent  : strategy = everyUpdate
+
+
+    Memory_Available  : strategy = everyUpdate
+    Memory_Used  : strategy = everyUpdate
+    Memory_Total   : strategy = everyUpdate
+    Memory_Available_Percent : strategy = everyUpdate
+    Memory_Used_Percent : strategy = everyUpdate
+
+    Swap_Available  : strategy = everyUpdate
+    Swap_Used  : strategy = everyUpdate
+    Swap_Total  : strategy = everyUpdate
+    Swap_Available_Percent  : strategy = everyUpdate
+    Swap_Used_Percent  : strategy = everyUpdate
+
+    Battery_Name  : strategy = everyUpdate
+    Battery_RemainingCapacity  : strategy = everyUpdate
+    Battery_RemainingTime  : strategy = everyUpdate
+
+    Display_Description  : strategy = everyUpdate
+
+    Sensor_CPUTemp : strategy = everyUpdate
+    Sensor_CPUVoltage : strategy = everyUpdate
+    Sensor_FanSpeed : strategy = everyUpdate
+
+    Current_process_load  : strategy = everyUpdate
+    Current_process_used : strategy = everyUpdate
+    Current_process_name       : strategy = everyUpdate
+    Current_process_threads    : strategy = everyUpdate
+    Current_process_path       : strategy = everyUpdate
+
+    Process_load : strategy = everyUpdate
+    Process_used : strategy = everyUpdate
+    Process_name  : strategy = everyUpdate
+    Process_threads  : strategy = everyUpdate
+    Process_path  : strategy = everyUpdate
+
+
+
 }
