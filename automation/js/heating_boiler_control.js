@@ -5,7 +5,7 @@ const { myutils } = require('personal');
 
 // log:set WARN org.openhab.automation.openhab-js.boiler
 // log:set DEBUG org.openhab.automation.openhab-js.boiler
-const logger = log('boiler');
+const logger = log('Boiler_Control');
 const { timeUtils } = require('openhab_rules_tools');
 
 rules.JSRule({
@@ -22,16 +22,16 @@ rules.JSRule({
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
       // if boiler off, send on command
       if (items.getItem('Boiler_Control').state.toString() === 'OFF') {
-        logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
+        logger.warn(`boiler - action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
         items.getItem('Boiler_Control').sendCommand('ON');
       } else {
-        logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
+        logger.warn(`boiler - no action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
       }
     } else if (items.getItem('Boiler_Control').state.toString() === 'ON') {
-      logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler is ON so sending boiler OFF command`);
+      logger.warn(`boiler - action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler is ON so sending boiler OFF command`);
       items.getItem('Boiler_Control').sendCommand('OFF');
     } else {
-      logger.warn(`boiler control:....trigger: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
+      logger.warn(`boiler - no action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
     }
   },
 });
