@@ -21,6 +21,7 @@ rules.JSRule({
     triggers: [triggers.ItemStateChangeTrigger('testSwitch1', 'OFF', 'ON')],
     execute: () => {
         actions.Audio.playSound('0600_hours_regeneration_cycle_complete.mp3');
+
         // myutils.toggleItem('KT_light_1_Power', 5, 2000, logger);
 
         // items.getItem("ZbWhiteBulb01Switch").sendCommand("OFF");

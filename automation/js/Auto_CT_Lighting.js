@@ -27,7 +27,7 @@ rules.JSRule({
   description: 'CRON turn OFF conservatory lights when late - maybe forgot',
   triggers: [triggers.GenericCronTrigger('0 30 01 * * ?')],
   execute: () => {
-    logger.error('CRON turn OFF conservatory lights when late - maybe forgot');
+    logger.warn('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('CRON auto turn OFF conservatory lights');
