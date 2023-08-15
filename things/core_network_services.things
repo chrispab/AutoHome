@@ -1,11 +1,11 @@
-Thing network:pingdevice:iotstack_server [ hostname="192.168.0.100" ]
+// Thing network:pingdevice:iotstack_server [ hostname="192.168.0.100" ]
 
-Thing network:servicedevice:mosquitto [ hostname="192.168.0.100", port=1883 ]
+// Thing network:servicedevice:mosquitto [ hostname="192.168.0.100", port=1883 ]
 
-Thing network:pingdevice:dev_server [ hostname="192.168.0.199" ]
-Thing network:pingdevice:nas_server [ hostname="192.168.0.110" ]
-Thing network:pingdevice:mythtv_server [ hostname="192.168.0.102" ]
-Thing network:pingdevice:backuppi_server [ hostname="192.168.0.109" ]
+// Thing network:pingdevice:dev_server [ hostname="192.168.0.199" ]
+// Thing network:pingdevice:nas_server [ hostname="192.168.0.110" ]
+// Thing network:pingdevice:mythtv_server [ hostname="192.168.0.102" ]
+// Thing network:pingdevice:backuppi_server [ hostname="192.168.0.109" ]
 
 // UID: network:pingdevice:192_168_0_100
 // label: iotstack_server

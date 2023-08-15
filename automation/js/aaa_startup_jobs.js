@@ -8,7 +8,7 @@ const { alerting } = require('personal');
 scriptLoaded = function () {
   console.log('script loaded - startup jobs');
   actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
-  alerting.sendInfo('startup script loaded zzz_startup_jobs');
+  alerting.sendInfo('startup xscript loaded zzz_startup_jobs');
 
 };
 

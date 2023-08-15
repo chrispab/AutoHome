@@ -1,13 +1,13 @@
-Switch  iotstack_server_reachable  "iotstack server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:iotstack_server:online" }
-Switch  mosquitto_server_reachable  "mosquitto server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:servicedevice:mosquitto:online" }
+// Switch  iotstack_server_reachable  "iotstack server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:iotstack_server:online" }
+// Switch  mosquitto_server_reachable  "mosquitto server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:servicedevice:mosquitto:online" }
 
-// Thing network:servicedevice:mosquitto [ hostname="192.168.0.100", port=1883 ]
-Switch  mythtv_server_reachable  "mythtv server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:mythtv_server:online" }
+// // Thing network:servicedevice:mosquitto [ hostname="192.168.0.100", port=1883 ]
+// Switch  mythtv_server_reachable  "mythtv server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:mythtv_server:online" }
 
 
-Switch  dev_server_reachable  "dev server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
-Switch  nas_server_reachable  "nas server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
+// Switch  dev_server_reachable  "dev server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
+// Switch  nas_server_reachable  "nas server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
 
-Switch  backuppi_server_reachable  "backuppi server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:backuppi_server:online" }
+// Switch  backuppi_server_reachable  "backuppi server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:backuppi_server:online" }
 
 
