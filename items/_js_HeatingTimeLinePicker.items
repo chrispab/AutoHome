@@ -69,7 +69,7 @@ Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 
 //=========== Setpoint items
 //proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
-String v_OF_SetPoint_auto_update_by_timeline    (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+String v_OF_SetPoint_auto_update_by_timeline    (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
 Number OF_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
@@ -111,7 +111,7 @@ Number ER_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 //============== AT items ======================================================
 //=========== Setpoint items
 //proxy item to monitor any op from Transfer_CT_SetPoint_auto
-String v_AT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+String v_AT_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdateProxys)
 
 // timeline setpoints for auto - 'min, cool, comfort, warm, hot, max'
 
@@ -125,8 +125,8 @@ Number AT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 
 
 //============== FAN HEATER items ==============================================
-String Transfer_fan_heater_enable "[%s]"      (gTimepicker)
-String vFanHeater_Enable                     (gTimepicker)
+String Transfer_fan_heater_enable "[%s]"
+String vFanHeater_Enable
 Switch fan_heater_timeline_disable
 //============== FH items ======================================================
 //=========== Setpoint items

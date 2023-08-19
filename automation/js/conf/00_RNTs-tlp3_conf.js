@@ -21,7 +21,7 @@ const tlp_ids = {
   'Transfer_ER_SetPoint_auto': 'v_ER_SetPoint_auto_update_by_timeline',
   'Transfer_AT_SetPoint_auto': 'v_AT_SetPoint_auto_update_by_timeline',
 
-  'Transfer_FH_HeatingMode': 'v_FH_HeatingMode_update_by_timeline',
+  'Transfer_FH_SetPoint_auto': 'v_FH_SetPoint_auto_update_by_timeline',
 
   //TODO
   // "Transfer_CT_MorningLighting" -> newArrayList('v_CT_MorningLighting_update_by_timeline'),

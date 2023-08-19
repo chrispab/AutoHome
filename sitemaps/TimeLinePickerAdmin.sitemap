@@ -1,6 +1,6 @@
-sitemap example label="example"
+sitemap TimeLinePickerAdmin label="TimeLinePicker Admin"
 {
-    Frame label="ADMin, example 1" {
+    Frame label="TimeLinePicker Admin" {
         Webview
             icon="none"
             // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2,3,4,5,6&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
