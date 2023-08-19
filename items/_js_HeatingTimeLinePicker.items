@@ -1,0 +1,68 @@
+//============== CT items ======================================================
+//  used internally by timeLinePicker, also monitored outside to pick up updates from the timelines
+
+//CT Setpoint items
+//proxy item to monitor any op from Transfer_CT_SetPoint_auto
+String v_CT_SetPoint_auto_update_by_timeline    (gHeatingTimelineSetpointUpdateProxys)
+
+// new timeline ct setpoints for auto
+Number CT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+
+
+//============== DR items ======================================================
+// used internally by timeLinePicker,
+// also monitored outside to pick up updates from the timelines
+
+// Setpoint items
+//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+String v_DR_SetPoint_auto_update_by_timeline (gHeatingTimelineSetpointUpdateProxys)
+// oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig
+// new timeline setpoints for auto
+Number DR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+//==============================================================================
+
+//============== FR items ======================================================
+// used internally by timeLinePicker.rules
+// also monitored outside to pick up updates from the timelines
+
+//=========== Setpoint items
+//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+String v_FR_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdateProxys)
+
+// new timeline setpoints for auto
+Number FR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+//==============================================================================
+
+//============== HL items ======================================================
+// used internally by timeLinePicker.RULES,
+// also monitored outside to pick up updates from the timelines
+
+// Setpoint items
+//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+String v_HL_SetPoint_auto_update_by_timeline (gHeatingTimelineSetpointUpdateProxys)
+
+// new timeline setpoints for auto
+Number HL_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+//==============================================================================
+
+

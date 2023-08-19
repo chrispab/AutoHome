@@ -39,27 +39,27 @@ Number FH_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 
-//============== CT items ======================================================
-// used internally by timeLinePicker.rules
-String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
-//  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
-// String v_CT_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
-String v_CT_HeatingMode_update_by_timeline  (gTimepicker)
+// //============== CT items ======================================================
+// // used internally by timeLinePicker.rules
+// String Transfer_CT_HeatingMode "[%s]"      (gTimepicker)
+// //  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
+// // String v_CT_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+// String v_CT_HeatingMode_update_by_timeline  (gTimepicker)
 
-//CT Setpoint items
-String Transfer_CT_SetPoint_auto "[%s]"     (gTimepicker) //name of timeline rules item
-//proxy item to monitor any op from Transfer_CT_SetPoint_auto
-String v_CT_SetPoint_auto_update_by_timeline    (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+// //CT Setpoint items
+// String Transfer_CT_SetPoint_auto "[%s]"     (gTimepicker) //name of timeline rules item
+// //proxy item to monitor any op from Transfer_CT_SetPoint_auto
+// String v_CT_SetPoint_auto_update_by_timeline    (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
-// new timeline ct setpoints for auto
+// // new timeline ct setpoints for auto
 
 
-Number CT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+// Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 
 
 // //============== KT items ======================================================
@@ -84,68 +84,68 @@ Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 // Number KT_Setpoint_auto_max  (gHeating_Setpoint_auto_updates_webui)
 // //==============================================================================
 
-//============== DR items ======================================================
-// used internally by timeLinePicker.rules
-String Transfer_DR_HeatingMode "[%s]"      (gTimepicker)
-// used internally by timeLinePicker.RULES,
-// also monitored outside to pick up updates from the timelines
-String v_DR_HeatingMode_update_by_timeline (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+// //============== DR items ======================================================
+// // used internally by timeLinePicker.rules
+// String Transfer_DR_HeatingMode "[%s]"      (gTimepicker)
+// // used internally by timeLinePicker.RULES,
+// // also monitored outside to pick up updates from the timelines
+// String v_DR_HeatingMode_update_by_timeline (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
 
-// Setpoint items
-String Transfer_DR_SetPoint_auto "[%s]" (gTimepicker) //name of timeline rules item
-//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
-String v_DR_SetPoint_auto_update_by_timeline (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+// // Setpoint items
+// String Transfer_DR_SetPoint_auto "[%s]" (gTimepicker) //name of timeline rules item
+// //proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+// String v_DR_SetPoint_auto_update_by_timeline (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
-// new timeline setpoints for auto
-Number DR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
-//==============================================================================
+// // new timeline setpoints for auto
+// Number DR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+// Number DR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+// Number DR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+// Number DR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+// Number DR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+// Number DR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+// //==============================================================================
 
 
-//============== HL items ======================================================
-// used internally by timeLinePicker.rules
-String Transfer_HL_HeatingMode "[%s]"      (gTimepicker)
-// used internally by timeLinePicker.RULES,
-// also monitored outside to pick up updates from the timelines
-String v_HL_HeatingMode_update_by_timeline (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+// //============== HL items ======================================================
+// // used internally by timeLinePicker.rules
+// String Transfer_HL_HeatingMode "[%s]"      (gTimepicker)
+// // used internally by timeLinePicker.RULES,
+// // also monitored outside to pick up updates from the timelines
+// String v_HL_HeatingMode_update_by_timeline (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
 
-// Setpoint items
-String Transfer_HL_SetPoint_auto "[%s]" (gTimepicker) //name of timeline rules item
-//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
-String v_HL_SetPoint_auto_update_by_timeline (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+// // Setpoint items
+// String Transfer_HL_SetPoint_auto "[%s]" (gTimepicker) //name of timeline rules item
+// //proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+// String v_HL_SetPoint_auto_update_by_timeline (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
-// new timeline setpoints for auto
-Number HL_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
-//==============================================================================
+// // new timeline setpoints for auto
+// Number HL_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+// Number HL_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+// Number HL_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+// Number HL_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+// Number HL_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+// Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+// //==============================================================================
 
-//============== FR items ======================================================
-// used internally by timeLinePicker.rules
-String Transfer_FR_HeatingMode "[%s]"      (gTimepicker)
-//  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
-String v_FR_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
+// //============== FR items ======================================================
+// // used internally by timeLinePicker.rules
+// String Transfer_FR_HeatingMode "[%s]"      (gTimepicker)
+// //  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
+// String v_FR_HeatingMode_update_by_timeline                     (gTimepicker, gHeatingTimelineHeatingModeUpdateProxys)
 
-//=========== Setpoint items
-String Transfer_FR_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
-//proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
-String v_FR_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+// //=========== Setpoint items
+// String Transfer_FR_SetPoint_auto "[%s]"       (gTimepicker) //name of timeline rules item
+// //proxy item to monitor any op from Transfer_<room prefix>_SetPoint_auto
+// String v_FR_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
 
-// new timeline setpoints for auto
-Number FR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
-//==============================================================================
+// // new timeline setpoints for auto
+// Number FR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
+// Number FR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
+// Number FR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
+// Number FR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
+// Number FR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
+// Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+// //==============================================================================
 
 //============== OF Office items ======================================================
 // used internally by timeLinePicker.rules

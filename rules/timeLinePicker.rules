@@ -32,25 +32,25 @@ import java.util.ArrayList
 
 val HashMap<String,ArrayList<String>> timePicker = newHashMap(
     "Transfer_fan_heater_enable" -> newArrayList('vFanHeater_Enable'),
-    "Transfer_CT_HeatingMode" -> newArrayList('v_CT_HeatingMode_update_by_timeline'),
+    // "Transfer_CT_HeatingMode" -> newArrayList('v_CT_HeatingMode_update_by_timeline'),
     "Transfer_AT_HeatingMode" -> newArrayList('v_AT_HeatingMode_update_by_timeline'),
     "Transfer_AT_SetPoint_auto" -> newArrayList('v_AT_SetPoint_auto_update_by_timeline'),
-    "Transfer_CT_SetPoint_auto" -> newArrayList('v_CT_SetPoint_auto_update_by_timeline'),
+    // "Transfer_CT_SetPoint_auto" -> newArrayList('v_CT_SetPoint_auto_update_by_timeline'),
     "Transfer_OF_SetPoint_auto" -> newArrayList('v_OF_SetPoint_auto_update_by_timeline'),
     "Transfer_OF_HeatingMode" -> newArrayList('v_OF_HeatingMode_update_by_timeline'),
     "Transfer_BR_SetPoint_auto" -> newArrayList('v_BR_SetPoint_auto_update_by_timeline'),
     "Transfer_BR_HeatingMode" -> newArrayList('v_BR_HeatingMode_update_by_timeline'),
     "Transfer_CT_MorningLighting" -> newArrayList('v_CT_MorningLighting_update_by_timeline'),
-    "Transfer_FR_SetPoint_auto" -> newArrayList('v_FR_SetPoint_auto_update_by_timeline'),
-    "Transfer_FR_HeatingMode" -> newArrayList('v_FR_HeatingMode_update_by_timeline'),
+    // "Transfer_FR_SetPoint_auto" -> newArrayList('v_FR_SetPoint_auto_update_by_timeline'),
+    // "Transfer_FR_HeatingMode" -> newArrayList('v_FR_HeatingMode_update_by_timeline'),
     "Transfer_FH_SetPoint_auto" -> newArrayList('v_FH_SetPoint_auto_update_by_timeline'),
     "Transfer_FH_HeatingMode" -> newArrayList('v_FH_HeatingMode_update_by_timeline'),
     "Transfer_ER_SetPoint_auto" -> newArrayList('v_ER_SetPoint_auto_update_by_timeline'),
     "Transfer_ER_HeatingMode" -> newArrayList('v_ER_HeatingMode_update_by_timeline'),
-    "Transfer_DR_SetPoint_auto" -> newArrayList('v_DR_SetPoint_auto_update_by_timeline'),
-    "Transfer_DR_HeatingMode" -> newArrayList('v_DR_HeatingMode_update_by_timeline'),
-    "Transfer_HL_SetPoint_auto" -> newArrayList('v_HL_SetPoint_auto_update_by_timeline'),
-    "Transfer_HL_HeatingMode" -> newArrayList('v_HL_HeatingMode_update_by_timeline')
+    // "Transfer_DR_SetPoint_auto" -> newArrayList('v_DR_SetPoint_auto_update_by_timeline'),
+    // "Transfer_DR_HeatingMode" -> newArrayList('v_DR_HeatingMode_update_by_timeline'),
+    // "Transfer_HL_SetPoint_auto" -> newArrayList('v_HL_SetPoint_auto_update_by_timeline'),
+    // "Transfer_HL_HeatingMode" -> newArrayList('v_HL_HeatingMode_update_by_timeline')
 )
 
 // -------------------- end of config ------------------------------------------------------------------------
