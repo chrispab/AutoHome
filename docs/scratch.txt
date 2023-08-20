@@ -59,3 +59,41 @@ org.openhab.core.addon.marketplace.MarketplaceHandlerException: Cannot install b
 09:37:18.181 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
 10:01:04.746 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
 10:01:21.608 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: gAllChristmasLights
+
+
+01:57:28.022 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Rssi' changed from 88 to 86
+01:57:28.026 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 88 to 86
+01:57:28.415 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingWiFiPowerSocket4_Rssi' changed from 32 to 30
+01:57:28.416 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 32 to 30
+01:57:30.136 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.033 to 0.071
+01:57:30.201 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 46.3 °C
+01:57:30.203 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.093 to 0.135
+01:57:32.047 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingOutsidesensor_Temperature' changed from 15.9 °C to 16 °C
+01:57:32.049 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Outside_Temperature' changed from 15.9 °C to 16 °C
+01:57:37.050 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@175c90d' takes more than 5000ms.
+01:57:40.674 [WARN ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:57:45.990 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+02:00:00.621 [WARN ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+02:00:12.821 [WARN ] [.automation.openhab-js.heater change?] - Heating change...Turn AT heater OFF, :. its Heating Mode is  off
+02:01:33.186 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+02:42:10.933 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":123,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+08:58:11.011 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+08:58:56.362 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+08:59:03.932 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+
+
+shell:threads - - list
+
+jstack -l PID > my-dump.txt
+EXTRA_JAVA_OPTS="-Xms1024m -Xmx2048m"
+
+
+To do a thread dump:
+
+
+
+
+find process ID (usually the first number you see after the username)
+
+jstack -l (PID) > my-dump.txt
+
