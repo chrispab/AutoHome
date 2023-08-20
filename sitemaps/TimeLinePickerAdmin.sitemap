@@ -8,31 +8,6 @@ sitemap TimeLinePickerAdmin label="TimeLinePicker Admin"
             // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
             height=14
     }
-    // Frame label="timeline example 2" {
-    //     Webview
-    //         icon="none"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2,3,4,5,6&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         url="/static/tlp-jsr/index.html?id=k2&states=1,2,3,4,5,6&colorset=A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C&token=oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig&dark"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         height=14
-    // }
-    // Frame label="timeline example 3" {
-    //     Webview
-    //         icon="none"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2,3,4,5,6&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         url="/static/tlp-jsr/index.html?id=kt1&states=1,2,3,4,5,6&colorset=A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C&token=oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         height=14
-    // }
-    // Frame label="timeline example 4" {
-    //     Webview
-    //         icon="none"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2,3,4,5,6&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         url="/static/tlp-jsr/index.html?id=kt2&states=1,2,3,4,5,6&colorset=A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C&token=oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig"
-    //         // url="/static/tlp-jsr/index.html?id=kt1&mode=1,2,3,4,5,6,7&states=1,2&oh.tlptoken.RdehWSMRdFoLJ1Yk07zFwlADAMF9wD0cgbiOenok577c9liyZCQo1UaxstCsKfY7h72OpZNJnpkwslm9hTnA"
-    //         height=14
-    // }
-
 }
     // oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig
     // A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
