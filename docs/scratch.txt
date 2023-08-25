@@ -97,3 +97,602 @@ find process ID (usually the first number you see after the username)
 
 jstack -l (PID) > my-dump.txt
 
+pi@iotstack:~/IOTstack/volumes/openhab/conf $ docker exec -it openhab /openhab/runtime/bin/client -p habopen
+Logging in as openhab
+
+                           _   _     _     ____
+   ___   ___   ___   ___  | | | |   / \   | __ )
+  / _ \ / _ \ / _ \ / _ \ | |_| |  / _ \  |  _ \
+ | (_) | (_) |  __/| | | ||  _  | / ___ \ | |_) )
+  \___/|  __/ \___/|_| |_||_| |_|/_/   \_\|____/
+       |_|       4.0.2 - Release Build
+
+Use '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+To exit, use '<ctrl-d>' or 'logout'.
+
+openhab> log:tail
+00:13:41.334 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.149 to 0.093
+00:13:43.859 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+00:13:44.458 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.112 to 0.066
+00:13:44.547 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2787115008 B to 2788163584 B
+00:13:44.551 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.2 °C to 46.3 °C
+00:13:44.557 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.093 to 0.121
+00:13:45.740 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Temperature' changed from 22 to 22.1
+00:13:45.746 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Temperature' changed from 22 to 22.1
+00:13:45.751 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Temperature' changed from 22 °C to 22.1 °C
+00:13:45.758 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Temperature_raw' changed from 22 to 22.1
+00:13:45.762 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'CT_Temperature' received command 22.4
+00:13:45.764 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Humidity' changed from 91.7 to 91.8
+00:13:45.768 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Humidity' changed from 91.7 to 91.8
+00:13:45.771 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Humidity' changed from 91.7 to 91.8
+00:13:45.774 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'FH_Temperature' received command 22.4
+00:13:45.777 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'FH_Humidity' changed from 91.7 to 91.8
+00:13:45.780 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Humidity' changed from 91.7 to 91.8
+00:13:45.780 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+00:13:45.781 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'HL_Heater' received command OFF
+00:13:45.783 [INFO ] [openhab.event.ItemStatePredictedEvent] - Item 'HL_Heater' predicted to become OFF
+00:13:45.785 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+00:13:45.791 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'CT_Heater' received command OFF
+00:13:45.796 [INFO ] [openhab.event.ItemStatePredictedEvent] - Item 'CT_Heater' predicted to become OFF
+00:13:45.802 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+00:13:47.677 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.066 to 0.08
+00:13:47.760 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2788163584 B to 2787115008 B
+00:13:47.764 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 45.8 °C
+00:13:47.766 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.121 to 0.233
+00:13:48.825 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Temperature' changed from 29.8 °C to 29.7 °C
+00:13:48.830 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_Humidity' changed from 54.4 to 53.9
+00:13:48.832 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Humidity' changed from 54.4 to 53.9
+00:13:50.903 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.08 to 0.1
+00:13:50.947 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Available' changed from 152014159872 B to 152013111296 B
+00:13:50.950 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1179 to 1180
+00:13:50.953 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 46.3 °C
+00:13:50.955 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.233 to 0.122
+00:13:50.990 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 83469795328 B to 83470843904 B
+00:13:51.532 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingWiFiPowerSocket4_Rssi' changed from 12 to 16
+00:13:51.538 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 12 to 16
+00:13:56.539 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@4bafe' takes more than 5000ms.
+00:14:13.862 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+00:14:15.770 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+00:14:29.046 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+00:15:00.932 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+00:17:43.797 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+01:23:39.836 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: An error occurred while transforming JSON expression.
+01:30:00.559 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+02:47:16.788 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":114,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+08:36:56.669 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+08:37:01.039 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+
+
+openhab> log:tail
+00:06:23.665 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.104 to 0.087
+00:06:23.754 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Available' changed from 151539154944 B to 151538106368 B
+00:06:23.760 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2197815296 B to 2198863872 B
+00:06:23.762 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.2 °C to 45.8 °C
+00:06:23.764 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.173 to 0.123
+00:06:23.804 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 83944800256 B to 83945848832 B
+00:06:25.624 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_FanStatus' changed from ON to OFF
+00:06:25.626 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3FanStatus' changed from ON to OFF
+00:06:26.452 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Rssi' changed from 78 to 80
+00:06:26.455 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 78 to 80
+00:06:26.467 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Temperature' changed from 25.3 to 25.4
+00:06:26.471 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_temperature' changed from 25.3 to 25.4
+00:06:26.886 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.087 to 0.061
+00:06:26.972 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 46.3 °C
+00:06:26.976 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.123 to 0.175
+00:06:30.110 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.061 to 0.048
+00:06:30.154 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.175 to 0.075
+00:06:30.583 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'SunElevation' changed from -23.542307411176942 to -23.768497718196446
+00:06:33.277 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.048 to 0.109
+00:06:33.355 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 45.8 °C
+00:06:33.359 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.075 to 0.087
+00:06:34.001 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 26 to 22
+00:06:36.499 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.109 to 0.068
+00:06:36.590 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 46.3 °C
+00:06:36.591 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.087 to 0.198
+00:06:36.676 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'DR_RTV_Rssi' changed from 82 to 80
+00:06:37.198 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'OfficeRTV_Rssi' changed from 24 to 22
+00:06:37.200 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'OF_RTV_Rssi' changed from 24 to 22
+00:06:39.720 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.068 to 0.054
+00:06:39.809 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 45.3 °C
+00:06:39.813 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.198 to 0.121
+00:06:42.954 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.054 to 0.089
+00:06:43.030 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Available' changed from 151538106368 B to 151537057792 B
+00:06:43.048 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.121 to 0.093
+00:06:43.101 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 83945848832 B to 83946897408 B
+00:06:46.185 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.089 to 0.057
+00:06:46.258 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 46.3 °C
+00:06:46.259 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.093 to 0.096
+00:06:48.984 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 22 to 26
+00:06:49.125 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Temperature' changed from 28.4 °C to 28.3 °C
+00:06:50.676 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+00:06:54.125 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@16f00e4' takes more than 5000ms.
+00:07:18.669 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+00:09:00.984 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+00:09:40.099 [WARN ] [.automation.openhab-js.soil1_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+00:09:57.945 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+00:10:51.661 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+00:49:33.212 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":111,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+01:30:00.157 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+06:29:50.288 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+
+
+
+openhab> log:tail
+23:38:18.293 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'FH_Humidity' changed from 87 to 87.2
+23:38:18.295 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Humidity' changed from 87 to 87.2
+23:38:20.402 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.039 to 0.096
+23:38:20.452 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1661 to 1660
+23:38:20.460 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 45.8 °C
+23:38:20.463 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.065 to 0.182
+23:38:20.549 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 26 to 22
+23:38:23.595 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.096 to 0.062
+23:38:23.678 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1660 to 1661
+23:38:23.686 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.182 to 0.106
+23:38:23.731 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 84535148544 B to 84536197120 B
+23:38:23.747 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+23:38:23.768 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel sensors#fanSpeed with device index: 0
+23:38:23.771 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_threads' changed from 298 to 301
+23:38:23.773 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load1' changed from 0.4 to 0.2
+23:38:23.774 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingCapacity with device index: 0
+23:38:23.775 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Uptime' changed from 313992 s to 314052 s
+23:38:23.778 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Threads' changed from 1032 to 1036
+23:38:23.794 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Network_PacketsReceived' changed from 350219 to 350506
+23:38:23.795 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Network_PacketsSent' changed from 392397 to 392734
+23:38:23.797 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load5' changed from 0.4 to 0.3
+23:38:23.798 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load15' changed from 0.4 to 0.3
+23:38:25.927 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:38:26.829 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.062 to 0.067
+23:38:26.919 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.106 to 0.179
+23:38:27.363 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Temperature' changed from 26.6 °C to 26.5 °C
+23:38:27.366 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Humidity' changed from 49.1 to 44.4
+23:38:30.051 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.067 to 0.054
+23:38:30.096 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_Rssi' changed from 41 to 36
+23:38:30.098 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Rssi' changed from 41 to 36
+23:38:30.128 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.179 to 0.124
+23:38:32.168 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ElsiesRTV_Rssi' changed from 60 to 58
+23:38:32.171 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ER_RTV_Rssi' changed from 60 to 58
+23:38:33.253 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.054 to 0.096
+23:38:33.331 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 45.3 °C
+23:38:33.335 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.124 to 0.109
+23:38:34.924 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_FanStatus' changed from OFF to ON
+23:38:34.926 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1FanStatus' changed from OFF to ON
+23:38:36.478 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.096 to 0.077
+23:38:36.557 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 45.8 °C
+23:38:41.557 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@19b1de3' takes more than 5000ms.
+23:38:55.951 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:39:00.971 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+23:39:03.233 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+23:39:23.791 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+23:39:41.105 [INFO ] [.automation.openhab-js.soil1_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+23:42:40.032 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+01:30:00.685 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+03:16:18.921 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":114,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+06:21:35.290 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+
+
+   ___   ___   ___   ___  | | | |   / \   | __ )
+  / _ \ / _ \ / _ \ / _ \ | |_| |  / _ \  |  _ \
+ | (_) | (_) |  __/| | | ||  _  | / ___ \ | |_) )
+  \___/|  __/ \___/|_| |_||_| |_|/_/   \_\|____/
+       |_|       4.0.2 - Release Build
+
+Use '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+To exit, use '<ctrl-d>' or 'logout'.
+
+openhab> log:tail
+23:15:30.283 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.652 to 0.651
+23:15:30.284 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2622488576 B to 2621440000 B
+23:15:30.286 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 47.7 °C
+23:15:30.287 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.145 to 0.082
+23:15:30.375 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.348 to 0.349
+23:15:33.421 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.081 to 0.071
+23:15:33.507 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.7 °C to 45.8 °C
+23:15:33.513 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:15:33.517 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.082 to 0.124
+23:15:36.646 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.071 to 0.063
+23:15:36.721 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1338 to 1337
+23:15:36.725 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.651 to 0.652
+23:15:36.728 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2621440000 B to 2622488576 B
+23:15:36.731 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.124 to 0.115
+23:15:36.819 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.349 to 0.348
+23:15:39.863 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.063 to 0.05
+23:15:39.957 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.115 to 0.108
+23:15:43.081 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.05 to 0.083
+23:15:43.173 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Available' changed from 150852337664 B to 150851289088 B
+23:15:43.185 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 46.3 °C
+23:15:43.187 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.108 to 0.084
+23:15:43.228 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 84631617536 B to 84632666112 B
+23:15:46.313 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.083 to 0.043
+23:15:46.390 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 46.7 °C
+23:15:46.393 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.084 to 0.093
+23:15:49.514 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.043 to 0.037
+23:15:49.603 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.7 °C to 44.8 °C
+23:15:49.606 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.093 to 0.087
+23:15:52.745 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.037 to 0.115
+23:15:52.826 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 45.8 °C
+23:15:52.832 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.087 to 0.09
+23:15:54.274 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+23:15:54.315 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel sensors#fanSpeed with device index: 0
+23:15:54.315 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_threads' changed from 305 to 306
+23:15:54.323 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load1' changed from 0.4 to 0.3
+23:15:54.324 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingCapacity with device index: 0
+23:15:54.328 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Uptime' changed from 15672 s to 15732 s
+23:15:54.351 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Network_PacketsSent' changed from 1096 to 1100
+23:15:54.816 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 84 to 82
+23:15:55.970 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.115 to 0.066
+23:16:00.971 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@1bfd071' takes more than 5000ms.
+23:16:03.538 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:16:28.143 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+23:16:54.354 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+23:18:00.888 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+23:20:23.666 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+01:18:32.842 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":111,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+01:30:00.176 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+06:17:50.290 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Conservatoryspeaker_Volume
+06:17:53.785 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+
+
+       |_|       4.0.2 - Release Build
+
+Use '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+To exit, use '<ctrl-d>' or 'logout'.
+
+openhab> log:tail
+23:41:40.245 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1886 to 1872
+23:41:40.246 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.508 to 0.512
+23:41:40.248 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2045771776 B to 2060451840 B
+23:41:40.250 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.7 °C to 49.2 °C
+23:41:40.252 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.078 to 0.163
+23:41:40.347 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.492 to 0.488
+23:41:43.413 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.372 to 0.341
+23:41:43.457 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1872 to 1868
+23:41:43.465 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.512 to 0.513
+23:41:43.470 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2060451840 B to 2065694720 B
+23:41:43.483 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 49.2 °C to 48.2 °C
+23:41:43.495 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.163 to 0.08
+23:41:43.590 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.488 to 0.487
+23:41:46.635 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.341 to 0.33
+23:41:46.680 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1868 to 1861
+23:41:46.687 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.513 to 0.515
+23:41:46.695 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2065694720 B to 2073034752 B
+23:41:46.696 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.2 °C to 48.7 °C
+23:41:46.698 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.08 to 0.084
+23:41:46.776 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.487 to 0.485
+23:41:48.474 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1FanStatus' changed from ON to OFF
+23:41:49.819 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.33 to 0.331
+23:41:49.861 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1861 to 1853
+23:41:49.863 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used_Percent' changed from 0.515 to 0.517
+23:41:49.865 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2073034752 B to 2080374784 B
+23:41:49.867 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.084 to 0.094
+23:41:49.947 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available_Percent' changed from 0.485 to 0.483
+23:41:49.953 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 22 to 16
+23:41:51.783 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:41:52.991 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.331 to 0.104
+23:41:52.998 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ER_RTV_Rssi' changed from 56 to 58
+23:41:53.065 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Available' changed from 152274206720 B to 152273158144 B
+23:41:53.069 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1853 to 1854
+23:41:53.076 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.7 °C to 47.2 °C
+23:41:53.077 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.094 to 0.159
+23:41:53.110 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Storage_Used' changed from 83209748480 B to 83210797056 B
+23:41:56.195 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.104 to 0.051
+23:41:56.275 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.2 °C to 45.8 °C
+23:42:00.459 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+23:42:01.275 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@1d7db60' takes more than 5000ms.
+23:42:21.804 [INFO ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+23:42:33.300 [WARN ] [.automation.openhab-js.heater change?] - Heating change...Turn AT heater OFF, :. its Heating Mode is  off
+23:42:38.063 [WARN ] [fo.internal.handler.SysteminfoHandler] - No information for channel battery#remainingTime with device index: 0
+23:46:35.521 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+01:30:00.335 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+03:45:19.608 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":90,"linkquality":114,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+07:51:10.818 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+07:51:44.440 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Conservatoryspeaker_Volume
+07:51:47.683 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Conservatoryspeaker_Volume
+07:51:48.971 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Conservatoryspeaker_Volume
+
+openhab>
+
+Id    │ Name                                                                                                                        │ State         │ CPU time │ Usr time
+──────┼─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼───────────────┼──────────┼─────────
+1     │ main                                                                                                                        │ WAITING       │ 4780     │ 4020
+2     │ Reference Handler                                                                                                           │ RUNNABLE      │ 183      │ 150
+3     │ Finalizer                                                                                                                   │ WAITING       │ 113      │ 100
+4     │ Signal Dispatcher                                                                                                           │ RUNNABLE      │ 0        │ 0
+11    │ Common-Cleaner                                                                                                              │ TIMED_WAITING │ 82       │ 40
+12    │ Notification Thread                                                                                                         │ RUNNABLE      │ 625      │ 620
+14    │ Active Thread: Equinox Container: b6cd2343-6deb-42ea-a65f-ad5fe33ba637                                                      │ TIMED_WAITING │ 6070     │ 3860
+16    │ Framework Event Dispatcher: Equinox Container: b6cd2343-6deb-42ea-a65f-ad5fe33ba637                                         │ WAITING       │ 31       │ 20
+17    │ Bundle File Closer                                                                                                          │ WAITING       │ 600      │ 450
+18    │ Start Level: Equinox Container: b6cd2343-6deb-42ea-a65f-ad5fe33ba637                                                        │ WAITING       │ 44966    │ 42210
+19    │ Karaf Lock Monitor Thread                                                                                                   │ TIMED_WAITING │ 5453     │ 2510
+20    │ Karaf Shutdown Socket Thread                                                                                                │ RUNNABLE      │ 3        │ 0
+31    │ Coordination Timer                                                                                                          │ WAITING       │ 0        │ 0
+32    │ CM Configuration Updater (Update: pid=org.ops4j.pax.logging)                                                                │ WAITING       │ 2230     │ 2000
+33    │ CM Event Dispatcher                                                                                                         │ WAITING       │ 76       │ 50
+35    │ EventAdminAsyncThread #11                                                                                                   │ WAITING       │ 18437    │ 12270
+36    │ EventAdminAsyncThread #12                                                                                                   │ WAITING       │ 18200    │ 12510
+41    │ fileinstall-/openhab/userdata/etc                                                                                           │ TIMED_WAITING │ 3574     │ 2480
+42    │ FileSystemWatchService                                                                                                      │ RUNNABLE      │ 3        │ 0
+44    │ fileinstall-/openhab/addons                                                                                                 │ TIMED_WAITING │ 400      │ 340
+45    │ FileSystemWatchService                                                                                                      │ RUNNABLE      │ 0        │ 0
+70    │ encryption-1-thread-1                                                                                                       │ TIMED_WAITING │ 2547     │ 840
+71    │ FileSystemWatchService                                                                                                      │ RUNNABLE      │ 2        │ 0
+74    │ encryption-3-thread-1                                                                                                       │ TIMED_WAITING │ 2511     │ 860
+75    │ FileSystemWatchService                                                                                                      │ RUNNABLE      │ 2        │ 0
+96    │ SCR Component Actor                                                                                                         │ WAITING       │ 0        │ 0
+182   │ paxweb-config-1-thread-1                                                                                                    │ WAITING       │ 4345     │ 3990
+190   │ Thread-15                                                                                                                   │ RUNNABLE      │ 64       │ 30
+197   │ sshd-SshServer[51e434](port=8101)-timer-thread-1                                                                            │ TIMED_WAITING │ 4002     │ 3000
+257   │ qtp2016356-257                                                                                                              │ RUNNABLE      │ 10       │ 10
+258   │ qtp2016356-258                                                                                                              │ RUNNABLE      │ 0        │ 0
+262   │ Session-HouseKeeper-1ad4035-1                                                                                               │ TIMED_WAITING │ 18       │ 10
+263   │ Scanner-0                                                                                                                   │ TIMED_WAITING │ 20968    │ 6590
+284   │ qtp2016356-284-acceptor-0@1583596-0.0.0.0:8443@756ac6{SSL, (ssl, http/1.1)}{0.0.0.0:8443}                                   │ RUNNABLE      │ 1        │ 0
+289   │ qtp2016356-289-acceptor-0@e58f9d-default@259042{HTTP/1.1, (http/1.1, h2c)}{0.0.0.0:8080}                                    │ RUNNABLE      │ 69       │ 40
+291   │ HttpService->Whiteboard                                                                                                     │ WAITING       │ 19       │ 0
+318   │ EMF Reference Cleaner                                                                                                       │ WAITING       │ 541      │ 200
+345   │ OH-OSGiEventManager                                                                                                         │ BLOCKED       │ 79846    │ 60220
+349   │ Connector-Scheduler-259042-1                                                                                                │ TIMED_WAITING │ 254      │ 140
+353   │ FileSystemWatchService                                                                                                      │ RUNNABLE      │ 198      │ 80
+355   │ OH-startlevel-1                                                                                                             │ TIMED_WAITING │ 1846     │ 1320
+434   │ OH-karaf-addons-1                                                                                                           │ TIMED_WAITING │ 687      │ 660
+454   │ pool-11-thread-1                                                                                                            │ WAITING       │ 63       │ 0
+464   │ Timer-0                                                                                                                     │ WAITING       │ 533      │ 300
+465   │ Timer-1                                                                                                                     │ WAITING       │ 0        │ 0
+466   │ Timer-2                                                                                                                     │ WAITING       │ 0        │ 0
+467   │ OH-eventexecutor-0-1                                                                                                        │ WAITING       │ 10011    │ 4660
+468   │ OH-eventexecutor-1-1                                                                                                        │ RUNNABLE      │ 27730585 │ 6265520
+469   │ OH-eventwatcher-0-1                                                                                                         │ WAITING       │ 14323    │ 3000
+470   │ OH-eventexecutor-2-1                                                                                                        │ WAITING       │ 11684    │ 4730
+471   │ OH-eventwatcher-1-1                                                                                                         │ BLOCKED       │ 12700    │ 2540
+472   │ OH-eventwatcher-2-1                                                                                                         │ WAITING       │ 13606    │ 2560
+473   │ Timer-3                                                                                                                     │ WAITING       │ 0        │ 0
+474   │ pool-4-thread-1                                                                                                             │ WAITING       │ 8341     │ 4920
+475   │ Timer-4                                                                                                                     │ WAITING       │ 0        │ 0
+481   │ Timer-5                                                                                                                     │ WAITING       │ 0        │ 0
+482   │ Timer-6                                                                                                                     │ WAITING       │ 0        │ 0
+484   │ Timer-7                                                                                                                     │ WAITING       │ 0        │ 0
+485   │ Timer-8                                                                                                                     │ WAITING       │ 0        │ 0
+486   │ Timer-9                                                                                                                     │ WAITING       │ 0        │ 0
+489   │ Timer-10                                                                                                                    │ WAITING       │ 162      │ 140
+490   │ OH-lsp-1                                                                                                                    │ RUNNABLE      │ 6        │ 0
+491   │ Timer-11                                                                                                                    │ WAITING       │ 0        │ 0
+492   │ Timer-12                                                                                                                    │ WAITING       │ 0        │ 0
+496   │ Timer-13                                                                                                                    │ WAITING       │ 0        │ 0
+497   │ OH-eventexecutor-3-1                                                                                                        │ WAITING       │ 26       │ 20
+498   │ OH-eventwatcher-3-1                                                                                                         │ WAITING       │ 23       │ 20
+499   │ OH-eventexecutor-4-1                                                                                                        │ WAITING       │ 25       │ 20
+500   │ OH-eventwatcher-4-1                                                                                                         │ WAITING       │ 22       │ 10
+504   │ Timer-14                                                                                                                    │ WAITING       │ 0        │ 0
+507   │ Timer-15                                                                                                                    │ WAITING       │ 0        │ 0
+508   │ Timer-16                                                                                                                    │ WAITING       │ 0        │ 0
+509   │ Timer-17                                                                                                                    │ WAITING       │ 0        │ 0
+510   │ AsyncProxyServlet-510                                                                                                       │ RUNNABLE      │ 0        │ 0
+511   │ AsyncProxyServlet-511                                                                                                       │ RUNNABLE      │ 0        │ 0
+512   │ AsyncProxyServlet-512                                                                                                       │ TIMED_WAITING │ 39       │ 20
+513   │ AsyncProxyServlet-513                                                                                                       │ TIMED_WAITING │ 35       │ 30
+514   │ AsyncProxyServlet-514                                                                                                       │ TIMED_WAITING │ 42       │ 0
+515   │ AsyncProxyServlet-515                                                                                                       │ TIMED_WAITING │ 41       │ 20
+516   │ AsyncProxyServlet-516                                                                                                       │ TIMED_WAITING │ 45       │ 20
+517   │ AsyncProxyServlet-517                                                                                                       │ TIMED_WAITING │ 44       │ 0
+520   │ Timer-18                                                                                                                    │ WAITING       │ 0        │ 0
+560   │ upnp-main-1                                                                                                                 │ TIMED_WAITING │ 2708     │ 1390
+561   │ upnp-main-2                                                                                                                 │ WAITING       │ 54       │ 50
+562   │ upnp-main-3                                                                                                                 │ WAITING       │ 9        │ 0
+563   │ upnp-main-4                                                                                                                 │ WAITING       │ 140      │ 110
+564   │ upnp-main-5                                                                                                                 │ WAITING       │ 9        │ 0
+565   │ upnp-main-6                                                                                                                 │ WAITING       │ 11       │ 10
+566   │ upnp-main-7                                                                                                                 │ WAITING       │ 10       │ 10
+567   │ upnp-main-8                                                                                                                 │ WAITING       │ 20       │ 20
+568   │ upnp-main-9                                                                                                                 │ WAITING       │ 13       │ 10
+569   │ upnp-main-10                                                                                                                │ WAITING       │ 59       │ 50
+570   │ upnp-main-11                                                                                                                │ WAITING       │ 232      │ 160
+571   │ upnp-main-12                                                                                                                │ WAITING       │ 8        │ 0
+572   │ upnp-main-13                                                                                                                │ WAITING       │ 4        │ 0
+573   │ upnp-main-14                                                                                                                │ WAITING       │ 13       │ 10
+574   │ upnp-main-15                                                                                                                │ WAITING       │ 11       │ 10
+575   │ upnp-main-queue                                                                                                             │ TIMED_WAITING │ 2517     │ 1610
+601   │ OH-httpClient-common-601                                                                                                    │ RUNNABLE      │ 0        │ 0
+602   │ OH-httpClient-common-602                                                                                                    │ RUNNABLE      │ 0        │ 0
+603   │ OH-httpClient-common-603                                                                                                    │ RUNNABLE      │ 3831     │ 2740
+604   │ OH-httpClient-common-604                                                                                                    │ RUNNABLE      │ 4278     │ 2180
+605   │ OH-httpClient-common-605                                                                                                    │ TIMED_WAITING │ 1229     │ 680
+606   │ OH-httpClient-common-606                                                                                                    │ TIMED_WAITING │ 1032     │ 430
+607   │ OH-httpClient-common-607                                                                                                    │ TIMED_WAITING │ 1077     │ 450
+608   │ OH-httpClient-common-608                                                                                                    │ TIMED_WAITING │ 936      │ 370
+609   │ OH-httpClient-common-609                                                                                                    │ TIMED_WAITING │ 2131     │ 1070
+610   │ OH-httpClient-common-610                                                                                                    │ TIMED_WAITING │ 1216     │ 610
+616   │ Timer-19                                                                                                                    │ WAITING       │ 41       │ 30
+617   │ Timer-20                                                                                                                    │ WAITING       │ 0        │ 0
+618   │ Timer-21                                                                                                                    │ WAITING       │ 0        │ 0
+624   │ OH-httpClient-openhabcloud-624                                                                                              │ RUNNABLE      │ 11       │ 10
+625   │ OH-httpClient-openhabcloud-625                                                                                              │ TIMED_WAITING │ 17       │ 0
+626   │ OH-httpClient-openhabcloud-626                                                                                              │ TIMED_WAITING │ 17       │ 0
+627   │ OH-httpClient-openhabcloud-627                                                                                              │ TIMED_WAITING │ 28       │ 20
+628   │ OH-httpClient-openhabcloud-628                                                                                              │ RUNNABLE      │ 3        │ 0
+633   │ OkHttp https://myopenhab.org/...                                                                                            │ RUNNABLE      │ 1183     │ 880
+634   │ pool-12-thread-1                                                                                                            │ TIMED_WAITING │ 31242    │ 11350
+635   │ OkHttp ConnectionPool                                                                                                       │ TIMED_WAITING │ 369      │ 150
+636   │ Okio Watchdog                                                                                                               │ TIMED_WAITING │ 426      │ 240
+638   │ OkHttp ConnectionPool                                                                                                       │ TIMED_WAITING │ 14       │ 10
+639   │ Okio Watchdog                                                                                                               │ TIMED_WAITING │ 123      │ 30
+643   │ pool-14-thread-1                                                                                                            │ TIMED_WAITING │ 958      │ 510
+647   │ OH-RRD4j-1                                                                                                                  │ TIMED_WAITING │ 348343   │ 95080
+656   │ Timer-23                                                                                                                    │ WAITING       │ 0        │ 0
+671   │ configWatcher                                                                                                               │ WAITING       │ 38       │ 30
+674   │ JNA Cleaner                                                                                                                 │ WAITING       │ 216      │ 190
+676   │ OH-thingManager-1                                                                                                           │ TIMED_WAITING │ 14020    │ 13090
+678   │ OH-thingHandler-1                                                                                                           │ RUNNABLE      │ 67043    │ 48060
+679   │ OH-thingHandler-2                                                                                                           │ TIMED_WAITING │ 66054    │ 47510
+680   │ OH-thingHandler-3                                                                                                           │ RUNNABLE      │ 63321    │ 45340
+681   │ OH-thingHandler-4                                                                                                           │ BLOCKED       │ 21132    │ 15920
+682   │ OH-thingHandler-5                                                                                                           │ TIMED_WAITING │ 64670    │ 47830
+685   │ OH-thingManager-4                                                                                                           │ TIMED_WAITING │ 13345    │ 12720
+691   │ RxSchedulerPurge-1                                                                                                          │ TIMED_WAITING │ 3644     │ 1820
+692   │ RxCachedWorkerPoolEvictor-1                                                                                                 │ TIMED_WAITING │ 71       │ 40
+693   │ com.hivemq.client.mqtt-1-1                                                                                                  │ RUNNABLE      │ 12150    │ 8990
+694   │ RxComputationThreadPool-1                                                                                                   │ WAITING       │ 33280    │ 32590
+695   │ RxComputationThreadPool-2                                                                                                   │ WAITING       │ 6516     │ 5980
+696   │ RxComputationThreadPool-3                                                                                                   │ BLOCKED       │ 4887     │ 4480
+697   │ RxComputationThreadPool-4                                                                                                   │ WAITING       │ 4261     │ 3900
+700   │ HttpClient@10c3d38-scheduler-1                                                                                              │ TIMED_WAITING │ 342      │ 50
+708   │ OH-eventexecutor-5-1                                                                                                        │ WAITING       │ 38654    │ 33350
+709   │ OH-eventwatcher-5-1                                                                                                         │ WAITING       │ 6533     │ 1540
+710   │ OH-eventexecutor-6-1                                                                                                        │ WAITING       │ 4945     │ 2200
+711   │ OH-eventexecutor-7-1                                                                                                        │ WAITING       │ 3314     │ 1280
+712   │ OH-eventwatcher-6-1                                                                                                         │ WAITING       │ 7412     │ 1630
+713   │ OH-eventwatcher-7-1                                                                                                         │ WAITING       │ 5681     │ 1120
+714   │ OH-eventexecutor-8-1                                                                                                        │ WAITING       │ 25536    │ 21450
+715   │ OH-eventwatcher-8-1                                                                                                         │ WAITING       │ 6308     │ 1580
+716   │ OH-eventexecutor-9-1                                                                                                        │ WAITING       │ 1267     │ 600
+717   │ OH-eventwatcher-9-1                                                                                                         │ WAITING       │ 1717     │ 370
+718   │ pool-3-thread-1                                                                                                             │ WAITING       │ 6869     │ 2280
+719   │ OH-eventexecutor-10-1                                                                                                       │ WAITING       │ 55       │ 30
+720   │ OH-eventwatcher-10-1                                                                                                        │ WAITING       │ 54       │ 20
+725   │ OkHttp WebSocket https://myopenhab.org/...                                                                                  │ WAITING       │ 701      │ 460
+729   │ OH-rulesRefresher-1                                                                                                         │ WAITING       │ 2        │ 0
+731   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-1]                                                │ WAITING       │ 4857     │ 1340
+732   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-2]                                                │ WAITING       │ 5069     │ 1400
+733   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-3]                                                │ WAITING       │ 5036     │ 1520
+734   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-4]                                                │ WAITING       │ 4586     │ 1370
+735   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-5]                                                │ TIMED_WAITING │ 4790     │ 1480
+736   │ RRD4J Sync-ThreadPool for org.rrd4j.core.RrdSyncThreadPool@6854e2 [Thread-6]                                                │ WAITING       │ 5112     │ 1420
+743   │ com.hivemq.client.mqtt-1-2                                                                                                  │ RUNNABLE      │ 524      │ 320
+769   │ OH-ruleengine-1                                                                                                             │ WAITING       │ 4        │ 0
+770   │ OH-eventexecutor-11-1                                                                                                       │ WAITING       │ 6027     │ 3940
+771   │ OH-eventwatcher-11-1                                                                                                        │ WAITING       │ 5894     │ 1250
+772   │ OH-eventexecutor-12-1                                                                                                       │ WAITING       │ 1978     │ 1620
+773   │ OH-eventwatcher-12-1                                                                                                        │ WAITING       │ 1342     │ 300
+776   │ OH-scriptwatcher-1                                                                                                          │ WAITING       │ 275878   │ 272650
+777   │ OH-scriptwatcher-1                                                                                                          │ WAITING       │ 1        │ 0
+798   │ OH-eventexecutor-13-1                                                                                                       │ WAITING       │ 643      │ 430
+799   │ OH-eventwatcher-13-1                                                                                                        │ WAITING       │ 542      │ 110
+824   │ OH-eventexecutor-14-1                                                                                                       │ WAITING       │ 16565    │ 9250
+825   │ OH-eventwatcher-14-1                                                                                                        │ WAITING       │ 15955    │ 3530
+870   │ OH-rule-update-BG-sockets-Online-Offline-status-430aa8a4-d66c-49fe-b536-9a25744c9a82-1                                      │ WAITING       │ 16639    │ 15960
+885   │ Timer-24                                                                                                                    │ WAITING       │ 0        │ 0
+892   │ OH-eventexecutor-15-1                                                                                                       │ WAITING       │ 82       │ 40
+893   │ OH-eventwatcher-15-1                                                                                                        │ WAITING       │ 54       │ 20
+894   │ OH-rule-conservatory-fan_cool-rule-e78d162c-fa05-4c04-bf8d-1bd5757a2a0c-1                                                   │ WAITING       │ 156      │ 140
+895   │ OH-rule-smooth-out-CT-temperature-readings-c1c116a9-0cdb-4fbf-a693-f1135f705aaa-1                                           │ WAITING       │ 602      │ 550
+911   │ OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-be3c2204-443d-44f0-ba2d-3777babd36e5-1                │ BLOCKED       │ 5368     │ 4570
+929   │ OH-rule-conservatory-fan-circulate-heat-Cron-301f2e0d-ee6b-431a-a988-9ed1869abc1b-1                                         │ BLOCKED       │ 1265     │ 520
+981   │ OH-rule-alert-when-service-changed-1b29a00e-0519-4076-8697-d4d0d86a1530-1                                                   │ WAITING       │ 89       │ 70
+983   │ OH-rule-outside-sensor-temperature-update-09d91cfd-9ffb-4b8b-836f-75135ab18dcd-1                                            │ WAITING       │ 377      │ 340
+993   │ OH-rule-Check-if-Heaters-need-changing-etc-8a7153de-12ef-45b3-8378-2672448fc1d6-1                                           │ BLOCKED       │ 1778     │ 1450
+999   │ RequestManager-Queue-0                                                                                                      │ WAITING       │ 24155    │ 21980
+1019  │ OH-rule-RNTs---timelinepicker-7ba1a1c5-efd1-4dae-8322-486421e1a2c2-1                                                        │ WAITING       │ 30626    │ 30330
+1029  │ OH-rule-Link-fan-heater-setpoint-to-CT-setpoint-ac31ac23-748b-4018-9241-e6669b28b729-1                                      │ WAITING       │ 120      │ 100
+1030  │ OH-rule-fan-heater-check-17be972e-538a-4c1c-9dda-8080b19ec86b-1                                                             │ WAITING       │ 114      │ 100
+1036  │ OH-rule-monitor-ZB--temp-sensor-availability-update-zb-sockets-Online-Offline-status-a5a3d0c6-46e7-43d0-8550-831b9dea1108-1 │ WAITING       │ 384      │ 350
+1135  │ sshd-SshServer[51e434](port=8101)-nio2-thread-1                                                                             │ WAITING       │ 3393     │ 2990
+1137  │ sshd-SshServer[51e434](port=8101)-nio2-thread-2                                                                             │ WAITING       │ 2913     │ 2440
+1140  │ Karaf ssh console user openhab                                                                                              │ WAITING       │ 358      │ 330
+1141  │ job controller 1                                                                                                            │ WAITING       │ 5        │ 0
+1142  │ pipe-log:tail                                                                                                               │ WAITING       │ 528      │ 460
+1147  │ Log4j2-TF-10-Scheduled-4                                                                                                    │ TIMED_WAITING │ 750      │ 450
+1415  │ OH-rule-Soil1_Moisture_Raw-readings-262c0229-fd62-4e84-8346-800fc3886d2b-1                                                  │ WAITING       │ 265      │ 190
+1741  │ OH-rule-zone3-moisture-low-b10f4966-7e0f-4adb-8e06-d18529dc78c7-1                                                           │ WAITING       │ 19       │ 0
+1882  │ OH-rule-pir01-or-02-updated-with-ON-1e097051-4aea-4d83-a930-ac0ef2c93d6b-1                                                  │ WAITING       │ 373      │ 320
+1918  │ OH-rule-PIRsensor-ON-to-OFF---start-the-lights-off-timer-b9d42cad-c9c8-466f-ac42-761892d164ff-1                             │ WAITING       │ 123      │ 110
+2490  │ OH-rule-pir03-updated-with-ON-288bd308-0653-457a-91f5-ab656e1a4e78-1                                                        │ WAITING       │ 123      │ 100
+2511  │ OH-rule-pir04-updated-with-ON-9083790a-ec93-4aac-9d80-a149ae0c7c7f-1                                                        │ WAITING       │ 212      │ 130
+2512  │ OH-rule-sonoff-PIR-MONITOR-da87a942-9ead-4321-a36b-98f714f32d0e-1                                                           │ WAITING       │ 170      │ 150
+2537  │ OH-rule-PIRsensor-03-ON-to-OFF---start-the-lights-off-timer-0b0d7ddb-68f0-406c-a66b-449c6cd37407-1                          │ WAITING       │ 74       │ 60
+2544  │ OH-rule-PIRsensor-04-ON-to-OFF---start-the-lights-off-timer-9e0cdf57-55ad-4d04-b6c0-7b018b8c6878-1                          │ WAITING       │ 137      │ 120
+2868  │ HttpClient@153fa8-scheduler-1                                                                                               │ WAITING       │ 0        │ 0
+2869  │ OH-rule-Turn-OFF-bedroom-Kodi-Pi--TV-10a2ccae-d8fa-4e96-987a-7cc743e49ea5-1                                                 │ WAITING       │ 67       │ 50
+3931  │ OH-rule-Goodnight-Going-to-bed-4ffbb932-0308-4d04-a4d4-1e74cafbc85a-1                                                       │ WAITING       │ 21       │ 20
+3932  │ OH-rule-turn-OFF-conservatory-tv-32845b9a-775b-499b-b612-a8e54e98e46f-1                                                     │ WAITING       │ 80       │ 80
+3934  │ OH-rule-turn-OFF-conservatory-stereo-391a594d-debf-4c11-8592-bfa1506bac56-1                                                 │ WAITING       │ 18       │ 0
+3980  │ OH-eventexecutor-16-1                                                                                                       │ WAITING       │ 1        │ 0
+3981  │ OH-eventwatcher-16-1                                                                                                        │ WAITING       │ 0        │ 0
+3982  │ OH-rule-set-Kodi_CT_Online_Status-status-d5e4f3aa-11fc-424a-8bd9-f5824a7d44be-1                                             │ WAITING       │ 25       │ 20
+3995  │ OH-rule-CT-contact01-went-true-dcbec45c-a0ab-4cc9-be79-f0da51f520d9-1                                                       │ WAITING       │ 7        │ 0
+8245  │ OH-rule-CRON-auto-turn-OFF-conservatory-lights-c7c60faf-e646-4896-b0a7-a0f7847d5cd0-1                                       │ BLOCKED       │ 3        │ 0
+8703  │ OH-thingManager-8                                                                                                           │ TIMED_WAITING │ 6003     │ 5710
+10636 │ sender-gbu00mtuz2 PING                                                                                                      │ TIMED_WAITING │ 180      │ 90
+10637 │ Thread-4870                                                                                                                 │ RUNNABLE      │ 947      │ 870
+10639 │ sender-rlzetipfap PING                                                                                                      │ TIMED_WAITING │ 164      │ 110
+10640 │ Thread-4872                                                                                                                 │ RUNNABLE      │ 917      │ 840
+11431 │ sender-1ert42tli8 PING                                                                                                      │ TIMED_WAITING │ 131      │ 70
+11432 │ Thread-5292                                                                                                                 │ RUNNABLE      │ 682      │ 600
+12221 │ sender-h9tsy2m9g8 PING                                                                                                      │ TIMED_WAITING │ 113      │ 60
+12222 │ Thread-5698                                                                                                                 │ RUNNABLE      │ 574      │ 480
+12703 │ OH-thingManager-11                                                                                                          │ TIMED_WAITING │ 2979     │ 2870
+15233 │ ForkJoinPool.commonPool-worker-43                                                                                           │ TIMED_WAITING │ 101      │ 100
+15472 │ qtp2016356-15472                                                                                                            │ RUNNABLE      │ 1505     │ 1370
+15988 │ OH-thingManager-12                                                                                                          │ TIMED_WAITING │ 621      │ 570
+16136 │ qtp2016356-16136                                                                                                            │ TIMED_WAITING │ 1133     │ 930
+16208 │ process reaper (pid 6397)                                                                                                   │ TIMED_WAITING │ 3721     │ 200
+16225 │ qtp2016356-16225                                                                                                            │ TIMED_WAITING │ 631      │ 540
+16341 │ qtp2016356-16341                                                                                                            │ BLOCKED       │ 857      │ 780
+16565 │ qtp2016356-16565                                                                                                            │ TIMED_WAITING │ 616      │ 460
+16618 │ ForkJoinPool.commonPool-worker-48                                                                                           │ TIMED_WAITING │ 15       │ 10
+16640 │ OH-scheduler-1042                                                                                                           │ TIMED_WAITING │ 42       │ 10
+16648 │ qtp2016356-16648                                                                                                            │ TIMED_WAITING │ 183      │ 150
+16650 │ qtp2016356-16650                                                                                                            │ BLOCKED       │ 406      │ 330
+16651 │ qtp2016356-16651                                                                                                            │ BLOCKED       │ 1782     │ 1710
+16661 │ qtp2016356-16661                                                                                                            │ RUNNABLE      │ 69       │ 60
+16673 │ qtp2016356-16673                                                                                                            │ TIMED_WAITING │ 6        │ 0
+16676 │ qtp2016356-16676                                                                                                            │ BLOCKED       │ 111      │ 70
+16699 │ OH-common-1453                                                                                                              │ TIMED_WAITING │ 18       │ 10
+16704 │ qtp2016356-16704                                                                                                            │ TIMED_WAITING │ 12       │ 0
+16718 │ qtp2016356-16718                                                                                                            │ TIMED_WAITING │ 4        │ 0
+16722 │ qtp2016356-16722                                                                                                            │ TIMED_WAITING │ 16       │ 10
+16723 │ ForkJoinPool.commonPool-worker-49                                                                                           │ TIMED_WAITING │ 6        │ 0
+16745 │ OH-lsp-3                                                                                                                    │ WAITING       │ 2351     │ 2110
+16746 │ pool-1018-thread-1                                                                                                          │ RUNNABLE      │ 88       │ 70
+16750 │ org.apache.karaf.shell.ssh.SshTerminal@18b17ae input pump thread                                                            │ WAITING       │ 4        │ 0
+16751 │ Karaf ssh console user openhab                                                                                              │ WAITING       │ 341      │ 280
+16752 │ pipe-shell:threads --list                                                                                                   │ RUNNABLE      │ 98       │ 30
+16753 │ job controller 1                                                                                                            │ WAITING       │ 283      │ 210
+16761 │ Log4j2-TF-6-ConfigurationFileWatcher-5                                                                                      │ TIMED_WAITING │ 142      │ 120
+16762 │ Log4j2-TF-12-Scheduled-6                                                                                                    │ TIMED_WAITING │ 5        │ 0
+16821 │ OH-discovery-842                                                                                                            │ TIMED_WAITING │ 29       │ 20
+16822 │ OH-scheduler-1049                                                                                                           │ TIMED_WAITING │ 6        │ 0
+16823 │ OH-scheduler-1050                                                                                                           │ TIMED_WAITING │ 15       │ 10
+16829 │ OH-common-1460                                                                                                              │ TIMED_WAITING │ 0        │ 0
+16831 │ OH-common-1462                                                                                                              │ TIMED_WAITING │ 27       │ 20
+16832 │ OH-org.openhab.influxdb-1921                                                                                                │ TIMED_WAITING │ 6        │ 0
+16833 │ OH-org.openhab.influxdb-1922                                                                                                │ TIMED_WAITING │ 4        │ 0
+16834 │ OH-discovery-843                                                                                                            │ TIMED_WAITING │ 1        │ 0
+16839 │ OH-discovery-844                                                                                                            │ TIMED_WAITING │ 1        │ 0
+16840 │ OH-safeCall-218                                                                                                             │ TIMED_WAITING │ 14       │ 10
+16855 │ OH-common-1463                                                                                                              │ TIMED_WAITING │ 2        │ 0
+16856 │ OH-common-1464                                                                                                              │ TIMED_WAITING │ 3        │ 0
+16859 │ OH-scheduler-1052                                                                                                           │ TIMED_WAITING │ 0        │ 0
+16860 │ OH-scheduler-1053                                                                                                           │ TIMED_WAITING │ 0        │ 0
+16861 │ OH-org.openhab.influxdb-1925                                                                                                │ TIMED_WAITING │ 1        │ 0
+16862 │ OH-discovery-845                                                                                                            │ TIMED_WAITING │ 1        │ 0
+16863 │ OH-org.openhab.influxdb-1926                                                                                                │ TIMED_WAITING │ 0        │ 0
+16864 │ OH-org.openhab.influxdb-1927                                                                                                │ TIMED_WAITING │ 0        │ 0
+16867 │ jupnp-jetty-client-16867                                                                                                    │ RUNNABLE      │ 0        │ 0
+16868 │ jupnp-jetty-client-16868                                                                                                    │ RUNNABLE      │ 0        │ 0
+16869 │ jupnp-jetty-client-16869                                                                                                    │ TIMED_WAITING │ 0        │ 0
+16870 │ jupnp-jetty-client-16870                                                                                                    │ TIMED_WAITING │ 0        │ 0
+16871 │ jupnp-jetty-client-16871                                                                                                    │ TIMED_WAITING │ 0        │ 0
+16873 │ SocketListener(172-18-0-1.local.)                                                                                           │ RUNNABLE      │ 2        │ 0
+16874 │ JmDNS(172-18-0-1.local.).Timer                                                                                              │ TIMED_WAITING │ 0        │ 0
+16875 │ JmDNS(172-18-0-1.local.).State.Timer                                                                                        │ TIMED_WAITING │ 5        │ 0
+16876 │ SocketListener(iotstack.local.)                                                                                             │ RUNNABLE      │ 3        │ 0
+16877 │ JmDNS(iotstack.local.).Timer                                                                                                │ TIMED_WAITING │ 0        │ 0
+16878 │ JmDNS(iotstack.local.).State.Timer                                                                                          │ TIMED_WAITING │ 3        │ 0
+16879 │ OH-discovery-846                                                                                                            │ TIMED_WAITING │ 0        │ 0
+16880 │ Log4j2-TF-11-ConfigurationFileWatcher-7                                                                                     │ BLOCKED       │ 1        │ 0
+
+sudo chown openhab:openhab -R /var/lib/openhab/.ssh
+sudo chown openhab:openhab -R /var/lib/openhab2/.ssh
+
+sudo chown openhab:openhab -R conf
+shell:threads --list
+shell:threads --list |grep "BLOCKED"
+jstack -l PID > my-dump.txt
+and these are the running rules
+
+openhab> shell:threads --list |grep "ruleEngine"
+17:44:21.142 [WARN ] [.core.karaf.internal.FeatureInstaller] - The transformation add-on 'javascript' does not exist - ignoring it.
+
+Check /var/log/system.log and output of sudo journalctl for out of memory messages.

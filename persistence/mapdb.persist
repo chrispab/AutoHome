@@ -5,5 +5,4 @@ Strategies {
 }
 Items {
 	* : strategy = everyChange, restoreOnStartup
-	gTimepicker* : strategy = everyChange, restoreOnStartup
 }

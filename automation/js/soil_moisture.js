@@ -28,19 +28,19 @@ rules.JSRule({
     triggers: [triggers.ItemStateUpdateTrigger('Soil1_Moisture_Raw')],
     execute: () => {
         const moistureRaw = items.getItem('Soil1_Moisture_Raw').rawState;
-        logger.warn(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
-        logger.warn(`!!!!! Soil1_Moisture_Raw: ${moistureRaw}`);
-        logger.warn(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
+        logger.info(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
+        logger.info(`!!!!! Soil1_Moisture_Raw: ${moistureRaw}`);
+        logger.info(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
 
         const limitedSensorValue = limitSensorValue(moistureRaw, RAW_100PC_WET, RAW_0PC_DRY);
         const normalisedRangeSensorValue = Math.abs((RAW_RANGE - (limitedSensorValue - RAW_100PC_WET)) / (RAW_RANGE / 100.0));
 
         // sprintf(normalisedRangeSensorValue_6Str, "%.1f", normalisedRangeSensorValue_6);// convert float to 1dp string
         const normalisedRangeSensorValue_1dp = (normalisedRangeSensorValue).toFixed(1);
-        logger.warn(`normalisedRangeSensorValue_1dp : ${normalisedRangeSensorValue_1dp}`);
+        logger.info(`normalisedRangeSensorValue_1dp : ${normalisedRangeSensorValue_1dp}`);
 
         items.getItem('Soil1_Moisture_OH_1').postUpdate(normalisedRangeSensorValue_1dp);
-        logger.warn(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
+        logger.info(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
 
         // logger.warn(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
     },
