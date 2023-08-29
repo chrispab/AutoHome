@@ -1,9 +1,9 @@
 // mapdb persistence
 
 Strategies {
-	default = everyChange
+    default = everyUpdate
 }
 Items {
-	* : strategy = everyChange, restoreOnStartup
-	gTimepicker* : strategy = everyChange, restoreOnStartup
+    // persist all items on every change and restore them from the db at startup
+    * : strategy = everyChange, restoreOnStartup
 }

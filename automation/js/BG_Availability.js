@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('BG_Availability.js');
+const logger = log('BG_Availability');
 
 scriptLoaded = function () {
   // const { items } = require('@runtime');#

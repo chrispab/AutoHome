@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 // const { myutils } = require('personal');
 
-const logger = log('CT_heating_fan_recirculate.js');
+const logger = log('CT_heating_fan_recirc');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
@@ -16,7 +16,7 @@ rules.JSRule({
   description: 'conservatory fan circulate heat Cron',
   triggers: [triggers.GenericCronTrigger('0 0/3 * * * ?')],
   execute: () => {
-    logger.warn('ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ');
+    logger.info('ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ');
     const fanOnSecs = 45;
     const setPoint = items.getItem('CT_TemperatureSetpoint').state;
     const temp = items.getItem('CT_Temperature').state;
@@ -38,21 +38,21 @@ rules.JSRule({
   },
 });
 
-rules.JSRule({
-  name: 'Fan heat recirc ENABLE turned ON',
-  description: 'Fan heat recirc ENABLE turned ON',
-  triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'OFF', 'ON')],
-  execute: (data) => {
-    logger.debug('conservatory_fan_heat_recirc_on - no action required');
-  },
-});
+// rules.JSRule({
+//   name: 'Fan heat recirc ENABLE turned ON',
+//   description: 'Fan heat recirc ENABLE turned ON',
+//   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'OFF', 'ON')],
+//   execute: (data) => {
+//     logger.debug('conservatory_fan_heat_recirc_on - no action required');
+//   },
+// });
 
-rules.JSRule({
-  name: 'Fan heat recirc ENABLE turned off',
-  description: 'Fan heat recirc ENABLE turned off',
-  triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'ON', 'OFF')],
-  execute: (data) => {
-    logger.debug('conservatory_fan_heat_recirc_off - CT_fan_power OFF');
-    items.getItem('CT_fan_power').sendCommand('OFF');
-  },
-});
+// rules.JSRule({
+//   name: 'Fan heat recirc ENABLE turned off',
+//   description: 'Fan heat recirc ENABLE turned off',
+//   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'ON', 'OFF')],
+//   execute: (data) => {
+//     logger.debug('conservatory_fan_heat_recirc_off - CT_fan_power OFF');
+//     items.getItem('CT_fan_power').sendCommand('OFF');
+//   },
+// });

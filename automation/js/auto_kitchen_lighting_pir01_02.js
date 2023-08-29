@@ -30,11 +30,11 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('pir02_occupancy', 'ON'),
   ],
   execute: (data) => {
-    logger.debug(
-      `-pir_occupancy received update itemName : ${data.itemName
-      }, state: ${items.getItem(data.itemName).state
-      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
-    );
+    // logger.debug(
+    //   `-pir_occupancy received update itemName : ${data.itemName
+    //   }, state: ${items.getItem(data.itemName).state
+    //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
+    // );
     logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
     logger.debug(
       `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
@@ -90,11 +90,11 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('pir02_occupancy', 'ON', 'OFF'),
   ],
   execute: (data) => {
-    logger.debug(
-      `-pir_occupancy received update itemName : ${data.itemName
-      }, state: ${items.getItem(data.itemName).state
-      }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
-    );
+    // logger.debug(
+    //   `-pir_occupancy received update itemName : ${data.itemName
+    //   }, state: ${items.getItem(data.itemName).state
+    //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
+    // );
 
     logger.warn(
       `${data.itemName}: STARTING off TIMER , off time is: ${items.getItem('KT_cupboard_lights_timeout').state.toString()}`,

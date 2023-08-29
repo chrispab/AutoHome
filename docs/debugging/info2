@@ -1,0 +1,254 @@
+openhab> log:tail
+09:20:44.410 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 49.2 °C to 48.2 °C
+09:20:44.413 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.092 to 0.113
+09:20:47.520 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.038 to 0.032
+09:20:47.569 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.2 °C to 48.7 °C
+09:20:47.571 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.113 to 0.054
+09:20:48.781 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_XiaomiTempHumiSensor03LinkQuality' changed from 120 to 123
+09:20:48.785 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_linkquality' changed from 120 to 123
+09:20:48.787 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_Temperature' changed from 19.75 to 19.56
+09:20:48.788 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'BR_Temperature' changed from 19.75 to 19.56
+09:20:48.789 [INFO ] [b.automation.openhab-js.heater_change] - Heating change...Turn BR heater OFF, :. its Heating Mode is  off
+09:20:48.790 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_temperature' changed from 19.75 to 19.56
+09:20:48.793 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_Humidity' changed from 68.39 to 68.64
+09:20:48.796 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_humidity' changed from 68.39 to 68.64
+09:20:48.799 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_reachable' changed from OFF to ON
+09:20:48.818 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:48.822 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: BR_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:48.897 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: BR_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:50.463 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Rssi' changed from 86 to 84
+09:20:50.468 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 86 to 84
+09:20:50.672 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.032 to 0.054
+09:20:50.743 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.7 °C to 47.7 °C
+09:20:50.748 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.054 to 0.189
+09:20:53.661 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ElsiesRTV_Rssi' changed from 44 to 48
+09:20:53.663 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ER_RTV_Rssi' changed from 44 to 48
+09:20:53.876 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.054 to 0.04
+09:20:53.922 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2391801856 B to 2392850432 B
+09:20:53.924 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.7 °C to 48.7 °C
+09:20:53.925 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.189 to 0.091
+09:20:56.955 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 28 %
+09:20:56.959 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 28 %
+09:20:57.027 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.04 to 0.033
+09:20:57.112 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.7 °C to 48.2 °C
+09:21:00.047 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:21:00.210 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+09:21:00.218 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.033 to 0.032
+09:21:00.257 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2392850432 B to 2391801856 B
+09:21:00.262 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.091 to 0.063
+09:21:02.779 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge433_rssi' changed from 56 to 58
+09:21:02.783 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_RTV_Rssi' changed from 56 to 58
+09:21:07.237 [INFO ] [b.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+09:21:07.243 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:21:07.783 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@e68177' takes more than 5000ms.
+09:21:11.971 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 24 %
+09:24:00.211 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+09:24:27.087 [WARN ] [hab.automation.openhab-js.kitchen_pir] - -rxed pir01_occupancy KT_light_1_Power ON
+09:24:29.864 [WARN ] [g.openhab.automation.openhab-js.pir03] - -pir03_occupancy received update itemName : pir03_occupancy, state: ON, PREV state: null
+09:24:32.987 [WARN ] [g.openhab.automation.openhab-js.pir04] - PIR sonoff MONITOR -  pir_occupancy04 received update itemName : pir04_occupancy, state: ON, PREV state: null
+09:24:35.548 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+13:32:35.949 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":123,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+16:26:39.026 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+^C~                                                                                                                                                                                 openhab>
+
+openhab> log:tail
+09:20:44.410 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 49.2 °C to 48.2 °C
+09:20:44.413 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.092 to 0.113
+09:20:47.520 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.038 to 0.032
+09:20:47.569 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.2 °C to 48.7 °C
+09:20:47.571 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.113 to 0.054
+09:20:48.781 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_XiaomiTempHumiSensor03LinkQuality' changed from 120 to 123
+09:20:48.785 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_linkquality' changed from 120 to 123
+09:20:48.787 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_Temperature' changed from 19.75 to 19.56
+09:20:48.788 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'BR_Temperature' changed from 19.75 to 19.56
+09:20:48.789 [INFO ] [b.automation.openhab-js.heater_change] - Heating change...Turn BR heater OFF, :. its Heating Mode is  off
+09:20:48.790 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_temperature' changed from 19.75 to 19.56
+09:20:48.793 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'XiaomiTempHumiSensor03_Humidity' changed from 68.39 to 68.64
+09:20:48.796 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_humidity' changed from 68.39 to 68.64
+09:20:48.799 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zb_THSensor_03_reachable' changed from OFF to ON
+09:20:48.818 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:48.822 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: BR_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:48.897 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: BR_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:20:50.463 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Rssi' changed from 86 to 84
+09:20:50.468 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 86 to 84
+09:20:50.672 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.032 to 0.054
+09:20:50.743 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.7 °C to 47.7 °C
+09:20:50.748 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.054 to 0.189
+09:20:53.661 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ElsiesRTV_Rssi' changed from 44 to 48
+09:20:53.663 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ER_RTV_Rssi' changed from 44 to 48
+09:20:53.876 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.054 to 0.04
+09:20:53.922 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2391801856 B to 2392850432 B
+09:20:53.924 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 47.7 °C to 48.7 °C
+09:20:53.925 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.189 to 0.091
+09:20:56.955 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 28 %
+09:20:56.959 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 28 %
+09:20:57.027 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.04 to 0.033
+09:20:57.112 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 48.7 °C to 48.2 °C
+09:21:00.047 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:21:00.210 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+09:21:00.218 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.033 to 0.032
+09:21:00.257 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2392850432 B to 2391801856 B
+09:21:00.262 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.091 to 0.063
+09:21:02.779 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge433_rssi' changed from 56 to 58
+09:21:02.783 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_RTV_Rssi' changed from 56 to 58
+09:21:07.237 [INFO ] [b.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+09:21:07.243 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:21:07.783 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@e68177' takes more than 5000ms.
+09:21:11.971 [ERROR] [hab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 24 %
+09:24:00.211 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+09:24:27.087 [WARN ] [hab.automation.openhab-js.kitchen_pir] - -rxed pir01_occupancy KT_light_1_Power ON
+09:24:29.864 [WARN ] [g.openhab.automation.openhab-js.pir03] - -pir03_occupancy received update itemName : pir03_occupancy, state: ON, PREV state: null
+09:24:32.987 [WARN ] [g.openhab.automation.openhab-js.pir04] - PIR sonoff MONITOR -  pir_occupancy04 received update itemName : pir04_occupancy, state: ON, PREV state: null
+09:24:35.548 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+13:32:35.949 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":123,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+16:26:39.026 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+
+
+openhab> SHELL:INFO
+Karaf
+  Karaf version               4.4.3
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.18.0.v20220516-2155
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 17.0.7+7-Debian-1deb11u1
+  Version                     17.0.7
+  Vendor                      Debian
+  Pid                         29
+  Uptime                      11 hours 39 minutes
+  Process CPU time            7 hours 56 minutes
+  Process CPU load            0.00
+  System CPU load             0.50
+  Open file descriptors       240
+  Max file descriptors        1,048,576
+  Total compile time          10 minutes
+Threads
+  Live threads                291
+  Daemon threads              132
+  Peak                        320
+  Total started               16289
+Memory
+  Current heap size           1,351,168 kbytes
+  Maximum heap size           1,572,864 kbytes
+  Committed heap size         1,572,864 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 465, Time = 15.135 seconds
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      28,733
+  Total classes loaded        36,300
+  Total classes unloaded      7,567
+Operating system
+  Name                        Linux version 6.1.21-v8+
+  Architecture                arm
+  Processors                  4
+  Total physical memory       3,884,372 kbytes
+  Free physical memory        112,968 kbytes
+openhab>
+
+
+openhab> shell:threads --list |grep "BLOCKED"
+204   │ OH-OSGiEventManager                                                                                                         │ BLOCKED       │ 119784   │ 89170
+335   │ OH-eventwatcher-0-1                                                                                                         │ BLOCKED       │ 16212    │ 6430
+574   │ RxComputationThreadPool-1                                                                                                   │ BLOCKED       │ 5226     │ 4920
+699   │ OH-rule-conservatory-fan-circulate-heat-Cron-51e839b5-4e61-412e-b5d5-8b7a47004dee-1                                         │ BLOCKED       │ 330      │ 290
+727   │ OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-8a1f2bf5-329a-47aa-a5b9-aaa4d766b761-1                │ BLOCKED       │ 6688     │ 5610
+755   │ OH-rule-Check-if-Heaters-need-changing-etc-1b7a586f-cb3e-4525-8d59-4028279fb830-1                                           │ BLOCKED       │ 3767     │ 2850
+779   │ OH-rule-0600_hours_regeneration_cycle_complete-mp3-498d7672-9f24-4d12-8095-ed053bff42a0-1                                   │ BLOCKED       │ 6666     │ 5550
+2397  │ OH-rule-sonoff-PIR-MONITOR-81a56814-15a8-412c-9eb5-b51a9874fece-1                                                           │ BLOCKED       │ 282      │ 240
+2400  │ OH-rule-pir03-updated-with-ON-51158a5d-62ce-47a1-88fd-076e13f615d2-1                                                        │ BLOCKED       │ 166      │ 130
+2407  │ OH-rule-pir01-or-02-updated-with-ON-b62bdd99-05a6-4f1b-b68f-c9921536fee1-1                                                  │ BLOCKED       │ 694      │ 560
+15477 │ qtp18089761-15477                                                                                                           │ BLOCKED       │ 1707     │ 1690
+16040 │ OH-watchservice-2                                                                                                           │ BLOCKED       │ 29       │ 0
+16047 │ OH-watchservice-3                                                                                                           │ BLOCKED       │ 0        │ 0
+16127 │ OH-watchservice-4                                                                                                           │ BLOCKED       │ 0        │ 0
+16180 │ OH-watchservice-5                                                                                                           │ BLOCKED       │ 0        │ 0
+16261 │ Log4j2-TF-11-ConfigurationFileWatcher-6                                                                                     │ BLOCKED       │ 10       │ 0
+16276 │ Log4j2-TF-11-ConfigurationFileWatcher-7                                                                                     │ BLOCKED       │ 0        │ 0
+16280 │ Log4j2-TF-11-ConfigurationFileWatcher-8                                                                                     │ BLOCKED       │ 0        │ 0
+16282 │ Log4j2-TF-11-ConfigurationFileWatcher-9                                                                                     │ BLOCKED       │ 0        │ 0
+16289 │ Log4j2-TF-11-ConfigurationFileWatcher-10                                                                                    │ BLOCKED       │ 0        │ 0
+16294 │ Log4j2-TF-11-ConfigurationFileWatcher-11                                                                                    │ BLOCKED       │ 0        │ 0
+16299 │ Log4j2-TF-11-ConfigurationFileWatcher-12                                                                                    │ BLOCKED       │ 0        │ 0
+16314 │ Log4j2-TF-11-ConfigurationFileWatcher-13                                                                                    │ BLOCKED       │ 0        │ 0
+16320 │ Log4j2-TF-11-ConfigurationFileWatcher-14                                                                                    │ BLOCKED       │ 0        │ 0
+16321 │ Log4j2-TF-11-ConfigurationFileWatcher-15                                                                                    │ BLOCKED       │ 0        │ 0
+16325 │ Log4j2-TF-11-ConfigurationFileWatcher-16                                                                                    │ BLOCKED       │ 0        │ 0
+16327 │ Log4j2-TF-11-ConfigurationFileWatcher-17                                                                                    │ BLOCKED       │ 0        │ 0
+16330 │ Log4j2-TF-11-ConfigurationFileWatcher-18                                                                                    │ BLOCKED       │ 0        │ 0
+16341 │ Log4j2-TF-11-ConfigurationFileWatcher-19                                                                                    │ BLOCKED       │ 0        │ 0
+16345 │ Log4j2-TF-11-ConfigurationFileWatcher-20                                                                                    │ BLOCKED       │ 0        │ 0
+16349 │ Log4j2-TF-11-ConfigurationFileWatcher-21                                                                                    │ BLOCKED       │ 0        │ 0
+16350 │ Log4j2-TF-11-ConfigurationFileWatcher-22                                                                                    │ BLOCKED       │ 0        │ 0
+16353 │ Log4j2-TF-11-ConfigurationFileWatcher-23                                                                                    │ BLOCKED       │ 0        │ 0
+16355 │ Log4j2-TF-11-ConfigurationFileWatcher-24                                                                                    │ BLOCKED       │ 0        │ 0
+16363 │ Log4j2-TF-11-ConfigurationFileWatcher-25                                                                                    │ BLOCKED       │ 0        │ 0
+16370 │ Log4j2-TF-11-ConfigurationFileWatcher-26                                                                                    │ BLOCKED       │ 0        │ 0
+16373 │ Log4j2-TF-11-ConfigurationFileWatcher-27                                                                                    │ BLOCKED       │ 0        │ 0
+16376 │ Log4j2-TF-11-ConfigurationFileWatcher-28                                                                                    │ BLOCKED       │ 0        │ 0
+16379 │ Log4j2-TF-11-ConfigurationFileWatcher-29                                                                                    │ BLOCKED       │ 0        │ 0
+16381 │ Log4j2-TF-11-ConfigurationFileWatcher-30                                                                                    │ BLOCKED       │ 0        │ 0
+16392 │ Log4j2-TF-11-ConfigurationFileWatcher-31                                                                                    │ BLOCKED       │ 0        │ 0
+16394 │ Log4j2-TF-11-ConfigurationFileWatcher-32                                                                                    │ BLOCKED       │ 0        │ 0
+16398 │ pipe-grep "BLOCKED"                                                                                                         │ RUNNABLE      │ 6        │ 0
+openhab>
+
+openhab> shell:threads | grep BLOCKED
+>
+"OH-watchservice-2" Id=16040 in BLOCKED on lock=java.lang.Class@122ba0a
+"OH-watchservice-3" Id=16047 in BLOCKED on lock=java.lang.Class@122ba0a
+"OH-watchservice-4" Id=16127 in BLOCKED on lock=java.lang.Class@122ba0a
+"OH-watchservice-5" Id=16180 in BLOCKED on lock=java.lang.Class@122ba0a
+"Log4j2-TF-11-ConfigurationFileWatcher-6" Id=16261 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-7" Id=16276 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-8" Id=16280 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-9" Id=16282 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-10" Id=16289 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-11" Id=16294 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-12" Id=16299 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-13" Id=16314 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-14" Id=16320 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-15" Id=16321 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-16" Id=16325 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-17" Id=16327 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-18" Id=16330 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-19" Id=16341 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-20" Id=16345 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-21" Id=16349 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-22" Id=16350 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-23" Id=16353 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-24" Id=16355 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-25" Id=16363 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-26" Id=16370 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-27" Id=16373 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-28" Id=16376 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-29" Id=16379 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-30" Id=16381 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-31" Id=16392 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-32" Id=16394 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-33" Id=16403 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-34" Id=16407 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-35" Id=16409 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-36" Id=16413 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-37" Id=16419 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-38" Id=16421 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-39" Id=16425 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-40" Id=16429 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-41" Id=16434 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-42" Id=16436 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-43" Id=16454 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"Log4j2-TF-11-ConfigurationFileWatcher-44" Id=16457 in BLOCKED on lock=org.apache.logging.log4j.core.LoggerContext@8e6609
+"OH-OSGiEventManager" Id=204 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-eventwatcher-0-1" Id=335 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"RxComputationThreadPool-1" Id=574 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-conservatory-fan-circulate-heat-Cron-51e839b5-4e61-412e-b5d5-8b7a47004dee-1" Id=699 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-8a1f2bf5-329a-47aa-a5b9-aaa4d766b761-1" Id=727 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-Check-if-Heaters-need-changing-etc-1b7a586f-cb3e-4525-8d59-4028279fb830-1" Id=755 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-0600_hours_regeneration_cycle_complete-mp3-498d7672-9f24-4d12-8095-ed053bff42a0-1" Id=779 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-sonoff-PIR-MONITOR-81a56814-15a8-412c-9eb5-b51a9874fece-1" Id=2397 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-pir03-updated-with-ON-51158a5d-62ce-47a1-88fd-076e13f615d2-1" Id=2400 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"OH-rule-pir01-or-02-updated-with-ON-b62bdd99-05a6-4f1b-b68f-c9921536fee1-1" Id=2407 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"qtp18089761-15477" Id=15477 in BLOCKED on lock=java.io.PrintStream@1e0a708
+"pipe-grep BLOCKED" Id=16461 in RUNNABLE
+openhab>

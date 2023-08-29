@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('heater change?');
+const logger = log('heater_change');
 const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
 
 // if gHeatingModes, gTemperatureSetpoints ,gRoomTemperatures are updated
@@ -45,7 +45,7 @@ rules.JSRule({
     // not just the calkkling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
-      logger.warn(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+      logger.info(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
 
@@ -66,7 +66,7 @@ rules.JSRule({
         return;
       }
     }
-    logger.debug('>>>>no boost item defined for this heater, process as normal');
+    // logger.debug('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
       // logger.warn(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
@@ -75,17 +75,17 @@ rules.JSRule({
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
       if (temp >= turnOffTemp) {
-        logger.warn(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
+        logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
       } else if (temp < turnOnTemp) {
-        logger.warn(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
+        logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {
       if ((items.getItem('masterHeatingMode').state.toString() === 'off')) {
-        logger.warn('Heating change... Master Heating Mode is OFF!');
+        logger.info('Heating change... Master Heating Mode is OFF!');
       }
-      logger.warn(`Heating change...Turn ${roomPrefix} heater OFF, :. its Heating Mode is  ${heatingModeItem.state}`);
+      logger.info(`Heating change...Turn ${roomPrefix} heater OFF, :. its Heating Mode is  ${heatingModeItem.state}`);
       HeaterItem.sendCommand('OFF');
     }
   },

@@ -1,14 +1,14 @@
-Number	Bridge_Temperature		"Bridge Temperature [%.1f °C]"		<temperature>			{ channel="mqtt:topic:bridge:temperature" }
-Number	Bridge_Humidity			"Conservatory Humidity [%.1f °C]"	<humidity>				{ channel="mqtt:topic:bridge:humidity" }
-Switch	bridgeButton1			"433 Bridge button 1"				<button>				{ channel="mqtt:topic:bridge:button1" }
-Number	BridgeLightSensorLevel	"Light Sensor Level"				<light>					{ channel="mqtt:topic:bridge:lightLevel" }
-Switch	BridgeLightSensorState	"Light Sensor State"				<light>					{ channel="mqtt:topic:bridge:lightSensorState" }
-Switch	PIRState				"Bridge PIR sensor"					<light>					{ channel="mqtt:topic:bridge:pirState" }
+Number:Temperature      Bridge_Temperature		"Bridge Temperature"    <temperature> (gChart)			{ channel="mqtt:topic:bridge:temperature" }
+Number:Dimensionless    Bridge_Humidity			"Conservatory Humidity"	<humidity>	(gChart)			{unit="%",  channel="mqtt:topic:bridge:humidity" }
+Switch                  bridgeButton1           "433 Bridge button 1"   <button>				{ channel="mqtt:topic:bridge:button1" }
+Number:Dimensionless	BridgeLightSensorLevel	"Light Sensor Level"    <light>					{ channel="mqtt:topic:bridge:lightLevel" }
+Switch                  BridgeLightSensorState	"Light Sensor State"    <light>					{ channel="mqtt:topic:bridge:lightSensorState" }
+Switch                  PIRState				"Bridge PIR sensor"     <light>					{ channel="mqtt:topic:bridge:pirState" }
 
-Switch	BridgeLightSensorTrend	"Light Sensor State Trend"
-Number CT_Auto_Lighting_Trigger_SetPoint "Conservatory auto light trigger setpoint"
-Switch	CT_LightDark_State	"Light dark calculated State"
+Switch                  BridgeLightSensorTrend	"Light Sensor State Trend"
+Number:Dimensionless    CT_Auto_Lighting_Trigger_SetPoint "Conservatory auto light trigger setpoint"
+Switch                  CT_LightDark_State      "Light dark calculated State"
 
-Switch  Bridge433_reachable      "433 Bridge reachable" (gServices_Core_Online) ["Service_Core_Check"] { channel = "mqtt:topic:bridge:reachable" }
-Number  Bridge433_rssi           "433Bridge rssi" { channel = "mqtt:topic:bridge:rssi" }
+Switch                  Bridge433_reachable     "433 Bridge reachable" (gServices_Core_Online) ["Service_Core_Check"] { channel = "mqtt:topic:bridge:reachable" }
+Number:Dimensionless    Bridge433_rssi          "433Bridge rssi" { channel = "mqtt:topic:bridge:rssi" }
 

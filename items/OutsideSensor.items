@@ -10,7 +10,7 @@ String Outside_Reachable "outside Sensor socket reachable" (gMQTT, gWiFiPowerSoc
 
 Switch Outside_ReachableSwitch "outside Sensor reachable Switch" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachableSwitch" }
 
-Number Outside_ReachableNumber "outside Sensor reachable  number" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable"
-[profile="transform:MAP", function="outside_sensor.map"] }
+// Number Outside_ReachableNumber "outside Sensor reachable  number" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable"
+// [profile="transform:MAP", function="outside_sensor.map"] }
 
 // String <itemName> { channel="<channelUID>"[profile="transform:MAP", function="<filename>", sourceFormat="<valueFormat>"]}

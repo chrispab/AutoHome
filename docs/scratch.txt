@@ -63,11 +63,11 @@ org.openhab.core.addon.marketplace.MarketplaceHandlerException: Cannot install b
 13:58:17.678 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2379218944 B to 2380267520 B
 13:58:17.684 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 53.6 °C to 54 °C
 13:58:17.690 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.258 to 0.113
-13:58:18.130 [WARN ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+13:58:18.130 [WARN ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
 13:58:20.815 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.07 to 0.062
 13:58:20.864 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 54 °C to 53.6 °C
 13:58:25.864 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@142e241' takes more than 5000ms.
-13:58:48.163 [WARN ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+13:58:48.163 [WARN ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
 13:58:57.501 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
 14:00:00.290 [WARN ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
 14:00:00.728 [ERROR] [enhab-js.auto_program_setpoint_update] - --->>> handle - heater auto program setpoint is updated by a timeline
@@ -100,6 +100,146 @@ Failed to load native library:jansi-2.4.0-a846ffcd05d71c95-libjansi.so. osinfo: 
 java.lang.UnsatisfiedLinkError: /openhab/userdata/tmp/jansi-2.4.0-a846ffcd05d71c95-libjansi.so: /openhab/userdata/tmp/jansi-2.4.0-a846ffcd05d71c95-libjansi.so: cannot open shared object file: No such file or directory
 
 
+
+=============================================
+openhab> log:tail
+01:15:55.017 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 1.139 to 0.303
+01:15:56.143 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingWiFiPowerSocket4_Rssi' changed from 26 to 18
+01:15:56.144 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_4_rssi' changed from 26 to 18
+01:15:58.144 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.09 to 0.041
+01:15:58.189 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.303 to 0.095
+01:16:00.506 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_Temperature' changed from 28.6 °C to 28.7 °C
+01:16:00.515 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Temperature' changed from 28.6 to 28.7
+01:16:00.518 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_Humidity' changed from 54.3 to 54.8
+01:16:00.521 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Humidity' changed from 54.3 to 54.8
+01:16:01.295 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.041 to 0.06
+01:16:01.333 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 44.8 °C
+01:16:01.335 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.095 to 0.181
+01:16:04.444 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.06 to 0.184
+01:16:04.491 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 44.3 °C
+01:16:04.495 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.181 to 0.687
+01:16:07.620 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.184 to 0.052
+01:16:07.714 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2984247296 B to 2983198720 B
+01:16:07.719 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.687 to 0.177
+01:16:07.879 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_FanStatus' changed from ON to OFF
+01:16:07.882 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1FanStatus' changed from ON to OFF
+01:16:09.442 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Temperature' changed from 19 to 18.8
+01:16:09.444 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Temperature' changed from 19 to 18.8
+01:16:09.446 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Temperature' changed from 19 °C to 18.8 °C
+01:16:09.449 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Temperature_raw' changed from 19 to 18.8
+01:16:09.451 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Humidity' changed from 99.2 to 99.3
+01:16:09.453 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'FH_Humidity' changed from 99.2 to 99.3
+01:16:09.455 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'CT_Temperature' received command 18.7
+01:16:09.456 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'FH_Temperature' received command 18.7
+01:16:09.456 [INFO ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+01:16:09.458 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Humidity' changed from 99.2 to 99.3
+01:16:09.460 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Humidity' changed from 99.2 to 99.3
+01:16:09.463 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:16:09.468 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Humidity' changed from 99.2 to 99.3
+01:16:09.469 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'HL_Heater' received command OFF
+01:16:09.469 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:16:09.473 [INFO ] [openhab.event.ItemStatePredictedEvent] - Item 'HL_Heater' predicted to become OFF
+01:16:09.475 [INFO ] [openhab.event.ItemCommandEvent       ] - Item 'CT_Heater' received command OFF
+01:16:09.477 [INFO ] [openhab.event.ItemStatePredictedEvent] - Item 'CT_Heater' predicted to become OFF
+01:16:10.847 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.052 to 0.083
+01:16:10.890 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.3 °C to 43.8 °C
+01:16:15.890 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@8a0afb' takes more than 5000ms.
+01:16:20.686 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:16:24.444 [INFO ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+01:18:00.420 [INFO ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+01:19:52.870 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+01:30:00.724 [WARN ] [.automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+04:11:25.377 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":100,"linkquality":114,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+07:46:13.132 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+07:46:16.821 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+07:46:16.970 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
+
+openhab> shell:threads | grep BLOCKED
+"OH-OSGiEventManager" Id=234 in BLOCKED on lock=java.io.PrintStream@1049d8
+"OH-eventwatcher-0-1" Id=367 in BLOCKED on lock=java.io.PrintStream@1049d8
+"RxComputationThreadPool-1" Id=625 in BLOCKED on lock=java.io.PrintStream@1049d8
+"OH-rule-Check-if-Heaters-need-changing-etc-b568e6e1-1d41-4ed3-8dd4-d54b6e89b16a-1" Id=7368 in BLOCKED on lock=java.io.PrintStream@1049d8
+"OH-rule-conservatory-fan-circulate-heat-Cron-b5fb8146-efed-438f-9051-b4b0fbf50500-1" Id=7678 in BLOCKED on lock=java.io.PrintStream@1049d8
+"OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-9f76058d-59fb-49d1-a5d3-7e2b4d0a83ad-1" Id=8787 in BLOCKED on lock=java.io.PrintStream@1049d8
+"OH-rule-CRON-auto-turn-OFF-conservatory-lights-fc23e2b6-116f-4dd6-902e-938b08cabba5-1" Id=17973 in BLOCKED on lock=java.io.PrintStream@1049d8
+"qtp12274107-24903" Id=24903 in BLOCKED on lock=java.io.PrintStream@1049d8
+"qtp12274107-25197" Id=25197 in BLOCKED on lock=java.io.PrintStream@1049d8
+"qtp12274107-25300" Id=25300 in BLOCKED on lock=java.io.PrintStream@1049d8
+"pipe-grep BLOCKED" Id=25502 in RUNNABLE
+openhab>
+openhab> shell:threads --list |grep "BLOCKED"
+>
+234   │ OH-OSGiEventManager                                                                                                         │ BLOCKED       │ 300919   │ 227400
+367   │ OH-eventwatcher-0-1                                                                                                         │ BLOCKED       │ 39602    │ 16370
+625   │ RxComputationThreadPool-1                                                                                                   │ BLOCKED       │ 8389     │ 7830
+7368  │ OH-rule-Check-if-Heaters-need-changing-etc-b568e6e1-1d41-4ed3-8dd4-d54b6e89b16a-1                                           │ BLOCKED       │ 4014     │ 3330
+7678  │ OH-rule-conservatory-fan-circulate-heat-Cron-b5fb8146-efed-438f-9051-b4b0fbf50500-1                                         │ BLOCKED       │ 482      │ 350
+8787  │ OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-9f76058d-59fb-49d1-a5d3-7e2b4d0a83ad-1                │ BLOCKED       │ 8883     │ 7310
+17973 │ OH-rule-CRON-auto-turn-OFF-conservatory-lights-fc23e2b6-116f-4dd6-902e-938b08cabba5-1                                       │ BLOCKED       │ 3        │ 0
+24903 │ qtp12274107-24903                                                                                                           │ BLOCKED       │ 195      │ 180
+25197 │ qtp12274107-25197                                                                                                           │ BLOCKED       │ 2313     │ 2280
+25300 │ qtp12274107-25300                                                                                                           │ BLOCKED       │ 487      │ 470
+25542 │ pipe-grep "BLOCKED"                                                                                                         │ RUNNABLE      │ 2        │ 0
+openhab>
+
+08:04:38.047 [WARN ] [romecast.internal.ChromecastCommander] - Unable to load media: http://192.168.0.100:8080/audio/80bf6830-334a-4d1e-b13c-199466f9079c
+
+openhab> shell:info
+Karaf
+  Karaf version               4.4.3
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.18.0.v20220516-2155
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 17.0.7+7-Debian-1deb11u1
+  Version                     17.0.7
+  Vendor                      Debian
+  Pid                         203
+  Uptime                      22 hours 41 minutes
+  Process CPU time            10 hours 40 minutes
+  Process CPU load            0.17
+  System CPU load             0.19
+  Open file descriptors       244
+  Max file descriptors        1,048,576
+  Total compile time          22 minutes
+Threads
+  Live threads                292
+  Daemon threads              117
+  Peak                        316
+  Total started               39087
+Memory
+  Current heap size           989,909 kbytes
+  Maximum heap size           1,048,576 kbytes
+  Committed heap size         1,048,576 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 2952, Time = 59.304 seconds
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      28,955
+  Total classes loaded        60,688
+  Total classes unloaded      31,733
+Operating system
+  Name                        Linux version 6.1.21-v8+
+  Architecture                arm
+  Processors                  4
+  Total physical memory       3,884,372 kbytes
+  Free physical memory        295,640 kbytes
+openhab>
+
+openhab> shell:threads --list |grep "BLOCKED"
+212   │ OH-OSGiEventManager                                                                                                            │ BLOCKED       │ 542188   │ 406080
+347   │ OH-eventwatcher-2-1                                                                                                            │ BLOCKED       │ 65847    │ 27280
+576   │ RxComputationThreadPool-1                                                                                                      │ BLOCKED       │ 11639    │ 10780
+6383  │ OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-35bb9f9d-b95a-485a-a4b2-881b22df1158-1                   │ BLOCKED       │ 29923    │ 24380
+6849  │ OH-rule-Check-if-Heaters-need-changing-etc-98121b77-8b3c-4f6b-8f53-c67bf2d2e28b-1                                              │ BLOCKED       │ 14409    │ 12160
+7043  │ OH-rule-conservatory-fan-circulate-heat-Cron-63575301-d29f-412b-9220-36840d5558fb-1                                            │ BLOCKED       │ 968      │ 740
+31026 │ OH-rule-CRON-auto-turn-OFF-conservatory-lights-cb8913df-077e-4360-a08c-4b3e23bbc9d0-1                                          │ BLOCKED       │ 4        │ 0
+31808 │ qtp29422886-31808                                                                                                              │ BLOCKED       │ 362      │ 340
+39124 │ pipe-grep "BLOCKED"                                                                                                            │ RUNNABLE      │ 5        │ 0
+openhab>
+
+
 openha-cli console
 config:edit org.openhab.addons
 config:property-list
@@ -121,3 +261,22 @@ openhab> shell:threads --list |grep "ruleEngine"
 
 Check /var/log/system.log and output of sudo journalctl for out of memory messages.
 https://community.openhab.org/t/3-2-release-build-permission-denied-error-on-client-console/130496/8
+
+
+To see if there are any dead locks you can use the following command in the karaf console:
+
+threads --monitors --locks
+
+feature:list
+
+
+shell:threads | grep BLOCKED
+
+
+docker compose pull
+
+docker compose up -d
+
+shell:info
+
+

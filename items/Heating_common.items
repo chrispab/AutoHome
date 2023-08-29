@@ -15,7 +15,7 @@ Group :Switch:OR(ON,OFF) gHeaterBoosters
 
 DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
 
-Switch		Boiler_Control      "Boiler Control"    <my_radiator>       { channel="mqtt:topic:boiler:powerSwitch"}
+Switch		Boiler_Control      "Boiler Control"    <my_radiator>   (gChart)    { channel="mqtt:topic:boiler:powerSwitch"}
 String      Boiler_Reachable    "Boiler Reachable"  <qualityofservice>  { channel="mqtt:topic:boiler:reachable"}
 Number      Boiler_Rssi         "Boiler Rssi"       <qualityofservice>  { channel="mqtt:topic:boiler:rssi"}
 

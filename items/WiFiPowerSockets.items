@@ -22,9 +22,9 @@ Number wifi_socket_3_rssi "bedroom tv and kodi RSSI" (gMQTT, gWiFiPowerSockets) 
 //!greenhouse
 Switch wifi_socket_4_power "Socket four" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:WiFiSocket4:powerSwitch" }
 String wifi_socket_4_reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket4:reachable" }
-Number wifi_socket_4_rssi "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket4:rssi" }
-Number wifi_socket_4_temperature	"WiFi Socket 4 Temperature"				{ channel = "mqtt:topic:WiFiSocket4:temperature" }
-Number wifi_socket_4_temperatureSetpoint
+Number:Dimensionless wifi_socket_4_rssi "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { unit="%", channel = "mqtt:topic:WiFiSocket4:rssi" }
+Number:Temperature wifi_socket_4_temperature    "WiFi Socket 4 Temperature" { channel = "mqtt:topic:WiFiSocket4:temperature" }
+// Number:Temperature wifi_socket_4_temperatureSetpoint
 
 //xmas lights
 Switch wifi_socket_5_power "attic tv & kodi power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
@@ -43,7 +43,7 @@ Number wifi_socket_6_rssi "Socket 6 RSSI" (gMQTT, gWiFiPowerSockets) { channel =
 Switch wifi_socket_7_power "propagator power" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_7:powerSwitch"}
 String wifi_socket_7_reachable "propagator  reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:reachable" }
 Number wifi_socket_7_rssi "propagator  RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }
-Number wifi_socket_7_temperature	"propagator Temperature"				{ channel = "mqtt:topic:wifi_socket_7:temperature" }
+Number:Temperature wifi_socket_7_temperature	"propagator Temperature"				{ channel = "mqtt:topic:wifi_socket_7:temperature" }
 
 // was propagator
 // Hostname	wifi-socket-8
@@ -52,5 +52,5 @@ Number wifi_socket_7_temperature	"propagator Temperature"				{ channel = "mqtt:t
 Switch wifi_socket_8_power "wifi_socket_8 pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 String wifi_socket_8_reachable "wifi_socket_8 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_8:reachable" }
 Number wifi_socket_8_rssi "wifi_socket_8 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_8:rssi" }
-Number wifi_socket_8_temperature	"wifi_socket_8 Temperature"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
+Number:Temperature wifi_socket_8_temperature	"wifi_socket_8 Temperature"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
 // Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
