@@ -16,7 +16,7 @@ rules.JSRule({
   description: 'conservatory fan circulate heat Cron',
   triggers: [triggers.GenericCronTrigger('0 0/3 * * * ?')],
   execute: () => {
-    logger.info('ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ');
+    logger.info('conservatory fan circulate heat Cron   ZZZZZ');
     const fanOnSecs = 45;
     const setPoint = items.getItem('CT_TemperatureSetpoint').state;
     const temp = items.getItem('CT_Temperature').state;

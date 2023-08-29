@@ -16,7 +16,7 @@ const logger = log('MQTTThingWiFiPowerSocket4_Rssi');
 // };
 
 rules.JSRule({
-    name: '0600_hours_regeneration_cycle_complete.mp3',
+    name: 'test',
     description: '0600_hours_regeneration_cycle_complete.mp3',
     triggers: [triggers.ItemStateUpdateTrigger('MQTTThingWiFiPowerSocket4_Rssi')],
     execute: () => {

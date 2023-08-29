@@ -53,7 +53,7 @@ String                  CT_RTVReachable
                         (gCT_Thermostat,gRTVsReachable)
                         {channel="mqtt:topic:conservatoryRadThermoValve:reachable"}
 Number:Dimensionless    CT_RTV_Rssi
-                        "CT RTV RSSI [%.1f]"
+                        "CT RTV RSSI"
                         <qualityofservice>
                         (gCT_Thermostat)
                         {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}
