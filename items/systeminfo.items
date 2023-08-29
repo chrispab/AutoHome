@@ -48,17 +48,17 @@ Number:Dimensionless Swap_Available_Percent "Available (%)" <none>       { chann
 Number:Dimensionless Swap_Used_Percent "Used (%)"        <none>          { channel="systeminfo:computer:work:swap#usedPercent" }
 
 /* Battery information*/
-String Battery_Name                "Name"                <batterylevel>  { channel="systeminfo:computer:work:battery#name" }
-Number:Dimensionless Battery_RemainingCapacity "Remaining Capacity" <batterylevel> { channel="systeminfo:computer:work:battery#remainingCapacity" }
-Number:Time Battery_RemainingTime  "Remaining Time"      <batterylevel>  { channel="systeminfo:computer:work:battery#remainingTime" }
+// String Battery_Name                "Name"                <batterylevel>  { channel="systeminfo:computer:work:battery#name" }
+// Number:Dimensionless Battery_RemainingCapacity "Remaining Capacity" <batterylevel> { channel="systeminfo:computer:work:battery#remainingCapacity" }
+// Number:Time Battery_RemainingTime  "Remaining Time"      <batterylevel>  { channel="systeminfo:computer:work:battery#remainingTime" }
 
 /* Display information*/
-String Display_Description         "Display description" <screen>        { channel="systeminfo:computer:work:display#information" }
+// String Display_Description         "Display description" <screen>        { channel="systeminfo:computer:work:display#information" }
 
 /* Sensors information*/
 Number:Temperature Sensor_CPUTemp  "CPU Temperature"     <temperature>   { channel="systeminfo:computer:work:sensors#cpuTemp" }
 Number:ElectricPotential Sensor_CPUVoltage "CPU Voltage" <energy>        { channel="systeminfo:computer:work:sensors#cpuVoltage" }
-Number Sensor_FanSpeed             "Fan speed"           <fan>           { channel="systeminfo:computer:work:sensors#fanSpeed" }
+// Number Sensor_FanSpeed             "Fan speed"           <fan>           { channel="systeminfo:computer:work:sensors#fanSpeed" }
 
 /* Current process information*/
 Number:Dimensionless Current_process_load "Load"         <none>          { channel="systeminfo:computer:work:currentProcess#load" }

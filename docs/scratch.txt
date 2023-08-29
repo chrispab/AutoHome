@@ -59,3 +59,65 @@ org.openhab.core.addon.marketplace.MarketplaceHandlerException: Cannot install b
 09:37:18.181 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
 10:01:04.746 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: Online_Service
 10:01:21.608 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: gAllChristmasLights
+13:58:17.671 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Available' changed from 1524 to 1523
+13:58:17.678 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 2379218944 B to 2380267520 B
+13:58:17.684 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 53.6 °C to 54 °C
+13:58:17.690 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.258 to 0.113
+13:58:18.130 [WARN ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+13:58:20.815 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.07 to 0.062
+13:58:20.864 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 54 °C to 53.6 °C
+13:58:25.864 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@142e241' takes more than 5000ms.
+13:58:48.163 [WARN ] [.automation.openhab-js.boiler_control] - boiler - no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+13:58:57.501 [WARN ] [.automation.openhab-js.heater change?] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+14:00:00.290 [WARN ] [nhab-js.ct_heating_fan_recirculate.js] - ZZZZZ  conservatory fan circulate heat Cron   ZZZZZ
+14:00:00.728 [ERROR] [enhab-js.auto_program_setpoint_update] - --->>> handle - heater auto program setpoint is updated by a timeline
+14:00:32.916 [WARN ] [.automation.openhab-js.outside_sensor] - outside sensor went offline
+14:00:33.613 [WARN ] [.automation.openhab-js.soil1_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+14:00:55.318 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+14:04:20.414 [DEBUG] [e.influxdb.InfluxDBPersistenceService] - bundle org.openhab.persistence.influxdb:4.0.2 (280)[org.openhab.persistence.influxdb.InfluxDBPersistenceService(344)] : ConfigurableComponentHolder configuration updated for pid org.openhab.influxdb with change count 4
+
+
+
+15:16:29.676 [WARN ] [nal.profiles.MapTransformationProfile] - Could not transform state 'Online' with function 'outside_sensor.map' and format '%s'
+
+openhab> shell:threads --list |grep "BLOCKED"
+37   │ CM Event Dispatcher (Fire ConfigurationEvent: pid=org.openhab.influxdb)                                                     │ BLOCKED       │ 179      │ 130
+254  │ OH-OSGiEventManager                                                                                                         │ BLOCKED       │ 55705    │ 42800
+393  │ OH-eventwatcher-0-1                                                                                                         │ BLOCKED       │ 6738     │ 2910
+865  │ OH-rule-when-any-heater-states-updated-to-ON--turn-Boiler-ON-else-OFF-e345a167-2e75-4273-8bcb-cc5714c35233-1                │ BLOCKED       │ 4682     │ 3800
+874  │ OH-rule-Check-if-Heaters-need-changing-etc-f1a1878b-d355-472b-b1f8-795d3f0dd2ff-1                                           │ BLOCKED       │ 1464     │ 1190
+926  │ OH-rule-conservatory-fan-circulate-heat-Cron-f422dbdf-355a-4663-b1e4-b6e9e90845ad-1                                         │ BLOCKED       │ 181      │ 150
+1139 │ OH-rule-Soil1_Moisture_Raw-readings-15f5984f-3bbe-4902-8904-bd41013018fe-1                                                  │ BLOCKED       │ 134      │ 90
+1579 │ OH-rule-outside-sensor-went-offlineZZ-9e49236b-9c05-4b66-b21b-fd2bebce4000-1                                                │ BLOCKED       │ 158      │ 130
+3035 │ OH-rule-handle---auto-program-setpoint-is-updated-by-a-timeline-c2a3bcc3-03fd-4484-bf47-2bdf8ecbf44d-1                      │ BLOCKED       │ 50       │ 20
+3660 │ pipe-grep "BLOCKED"                                                                                                         │ RUNNABLE      │ 13       │ 0
+openhab>
+
+
+openhab@home:~/oh-8-20/volumes/openhab/conf $ docker exec -it openhab /openhab/runtime/bin/client -p habopen
+Logging in as openhab
+Failed to load native library:jansi-2.4.0-a846ffcd05d71c95-libjansi.so. osinfo: Linux/arm
+java.lang.UnsatisfiedLinkError: /openhab/userdata/tmp/jansi-2.4.0-a846ffcd05d71c95-libjansi.so: /openhab/userdata/tmp/jansi-2.4.0-a846ffcd05d71c95-libjansi.so: cannot open shared object file: No such file or directory
+
+
+openha-cli console
+config:edit org.openhab.addons
+config:property-list
+config:property-set transformation regex,jsonpath
+config:property-list
+config:update
+
+sudo chown openhab:openhab -R /var/lib/openhab/.ssh
+sudo chown openhab:openhab -R /var/lib/openhab2/.ssh
+
+sudo chown openhab:openhab -R conf
+shell:threads --list
+shell:threads --list |grep "BLOCKED"
+jstack -l PID > my-dump.txt
+and these are the running rules
+
+openhab> shell:threads --list |grep "ruleEngine"
+17:44:21.142 [WARN ] [.core.karaf.internal.FeatureInstaller] - The transformation add-on 'javascript' does not exist - ignoring it.
+
+Check /var/log/system.log and output of sudo journalctl for out of memory messages.
+https://community.openhab.org/t/3-2-release-build-permission-denied-error-on-client-console/130496/8
