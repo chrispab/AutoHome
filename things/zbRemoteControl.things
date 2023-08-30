@@ -1,13 +1,7 @@
 Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker)
 {
-    Type string : action    "Ikea remote 1 action"        [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action" ]
-    Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.linkquality" ]
-    Type number : battery "Ikea remote 1 battery" [ stateTopic="zigbee2mqtt/ikearemote01",  transformationPattern="JSONPATH:$.battery" ]
+    Type string : action    "Ikea remote 1 action"        [stateTopic="zigbee2mqtt/ikearemote01/action"]
+    Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01/linkquality"]
+    Type number : battery "Ikea remote 1 battery" [ stateTopic="zigbee2mqtt/ikearemote01/battery"]
     Type number : update_progress [ stateTopic="zigbee2mqtt/ikearemote01/update-progress"]
-
 }
-
-    // Type string : arrow_left_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_left_click" ]
-    // Type string : arrow_right_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="arrow_right_click" ]
-    // Type string : brightness_up_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_up_click" ]
-    // Type string : brightness_down_click  [stateTopic="zigbee2mqtt/ikearemote01", transformationPattern="JSONPATH:$.action", on="brightness_down_click" ]
