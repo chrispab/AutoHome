@@ -9,7 +9,7 @@ Switch CT_Fan_Cooling_enable    "CT_Fan_Cooling_enable"
 Switch CT_Fan_Heating_circulate_enable    "CT_Fan_Heating_circulate"
 
 
-Number Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit [%.1f °C]"    <degreesc>
+Number:Temperature Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit"
 //conservatory Fan
 // Switch CT_fan_power "conservatory fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
 Switch CT_fan_power "conservatory fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }

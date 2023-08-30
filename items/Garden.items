@@ -11,5 +11,5 @@ Number  Soil1_Moisture_OH_1    "Soil 1 Moisture OH 1 processed"
 
 String  Soil1_Reachable     "Soil 1 Moisture reachable" (gMQTT)   { channel = "mqtt:topic:soil1:Reachable" }
 
-String UI_Refresh_Timer
+// String UI_Refresh_Timer
 

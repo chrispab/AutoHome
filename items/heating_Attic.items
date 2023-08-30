@@ -2,7 +2,7 @@ Group gAT_Thermostat "Attic Thermostat" (gThermostats) { ga="Thermostat" [ roomH
 String AT_ThermostatMode "Attic Thermostat Mode" <settings> (gAT_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number AT_TemperatureSetpoint "Attic Setpoint [%.1f °C]" <heating> (gAT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 Number AT_Temperature "Attic Temperature [%.1f °C]" <temperature> (gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
-Number AT_Humidity "Attic Humidity [%.1f °C]" <humidity> (gAT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
+Number AT_Humidity "Attic Humidity" <humidity> (gAT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
 
 // // // // //additional params for use in openhab functions etc
 Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }

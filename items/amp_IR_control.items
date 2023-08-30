@@ -14,7 +14,7 @@ Switch amplifier_IR_VolumeDown "amplifier volume down" (gMQTT, gIRRemoteButtons)
 // Switch amplifier_IR_source_tape1 "amplifier source tape 1 - Kodi" (gMQTT, gIRRemoteButtons) { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:tape1"}
 
 Switch amplifier_IR_reachable "amplifier IR bridge" (gServices_Support_Online, gMQTT_reachable) ["Support_Service_Status"] { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:reachable" }
-Number amplifier_IR_rssi    "ir amplifier rssi" { channel = "mqtt:topic:amplifier:rssi" }
+Number:Dimensionless amplifier_IR_rssi    "ir amplifier rssi" { channel = "mqtt:topic:amplifier:rssi" }
 
 
 Number amplifier_IR_code    "ir amplifier control code" { channel = "mqtt:topic:amplifier:code" }
