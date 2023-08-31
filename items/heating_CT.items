@@ -5,6 +5,8 @@
 // Column, ChannelColumn or Multiline.
 // #OHNG#
 // #OHFS#Multiline#OHFS#
+Group                   gThermostats
+
 Group                   gCT_Thermostat
                         "Conservatory Thermostat"
                         (gThermostats)
@@ -34,7 +36,7 @@ Number:Dimensionless    CT_Humidity
                         "Conservatory Humidity"
                         <humidity>
                         (gChart, gCT_Thermostat, gRoomHumidities)
-                        {ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
+                        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
 Switch                  CT_Heater
                         "Conservatory Heater"

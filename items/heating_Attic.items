@@ -1,12 +1,12 @@
-Group gAT_Thermostat "Attic Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Attic" ] }
-String AT_ThermostatMode "Attic Thermostat Mode" <settings> (gAT_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number AT_TemperatureSetpoint "Attic Setpoint [%.1f °C]" <heating> (gAT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
-Number AT_Temperature "Attic Temperature [%.1f °C]" <temperature> (gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
-Number AT_Humidity "Attic Humidity" <humidity> (gAT_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
+Group                   gAT_Thermostat          "Attic Thermostat"                      (gThermostats) { ga="Thermostat" [ roomHint="Attic" ] }
+
+String                  AT_ThermostatMode       "Attic Thermostat Mode" <settings>      (gAT_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number:Temperature      AT_TemperatureSetpoint  "Attic Setpoint"        <heating>       (gChart,gAT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number:Temperature      AT_Temperature          "Attic Temperature"     <temperature>   (gChart,gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
+Number:Dimensionless    AT_Humidity             "Attic Humidity"        <humidity>      (gChart,gAT_Thermostat, gRoomHumidities) {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
 
 // // // // //additional params for use in openhab functions etc
-Switch AT_Heater "Attic Heater"  <my_radiator> (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }
-String AT_HeatingMode "Attic Heating Mode" <settings> (gHeatingModes)
-Number AT_Heating_PresetTempNormal "Attic Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+Switch AT_Heater "Attic Heater"  <my_radiator> (gChart,gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }
+String AT_HeatingMode "Attic Heating Mode" <settings> (gChart,gHeatingModes)
 String AT_RTVReachable "Attic Reachable" <qualityofservice> (gAT_Thermostat,gRTVsReachable)  { channel="mqtt:topic:atticRadThermoValve:reachable" }
-Number AT_RTV_Rssi "attic RTV RSSI [%.1f]" <qualityofservice> (gAT_Thermostat) { channel="mqtt:topic:atticRadThermoValve:rssi" }
+Number:Dimensionless AT_RTV_Rssi "attic RTV RSSI" <qualityofservice> (gAT_Thermostat) { channel="mqtt:topic:atticRadThermoValve:rssi" }

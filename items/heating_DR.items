@@ -1,17 +1,13 @@
-// https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
-//thermostat definition formatted for Google home, assistant use
-
 Group gDR_Thermostat "Dining Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Dining Room" ] }
 
 String DR_ThermostatMode "Dining Room Thermostat Mode" <settings> (gDR_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number DR_TemperatureSetpoint "Dining Room Setpoint [%.1f °C]" <heating> (gDR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
-
+Number:Temperature DR_ThermostatTemperatureSetpoint "Dining Room Setpoint [%.1f °C]" <heating> (gChart,gDR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 //zigbee thpsensor
-Number DR_Temperature "Dining Room Temperature raw [%.1f °C]" <temperature> (gDR_Thermostat, gRoomTemperatures) { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THPSensor01:temperature" }
-Number DR_Humidity "Dining Room Humidity [%.1f °C]" <humidity> (gDR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:THPSensor01:humidity" }
+Number:Temperature DR_ThermostatTemperatureAmbient "Dining Room Temperature raw [%.1f °C]" <temperature> (gChart,gDR_Thermostat, gRoomTemperatures) { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THPSensor01:temperature" }
+Number:Dimensionless DR_ThermostatHumidityAmbient "Dining Room Humidity [%.1f °C]" <humidity> (gChart,gDR_Thermostat, gRoomHumidities) {unit="%",  ga="thermostatHumidityAmbient", channel="mqtt:topic:THPSensor01:humidity" }
 
 //additional params for use in openhab functions etc
-Switch DR_Heater "Dining Room Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
-String DR_HeatingMode "Dining Room Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
+Switch DR_Heater "Dining Room Heater"  <my_radiator>   (gChart,gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
+String DR_HeatingMode "Dining Room Heating Mode" <settings> (gChart,gHeatingModes) //(gTimepicker)
 String DR_RTVReachable "Dining Room Reachable" <qualityofservice> (DR_Thermostat,gRTVsReachable)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
-Number DR_RTV_Rssi "DR RTV RSSI [%.1f]" <qualityofservice> (gDR_Thermostat) { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }
+Number:Dimensionless DR_RTV_Rssi "DR RTV RSSI [%.1f]" <qualityofservice> (gDR_Thermostat) { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }
