@@ -56,10 +56,10 @@ Items {
     gHeatingModes* : strategy = everyChange
 
     // CT_HeatingMode                : strategy = everyUpdate
-    CT_TemperatureSetpoint                : strategy = everyUpdate
-    CT_Temperature : strategy = everyUpdate
-    CT_Humidity : strategy = everyUpdate
-    CT_Heater : strategy = everyUpdate
+    // CT_TemperatureSetpoint                : strategy = everyUpdate
+    // CT_Temperature : strategy = everyUpdate
+    // CT_Humidity : strategy = everyUpdate
+    // CT_Heater : strategy = everyUpdate
 
     // DR_HeatingMode                : strategy = everyUpdate
     DR_TemperatureSetpoint                : strategy = everyUpdate
@@ -151,7 +151,7 @@ Items {
     // wifi_socket_4_power : strategy = everyUpdate
     // wifi_socket_4_reachable : strategy = everyUpdate
     // wifi_socket_4_rssi : strategy = everyUpdate
-    wifi_socket_4_temperature  : strategy = everyUpdate
+    // wifi_socket_4_temperature  : strategy = everyUpdate
 
 
 //attic tv
@@ -229,5 +229,5 @@ Items {
     CT_Temperature_raw : strategy = everyUpdate
 
     // v_DR_HeatingMode_update_by_timeline : strategy = everyUpdate
-    v_DR_SetPoint_auto_update_by_timeline : strategy = everyUpdate
+    // v_DR_SetPoint_auto_update_by_timeline : strategy = everyUpdate
 }
