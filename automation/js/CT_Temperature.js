@@ -21,7 +21,7 @@ const divisor = 8;
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
-  triggers: [triggers.ItemStateUpdateTrigger('CT_Temperature_raw')],
+  triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
   execute: () => {
     let prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
     // logger.error(`1 ==> previous temp is: ${prevTemp}`);

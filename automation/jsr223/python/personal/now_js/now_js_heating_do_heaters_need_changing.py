@@ -16,7 +16,7 @@
 #     prefix = event.itemName[:event.itemName.rfind('_')]
 #     LogAction.logDebug("Check if Heaters need changing", "HHH Check if Heaters need changing etc due to Item: {}, received  update: {}", event.itemName, event.itemState)
 
-#     HeatingMode = ir.getItem(prefix + "_HeatingMode")
+#     HeatingMode = ir.getItem(prefix + "_Heater_Mode")
 #     LogAction.logDebug("Check if Heaters need changing", "HHH HeatingMode {} : {}", prefix, HeatingMode.state)
 
 #     TSetpoint = ir.getItem(prefix + "_TemperatureSetpoint")

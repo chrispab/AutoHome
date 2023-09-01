@@ -32,7 +32,7 @@ rules.JSRule({
       logger.debug('conservatory_fan_ cool rulel - detected CT_Fan_Cooling_enable   ON');
       const setPoint = items.getItem('Conservatory_Fan_ON_Setpoint').state;
       const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-      if (items.getItem('CT_Heater') != 'ON') {
+      if (items.getItem('CT_Heater_Control') != 'ON') {
         if (temp >= setPoint) {
           items.getItem('CT_fan_power').sendCommand('ON');
           logger.debug('>>>> Conservatory_fan_ cool rulel turning fan ON');

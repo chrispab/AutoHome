@@ -23,7 +23,7 @@ function stopBoost() {
   // CT_boost_timer.cancel();//will error cos of this
   items.getItem('CT_Boost').sendCommand('OFF'); // tv
   items.getItem('v_CT_Boost').sendCommand('OFF');
-  items.getItem('CT_Heater').sendCommand('OFF'); // tv
+  items.getItem('CT_Heater_Control').sendCommand('OFF'); // tv
   // HeaterItem.sendCommand('OFF');
   // HeaterItem.sendCommand('OFF');
   // } else {
@@ -51,9 +51,9 @@ rules.JSRule({
     logger.error(`-- ->>> heaterPrefix : ${heaterPrefix}`);
     logger.error(`>..heaterPrefix: ${heaterPrefix}`);
 
-    const ReachableItem = items.getItem(`${heaterPrefix}_RTVReachable`);
+    const ReachableItem = items.getItem(`${heaterPrefix}_Heater_Reachable`);
     logger.error(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
-    const HeaterItem = items.getItem(`${heaterPrefix}_Heater`);
+    const HeaterItem = items.getItem(`${heaterPrefix}_Heater_Control`);
     logger.error(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
     // !handle an offline TRV - return
     if (ReachableItem.state.toString() !== 'Online') {

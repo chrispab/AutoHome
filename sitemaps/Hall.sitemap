@@ -2,9 +2,9 @@ sitemap Hall label="Hall"
 {
   Frame label="Heating" {
     Text item=HL_ThermostatTemperatureAmbient label="Current Temperature: [%.1f °C]"
-    Setpoint item=HL_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[HL_HeatingMode=="auto", HL_HeatingMode=="manual"]
-    Switch item=HL_HeatingMode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
-    Switch item= HL_Heater label="Radiator"
-    Text item=HL_RTVReachable label="Reachable: "
+    Setpoint item=HL_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[HL_Heater_Mode=="auto", HL_Heater_Mode=="manual"]
+    Switch item=HL_Heater_Mode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
+    Switch item= HL_Heater_Control label="Radiator"
+    Text item=HL_Heater_Reachable label="Reachable: "
   }
 }

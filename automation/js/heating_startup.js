@@ -13,7 +13,7 @@ scriptLoaded = function () {
     (items.getItem('masterHeatingMode').postUpdate('auto'));
   }
 
-  items.getItem('gTemperatureSetpoints').members.forEach((item) => {
+  items.getItem('gThermostatTemperatureSetpoints').members.forEach((item) => {
     if (item.state === 'NULL') {
       item.postUpdate(17);
     }

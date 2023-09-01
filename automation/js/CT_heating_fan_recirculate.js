@@ -21,8 +21,8 @@ rules.JSRule({
     const setPoint = items.getItem('CT_ThermostatTemperatureSetpoint').state;
     const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     // and heater onBoiler_Control
-    // if (((setPoint >= 18 && temp < setPoint) || items.getItem('CT_Heater').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
-    // if (((setPoint >= 18) || items.getItem('CT_Heater').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
+    // if (((setPoint >= 18 && temp < setPoint) || items.getItem('CT_Heater_Control').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
+    // if (((setPoint >= 18) || items.getItem('CT_Heater_Control').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
     if ((items.getItem('Boiler_Control').state.toString() === 'ON') && items.getItem('CT_Fan_Heating_circulate_enable').state.toString() === 'ON') {
       // logger.error('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfff  conservatory fan circulate heat rulel turn FAN ON NOW   ZZZZZ');
       // items.getItem('CT_fan_power').sendCommand('ON');

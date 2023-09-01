@@ -74,16 +74,16 @@ rules.JSRule({
         const temp = items.getItem('FH_ThermostatTemperatureAmbient').rawState;
 
         if (temp < setPoint) {
-          items.getItem('FH_Heater').sendCommand('ON');
+          items.getItem('FH_Heater_Control').sendCommand('ON');
           logger.debug('>>>>- temp < setPoint turning heater ON');
-        } else if (temp >= (setPoint)) { // (items.getItem('CT_Heater').state == 'OFF') && (
-          items.getItem('FH_Heater').sendCommand('OFF');
+        } else if (temp >= (setPoint)) { // (items.getItem('CT_Heater_Control').state == 'OFF') && (
+          items.getItem('FH_Heater_Control').sendCommand('OFF');
           logger.debug('<<<< -. temp > (setPoint) turning heater OFF');
         } else {
           // console.warn('==== -. temp none of on or off');
         }
       } else {
-        items.getItem('FH_Heater').sendCommand('OFF');
+        items.getItem('FH_Heater_Control').sendCommand('OFF');
       }
     } else {
       logger.debug('NOT_____mvm___PAST THE GATE');

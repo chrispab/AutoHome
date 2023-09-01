@@ -28,9 +28,9 @@ rules.JSRule({
     logger.error(`-- ->>> heaterPrefix : ${heaterPrefix}`);
     logger.error(`>..heaterPrefix: ${heaterPrefix}`);
 
-    const ReachableItem = items.getItem(`${heaterPrefix}_RTVReachable`);
+    const ReachableItem = items.getItem(`${heaterPrefix}_Heater_Reachable`);
     logger.error(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
-    const HeaterItem = items.getItem(`${heaterPrefix}_Heater`);
+    const HeaterItem = items.getItem(`${heaterPrefix}_Heater_Control`);
     logger.error(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
     // !handle an offline TRV - return
     if (ReachableItem.state.toString() !== 'Online') {

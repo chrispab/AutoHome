@@ -16,31 +16,31 @@ Items {
     FR_ThermostatTemperatureSetpoint                : strategy = everyUpdate
     FR_ThermostatTemperatureAmbient : strategy = everyUpdate
     FR_ThermostatHumidityAmbient : strategy = everyUpdate
-    FR_Heater : strategy = everyUpdate
+    FR_Heater_Control : strategy = everyUpdate
 
     // HL_HeatingMode                : strategy = everyUpdate
     HL_ThermostatTemperatureSetpoint                : strategy = everyUpdate
     HL_ThermostatTemperatureAmbient : strategy = everyUpdate
     HL_ThermostatHumidityAmbient : strategy = everyUpdate
-    HL_Heater : strategy = everyUpdate
+    HL_Heater_Control : strategy = everyUpdate
 
     // BR_HeatingMode                : strategy = everyUpdate
     BR_ThermostatTemperatureSetpoint                : strategy = everyUpdate
     BR_ThermostatTemperatureAmbient : strategy = everyUpdate
     BR_ThermostatHumidityAmbient : strategy = everyUpdate
-    BR_Heater : strategy = everyUpdate
+    BR_Heater_Control : strategy = everyUpdate
 
     // OF_HeatingMode : strategy = everyUpdate
     OF_ThermostatTemperatureSetpoint : strategy = everyUpdate
     OF_ThermostatTemperatureAmbient : strategy = everyUpdate
     OF_ThermostatHumidityAmbient : strategy = everyUpdate
-    OF_Heater : strategy = everyUpdate
+    OF_Heater_Control : strategy = everyUpdate
 
     // ER_HeatingMode : strategy = everyUpdate
     ER_ThermostatTemperatureSetpoint : strategy = everyUpdate
     ER_ThermostatTemperatureAmbient : strategy = everyUpdate
     ER_ThermostatHumidityAmbient : strategy = everyUpdate
-    ER_Heater : strategy = everyUpdate
+    ER_Heater_Control : strategy = everyUpdate
 
 
     Outside_Temperature : strategy = everyUpdate

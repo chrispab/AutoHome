@@ -6,15 +6,15 @@ const { myutils } = require('personal');
 const logger = log('heater_change');
 const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
 
-// if gHeatingModes, gTemperatureSetpoints ,gRoomTemperatures are updated
+// if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on
 rules.JSRule({
   name: 'Check if Heaters need changing etc',
   description: 'Check if Heaters need changing etc',
   triggers: [
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
-    triggers.GroupStateUpdateTrigger('gTemperatureSetpoints'),
-    triggers.GroupStateUpdateTrigger('gRoomTemperatures'),
+    triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
+    triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients'),
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
@@ -25,7 +25,7 @@ rules.JSRule({
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
 
-    const heatingModeItem = items.getItem(`${roomPrefix}_HeatingMode`);
+    const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
     // logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
 
     const setpointItem = items.getItem(`${roomPrefix}_ThermostatTemperatureSetpoint`);
@@ -34,10 +34,10 @@ rules.JSRule({
     const TemperatureItem = items.getItem(`${roomPrefix}_ThermostatTemperatureAmbient`);
     // logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
 
-    const HeaterItem = items.getItem(`${roomPrefix}_Heater`);
+    const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
     // logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
 
-    const ReachableItem = items.getItem(`${roomPrefix}_RTVReachable`);
+    const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
     // logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
@@ -49,11 +49,11 @@ rules.JSRule({
       // turn it off
       HeaterItem.sendCommand('OFF');
 
-      items.getItem('HL_Heater').sendCommand('OFF');
+      items.getItem('HL_Heater_Control').sendCommand('OFF');
       // dont continue on and update the bolier control if this RTV is Offline
       return;
     }
-    items.getItem('HL_Heater').sendCommand('OFF');
+    items.getItem('HL_Heater_Control').sendCommand('OFF');
 
     // logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 

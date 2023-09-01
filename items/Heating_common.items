@@ -4,9 +4,9 @@ Group		gHeatingModes
 // Group		gThermostatModes
 Group:String:AND("heat","notdef") gThermostatModes
 
-Group		gTemperatureSetpoints
-Group       gRoomTemperatures
-Group       gRoomHumidities
+Group		gThermostatTemperatureSetpoints
+Group       gThermostatTemperatureAmbients
+Group       gThermostatHumidityAmbients
 Group       gRoomHeaterStates
 Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
 Group       gRTVsReachable

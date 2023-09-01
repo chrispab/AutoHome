@@ -1,71 +1,34 @@
-// https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
-
-// #OHFS#%FORMATTING_STYLE%#OHFS#
-
-// Column, ChannelColumn or Multiline.
-// #OHNG#
-// #OHFS#Multiline#OHFS#
 Group                   gThermostats
 
-Group                   gCT_Thermostat
-                        "Conservatory Thermostat"
-                        (gThermostats)
-                        {ga="Thermostat" [ roomHint="Conservatory" ]}
 
-String                  CT_ThermostatMode
-                        "Conservatory Thermostat Mode"
-                        <settings>
+//thermostat
+Group                   gCT_Thermostat  "Conservatory Thermostat"
+                        (gThermostats)
+                        {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Conservatory" ]}
+String                  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings>
                         (gCT_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}
-Number:Temperature      CT_ThermostatTemperatureSetpoint
-                        "Conservatory Setpoint"
-                        <heating>
-                        (gChart, gCT_Thermostat, gTemperatureSetpoints)
+Number:Temperature      CT_ThermostatTemperatureSetpoint "Conservatory Setpoint" <heating>
+                        (gChart, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
-
-Number:Temperature      CT_ThermostatTemperatureAmbient
-                        "Conservatory Temperature"
-                        <temperature>
-                        (gChart, gCT_Thermostat, gRoomTemperatures)
-Number:Temperature      CT_Temperature_monitor
-Number:Temperature      CT_Temperature_raw
-                        "Conservatory Temperature raw"
-                        <temperature>
-                        {ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
-Number:Dimensionless    CT_ThermostatHumidityAmbient
-                        "Conservatory Humidity"
-                        <humidity>
-                        (gChart, gCT_Thermostat, gRoomHumidities)
+Number:Temperature      CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature>
+                        (gChart, gCT_Thermostat, gThermostatTemperatureAmbients)
+                        {ga="thermostatTemperatureAmbient"}
+Number:Dimensionless    CT_ThermostatHumidityAmbient     "Conservatory Humidity"      <humidity>
+                        (gChart, gCT_Thermostat, gThermostatHumidityAmbients)
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
-Switch                  CT_Heater
-                        "Conservatory Heater"
-                        <my_radiator>
-                        (gChart, gRoomHeaterStates, gAnyRoomHeaterOn)
-                        {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
-String                  CT_HeatingMode
-                        "Conservatory Heating Mode"
-                        <settings>
-                        (gHeatingModes)
+//var for reading and smoothing temperature readings
+Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw" <temperature>
+                        {channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
 
-//connection
-String                  CT_RTVReachable
-                        "Conservatory Reachable"
-                        <qualityofservice>
-                        (gCT_Thermostat,gRTVsReachable)
-                        {channel="mqtt:topic:conservatoryRadThermoValve:reachable"}
-Number:Dimensionless    CT_RTV_Rssi
-                        "CT RTV RSSI"
-                        <qualityofservice>
-                        (gCT_Thermostat)
-                        {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}
+//heater
+Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart, gRoomHeaterStates, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
+String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)
+String               CT_Heater_Reachable "Conservatory Reachable" <qualityofservice> (gRTVsReachable) {channel="mqtt:topic:conservatoryRadThermoValve:reachable"}
+Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}
 
 //boost
-Switch                  CT_Boost
-                        "Conservatory Heater boost"
-                        <my_radiator>
-                        (gHeaterBoosters,gAnyRoomHeaterOn,gRoomHeaterStates)
-Switch                  v_CT_Boost
-                        "Conservatory virtual Heater boost"
-Number                  CT_Boost_Countdown
-                        "CT_Boost_Countdown"
+Switch      CT_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gRoomHeaterStates)
+Switch      v_CT_Boost  "Conservatory virtual Heater boost"
+Number:Time CT_Boost_Countdown "CT_Boost_Countdown"
