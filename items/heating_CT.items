@@ -17,13 +17,13 @@ String                  CT_ThermostatMode
                         <settings>
                         (gCT_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}
-Number:Temperature      CT_TemperatureSetpoint
+Number:Temperature      CT_ThermostatTemperatureSetpoint
                         "Conservatory Setpoint"
                         <heating>
                         (gChart, gCT_Thermostat, gTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
 
-Number:Temperature      CT_Temperature
+Number:Temperature      CT_ThermostatTemperatureAmbient
                         "Conservatory Temperature"
                         <temperature>
                         (gChart, gCT_Thermostat, gRoomTemperatures)
@@ -32,7 +32,7 @@ Number:Temperature      CT_Temperature_raw
                         "Conservatory Temperature raw"
                         <temperature>
                         {ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
-Number:Dimensionless    CT_Humidity
+Number:Dimensionless    CT_ThermostatHumidityAmbient
                         "Conservatory Humidity"
                         <humidity>
                         (gChart, gCT_Thermostat, gRoomHumidities)

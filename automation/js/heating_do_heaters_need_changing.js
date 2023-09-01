@@ -28,10 +28,10 @@ rules.JSRule({
     const heatingModeItem = items.getItem(`${roomPrefix}_HeatingMode`);
     // logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
 
-    const setpointItem = items.getItem(`${roomPrefix}_TemperatureSetpoint`);
+    const setpointItem = items.getItem(`${roomPrefix}_ThermostatTemperatureSetpoint`);
     // logger.warn(`>setpointItem.name: ${setpointItem.name} : ,  Setpoint.state: ${setpointItem.state}`);
 
-    const TemperatureItem = items.getItem(`${roomPrefix}_Temperature`);
+    const TemperatureItem = items.getItem(`${roomPrefix}_ThermostatTemperatureAmbient`);
     // logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
 
     const HeaterItem = items.getItem(`${roomPrefix}_Heater`);

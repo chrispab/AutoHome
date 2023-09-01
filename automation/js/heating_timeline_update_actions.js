@@ -73,8 +73,8 @@ rules.JSRule({
     logger.warn(`--->>> setPointTemperature found : ${setPointTemperature}`);
 
     // finally send the new setpoit temperature to the relevant real setpoint item
-    // setpoint item name of form '<roomPrefix>_TemperatureSetpoint'
-    const setPointItemName = `${roomPrefix}_TemperatureSetpoint`;
+    // setpoint item name of form '<roomPrefix>_ThermostatTemperatureSetpoint'
+    const setPointItemName = `${roomPrefix}_ThermostatTemperatureSetpoint`;
     items.getItem(setPointItemName).sendCommand(setPointTemperature);
   },
 });
@@ -113,7 +113,7 @@ rules.JSRule({
       const setpointToSendToThermostat = event.receivedState;
 
       // build thermostat item name, e.g. 'CT_Setpoint', from 'CT_Setpoint_auto_comfort'
-      const targetSetpointItemName = `${roomPrefix}_TemperatureSetpoint`;
+      const targetSetpointItemName = `${roomPrefix}_ThermostatTemperatureSetpoint`;
       items.getItem(targetSetpointItemName).sendCommand(setpointToSendToThermostat);
       logger.warn(`__**>> setpointToSendToThermostat : ${setpointToSendToThermostat}`);
 

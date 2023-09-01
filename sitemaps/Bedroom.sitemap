@@ -4,8 +4,8 @@ sitemap Bedroom label="Bedroom"
     Switch item= vBR_TVKodi label="Bedroom Kodi and TV"
   }
   Frame label="Heating" {
-    Text item=BR_Temperature label="Current Temperature: [%.1f °C]"
-    Setpoint item=BR_TemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[BR_HeatingMode=="auto", BR_HeatingMode=="manual"]
+    Text item=BR_ThermostatTemperatureAmbient label="Current Temperature: [%.1f °C]"
+    Setpoint item=BR_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[BR_HeatingMode=="auto", BR_HeatingMode=="manual"]
     Switch item=BR_HeatingMode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
     Switch item= BR_Heater label="Radiator"
     Text item=BR_RTVReachable label="Reachable: "

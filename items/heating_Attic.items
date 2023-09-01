@@ -1,9 +1,9 @@
 Group                   gAT_Thermostat          "Attic Thermostat"                      (gThermostats) { ga="Thermostat" [ roomHint="Attic" ] }
 
 String                  AT_ThermostatMode       "Attic Thermostat Mode" <settings>      (gAT_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number:Temperature      AT_TemperatureSetpoint  "Attic Setpoint"        <heating>       (gChart,gAT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
-Number:Temperature      AT_Temperature          "Attic Temperature"     <temperature>   (gChart,gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
-Number:Dimensionless    AT_Humidity             "Attic Humidity"        <humidity>      (gChart,gAT_Thermostat, gRoomHumidities) {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
+Number:Temperature      AT_ThermostatTemperatureSetpoint  "Attic Setpoint"        <heating>       (gChart,gAT_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number:Temperature      AT_ThermostatTemperatureAmbient          "Attic Temperature"     <temperature>   (gChart,gAT_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
+Number:Dimensionless    AT_ThermostatHumidityAmbient             "Attic Humidity"        <humidity>      (gChart,gAT_Thermostat, gRoomHumidities) {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
 
 // // // // //additional params for use in openhab functions etc
 Switch AT_Heater "Attic Heater"  <my_radiator> (gChart,gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }

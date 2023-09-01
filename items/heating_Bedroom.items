@@ -1,11 +1,11 @@
 Group gBR_Thermostat "Bedroom Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Bedroom" ] }
 String BR_ThermostatMode "Bedroom Thermostat Mode" <settings> (gBR_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number BR_TemperatureSetpoint "Bedroom Setpoint [%.1f °C]" <heating> (gBR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number BR_ThermostatTemperatureSetpoint "Bedroom Setpoint [%.1f °C]" <heating> (gBR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 
 // Number BR_Temperature "Bedroom Temperature [%.1f °C]" <temperature> (gBR_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:bedroomRadThermoValve:temperature" }
 Number BR_Temperature "Bedroom Temperature [%.1f °C]" <temperature> (gBR_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor03:temperature" }
 
-Number BR_Humidity "Bedroom Humidity [%.1f °C]" <humidity> (gBR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:bedroomRadThermoValve:humidity" }
+Number BR_ThermostatHumidityAmbient "Bedroom Humidity [%.1f °C]" <humidity> (gBR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:bedroomRadThermoValve:humidity" }
 
 // // //additional params for use in openhab functions etc
 Switch BR_Heater "Bedroom Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:bedroomRadThermoValve:powerSwitch" }

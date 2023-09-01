@@ -1,8 +1,8 @@
 Group gHL_Thermostat "Hall Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Hall" ] }
 String HL_ThermostatMode "Hall Thermostat Mode" <settings> (gHL_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number HL_TemperatureSetpoint "Hall Setpoint [%.1f °C]" <heating> (gHL_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
-Number HL_Temperature "Hall Temperature [%.1f °C]" <temperature> (gHL_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:hallRadThermoValve:temperature" }
-Number HL_Humidity "Hall Humidity [%.1f °C]" <humidity> (gHL_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:hallRadThermoValve:humidity" }
+Number HL_ThermostatTemperatureSetpoint "Hall Setpoint [%.1f °C]" <heating> (gHL_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number HL_ThermostatTemperatureAmbient "Hall Temperature [%.1f °C]" <temperature> (gHL_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:hallRadThermoValve:temperature" }
+Number HL_ThermostatHumidityAmbient "Hall Humidity [%.1f °C]" <humidity> (gHL_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:hallRadThermoValve:humidity" }
 
 // //additional params for use in openhab functions etc
 Switch HL_Heater "Hall Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:hallRadThermoValve:powerSwitch" }

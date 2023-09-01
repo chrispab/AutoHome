@@ -8,10 +8,10 @@ const logger = log('smooth-ct-temp');
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded - init CT temp filter');
-  // const temp = items.getItem('CT_Temperature').state;
-  // const temp = items.getItem('CT_Temperature').state;
-  items.getItem('CT_Temperature').sendCommand(19);
-  items.getItem('CT_Temperature_raw').sendCommand(19);
+  // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
+  // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
+  items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(19);
+  items.getItem('CT_ThermostatTemperatureAmbient_raw').sendCommand(19);
 
   // logger.warn(`0 ==> STARTUP temp is: ${temp}`);
 };
@@ -23,10 +23,10 @@ rules.JSRule({
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_Temperature_raw')],
   execute: () => {
-    let prevTemp = items.getItem('CT_Temperature').rawState;
+    let prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
     // logger.error(`1 ==> previous temp is: ${prevTemp}`);
 
-    const rawTemp = items.getItem('CT_Temperature_raw').rawState;
+    const rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
     // logger.error(`2 ==> new raw temp is: ${rawTemp}`);
 
     if (prevTemp === 'NULL' || prevTemp < 5) {
@@ -49,11 +49,11 @@ rules.JSRule({
     newTemp = (Math.round((newTemp.toFixed(2)) * 10) / 10);
     // logger.error(`6 ==> new temp after rounding: ${newTemp}`);
 
-    items.getItem('CT_Temperature').sendCommand(newTemp);
-    items.getItem('FH_Temperature').sendCommand(newTemp);
+    items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(newTemp);
+    items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(newTemp);
 
     // logger.error(`7 ==> CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
 
-    // logger.warn(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
+    // logger.warn(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_ThermostatTemperatureAmbient(newTemp): ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
   },
 });

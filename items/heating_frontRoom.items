@@ -1,11 +1,11 @@
 Group gFR_Thermostat "Front Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Front Room" ] }
 String FR_ThermostatMode "Front Room Thermostat Mode" <settings> (gFR_Thermostat, gThermostatModes) { ga="thermostatMode" }
-Number FR_TemperatureSetpoint "Front Room Setpoint [%.1f °C]" <heating> (gFR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number FR_ThermostatTemperatureSetpoint "Front Room Setpoint [%.1f °C]" <heating> (gFR_Thermostat, gTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
 
 // Number FR_Temperature "Front Room Temperature [%.1f °C]" <temperature> (gFR_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:frontRoomRadThermoValve:temperature" }
-Number FR_Temperature "Front Room Temperature [%.1f °C]" <temperature> (gFR_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor01:temperature" }
+Number FR_ThermostatTemperatureAmbient "Front Room Temperature [%.1f °C]" <temperature> (gFR_Thermostat, gRoomTemperatures)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor01:temperature" }
 
-Number FR_Humidity "Front Room Humidity [%.1f °C]" <humidity> (gFR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:frontRoomRadThermoValve:humidity" }
+Number FR_ThermostatHumidityAmbient "Front Room Humidity [%.1f °C]" <humidity> (gFR_Thermostat, gRoomHumidities) { ga="thermostatHumidityAmbient", channel="mqtt:topic:frontRoomRadThermoValve:humidity" }
 
 //additional params for use in openhab functions etc
 Switch FR_Heater "Front Room Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:frontRoomRadThermoValve:powerSwitch" }

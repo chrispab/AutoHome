@@ -16,7 +16,7 @@ rules.JSRule({
   name: 'conservatory fan_cool rule',
   description: 'check if cooling fan is required to go ON',
   triggers: [
-    triggers.ItemStateChangeTrigger('CT_Temperature'),
+    triggers.ItemStateChangeTrigger('CT_ThermostatTemperatureAmbient'),
     triggers.ItemStateChangeTrigger('Conservatory_Fan_ON_Setpoint'),
     triggers.ItemStateChangeTrigger('CT_Fan_Cooling_enable'),
   ],
@@ -31,7 +31,7 @@ rules.JSRule({
     if (items.getItem('CT_Fan_Cooling_enable').state.toString() === 'ON') {
       logger.debug('conservatory_fan_ cool rulel - detected CT_Fan_Cooling_enable   ON');
       const setPoint = items.getItem('Conservatory_Fan_ON_Setpoint').state;
-      const temp = items.getItem('CT_Temperature').state;
+      const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
       if (items.getItem('CT_Heater') != 'ON') {
         if (temp >= setPoint) {
           items.getItem('CT_fan_power').sendCommand('ON');

@@ -18,8 +18,8 @@ rules.JSRule({
   name: 'Link fan heater setpoint to CT setpoint',
   description: 'Link fan heater setpoint to CT setpoint',
   triggers: [
-    triggers.ItemStateChangeTrigger('CT_TemperatureSetpoint'),
-    triggers.ItemStateChangeTrigger('CT_Temperature'),
+    triggers.ItemStateChangeTrigger('CT_ThermostatTemperatureSetpoint'),
+    triggers.ItemStateChangeTrigger('CT_ThermostatTemperatureAmbient'),
     triggers.ItemStateChangeTrigger('FH_LinkSetpointToCTSetpoint'),
     triggers.ItemStateChangeTrigger('FH_Link_TrackingOffset'),
 
@@ -30,14 +30,14 @@ rules.JSRule({
       // track
       logger.debug('________tracking to CT setpoint');
       // get ct sp and copy to fh sp - offset
-      let CT_SP = items.getItem('CT_TemperatureSetpoint').rawState;
-      const FH_TemperatureSetpoint_item = items.getItem('FH_TemperatureSetpoint');
+      let CT_SP = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
+      const FH_ThermostatTemperatureSetpoint_item = items.getItem('FH_ThermostatTemperatureSetpoint');
 
       // add offest
       const offset = items.getItem('FH_Link_TrackingOffset').rawState;
       CT_SP -= offset;
       // copy/track
-      FH_TemperatureSetpoint_item.sendCommand(CT_SP);
+      FH_ThermostatTemperatureSetpoint_item.sendCommand(CT_SP);
     }
   },
 });
@@ -48,11 +48,11 @@ rules.JSRule({
   triggers: [
     // triggers.GroupStateUpdateTrigger('gRoomHeaterStates', 'OFF', 'ON'),
     // triggers.ItemStateChangeTrigger('fan_heater_temperature_sensor'),
-    triggers.ItemStateChangeTrigger('FH_Temperature'),
+    triggers.ItemStateChangeTrigger('FH_ThermostatTemperatureAmbient'),
     // triggers.ItemStateChangeTrigger('CT_Temperature'),
     // triggers.ItemStateChangeTrigger('fan_heater_ON_Setpoint'),
     // triggers.ItemStateChangeTrigger('FH_enable'),
-    triggers.ItemStateChangeTrigger('FH_TemperatureSetpoint'),
+    triggers.ItemStateChangeTrigger('FH_ThermostatTemperatureSetpoint'),
     triggers.ItemStateChangeTrigger('FH_enable'),
     triggers.ItemStateChangeTrigger('FH_outside_temperature_enable'),
 
@@ -69,9 +69,9 @@ rules.JSRule({
     if (items.getItem('FH_enable').state.toString() === 'ON') {
       // console.error('######################################################_____mvm___PAST THE GATE');
       if ((items.getItem('Outside_Temperature').rawState <= items.getItem('FH_outside_temperature_enable').rawState)) {
-        const setPoint = items.getItem('FH_TemperatureSetpoint').rawState;
-        logger.debug(`________FH_TemperatureSetpoint: ${setPoint}`);
-        const temp = items.getItem('FH_Temperature').rawState;
+        const setPoint = items.getItem('FH_ThermostatTemperatureSetpoint').rawState;
+        logger.debug(`________FH_ThermostatTemperatureSetpoint: ${setPoint}`);
+        const temp = items.getItem('FH_ThermostatTemperatureAmbient').rawState;
 
         if (temp < setPoint) {
           items.getItem('FH_Heater').sendCommand('ON');
