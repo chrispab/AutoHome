@@ -1,3 +1,4 @@
+//thermostat
 Group gFR_Thermostat "Front Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Front Room" ] }
 String FR_ThermostatMode "Front Room Thermostat Mode" <settings> (gFR_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number FR_ThermostatTemperatureSetpoint "Front Room Setpoint [%.1f °C]" <heating> (gFR_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
@@ -8,8 +9,8 @@ Number FR_ThermostatTemperatureAmbient "Front Room Temperature [%.1f °C]" <temp
 Number FR_ThermostatHumidityAmbient "Front Room Humidity [%.1f °C]" <humidity> (gFR_Thermostat, gThermostatHumidityAmbients) { ga="thermostatHumidityAmbient", channel="mqtt:topic:frontRoomRadThermoValve:humidity" }
 
 //additional params for use in openhab functions etc
-Switch FR_Heater_Control "Front Room Heater"  <my_radiator>  (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:frontRoomRadThermoValve:powerSwitch" }
+Switch FR_Heater_Control "Front Room Heater"  <my_radiator>  (gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:frontRoomRadThermoValve:powerSwitch" }
 String FR_Heater_Mode "Front Room Heating Mode" <settings> (gHeatingModes)
 Number FR_Heating_PresetTempNormal "Front Room Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
-String FR_Heater_Reachable "Front Room Reachable" <qualityofservice> (gFR_Thermostat,gRTVsReachable)  { channel="mqtt:topic:frontRoomRadThermoValve:reachable" }
+String FR_Heater_Reachable "Front Room Reachable" <qualityofservice> (gFR_Thermostat,gHeaterReachables)  { channel="mqtt:topic:frontRoomRadThermoValve:reachable" }
 Number FR_Heater_Rssi "FR RTV RSSI [%.1f]" <qualityofservice> (gFR_Thermostat) { channel="mqtt:topic:frontRoomRadThermoValve:rssi" }

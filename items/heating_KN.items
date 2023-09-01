@@ -9,10 +9,10 @@
 // Number KN_Humidity "Kitchen Humidity [%.1f °C]" <humidity> (gKN_Thermostat, gThermostatHumidityAmbients) { ga="thermostatHumidityAmbient", channel="mqtt:topic:kitchenRadThermoValve:humidity" }
 
 // //additional params for use in openhab functions etc
-// Switch KN_Heater "Kitchen Heater"  <my_radiator>   (gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:kitchenRadThermoValve:powerSwitch" }
+// Switch KN_Heater "Kitchen Heater"  <my_radiator>   (gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:kitchenRadThermoValve:powerSwitch" }
 // String KN_Heater_Mode "Kitchen Heating Mode" <settings> (gHeatingModes) //(gTimepicker)
 // Number KN_Heating_PresetTempNormal "Kitchen Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 
-// String KN_RTVReachable "Kitchen Reachable" <qualityofservice> (gKN_Thermostat,gRTVsReachable)  { channel="mqtt:topic:kitchenRadThermoValve:reachable" }
+// String KN_RTVReachable "Kitchen Reachable" <qualityofservice> (gKN_Thermostat,gHeaterReachables)  { channel="mqtt:topic:kitchenRadThermoValve:reachable" }
 // Number KN_Heater_Rssi "CT RTV RSSI [%.1f]" <qualityofservice> (gKN_Thermostat) { channel="mqtt:topic:kitchenRadThermoValve:rssi" }
 

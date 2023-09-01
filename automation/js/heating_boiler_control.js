@@ -11,7 +11,7 @@ const { timeUtils } = require('openhab_rules_tools');
 rules.JSRule({
   name: 'when any heater states updated to ON, turn Boiler ON else OFF',
   description: 'when any heater states updated, turn Boiler ON else turn boiler OFF',
-  triggers: [triggers.GroupStateUpdateTrigger('gRoomHeaterStates')],
+  triggers: [triggers.GroupStateUpdateTrigger('gHeaterControls')],
   execute: (event) => {
     // logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
     // console.log(event);

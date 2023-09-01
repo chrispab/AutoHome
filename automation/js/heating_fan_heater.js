@@ -46,7 +46,6 @@ rules.JSRule({
   name: 'fan heater check',
   description: 'If fan heater demand turn on fan heater',
   triggers: [
-    // triggers.GroupStateUpdateTrigger('gRoomHeaterStates', 'OFF', 'ON'),
     // triggers.ItemStateChangeTrigger('fan_heater_temperature_sensor'),
     triggers.ItemStateChangeTrigger('FH_ThermostatTemperatureAmbient'),
     // triggers.ItemStateChangeTrigger('CT_Temperature'),

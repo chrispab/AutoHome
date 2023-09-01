@@ -7,9 +7,9 @@ Group:String:AND("heat","notdef") gThermostatModes
 Group		gThermostatTemperatureSetpoints
 Group       gThermostatTemperatureAmbients
 Group       gThermostatHumidityAmbients
-Group       gRoomHeaterStates
+Group       gHeaterControls
 Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
-Group       gRTVsReachable
+Group       gHeaterReachables
 // Group:Switch:AND(ON, OFF) FullyAutomatic "Fully Automatic [ (%d) ]" <switch>
 Group :Switch:OR(ON,OFF) gHeaterBoosters
 

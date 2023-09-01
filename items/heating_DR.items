@@ -17,7 +17,7 @@ Number:Dimensionless    DR_ThermostatHumidityAmbient "Dining Room Humidity [%.1f
 
 //additional params for use in openhab functions etc
 Group                   gDR_Heater
-Switch                  DR_Heater_Control "Dining Room Heater"  <my_radiator>               (gChart,gRoomHeaterStates, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
+Switch                  DR_Heater_Control "Dining Room Heater"  <my_radiator>               (gChart,gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
 String                  DR_Heater_Mode "Dining Room Heating Mode" <settings>        (gChart,gHeatingModes)
-String                  DR_Heater_Reachable "Dining Room Reachable" <qualityofservice>  (gRTVsReachable)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
+String                  DR_Heater_Reachable "Dining Room Reachable" <qualityofservice>  (gHeaterReachables)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
 Number:Dimensionless    DR_Heater_Rssi "DR RTV RSSI [%.1f]" <qualityofservice>         { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }
