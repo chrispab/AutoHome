@@ -1,0 +1,107 @@
+openhab> shell:info
+Karaf
+  Karaf version               4.4.3
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.18.0.v20220516-2155
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 17.0.7+7-Debian-1deb11u1
+  Version                     17.0.7
+  Vendor                      Debian
+  Pid                         29
+  Uptime                      20 hours 42 minutes
+  Process CPU time            6 hours 53 minutes
+  Process CPU load            0.26
+  System CPU load             0.35
+  Open file descriptors       239
+  Max file descriptors        1,048,576
+  Total compile time          24 minutes
+Threads
+  Live threads                290
+  Daemon threads              109
+  Peak                        323
+  Total started               33556
+Memory
+  Current heap size           1,261,976 kbytes
+  Maximum heap size           2,097,152 kbytes
+  Committed heap size         2,097,152 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 1177, Time = 36.839 seconds
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      29,521
+  Total classes loaded        46,121
+  Total classes unloaded      16,600
+Operating system
+  Name                        Linux version 6.1.21-v8+
+  Architecture                arm
+  Processors                  4
+  Total physical memory       3,884,372 kbytes
+  Free physical memory        436,304 kbytes
+openhab> LOG:TAIL
+03:14:43.615 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.051 to 0.038
+03:14:43.652 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 44.8 °C
+03:14:43.655 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.115 to 0.054
+03:14:46.768 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.038 to 0.031
+03:14:46.849 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 45.3 °C
+03:14:46.856 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.054 to 0.075
+03:14:47.190 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingwifisocket7_Rssi' changed from 92 to 94
+03:14:47.193 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_7_rssi' changed from 92 to 94
+03:14:49.417 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater_Control-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+03:14:49.966 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.031 to 0.046
+03:14:50.004 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 3061841920 B to 3060793344 B
+03:14:50.009 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.075 to 0.092
+03:14:53.123 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.046 to 0.045
+03:14:53.164 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 44.8 °C
+03:14:53.169 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.092 to 0.12
+03:14:53.372 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_threads' changed from 309 to 308
+03:14:53.377 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Network_PacketsSent' changed from 4165 to 4168
+03:14:53.383 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load1' changed from 0.6 to 0.7
+03:14:53.387 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Uptime' changed from 244638 s to 244698 s
+03:14:53.394 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load5' changed from 0.4 to 0.5
+03:14:56.274 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.045 to 0.056
+03:14:56.313 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 43.8 °C
+03:14:56.318 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.12 to 0.114
+03:14:59.431 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.056 to 0.034
+03:14:59.504 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.114 to 0.085
+03:15:00.776 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+03:15:02.634 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.034 to 0.043
+03:15:02.680 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 44.3 °C
+03:15:02.687 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.085 to 0.063
+03:15:03.633 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'wifi_socket_6_rssi' changed from 52 to 54
+03:15:04.156 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_Date' changed from 2023-09-02T03:14:04.153+0100 to 2023-09-02T03:15:04.154+0100
+03:15:05.789 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.043 to 0.048
+03:15:05.872 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Memory_Used' changed from 3060793344 B to 3061841920 B
+03:15:05.875 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.3 °C to 45.3 °C
+03:15:05.881 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.063 to 0.103
+03:15:08.347 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'DR_Heater_Rssi' changed from 82 to 84
+03:15:08.990 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.048 to 0.04
+03:15:09.029 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 44.8 °C
+03:15:09.033 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.103 to 0.07
+03:15:12.153 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.04 to 0.037
+03:15:12.228 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 45.3 °C
+03:15:17.228 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@e13782' takes more than 5000ms.
+03:15:19.443 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater_Control-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+03:15:39.671 [INFO ] [b.automation.openhab-js.soil_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+03:16:54.189 [INFO ] [b.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+03:18:00.776 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+03:19:17.165 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+07:55:03.224 [WARN ] [.sitemap.internal.SitemapProviderImpl] - Filename `All_Temperatures.sitemap` does not match the name `All_ThermostatTemperatureAmbients` of the sitemap - please fix this as you might see unexpected behavior otherwise.
+07:55:23.232 [WARN ] [.sitemap.internal.SitemapProviderImpl] - Filename `All_Temperatures.sitemap` does not match the name `All_ThermostatTemperatureAmbients` of the sitemap - please fix this as you might see unexpected behavior otherwise.
+07:55:27.178 [WARN ] [.sitemap.internal.SitemapProviderImpl] - Filename `All_Temperatures.sitemap` does not match the name `All_ThermostatTemperatureAmbients` of the sitemap - please fix this as you might see unexpected behavior otherwise.
+
+08:05:14.094 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'HL_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.144 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'HL_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.171 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'ER_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.185 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'ER_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.199 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'DR_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.230 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'DR_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.238 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'BR_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.243 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'BR_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.252 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'FR_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.268 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'FR_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.277 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'OF_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.282 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'OF_Heater_Heater_Mode' could not be found in the item registry)
+08:05:14.290 [ERROR] [e.heating_do_heaters_need_changing.js] - Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'AT_Heater_Heater_Mode' could not be found in the item registry
+08:05:14.302 [ERROR] [re.automation.internal.RuleEngineImpl] - Failed to execute rule 'Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427': Failed to execute action: 1(Error: Failed to execute rule Check-if-Heaters-need-changing-etc-9e959451-075f-4e41-a210-2ad3ad81b427: org.openhab.core.items.ItemNotFoundException: Item 'AT_Heater_Heater_Mode' could not be found in the item registry)

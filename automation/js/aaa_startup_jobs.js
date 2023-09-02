@@ -16,7 +16,7 @@ rules.JSRule({
   name: 'SystemStartlevelTrigger_100',
   description: 'SystemStartlevelTrigger(100)',
   // triggers: [triggers.SystemStartlevelTrigger(100)],
-  triggers: [triggers.SystemStartlevelTrigger(100)],
+  triggers: [triggers.SystemStartlevelTrigger(80)],
 
   execute: () => {
 
