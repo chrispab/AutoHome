@@ -10,5 +10,5 @@ Number ER_ThermostatHumidityAmbient "Elsie's Room Humidity [%.1f °C]" <humidity
 Switch ER_Heater_Control "Elsie's Room Heater"  <my_radiator>  (gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:elsiesRoomRadThermoValve:powerSwitch" }
 String ER_Heater_Mode "Elsie's Room Heating Mode" <settings> (gHeatingModes)
 Number ER_Heating_PresetTempNormal "Elsie's Room Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
-String ER_Heater_Reachable "Elsie's Room Reachable" <qualityofservice> (gER_Thermostat,gHeaterReachables)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
-Number ER_Heater_Rssi "ER RTV RSSI [%.1f]" <qualityofservice> (gER_Thermostat) { channel="mqtt:topic:elsiesRoomRadThermoValve:rssi" }
+String ER_Heater_Reachable "Elsie's Room Reachable" <qualityofservice> (gHeaterReachables)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
+Number ER_Heater_Rssi "ER RTV RSSI [%.1f]" <qualityofservice>  { channel="mqtt:topic:elsiesRoomRadThermoValve:rssi" }

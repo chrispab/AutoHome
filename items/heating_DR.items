@@ -15,7 +15,7 @@ Number:Dimensionless    DR_ThermostatHumidityAmbient "Dining Room Humidity [%.1f
                         (gChart, gDR_Thermostat, gThermostatHumidityAmbients)
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:THPSensor01:humidity" }
 
-//additional params for use in openhab functions etc
+//heater
 Group                   gDR_Heater
 Switch                  DR_Heater_Control "Dining Room Heater"  <my_radiator>               (gChart,gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
 String                  DR_Heater_Mode "Dining Room Heating Mode" <settings>        (gChart,gHeatingModes)
