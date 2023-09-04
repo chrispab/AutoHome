@@ -35,21 +35,21 @@ rules.JSRule({
     //   }, state: ${items.getItem(data.itemName).state
     //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     // );
-    logger.info(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
-    logger.info(
+    logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
+    logger.debug(
       `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     );
-    logger.info(`-pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
+    logger.debug(`-pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
-      logger.info(`pir01_occupancy inner: ${items.getItem('pir01_occupancy').state}`);
+      logger.debug(`pir01_occupancy inner: ${items.getItem('pir01_occupancy').state}`);
       if (items.getItem('pir01_occupancy').state === 'ON') {
         items.getItem('KT_light_1_Power').sendCommand('ON');//! on
-        logger.info('-rxed pir01_occupancy KT_light_1_Power ON');
+        logger.debug('-rxed pir01_occupancy KT_light_1_Power ON');
         // cancrl the off timer if running
         if (pir01_off_timer && pir01_off_timer.isActive()) {
           pir01_off_timer.cancel();
-          logger.info('-CANCEL STOP running pir01_off_timer');
+          logger.debug('-CANCEL STOP running pir01_off_timer');
         }
 
         // if timer is null, start it
@@ -71,10 +71,10 @@ rules.JSRule({
       if (items.getItem('pir02_occupancy').state === 'ON') {
         items.getItem('KT_light_2_Power').sendCommand('ON');
         items.getItem('KT_light_3_Power').sendCommand('ON');
-        logger.info('-rxed pir02_occupancy KT_light_2 3_Power ON');
+        logger.debug('-rxed pir02_occupancy KT_light_2 3_Power ON');
         if (pir02_off_timer && pir02_off_timer.isActive()) {
           pir02_off_timer.cancel();
-          logger.info('-CANCEL STOP running pir02_off_timer');
+          logger.debug('-CANCEL STOP running pir02_off_timer');
         }
       }
     }

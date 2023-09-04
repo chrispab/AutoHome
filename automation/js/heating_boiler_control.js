@@ -25,13 +25,13 @@ rules.JSRule({
         logger.info(`Boiler -action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
         items.getItem('Boiler_Control').sendCommand('ON');
       } else {
-        logger.info(`Boiler -no action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
+        logger.debug(`Boiler -no action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
       }
     } else if (items.getItem('Boiler_Control').state.toString() === 'ON') {
       logger.info(`Boiler -action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler is ON so sending boiler OFF command`);
       items.getItem('Boiler_Control').sendCommand('OFF');
     } else {
-      logger.info(`Boiler -no action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
+      logger.debug(`Boiler -no action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
     }
   },
 });
