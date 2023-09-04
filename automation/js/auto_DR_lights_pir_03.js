@@ -32,26 +32,26 @@ rules.JSRule({
       }, state: ${items.getItem(data.itemName).state
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
-    logger.warn(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
-    logger.warn(
+    logger.info(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
+    logger.info(
       `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     );
-    logger.warn(`-pir03_occupancy: ${items.getItem('pir03_occupancy').state}`);
+    logger.info(`-pir03_occupancy: ${items.getItem('pir03_occupancy').state}`);
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('DR_Auto_Lighting_Trigger_SetPoint').rawState) {
-      logger.warn(`pir03_occupancy inner: ${items.getItem('pir03_occupancy').state}`);
+      logger.info(`pir03_occupancy inner: ${items.getItem('pir03_occupancy').state}`);
       if (items.getItem('pir03_occupancy').state === 'ON') {
         // items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
         items.getItem('gDiningRoomAutoLights').sendCommand('ON');
 
-        logger.warn("items.getItem('ZbWhiteBulb01Switch').sendCommand('ON')");
+        logger.info("items.getItem('ZbWhiteBulb01Switch').sendCommand('ON')");
 
         // items.getItem('ZbColourBulb01_switch').sendCommand('ON');
 
         // cancrl the off timer if running
         if (pir03_off_timer && pir03_off_timer.isActive()) {
           pir03_off_timer.cancel();
-          logger.warn('-CANCEL STOP running pir03_off_timer');
+          logger.info('-CANCEL STOP running pir03_off_timer');
         }
       }
     }
@@ -79,7 +79,7 @@ rules.JSRule({
         now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
         pir03_off_body,
       );
-      logger.warn('-pir03_occupancy: STARTING TIMER : OFF END');
+      logger.info('-pir03_occupancy: STARTING TIMER : OFF END');
     }
   },
 });

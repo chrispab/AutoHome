@@ -15,31 +15,33 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients'),
+    // triggers.GroupStateUpdateTrigger('gThermostatModes'),
+
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
   execute: (event) => {
     // console.log(event);
-    // logger.warn('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
+    logger.info('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     // const action = 'default';
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-    logger.warn(`>roomPrefix: ${roomPrefix}`);
+    // logger.warn(`>roomPrefix: ${roomPrefix}`);
 
     const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
-    logger.warn(`>heatingModeItem.name: ${heatingModeItem.name} : ,  heatingModeItem.state: ${heatingModeItem.state}`);
+    logger.info(`>heatingModeItem: ${heatingModeItem.name}, state: ${heatingModeItem.state}`);
 
     const setpointItem = items.getItem(`${roomPrefix}_ThermostatTemperatureSetpoint`);
-    logger.warn(`>setpointItem.name: ${setpointItem.name} : ,  Setpoint.state: ${setpointItem.state}`);
+    // logger.warn(`>setpointItem: ${setpointItem.name}, state: ${setpointItem.state}`);
 
     const TemperatureItem = items.getItem(`${roomPrefix}_ThermostatTemperatureAmbient`);
-    logger.warn(`>TemperatureItem.name: ${TemperatureItem.name} : ,  TemperatureItem.state: ${TemperatureItem.state}`);
+    // logger.warn(`>TemperatureItem: ${TemperatureItem.name}, state: ${TemperatureItem.state}`);
 
     const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
-    logger.warn(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
+    logger.info(`>HeaterItem: ${HeaterItem.name}, state: ${HeaterItem.state}`);
 
     const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
-    logger.warn(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
+    // logger.warn(`>ReachableItem: ${ReachableItem.name}, state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
     // !if ANY trvs are unreachable - turn off hetarer to prevent false demand
@@ -50,11 +52,11 @@ rules.JSRule({
       // turn it off
       HeaterItem.sendCommand('OFF');
 
-      items.getItem('HL_Heater_Control').sendCommand('OFF');
+      items.getItem('HL_Heater_Control').sendCommand('OFF');//!
       // dont continue on and update the bolier control if this RTV is Offline
       return;
     }
-    items.getItem('HL_Heater_Control').sendCommand('OFF');
+    items.getItem('HL_Heater_Control').sendCommand('OFF');//!
 
     // logger.warn(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
@@ -62,7 +64,7 @@ rules.JSRule({
     // if this heater is currently in being boosted, then just l;eave it alone and move on
     const BoostItem = items.getItem(`${roomPrefix}_Boost`, true);// get boost item for this heater, return null if missing
     if (BoostItem && BoostItem.state.toString() === 'ON') {
-      logger.error(`...........................>>>>Boosting item -->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
+      logger.info(`...........................>>>>Boosting item -->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
       if (BoostItem.state === 'ON') { // in a boost period
         return;
       }

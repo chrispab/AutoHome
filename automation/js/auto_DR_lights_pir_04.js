@@ -5,7 +5,7 @@ const {
 const logger = log('pir04');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded - pir 04');
+  logger.info('scriptLoaded - pir 04');
 };
 
 rules.JSRule({
@@ -13,7 +13,7 @@ rules.JSRule({
   description: 'monitor any sonoff PIR occupancy updates..v..',
   triggers: [triggers.ItemStateUpdateTrigger('pir04_occupancy')],
   execute: (data) => {
-    logger.warn(
+    logger.info(
       `PIR sonoff MONITOR -  pir_occupancy04 received update itemName : ${data.itemName
       }, state: ${items.getItem(data.itemName).state
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
@@ -22,7 +22,7 @@ rules.JSRule({
 });
 
 function pir04_off_body() {
-  logger.warn('===  pir04_off_body');
+  logger.info('===  pir04_off_body');
   // items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
   items.getItem('gDiningRoomAutoLights').sendCommand('OFF');
 }
@@ -37,27 +37,27 @@ rules.JSRule({
     // triggers.ItemStateUpdateTrigger('pir02_occupancy', 'ON'),
   ],
   execute: (data) => {
-    logger.warn(
+    logger.info(
       `-pir04_occupancy received update itemName : ${data.itemName
       }, state: ${items.getItem(data.itemName).state
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
     );
-    logger.warn(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
-    logger.warn(
+    logger.info(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
+    logger.info(
       `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     );
-    logger.warn(`-pir04_occupancy: ${items.getItem('pir04_occupancy').state}`);
+    logger.info(`-pir04_occupancy: ${items.getItem('pir04_occupancy').state}`);
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('DR_Auto_Lighting_Trigger_SetPoint').rawState) {
-      logger.warn(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
+      logger.info(`pir04_occupancy inner: ${items.getItem('pir04_occupancy').state}`);
       if (items.getItem('pir04_occupancy').state === 'ON') {
         // items.getItem('ZbWhiteBulb01Switch').sendCommand('ON');
         items.getItem('gDiningRoomAutoLights').sendCommand('ON');
-        logger.warn("ZbWhiteBulb01Switch').sendCommand('ON')");
+        logger.info("ZbWhiteBulb01Switch').sendCommand('ON')");
         // cancrl the off timer if running
         if (pir04_off_timer && pir04_off_timer.isActive()) {
           pir04_off_timer.cancel();
-          logger.warn('-CANCEL STOP running pir04_off_timer');
+          logger.info('-CANCEL STOP running pir04_off_timer');
         }
       }
     }
@@ -72,7 +72,7 @@ rules.JSRule({
     // triggers.ItemStateChangeTrigger('pir02_occupancy', 'ON', 'OFF'),
   ],
   execute: (data) => {
-    logger.warn(
+    logger.info(
       `-pir04_occupancy received update itemName : ${data.itemName
       }, state: ${items.getItem(data.itemName).state
       }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
@@ -86,7 +86,7 @@ rules.JSRule({
         now.plusSeconds(items.getItem('KT_cupboard_lights_timeout').rawState),
         pir04_off_body,
       );
-      logger.warn('-pir04_occupancy: STARTING TIMER  OFF END');
+      logger.info('-pir04_occupancy: STARTING TIMER  OFF END');
     }
   },
 });

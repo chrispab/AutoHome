@@ -1,0 +1,16 @@
+https://community.openhab.org/t/howto-stop-start-restart-openhab-running-on-openhabian/36104
+
+So you could start stop or restart it in a ssh connection with
+
+sudo systemctl restart openhab.service
+sudo systemctl stop openhab.service
+
+
+https://community.openhab.org/t/openhab-cli-in-a-docker-container/137222/2
+
+userdata goes to /var/lib/openhab and conf goes to /etc/openhab.
+
+You might want to clear out the userdata/cache and userdata/tmp folders but that’s probably not strictly necessary.
+
+Just make sure that the new instance of OH is exactly the same as the version the configs are coming from. After the restore you can upgrade but not before.
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/91

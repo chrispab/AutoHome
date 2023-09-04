@@ -37,7 +37,7 @@ rules.JSRule({
     // );
     // logger.debug(`IR button pressed - ON: ${items.getItem(data.).rawState}`);
 
-    logger.error(`IR button pressed - ON: ${event.itemName}`);
+    logger.info(`IR button pressed - ON: ${event.itemName}`);
     // logger.debug(
     //   `-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`,
     // );
