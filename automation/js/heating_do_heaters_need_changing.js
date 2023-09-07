@@ -16,7 +16,6 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients'),
     // triggers.GroupStateUpdateTrigger('gThermostatModes'),
-
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
     // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
   ],
@@ -77,10 +76,10 @@ rules.JSRule({
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
-      if (temp >= turnOffTemp) {
+      if (temp >= turnOffTemp  && HeaterItem.state.toString()=='ON') {
         logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
-      } else if (temp < turnOnTemp) {
+      } else if (temp < turnOnTemp && HeaterItem.state.toString()=='OFF') {
         logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
       }
