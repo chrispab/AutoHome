@@ -8,7 +8,7 @@ Group                   gCT_Thermostat  "Conservatory Thermostat"
 String                  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings>
                         (gCT_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}
-Number:Temperature      CT_ThermostatTemperatureSetpoint "Conservatory Setpoint" <heating>
+Number:Temperature      CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating>
                         (gChart, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
 Number:Temperature      CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature>

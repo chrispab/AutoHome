@@ -26,7 +26,7 @@ Dimmer GHH_Kitchen_Volume           "GHH_Kitchen Volume "              <soundvol
 Player GHH_Kitchen_Player           "GHH_Kitchen Player"                            (gGHM) { channel="chromecast:chromecast:GHH_Kitchen:control" }
 Switch GHH_Kitchen_Idle             "GHH_Kitchen"                     <network> (gGHM) { channel="chromecast:chromecast:GHH_Kitchen:idling" }
 String GHH_Kitchen_PlayURI	         "PlayURI"	                    { channel="chromecast:chromecast:GHH_Kitchen:playuri" }
-
+Switch GHH_Kitchen_Idling
 
 //chromecast:chromecast:GHM_FrontRoom
 Image GHM_FrontRoom_Image	         "Image"	                    { channel="chromecast:chromecast:GHM_FrontRoom:image" }

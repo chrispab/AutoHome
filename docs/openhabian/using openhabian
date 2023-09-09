@@ -27,3 +27,14 @@ https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurat
 https://community.openhab.org/t/openhab-docker-usr-share-openhab-addons-does-not-exist-after-upgrade-to-oh-3-3-0/136954/5
 
 https://community.openhab.org/t/migration-from-docker-to-openhabian/125837/11
+
+
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/82
+
+sudo openhab-cli backup
+
+Which places a file in /var/lib/openhab2/backups, which can then be restored using:
+
+sudo openhab-cli restore /var/lib/openhab2/backups/filename.zip
+
+This backs up both text config from /etc/openhab and PaperUI config from /var/lib/openhab/
