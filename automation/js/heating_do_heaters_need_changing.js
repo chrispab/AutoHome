@@ -4,7 +4,7 @@ const {
 const { myutils } = require('personal');
 
 const logger = log('heater_change');
-const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on

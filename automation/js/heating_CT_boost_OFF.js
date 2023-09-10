@@ -1,7 +1,7 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 
 const logger = log('boost ct');
 

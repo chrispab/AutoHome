@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "openhab_rules_tools": "^1.1.1"
+    "openhab_rules_tools": "^2.0.3"
   },
   "devDependencies": {
     "eslint": "^8.18.0",

@@ -41,3 +41,7 @@ This backs up both text config from /etc/openhab and PaperUI config from /var/li
 
 
 openhabian-config
+
+
+2023-09-10 10:39:05.165 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require CountdownTimer instead of countdownTimer and use CountdownTimer() instead of new countdownTimer.CountdownTimer().
+2023-09-10 10:39:05.267 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require TimerMgr instead of timerMgr and use TimerMgr() instead of new timerMgr.TimerMgr().

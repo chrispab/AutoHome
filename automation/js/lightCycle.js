@@ -3,7 +3,7 @@
 const {
   log, items, rules, actions, time, triggers, utils,
 } = require('openhab');
-const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+const { CountdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
 // const { timeUtils } = require('openhab_rules_tools');
 const { myutils } = require('personal');
 

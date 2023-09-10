@@ -1,7 +1,7 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-const { countdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 
 const logger = log('boost ct');
 
@@ -74,7 +74,8 @@ rules.JSRule({
         HeaterItem.sendCommand('ON');
         items.getItem('CT_Boost').sendCommand('ON');
         logger.error('>ct BOOSTING');
-        CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
+        // CT_boost_timer = new CountdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
+        CT_boost_timer = CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
       } else if (event.newState === 'OFF') { // gone ON->OFF
         logger.error('>v_CT_Boost changed on->off');
         // actions.Voice.say('manually   Stopping BOOST');
