@@ -45,10 +45,10 @@ rules.JSRule({
         // console.warn(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
       }
       // NOT YET terminated STILL RUNNING...
-      timers[itemNameReachable].reschedule(timeUtils.toDateTime((timeoutMinutes * 60 * 1000)), // , () => {
+      timers[itemNameReachable].reschedule(time.toZDT((timeoutMinutes * 60 * 1000)), // , () => {
       );
     } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-      timers[itemNameReachable] = actions.ScriptExecution.createTimer(timeUtils.toDateTime((timeoutMinutes * 60 * 1000)), () => {
+      timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutMinutes * 60 * 1000)), () => {
         items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
         // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
       });

@@ -12,7 +12,7 @@ const resetSceneGoodnightDelay = 45 * 1000;
 scriptLoaded = function () {
   logger.warn('StartUp - set up Item Scene_Goodnight');
   if (tsceneStartup === undefined) {
-    tsceneStartup = actions.ScriptExecution.createTimer(timeUtils.toDateTime((resetSceneGoodnightDelay)), () => {
+    tsceneStartup = actions.ScriptExecution.createTimer(time.toZDT((resetSceneGoodnightDelay)), () => {
       items.getItem('Scene_Goodnight').postUpdate('OFF');
     });
   }
@@ -46,7 +46,7 @@ rules.JSRule({
     items.getItem('Scene_Goodnight').postUpdate('OFF');
     items.getItem('workLightsPowerSocket').sendCommand('OFF');
 
-    tgoodnight = actions.ScriptExecution.createTimer(timeUtils.toDateTime((300 * 1000)), () => {
+    tgoodnight = actions.ScriptExecution.createTimer(time.toZDT((300 * 1000)), () => {
       items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');
     });
   },

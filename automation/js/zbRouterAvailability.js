@@ -15,7 +15,7 @@
 
 // let zbRouterTimer = {};
 // // zbRouterTimer = setTimeout(() => { console.log('initial zb router avail Timer expired.'); }, routerTimeout - 10); // Would log 'Timer expired.' in 10s.
-// zbRouterTimer = actions.ScriptExecution.createTimer(timeUtils.toDateTime((routerTimeout * 1000)), () => {
+// zbRouterTimer = actions.ScriptExecution.createTimer(time.toZDT((routerTimeout * 1000)), () => {
 //   items.getItem('ZbRouter_01_Reachable').postUpdate('Offline');
 // });
 
@@ -41,16 +41,16 @@
 //     zbRouterTimer.cancel();
 //     // zbRouterTimer = setTimeout(() => { items.getItem('ZbRouter_01_Reachable').postUpdate('Offline'); }, routerTimeout); // Would log 'Timer expired.' in 10s.
 
-//     zbRouterTimer = actions.ScriptExecution.createTimer(timeUtils.toDateTime((routerTimeout * 1000)), () => {
+//     zbRouterTimer = actions.ScriptExecution.createTimer(time.toZDT((routerTimeout * 1000)), () => {
 //       items.getItem('ZbRouter_01_Reachable').postUpdate('Offline');
 //     });
 //     // console.warn('!!!!!x!!---timer restarted');
 
 //     // NOT YET terminated STILL RUNNING...
-//     // timers[itemNameReachable].reschedule(timeUtils.toDateTime((timeoutSeconds * 1000)), // , () => {
+//     // timers[itemNameReachable].reschedule(time.toZDT((timeoutSeconds * 1000)), // , () => {
 //     // );
 //     // } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-//     // timers[itemNameReachable] = actions.ScriptExecution.createTimer(timeUtils.toDateTime((timeoutSeconds * 1000)), () => {
+//     // timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutSeconds * 1000)), () => {
 //     // items.getItem(itemNameReachable).postUpdate('Offline');
 //     // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
 //   },
