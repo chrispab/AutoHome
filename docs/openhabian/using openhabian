@@ -45,3 +45,11 @@ openhabian-config
 
 2023-09-10 10:39:05.165 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require CountdownTimer instead of countdownTimer and use CountdownTimer() instead of new countdownTimer.CountdownTimer().
 2023-09-10 10:39:05.267 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require TimerMgr instead of timerMgr and use TimerMgr() instead of new timerMgr.TimerMgr().
+
+
+vscode ssh remote issue
+ssh vscode cannot reconnect. please reload the window  Unknown reconnection token (never seen)
+https://github.com/microsoft/vscode-remote-release/issues/6515
+
+"remote.SSH.showLoginTerminal": true,
+"remote.SSH.useLocalServer": false

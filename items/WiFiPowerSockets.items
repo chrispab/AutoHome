@@ -20,10 +20,10 @@ String wifi_socket_3_reachable "bedroom tv and kodi reachable" (gMQTT, gWiFiPowe
 Number:Dimensionless wifi_socket_3_rssi "bedroom tv and kodi RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket3:rssi" }
 
 //!greenhouse
-// Switch wifi_socket_4_power "Socket four" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:WiFiSocket4:powerSwitch" }
-// String wifi_socket_4_reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket4:reachable" }
-// Number:Dimensionless wifi_socket_4_rssi "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { unit="%", channel = "mqtt:topic:WiFiSocket4:rssi" }
-// Number:Temperature wifi_socket_4_temperature    "WiFi Socket 4 Temperature" { channel = "mqtt:topic:WiFiSocket4:temperature" }
+Switch wifi_socket_4_power "Socket four" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:WiFiSocket4:powerSwitch" }
+String wifi_socket_4_reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket4:reachable" }
+Number wifi_socket_4_rssi "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { unit="%", channel = "mqtt:topic:WiFiSocket4:rssi" }
+Number:Temperature wifi_socket_4_temperature    "WiFi Socket 4 Temperature" { channel = "mqtt:topic:WiFiSocket4:temperature" }
 
 //xmas lights
 Switch wifi_socket_5_power "attic tv & kodi power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }

@@ -15,9 +15,9 @@ sitemap testing label="testing"
         //// Switch item=ControlOutlet label="Power Switch"
         //Switch item=ClipLightPower label="ClipLight switch"
      Frame {
-                Switch item=pauseKodiConservatoryProxy label="con kodi pause"
-//Player item=kodiConservatory_control label="Kodi Pause"
-        // Switch item=shutdownKodiConservatoryProxy label="con kodi shutdown"
+                Switch item=pauseKodi_CTProxy label="con kodi pause"
+//Player item=Kodi_CT_control label="Kodi Pause"
+        // Switch item=shutdownKodi_CTProxy label="con kodi shutdown"
      }
 
 
