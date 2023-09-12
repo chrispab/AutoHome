@@ -218,7 +218,7 @@ rules.JSRule({
     // myutils.toggleItem('KT_light_1_Power', 5, 1000, logger);
 
     logger.warn('Turning OFF tv - kodi, amp, and bridges');
-    items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi
+    items.getItem('Kodi_CT_systemcommand').sendCommand('Shutdown'); // shutdown CT Pi
     logger.warn('sent command - shutdown kodi');
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
     items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv

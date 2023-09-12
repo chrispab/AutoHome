@@ -57,13 +57,14 @@ Items {
 
     PIRState : strategy = everyUpdate
 
-    Water1_Temperature : strategy = everyUpdate
+    // Water1_Temperature : strategy = everyUpdate
 
 //propagator
     // wifi_socket_7_power : strategy = everyUpdate
     // wifi_socket_7_reachable : strategy = everyUpdate
     // wifi_socket_7_rssi : strategy = everyUpdate
     wifi_socket_7_temperature : strategy = everyUpdate
+    wifi_socket_4_temperature : strategy = everyUpdate
 
     // wifi_socket_8_power : strategy = everyUpdate
     // wifi_socket_8_reachable : strategy = everyUpdate
