@@ -34,6 +34,21 @@ rules.JSRule({
   },
 });
 
+// turn off CT lights when late - in case forgot to turn off
+rules.JSRule({
+  name: 'CRON auto turn On conservatory lights',
+  description: 'CRON turn On conservatory lights dark work mornings',
+  triggers: [triggers.GenericCronTrigger('0 10 6 ? * TUE,WED,THU *')],
+  // triggers: [triggers.GenericCronTrigger('0 0 19 ? * TUE,WED,THU *')],
+
+  execute: () => {
+    logger.warn('CRON turn OFF conservatory lights when late - maybe forgot');
+    items.getItem('gConservatoryLights').sendCommand('ON');
+    // items.getItem('gColourBulbs').sendCommand('OFF');
+    alerting.sendInfo('CRON auto turn ON conservatory lights in work mornings');
+  },
+});
+
 // turn off conservatory lights when it goes from dark to light
 rules.JSRule({
   name: 'auto turn OFF conservatory lights when goes from dark to light',
