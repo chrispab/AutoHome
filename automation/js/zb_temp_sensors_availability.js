@@ -12,11 +12,15 @@ const timeoutMinutes = 45;
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded -   zb temp sensors init');
-  // items.getItem('ZbRouter_01_Reachable').postUpdate('startup Value');
   items.getItem('gZbTHSensorsReachable').members.forEach((item) => {
-    // whatitis = `${whatitis + batt.label}: ${batt.state}\r\n`;
     item.postUpdate('OFF');
   });
+
+  items.getItem('gZbTHSensorsBattery').members.forEach((item) => {
+    item.postUpdate(0);
+  });
+
+  gZbTHSensorsBattery
 };
 
 const timers = {};// [];
@@ -32,6 +36,7 @@ rules.JSRule({
 
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
+    const itemNameBattery = `${stub}_battery`;
     logger.debug(`get id part of item reachable: ${stub} `);
 
     items.getItem(itemNameReachable).postUpdate('ON');
@@ -50,6 +55,8 @@ rules.JSRule({
     } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
       timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutMinutes * 60 * 1000)), () => {
         items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+        items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+
         // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
       });
       // console.warn(`**--- timer started CREATED NEW: ${itemNameReachable} `, timers[itemNameReachable]);

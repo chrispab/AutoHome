@@ -1,6 +1,6 @@
 Strategies {
     everyMinute : "0 * * * * ?"
-    // everyHour : "0 0 * * * ?"
+    everyHour : "0 0 * * * ?"
     // everyDay : "0 0 0 * * ?"
 
     default = everyChange
@@ -8,7 +8,8 @@ Strategies {
 
 Items {
 //    * : strategy = everyUpdate
-    gChart* : strategy = everyChange, everyMinute
+    gChart_Minute* : strategy = everyChange, everyMinute
+    gChart_Hour*  : strategy = everyChange, everyHour
 
     masterHeatingMode :  strategy = everyUpdate
 
@@ -51,8 +52,8 @@ Items {
     Bridge_Humidity : strategy = everyUpdate
 
 
-    BridgeLightSensorLevel : strategy = everyUpdate
-    BridgeLightSensorState : strategy = everyUpdate
+    // BridgeLightSensorLevel : strategy = everyUpdate
+    // BridgeLightSensorState : strategy = everyUpdate, everyHour
 
 
     PIRState : strategy = everyUpdate

@@ -12,7 +12,7 @@ Number	Zb_THPSensor_01_temperature	"Xiaomi Temp Humi Pressure Sensor 01 Temperat
 Number	Zb_THPSensor_01_humidity    "Xiaomi Temp Humi Pressure Sensor 01 Humidity"      (gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:humidity"}
 Number	Zb_THPSensor_01_pressure    "Xiaomi Temp Humi Pressure Sensor 01 pressure"      (gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:pressure"}
 Number	Zb_THPSensor_01_linkquality	"Xiaomi Temp Humi Pressure Sensor 01 LinkQuality"   (gZbTHSensorLinkQuality, gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:linkquality"}
-Number	Zb_THPSensor_01_battery		"Xiaomi Temp Humi Pressure Sensor 01 battery"       (gZbTHSensorsBattery, gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:battery"}
+Number:Dimensionless	Zb_THPSensor_01_battery		"Xiaomi Temp Humi Pressure Sensor 01 battery"       (gZbTHSensorsBattery, gZb_THPSensor_01,gBatteries)							{unit="%", channel="mqtt:topic:THPSensor01:battery"}
 Number	Zb_THPSensor_01_voltage		"Xiaomi Temp Humi Pressure Sensor 01 voltage"       (gZbTHSensorsVoltage, gZb_THPSensor_01)							{channel="mqtt:topic:THPSensor01:voltage"}
 String	Zb_THPSensor_01_reachable	"Xiaomi THPSensor01 Reachable"                      (gZbTHSensorsReachable,gZb_THPSensor_01, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THPSensor01:reachable"}
 
@@ -21,7 +21,7 @@ Group	gZb_THSensor_01
 Number	Zb_THSensor_01_temperature	"Xiaomi Temp Humi Sensor 01 Temperature"	<temperature>					(gZb_THSensor_01, gTHSensorTemperatures)							{channel="mqtt:topic:THSensor01:temperature"}
 Number	Zb_THSensor_01_humidity		"Xiaomi Temp Humi Sensor 01 Humidity"							(gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:humidity"}
 Number	Zb_THSensor_01_linkquality	"Xiaomi Temp Humi Sensor 01 LinkQuality"						(gZbTHSensorLinkQuality, gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:linkquality"}
-Number	Zb_THSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZbTHSensorsBattery, gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:battery"}
+Number:Dimensionless	Zb_THSensor_01_battery		"Xiaomi Temp Humi Sensor 01 battery"							(gZbTHSensorsBattery, gZb_THSensor_01,gBatteries)							{unit="%", channel="mqtt:topic:THSensor01:battery"}
 Number	Zb_THSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZbTHSensorsVoltage, gZb_THSensor_01)							{channel="mqtt:topic:THSensor01:voltage"}
 String	Zb_THSensor_01_reachable	"Xiaomi THSensor01 Reachable"		(gZb_THSensor_01, gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor01:reachable"}
 
@@ -29,7 +29,7 @@ Group	gZb_THSensor_02
 Number	Zb_THSensor_02_temperature	"Xiaomi Temp Humi Sensor 02 Temperature"	<temperature>					(gZb_THSensor_02, gTHSensorTemperatures)							{channel="mqtt:topic:THSensor02:temperature"}
 Number	Zb_THSensor_02_humidity		"Xiaomi Temp Humi Sensor 02 Humidity"							(gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:humidity"}
 Number	Zb_THSensor_02_linkquality	"Xiaomi Temp Humi Sensor 02 LinkQuality"						(gZbTHSensorLinkQuality, gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:linkquality"}
-Number	Zb_THSensor_02_battery		"Xiaomi Temp Humi Sensor 02 Battery"							(gZbTHSensorsBattery, gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:battery"}
+Number:Dimensionless	Zb_THSensor_02_battery		"Xiaomi Temp Humi Sensor 02 Battery"							(gZbTHSensorsBattery, gZb_THSensor_02,gBatteries)							{unit="%", channel="mqtt:topic:THSensor02:battery"}
 Number	Zb_THSensor_02_voltage		"Xiaomi Temp Humi Sensor 02 voltage"							(gZbTHSensorsVoltage, gZb_THSensor_02)							{channel="mqtt:topic:THSensor02:voltage"}
 String	Zb_THSensor_02_reachable	"Xiaomi THSensor02 Reachable"		(gZbTHSensorsReachable, gZb_THSensor_02, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor02:reachable"}
 
@@ -38,7 +38,7 @@ Group	gZb_THSensor_03
 Number	Zb_THSensor_03_temperature	"Xiaomi Temp Humi Sensor 03 Temperature"	<temperature>					(gZb_THSensor_03, gTHSensorTemperatures)							{channel="mqtt:topic:THSensor03:temperature"}
 Number	Zb_THSensor_03_humidity		"Xiaomi Temp Humi Sensor 03 Humidity"							(gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:humidity"}
 Number	Zb_THSensor_03_linkquality	"Xiaomi Temp Humi Sensor 03 LinkQuality"						(gZbTHSensorLinkQuality, gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:linkquality"}
-Number	Zb_THSensor_03_battery		"Xiaomi Temp Humi Sensor 03 battery"							(gZbTHSensorsBattery, gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:battery"}
+Number:Dimensionless	Zb_THSensor_03_battery		"Xiaomi Temp Humi Sensor 03 battery"							(gZbTHSensorsBattery, gZb_THSensor_03,gBatteries)							{unit="%", channel="mqtt:topic:THSensor03:battery"}
 Number	Zb_THSensor_03_voltage		"Xiaomi Temp Humi Sensor 03 voltage"							(gZbTHSensorsVoltage, gZb_THSensor_03)							{channel="mqtt:topic:THSensor03:voltage"}
 String	Zb_THSensor_03_reachable	"Xiaomi THSensor03 Reachable"		(gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor03:reachable"}
 
@@ -46,7 +46,7 @@ Group	gZb_THSensor_04
 Number	Zb_THSensor_04_temperature	"Xiaomi Temp Humi Sensor 04 Temperature"	<temperature>					(gZb_THSensor_04, gTHSensorTemperatures)							{channel="mqtt:topic:THSensor04:temperature"}
 Number	Zb_THSensor_04_humidity		"Xiaomi Temp Humi Sensor 04 Humidity"							(gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:humidity"}
 Number	Zb_THSensor_04_linkquality	"Xiaomi Temp Humi Sensor 04 LinkQuality"						(gZbTHSensorLinkQuality, gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:linkquality"}
-Number	Zb_THSensor_04_battery		"Xiaomi Temp Humi Sensor 04 battery"							(gZbTHSensorsBattery, gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:battery"}
+Number:Dimensionless	Zb_THSensor_04_battery		"Xiaomi Temp Humi Sensor 04 battery"							(gZbTHSensorsBattery, gZb_THSensor_04,gBatteries)							{unit="%", channel="mqtt:topic:THSensor04:battery"}
 Number	Zb_THSensor_04_voltage		"Xiaomi Temp Humi Sensor 04 voltage"							(gZbTHSensorsVoltage, gZb_THSensor_04)							{channel="mqtt:topic:THSensor04:voltage"}
 String	Zb_THSensor_04_reachable	"Xiaomi THSensor04 Reachable"		(gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor04:reachable"}
 

@@ -11,11 +11,11 @@ Number Network_PacketsReceived     "Packets received"    <returnpipe>    { chann
 /* CPU information*/
 String CPU_Name                    "Name"                <none>          { channel="systeminfo:computer:work:cpu#name" }
 String CPU_Description             "Description"         <none>          { channel="systeminfo:computer:work:cpu#description" }
-Number:Dimensionless CPU_Load      "CPU Load"            <none>     (gChart)     { channel="systeminfo:computer:work:cpu#load" }
-Number CPU_Load1                   "Load (1 min)"        <none>      (gChart)    { channel="systeminfo:computer:work:cpu#load1" }
+Number:Dimensionless CPU_Load      "CPU Load"            <none>     (gChart_Minute)     { channel="systeminfo:computer:work:cpu#load" }
+Number CPU_Load1                   "Load (1 min)"        <none>      (gChart_Minute)    { channel="systeminfo:computer:work:cpu#load1" }
 Number CPU_Load5                   "Load (5 min)"        <none>          { channel="systeminfo:computer:work:cpu#load5" }
 Number CPU_Load15                  "Load (15 min)"       <none>          { channel="systeminfo:computer:work:cpu#load15" }
-Number CPU_Threads                 "Threads"             <none>       (gChart)   { channel="systeminfo:computer:work:cpu#threads" }
+Number CPU_Threads                 "Threads"             <none>       (gChart_Minute)   { channel="systeminfo:computer:work:cpu#threads" }
 Number:Time CPU_Uptime             "Uptime"              <time>          { channel="systeminfo:computer:work:cpu#uptime" }
 
 /* Drive information*/
@@ -34,18 +34,18 @@ Number:Dimensionless Storage_Available_Percent "Available (%)" <none>    { chann
 Number:Dimensionless Storage_Used_Percent "Used (%)"     <none>          { channel="systeminfo:computer:work:storage#usedPercent" }
 
 /* Memory information*/
-Number Memory_Available            "Available"           <none>    (gChart)      { channel="systeminfo:computer:work:memory#available" }
-Number:DataAmount Memory_Used      "Used"                <none>    (gChart)      { channel="systeminfo:computer:work:memory#used" }
-Number:DataAmount Memory_Total     "Total"               <none>    (gChart)      { channel="systeminfo:computer:work:memory#total" }
-Number:Dimensionless Memory_Available_Percent "Available (%)" <none> (gChart)    { channel="systeminfo:computer:work:memory#availablePercent" }
-Number:Dimensionless Memory_Used_Percent "Used (%)"      <none>      (gChart)    { channel="systeminfo:computer:work:memory#usedPercent" }
+Number Memory_Available            "Available"           <none>    (gChart_Minute)      { channel="systeminfo:computer:work:memory#available" }
+Number:DataAmount Memory_Used      "Used"                <none>    (gChart_Minute)      { channel="systeminfo:computer:work:memory#used" }
+Number:DataAmount Memory_Total     "Total"               <none>    (gChart_Minute)      { channel="systeminfo:computer:work:memory#total" }
+Number:Dimensionless Memory_Available_Percent "Available (%)" <none> (gChart_Minute)    { channel="systeminfo:computer:work:memory#availablePercent" }
+Number:Dimensionless Memory_Used_Percent "Used (%)"      <none>      (gChart_Minute)    { channel="systeminfo:computer:work:memory#usedPercent" }
 
 /* Swap memory information*/
-Number:DataAmount Swap_Available   "Available"           <none>     (gChart)     { channel="systeminfo:computer:work:swap#available" }
-Number:DataAmount Swap_Used        "Used"                <none>      (gChart)    { channel="systeminfo:computer:work:swap#used" }
-Number:DataAmount Swap_Total       "Total"               <none>     (gChart)     { channel="systeminfo:computer:work:swap#total" }
-Number:Dimensionless Swap_Available_Percent "Available (%)" <none>  (gChart)     { channel="systeminfo:computer:work:swap#availablePercent" }
-Number:Dimensionless Swap_Used_Percent "Used (%)"        <none>     (gChart)     { channel="systeminfo:computer:work:swap#usedPercent" }
+Number:DataAmount Swap_Available   "Available"           <none>     (gChart_Minute)     { channel="systeminfo:computer:work:swap#available" }
+Number:DataAmount Swap_Used        "Used"                <none>      (gChart_Minute)    { channel="systeminfo:computer:work:swap#used" }
+Number:DataAmount Swap_Total       "Total"               <none>     (gChart_Minute)     { channel="systeminfo:computer:work:swap#total" }
+Number:Dimensionless Swap_Available_Percent "Available (%)" <none>  (gChart_Minute)     { channel="systeminfo:computer:work:swap#availablePercent" }
+Number:Dimensionless Swap_Used_Percent "Used (%)"        <none>     (gChart_Minute)     { channel="systeminfo:computer:work:swap#usedPercent" }
 
 /* Battery information*/
 // String Battery_Name                "Name"                <batterylevel>  { channel="systeminfo:computer:work:battery#name" }
@@ -61,10 +61,10 @@ Number:ElectricPotential Sensor_CPUVoltage "CPU Voltage" <energy>        { chann
 // Number Sensor_FanSpeed             "Fan speed"           <fan>           { channel="systeminfo:computer:work:sensors#fanSpeed" }
 
 /* Current process information*/
-Number:Dimensionless Current_process_load "Load"         <none>     (gChart)     { channel="systeminfo:computer:work:currentProcess#load" }
+Number:Dimensionless Current_process_load "Load"         <none>     (gChart_Minute)     { channel="systeminfo:computer:work:currentProcess#load" }
 // Number:Dimensionless Current_process_used "Used"         <none>          { channel="systeminfo:computer:work:currentProcess#used" }
 String Current_process_name        "Name"                <none>          { channel="systeminfo:computer:work:currentProcess#name" }
-Number Current_process_threads     "Threads"             <none>      (gChart)    { channel="systeminfo:computer:work:currentProcess#threads" }
+Number Current_process_threads     "Threads"             <none>      (gChart_Minute)    { channel="systeminfo:computer:work:currentProcess#threads" }
 String Current_process_path        "Path"                <none>          { channel="systeminfo:computer:work:currentProcess#path" }
 
 /* Process information*/

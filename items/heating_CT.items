@@ -9,13 +9,13 @@ String                  CT_ThermostatMode   "Conservatory Thermostat Mode" <sett
                         (gCT_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}
 Number:Temperature      CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating>
-                        (gChart, gCT_Thermostat, gThermostatTemperatureSetpoints)
+                        (gChart_Minute, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
 Number:Temperature      CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature>
-                        (gChart, gCT_Thermostat, gThermostatTemperatureAmbients)
+                        (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
                         {ga="thermostatTemperatureAmbient"}
 Number:Dimensionless    CT_ThermostatHumidityAmbient     "Conservatory Humidity"      <humidity>
-                        (gChart, gCT_Thermostat, gThermostatHumidityAmbients)
+                        (gChart_Minute, gCT_Thermostat, gThermostatHumidityAmbients)
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
 //var for reading and smoothing temperature readings
@@ -23,7 +23,7 @@ Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temper
                         {channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
 
 //heater
-Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
+Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
 String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)
 String               CT_Heater_Reachable "Conservatory Reachable" <qualityofservice> (gHeaterReachables) {channel="mqtt:topic:conservatoryRadThermoValve:reachable"}
 Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}

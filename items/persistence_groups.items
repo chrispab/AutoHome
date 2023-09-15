@@ -1,5 +1,7 @@
 // Persistence Groups
 Group gMyOpenhab // for Items that are exposed to IFTTT
-Group gChart     // for Items to persist for charting
+Group gChart_Minute     // for Items to persist for charting
+Group gChart_Hour     // for Items to persist for charting
+
 Group gHistory   // for Items to preserve their history
 //Group gRestore // for Items to restore on startup (currently everything so commented out)

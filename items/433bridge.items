@@ -1,8 +1,8 @@
-Number:Temperature      Bridge_Temperature		"Bridge Temperature"    <temperature> (gChart)			{ channel="mqtt:topic:bridge:temperature" }
-Number:Dimensionless    Bridge_Humidity			"Conservatory Humidity"	<humidity>	(gChart)			{unit="%",  channel="mqtt:topic:bridge:humidity" }
+Number:Temperature      Bridge_Temperature		"Bridge Temperature"    <temperature> (gChart_Minute)			{ channel="mqtt:topic:bridge:temperature" }
+Number:Dimensionless    Bridge_Humidity			"Conservatory Humidity"	<humidity>	(gChart_Minute)			{unit="%",  channel="mqtt:topic:bridge:humidity" }
 Switch                  bridgeButton1           "433 Bridge button 1"   <button>				{ channel="mqtt:topic:bridge:button1" }
-Number                  BridgeLightSensorLevel	"Light Sensor Level"    <light>					{ channel="mqtt:topic:bridge:lightLevel" }
-Switch                  BridgeLightSensorState	"Light Sensor State"    <light>					{ channel="mqtt:topic:bridge:lightSensorState" }
+Number                  BridgeLightSensorLevel	"Light Sensor Level"    <light>		(gChart_Hour)			{ channel="mqtt:topic:bridge:lightLevel" }
+Switch                  BridgeLightSensorState	"Light Sensor State"    <light>		(gChart_Hour)			{ channel="mqtt:topic:bridge:lightSensorState" }
 Switch                  PIRState				"Bridge PIR sensor"     <light>					{ channel="mqtt:topic:bridge:pirState" }
 
 Switch                  BridgeLightSensorTrend	"Light Sensor State Trend"
