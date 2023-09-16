@@ -1,0 +1,12 @@
+Group gBR_Thermostat "Bedroom Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Bedroom" ] }
+
+String BR_ThermostatMode "Bedroom Thermostat Mode" <settings> (gBR_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number:Temperature BR_ThermostatTemperatureSetpoint "Bedroom Setpoint [%.1f °C]" <heating> (gChart_Minute, gBR_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number:Temperature BR_ThermostatTemperatureAmbient "Bedroom Temperature [%.1f °C]" <temperature> (gChart_Minute, gBR_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor03:temperature" }
+Number:Dimensionless BR_ThermostatHumidityAmbient "Bedroom Humidity [%.1f °C]" <humidity> (gChart_Minute, gBR_Thermostat, gThermostatHumidityAmbients) {unit="%",  ga="thermostatHumidityAmbient", channel="mqtt:topic:bedroomRadThermoValve:humidity" }
+
+// // //additional params for use in openhab functions etc
+Switch BR_Heater_Control "Bedroom Heater"  <my_radiator>  (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:bedroomRadThermoValve:powerSwitch" }
+String BR_Heater_Mode "Bedroom Heating Mode" <settings> (gHeatingModes)
+String BR_Heater_Reachable "Bedroom Reachable" <qualityofservice> (gHeaterReachables)  { channel="mqtt:topic:bedroomRadThermoValve:reachable" }
+Number BR_Heater_Rssi "BR RTV RSSI [%.1f]" <qualityofservice>  { channel="mqtt:topic:bedroomRadThermoValve:rssi" }

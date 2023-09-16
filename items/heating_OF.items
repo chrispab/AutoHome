@@ -1,0 +1,12 @@
+Group gOF_Thermostat "Office Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Office" ] }
+
+String OF_ThermostatMode "Office Thermostat Mode" <settings> (gOF_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number:Temperature  OF_ThermostatTemperatureSetpoint "Office Setpoint [%.1f °C]" <heating> (gChart_Minute, gOF_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number:Temperature  OF_ThermostatTemperatureAmbient "Office Temperature [%.1f °C]" <temperature> (gChart_Minute, gOF_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor02:temperature" }
+Number:Dimensionless OF_ThermostatHumidityAmbient "Office Humidity [%.1f °C]" <humidity> (gChart_Minute, gOF_Thermostat, gThermostatHumidityAmbients) {unit="%",   ga="thermostatHumidityAmbient", channel="mqtt:topic:THSensor02:humidity" }
+
+// //additional params for use in openhab functions etc
+Switch OF_Heater_Control "Office Heater"  <my_radiator> (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn)  { channel="mqtt:topic:officeRadThermoValve:powerSwitch" }
+String OF_Heater_Mode "Office Heating Mode" <settings> (gHeatingModes)
+String OF_Heater_Reachable "Office Reachable" <qualityofservice> (gOF_Thermostat,gHeaterReachables)  { channel="mqtt:topic:officeRadThermoValve:reachable" }
+Number OF_Heater_Rssi "Office RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:officeRadThermoValve:rssi" }
