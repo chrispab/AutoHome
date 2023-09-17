@@ -1,6 +1,6 @@
-Number:Temperature  Outside_Temperature "Outside Temperature [%.1f °C]"				<temperature>		[ "CurrentTemperature" ]	{ channel="mqtt:topic:outside:temperature"}
+Number:Temperature  Outside_Temperature "Outside Temperature [%.1f °C]" <temperature>   (gChart_Minute)	[ "CurrentTemperature" ]	{ channel="mqtt:topic:outside:temperature"}
 // Number  Outside_Humidity            "Outside Humidity [%.1f °C]"				<humidity>		{ channel="mqtt:topic:outside:humidity"}
-Number:Temperature  Shed_Temperature    "Shed Temperature [%.1f °C]"	            <temperature>  	{ channel="mqtt:topic:outside:shedTemperature"}
+Number:Temperature  Shed_Temperature    "Shed Temperature [%.1f °C]"    <temperature>  (gChart_Minute) 	{ channel="mqtt:topic:outside:shedTemperature"}
 Number outsideReboots    "outsideReboots"
 
 Number Outside_RSSI "outside Sensor socket RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:rssi" }

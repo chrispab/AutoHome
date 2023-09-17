@@ -3,7 +3,7 @@ Number:Dimensionless    Bridge_Humidity			"Conservatory Humidity"	<humidity>	(gC
 Switch                  bridgeButton1           "433 Bridge button 1"   <button>				{ channel="mqtt:topic:bridge:button1" }
 Number                  BridgeLightSensorLevel	"Light Sensor Level"    <light>		(gChart_Hour)			{ channel="mqtt:topic:bridge:lightLevel" }
 Switch                  BridgeLightSensorState	"Light Sensor State"    <light>		(gChart_Hour)			{ channel="mqtt:topic:bridge:lightSensorState" }
-Switch                  PIRState				"Bridge PIR sensor"     <light>					{ channel="mqtt:topic:bridge:pirState" }
+Switch                  Bridge_PIR_State    "Bridge PIR sensor"     <light> { channel="mqtt:topic:bridge:pirState" }
 
 Switch                  BridgeLightSensorTrend	"Light Sensor State Trend"
 Number                  CT_Auto_Lighting_Trigger_SetPoint "Conservatory auto light trigger setpoint"
