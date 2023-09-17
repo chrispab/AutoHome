@@ -48,7 +48,7 @@ rules.JSRule({
       return;
     }
     console.error('Turning OFF stereo - kodi, amp, and bridges');
-    items.getItem('Kodi_CT_SendSystemCommand').sendCommand('Shutdown'); // shutdown CT Pi
+    items.getItem('Kodi_CT_systemcommand').sendCommand('Shutdown'); // shutdown CT Pi
     // console.error("err 2");
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
 

@@ -13,48 +13,12 @@ Items {
 
     masterHeatingMode :  strategy = everyUpdate
 
-    // FR_HeatingMode                : strategy = everyUpdate
-    FR_ThermostatTemperatureSetpoint                : strategy = everyUpdate
-    FR_ThermostatTemperatureAmbient : strategy = everyUpdate
-    FR_ThermostatHumidityAmbient : strategy = everyUpdate
-    FR_Heater_Control : strategy = everyUpdate
-
-    // HL_HeatingMode                : strategy = everyUpdate
-    HL_ThermostatTemperatureSetpoint                : strategy = everyUpdate
-    HL_ThermostatTemperatureAmbient : strategy = everyUpdate
-    HL_ThermostatHumidityAmbient : strategy = everyUpdate
-    HL_Heater_Control : strategy = everyUpdate
-
-    // BR_HeatingMode                : strategy = everyUpdate
-    BR_ThermostatTemperatureSetpoint                : strategy = everyUpdate
-    BR_ThermostatTemperatureAmbient : strategy = everyUpdate
-    BR_ThermostatHumidityAmbient : strategy = everyUpdate
-    BR_Heater_Control : strategy = everyUpdate
-
-    // OF_HeatingMode : strategy = everyUpdate
-    OF_ThermostatTemperatureSetpoint : strategy = everyUpdate
-    OF_ThermostatTemperatureAmbient : strategy = everyUpdate
-    OF_ThermostatHumidityAmbient : strategy = everyUpdate
-    OF_Heater_Control : strategy = everyUpdate
-
-    // ER_HeatingMode : strategy = everyUpdate
-    ER_ThermostatTemperatureSetpoint : strategy = everyUpdate
-    ER_ThermostatTemperatureAmbient : strategy = everyUpdate
-    ER_ThermostatHumidityAmbient : strategy = everyUpdate
-    ER_Heater_Control : strategy = everyUpdate
-
-
     Outside_Temperature : strategy = everyUpdate
     Outside_Humidity : strategy = everyUpdate
     // Outside_ReachableNumber : strategy = everyUpdate
     Shed_Temperature : strategy = everyUpdate
     Bridge_Temperature : strategy = everyUpdate
     Bridge_Humidity : strategy = everyUpdate
-
-
-    // BridgeLightSensorLevel : strategy = everyUpdate
-    // BridgeLightSensorState : strategy = everyUpdate, everyHour
-
 
     PIRState : strategy = everyUpdate
 
@@ -72,23 +36,6 @@ Items {
     // wifi_socket_8_rssi : strategy = everyUpdate
     wifi_socket_8_temperature : strategy = everyUpdate
 
-    Zb_THPSensor_01_temperature : strategy = everyUpdate
-    Zb_THPSensor_01_humidity : strategy = everyUpdate
-    Zb_THPSensor_01_pressure : strategy = everyUpdate
-
-    Zb_THSensor_01_temperature : strategy = everyUpdate
-    Zb_THSensor_01_humidity : strategy = everyUpdate
-
-    Zb_THSensor_02_temperature : strategy = everyUpdate
-    Zb_THSensor_02_humidity : strategy = everyUpdate
-
-    Zb_THSensor_03_temperature : strategy = everyUpdate
-    Zb_THSensor_03_humidity : strategy = everyUpdate
-
-    Zb_THSensor_04_temperature : strategy = everyUpdate
-    Zb_THSensor_04_humidity : strategy = everyUpdate
-
-
     pir01_illuminance_lux : strategy = everyUpdate
     co2sensor_01_ppm : strategy = everyUpdate
     pir01_occupancy : strategy = everyUpdate
@@ -98,6 +45,6 @@ Items {
     Soil1_Moisture : strategy = everyUpdate
     Soil1_Moisture_OH_1 : strategy = everyUpdate
 
-    CT_ThermostatTemperatureAmbient_raw : strategy = everyUpdate
+    // CT_ThermostatTemperatureAmbient_raw : strategy = everyUpdate
 
 }
