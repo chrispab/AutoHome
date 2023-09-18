@@ -13,12 +13,19 @@ Items {
 
     masterHeatingMode :  strategy = everyUpdate
 
+    pir01_occupancy : strategy = everyUpdate
+    pir02_occupancy : strategy = everyUpdate
+    pir03_occupancy : strategy = everyUpdate
+    pir04_occupancy : strategy = everyUpdate
+    pir05_occupancy : strategy = everyUpdate
+    pir06_occupancy : strategy = everyUpdate
+
+
     PIRState : strategy = everyUpdate
 
     pir01_illuminance_lux : strategy = everyUpdate
     co2sensor_01_ppm : strategy = everyUpdate
-    pir01_occupancy : strategy = everyUpdate
-    pir02_occupancy : strategy = everyUpdate
+
 
     Soil1_Moisture_Raw : strategy = everyUpdate
     Soil1_Moisture : strategy = everyUpdate
