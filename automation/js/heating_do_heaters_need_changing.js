@@ -61,7 +61,7 @@ rules.JSRule({
 
     //! add if boost on - skip
     // if this heater is currently in being boosted, then just l;eave it alone and move on
-    const BoostItem = items.getItem(`${roomPrefix}_Boost`, true);// get boost item for this heater, return null if missing
+    const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
     if (BoostItem && BoostItem.state.toString() === 'ON') {
       logger.info(`>>>>Boosting item -->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
       if (BoostItem.state === 'ON') { // in a boost period

@@ -29,6 +29,7 @@ String               CT_Heater_Reachable "Conservatory Reachable" <qualityofserv
 Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}
 
 //boost
-Switch      CT_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+// Switch      CT_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      CT_Heater_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
 Switch      v_CT_Boost  "Conservatory virtual Heater boost"
 Number:Time CT_Boost_Countdown "CT_Boost_Countdown"

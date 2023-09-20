@@ -3,12 +3,15 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('zb_Availability.js');
+const logger = log('zb1');
 const { timeUtils } = require('openhab_rules_tools');
+
+// log:set DEBUG org.openhab.automation.openhab-js.zb1
+
 
 // # https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
 
-const timeoutMinutes = 45;
+
 
 scriptLoaded = function () {
   logger.warn('scriptLoaded -   zb temp sensors init');
@@ -20,11 +23,10 @@ scriptLoaded = function () {
     item.postUpdate(0);
   });
 
-  gZbTHSensorsBattery
 };
 
 const timers = {};// [];
-const timeoutSeconds = 60; // use an appropriate value
+const timeoutMinutes = 45; // use an appropriate value
 
 rules.JSRule({
   name: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
@@ -40,14 +42,15 @@ rules.JSRule({
     logger.debug(`get id part of item reachable: ${stub} `);
 
     items.getItem(itemNameReachable).postUpdate('ON');
+    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
     // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
 
     if (timers.hasOwnProperty(itemNameReachable)) {
-      // console.warn(`***--- itemNameReachable FOUND property/key in timers array: ${itemNameReachable} `);
-      // console.warn(`**--- FOUND property/key in timers array, RESTART THE TIMER: ${itemNameReachable} `, timers[itemNameReachable]);
+      logger.debug(`***--- itemNameReachable FOUND property/key in timers array: ${itemNameReachable} `);
+      logger.debug(`**--- FOUND property/key in timers array, RESTART THE TIMER: ${itemNameReachable} `, timers[itemNameReachable]);
 
       if (timers[itemNameReachable].hasTerminated()) { // RESTART timer
-        // console.warn(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
+        logger.debug(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
       }
       // NOT YET terminated STILL RUNNING...
       timers[itemNameReachable].reschedule(time.toZDT((timeoutMinutes * 60 * 1000)), // , () => {
@@ -57,9 +60,9 @@ rules.JSRule({
         items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
         items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
 
-        // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
+        logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
       });
-      // console.warn(`**--- timer started CREATED NEW: ${itemNameReachable} `, timers[itemNameReachable]);
+      logger.debug(`**--- timer started CREATED NEW: ${itemNameReachable} `, timers[itemNameReachable]);
     }
   },
 });
