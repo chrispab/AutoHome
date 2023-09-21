@@ -10,48 +10,40 @@ var CT_boost_timer;
 // eslint-disable-next-line no-var
 // var boost_time = '894s'; // 15m';
 const boost_time = 15;
-
+// const boostTimers = {};
 // out by 6 secs in 15m  900s
 // CT_Boost_Countdown
 
+const boostTimers = {};
+
+
 function stopBoost(heaterPrefix) {
   actions.Voice.say('timer over');
-  // logger.warn(`timer over ... BOOST OFF, sending OFF command to HeaterItem.name: ${HeaterItem.name}`);
-  logger.error('BOOST timer over');
-  // if (CT_boost_timer) {
-  // logger.error('stopBoost timer ');
-  // CT_boost_timer.cancel();//will error cos of this
-
+  logger.debug('BOOST timer over stopBoost');
 
   // items.getItem('CT_Heater_Boost').sendCommand('OFF');
   items.getItem(heaterPrefix + '_Heater_Boost').sendCommand('OFF');
 
-
   // items.getItem('v_CT_Boost').sendCommand('OFF');
   items.getItem('v_' + heaterPrefix + '_Boost').sendCommand('OFF');
-
 
   // items.getItem('v_CT_Heater_Boost').sendCommand('OFF');
   items.getItem('v_' + heaterPrefix + '_Heater_Boost').sendCommand('OFF');
 
-
   // items.getItem('CT_Heater_Control').sendCommand('OFF');
   items.getItem(heaterPrefix + '_Heater_Control').sendCommand('OFF'); // tv
 
-
-  // HeaterItem.sendCommand('OFF');
-  // HeaterItem.sendCommand('OFF');
-  // } else {
-  //   logger.error('stopBoost timer does NOT exist');
-  // }
 }
 
+
 rules.JSRule({
-  name: 'Check if v_CT_Boost button clicked OFF->ON',
-  description: 'Check if v_CT_Boost button clicked OFF->ON',
+  name: 'Check if Boost button clicked OFF->ON',
+  description: 'Check if Boost button clicked OFF->ON',
   triggers: [
-    triggers.ItemStateChangeTrigger('v_CT_Boost', 'OFF', 'ON'), // on edges only
-    triggers.ItemStateChangeTrigger('v_CT_Heater_Boost', 'OFF', 'ON'), // on edges only
+    // triggers.ItemStateChangeTrigger('v_CT_Boost', 'OFF', 'ON'), // on edges only
+    // triggers.ItemStateChangeTrigger('v_CT_Heater_Boost', 'OFF', 'ON'), // on edges only
+    triggers.GroupStateUpdateTrigger('gvHeaterBoosters')
+
     // triggers.ItemStateChangeTrigger('v_CT_Boost', 'ON', 'OFF'),
     // todo handle manual boost(cancel) off button clicked - not doen by end of timer
   ],
@@ -63,7 +55,7 @@ rules.JSRule({
     // const heaterPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     const heaterPrefix = heaterPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    // logger.debug(`>..heaterPrefixPartial : ${heaterPrefixPartial}`);
+    logger.debug(`>..heaterPrefixPartial : ${heaterPrefixPartial}`);
     logger.debug(`>..heaterPrefix: ${heaterPrefix}`);
 
     const ReachableItem = items.getItem(`${heaterPrefix}_Heater_Reachable`);
@@ -84,7 +76,7 @@ rules.JSRule({
     if (BoostItem) {
       logger.debug(`BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
       // if (event.itemName === BoostItem.name) {
-      if (event.newState === 'ON') { // gone Off->ON
+      if (event.receivedState === 'ON') { // gone Off->ON
         logger.debug(`v_XX_Heater_Boost changed off->on : ${event.itemName}`);
         actions.Voice.say('boost on');
         logger.debug(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
