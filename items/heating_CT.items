@@ -32,4 +32,6 @@ Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>            
 // Switch      CT_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
 Switch      CT_Heater_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
 Switch      v_CT_Boost  "Conservatory virtual Heater boost"
+Switch      v_CT_Heater_Boost  "Conservatory virtual Heater boost"
+
 Number:Time CT_Boost_Countdown "CT_Boost_Countdown"

@@ -1,4 +1,4 @@
-Group		gHeating_PresetTempNormal
+// Group		gHeating_PresetTempNormal
 
 Group		gHeatingModes
 // Group		gThermostatModes
@@ -23,4 +23,4 @@ Number      Boiler_Rssi         "Boiler Rssi"       <qualityofservice>  { channe
 
 String		masterHeatingMode			"Global Master Heating Mode [%s]"
 Switch		Heating_UpdateHeaters		"Send Target Temperatures to Heaters"
-Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>
+// Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>
