@@ -11,6 +11,21 @@ const { timeUtils } = require('openhab_rules_tools');
 
 // # https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
 
+//timer mgr
+// https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
+var {TimerMgr} = require('openhab_rules_tools');
+var tm = cache.private.get('timers', () => TimerMgr());
+https://community.openhab.org/t/array-of-timers-dynamically-instantiated-timers-based-on-triggeringitem-name/142850
+// var vLightName = event.itemName.split("_").get(1);
+// timerMgr.check(vLightName, 'PT1M', () => { console.info('timer ran'); }, false, null, ruleUID+'_'+vLightName);
+// When check is called, if a timer doesn’t exist it creates one. The arguments are:
+
+// key: unique identifier for the Timer, usually best to use an Item name
+// timeout: anything supported by time.toZDT(), in this case it’s an ISO8601 Duration string for one minute
+// function: the function to call when the timer expires.
+// reschedule: when true, if the timer already exists it will be rescheduled using the timeout
+// flapping function: an optional function to call if check is called and the timer already exists
+// name: a name you can give to the timer so if there is an error in the timer function, you can identify what timer it came from
 
 
 scriptLoaded = function () {

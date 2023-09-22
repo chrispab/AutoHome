@@ -3,6 +3,14 @@ const {
 } = require('openhab');
 const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 
+//timer mgr
+// https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
+var {TimerMgr} = require('openhab_rules_tools');
+var tm = cache.private.get('timers', () => TimerMgr());
+
+
+
+
 const logger = log('ct_boost');
 
 // eslint-disable-next-line no-var
