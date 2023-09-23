@@ -32,12 +32,8 @@ rules.JSRule({
     var item = items.getItem(data.itemName);
     // var historic = item.history.previousState;
     logger.debug(
-      // `-pir_occupancy received update- itemName : ${data.itemName
         `-pir_occupancy ChangeTrigger - itemName : ${data.itemName
-        }, now state: ${item.state
-      // }, PREV state: ${items.getItem(data.itemName).history.previousState.state}`,
-      // }, previous state: ${historic.state}`,
-      }, PREV oldState: ${data.oldState}`,
+        }, oldState: ${data.oldState}, now state: ${item.state}`,
 
     );
   },

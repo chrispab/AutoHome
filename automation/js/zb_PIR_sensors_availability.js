@@ -3,7 +3,9 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('zb1_pir');
+var ruleUID = "zb1_pir";
+
+const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 // openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
 // # https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
@@ -15,7 +17,7 @@ var timerMgr = cache.private.get('timers', () => TimerMgr());
 
 
 scriptLoaded = function () {
-  logger.info('scriptLoaded -   zb_PIR_SENSORS_Availabilityb');
+  logger.info('scriptLoaded -   zb_PIR_sensors_Availability');
 
   items.getItem('gZbPIRSensorsReachable').members.forEach((item) => {
     item.postUpdate('OFF');
@@ -27,35 +29,36 @@ scriptLoaded = function () {
 
 };
 
-const timeoutMinutes = 'PT45M'; // use an appropriate value
+var timeoutMinutes = 'PT45M'; // use an appropriate value
 
 rules.JSRule({
-  name: 'monitor ZB  pir sensor availability update zb Online/Offline status',
-  description: 'monitor ZB  pir sensor availability update zb Online/Offline status',
+  name: 'ZB  pir sensor availability',
+  description: 'ZB pir sensor availability update status',
   triggers: [
     triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy'),
     // triggers.GroupStateUpdateTrigger('gZbPIRSensorBatteries')
   ],
 
   execute: (event) => {
-    logger.debug(`update to gZbPIRxx status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+    logger.debug(`gZbPIRxx Update, triggering itemName: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
-    var ruleUID = "zbPIR";
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
     const itemNameBattery = `${stub}_battery`;
-    logger.debug(`get id part of item reachable: ${stub} `);
+    logger.debug(`stub of triggering itemName: ${stub} `);
 
     items.getItem(itemNameReachable).postUpdate('ON');
-    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
+    logger.debug(`postUpdate('ON') to: ${itemNameReachable} `);
+    timerName = ruleUID + '_' + itemNameReachable;
+    logger.debug(`retriggering timer: ${timerName} `);
 
     timerMgr.check(itemNameReachable, timeoutMinutes, () => {
 
       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
 
-    }, true, null, ruleUID + '_' + itemNameReachable);
+    }, true, null, timerName);
 
   },
 });
