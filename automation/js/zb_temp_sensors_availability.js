@@ -2,8 +2,9 @@ const {
   log, items, rules, actions, triggers
 } = require('openhab');
 const { myutils } = require('personal');
+var ruleUID = "zb1_temp";
 
-const logger = log('zb1_temp');
+const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 
 // log:set DEBUG org.openhab.automation.openhab-js.zb1_temp
@@ -49,7 +50,6 @@ rules.JSRule({
   execute: (event) => {
     logger.debug(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
-    var ruleUID = "zb1";
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
     const itemNameBattery = `${stub}_battery`;
@@ -58,11 +58,15 @@ rules.JSRule({
     items.getItem(itemNameReachable).postUpdate('ON');
     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
 
+    timerName = ruleUID + '_' + itemNameReachable;
+    logger.debug(`retriggering timer: ${timerName} `);
+
+
     timerMgr.check(itemNameReachable, timeoutMinutes, () => {
       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
-    }, true, null, ruleUID + '_' + itemNameReachable);
+      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+    }, true, null, timerName);
 
   },
 });
