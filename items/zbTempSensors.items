@@ -2,7 +2,7 @@
 Group:Number:SUM  gTHSensorTemperatures
 Group gZbTHSensorLinkQuality
 Group gZbTHSensorsReachable
-Group gZbTHSensorsBattery
+Group:Number:MIN  gZbTHSensorsBattery
 Group gZbTHSensorsVoltage
 
 

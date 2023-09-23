@@ -3,12 +3,11 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('zb1');
+const logger = log('zb1_pir');
 const { timeUtils } = require('openhab_rules_tools');
-
+// openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
 // # https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
 
-const timeoutMinutes = 'PT30M'; // use an appropriate value
 
 
 var { TimerMgr } = require('openhab_rules_tools');
@@ -28,20 +27,20 @@ scriptLoaded = function () {
 
 };
 
+const timeoutMinutes = 'PT45M'; // use an appropriate value
 
 rules.JSRule({
   name: 'monitor ZB  pir sensor availability update zb Online/Offline status',
   description: 'monitor ZB  pir sensor availability update zb Online/Offline status',
   triggers: [
     triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy'),
-    triggers.GroupStateUpdateTrigger('gZbPIRSensorBatteries')
+    // triggers.GroupStateUpdateTrigger('gZbPIRSensorBatteries')
   ],
 
   execute: (event) => {
     logger.debug(`update to gZbPIRxx status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
-    // var trythisUID = rules.getUID();
-    var trythisUID = "zbPIR";
+    var ruleUID = "zbPIR";
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
     const itemNameBattery = `${stub}_battery`;
@@ -49,8 +48,6 @@ rules.JSRule({
 
     items.getItem(itemNameReachable).postUpdate('ON');
     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
-    // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
-
 
     timerMgr.check(itemNameReachable, timeoutMinutes, () => {
 
@@ -58,8 +55,7 @@ rules.JSRule({
       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
       logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
 
-      // }, true, null, ruleUID+'_'+itemNameReachable);
-    }, true, null, trythisUID + '_' + itemNameReachable);
+    }, true, null, ruleUID + '_' + itemNameReachable);
 
   },
 });
