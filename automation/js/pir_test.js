@@ -3,10 +3,10 @@ const {
   } = require('openhab');
   const { timeUtils } = require('openhab_rules_tools');
 
-  const logger = log('pir_test');
+  const logger = log('zb1');
 
   scriptLoaded = function () {
-    logger.error('scriptLoaded - pir_test');
+    logger.info('scriptLoaded - pir_test');
 
 };
 
@@ -26,8 +26,8 @@ rules.JSRule({
 
       var item = items.getItem(data.itemName);
       var historic = item.history.previousState;
-      logger.error(
-        `-pir_occupancy received update itemName : ${data.itemName
+      logger.debug(
+        `-pir_occupancy received update- itemName : ${data.itemName
         }, now state: ${item.state
         // }, PREV state: ${items.getItem(data.itemName).history.previousState.state}`,
         }, previous state: ${historic.state}`,

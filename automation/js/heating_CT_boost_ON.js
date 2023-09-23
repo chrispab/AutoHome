@@ -4,29 +4,8 @@ const {
 const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 
 //timer mgr
-// https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
-var {TimerMgr} = require('openhab_rules_tools');
-var tm = cache.private.get('timers', () => TimerMgr());
+// https://community.openhab.org/t/making-sure-that-only-one-timer-
 
-
-
-
-const logger = log('ct_boost');
-
-// eslint-disable-next-line no-var
-var CT_boost_timer;
-// eslint-disable-next-line no-var
-// var boost_time = '894s'; // 15m';
-const boost_time = 15;
-// const boostTimers = {};
-// out by 6 secs in 15m  900s
-// CT_Boost_Countdown
-
-const boostTimers = {};
-
-
-function stopBoost(heaterPrefix) {
-  actions.Voice.say('timer over');
   logger.debug('BOOST timer over stopBoost');
 
   // items.getItem('CT_Heater_Boost').sendCommand('OFF');

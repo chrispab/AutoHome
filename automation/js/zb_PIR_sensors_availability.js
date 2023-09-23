@@ -3,66 +3,66 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('zb_PIR_SENSORS_Availability.js');
+const logger = log('zb1');
 const { timeUtils } = require('openhab_rules_tools');
 
 // # https://community.openhab.org/t/design-pattern-motion-sensor-timer/14954
 
-const timeoutMinutes = 45;
+const timeoutMinutes = 'PT30M'; // use an appropriate value
+
+
+var { TimerMgr } = require('openhab_rules_tools');
+var timerMgr = cache.private.get('timers', () => TimerMgr());
+
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded -   zb_PIR_SENSORS_Availability');
+  logger.info('scriptLoaded -   zb_PIR_SENSORS_Availabilityb');
 
   items.getItem('gZbPIRSensorsReachable').members.forEach((item) => {
     item.postUpdate('OFF');
   });
 
-items.getItem('gBatteries').members.forEach((item) => {
-  item.postUpdate(0);
-});
+  items.getItem('gZbPIRSensorBatteries').members.forEach((item) => {
+    item.postUpdate(0);
+  });
 
 };
 
 
+rules.JSRule({
+  name: 'monitor ZB  pir sensor availability update zb Online/Offline status',
+  description: 'monitor ZB  pir sensor availability update zb Online/Offline status',
+  triggers: [
+    triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy'),
+    triggers.GroupStateUpdateTrigger('gZbPIRSensorBatteries')
+  ],
+
+  execute: (event) => {
+    logger.debug(`update to gZbPIRxx status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+    // myutils.showGroupMembers('gTHSensorTemperatures');
+    // var trythisUID = rules.getUID();
+    var trythisUID = "zbPIR";
+    const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
+    const itemNameReachable = `${stub}_reachable`;
+    const itemNameBattery = `${stub}_battery`;
+    logger.debug(`get id part of item reachable: ${stub} `);
+
+    items.getItem(itemNameReachable).postUpdate('ON');
+    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
+    // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
+
+
+    timerMgr.check(itemNameReachable, timeoutMinutes, () => {
+
+      items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+      items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+      logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+
+      // }, true, null, ruleUID+'_'+itemNameReachable);
+    }, true, null, trythisUID + '_' + itemNameReachable);
+
+  },
+});
 
 
 
-
-
-// const timers = {};// [];
-// const timeoutSeconds = 60; // use an appropriate value
-
-// rules.JSRule({
-//   name: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
-//   description: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
-//   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
-//   execute: (event) => {
-//     logger.warn(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
-//     myutils.showGroupMembers('gTHSensorTemperatures');
-
-//     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-//     const itemNameReachable = `${stub}_reachable`;
-//     logger.warn(`get id part of item reachable: ${stub} `);
-
-//     items.getItem(itemNameReachable).postUpdate('ON');
-//     // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
-
-//     if (timers.hasOwnProperty(itemNameReachable)) {
-//       // console.warn(`***--- itemNameReachable FOUND property/key in timers array: ${itemNameReachable} `);
-//       // console.warn(`**--- FOUND property/key in timers array, RESTART THE TIMER: ${itemNameReachable} `, timers[itemNameReachable]);
-
-//       if (timers[itemNameReachable].hasTerminated()) { // RESTART timer
-//         // console.warn(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
-//       }
-//       // NOT YET terminated STILL RUNNING...
-//       timers[itemNameReachable].reschedule(time.toZDT((timeoutMinutes * 60 * 1000)), // , () => {
-//       );
-//     } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-//       timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutMinutes * 60 * 1000)), () => {
-//         items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
-//         // console.warn(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
-//       });
-//       // console.warn(`**--- timer started CREATED NEW: ${itemNameReachable} `, timers[itemNameReachable]);
-//     }
-//   },
-// });

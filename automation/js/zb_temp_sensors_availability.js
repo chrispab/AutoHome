@@ -1,5 +1,5 @@
 const {
-  log, items, rules, actions, triggers,
+  log, items, rules, actions, triggers
 } = require('openhab');
 const { myutils } = require('personal');
 
@@ -13,13 +13,13 @@ const { timeUtils } = require('openhab_rules_tools');
 
 //timer mgr
 // https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
-var {TimerMgr} = require('openhab_rules_tools');
-var tm = cache.private.get('timers', () => TimerMgr());
+var { TimerMgr } = require('openhab_rules_tools');
+var timerMgr = cache.private.get('timers', () => TimerMgr());
 https://community.openhab.org/t/array-of-timers-dynamically-instantiated-timers-based-on-triggeringitem-name/142850
 // var vLightName = event.itemName.split("_").get(1);
 // timerMgr.check(vLightName, 'PT1M', () => { console.info('timer ran'); }, false, null, ruleUID+'_'+vLightName);
-// When check is called, if a timer doesn’t exist it creates one. The arguments are:
 
+// When check is called, if a timer doesn’t exist it creates one. The arguments are:
 // key: unique identifier for the Timer, usually best to use an Item name
 // timeout: anything supported by time.toZDT(), in this case it’s an ISO8601 Duration string for one minute
 // function: the function to call when the timer expires.
@@ -29,7 +29,7 @@ https://community.openhab.org/t/array-of-timers-dynamically-instantiated-timers-
 
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded -   zb temp sensors init');
+  logger.warn('scriptLoaded -   zb temp sensors init new');
   items.getItem('gZbTHSensorsReachable').members.forEach((item) => {
     item.postUpdate('OFF');
   });
@@ -40,8 +40,8 @@ scriptLoaded = function () {
 
 };
 
-const timers = {};// [];
-const timeoutMinutes = 45; // use an appropriate value
+// const timers = {};// [];
+const timeoutMinutes = 'PT30M'; // use an appropriate value
 
 rules.JSRule({
   name: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
@@ -50,7 +50,8 @@ rules.JSRule({
   execute: (event) => {
     logger.debug(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
-
+    // var trythisUID = rules.getUID();
+    var trythisUID = "zb1";
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
     const itemNameBattery = `${stub}_battery`;
@@ -60,24 +61,15 @@ rules.JSRule({
     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
     // console.warn(`--- BG sockets Online/Offline status marked  Online : ${itemNameReachable} `);
 
-    if (timers.hasOwnProperty(itemNameReachable)) {
-      logger.debug(`***--- itemNameReachable FOUND property/key in timers array: ${itemNameReachable} `);
-      logger.debug(`**--- FOUND property/key in timers array, RESTART THE TIMER: ${itemNameReachable} `, timers[itemNameReachable]);
 
-      if (timers[itemNameReachable].hasTerminated()) { // RESTART timer
-        logger.debug(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
-      }
-      // NOT YET terminated STILL RUNNING...
-      timers[itemNameReachable].reschedule(time.toZDT((timeoutMinutes * 60 * 1000)), // , () => {
-      );
-    } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-      timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutMinutes * 60 * 1000)), () => {
-        items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
-        items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+    timerMgr.check(itemNameReachable, timeoutMinutes, () => {
 
-        logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `, timers[itemNameReachable]);
-      });
-      logger.debug(`**--- timer started CREATED NEW: ${itemNameReachable} `, timers[itemNameReachable]);
-    }
+      items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+      items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+      logger.debug(`!! TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+
+      // }, true, null, ruleUID+'_'+itemNameReachable);
+    }, true, null, trythisUID + '_' + itemNameReachable);
+
   },
 });
