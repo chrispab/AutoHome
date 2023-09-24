@@ -3,6 +3,8 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
+var { TimerMgr } = require('openhab_rules_tools');
+var timerMgr = cache.private.get('timers', () => TimerMgr());
 
 var ruleUID = "bg_avail";
 const logger = log(ruleUID);
@@ -10,42 +12,40 @@ const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
 
-  logger.warn('scriptLoaded -   init   BG avail statusesss');
+  logger.info('scriptLoaded - BG availability');
   // myutils.showGroupMembers('gBG_sockets_reachable');
 
   items.getItem('gBG_sockets_reachable').members.forEach((item) => {
-    item.postUpdate('Offline');
+    item.postUpdate('OFF');
   });
 
 };
+// log:set DEBUG org.openhab.automation.openhab-js.bg_avail
 
-const timers = {};// [];
-const timeoutSeconds = 60; // use an appropriate value
-const { timeUtils } = require('openhab_rules_tools');
+const timeout = 'PT1M'; // use an appropriate value
 
 rules.JSRule({
   name: 'update BG sockets Online/Offline status',
-  description: 'monitor BG MQTT updates',
+  description: 'update BG sockets Online/Offline status',
   triggers: [triggers.GroupStateUpdateTrigger('gBG_socket_maxworktime_updates')],
   execute: (event) => {
+    logger.debug(`update BG sockets Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
    // myutils.showGroupMembers('gBG_socket_maxworktime_updates');
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
+    logger.debug(`get id part of item reachable: ${stub} `);
 
-    items.getItem(itemNameReachable).postUpdate('Online');
+    items.getItem(itemNameReachable).postUpdate('ON');
+    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
 
-    if (timers.hasOwnProperty(itemNameReachable)) {
+    timerName = ruleUID + '_' + itemNameReachable;
+    logger.debug(`retriggering timer: ${timerName} `);
 
-      if (timers[itemNameReachable].hasTerminated()) { // RESTART timer
-        // console.warn(`!!!!!!!---timer has terminated, Lets recreate it: ${itemNameReachable} `, timers[itemNameReachable]);
-      }
-      // NOT YET terminated STILL RUNNING...
-      timers[itemNameReachable].reschedule(time.toZDT((timeoutSeconds * 1000)), // , () => {
-      );
-    } else { // dosent exists so create a new one  actions.ScriptExecution.createTimer
-      timers[itemNameReachable] = actions.ScriptExecution.createTimer(time.toZDT((timeoutSeconds * 1000)), () => {
-        items.getItem(itemNameReachable).postUpdate('Offline');
-      });
-    }
+
+    timerMgr.check(itemNameReachable, timeout, () => {
+      items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+      // items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+    }, true, null, timerName);
   },
 });

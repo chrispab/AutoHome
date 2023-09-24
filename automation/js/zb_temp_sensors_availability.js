@@ -45,8 +45,8 @@ scriptLoaded = function () {
 const timeoutMinutes = 'PT60M'; // use an appropriate value
 
 rules.JSRule({
-  name: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
-  description: 'monitor ZB  temp sensor availability update zb sockets Online/Offline status',
+  name: 'monitor ZB temp sensor availability update Online/Offline status',
+  description: 'monitor ZB  temp sensor availability update Online/Offline status',
   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
   execute: (event) => {
     logger.debug(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
