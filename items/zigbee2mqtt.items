@@ -2,12 +2,9 @@ Group	gZb
 Group	ZbBridge					"Zigbee2mqtt Bridge"											(gZb)
 
 String	ZbBridgeState				"Zigbee2mqtt Bridge State"										(ZbBridge)									{channel="mqtt:topic:zigbeebridge:state"}
-// Switch ZigbeeBridgePermitJoin         "Zigbee2mqtt Bridge Permit join"                         (ZigbeeBridge) { channel="mqtt:topic:zigbeebridge:permitJoin" , expire="10m,command=OFF" }
 Switch	ZbBridgePermitJoin			"Zigbee2mqtt Bridge Permit join"								(ZbBridge)									{channel="mqtt:topic:zigbeebridge:permitJoin"}
 String	ZbBridgeLogType				"Zigbee2mqtt Bridge LogType"									(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logType"}
 String	ZbBridgeLogMessage			"Zigbee2mqtt Bridge LogMessage"									(ZbBridge)									{channel="mqtt:topic:zigbeebridge:logMessage"}
 
-// String	ZbRouter_01_State				"Zigbee2mqtt router State"			{channel="mqtt:topic:zigbeerouter01:reachable"}
 Number	ZbRouter_01_Quality		"Zigbee2mqtt router  LinkQuality [%d]"	<qualityofservice>	{channel="mqtt:topic:zigbeerouter01:linkquality"}
-String	ZbRouter_01_Reachable    "Zigbee2mqtt router Reachable"
 
