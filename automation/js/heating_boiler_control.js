@@ -5,8 +5,14 @@ const { myutils } = require('personal');
 
 // log:set WARN org.openhab.automation.openhab-js.boiler
 // log:set DEBUG org.openhab.automation.openhab-js.boiler
-const logger = log('Boiler_Control');
-const { timeUtils } = require('openhab_rules_tools');
+// const logger = log('Boiler_Control');
+// const { timeUtils } = require('openhab_rules_tools');
+
+var ruleUID = "Boiler_Control";
+
+const logger = log(ruleUID);
+const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
+// openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
 
 rules.JSRule({
   name: 'when any heater states updated to ON, turn Boiler ON else OFF',
@@ -25,13 +31,13 @@ rules.JSRule({
         logger.info(`Boiler -action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler is OFF so sending boiler ON command`);
         items.getItem('Boiler_Control').sendCommand('ON');
       } else {
-        logger.info(`Boiler -no action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
+        logger.debug(`Boiler -no action: ${event.itemName}-(${event.receivedState}), at least 1 heater is ON -> boiler already ON so NOT sending ON command`);
       }
     } else if (items.getItem('Boiler_Control').state.toString() === 'ON') {
       logger.info(`Boiler -action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler is ON so sending boiler OFF command`);
       items.getItem('Boiler_Control').sendCommand('OFF');
     } else {
-      logger.info(`Boiler -no action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
+      logger.debug(`Boiler -no action: ${event.itemName}-(${event.receivedState}), all Heaters are OFF -> boiler already OFF so NOT sending OFF command`);
     }
   },
 });

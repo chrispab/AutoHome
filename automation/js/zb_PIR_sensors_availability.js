@@ -29,7 +29,7 @@ scriptLoaded = function () {
 
 };
 
-var timeoutMinutes = 'PT45M'; // use an appropriate value
+var timeout = 'PT60M'; // use an appropriate value
 
 rules.JSRule({
   name: 'ZB  pir sensor availability',
@@ -52,11 +52,11 @@ rules.JSRule({
     timerName = ruleUID + '_' + itemNameReachable;
     logger.debug(`retriggering timer: ${timerName} `);
 
-    timerMgr.check(itemNameReachable, timeoutMinutes, () => {
+    timerMgr.check(itemNameReachable, timeout, () => {
 
       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+      logger.info(`${timerName} availability TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
 
     }, true, null, timerName);
 

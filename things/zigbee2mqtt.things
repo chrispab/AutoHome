@@ -3,8 +3,8 @@ Thing mqtt:topic:zigbeebridge "Zigbee2mqtt Bridge" (mqtt:broker:MyMQTTBroker) @ 
 Channels:
     Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config",  transformationPattern="JSONPATH:$.permit_join"]
     Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
-    Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
-    Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+    // Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
+    // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
 }
 
 Thing mqtt:topic:zigbeerouter01 "Zigbee Router 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"

@@ -3,8 +3,11 @@ const {
 } = require('openhab');
 const { myutils } = require('personal');
 
-const logger = log('heater_change');
+var ruleUID = "heating_change";
+
+const logger = log(ruleUID);
 const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
+// openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
 
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on
@@ -21,26 +24,26 @@ rules.JSRule({
   ],
   execute: (event) => {
     // console.log(event);
-    logger.info('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
+    logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     // const action = 'default';
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
-    logger.info(`>roomPrefix: ${roomPrefix}`);
+    logger.debug(`>roomPrefix: ${roomPrefix}`);
 
     const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
-    logger.info(`>heatingModeItem: ${heatingModeItem.name}, state: ${heatingModeItem.state}`);
+    logger.debug(`>heatingModeItem: ${heatingModeItem.name}, state: ${heatingModeItem.state}`);
 
     const setpointItem = items.getItem(`${roomPrefix}_ThermostatTemperatureSetpoint`);
-    logger.info(`>setpointItem: ${setpointItem.name}, state: ${setpointItem.state}`);
+    logger.debug(`>setpointItem: ${setpointItem.name}, state: ${setpointItem.state}`);
 
     const TemperatureItem = items.getItem(`${roomPrefix}_ThermostatTemperatureAmbient`);
-    logger.info(`>TemperatureItem: ${TemperatureItem.name}, state: ${TemperatureItem.state}`);
+    logger.debug(`>TemperatureItem: ${TemperatureItem.name}, state: ${TemperatureItem.state}`);
 
     const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
-    logger.info(`>HeaterItem: ${HeaterItem.name}, state: ${HeaterItem.state}`);
+    logger.debug(`>HeaterItem: ${HeaterItem.name}, state: ${HeaterItem.state}`);
 
     const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
-    logger.info(`>ReachableItem: ${ReachableItem.name}, state: ${ReachableItem.state}`);
+    logger.debug(`>ReachableItem: ${ReachableItem.name}, state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
     // !if ANY trvs are unreachable - turn off hetarer to prevent false demand
@@ -57,7 +60,7 @@ rules.JSRule({
     }
     items.getItem('HL_Heater_Control').sendCommand('OFF');//!
 
-    logger.info(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
+    logger.debug(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     //! add if boost on - skip
     // if this heater is currently in being boosted, then just l;eave it alone and move on
@@ -71,7 +74,7 @@ rules.JSRule({
     // logger.debug('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
-      logger.info(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
+      logger.debug(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
       const setpoint = setpointItem.rawState;
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1

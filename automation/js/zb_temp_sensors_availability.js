@@ -42,14 +42,14 @@ scriptLoaded = function () {
 
 };
 
-const timeoutMinutes = 'PT60M'; // use an appropriate value
+const timeout = 'PT60M'; // use an appropriate value
 
 rules.JSRule({
   name: 'monitor ZB temp sensor availability update Online/Offline status',
   description: 'monitor ZB  temp sensor availability update Online/Offline status',
   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
   execute: (event) => {
-    logger.debug(`update gTHSensorTemperatures Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+    logger.debug(`update temp sensor availability status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
     // myutils.showGroupMembers('gTHSensorTemperatures');
     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const itemNameReachable = `${stub}_reachable`;
@@ -63,10 +63,10 @@ rules.JSRule({
     logger.debug(`retriggering timer: ${timerName} `);
 
 
-    timerMgr.check(itemNameReachable, timeoutMinutes, () => {
+    timerMgr.check(itemNameReachable, timeout, () => {
       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+      logger.info(`${timerName} sensor availability TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
     }, true, null, timerName);
 
   },
