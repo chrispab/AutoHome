@@ -1,22 +1,22 @@
-// Thing mqtt:topic:zigbeebridge "Zigbee2mqtt Bridge" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
-// {
-// Channels:
-//     Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config/permit_join", on="true", off="false" ]
-//     Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
-//     Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
-//     Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
-// }
+Thing mqtt:topic:zigbeebridge "Zigbee2mqtt Bridge" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config",  transformationPattern="JSONPATH:$.permit_join"]
+    Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
+    Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
+    Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+}
 
-// Thing mqtt:topic:zigbeerouter01 "Zigbee Router 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
-// {
-// Channels:
-//     // Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config/permit_join", on="true", off="false" ]
-//     // Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
-//     // Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
-//     // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
-//     Type number : linkquality "Zigbee Router 01 LinkQuality" [ stateTopic="zigbee2mqtt/router01",  transformationPattern="JSONPATH:$.linkquality" ]
-//     Type string : reachable "Zigbee Router 01 Reachable"
-// }
+Thing mqtt:topic:zigbeerouter01 "Zigbee Router 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+Channels:
+    // Type switch : permitJoin         [ commandTopic="zigbee2mqtt/bridge/config/permit_join", on="true", off="false" ]
+    // Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
+    // Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
+    // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+    Type number : linkquality "Zigbee Router 01 LinkQuality" [ stateTopic="zigbee2mqtt/router01/linkquality" ]
+    Type string : reachable "Zigbee Router 01 Reachable"
+}
 
 
 

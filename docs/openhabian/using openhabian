@@ -53,3 +53,10 @@ https://github.com/microsoft/vscode-remote-release/issues/6515
 
 "remote.SSH.showLoginTerminal": true,
 "remote.SSH.useLocalServer": false
+
+
+backup
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/82
+
+
+Check EXTRA_JAVA_OPTS in /etc/defaults/openhab
