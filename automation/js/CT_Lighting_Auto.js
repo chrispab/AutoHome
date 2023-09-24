@@ -13,7 +13,7 @@ let currentLightSensorLevel = null;
 
 // when script reloaded, set auto detection lighting to suitable defaults
 scriptLoaded = function () {
-  logger.error('scriptLoaded - set all CT auto lighting items');
+  logger.debug('scriptLoaded - set all CT auto lighting items');
 
   previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
   currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
@@ -27,7 +27,7 @@ rules.JSRule({
   description: 'CRON turn OFF conservatory lights when late - maybe forgot',
   triggers: [triggers.GenericCronTrigger('0 30 01 * * ?')],
   execute: () => {
-    logger.warn('CRON turn OFF conservatory lights when late - maybe forgot');
+    logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('CRON auto turn OFF conservatory lights');
@@ -42,7 +42,7 @@ rules.JSRule({
   // triggers: [triggers.GenericCronTrigger('0 0 19 ? * TUE,WED,THU *')],
 
   execute: () => {
-    logger.warn('CRON turn OFF conservatory lights when late - maybe forgot');
+    logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('ON');
     // items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('CRON auto turn ON conservatory lights in work mornings');
@@ -55,7 +55,7 @@ rules.JSRule({
   description: 'turn OFF conservatory lights when ambient light level when goes from dark to light',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'OFF', 'ON')],
   execute: () => {
-    logger.error('turn OFF conservatory lights when ambient light level when goes from dark to light');
+    logger.debug('turn OFF conservatory lights when ambient light level when goes from dark to light');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
     alerting.sendInfo('turn OFF conservatory lights when ambient light level when goes from dark to light');
@@ -68,7 +68,7 @@ rules.JSRule({
   description: 'turn ON conservatory lights when ambient light level goes from light to dark',
   triggers: [triggers.ItemStateChangeTrigger('CT_LightDark_State', 'ON', 'OFF')],
   execute: () => {
-    logger.error('turn ON conservatory lights when ambient light level goes from light to dark');
+    logger.debug('turn ON conservatory lights when ambient light level goes from light to dark');
     items.getItem('gConservatoryLights').sendCommand('ON');
     alerting.sendInfo('auto turn ON conservatory lights  when ambient light level goes from light to dark');
   },

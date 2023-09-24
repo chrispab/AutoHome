@@ -6,7 +6,7 @@ const { timeUtils } = require('openhab_rules_tools');
 const logger = log('pir03');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded - pir 03');
+  logger.info('scriptLoaded - pir 03');
   // loadedDate = Date.now();
 };
 

@@ -10,7 +10,7 @@ let tsceneStartup;
 const resetSceneGoodnightDelay = 45 * 1000;
 
 scriptLoaded = function () {
-  logger.warn('StartUp - set up Item Scene_Goodnight');
+  logger.info('StartUp - set up Item Scene_Goodnight');
   if (tsceneStartup === undefined) {
     tsceneStartup = actions.ScriptExecution.createTimer(time.toZDT((resetSceneGoodnightDelay)), () => {
       items.getItem('Scene_Goodnight').postUpdate('OFF');
@@ -25,7 +25,7 @@ rules.JSRule({
   description: 'Goodnight Going to bed',
   triggers: [triggers.ItemStateChangeTrigger('Scene_Goodnight', 'OFF', 'ON')],
   execute: (event) => {
-    logger.warn(`Goodnight Going to bed, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+    logger.info(`Goodnight Going to bed, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
 
     items.getItem('CT_FairyLights433Socket').sendCommand('OFF');
 

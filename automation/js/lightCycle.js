@@ -44,7 +44,7 @@ rules.JSRule({
     // turn off the cycling
 
     // if (items.getItem('ZbColourBulb02_CYCLE').state.toString() !== 'ON') {
-    //   logger.error('CycleColor - light.sendCommand(OFF),., returning');
+    //   logger.debug('CycleColor - light.sendCommand(OFF),., returning');
     //   if (cycle_timer) {
     //     cycle_timer.cancel();
     //   }
@@ -54,7 +54,7 @@ rules.JSRule({
     // }
 
     // Start cycling
-    logger.error('CycleColor - Color Loop Activated');
+    logger.debug('CycleColor - Color Loop Activated');
 
     let hue = 0;
     // const direction = 1;
@@ -76,7 +76,7 @@ rules.JSRule({
       now.plusSeconds(1),
       // while the cycle flag is ON and the light remains ON, move the color
       () => {
-        logger.error('CycleColor - while the cycle flag is ON and the light remains ON, move the color');
+        logger.debug('CycleColor - while the cycle flag is ON and the light remains ON, move the color');
         // myutils.showItem(light1);
         if (event.newState === 'ON' && light1_switch.state === 'ON') {
           // if (items.getItem('ZbColourBulb02_CYCLE').state.toString() === 'ON') {
@@ -90,7 +90,7 @@ rules.JSRule({
           sat = items.getItem('lightCyclerSaturation').rawState;
           bright = items.getItem('lightCyclerBrightness').rawState;
 
-          logger.error(`CycleColor - sendCommand(HSBType) H: ${hue.toString()}, S: ${sat.toString()}, B: ${bright.toString()}`);
+          logger.debug(`CycleColor - sendCommand(HSBType) H: ${hue.toString()}, S: ${sat.toString()}, B: ${bright.toString()}`);
           light1.sendCommand(`${hue.toString()},${sat.toString()},${bright.toString()}`);
           light2.sendCommand(`${hue.toString()},${sat.toString()},${bright.toString()}`);
 
@@ -98,7 +98,7 @@ rules.JSRule({
           cycle_timer.reschedule(tnow.plus(items.getItem('lightCyclerIntervalMillis').rawState, time.ChronoUnit.MILLIS));
           // cycle_timer.reschedule(tnow.plus(1000, java.time.temporal.ChronoUnit.MILLIS));
         } else {
-          logger.error('CycleColor - cycle flag off');
+          logger.debug('CycleColor - cycle flag off');
           if (cycle_timer) {
             cycle_timer.cancel();
           }

@@ -7,7 +7,7 @@ const logger = log('BG_Availability.js');
 const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded -   Heating startup');
+  logger.info('scriptLoaded -   Heating startup');
 
   if ((items.getItem('masterHeatingMode').state.toString() == null)) {
     (items.getItem('masterHeatingMode').postUpdate('auto'));

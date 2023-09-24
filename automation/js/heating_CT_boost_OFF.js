@@ -18,23 +18,23 @@ rules.JSRule({
 
   ],
   execute: (event) => {
-    logger.error('>CT_Boost changed');
+    logger.debug('>CT_Boost changed');
     console.log(event);
 
     // get prefix eg FR, CT etc
     // const heaterPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     const heaterPrefix = heaterPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    logger.error(`-- ->>> heaterPrefix : ${heaterPrefix}`);
-    logger.error(`>..heaterPrefix: ${heaterPrefix}`);
+    logger.debug(`-- ->>> heaterPrefix : ${heaterPrefix}`);
+    logger.debug(`>..heaterPrefix: ${heaterPrefix}`);
 
     const ReachableItem = items.getItem(`${heaterPrefix}_Heater_Reachable`);
-    logger.error(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
+    logger.debug(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
     const HeaterItem = items.getItem(`${heaterPrefix}_Heater_Control`);
-    logger.error(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
+    logger.debug(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
     // !handle an offline TRV - return
     if (ReachableItem.state.toString() !== 'Online') {
-      logger.error(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${heaterPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+      logger.debug(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${heaterPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
       return;// dont continue on if this RTV is Offline
@@ -42,29 +42,29 @@ rules.JSRule({
 
     const BoostItem = items.getItem(`${heaterPrefix}_Boost`, true);// return null if missing
     if (BoostItem) {
-      logger.error(`>>>>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
+      logger.debug(`>>>>BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Nopt defined'}`);
       // if (event.itemName === BoostItem.name) {
       // if (event.newState === 'ON') { // gone Off->ON
-      //   logger.error('>v_CT_Boost changed off->on');
+      //   logger.debug('>v_CT_Boost changed off->on');
       //   actions.Voice.say('turning ct boost on');
-      //   logger.error(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
+      //   logger.debug(`ct BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
       //   HeaterItem.sendCommand('ON');
-      //   logger.error('>ct BOOSTING');
+      //   logger.debug('>ct BOOSTING');
       //   CT_boost_timer = new countdownTimer.CountdownTimer(boost_time, (() => { stopBoost(); }), 'CT_Boost_Countdown');
       // }
       if (event.newState === 'OFF') { // gone ON->OFF
-        logger.error('>v_CT_Boost changed on->off');
+        logger.debug('>v_CT_Boost changed on->off');
         actions.Voice.say('Stopping conservatory BOOST');
         // if  here then its by clicking the boost off button so
         // cancel timer   // and turn stuff off
-        logger.error('manual....BOOST OFF ');
+        logger.debug('manual....BOOST OFF ');
         // if (!CT_boost_timer.isRunning()) {
         //   CT_boost_timer.cancel();
         // }
         items.getItem('CT_Boost').sendCommand('OFF'); // tv
         HeaterItem.sendCommand('OFF');
       } else {
-        logger.error('(v_ct OFF. timer does NOT exist');
+        logger.debug('(v_ct OFF. timer does NOT exist');
       }
     }
   },

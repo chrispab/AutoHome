@@ -8,7 +8,7 @@ const logger = log('CT_heating_fan_cooling.js');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded fCT_heating_fan_cooling.js');
+  logger.info('scriptLoaded fCT_heating_fan_cooling.js');
   // let loadedDate = Date.now();
 };
 
@@ -70,7 +70,7 @@ rules.JSRule({
   description: 'Fan Pulse (FanPulseSwitch) change/update',
   triggers: [triggers.ItemStateChangeTrigger('FanPulseSwitch', 'OFF', 'ON')],
   execute: (data) => {
-    logger.error('fan pulse CT_fan_power ON');
+    logger.debug('fan pulse CT_fan_power ON');
     items.getItem('CT_fan_power').sendCommand('ON');
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
       items.getItem('CT_fan_power').sendCommand('OFF');

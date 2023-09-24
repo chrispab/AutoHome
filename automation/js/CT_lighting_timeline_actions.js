@@ -14,7 +14,7 @@ rules.JSRule({
   description: 'when CT lights TIMELINE allow(timeline OFF->ON), lights on if dark',
   triggers: [triggers.ItemStateChangeTrigger('v_CT_MorningLighting_update_by_timeline', 'OFF', 'ON')],
   execute: () => {
-    // logger.warn('__');
+    // logger.info('__');
     logger.error(`VVVVVVVVV  v_CT_MorningLighting_update_by_timeline: ${items.getItem('v_CT_MorningLighting_update_by_timeline').state}`);
 
     // items.getItem('gConservatoryLights').sendCommand('ON');

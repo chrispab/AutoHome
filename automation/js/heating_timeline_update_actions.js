@@ -24,7 +24,7 @@ const logger = log('auto_program_setpoint_UPDATE');
 function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
   // build the setpoint item name
   const setPointItemName = `${roomPrefix}_Setpoint_auto_${setpointTag}`;
-  logger.warn(`---->>>> setPointItemName found : ${setPointItemName}`);
+  logger.info(`---->>>> setPointItemName found : ${setPointItemName}`);
 
   return items.getItem(setPointItemName).state;// return setpoint temperature value
 }
@@ -46,13 +46,13 @@ rules.JSRule({
   description: 'handle - auto program setpoint is updated by a timeline',
   triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineSetpointUpdateProxys')],
   execute: (event) => {
-    logger.error('--->>> handle - heater auto program setpoint is updated by a timeline');
+    logger.debug('--->>> handle - heater auto program setpoint is updated by a timeline');
     // myutils.showEvent(event);
 
     const { itemName } = event;
 
-    logger.warn(`--->>> gHeatingTimelineSetpointUpdateProxys triggering item : ${itemName}`);
-    logger.warn(`--->>> itemName.state : ${items.getItem(itemName).state}`);
+    logger.info(`--->>> gHeatingTimelineSetpointUpdateProxys triggering item : ${itemName}`);
+    logger.info(`--->>> itemName.state : ${items.getItem(itemName).state}`);
 
     // incoming event in format "itemName": "v_CT_SetPoint_auto_update_by_timeline",
     // now get the actual temp setpoint from the corresponding setpoit item
@@ -60,17 +60,17 @@ rules.JSRule({
     // roomPrefix is first 2 chars of triggering item name
     const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    logger.warn(`--->>> roomPrefix : ${roomPrefix}`);
+    logger.info(`--->>> roomPrefix : ${roomPrefix}`);
 
     //! ONLY update auto setpoint if heater mode is 'auto'
 
     // setpointTempTag is one  possible tag, '1 to 6
     const setpointTemperatureTag = event.receivedState.toString();
-    logger.warn(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);
+    logger.info(`--->>> setpointTemperatureTag : ${setpointTemperatureTag}`);
 
     // e.g given  'CT' , '2', returns temp for CT_Setpoint_auto_2, e.g. 17.4
     const setPointTemperature = getSetpointAutoTempForRoom(roomPrefix, setpointTemperatureTag);
-    logger.warn(`--->>> setPointTemperature found : ${setPointTemperature}`);
+    logger.info(`--->>> setPointTemperature found : ${setPointTemperature}`);
 
     // finally send the new setpoit temperature to the relevant real setpoint item
     // setpoint item name of form '<roomPrefix>_ThermostatTemperatureSetpoint'
@@ -93,7 +93,7 @@ rules.JSRule({
   description: 'handle when a auto program setpoint is updated by a setpoint changed from webui',
   triggers: [triggers.GroupStateUpdateTrigger('gHeating_Setpoint_auto_updates_webui')],
   execute: (event) => {
-    logger.error('handle when a auto program setpoint is updated by a setpoint changed from webui');
+    logger.debug('handle when a auto program setpoint is updated by a setpoint changed from webui');
     // myutils.showEvent(event);
     // e.g. "itemName": "CT_Setpoint_auto_min"
     // roomPrefix = 'CT'
@@ -105,8 +105,8 @@ rules.JSRule({
     const temperatureSetpointTagOfTrigger = event.itemName.toString().substr(event.itemName.lastIndexOf('_') + 1);// get all after last '_'
     const activeTemperatureSetpointTag = items.getItem(`v_${roomPrefix}_SetPoint_auto_update_by_timeline`).state;
 
-    logger.warn(`__**>> temperatureSetpointTagOfTrigger : ${temperatureSetpointTagOfTrigger}`);
-    logger.warn(`__**>> activeTemperatureSetpointTag : ${activeTemperatureSetpointTag}`);
+    logger.info(`__**>> temperatureSetpointTagOfTrigger : ${temperatureSetpointTagOfTrigger}`);
+    logger.info(`__**>> activeTemperatureSetpointTag : ${activeTemperatureSetpointTag}`);
 
     if (temperatureSetpointTagOfTrigger === activeTemperatureSetpointTag) {
       //
@@ -115,9 +115,9 @@ rules.JSRule({
       // build thermostat item name, e.g. 'CT_Setpoint', from 'CT_Setpoint_auto_comfort'
       const targetSetpointItemName = `${roomPrefix}_ThermostatTemperatureSetpoint`;
       items.getItem(targetSetpointItemName).sendCommand(setpointToSendToThermostat);
-      logger.warn(`__**>> setpointToSendToThermostat : ${setpointToSendToThermostat}`);
+      logger.info(`__**>> setpointToSendToThermostat : ${setpointToSendToThermostat}`);
 
-      logger.warn(`__**>> targetSetpointItemName : ${targetSetpointItemName}`);
+      logger.info(`__**>> targetSetpointItemName : ${targetSetpointItemName}`);
     }
   },
 });

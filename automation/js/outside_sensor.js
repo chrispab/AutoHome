@@ -7,7 +7,7 @@ const {
 const logger = log('outside_sensor');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded init outside sensor stuff');
+  logger.info('scriptLoaded init outside sensor stuff');
 };
 
 rules.JSRule({
@@ -17,9 +17,9 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Offline'),
   ],
   execute: () => {
-    logger.warn('outside sensor went offline');
+    logger.info('outside sensor went offline');
     if (items.getItem('outsideReboots').state == 'NULL') {
-      logger.error('++++++++++++++++++++++Checking outsideRebbots is NULL?');
+      logger.debug('++++++++++++++++++++++Checking outsideRebbots is NULL?');
       items.getItem('outsideReboots').postUpdate('OFF');
     }
   },
@@ -32,7 +32,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger('Outside_Reachable', 'Online'),
   ],
   execute: () => {
-    logger.warn('outside sensor came online');
+    logger.info('outside sensor came online');
   },
 });
 rules.JSRule({

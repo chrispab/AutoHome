@@ -27,7 +27,7 @@ function randomFartString() {
   logger.debug(`VVV - numString  : ${numString}`);
 
   fartString = `farts/fart-${numString}.mp3`;
-  logger.warn(`contact01 - fart string  : ${fartString}`);
+  logger.info(`contact01 - fart string  : ${fartString}`);
   return fartString;
 }
 

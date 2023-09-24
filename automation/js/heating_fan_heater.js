@@ -7,7 +7,7 @@ const { myutils } = require('personal');
 const logger = log('fan_heater');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded - init ft ct sp link');
+  logger.info('scriptLoaded - init ft ct sp link');
   const offset = items.getItem('FH_Link_TrackingOffset').state;
   if (offset === 'NULL') {
     items.getItem('FH_Link_TrackingOffset').sendCommand(1.0);

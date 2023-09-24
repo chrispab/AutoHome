@@ -5,4 +5,4 @@
 // roomPrefix is first 2 chars of triggering item name
 const heaterPrefixPartial = itemName.toString().substr(itemName.indexOf('_') + 1);
 const heaterPrefix = heaterPrefixPartial.substr(0, itemName.indexOf('_') + 1);
-logger.warn(`--->>> heaterPrefix : ${heaterPrefix}`);
+logger.info(`--->>> heaterPrefix : ${heaterPrefix}`);
