@@ -5,8 +5,9 @@ Switch FanPulseSwitch    "Fan Pulse"
 
 
 Switch FanOnOverride    "Fan ON - Override"
-Switch CT_Fan_Cooling_enable    "CT_Fan_Cooling_enable"
+Switch CT_Fan_Cooling_enable    "big fan" <switch>  (gConservatory) { ga="Switch" [ roomHint="Conservatory" ] }
 Switch CT_Fan_Heating_circulate_enable    "CT_Fan_Heating_circulate"
+// Switch  vCT_TVKodiSpeakers2 "Telly"           <switch>  (gConservatory, gCT_TVKodiSpeakers) { ga="Switch" [ roomHint="Conservatory" ] }
 
 
 Number:Temperature Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit"
