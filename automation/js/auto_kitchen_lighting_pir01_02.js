@@ -16,10 +16,12 @@ scriptLoaded = function () {
 
 function pir1_off_body() {
   logger.debug('===The timer is over.pir1_off_body');
+  logger.info('pir01_occupancy - KT_light_1_Power OFF');
   items.getItem('KT_light_1_Power').sendCommand('OFF');
 }
 function pir2_off_body() {
   logger.debug('===The timer is over.pir2_off_body');
+  logger.info('pir02_occupancy - KT_light_2_3_Power OFF');
   items.getItem('KT_light_2_Power').sendCommand('OFF');
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
@@ -91,22 +93,12 @@ rules.JSRule({
     if (event.itemName === 'pir01_occupancy') {
       logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_Power: OFF,time is: ${timeout}` );
 
-      timerMgr.check(itemName, timeout, () => {
-        pir1_off_body();
-        logger.info('pir01_occupancy - KT_light_1_Power OFF');
-      }, false, null, timerName);
-
-      // logger.debug('-pir01_occupancy: STARTING TIMER KT_light_1_Power: OFF END');
+      timerMgr.check(itemName, timeout, () => {pir1_off_body();}, false, null, timerName);
     }
     if (event.itemName === 'pir02_occupancy') {
       logger.debug(`pir02_occupancy: STARTING OFF TIMER KT_light_2_Power: OFF,time is: ${timeout}` );
 
-      timerMgr.check(itemName, timeout, () => {
-        pir2_off_body();
-        logger.info('pir02_occupancy - KT_light_2_3_Power OFF');
-      }, false, null, timerName);
-
-      // logger.debug('-pir02_occupancy: STARTING TIMER KT_light_2&3_Power: OFF END');
+      timerMgr.check(itemName, timeout, () => {pir2_off_body();}, false, null, timerName);
     }
   },
 });
