@@ -30,3 +30,14 @@ Run it on OH startup and whenever things have gone wrong and you need or want to
 
 
 shell:info
+
+filtering logs
+
+https://www.openhab.org/docs/administration/logging.html
+
+https://community.openhab.org/t/openhab-filtering-event-logs/38277/8
+
+https://community.openhab.org/t/how-to-watch-and-look-through-logging/35112
+
+tail  /var/log/openhab/events.log -F | grep CPU
+
