@@ -11,7 +11,7 @@ var timerMgr = cache.private.get('timers', () => TimerMgr());
 
 
 scriptLoaded = function () {
-  logger.debug('scriptLoaded - pir1_2');
+  logger.debug(`scriptLoaded - ${ruleUID}`);
 };
 
 function pir1_off_body() {
@@ -23,44 +23,50 @@ function pir2_off_body() {
   items.getItem('KT_light_2_Power').sendCommand('OFF');
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
+function pir_dummy() {
+  logger.info('pir_dummy - on');
 
-// let pir01_off_timer = null;
-// let pir02_off_timer = null;
+}
+
 rules.JSRule({
   name: 'pir01 or 02 updated with ON',
   description: 'pir01 or 02  - Turn ON lights, cancel off timers  ',
   triggers: [
-    triggers.ItemStateUpdateTrigger('pir01_occupancy', 'ON'),
-    triggers.ItemStateUpdateTrigger('pir02_occupancy', 'ON'),
+    // triggers.ItemStateUpdateTrigger('pir01_occupancy', 'ON'),
+    // triggers.ItemStateUpdateTrigger('pir02_occupancy', 'ON'),
+    triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON'),
+
   ],
   execute: (event) => {
-    logger.debug(`updated pir01_occupancy: ${items.getItem('pir01_occupancy').state}`);
+    itemName = event.itemName.toString();
+    logger.debug(`Triggering item: ${itemName}`);
+
+    logger.debug(`updated pirx_occupancy: ${items.getItem(itemName).state}`);
     logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
     logger.debug(`-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`);
 
-    itemName = event.itemName.toString();
+
     timeout = items.getItem('KT_cupboard_lights_timeout').rawState
     timerName = ruleUID + '_' + itemName;
 
+    timeoutSeconds = items.getItem('KT_cupboard_lights_timeout').rawState + 1;
+    timeoutMs = timeoutSeconds * 1000;
+    timeout = time.toZDT(timeoutMs);
+
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
-      if (itemName == 'pir01_occupancy') {
+      if (itemName === 'pir01_occupancy') {
         items.getItem('KT_light_1_Power').sendCommand('ON');//! on
         logger.info('pir01_occupancy - KT_light_1_Power ON');
-
-        // timerMgr.check(itemName, timeout, () => {
-        //   logger.debug(`${timerName} TIMER on - no body`);
-        // }, true, null, timerName);
       }
 
-      if (itemName == 'pir02_occupancy') {
+      if (itemName === 'pir02_occupancy') {
         items.getItem('KT_light_2_Power').sendCommand('ON');
         items.getItem('KT_light_3_Power').sendCommand('ON');
         logger.info('pir02_occupancy KT_light_2 3_Power ON');
-
-        // timerMgr.check(itemName, timeout, () => {
-        //   logger.debug(`${timerName} TIMER on - no body`);
-        // }, true, null, timerName);
       }
+
+      timerMgr.check(itemName, timeout, () => {pir_dummy();}, true, null, timerName);
+
     }
   },
 });
@@ -72,34 +78,31 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger('pir01_occupancy', 'ON', 'OFF'),
     triggers.ItemStateChangeTrigger('pir02_occupancy', 'ON', 'OFF'),
+    triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF'),
   ],
   execute: (event) => {
+    itemName = event.itemName.toString();
+    logger.debug(`Triggering item: ${itemName}`);
+
     logger.debug(`pirx_occupancy: ON -> OFF`);
 
-    itemName = event.itemName.toString();
     timerName = ruleUID + '_' + itemName;
 
     timeoutSeconds = items.getItem('KT_cupboard_lights_timeout').rawState + 1;
     timeoutMs = timeoutSeconds * 1000;
+    timeout = time.toZDT(timeoutMs);
 
     logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutSeconds} secs` );
     logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutMs} Msecs` );
 
-    //!set off timer duration based on bridge light level and /or time of day
-    // if (items.getItem('CT_LightDark_State').state === "OFF") {
-    //   timeoutms = timeoutMs;
-    // } else {
-    //   timeoutms = timeoutMs / 2;
-    // }
-    timeout = time.toZDT(timeoutMs);
 
     if (event.itemName === 'pir01_occupancy') {
       logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_Power: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, () => {pir1_off_body();}, false, null, timerName);
+      timerMgr.check(itemName, timeout, () => {pir1_off_body();}, true, null, timerName);
     }
     if (event.itemName === 'pir02_occupancy') {
       logger.debug(`pir02_occupancy: STARTING OFF TIMER KT_light_2_Power: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, () => {pir2_off_body();}, false, null, timerName);
+      timerMgr.check(itemName, timeout, () => {pir2_off_body();}, true, null, timerName);
     }
   },
 });
