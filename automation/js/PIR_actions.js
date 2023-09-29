@@ -5,7 +5,7 @@ const { timeUtils } = require('openhab_rules_tools');
 
 var ruleUID = "pir_action";
 const logger = log(ruleUID);
-// log:set DEBUG org.openhab.automation.openhab-js.kitchen_pir
+// log:set DEBUG org.openhab.automation.openhab-js.pir_action
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
 
@@ -24,7 +24,7 @@ function pir2_off_body() {
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
 function pir_dummy() {
-  logger.info('pir_dummy - on');
+  logger.info('pir_dummy_timer called');
 
 }
 
