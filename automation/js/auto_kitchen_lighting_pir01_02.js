@@ -92,8 +92,8 @@ rules.JSRule({
     timeoutMs = timeoutSeconds * 1000;
     timeout = time.toZDT(timeoutMs);
 
-    logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutSeconds} secs` );
-    logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutMs} Msecs` );
+    // logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutSeconds} secs` );
+    // logger.info( `${event.itemName}: STARTING off TIMER , off time: ${timeoutMs} Msecs` );
 
 
     if (event.itemName === 'pir01_occupancy') {
