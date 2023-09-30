@@ -27,6 +27,11 @@ function pir_dummy(itemName) {
   logger.debug(`pir_dummy_timer called by: ${itemName}`);
 
 }
+function timer_pir_off(itemName) {
+  logger.debug(`timer_pir_off ${itemName} Power OFF`);
+  items.getItem(itemName).sendCommand('OFF');
+}
+
 
 rules.JSRule({
   name: 'PIR n updated with ON',
@@ -120,13 +125,13 @@ rules.JSRule({
     }
     if (event.itemName === 'pir03_occupancy') {
       logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
-      timerMgr.check(itemName, timeout, () => { items.getItem('gDiningRoomAutoLights').sendCommand('OFF'); }, true, null, timerName);
+      timerMgr.check(itemName, timeout, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }
     if (event.itemName === 'pir04_occupancy') {
       logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
-      timerMgr.check(itemName, timeout, () => { items.getItem('gDiningRoomAutoLights').sendCommand('OFF'); }, true, null, timerName);
+      timerMgr.check(itemName, timeout, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }
