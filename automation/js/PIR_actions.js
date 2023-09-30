@@ -23,8 +23,8 @@ function pir2_off_body() {
   items.getItem('KT_light_2_Power').sendCommand('OFF');
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
-function pir_dummy() {
-  logger.info('pir_dummy_timer called');
+function pir_dummy(itemName) {
+  logger.info(`pir_dummy_timer called by: ${itemName}`);
 
 }
 
@@ -37,11 +37,11 @@ rules.JSRule({
   ],
   execute: (event) => {
     itemName = event.itemName.toString();
-    logger.debug(`Triggering item: ${itemName}`);
+    logger.debug(`updated pirx_occupancy, Triggering item: ${itemName},state: ${items.getItem(itemName).state}`);
 
-    logger.debug(`updated pirx_occupancy: ${items.getItem(itemName).state}`);
-    logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
-    logger.debug(`-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`);
+    // logger.debug(`updated pirx_occupancy: ${items.getItem(itemName).state}`);
+    // logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
+    // logger.debug(`-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`);
 
     timeout = items.getItem('KT_cupboard_lights_timeout').rawState
     timerName = ruleUID + '_' + itemName;
@@ -68,7 +68,7 @@ rules.JSRule({
         items.getItem('gDiningRoomAutoLights').sendCommand('ON');
         logger.info('gDiningRoomAutoLights Power ON');
       }
-      timerMgr.check(itemName, timeout, () => {pir_dummy();}, true, null, timerName);
+      timerMgr.check(itemName, timeout, () => {pir_dummy(timerName);}, true, null, timerName);
     }
   },
 });
@@ -82,8 +82,10 @@ rules.JSRule({
   ],
   execute: (event) => {
     itemName = event.itemName.toString();
-    logger.debug(`Triggering item: ${itemName}`);
-    logger.debug(`pirx_occupancy: ON -> OFF`);
+    logger.debug(`pirx_occupancy: ON -> OFF, Triggering item: ${itemName},state: ${items.getItem(itemName).state}`);
+
+    // logger.debug(`Triggering item: ${itemName}`);
+    // logger.debug(`pirx_occupancy: ON -> OFF`);
 
     timerName = ruleUID + '_' + itemName;
 
@@ -101,11 +103,11 @@ rules.JSRule({
     }
     if (event.itemName === 'pir03_occupancy') {
       logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, items.getItem('gDiningRoomAutoLights').sendCommand('OFF'), true, null, timerName);
+      timerMgr.check(itemName, timeout,  () => {items.getItem('gDiningRoomAutoLights').sendCommand('OFF');}, true, null, timerName);
     }
     if (event.itemName === 'pir04_occupancy') {
       logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, items.getItem('gDiningRoomAutoLights').sendCommand('OFF'), true, null, timerName);
+      timerMgr.check(itemName, timeout,  () => {items.getItem('gDiningRoomAutoLights').sendCommand('OFF');}, true, null, timerName);
     }
   },
 });
