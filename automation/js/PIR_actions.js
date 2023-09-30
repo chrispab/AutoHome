@@ -50,25 +50,39 @@ rules.JSRule({
     timeoutMs = timeoutSeconds * 1000;
     timeout = time.toZDT(timeoutMs);
 
-    if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
-      if (itemName === 'pir01_occupancy') {
-        items.getItem('KT_light_1_Power').sendCommand('ON');//! on
-        logger.info('pir01_occupancy - KT_light_1 Power ON');
+    if (itemName === 'pir01_occupancy' || itemName === 'pir02_occupancy') {
+      if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
+        if (itemName === 'pir01_occupancy') {
+          items.getItem('KT_light_1_Power').sendCommand('ON');//! on
+          logger.info('pir01_occupancy - KT_light_1 Power ON');
+        }
+        if (itemName === 'pir02_occupancy') {
+          items.getItem('KT_light_2_Power').sendCommand('ON');
+          items.getItem('KT_light_3_Power').sendCommand('ON');
+          logger.info('pir02_occupancy KT_light_2_3 Power ON');
+        }
+        logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+        timerMgr.check(itemName, timeout, () => { pir_dummy(timerName); }, true, null, timerName);
+      } else {
+        logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT setting ON : ${timerName}, for item: ${itemName}`);
       }
-      if (itemName === 'pir02_occupancy') {
-        items.getItem('KT_light_2_Power').sendCommand('ON');
-        items.getItem('KT_light_3_Power').sendCommand('ON');
-        logger.info('pir02_occupancy KT_light_2_3 Power ON');
+    }
+
+    if (itemName === 'pir03_occupancy' || itemName === 'pir04_occupancy') {
+      if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('DR_Auto_Lighting_Trigger_SetPoint').rawState) {
+        if (itemName === 'pir03_occupancy') {
+          items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+          logger.info('gDiningRoomAutoLights Power ON');
+        }
+        if (itemName === 'pir04_occupancy') {
+          items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+          logger.info('gDiningRoomAutoLights Power ON');
+        }
+        logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+        timerMgr.check(itemName, timeout, () => { pir_dummy(timerName); }, true, null, timerName);
+      } else {
+        logger.debug(`BridgeLightSensorLevel ABOVE DR_Auto_Lighting_Trigger_SetPoint, NOT setting ON : ${timerName}, for item: ${itemName}`);
       }
-      if (itemName === 'pir03_occupancy') {
-        items.getItem('gDiningRoomAutoLights').sendCommand('ON');
-        logger.info('gDiningRoomAutoLights Power ON');
-      }
-      if (itemName === 'pir04_occupancy') {
-        items.getItem('gDiningRoomAutoLights').sendCommand('ON');
-        logger.info('gDiningRoomAutoLights Power ON');
-      }
-      timerMgr.check(itemName, timeout, () => {pir_dummy(timerName);}, true, null, timerName);
     }
   },
 });
@@ -94,20 +108,27 @@ rules.JSRule({
     timeout = time.toZDT(timeoutMs);
 
     if (event.itemName === 'pir01_occupancy') {
-      logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_ Power: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, () => {pir1_off_body();}, true, null, timerName);
+      logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_ Power: OFF,time is: ${timeout}`);
+      timerMgr.check(itemName, timeout, () => { pir1_off_body(); }, true, null, timerName);
+      logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
     }
     if (event.itemName === 'pir02_occupancy') {
-      logger.debug(`pir02_occupancy: STARTING OFF TIMER KT_light_2_3 Power: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout, () => {pir2_off_body();}, true, null, timerName);
+      logger.debug(`pir02_occupancy: STARTING OFF TIMER KT_light_2_3 Power: OFF,time is: ${timeout}`);
+      timerMgr.check(itemName, timeout, () => { pir2_off_body(); }, true, null, timerName);
+      logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+
     }
     if (event.itemName === 'pir03_occupancy') {
-      logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout,  () => {items.getItem('gDiningRoomAutoLights').sendCommand('OFF');}, true, null, timerName);
+      logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
+      timerMgr.check(itemName, timeout, () => { items.getItem('gDiningRoomAutoLights').sendCommand('OFF'); }, true, null, timerName);
+      logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+
     }
     if (event.itemName === 'pir04_occupancy') {
-      logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}` );
-      timerMgr.check(itemName, timeout,  () => {items.getItem('gDiningRoomAutoLights').sendCommand('OFF');}, true, null, timerName);
+      logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
+      timerMgr.check(itemName, timeout, () => { items.getItem('gDiningRoomAutoLights').sendCommand('OFF'); }, true, null, timerName);
+      logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+
     }
   },
 });
