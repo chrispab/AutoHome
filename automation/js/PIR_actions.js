@@ -11,26 +11,26 @@ var timerMgr = cache.private.get('timers', () => TimerMgr());
 
 
 scriptLoaded = function () {
-  logger.debug(`scriptLoaded - ${ruleUID}`);
+  logger.info(`scriptLoaded - ${ruleUID}`);
 };
 
 function pir1_off_body() {
-  logger.info('pir01_occupancy - KT_light_1_Power OFF');
+  logger.debug('pir01_occupancy - KT_light_1_Power OFF');
   items.getItem('KT_light_1_Power').sendCommand('OFF');
 }
 function pir2_off_body() {
-  logger.info('pir02_occupancy - KT_light_2_3_Power OFF');
+  logger.debug('pir02_occupancy - KT_light_2_3_Power OFF');
   items.getItem('KT_light_2_Power').sendCommand('OFF');
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
 function pir_dummy(itemName) {
-  logger.info(`pir_dummy_timer called by: ${itemName}`);
+  logger.debug(`pir_dummy_timer called by: ${itemName}`);
 
 }
 
 rules.JSRule({
-  name: 'pir n updated with ON',
-  description: 'pir - Turn ON lights, cancel off timers  ',
+  name: 'PIR n updated with ON',
+  description: 'PIR - Turn ON lights, cancel off timers  ',
   triggers: [
     triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON'),
 
@@ -75,7 +75,7 @@ rules.JSRule({
 
 
 rules.JSRule({
-  name: 'PIR n sensor ON to OFF',
+  name: 'PIR n sensor changed ON to OFF',
   description: 'PIR sensor start OFF lights timer',
   triggers: [
     triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF'),
