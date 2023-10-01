@@ -1,0 +1,68 @@
+// Dimmer myKodi_volume "Kodi Vol [%d]" { channel="kodi:kodi:Kodi_CT:volume" }
+// Player Kodi_CT_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:Kodi_CT:control:pause" }
+//String kodiLivingRoomShowNotification "Show Notification" { channel="kodi:kodi:myKodi:shownotification" }
+
+//Player Kodi_CT_control "Kodi Pause" [ "Switchable" ] { channel="kodi:kodi:Kodi_CT:control:pause" }
+
+//kodi conservatory
+Player kodiFrontRoom_control "Kodi Pause"   { channel="kodi:kodi:KodiFrontRoom:control" }
+Switch pauseKodiFrontRoomProxy "pause Front Room kodi"
+
+String kodiFrontRoom_systemcommand "Systemcommand" { channel="kodi:kodi:KodiFrontRoom:systemcommand" }
+Switch shutdownKodiFrontRoomProxy "shutdown Front Room kodi"
+
+
+
+
+
+//Master Bedroom
+Player kodiBedroom_control "Kodi Pause"   { channel="kodi:kodi:KodiBedroom:control" }
+Switch pauseKodiBedroomProxy "pause bedroom kodi"
+
+String kodiBedroom_systemcommand "Systemcommand" { channel="kodi:kodi:KodiBedroom:systemcommand" }
+Switch shutdownKodiBedroomProxy "shutdown bedroom kodi"
+
+
+// ! Attic kodi
+Player kodiAttic_control "Kodi Pause"   { channel="kodi:kodi:KodiAttic:control" }
+Switch pauseKodiAtticProxy "pause Front Room kodi"
+
+String kodiAttic_systemcommand "Systemcommand" { channel="kodi:kodi:KodiAttic:systemcommand" }
+Switch shutdownKodiAtticProxy "shutdown  KodiAttic"
+
+
+
+
+//kodi conservatory
+String Kodi_CT_Online_Status "Conservatory Kodi online status"
+// Switch Kodi_CTStatust "Conservatory Kodi online status"
+
+Player Kodi_CT_control "Kodi CT Control"   { channel="kodi:kodi:Kodi_CT:control" }
+// Switch pauseKodi_CTProxy "pause conservatory kodi"
+String Kodi_CT_systemcommand "CT Kodi Systemcommand" { channel="kodi:kodi:Kodi_CT:systemcommand" }
+//kodi bindingg items
+Switch Kodi_CT_mute                  "Mute"                      { channel="kodi:kodi:Kodi_CT:mute" }
+Dimmer Kodi_CT_volume                "Volume [%d]"               { channel="kodi:kodi:Kodi_CT:volume" }
+// Switch Kodi_CT_stop                  "Stop"                      { channel="kodi:kodi:Kodi_CT:stop" }
+String Kodi_CT_title                 "Title [%s]"                { channel="kodi:kodi:Kodi_CT:title" }
+// String Kodi_CT_showtitle             "Show title [%s]"           { channel="kodi:kodi:Kodi_CT:showtitle" }
+// String Kodi_CT_album                 "Album [%s]"                { channel="kodi:kodi:Kodi_CT:album" }
+String Kodi_CT_artist                "Artist [%s]"               { channel="kodi:kodi:Kodi_CT:artist" }
+// String Kodi_CT_playuri               "Play URI"                  { channel="kodi:kodi:Kodi_CT:playuri" }
+// String Kodi_CT_playfavorite          "Play favorite"             { channel="kodi:kodi:Kodi_CT:playfavorite" }
+// String Kodi_CT_pvr-open-tv             "Play PVR TV channel"       { channel="kodi:kodi:Kodi_CT:pvr-open-tv" }
+// String Kodi_CT_pvr-open-radio          "Play PVR Radio channel"    { channel="kodi:kodi:Kodi_CT:pvr-open-radio" }
+// String Kodi_CT_pvr-channel            "PVR channel [%s]"          { channel="kodi:kodi:Kodi_CT:pvr-channel" }
+// String Kodi_CT_shownotification          "Notification"              { channel="kodi:kodi:Kodi_CT:shownotification" }
+// // String Kodi_CT_error-notification    "Error Notification"        { channel="kodi:kodi:Kodi_CT:error-notification" }
+// // String Kodi_CT_weather-notification  "Weather Notification"      { channel="kodi:kodi:Kodi_CT:weather-notification" }
+// String Kodi_CT_input                 "Input"                     { channel="kodi:kodi:Kodi_CT:input" }
+// String Kodi_CT_inputtext             "Inputtext"                 { channel="kodi:kodi:Kodi_CT:inputtext" }
+// String Kodi_CT_mediatype             "Mediatype [%s]"            { channel="kodi:kodi:Kodi_CT:mediatype" }
+// String Kodi_CT_genrelist             "Genres [%s]"               { channel="kodi:kodi:Kodi_CT:genreList" }
+Image  Kodi_CT_thumbnail                                         { channel="kodi:kodi:Kodi_CT:thumbnail" }
+Image  Kodi_CT_fanart                                            { channel="kodi:kodi:Kodi_CT:fanart" }
+Number:Time Kodi_CT_currenttime      "Current Time [%d %unit%]"  { channel="kodi:kodi:Kodi_CT:currenttime" }
+Number:Dimensionless Kodi_CT_currenttimepercentage     "Current Time [%d ]"  { channel="kodi:kodi:Kodi_CT:currenttimepercentage" }
+Number:Time Kodi_CT_duration         "Duration [%d %unit%]"      { channel="kodi:kodi:Kodi_CT:duration" }
+// String Kodi_CT_playnotification      "Play notification URI"     { channel="kodi:kodi:Kodi_CT:playnotification" }

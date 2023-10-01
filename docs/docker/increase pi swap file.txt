@@ -1,0 +1,2 @@
+pi@iotstack:~ $
+sudo nano /etc/dphys-swapfile

@@ -1,0 +1,253 @@
+config:
+  label: heating_HL_timelines
+  sidebar: true
+  visibleTo:
+    - role:administrator
+blocks:
+  - component: oh-block
+    config:
+      title: Hall Heating Control
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Hall
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: HL_HeatingMode
+                        heatingStateItem: HL_Heater
+                        location: HL
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: HL_RTVReachable
+                        rssiItem: HL_RTV_Rssi
+                        setpointItem: HL_TemperatureSetpoint
+                        tempItem: HL_Temperature
+                        trendItem: HL_Temperature
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: v_HL_SetPoint_auto_update_by_timeline
+                        outline: true
+                        title: current attic setpoint
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-clock-card
+                      config: {}
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: group
+                        actionGroupPopupItem: gRoomHeaterStates
+                        color: red
+                        icon: f7:flame
+                        iconColor: "=(items.Boiler_Control.state == 'ON') ? 'red' : 'blue'"
+                        item: Boiler_Control
+                        outline: true
+                        title: Boiler
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerCoordSystem: time
+                        actionAnalyzerItems:
+                          - Outside_Temperature
+                        expandable: false
+                        item: Outside_Temperature
+                        noBorder: false
+                        outline: true
+                        title: Outside sensor
+                        trendItem: Outside_Temperature
+  - component: oh-block
+    config:
+      title: Auto Heating Setpoints
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#A9A9A9"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_1
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#87CEFA"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_2
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#008000"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_3
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#FFD700"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_4
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#FF8C00"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_5
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:setpoint_control_v1
+                      config:
+                        PrimaryColour: "#DC143C"
+                        setpointAutoStateItem: v_HL_SetPoint_auto_update_by_timeline
+                        setpointItem: HL_Setpoint_auto_6
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
+                        states: 1,2,3,4,5,6,7
+                        title: Hall Heating Setpoints
+                        transfer_item: Transfer_HL_SetPoint_auto
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-webframe-card
+                      config:
+                        height: 700
+                        src: http://iotstack.local:3000/d/IQU2gJWRk/at_heating_graph?orgId=1&refresh=5m&viewPanel=2
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-col
+          config:
+            width: "100"
+            xlarge: "15"
+          slots:
+            default:
+              - component: widget:Thermostat-Control-dev6
+                config:
+                  Title: Hall
+                  heatingModeArray: auto,manual,off
+                  heatingModeItem: HL_HeatingMode
+                  heatingStateItem: HL_Heater
+                  location: HL
+                  maximumTemp: "26"
+                  minimumTemp: "13"
+                  reachableStateItem: HL_RTVReachable
+                  rssiItem: HL_RTV_Rssi
+                  setpointItem: HL_TemperatureSetpoint
+                  tempItem: HL_Temperature
+                  trendItem: HL_Temperature
+        - component: oh-grid-col
+          config:
+            width: "100"
+            xlarge: "10"
+          slots:
+            default:
+              - component: oh-label-card
+                config:
+                  item: v_HL_SetPoint_auto_update_by_timeline
+                  outline: true
+                  title: current conservatoty setpoint
+        - component: oh-grid-col
+          config:
+            width: "100"
+            xlarge: "15"
+          slots:
+            default:
+              - component: oh-clock-card
+                config: {}
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,008000,87CEFA
+                        states: off,manual,auto
+                        title: Hall Heating Modes
+                        transfer_item: Transfer_HL_HeatingMode
+masonry: null
+grid: []
+canvas: []

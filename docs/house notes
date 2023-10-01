@@ -1,0 +1,27 @@
+rooms/locations
+
+--grond floor 5
+CT              RAD, TS
+KT              RAD, TS
+HL              RAD, TS
+FR              RAD, TS
+DR              RAD, TS
+pantry          TS
+GRG
+util/toilet
+GHOUSE
+SHD
+summer house
+shd 2
+
+--1st floor 3
+OF              RAD, TS
+ER              RAD, TS
+BR              RAD, TS
+bathroom        RAD, TS
+LANDING
+ENSUITE         RAD, TS
+
+--2ND FLOOR 1
+AT              RAD, TS
+LOFT SPACE

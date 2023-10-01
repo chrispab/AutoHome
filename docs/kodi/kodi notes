@@ -1,0 +1,8 @@
+You can enable e.g. TRACE logging for the binding to find out if the request of the binding to Kodi is successful or not. There should be a continuous polling for the connection status. Do the following steps:
+
+    open the Karaf console: https://www.openhab.org/docs/administration/console.html
+    set the logging level to TRACE for binding ( log:set TRACE org.openhab.binding.kodi )
+    https://www.openhab.org/docs/administration/logging.html#defining-what-to-log
+    view log with log:tail or log:tail org.openhab.binding.kodi
+
+

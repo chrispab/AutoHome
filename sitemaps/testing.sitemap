@@ -1,0 +1,53 @@
+sitemap testing label="testing"
+{
+    //Frame {
+        // Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]"
+        // Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]"
+        //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
+
+        //  Colorpicker item=Bulb3Colour label="Bulb 3 colour"
+        //  Colorpicker item=Bulb4Colour label="Bulb 4 colour"
+        // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
+        //Colorpicker item=ColourBulb1Colour label="C bulb 1 Color"
+        //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
+        // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
+        // Switch item=RemoteControlBatteryLow label="Battery low warning"
+        //// Switch item=ControlOutlet label="Power Switch"
+        //Switch item=ClipLightPower label="ClipLight switch"
+     Frame {
+                Switch item=pauseKodi_CTProxy label="con kodi pause"
+//Player item=Kodi_CT_control label="Kodi Pause"
+        // Switch item=shutdownKodi_CTProxy label="con kodi shutdown"
+     }
+
+
+     Frame {
+
+        Switch item=WiFiSocket1Power label="wifi socket 1"
+        Text item=WiFiSocket1Reachable label="wifi socket 1 reachable [%s]"
+        Text item=WiFiSocket1RSSI label="wifi socket 1 RSSI [%d %%]"
+    }
+        Frame {
+
+        Switch item=wifi_socket_2_power label="wifi socket 2"
+        Text item=WiFiSocket2Reachable label="wifi socket 2 reachable [%s]"
+        Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
+    }
+        Frame {
+        Switch item=wifi_socket_3_power label="wifi socket 3"
+        Text item=WiFiSocket3Reachable label="wifi socket 3 reachable [%s]"
+        Text item=WiFiSocket3RSSI label="wifi socket 3 RSSI [%d %%]"
+    }
+        Frame {
+        Switch item=WiFiSocket4Power label="wifi socket 4"
+        Text item=WiFiSocket4Reachable label="wifi socket 4 reachable [%s]"
+        Text item=WiFiSocket4RSSI label="wifi socket 4 RSSI [%d %%]"
+    }
+    //}
+        //Text item=WiFiSocket2RSSI label="wifi socket 2 RSSI [%d %%]"
+      Frame label="TV" {
+    Switch item= vFR_TVKodi label="Front Room Kodi and TV"
+    Switch item= vCT_TVKodiSpeakers label="Conservatory Kodi and TV"
+    Switch item= vBR_TVKodi label="Bedroom Kodi and TV"
+  }
+}

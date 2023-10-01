@@ -1,0 +1,13 @@
+sitemap FrontRoom label="Front Room"
+{
+    Frame label="TV" {
+      Switch item= vFR_TVKodi label="TV & kodi"
+    }
+  Frame label="Heating" {
+    Text item=FR_ThermostatTemperatureAmbient label="Temperature: [%.1f °C]"
+    Setpoint item=FR_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[FR_Heater_Mode=="auto", FR_Heater_Mode=="manual"]
+    Switch item=FR_Heater_Mode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
+    Switch item= FR_Heater_Control label="Radiator"
+  }
+
+}

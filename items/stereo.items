@@ -1,0 +1,3 @@
+Switch	vCT_stereo	"Conservatory stereo"	<switch>	(gConservatory)		{ ga="Switch" [ roomHint="Conservatory" ] }
+// Switch	vCT_TVKodiSpeakers2	"the telly"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
+// Switch	vCT_TVKodiSpeakers	"Conservatory TV"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }

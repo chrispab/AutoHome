@@ -1,0 +1,37 @@
+sitemap All_ThermostatTemperatureAmbients label="All Temperatures"
+{
+    Frame label="Outside" {
+    // Text item=Zb_THPSensor_01_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=Outside_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Conservatory" {
+    // Text item=Zb_THSensor_04_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=CT_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Front Room" {
+    Text item=Zb_THSensor_01_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=FR_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Hall" {
+    // Text item=Zb_THSensor_01_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=HL_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Office" {
+    Text item=Zb_THSensor_02_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=OF_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Bed Room" {
+    Text item=Zb_THSensor_03_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=BR_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+  Frame label="Elsie's Room" {
+    Text item=Zb_THSensor_04_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=ER_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+    Frame label="Attic" {
+    Text item=Zb_THPSensor_01_temperature label="Current Temp(new sensor): [%.1f °C]"
+    Text item=AT_ThermostatTemperatureAmbient label="Current Temp(old sensor): [%.1f °C]"
+  }
+
+}
+

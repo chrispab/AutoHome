@@ -1,0 +1,31 @@
+
+https://askubuntu.com/questions/495957/how-to-disable-the-unlock-your-keyring-popup
+
+Just remove it's file as a charm:
+
+rm ~/.local/share/keyrings/login.keyring
+
+
+a;lso if you them get a perms issue:
+
+https://stackoverflow.com/questions/6448242/git-push-error-insufficient-permission-for-adding-an-object-to-repository-datab
+
+
+
+
+For Ubuntu (or any Linux)
+
+From project root,
+
+cd .git/objects
+ls -al
+sudo chown -R yourname:yourgroup *
+
+You can tell yourname and yourgroup by:
+
+# for yourname
+whoami
+# for yourgroup
+id -g -n <yourname>
+
+Note: remember the star at the end of the sudo line

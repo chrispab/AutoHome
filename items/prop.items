@@ -1,0 +1,4 @@
+Switch	Water1_Power		"Water one Power"					{ channel = "mqtt:topic:water1:powerSwitch" }
+String	Water1_Reachable	"Water one reachable"				{ channel = "mqtt:topic:water1:Reachable" }
+Number	Water1_RSSI			"Water one RSSI"					{ channel = "mqtt:topic:water1:rssi" }
+Number	Water1_Temperature	"Water one Temperature"				{ channel = "mqtt:topic:water1:temperature" }

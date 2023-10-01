@@ -1,0 +1,23 @@
+//thermostat
+Group                   gAT_Thermostat "Attic Thermostat"
+                        (gThermostats)
+                        {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Attic" ]}
+String                  AT_ThermostatMode "Attic Thermostat Mode" <settings>
+                        (gAT_Thermostat, gThermostatModes)
+                        { ga="thermostatMode" }
+Number:Temperature      AT_ThermostatTemperatureSetpoint "Attic Setpoint" <heating>
+                        (gChart_Minute,gAT_Thermostat, gThermostatTemperatureSetpoints)
+                        { ga="thermostatTemperatureSetpoint" }
+Number:Temperature      AT_ThermostatTemperatureAmbient "Attic Temperature" <temperature>
+                        (gChart_Minute,gAT_Thermostat, gThermostatTemperatureAmbients)
+                        { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
+Number:Dimensionless    AT_ThermostatHumidityAmbient "Attic Humidity" <humidity>
+                        (gChart_Minute,gAT_Thermostat, gThermostatHumidityAmbients)
+                        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:atticRadThermoValve:humidity" }
+
+// additional params for use in openhab functions etc
+Group                   gAT_Heater
+Switch                  AT_Heater_Control "Attic Heater"  <my_radiator>                (gAT_Heater, gChart_Minute,gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:atticRadThermoValve:powerSwitch" }
+String                  AT_Heater_Mode "Attic Heating Mode" <settings>         (gAT_Heater, gChart_Minute,gHeatingModes)
+String                  AT_Heater_Reachable "Attic Reachable" <qualityofservice>   (gAT_Heater, gHeaterReachables)    { channel="mqtt:topic:atticRadThermoValve:reachable" }
+Number:Dimensionless    AT_Heater_Rssi "attic RTV RSSI" <qualityofservice>     (gAT_Heater)               { channel="mqtt:topic:atticRadThermoValve:rssi" }

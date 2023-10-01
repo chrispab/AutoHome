@@ -1,0 +1,16 @@
+log:set DEBUG org.openhab.core.automation. Leave this on for setup and testing,
+but you may want to set to WARN when everything is setup.
+
+log:set WARN org.openhab.core.automation
+
+log:list
+
+shell:info
+
+log:set WARN org.openhab.automation.openhab-js.boiler
+log:set DEBUG org.openhab.automation.openhab-js.boiler
+
+bundle:list # to get id of bundle to restasrt
+bundle:stop <id number>
+bundle:start <id number>
+bundle:restart <id number>

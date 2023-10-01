@@ -1,0 +1,51 @@
+2023-08-30 00:48:43.902 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:48:44.294 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:48:49.597 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 28 %
+2023-08-30 00:48:49.599 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 28 %
+2023-08-30 00:49:04.583 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 26 %
+2023-08-30 00:49:04.585 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 26 %
+2023-08-30 00:49:13.892 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-08-30 00:49:13.899 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:13.913 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:14.311 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:19.614 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 30 %
+2023-08-30 00:49:19.617 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 30 %
+2023-08-30 00:49:28.895 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-08-30 00:49:28.908 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:28.913 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:34.601 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 18 %
+2023-08-30 00:49:34.603 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 18 %
+2023-08-30 00:49:43.908 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-08-30 00:49:43.916 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:43.924 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:44.338 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:49:49.591 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 26 %
+2023-08-30 00:49:49.595 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - MQTTThingWiFiPowerSocket4_Rssi: 26 %
+2023-08-30 00:50:04.599 [ERROR] [ab-js.mqttthingwifipowersocket4_rssi] - wifi_socket_4_rssi: 28 %
+2023-08-30 00:50:05.142 [WARN ] [ab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@982e36' takes more than 5000ms.
+2023-08-30 00:50:14.330 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-30 00:50:14.719 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-08-30 00:51:00.159 [INFO ] [ion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+2023-08-30 00:53:35.504 [WARN ] [ab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+2023-08-30 01:30:00.409 [WARN ] [automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+2023-08-30 02:46:01.006 [WARN ] [t.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":90,"linkquality":123,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'
+2023-08-30 04:00:02.830 [WARN ] [qtt.generic.AbstractMQTTThingHandler] - unsubscription on disposal failed for mqtt:topic:hallRadThermoValve:
+java.util.concurrent.TimeoutException: null
+	at java.util.concurrent.CompletableFuture.timedGet(CompletableFuture.java:1960) ~[?:?]
+	at java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2095) ~[?:?]
+	at org.openhab.binding.mqtt.generic.AbstractMQTTThingHandler.dispose(AbstractMQTTThingHandler.java:246) ~[?:?]
+	at org.openhab.binding.mqtt.generic.internal.handler.GenericMQTTThingHandler.dispose(GenericMQTTThingHandler.java:109) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at org.openhab.core.internal.common.AbstractInvocationHandler.invokeDirect(AbstractInvocationHandler.java:147) ~[?:?]
+	at org.openhab.core.internal.common.Invocation.call(Invocation.java:52) ~[?:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[?:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+2023-08-30 04:00:07.339 [WARN ] [core.thing.internal.ThingManagerImpl] - Disposing handler for thing 'mqtt:topic:hallRadThermoValve' takes more than 5000ms.
+
+
+07:10:30.478 [WARN ] [tt.generic.ChannelStateTransformation] - Executing the JSONPATH-transformation failed: Invalid path '$.action' in '{"battery":90,"linkquality":123,"update":{"installed_version":604241925,"latest_version":604241925,"state":"idle"},"update_available":false}'

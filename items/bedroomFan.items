@@ -1,0 +1,2 @@
+Switch bedroom_fan_power1 "bedroom fan" (gMQTT, gBGWiFiPowerSockets)  { ga="switch", channel = "mqtt:topic:bg_wifiadapter_2:powerSwitch" }
+// { ga="switch" [ roomHint="conservatory" ], channel = "mqtt:topic:amplifier:standby" }

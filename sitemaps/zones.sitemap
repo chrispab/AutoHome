@@ -1,0 +1,33 @@
+sitemap zones label="Zones"
+{
+  Frame {
+    Text item=Current_Date
+    Text item= Outside_Temperature label="Ouside Temperature : [%.1f °C]"
+    Text item= Water1_Temperature label="Water Temperature : [%.1f °C]"
+    Switch item= Water1_Power label="Water Power"
+
+  }
+      Frame label="Zone 1" {
+            Switch item= Zone1LightStatus label="Light"
+            Text item= Zone1Temperature label="Temperature : [%.1f °C]"
+            Text item= Zone1Humidity label="Humidity : [%.1f %%]"
+            Switch item= Zone1FanStatus label="Fan"
+            Switch item= Zone1VentStatus label="Vent"
+            Switch item= Zone1HeaterStatus label="Heat"
+            Text item=Zone1Reachable label="Reachable"
+
+  }
+      Frame label="Zone 3" {
+        Switch item=zone3ControllerPower label="Power"
+            Switch item= Zone3LightStatus label="Light"
+            Text item= Zone3Temperature label="Temperature : [%.1f °C]"
+            Text item= Zone3Humidity label="Humidity : [%.1f %%]"
+            Switch item= Zone3FanStatus label="Fan"
+            Switch item= Zone3VentStatus label="Vent"
+            Switch item= Zone3HeaterStatus label="Heat"
+            Text item=Zone3Reachable label="Reachable"
+  }
+
+
+   
+}

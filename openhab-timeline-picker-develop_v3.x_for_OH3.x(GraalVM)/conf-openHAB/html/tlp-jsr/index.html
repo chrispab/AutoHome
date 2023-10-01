@@ -1,0 +1,203 @@
+<!--
+// timeline/ timepicker index.html
+// version 3.0.2
+// ToSe 
+
+/////////////////////////////////////////////////////////////////////////////////////
+/*
+next steps:
+
+*/
+/////////////////////////////////////////////////////////////////////////////////////
+-->
+
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <link href='css/roboto-fontfamily.css' rel="stylesheet">
+    <link rel="stylesheet" href="css/material.indigo-pink.min.css">
+    <script defer src="js/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/switchPointSet.css" media="screen" />
+  </head>
+  <body>
+  <div id="app" v-cloak>
+    <!-- tlp global setup -->
+    <tlp-adminsetup v-if="adminSetup"
+      :content="content"
+      :token="token"
+    ></tlp-adminsetup>
+    
+    <!-- tlp widget -->
+    <div v-else>
+      <!-- messages -->
+      <div v-if="messageHeader != ''" class="messages">
+        <div class="messageCard" :class="{mCError: mCColor == 0, mCWarn: mCColor == 1}">
+          <h2>{{content[messageHeader]}}</h2>
+          <div>{{content[messageContent1]}}</div>
+          <div>{{content[messageContent2]}}</div>
+        </div>
+        <div v-if="messageButtons" class="messageConfirm">
+          <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" @click="_buttonHandler(messageButton1Func)">{{content[messageButton1]}}</button>
+          <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" @click="_buttonHandler(messageButton2Func)">{{content[messageButton2]}}</button>
+        </div>
+      </div>
+
+      <!-- widget -->
+      <div v-else class="widgetWrapper" :class="{widgetWrapperDark: darkMode}">
+        <!-- toolbar -->
+        <div class="pickerToolbar">
+          <div class="legendWrapper">
+            <div v-if="headline !== ''" class="headline">
+              {{headline}}
+            </div>
+            <div class="legend legendSun" v-if="sun_events">
+              <div class="legendItem" @click="select_sun_item(0)">
+                <div class="legendItemSun legendItemSunUnselect" :class="{legendItemSunActive: sun_active_item == 0}">
+                  <i class="material-icons">clear</i>
+                </div>
+              </div>
+              <div class="legendItem" v-if="sun_events" @click="select_sun_item(1)">
+                <div class="legendItemSun" :class="{legendItemSunActive: sun_active_item == 1}">
+                  <img class="imageSun" src="./icons/Sunrise.svg" alt="">
+                  <i class="material-icons">clear</i>
+                </div>
+              </div>
+              <div class="legendItem" v-if="sun_events" @click="select_sun_item(2)">
+                <div class="legendItemSun" :class="{legendItemSunActive: sun_active_item == 2}">
+                  <img class="imageSun" src="./icons/Sunrise.svg" alt="">
+                </div>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="legendItem"
+                v-for="(i,key) in switchStates.length"
+                :key="key"
+                @click="setCurrentSwitchState(key)"
+              >
+                <div class="legendRec" :class="{currStateRec: currSwitchstate == key}" :style="{background: scaleValueColors[key]}">
+                  <i class="material-icons"
+                    v-if="eventMode && key === 0"
+                  >
+                    <span class="scheduleIcon">schedule</span>
+                  </i>
+                </div>
+                <span :class="{currStateFont: currSwitchstate == key}">{{switchStates[key][1]}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="toolbarSpacer"></div>
+          <div class="legendRight">
+            <div class="legendEdit"
+              @click="toggleEdit"
+            >
+              <i class="material-icons"
+                :class="{editActive: editAllow, editInactive: !editAllow}"
+              >edit</i>
+            </div>
+            <div 
+              v-if="settingsVisible"
+              @click="activateSettings"
+            >
+              <i class="material-icons legendSettingsIcon">settings</i>
+            </div>
+          </div>
+        </div>
+
+        <!-- tlp setup for single timeline -->
+        <tlp-singlesetup v-if="settingCurrent"
+          :content="content"
+          :params="{
+            sun_events,
+            sunrise_offset,
+            sunset_offset,
+            headline,
+            switchStates
+          }"
+          @clicked="singlesetup_action"
+        ></tlp-singlesetup>
+
+        <!-- tlp content -->
+        <div v-else>
+          <div>
+            <div id="contentWrapper">
+              <div class="pickerContent">
+                <div v-if="mode.length > 3" class="xAxis">
+                  <span v-for="(item,key) in currTimeScale">{{currTimeScale[key]}}</span>
+                </div>
+                <div v-for="(i,key) in mode" class="scaleWrapper">
+                  <span class="yAxis">{{yAxisLabel[key]}}</span>
+                  <time-scale class="scaleSet"
+                    :edit-allow="editAllow"
+                    :index-line="_mapCurrentLine(i)"
+                    :init-value="initValue"
+                    :curr-Switchstate="currSwitchstate"
+                    :scale-colors="scaleValueColors"
+                    :event-mode="eventMode"
+                    :zoom-factor="zoomFactor1"
+                    :curr-time="currTime1"
+                    :sun-active-item="sun_active_item"
+                    @clicked="tlChanged"
+                  ></time-scale>
+                </div>
+                <div class="xAxis xaBottom">
+                  <span v-for="(item,key) in currTimeScale">{{currTimeScale[key]}}</span>
+                </div>
+              </div>
+            <tl-inactive v-if="deactivation && !tl_active" :tf0202="content.tf0202" :tf0203="content.tf0203" @click="toggleDisable"></tl-inactive>
+            </div>
+            <div id="pickerFooter">
+              <div class="zoomSlider"
+                :class="[ (orientation == 'portrait') ? 'zoomSlider_port': 'zoomSlider_land' ]"
+                v-show="zoomVisible"
+              >
+                <div class="scaleZoom">
+                  <input id="slider1" class="mdl-slider mdl-js-slider" v-model="zoomFactor" type="range" min="0" max="2" step="1" tabindex="0">
+                  <div class="xAxis_zoom">
+                    <span>x1</span>
+                    <span>x3</span>
+                    <span>x6</span>
+                  </div>
+                </div>
+                <div class="timeRange" v-show="!((orientation == 'portrait') && zoomFactor == 0)">
+                  <input class="mdl-slider mdl-js-slider" v-model="currTime" type="range" min="0" max="24" step="2" tabindex="0" :disabled="zoomFactor == 0">
+                  <div class="xAxis_zoom  xAxis_firstLast">
+                    <span v-for="(item,key) in xAxisTimeScale">{{xAxisTimeScale[key]}}</span>
+                  </div>
+                </div>
+              </div>
+              <div id="footerButton">
+                <span class="space"></span>
+                <div id="deactivate" class="activation" @click="toggleDisable" v-if="deactivation && !changed && tl_active">
+                  <div>{{content.tf0204}}</div>
+                </div>
+                <button id="btn-secPrompt" class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                  v-if="changed"
+                  @click="saveTimeline()"
+                >
+                  {{content.tf0000}}
+                  <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                  </span>
+                </button>
+                <button class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                  v-if="changed"
+                  @click="discardChanges()"
+                >
+                  {{content.tf0001}}
+                  <span class="mdl-button__ripple-container">
+                    <span class="mdl-ripple"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script language="javascript" type="text/javascript" src="js/vue.js"></script>
+  <script type="module" language="javascript" type="text/javascript" src="js/switchPointSet_jsr.js"></script>
+  </body>
+</html>

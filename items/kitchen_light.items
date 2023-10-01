@@ -1,0 +1,18 @@
+Group gKT_WiFiLightsPower
+Group gKT_WiFiLightsReachable
+Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
+
+Number KT_cupboard_lights_timeout
+
+//currently used for RPi mythtv_backend server
+Switch KT_light_1_Power "KT_light_1" (gMQTT, gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"] { channel = "mqtt:topic:KT_light_1:powerSwitch" }
+String KT_light_1_Reachable "KT_light_1 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_1:Reachable" }
+Number KT_light_1_RSSI "KT_light_1 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_1:rssi" }
+
+Switch KT_light_2_Power "KT_light_2" (gMQTT, gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_2:powerSwitch" }
+String KT_light_2_Reachable "KT_light_2 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_2:Reachable" }
+Number KT_light_2_RSSI "KT_light_2 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_2:rssi" }
+
+Switch KT_light_3_Power "KT_light_3" (gMQTT, gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_3:powerSwitch" }
+String KT_light_3_Reachable "KT_light_3 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_3:Reachable" }
+Number KT_light_3_RSSI "KT_light_3 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_3:rssi" }

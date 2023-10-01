@@ -1,0 +1,28 @@
+// Group		gHeating_PresetTempNormal
+
+Group		gHeatingModes
+// Group		gThermostatModes
+Group:String:AND("heat","notdef") gThermostatModes
+
+Group		gThermostatTemperatureSetpoints
+Group       gThermostatTemperatureAmbients
+Group       gThermostatHumidityAmbients
+Group       gHeaterControls
+Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
+Group       gHeaterReachables
+// Group:Switch:AND(ON, OFF) FullyAutomatic "Fully Automatic [ (%d) ]" <switch>
+Group :Switch:OR(ON,OFF) gHeaterBoosters
+Group :Switch:OR(ON,OFF) gvHeaterBoosters
+
+
+DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
+
+Switch		Boiler_Control      "Boiler Control"    <my_radiator>   (gChart_Minute)    { channel="mqtt:topic:boiler:powerSwitch"}
+String      Boiler_Reachable    "Boiler Reachable"  <qualityofservice>  { channel="mqtt:topic:boiler:reachable"}
+Number      Boiler_Rssi         "Boiler Rssi"       <qualityofservice>  { channel="mqtt:topic:boiler:rssi"}
+
+
+
+String		masterHeatingMode			"Global Master Heating Mode [%s]"
+Switch		Heating_UpdateHeaters		"Send Target Temperatures to Heaters"
+// Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>

@@ -1,0 +1,4 @@
+Thing mqtt:topic:co2sensor_01 "CO2 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type number : ppm "CO2 in ppm"      [stateTopic="co2sensor_01/co2ppm"]
+}

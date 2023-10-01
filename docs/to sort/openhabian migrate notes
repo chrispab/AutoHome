@@ -1,0 +1,159 @@
+/   
+to backup openhab files:
+https://community.openhab.org/t/solved-backup/57666/13
+
+sudo openhab-cli backup --full
+
+file in :
+/var/lib/openhab2/backups
+
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/81
+Which places a file in /var/lib/openhab2/backups, which can then be restored using:
+
+sudo openhab-cli restore /var/lib/openhab2/backups/filename.zip
+
+sudo systemctl stop openhab2.service
+sudo openhab-cli restore /var/lib/openhab2/backups/openhab2-backup-20_02_07-16_31_15.zip
+
+This backs up both text config from /etc/openhab and PaperUI config from /var/lib/openhab/
+
+# restart openhab instance
+sudo systemctl start openhab2.service
+
+
+#####################################################
+# Backup Grafana
+#####################################################
+echo "+-+-+-+-+-+-+ Grafana Backup +-+-+-+-+-+-+-+-+"
+#Stop Grafana service
+sudo systemctl stop grafana-server
+#Backing up ini file
+mkdir /var/lib/openhab2/backups/tmp_grafana/
+mkdir /var/lib/openhab2/backups/tmp_grafana/$DATE/
+sudo cp -arv /etc/grafana/grafana.ini /var/lib/openhab2/backups/tmp_grafana/$DATE/grafana.ini
+#Backing up a database
+sudo cp -arv /var/lib/grafana/grafana.db /var/lib/openhab2/backups/tmp_grafana/$DATE/grafana.db
+#Start Grafana service
+sudo systemctl start grafana-server
+#Create Zip File
+cd /var/lib/openhab2/backups/tmp_grafana/$DATE
+sudo zip -r /var/lib/openhab2/backups/grafana-backup-$DATE.zip ./*
+#delete tmp folder
+rm -rf /var/lib/openhab2/backups/tmp_grafana
+
+
+
+#####################################################
+# Backup Influxdb
+#####################################################
+echo "+-+-+-+-+-+-+ Influxdb Backup +-+-+-+-+-+-+-+"
+
+#Backing up the metastore
+influxd backup /var/lib/openhab2/backups/tmp_influxdb/$DATE/
+#Backing up a database
+influxd backup -database openhab_db /var/lib/openhab2/backups/tmp_influxdb/$DATE/
+#Backing up conf file
+cp -arv /etc/influxdb/influxdb.conf /var/lib/openhab2/backups/tmp_influxdb/$DATE/influxdb.conf
+#Create Zip File
+cd /var/lib/openhab2/backups/tmp_influxdb/$DATE
+zip -r /var/lib/openhab2/backups/influx-backup-$DATE.zip ./*
+#delete tmp folder
+rm -rf /var/lib/openhab2/backups/tmp_influxdb
+
+
+#########################################################
+    I don’t know where influxdb is placing its data
+
+Usually its /var/lib/influxdb.
+
+influxdb backup
+https://docs.influxdata.com/influxdb/v1.7/administration/backup_and_restore/
+
+To back up everything:
+
+influxd backup -portable /var/lib/openhab2/backups/influxdb_all/$DATE/
+
+influxd restore -portable -db existingdb path-to-backup
+
+###################################
+To restore data to a database that already exists:
+
+You cannot restore directly into a database that already exists. If you attempt to run the restore command into an existing database, you will get a message like this:
+
+influxd restore -portable -db existingdb path-to-backup
+
+2018/08/30 13:42:46 error updating meta: DB metadata not changed. database may already exist
+restore: DB metadata not changed. database may already exist
+
+    Restore the existing database backup to a temporary database.
+
+    influxd restore -portable -db openhab -newdb openhab_bak /var/lib/openhab2/backups/influxdb_all/20200130T221310Z.manifest
+
+    Sideload the data (using a SELECT ... INTO statement) into the existing target database and drop the temporary database.
+    
+influx -username admin -password influxdb[hutn3y
+
+    > USE openhab_bak
+    > SELECT * INTO openhab_db..:MEASUREMENT FROM /.*/ GROUP BY *
+    > DROP DATABASE openhab_bak
+
+    ###########################################
+to backup openhab files:
+https://community.openhab.org/t/solved-backup/57666/13
+
+sudo openhab-cli backup --full
+
+file in :
+/var/lib/openhab2/backups
+
+copy to new pi
+rsync -avhP /var/lib/openhab2/backups/openhab2-backup-20_01_31-18_45_35.zip pi@192.168.0.108:/var/lib/openhab2/backups/
+
+rsync -avhP /var/lib/openhab2/backups/openhab2-backup-20_02_02-09_11_14.zip pi@192.168.0.108:/home/pi/
+
+
+
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/81
+Which places a file in /var/lib/openhab2/backups, which can then be restored using:
+
+sudo systemctl stop openhab2.service
+sudo openhab-cli restore /var/lib/openhab2/backups/openhab2-backup-20_01_31-18_45_35.zip
+
+sudo openhab-cli restore /home/pi/openhab2-backup-20_02_02-09_11_14.zip
+
+
+This backs up both text config from /etc/openhab and PaperUI config from /var/lib/openhab/
+
+# restart openhab instance
+sudo systemctl start openhab2.service
+
+To back up everything:
+
+influxd backup -portable /var/lib/openhab2/backups/influxdb/
+
+copy to new pi
+rsync -avhP /var/lib/openhab2/backups/influxdb pi@192.168.0.108:/var/lib/openhab2/backups/
+
+To restore data to a database that already exists:
+
+You cannot restore directly into a database that already exists. If you attempt to run the restore command into an existing database, you will get a message like this:
+
+influxd restore -portable -db existingdb path-to-backup
+
+2018/08/30 13:42:46 error updating meta: DB metadata not changed. database may already exist
+restore: DB metadata not changed. database may already exist
+
+    Restore the existing database backup to a temporary database.
+    
+    enable handling large db import
+    
+
+    influxd restore -portable -db openhab_db -newdb openhab_tmp /var/lib/openhab2/backups/influxdb
+
+    Sideload the data (using a SELECT ... INTO statement) into the existing target database and drop the temporary database.
+    
+influx -username admin -password influxdb[hutn3y
+
+    > USE openhab_tmp
+    > SELECT * INTO openhab_db..:MEASUREMENT FROM /.*/ GROUP BY *
+    > DROP DATABASE openhab_bak

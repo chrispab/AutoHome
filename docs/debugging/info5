@@ -1,0 +1,33 @@
+2023-09-01 00:58:28.918 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.028 to 0.03
+2023-09-01 00:58:28.955 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Memory_Used' changed from 3134193664 B to 3133145088 B
+2023-09-01 00:58:28.957 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 44.3 °C
+2023-09-01 00:58:28.961 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.088 to 0.057
+2023-09-01 00:58:32.075 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.03 to 0.031
+2023-09-01 00:58:32.147 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 44.3 °C to 43.3 °C
+2023-09-01 00:58:32.150 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.057 to 0.078
+2023-09-01 00:58:35.279 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.031 to 0.04
+2023-09-01 00:58:35.317 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 43.3 °C to 44.8 °C
+2023-09-01 00:58:35.318 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.078 to 0.079
+2023-09-01 00:58:38.430 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.04 to 0.029
+2023-09-01 00:58:38.521 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 44.3 °C
+
+
+
+2023-09-01 00:57:39.927 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:57:54.906 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-09-01 00:57:54.918 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:57:54.921 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: FH_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:57:54.928 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:58:04.629 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:58:09.916 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-09-01 00:58:09.928 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:58:09.934 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:58:34.652 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 00:58:43.521 [WARN ] [ab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@1ffde69' takes more than 5000ms.
+2023-09-01 00:58:54.908 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-09-01 00:58:54.911 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-09-01 01:00:00.406 [INFO ] [ion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+2023-09-01 01:00:38.617 [INFO ] [.automation.openhab-js.soil_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2023-09-01 01:02:33.153 [WARN ] [ab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+2023-09-01 01:30:00.299 [WARN ] [automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+2023-09-01 04:50:03.969 [INFO ] [ab.ui.habpanel.internal.HABPanelTile] - Stopped HABPanel

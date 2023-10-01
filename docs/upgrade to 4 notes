@@ -1,0 +1,151 @@
+Image and userdata versions differ! Starting an upgrade.
+You can find backup of userdata in /openhab/userdata/backup/userdata-2023-07-30T10-04-29.tar
+
+################################################
+          openHAB Docker update script
+################################################
+
+The script will attempt to update openHAB to version 4.0.1
+Please read the following [32mnotes[m and [31mwarnings[m:
+
+Important notes for version 4.0.0:
+  [31mWarning:[m  CORE: core.GenericEventTrigger and core.GenericEventCondition parameters have have changed. See https://www.openhab.org/docs/configuration/rules-ng.html#system-module-types.
+  [31mWarning:[m  CORE: Rules are now triggered by ItemStateUpdatedEvent instead of ItemStateEvent. If you use JSR223 scripting without helper libraries and expect a certain Java type, code changes might be needed.
+  [31mWarning:[m  CORE: The syntax for an item category/icon in a textual configuration file no longer accepts a value enclosed in quotes. So <temperature> is valid but not <"temperature">. Please update the definition of your items if necessary.
+  [31mWarning:[m  CORE: SCRIPT transformation has been removed and replaced with language-specific transformations: JS, RB, PY, DSL, GROOVY, etc. See https://www.openhab.org/docs/configuration/transformations.html#script-transformation
+  [31mWarning:[m  CORE: UoM has been refactored. Please consult https://www.openhab.org/docs/concepts/units-of-measurement.html and https://www.openhab.org/docs/installation/#upgrading BEFORE starting openHAB, otherwise your persisted data may be corrupted.
+  [31mWarning:[m  Airthings Binding: The channels `radon_st_avg` and `radon_lt_avg` are now of dimension `RadiationSpecificActivity` instead of `Density`. Please update your linked items accordingly.
+  [31mWarning:[m  Bosch Indego Binding: Due to changes in the cloud services, the authentication method has changed. Please follow the authorization flow described in the documentation. Furthermore, a bridge is now required and must be assigned to the `indego` thing. Configuration of username and password is no longer required/supported.
+  [31mWarning:[m  ComfoAir Binding: The channel `enthalpy#enthalpyTime` now represents the set time (in minutes) instead of the internal number value that is sent to the device (`minutes / 12`).
+  [31mWarning:[m  DanfossAirUnit Binding: The deprecated channel 'manual_fan_speed' has been removed. Please use channel 'manual_fan_step' introduced in 3.2.
+  [31mWarning:[m  Dark Sky Binding: Due to EOL of their API, this add-on has been removed.
+  [31mWarning:[m  Generac MobileLink Binding: Due to an API change, existing Generator Things will need to be deleted and added again. Additionally, existing Items will need to be adjusted to reflect the updated Generator Thing channels.
+  [31mWarning:[m  HomeKit: Add-on wide configuration of mappings for thermostat modes is no longer supported. Please use item-level configuration as described in the README.
+  [31mWarning:[m  Hue emulation: The uniqueid value has been changed to resolve discovery issues with Alexa. You may need to rediscover "devices" in all services that use the hue emulation (Amazon Echo, Logitech Harmony, etc).
+  [31mWarning:[m  Hunter Douglas (Luxaflex) PowerView Binding: Deprecated scene channels have been removed. Please use the scene channels introduced in 3.2 (in channel group 'scenes').
+  [31mWarning:[m  JavaScript: JavaScript engines have changed their MIME types: NashornJS is application/javascript:version=ECMAScript-5.1 and GraalJS is application/javascript. Please update your scripts to either make them compatible with GraalJS or change the MIME type to continue to use NashornJS. For Blockly migration, visit the Blockly documentation.
+  [31mWarning:[m  JavaScript NashornJS: NashornJS has been removed from core and isn't included by default. If you still need or want to use it, you can install it as an addon.
+  [31mWarning:[m  JavaScript Scripting Automation: The old "metadata" and "itemchannellink" APIs have been replaced by a new API with extended functionality on the "items" namespace.
+  [31mWarning:[m  JavaScript Scripting Automation: ItemHistory: historicState, maximumBetween, maximumSince, minimumBetween, minimumSince & previousState now return a HistoricItem instead of just the state. previousStateTimestamp has been removed, the timestamp is available on the HistoricItem.
+  [31mWarning:[m  KNX Binding: Units of Measurements have been introduced, make sure you use correct units in the state description. Rules may need to be adapted. Several items changed from PercentType to QuantityType, i.e. raw values increase by a factor of 100.
+  [31mWarning:[m  LuftdatenInfo Binding: The binding was renamed to Sensor.Community Binding to match the new naming of the service. Things need to be recreated.
+  [31mWarning:[m  Netatmo Binding: Due to API authorization process change scheduled on the 2023/04/17 - refresh Token is no more stored in thing configuration, thus can be removed from things config files. If it remains, it'll be ignored.
+  [31mWarning:[m  Netatmo Binding: New scope has been added for the introduction of the Carbon Monoxide Alarm. Authorization process has to be replayed (and former refreshToken can be removed from things config files -- see above).
+  [31mWarning:[m  Windcentrale Binding: The binding has been reworked to support the new API that requires authentication. Delete old 'mill' Things, add an 'account' Bridge and add new 'windmill' Things using the 'account' as Bridge. The channel names now follow the naming conventions. Items must be adapted for these changes.
+
+Replacing userdata system files with newer versions...
+Clearing cache...
+
+Performing post-update tasks for version 4.0.0:
+  Replacing: String ,javascript to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String javascript, to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String javascript to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String ,cometvisu-php to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String cometvisu-php, to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String cometvisu-php to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String ,innogysmarthome to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String innogysmarthome, to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String innogysmarthome to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String ,imperihome to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String imperihome, to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String imperihome to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String ,darksky to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String darksky, to  in file /openhab/userdata/config/org/openhab/addons.config
+  Replacing: String darksky to  in file /openhab/userdata/config/org/openhab/addons.config
+
+Starting JSON database update...
+[main] INFO org.openhab.core.tools.internal.Upgrader - Copying item unit from state description to metadata in database '/openhab/userdata/jsondb/org.openhab.core.items.Item.json'
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage6_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage6#availablePercent'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - Kodi_CT_Duration: Could not determine if channel 'kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb:duration' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_CurrentProcess_Used: Could not find thing for channel 'systeminfo:computer:iotstack:currentProcess#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage5_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage5#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage0_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage0#total'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - RokuExpress_CT_TotalTime: Could not determine if channel 'roku:roku_player:x004006ek6wh:timeTotal' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage8_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage8#available'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - iotstack_server_Latency: Could not determine if channel 'network:pingdevice:192_168_0_100:latency' sets a state description. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - Kodi_CT_CurrentTimeinPercent: Could not determine if channel 'kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb:currenttimepercentage' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - BedroomRTV_Temperature: Could not find thing for channel 'mqtt:topic:bedroomRadThermoValve:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage4_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage4#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Remaining_Capacity: Could not find thing for channel 'systeminfo:computer:iotstack:battery#remainingCapacity'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage5_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage5#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage3_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage3#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage4_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage4#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage0_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage0#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage5_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage5#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Cpu_Load: Could not find thing for channel 'systeminfo:computer:iotstack:cpu#load'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - CT_chromecast_CurrentTime: Could not determine if channel 'chromecast:chromecast:CT_chromecast:currentTime' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage3_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage3#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - XiaomiTempHumiSensor04_Humidity: Could not find thing for channel 'mqtt:topic:THSensor04:humidity'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage8_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage8#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_CurrentProcess_Load: Could not find thing for channel 'systeminfo:computer:iotstack:currentProcess#load'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage6_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage6#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage5_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage5#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage7_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage7#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage2_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage2#used'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - CT_chromecast_Duration: Could not determine if channel 'chromecast:chromecast:CT_chromecast:duration' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - MQTTThingWiFiPowerSocket4_Temperature: Could not find thing for channel 'mqtt:topic:WiFiSocket4:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage5_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage5#availablePercent'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - RokuExpress_CT_PlaybackTime: Could not determine if channel 'roku:roku_player:x004006ek6wh:timeElapsed' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage2_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage2#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Remaining_Time: Could not find thing for channel 'systeminfo:computer:iotstack:battery#remainingTime'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage1_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage1#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage7_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage7#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Memory_Used: Could not find thing for channel 'systeminfo:computer:iotstack:memory#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - AtticRTV_Temperature: Could not find thing for channel 'mqtt:topic:atticRadThermoValve:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Used_Heap_Percent: Could not find thing for channel 'systeminfo:computer:iotstack:memory#usedHeapPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Process_Used: Could not find thing for channel 'systeminfo:computer:iotstack:process#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage2_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage2#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - XiaomiTempHumiSensor02_Humidity: Could not find thing for channel 'mqtt:topic:THSensor02:humidity'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage8_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage8#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Zone1Controller_Temperature: Could not find thing for channel 'mqtt:topic:zone1Controller:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage1_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage1#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Memory_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:memory#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage4_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage4#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - XiaomiTempHumiSensor02_Temperature: Could not find thing for channel 'mqtt:topic:THSensor02:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage0_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage0#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage6_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage6#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Swap_Total: Could not find thing for channel 'systeminfo:computer:iotstack:swap#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage7_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage7#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage3_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage3#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage8_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage8#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Process_Load: Could not find thing for channel 'systeminfo:computer:iotstack:process#load'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage4_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage4#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage0_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage0#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Swap_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:swap#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage6_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage6#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Memory_Total: Could not find thing for channel 'systeminfo:computer:iotstack:memory#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage1_Total: Could not find thing for channel 'systeminfo:computer:iotstack:storage1#total'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage2_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage2#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage7_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage7#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage3_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage3#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage1_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage1#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Swap_Used: Could not find thing for channel 'systeminfo:computer:iotstack:swap#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage7_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage7#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - XiaomiTempHumiSensor04_Temperature: Could not find thing for channel 'mqtt:topic:THSensor04:temperature'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - Kodi_CT_CurrentTime: Could not determine if channel 'kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb:currenttime' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage3_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage3#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage8_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage8#availablePercent'. Check if you need to set unit metadata.
+[main] WARN org.openhab.core.tools.internal.Upgrader - openhabweb_Latency: Could not determine if channel 'network:servicedevice:openhab:latency' sets a state description. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage2_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage2#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Swap_Available: Could not find thing for channel 'systeminfo:computer:iotstack:swap#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Swap_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:swap#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - ConservatoryRTV_Temperature: Could not find thing for channel 'mqtt:topic:conservatoryRadThermoValve:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - MQTTThingOutsidesensor_ShedTemperature: Could not find thing for channel 'mqtt:topic:outside:shedTemperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Memory_AvailablePercent: Could not find thing for channel 'systeminfo:computer:iotstack:memory#availablePercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Memory_Available: Could not find thing for channel 'systeminfo:computer:iotstack:memory#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage0_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage0#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage1_Available: Could not find thing for channel 'systeminfo:computer:iotstack:storage1#available'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage4_Used: Could not find thing for channel 'systeminfo:computer:iotstack:storage4#used'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - MQTTThingOutsidesensor_Temperature: Could not find thing for channel 'mqtt:topic:outside:temperature'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Local_computer_Storage6_UsedPercent: Could not find thing for channel 'systeminfo:computer:iotstack:storage6#usedPercent'. Check if you need to set unit metadata.
+[main] INFO org.openhab.core.tools.internal.Upgrader - Upgrading JS profile configuration in database '/openhab/userdata/jsondb/org.openhab.core.thing.link.ItemChannelLink.json'
+JSON database updated successfully.
+
+
+SUCCESS: openHAB updated from 3.4.2 to 4.0.1
+

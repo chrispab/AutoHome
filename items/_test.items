@@ -1,0 +1,16 @@
+Switch Delayed_OFF_SW    "Delayed OFF" <lighting> (gLightingModes) // heating modes: 0 - Off, 1 - On, 2 - Auto
+
+
+DateTime Time1 "Time 1" <time>
+
+
+
+Switch testSwitch "test switch"
+Switch testSwitch1 "test switch1"
+Switch testBtn1  "test switch"
+Switch Virtual_Switch_1 "virtual switch 1"
+
+
+
+
+Switch v_test_switch_01 "v_test_switch_01"

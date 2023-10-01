@@ -1,0 +1,13 @@
+sitemap wifiSockets label="wifi sockets"
+{
+    Frame {
+        Switch item=WiFiSocket1Power label="mythtv backend wifi socket 1"
+
+        Switch item=wifi_socket_2_power label="front room kodi/tv wifi socket 2"
+
+        Switch item=wifi_socket_3_power label="bedroom kodi/tv wifi socket 3"
+        Switch item=WiFiSocket4Power label="wifi socket 4"
+            // String item=Zone3Reachable label="Reachable"
+
+    }
+}

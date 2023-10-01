@@ -1,0 +1,15 @@
+sitemap Master label="master sitemap"
+{
+//String LINK_THERMOSTAT "<a href='/openhab.app?sitemap=thermostat'>Thermostat control</a>"
+    Frame label="Conservatory " {
+          Switch item= socketG2_1 label="Conservatory Fairy Lights(ID:5)"
+ }  
+
+    Frame label="Dining Room" {
+          Switch item= socketG1_4 label="Dining Room Fairy Lights(ID:4)"
+ } 
+
+     Frame label="Landing fairy lights" {
+          Switch item= socketG1_3 label="Upstairs Landing Fairy Lights (ID:3)"
+ } 
+}

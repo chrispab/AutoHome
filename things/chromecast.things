@@ -1,0 +1,25 @@
+// Thing chromecast:chromecast:GCC_Conservatory  "Conservatory GCC"    [ ipAddress="192.168.0.79" ]
+
+Thing chromecast:chromecast:GCC_FrontRoom     "FrontRoom GCC"   [ ipAddress="192.168.0.40" ]
+
+Thing chromecast:chromecast:GCC_Attic         "Attic GCC"   [ ipAddress="192.168.0.41" ]
+
+Thing chromecast:chromecast:GCC_Bedroom       "Bedroom GCC"   [ ipAddress="192.168.0.42" ]
+
+
+/* Chromecast Audio Group for my Google Home Mini's */
+/* must define this group in your Google Home App on the same device you point to here*/
+// chromecast:audiogroup:House    [ ipAddress="192.168.1.220", port=42576]
+Thing chromecast:chromecast:GHM_Attic     "Attic GHM"    [ ipAddress="192.168.0.75" ]
+// chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
+Thing chromecast:chromecast:GHM_Bedroom	      "Bedroom GHM" [ ipAddress="192.168.0.77" ]
+
+Thing chromecast:chromecast:GHM_ElsiesRoom        "Elsie's Room GHM"  [ ipAddress="192.168.0.76" ]
+
+Thing chromecast:chromecast:GHM_FrontRoom       "Front Room GHM"   [ ipAddress="192.168.0.78" ]
+
+Thing chromecast:chromecast:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
+
+// Thing chromecast:audio:GHM_Conservatory     "Conservatory GHM"    [ ipAddress="192.168.0.71" ]
+
+Thing chromecast:chromecast:GHH_Kitchen     "Kitchen  home hub screen"    [ ipAddress="192.168.0.74" ]

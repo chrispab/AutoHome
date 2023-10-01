@@ -1,0 +1,4 @@
+String myopenHAB_Connection "myopenHAB_item"
+Switch Post_Test_Command
+Switch Restart_Cloud_Connector
+Number myopenHAB_Connection_Success

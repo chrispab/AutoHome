@@ -1,0 +1,23 @@
+//thermostat
+Group                   gDR_Thermostat "Dining Room Thermostat"
+                        (gThermostats)
+                        {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Dining Room" ]}
+String                  DR_ThermostatMode "Dining Room Thermostat Mode" <settings>
+                        (gDR_Thermostat, gThermostatModes)
+                        {ga="thermostatMode"}
+Number:Temperature      DR_ThermostatTemperatureSetpoint "Dining Room Setpoint [%.1f °C]" <heating>
+                        (gChart_Minute, gDR_Thermostat, gThermostatTemperatureSetpoints)
+                        {ga="thermostatTemperatureSetpoint" }
+Number:Temperature      DR_ThermostatTemperatureAmbient "Dining Room Temperature raw [%.1f °C]" <temperature>
+                        (gChart_Minute, gDR_Thermostat, gThermostatTemperatureAmbients)
+                        {ga="thermostatTemperatureAmbient", channel="mqtt:topic:THPSensor01:temperature" }
+Number:Dimensionless    DR_ThermostatHumidityAmbient "Dining Room Humidity [%.1f °C]" <humidity>
+                        (gChart_Minute, gDR_Thermostat, gThermostatHumidityAmbients)
+                        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:THPSensor01:humidity" }
+
+//heater
+Group                   gDR_Heater
+Switch                  DR_Heater_Control "Dining Room Heater"  <my_radiator>               (gChart_Minute,gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:diningRoomRadThermoValve:powerSwitch" }
+String                  DR_Heater_Mode "Dining Room Heating Mode" <settings>        (gChart_Minute,gHeatingModes)
+String                  DR_Heater_Reachable "Dining Room Reachable" <qualityofservice>  (gHeaterReachables)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
+Number:Dimensionless    DR_Heater_Rssi "DR RTV RSSI [%.1f]" <qualityofservice>         { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }

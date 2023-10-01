@@ -1,0 +1,708 @@
+Zigbee2MQTT:info  2023-03-26 13: 29: 29: MQTT publish: topic 'zigbee2mqtt/bridge/config/devices',
+payload '[
+    {
+        "dateCode": "20200925",
+        "friendly_name": "Coordinator",
+        "ieeeAddr": "0x00124b00215fffca",
+        "lastSeen": 1679837368998,
+        "networkAddress": 0,
+        "softwareBuildID": "zStack3x0",
+        "type": "Coordinator"
+    },
+    {
+        "dateCode": "20170627",
+        "description": "Aqara human body movement and illuminance sensor",
+        "friendly_name": "pir01",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00158d00052d3567",
+        "lastSeen": 1679837045066,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "RTCGQ11LM",
+        "modelID": "lumi.sensor_motion.aq2",
+        "networkAddress": 43687,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20200220",
+        "description": "TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white",
+        "friendly_name": "ikeacolourbulb01",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x14b457fffe2e9489",
+        "lastSeen": 1679836523795,
+        "manufacturerID": 4476,
+        "manufacturerName": "IKEA of Sweden",
+        "model": "LED1624G9",
+        "modelID": "TRADFRI bulb E27 CWS opal 600lm",
+        "networkAddress": 17316,
+        "powerSource": "Mains (single phase)",
+        "softwareBuildID": "1.3.013",
+        "type": "Router",
+        "vendor": "IKEA"
+    },
+    {
+        "dateCode": "2018-09-26",
+        "description": "[CC2530 router](http://ptvo.info/cc2530-based-zigbee-coordinator-and-router-112/)",
+        "friendly_name": "router01",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00124b001fc64f9f",
+        "lastSeen": 1679837261720,
+        "manufacturerID": 4447,
+        "manufacturerName": "LUMI",
+        "model": "CC2530.ROUTER",
+        "modelID": "lumi.router",
+        "networkAddress": 37939,
+        "powerSource": "Mains (single phase)",
+        "type": "Router",
+        "vendor": "Custom devices (DiY)"
+    },
+    {
+        "dateCode": "20220820",
+        "description": "TRADFRI LED bulb E27 1000 lumen, dimmable, opal white",
+        "friendly_name": "ikeabulb01",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x000b57fffebe2091",
+        "lastSeen": 1679837086881,
+        "manufacturerID": 4476,
+        "manufacturerName": "IKEA of Sweden",
+        "model": "LED1623G12",
+        "modelID": "TRADFRI bulb E27 W opal 1000lm",
+        "networkAddress": 2066,
+        "powerSource": "Mains (single phase)",
+        "softwareBuildID": "2.3.094",
+        "type": "Router",
+        "vendor": "IKEA"
+    },
+    {
+        "dateCode": "20170627",
+        "description": "Aqara human body movement and illuminance sensor",
+        "friendly_name": "pir02",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00158d00052bd384",
+        "lastSeen": 1679836567722,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "RTCGQ11LM",
+        "modelID": "lumi.sensor_motion.aq2",
+        "networkAddress": 42483,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20191205",
+        "description": "Aqara temperature, humidity and pressure sensor",
+        "friendly_name": "THPSensor01",
+        "hardwareVersion": 30,
+        "ieeeAddr": "0x00158d00053f5d8d",
+        "lastSeen": 1679836790245,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "WSDCGQ11LM",
+        "modelID": "lumi.weather",
+        "networkAddress": 46723,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20160516",
+        "description": "MiJia temperature & humidity sensor",
+        "friendly_name": "THSensor04",
+        "hardwareVersion": 30,
+        "ieeeAddr": "0x00158d000445912d",
+        "lastSeen": 1679836219336,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "WSDCGQ01LM",
+        "modelID": "lumi.sensor_ht",
+        "networkAddress": 27092,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20160516",
+        "description": "MiJia temperature & humidity sensor",
+        "friendly_name": "THSensor02",
+        "hardwareVersion": 30,
+        "ieeeAddr": "0x00158d00044502cd",
+        "lastSeen": 1679834546198,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "WSDCGQ01LM",
+        "modelID": "lumi.sensor_ht",
+        "networkAddress": 9243,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20160516",
+        "description": "MiJia temperature & humidity sensor",
+        "friendly_name": "THSensor03",
+        "hardwareVersion": 30,
+        "ieeeAddr": "0x00158d000418d6e5",
+        "lastSeen": 1679836132148,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "WSDCGQ01LM",
+        "modelID": "lumi.sensor_ht",
+        "networkAddress": 54104,
+        "powerSource": "Battery",
+        "softwareBuildID": "3000-0001",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "description": "MiJia temperature & humidity sensor",
+        "friendly_name": "THSensor01",
+        "ieeeAddr": "0x00158d0003fb1bdb",
+        "lastSeen": 1679836580683,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "WSDCGQ01LM",
+        "modelID": "lumi.sensor_ht",
+        "networkAddress": 1914,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20170302",
+        "description": "TRADFRI LED bulb E27 1000 lumen, dimmable, opal white",
+        "friendly_name": "ikeabulb02",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x000b57fffebb2777",
+        "lastSeen": 1679836459040,
+        "manufacturerID": 4476,
+        "manufacturerName": "IKEA of Sweden",
+        "model": "LED1623G12",
+        "modelID": "TRADFRI bulb E27 W opal 1000lm",
+        "networkAddress": 17739,
+        "powerSource": "Mains (single phase)",
+        "softwareBuildID": "1.2.214",
+        "type": "Router",
+        "vendor": "IKEA"
+    },
+    {
+        "dateCode": "20190708",
+        "description": "TRADFRI remote control",
+        "friendly_name": "ikearemote01",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x14b457fffe3f625d",
+        "lastSeen": 1679835788469,
+        "manufacturerID": 4476,
+        "manufacturerName": "IKEA of Sweden",
+        "model": "E1524/E1810",
+        "modelID": "TRADFRI remote control",
+        "networkAddress": 51743,
+        "powerSource": "Battery",
+        "softwareBuildID": "2.3.014",
+        "type": "EndDevice",
+        "vendor": "IKEA"
+    },
+    {
+        "dateCode": "20200220",
+        "description": "TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white",
+        "friendly_name": "ikeacolourbulb02",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x14b457fffe3bf669",
+        "lastSeen": 1679793097911,
+        "manufacturerID": 4476,
+        "manufacturerName": "IKEA of Sweden",
+        "model": "LED1624G9",
+        "modelID": "TRADFRI bulb E27 CWS opal 600lm",
+        "networkAddress": 30184,
+        "powerSource": "Mains (single phase)",
+        "softwareBuildID": "1.3.013",
+        "type": "Router",
+        "vendor": "IKEA"
+    },
+    {
+        "description": "MiJia door & window contact sensor",
+        "friendly_name": "contact01",
+        "ieeeAddr": "0x00158d0005228468",
+        "lastSeen": 1679836109907,
+        "manufacturerID": 4151,
+        "manufacturerName": "LUMI",
+        "model": "MCCGQ01LM",
+        "modelID": "lumi.sensor_magnet",
+        "networkAddress": 58185,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "Xiaomi"
+    },
+    {
+        "dateCode": "20211103",
+        "description": "Motion sensor",
+        "friendly_name": "pir03",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00124b0028930207",
+        "lastSeen": 1679836019151,
+        "manufacturerID": 0,
+        "manufacturerName": "eWeLink",
+        "model": "SNZB-03",
+        "modelID": "MS01",
+        "networkAddress": 34594,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "SONOFF"
+    },
+    {
+        "dateCode": "20211103",
+        "description": "Motion sensor",
+        "friendly_name": "pir04",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00124b002916fc87",
+        "lastSeen": 1679836424227,
+        "manufacturerID": 0,
+        "manufacturerName": "eWeLink",
+        "model": "SNZB-03",
+        "modelID": "MS01",
+        "networkAddress": 16597,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "SONOFF"
+    },
+    {
+        "dateCode": "20211103",
+        "description": "Motion sensor",
+        "friendly_name": "pir05",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00124b002928189c",
+        "lastSeen": 1679837257802,
+        "manufacturerID": 0,
+        "manufacturerName": "eWeLink",
+        "model": "SNZB-03",
+        "modelID": "MS01",
+        "networkAddress": 21132,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "SONOFF"
+    },
+    {
+        "dateCode": "20211103",
+        "description": "Motion sensor",
+        "friendly_name": "pir06",
+        "hardwareVersion": 1,
+        "ieeeAddr": "0x00124b002927b9f5",
+        "lastSeen": 1679835726856,
+        "manufacturerID": 0,
+        "manufacturerName": "eWeLink",
+        "model": "SNZB-03",
+        "modelID": "MS01",
+        "networkAddress": 18187,
+        "powerSource": "Battery",
+        "type": "EndDevice",
+        "vendor": "SONOFF"
+    }
+]'
+
+Zigbee2MQTT:info  2023-03-26 13: 29: 29: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{
+    "message": [
+        {
+            "dateCode": "20200925",
+            "friendly_name": "Coordinator",
+            "ieeeAddr": "0x00124b00215fffca",
+            "lastSeen": 1679837369019,
+            "networkAddress": 0,
+            "softwareBuildID": "zStack3x0",
+            "type": "Coordinator"
+        },
+        {
+            "dateCode": "20170627",
+            "description": "Aqara human body movement and illuminance sensor",
+            "friendly_name": "pir01",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00158d00052d3567",
+            "lastSeen": 1679837045066,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "RTCGQ11LM",
+            "modelID": "lumi.sensor_motion.aq2",
+            "networkAddress": 43687,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20200220",
+            "description": "TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white",
+            "friendly_name": "ikeacolourbulb01",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x14b457fffe2e9489",
+            "lastSeen": 1679836523795,
+            "manufacturerID": 4476,
+            "manufacturerName": "IKEA of Sweden",
+            "model": "LED1624G9",
+            "modelID": "TRADFRI bulb E27 CWS opal 600lm",
+            "networkAddress": 17316,
+            "powerSource": "Mains (single phase)",
+            "softwareBuildID": "1.3.013",
+            "type": "Router",
+            "vendor": "IKEA"
+        },
+        {
+            "dateCode": "2018-09-26",
+            "description": "[CC2530 router](http://ptvo.info/cc2530-based-zigbee-coordinator-and-router-112/)",
+            "friendly_name": "router01",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00124b001fc64f9f",
+            "lastSeen": 1679837261720,
+            "manufacturerID": 4447,
+            "manufacturerName": "LUMI",
+            "model": "CC2530.ROUTER",
+            "modelID": "lumi.router",
+            "networkAddress": 37939,
+            "powerSource": "Mains (single phase)",
+            "type": "Router",
+            "vendor": "Custom devices (DiY)"
+        },
+        {
+            "dateCode": "20220820",
+            "description": "TRADFRI LED bulb E27 1000 lumen, dimmable, opal white",
+            "friendly_name": "ikeabulb01",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x000b57fffebe2091",
+            "lastSeen": 1679837086881,
+            "manufacturerID": 4476,
+            "manufacturerName": "IKEA of Sweden",
+            "model": "LED1623G12",
+            "modelID": "TRADFRI bulb E27 W opal 1000lm",
+            "networkAddress": 2066,
+            "powerSource": "Mains (single phase)",
+            "softwareBuildID": "2.3.094",
+            "type": "Router",
+            "vendor": "IKEA"
+        },
+        {
+            "dateCode": "20170627",
+            "description": "Aqara human body movement and illuminance sensor",
+            "friendly_name": "pir02",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00158d00052bd384",
+            "lastSeen": 1679836567722,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "RTCGQ11LM",
+            "modelID": "lumi.sensor_motion.aq2",
+            "networkAddress": 42483,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20191205",
+            "description": "Aqara temperature, humidity and pressure sensor",
+            "friendly_name": "THPSensor01",
+            "hardwareVersion": 30,
+            "ieeeAddr": "0x00158d00053f5d8d",
+            "lastSeen": 1679836790245,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "WSDCGQ11LM",
+            "modelID": "lumi.weather",
+            "networkAddress": 46723,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20160516",
+            "description": "MiJia temperature & humidity sensor",
+            "friendly_name": "THSensor04",
+            "hardwareVersion": 30,
+            "ieeeAddr": "0x00158d000445912d",
+            "lastSeen": 1679836219336,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "WSDCGQ01LM",
+            "modelID": "lumi.sensor_ht",
+            "networkAddress": 27092,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20160516",
+            "description": "MiJia temperature & humidity sensor",
+            "friendly_name": "THSensor02",
+            "hardwareVersion": 30,
+            "ieeeAddr": "0x00158d00044502cd",
+            "lastSeen": 1679834546198,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "WSDCGQ01LM",
+            "modelID": "lumi.sensor_ht",
+            "networkAddress": 9243,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20160516",
+            "description": "MiJia temperature & humidity sensor",
+            "friendly_name": "THSensor03",
+            "hardwareVersion": 30,
+            "ieeeAddr": "0x00158d000418d6e5",
+            "lastSeen": 1679836132148,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "WSDCGQ01LM",
+            "modelID": "lumi.sensor_ht",
+            "networkAddress": 54104,
+            "powerSource": "Battery",
+            "softwareBuildID": "3000-0001",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "description": "MiJia temperature & humidity sensor",
+            "friendly_name": "THSensor01",
+            "ieeeAddr": "0x00158d0003fb1bdb",
+            "lastSeen": 1679836580683,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "WSDCGQ01LM",
+            "modelID": "lumi.sensor_ht",
+            "networkAddress": 1914,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20170302",
+            "description": "TRADFRI LED bulb E27 1000 lumen, dimmable, opal white",
+            "friendly_name": "ikeabulb02",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x000b57fffebb2777",
+            "lastSeen": 1679836459040,
+            "manufacturerID": 4476,
+            "manufacturerName": "IKEA of Sweden",
+            "model": "LED1623G12",
+            "modelID": "TRADFRI bulb E27 W opal 1000lm",
+            "networkAddress": 17739,
+            "powerSource": "Mains (single phase)",
+            "softwareBuildID": "1.2.214",
+            "type": "Router",
+            "vendor": "IKEA"
+        },
+        {
+            "dateCode": "20190708",
+            "description": "TRADFRI remote control",
+            "friendly_name": "ikearemote01",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x14b457fffe3f625d",
+            "lastSeen": 1679835788469,
+            "manufacturerID": 4476,
+            "manufacturerName": "IKEA of Sweden",
+            "model": "E1524/E1810",
+            "modelID": "TRADFRI remote control",
+            "networkAddress": 51743,
+            "powerSource": "Battery",
+            "softwareBuildID": "2.3.014",
+            "type": "EndDevice",
+            "vendor": "IKEA"
+        },
+        {
+            "dateCode": "20200220",
+            "description": "TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white",
+            "friendly_name": "ikeacolourbulb02",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x14b457fffe3bf669",
+            "lastSeen": 1679793097911,
+            "manufacturerID": 4476,
+            "manufacturerName": "IKEA of Sweden",
+            "model": "LED1624G9",
+            "modelID": "TRADFRI bulb E27 CWS opal 600lm",
+            "networkAddress": 30184,
+            "powerSource": "Mains (single phase)",
+            "softwareBuildID": "1.3.013",
+            "type": "Router",
+            "vendor": "IKEA"
+        },
+        {
+            "description": "MiJia door & window contact sensor",
+            "friendly_name": "contact01",
+            "ieeeAddr": "0x00158d0005228468",
+            "lastSeen": 1679836109907,
+            "manufacturerID": 4151,
+            "manufacturerName": "LUMI",
+            "model": "MCCGQ01LM",
+            "modelID": "lumi.sensor_magnet",
+            "networkAddress": 58185,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "Xiaomi"
+        },
+        {
+            "dateCode": "20211103",
+            "description": "Motion sensor",
+            "friendly_name": "pir03",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00124b0028930207",
+            "lastSeen": 1679836019151,
+            "manufacturerID": 0,
+            "manufacturerName": "eWeLink",
+            "model": "SNZB-03",
+            "modelID": "MS01",
+            "networkAddress": 34594,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "SONOFF"
+        },
+        {
+            "dateCode": "20211103",
+            "description": "Motion sensor",
+            "friendly_name": "pir04",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00124b002916fc87",
+            "lastSeen": 1679836424227,
+            "manufacturerID": 0,
+            "manufacturerName": "eWeLink",
+            "model": "SNZB-03",
+            "modelID": "MS01",
+            "networkAddress": 16597,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "SONOFF"
+        },
+        {
+            "dateCode": "20211103",
+            "description": "Motion sensor",
+            "friendly_name": "pir05",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00124b002928189c",
+            "lastSeen": 1679837257802,
+            "manufacturerID": 0,
+            "manufacturerName": "eWeLink",
+            "model": "SNZB-03",
+            "modelID": "MS01",
+            "networkAddress": 21132,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "SONOFF"
+        },
+        {
+            "dateCode": "20211103",
+            "description": "Motion sensor",
+            "friendly_name": "pir06",
+            "hardwareVersion": 1,
+            "ieeeAddr": "0x00124b002927b9f5",
+            "lastSeen": 1679835726856,
+            "manufacturerID": 0,
+            "manufacturerName": "eWeLink",
+            "model": "SNZB-03",
+            "modelID": "MS01",
+            "networkAddress": 18187,
+            "powerSource": "Battery",
+            "type": "EndDevice",
+            "vendor": "SONOFF"
+        }
+    ],
+    "type": "devices"
+}'
+
+Zigbee2MQTT:info  2023-03-26 13: 29: 41: MQTT publish: topic 'zigbee2mqtt/router01', payload '{
+    "led": false,
+    "linkquality": 105
+}'
+
+Zigbee2MQTT:info  2023-03-26 13: 29: 41: MQTT publish: topic 'zigbee2mqtt/router01/led', payload 'false'
+
+Zigbee2MQTT:info  2023-03-26 13: 29: 41: MQTT publish: topic 'zigbee2mqtt/router01/linkquality', payload '105'
+
+
+
+'zigbee2mqtt/ikeacolourbulb01/brightness', payload '254'
+
+zigbee2mqtt/ikeacolourbulb01/color-x', payload '0.625817'
+
+zigbee2mqtt/ikeacolourbulb01/color-y', payload '0.341291'
+
+zigbee2mqtt/ikeacolourbulb01/linkquality', payload '102'
+
+zigbee2mqtt/ikeacolourbulb01/state', payload 'OFF'
+
+zigbee2mqtt/ikeacolourbulb01/update_available', payload 'false'
+
+zigbee2mqtt/ikeacolourbulb01/update-state', payload 'updating'
+
+zigbee2mqtt/ikeacolourbulb01/update-installed_version', payload '318846322'
+
+zigbee2mqtt/ikeacolourbulb01/update-latest_version', payload '587753009'
+
+zigbee2mqtt/ikeacolourbulb01/update-progress', payload '14.1'
+
+zigbee2mqtt/ikeacolourbulb01/update-remaining', payload '1157'
+
+zigbee2mqtt/ikeacolourbulb01/color_mode', payload 'xy'
+
+zigbee2mqtt/ikeacolourbulb01/level_config-on_level', payload 'previous'
+
+zigbee2mqtt/ikeacolourbulb01/color_temp', payload '406'
+
+
+Coordinator firmware version: '{
+    "meta": {
+        "maintrel": 1,
+        "majorrel": 2,
+        "minorrel": 7,
+        "product": 1,
+        "revision": 20200925,
+        "transportrev": 2
+    },
+    "type": "zStack3x0"
+}'
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: Currently 18 devices are joined:
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir01 (0x00158d00052d3567): RTCGQ11LM - Xiaomi Aqara human body movement and illuminance sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: ikeacolourbulb01 (0x14b457fffe2e9489): LED1624G9 - IKEA TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white (Router)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: router01 (0x00124b001fc64f9f): CC2530.ROUTER - Custom devices (DiY) [CC2530 router
+](http: //ptvo.info/cc2530-based-zigbee-coordinator-and-router-112/) (Router)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: ikeabulb01 (0x000b57fffebe2091): LED1623G12 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white (Router)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir02 (0x00158d00052bd384): RTCGQ11LM - Xiaomi Aqara human body movement and illuminance sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: THPSensor01 (0x00158d00053f5d8d): WSDCGQ11LM - Xiaomi Aqara temperature, humidity and pressure sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: THSensor04 (0x00158d000445912d): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: THSensor02 (0x00158d00044502cd): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: THSensor03 (0x00158d000418d6e5): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: THSensor01 (0x00158d0003fb1bdb): WSDCGQ01LM - Xiaomi MiJia temperature & humidity sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: ikeabulb02 (0x000b57fffebb2777): LED1623G12 - IKEA TRADFRI LED bulb E27 1000 lumen, dimmable, opal white (Router)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: ikearemote01 (0x14b457fffe3f625d): E1524/E1810 - IKEA TRADFRI remote control (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: ikeacolourbulb02 (0x14b457fffe3bf669): LED1624G9 - IKEA TRADFRI LED bulb E14/E26/E27 600 lumen, dimmable, color, opal white (Router)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: contact01 (0x00158d0005228468): MCCGQ01LM - Xiaomi MiJia door & window contact sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir03 (0x00124b0028930207): SNZB-03 - SONOFF Motion sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir04 (0x00124b002916fc87): SNZB-03 - SONOFF Motion sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir05 (0x00124b002928189c): SNZB-03 - SONOFF Motion sensor (EndDevice)
+
+Zigbee2MQTT:info  2023-03-26 15: 09: 03: pir06 (0x00124b002927b9f5): SNZB-03 - SONOFF Motion sensor (EndDevice)

@@ -1,0 +1,24 @@
+sitemap Lights label="Lights"
+{
+
+  Frame  {
+    Text item=Current_Date
+  }
+
+    Frame label="Conservatory " {
+          Switch item= CT_FairyLights433Socket label="Conservatory Fairy Lights(ID:5)" icon="light"
+ }  
+
+    Frame label="Dining Room" {
+          Switch item= DR_FairyLights433Socket label="Dining Room Fairy Lights(ID:4)" icon="light"
+ } 
+
+     Frame label="Landing fairy lights" {
+          Switch item= socketG1_3 label="Upstairs Landing Fairy Lights (ID:3)" icon="light"
+ } 
+ 
+     Frame label="Dining Room Delayed off - lights" {
+          Switch item= Delayed_OFF_SW label="Delayed off Switch after 4 mins (ID:4,5,6,8)" icon="light"
+ }
+
+}

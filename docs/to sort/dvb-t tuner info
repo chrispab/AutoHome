@@ -1,0 +1,234 @@
+If you "modinfo dvb_adapter_driver_foo"  you will see an "adapter_nr"
+module option -- you can use this to force your DVB adapter device
+minor ordering.
+
+
+
+
+   WHITE TV STICK
+   Manf.Code: KW-399U
+  https://www.linuxtv.org/wiki/index.php/Afatech_AF9015
+  https://www.linuxtv.org/wiki/index.php/KWorld_USB_Dual_DVB-T_TV_Stick_(DVB-T_399U)
+
+  the following modules should be loaded (modprobe):
+dvb_usb_af9015
+mxl5005s
+firmware from file 'dvb-usb-af9015.fw'
+
+Some firmwares:
+http://palosaari.fi/linux/v4l-dvb/firmware/af9015/
+
+  5.442268] usb 1-1.4: dvb_usb_v2: found a 'KWorld PlusTV Dual DVB-T Stick (DVB-T 399U)' in cold state
+  5.444639] usb 1-1.4: dvb_usb_v2: downloading firmware from file 'dvb-usb-af9015.fw'
+  5.474699] dvb_usb_af9035 1-1.1:1.0: prechip_version=83 chip_version=01 chip_type=9135
+
+-------------------------------------------------------------------------------------
+  silver tv Stick
+  'Kworld UB499-2T T09'
+firmware from file 'dvb-usb-it9135-01.fw'
+module
+dvb-usb-it9135
+dvb-usb-it913x
+dvb-usb-it9135
+
+pi@raspberrypi:~ $ lsusb -t
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/4p, 5000M
+    |__ Port 2: Dev 2, If 0, Class=Mass Storage, Driver=uas, 5000M
+/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/1p, 480M
+    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+        |__ Port 3: Dev 3, If 0, Class=Vendor Specific Class, Driver=dvb_usb_af9035, 480M
+pi@raspberrypi:~ $ dmesg | grep -i dvb
+[    2.408218] usb 1-1.3: Product: DVB-T TV Stick
+[    5.260266] dvb_usb_af9035 1-1.3:1.0: prechip_version=83 chip_version=01 chip_type=9135
+[    5.280071] usb 1-1.3: dvb_usb_v2: found a 'Kworld UB499-2T T09' in cold state
+[    5.286561] usb 1-1.3: dvb_usb_v2: downloading firmware from file 'dvb-usb-it9135-01.fw'
+[    8.020284] dvb_usb_af9035 1-1.3:1.0: firmware version=12.54.14.0
+[    8.020308] usb 1-1.3: dvb_usb_v2: found a 'Kworld UB499-2T T09' in warm state
+[    8.021018] usb 1-1.3: dvb_usb_v2: will pass the complete MPEG2 transport stream to the software demuxer
+[    8.021077] dvbdev: DVB: registering new adapter (Kworld UB499-2T T09)
+[    8.022291] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+[    8.042941] usb 1-1.3: DVB: registering adapter 0 frontend 0 (Afatech AF9033 (DVB-T))...
+[    8.042959] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9033 (DVB-T)' registered.
+[    8.059009] usb 1-1.3: dvb_usb_v2: will pass the complete MPEG2 transport stream to the software demuxer
+[    8.059082] dvbdev: DVB: registering new adapter (Kworld UB499-2T T09)
+[    8.060297] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+[    8.080664] usb 1-1.3: DVB: registering adapter 1 frontend 0 (Afatech AF9033 (DVB-T))...
+[    8.080681] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9033 (DVB-T)' registered.
+[    8.103526] rc rc0: lirc_dev: driver dvb_usb_af9035 registered at minor = 0, scancode receiver, no transmitter
+[    8.104333] usb 1-1.3: dvb_usb_v2: schedule remote query interval to 500 msecs
+[    8.104346] usb 1-1.3: dvb_usb_v2: 'Kworld UB499-2T T09' successfully initialized and connected
+[    8.104418] usbcore: registered new interface driver dvb_usb_af9035
+
+
+pi@raspberrypi:~ $ lsusb -v
+
+Bus 001 Device 003: ID 1b80:e409 Afatech IT9137FN Dual DVB-T [KWorld UB499-2T]
+Couldn't open device, some information will be missing
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass            0
+  bDeviceSubClass         0
+  bDeviceProtocol         0
+  bMaxPacketSize0        64
+  idVendor           0x1b80 Afatech
+  idProduct          0xe409 IT9137FN Dual DVB-T [KWorld UB499-2T]
+  bcdDevice            2.00
+  iManufacturer           1
+  iProduct                2
+  iSerial                 0
+  bNumConfigurations      1
+  Configuration Descriptor:
+    bLength                 9
+    bDescriptorType         2
+    wTotalLength       0x002e
+    bNumInterfaces          1
+    bConfigurationValue     1
+    iConfiguration          0
+    bmAttributes         0x80
+      (Bus Powered)
+    MaxPower              500mA
+    Interface Descriptor:
+      bLength                 9
+      bDescriptorType         4
+      bInterfaceNumber        0
+      bAlternateSetting       0
+      bNumEndpoints           4
+      bInterfaceClass       255 Vendor Specific Class
+      bInterfaceSubClass      0
+      bInterfaceProtocol      0
+      iInterface              0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x81  EP 1 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x02  EP 2 OUT
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x84  EP 4 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+      Endpoint Descriptor:
+        bLength                 7
+        bDescriptorType         5
+        bEndpointAddress     0x85  EP 5 IN
+        bmAttributes            2
+          Transfer Type            Bulk
+          Synch Type               None
+          Usage Type               Data
+        wMaxPacketSize     0x0200  1x 512 bytes
+        bInterval               0
+
+
+=============================
+# /etc/modprobe.d/dvb.conf
+
+# Kworld UB499-2T T09
+# silver
+# dvb-usb-it913x
+#dvb-usb-it9135
+
+#options dvb-usb-it9135 adapter_nr=0,1
+#options dvb-usb-af9033 adapter_nr=0,1
+#options dvb_usb_af9035 adapter_nr=0,1 - failed - prevented
+#try af9033
+#options af9033 adapter_nr=4,5 - not working
+try dvb-usb-it913x - not working
+try dvb_usb_af9035
+
+
+
+# KWorld PlusTV Dual DVB-T Stick (DVB-T 399U)
+# WHITE TV STICK
+# module dvb_usb_af9015
+options dvb_usb_af9015 adapter_nr=2,3
+
+
+# Hauppauge WinTV-dualHD DVB - Silicon Labs Si2168
+#options dvb-demod-si2168-b40-01 adapter_nr=4,5
+===============================
+
+
+
+
+  6.042123] dvbdev: DVB: registering new adapter (KWorld PlusTV Dual DVB-T Stick (DVB-T 399U))
+  6.045103] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  6.094645] usb 1-1.4: DVB: registering adapter 0 frontend 0 (Afatech AF9013)...
+  6.094727] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9013' registered.
+  6.146908] usb 1-1.4: dvb_usb_v2: will pass the complete MPEG2 transport stream to the software demuxer
+  6.153802] dvbdev: DVB: registering new adapter (KWorld PlusTV Dual DVB-T Stick (DVB-T 399U))
+  6.187030] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  6.737062] usb 1-1.4: DVB: registering adapter 1 frontend 0 (Afatech AF9013)...
+  6.737097] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9013' registered.
+  6.744897] rc rc0: KWorld PlusTV Dual DVB-T Stick (DVB-T 399U) as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.4/rc/rc0
+  6.745540] rc rc0: lirc_dev: driver dvb_usb_af9015 registered at minor = 0, scancode receiver, no transmitter
+  6.745752] input: KWorld PlusTV Dual DVB-T Stick (DVB-T 399U) as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.4/rc/rc0/input1
+  6.747046] usb 1-1.4: dvb_usb_v2: schedule remote query interval to 500 msecs
+  6.747072] usb 1-1.4: dvb_usb_v2: 'KWorld PlusTV Dual DVB-T Stick (DVB-T 399U)' successfully initialized and connected
+  6.747267] usbcore: registered new interface driver dvb_usb_af9015
+
+
+  7.083751] em28xx 1-1.3:1.0: Identified as Hauppauge WinTV-dualHD DVB (card=99)
+  7.098359] tveeprom: TV standards PAL(B/G) NTSC(M) PAL(I) SECAM(L/L') PAL(D/D1/K) ATSC/DVB Digital (eeprom 0xfc)
+  7.098419] em28xx 1-1.3:1.0: dvb set to isoc mode.
+  8.361533] dvb_usb_af9035 1-1.1:1.0: firmware version=12.54.14.0
+  8.361587] usb 1-1.1: dvb_usb_v2: found a 'Kworld UB499-2T T09' in warm state
+  8.362267] usb 1-1.1: dvb_usb_v2: will pass the complete MPEG2 transport stream to the software demuxer
+
+
+  8.362403] dvbdev: DVB: registering new adapter (Kworld UB499-2T T09)
+  8.365356] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  8.428712] usb 1-1.1: DVB: registering adapter 2 frontend 0 (Afatech AF9033 (DVB-T))...
+  8.428747] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9033 (DVB-T)' registered.
+  8.471790] usb 1-1.1: dvb_usb_v2: will pass the complete MPEG2 transport stream to the software demuxer
+  8.472016] dvbdev: DVB: registering new adapter (Kworld UB499-2T T09)
+  8.475944] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  8.536812] usb 1-1.1: DVB: registering adapter 3 frontend 0 (Afatech AF9033 (DVB-T))...
+  8.536844] dvbdev: dvb_create_media_entity: media entity 'Afatech AF9033 (DVB-T)' registered.
+  8.597787] rc rc1: lirc_dev: driver dvb_usb_af9035 registered at minor = 1, scancode receiver, no transmitter
+  8.598349] usb 1-1.1: dvb_usb_v2: schedule remote query interval to 500 msecs
+  8.598376] usb 1-1.1: dvb_usb_v2: 'Kworld UB499-2T T09' successfully initialized and connected
+  8.598701] usbcore: registered new interface driver dvb_usb_af9035
+
+
+  8.604704] em28xx 1-1.3:1.0: Identified as Hauppauge WinTV-dualHD DVB (card=99)
+  8.624379] tveeprom: TV standards PAL(B/G) NTSC(M) PAL(I) SECAM(L/L') PAL(D/D1/K) ATSC/DVB Digital (eeprom 0xfc)
+  8.624438] em28xx 1-1.3:1.0: dvb ts2 set to isoc mode.
+  8.859781] em28xx 1-1.3:1.0: Binding DVB extension
+  8.924374] dvbdev: DVB: registering new adapter (1-1.3:1.0)
+  8.924402] em28xx 1-1.3:1.0: DVB: registering adapter 4 frontend 0 (Silicon Labs Si2168)...
+  8.924441] dvbdev: dvb_create_media_entity: media entity 'Silicon Labs Si2168' registered.
+  8.927816] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  8.952236] em28xx 1-1.3:1.0: DVB extension successfully initialized
+  8.952261] em28xx 1-1.3:1.0: Binding DVB extension
+  9.005051] dvbdev: DVB: registering new adapter (1-1.3:1.0)
+  9.005080] em28xx 1-1.3:1.0: DVB: registering adapter 5 frontend 0 (Silicon Labs Si2168)...
+  9.005106] dvbdev: dvb_create_media_entity: media entity 'Silicon Labs Si2168' registered.
+  9.008587] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+  9.014374] em28xx 1-1.3:1.0: DVB extension successfully initialized
+  9.014396] em28xx: Registered (Em28xx dvb Extension) extension
+  9.062146] rc rc2: Hauppauge WinTV-dualHD DVB as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.3/1-1.3:1.0/rc/rc2
+  9.062590] input: Hauppauge WinTV-dualHD DVB as /devices/platform/scb/fd500000.pcie/pci0000:00/0000:00:00.0/0000:01:00.0/usb1/1-1/1-1.3/1-1.3:1.0/rc/rc2/input3
+456.383261] dvb_usb_af9015 1-1.4:1.0: rc query failed -71
+456.902180] dvb_usb_af9015 1-1.4:1.0: rc query failed -71

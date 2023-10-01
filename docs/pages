@@ -1,0 +1,235 @@
+config:
+  label: heating_AT_timelines
+  sidebar: true
+  visibleTo:
+    - role:administrator
+blocks:
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Conservatory
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: AT_HeatingMode
+                        heatingStateItem: AT_Heater
+                        location: AT
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: AT_RTVReachable
+                        rssiItem: AT_RTV_Rssi
+                        setpointItem: AT_TemperatureSetpoint
+                        tempItem: AT_Temperature
+                        trendItem: AT_Temperature
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_min
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_min
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_cool
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_cool
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_comfort
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_comfort
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_warm
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_warm
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_hot
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_hot
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_max
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_max
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: v_AT_SetPoint_auto_update_by_timeline
+                        title: current v AT setpoint auto
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,87CEFA,008000,FFD700,FF8C00,DC143C
+                        states: min,cool,comfort,warm,hot,max
+                        title: Conservatory Heating Setpoints
+                        transfer_item: Transfer_AT_SetPoint_auto
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:timeline_V2
+                      config:
+                        colorset: A9A9A9,008000,87CEFA
+                        states: off,manual,auto
+                        title: Conservatory Heating Modes
+                        transfer_item: Transfer_AT_HeatingMode
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_min
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_min
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_cool
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_cool
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_comfort
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_comfort
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_warm
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_warm
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_hot
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_hot
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: AT_Setpoint_auto_max
+                        max: 25
+                        min: 13
+                        releaseOnly: true
+                        stepSize: 0.1
+                        title: AT_Setpoint_auto_max
+masonry: null
+grid: []
+canvas: []

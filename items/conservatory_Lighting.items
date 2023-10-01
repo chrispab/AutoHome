@@ -1,0 +1,15 @@
+// Group:Switch:OR(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
+
+Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
+
+Switch conservatoryLightsProxy "Conservatory Lighting "  [ "Lighting" ]
+//     { channel="tradfri:0210:gw44916026cf61:65542:color_temperature" }
+Number ConservatoryLightTriggerLevel "Conservatory light trigger level"
+
+
+//============== CT morning lighting timeline items ======================================================
+// used internally by timeLinePicker.rules
+String Transfer_CT_MorningLighting "[%s]"      (gTimepicker)
+//  used internally by timeLinePicker.RULES, also monitored outside to pick up updates from the timelines
+String v_CT_MorningLighting_update_by_timeline                     (gTimepicker)
+
