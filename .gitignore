@@ -14,8 +14,7 @@ automation/lib/python/personal/__init__$py.class
 automation/lib/python/personal/util$py.class
 automation/lib/python/core/date$py.class
 automation/typings/
-secret.txt
-things/mail.things
+
 /automation/js/node_modules/**/*.*
 /automation/js/node_modules/**/LICENSE
 /automation/js/node_modules/**/LICENSE-MIT
@@ -27,10 +26,6 @@ things/mail.things
 !automation/js/node_modules/personal/utils.js
 !automation/js/node_modules/personal/myutils.js
 
-
-exec.whitelist
-misc/exec.whitelist
-misc/exec.whitelist
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/.gitignore
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/README.md
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/automation/js/RNTs-tlp3.js
@@ -84,3 +79,9 @@ openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example4.PNG
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example5.PNG
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp-slides-small.gif
 openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp-slides.gif
+
+secret.txt
+things/mail.things
+exec.whitelist
+misc/exec.whitelist
+misc/exec.whitelist
