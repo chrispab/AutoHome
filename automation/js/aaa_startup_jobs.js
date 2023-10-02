@@ -4,9 +4,11 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 const { alerting } = require('personal');
+var ruleUID = "startup";
 
+const logger = log(ruleUID);
 scriptLoaded = function () {
-  console.log('script loaded - startup jobs');
+  logger.info('script loaded - startup jobs');
   actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
   alerting.sendInfo('startup xscript loaded zzz_startup_jobs');
 

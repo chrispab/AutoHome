@@ -1,5 +1,4 @@
-// import java.util.Map
-// import org.eclipse.smarthome.model.script.ScriptServiceUtil
+
 const {
   log, items, rules, actions, time, triggers, utils,
 } = require('openhab');

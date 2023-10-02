@@ -4,7 +4,7 @@
 #ssh-copy-id user@serverip
 
 # pushd ~/IOTstack
-pushd ~/openhabian
+# pushd ~/openhabian
 # USER=$(whoami)
 
 # [ -d ./openhab_backups ] || mkdir ./openhab_backups
@@ -60,7 +60,7 @@ pushd ~/openhabian
 #to change backups retained,  change below +8 to whatever you want (days retained +1)
 #list one column desc mod datetime dir, pipe totail starting at line 8 till end of list, piped to rm -f to delete them
 ls -t1 /var/lib/openhab/backups/* | tail -n +15 | sudo xargs rm -f
-echo "last forteen local backup files are saved in /var/lib/openhab/backups/, /mnt/sata_unique1/currentbackups/openhabian_backups"
+echo "last fourteen local backup files are saved in /var/lib/openhab/backups/ & 192.168.0.110:/mnt/sata_unique1/currentbackups/openhabian_backups"
 
 #copy backups to remote backup on network
 echo "Copying /var/lib/openhab/backups/ to 192.168.0.110 /mnt/sata_unique1/currentbackups/openhabian_backups"
@@ -114,4 +114,4 @@ rsync -av --delete /var/lib/openhab/backups/ pi@192.168.0.110:/mnt/sata_unique1/
 # fi
 
 
-popd
+# popd
