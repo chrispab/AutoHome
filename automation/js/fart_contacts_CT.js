@@ -36,8 +36,8 @@ rules.JSRule({
   name: 'CT contact01 went fasle',
   description: 'CT contact01 went false',
   triggers: [
-    triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'true', 'false'),
-    triggers.ItemStateChangeTrigger('v_test_switch_01', 'ON', 'OFF'),
+    triggers.ItemStateChangeTrigger('zb_contact_01_contact'),
+    triggers.ItemStateChangeTrigger('v_test_switch_01'),
   ],
   execute: () => {
     logger.debug('CT contact01 went false');
@@ -49,7 +49,7 @@ rules.JSRule({
 
       // actions.Audio.setMasterVolume(newVol);
   // generate  number in range 1 to max
-      if( Math.random() > 0.8){
+      if( Math.random() > 0.9){
         actions.Audio.playSound(randomFartString());
       }
 
@@ -57,23 +57,23 @@ rules.JSRule({
 
   },
 });
-rules.JSRule({
-  name: 'CT contact01 went true',
-  description: 'CT contact01 went true',
-  triggers: [
-    triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'false', 'true'),
-    triggers.ItemStateChangeTrigger('v_test_switch_01', 'OFF', 'ON'),
-  ],
-  execute: () => {
-    if (items.getItem('vFartDoorEnable').state.toString() === 'ON') {
+// rules.JSRule({
+//   name: 'CT contact01 went true',
+//   description: 'CT contact01 went true',
+//   triggers: [
+//     triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'false', 'true'),
+//     triggers.ItemStateChangeTrigger('v_test_switch_01', 'OFF', 'ON'),
+//   ],
+//   execute: () => {
+//     if (items.getItem('vFartDoorEnable').state.toString() === 'ON') {
 
-      logger.debug('CT contact01 went true');
+//       logger.debug('CT contact01 went true');
 
-      if( Math.random() > 0.8){
-        actions.Audio.playSound(randomFartString());
-      }
-      // actions.Audio.setMasterVolume(vol);
-      // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
-    }
-  },
-});
+//       if( Math.random() > 0.9){
+//         actions.Audio.playSound(randomFartString());
+//       }
+//       // actions.Audio.setMasterVolume(vol);
+//       // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
+//     }
+//   },
+// });
