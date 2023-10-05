@@ -18,6 +18,7 @@ scriptLoaded = function () {
   logger.info('startup xscript loaded zzz_startup_jobs');
 };
 
+
 rules.JSRule({
   name: 'SystemStartlevelTrigger_50',
   description: 'SystemStartlevelTrigger(50)',
@@ -28,8 +29,8 @@ rules.JSRule({
 
     // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
     actions.Audio.playSound('barking.mp3');
-    alerting.sendInfo('triggers.SystemStartlevelTrigger(70)');
-    logger.info('triggers.SystemStartlevelTrigger(70)');
+    alerting.sendInfo('triggers.SystemStartlevelTrigger(50)');
+    logger.info('triggers.SystemStartlevelTrigger(50)');
 
   },
 });

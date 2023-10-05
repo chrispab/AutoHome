@@ -12,7 +12,7 @@ const logger = log(ruleUID);
 scriptLoaded = function () {
   logger.info('script loaded - startup jobs');
   // actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
-  actions.Audio.playSound('now_disconnected.mp3');
+  actions.Audio.playSound('25 Food + Drink Synthesizer.mp3');
 
   alerting.sendInfo('startup xscript loaded zzz_startup_jobs');
   logger.info('startup xscript loaded zzz_startup_jobs');
@@ -44,7 +44,7 @@ rules.JSRule({
   execute: () => {
 
     // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
-    actions.Audio.playSound('61 Transporter Materialization.wav');
+    actions.Audio.playSound('61 Transporter Materialization.mp3');
     alerting.sendInfo('triggers.SystemStartlevelTrigger(100)');
     logger.info('triggers.SystemStartlevelTrigger(100)');
 
