@@ -30,22 +30,6 @@ scriptLoaded = function () {
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 };
 
-function stopBoost(heaterPrefix) {
-  actions.Voice.say('timer over');
-  logger.debug('stopBoost');
-
-  // items.getItem('CT_Heater_Boost').sendCommand('OFF');
-  items.getItem(heaterPrefix + '_Heater_Boost').sendCommand('OFF');
-
-  // items.getItem('v_CT_Boost').sendCommand('OFF');
-  items.getItem('v_' + heaterPrefix + '_Boost').sendCommand('OFF');
-
-  // items.getItem('v_CT_Heater_Boost').sendCommand('OFF');
-  items.getItem('v_' + heaterPrefix + '_Heater_Boost').sendCommand('OFF');
-
-  // items.getItem('CT_Heater_Control').sendCommand('OFF');
-  items.getItem(heaterPrefix + '_Heater_Control').sendCommand('OFF'); // tv
-}
 
 
 rules.JSRule({
@@ -118,7 +102,7 @@ function boostOnAction(heaterPrefix) {
   const BoostItem = items.getItem(`${heaterPrefix}_Heater_Boost`, true);// return null if missing
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING : ${BoostItem}`);
-  
+
   boostTimers[heaterPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(heaterPrefix); }), `${heaterPrefix}_Boost_Countdown`,'boostCountdown');
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
@@ -142,6 +126,23 @@ function boostOffAction(heaterPrefix) {
   items.getItem(`v_${heaterPrefix}_Heater_Boost`).sendCommand('OFF');
 
   HeaterItem.sendCommand('OFF');
+}
+
+function stopBoost(heaterPrefix) {
+  actions.Voice.say('timer over');
+  logger.debug('stopBoost');
+
+  // items.getItem('CT_Heater_Boost').sendCommand('OFF');
+  items.getItem(heaterPrefix + '_Heater_Boost').sendCommand('OFF');
+
+  // items.getItem('v_CT_Boost').sendCommand('OFF');
+  items.getItem('v_' + heaterPrefix + '_Boost').sendCommand('OFF');
+
+  // items.getItem('v_CT_Heater_Boost').sendCommand('OFF');
+  items.getItem('v_' + heaterPrefix + '_Heater_Boost').sendCommand('OFF');
+
+  // items.getItem('CT_Heater_Control').sendCommand('OFF');
+  items.getItem(heaterPrefix + '_Heater_Control').sendCommand('OFF'); // tv
 }
 
 // rules.JSRule({

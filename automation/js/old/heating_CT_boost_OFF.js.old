@@ -1,10 +1,10 @@
-const {
-  log, items, rules, actions, time, triggers,
-} = require('openhab');
-const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
-var ruleUID = "boost-heating";
+// const {
+//   log, items, rules, actions, time, triggers,
+// } = require('openhab');
+// const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
+// var ruleUID = "boost-heating";
 
-const logger = log(ruleUID);
+// const logger = log(ruleUID);
 
 // eslint-disable-next-line no-var
 // var CT_boost_timer;
