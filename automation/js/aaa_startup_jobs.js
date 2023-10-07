@@ -7,12 +7,19 @@ const { alerting } = require('personal');
 var ruleUID = "startup";
 const logger = log(ruleUID);
 
+setZonesReachableOff = function () {
+  logger.info('setZonesReachableOff');
+  items.getItem('Zone1Reachable').postUpdate('OFF');
+  items.getItem('Zone3Reachable').postUpdate('OFF');
+};
+
 scriptLoaded = function () {
   logger.info('script loaded - startup jobs');
   // actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
   actions.Audio.playSound('now_disconnected.mp3');
   alerting.sendInfo('startup xscript loaded zzz_startup_jobs');
   logger.info('startup xscript loaded zzz_startup_jobs- now_disconnected.mp3');
+  setZonesReachableOff();
 };
 
 
