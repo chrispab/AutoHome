@@ -29,7 +29,10 @@ Thing mqtt:topic:rf433_skt_8  "COnservatory TV Power 433 socket" (mqtt:broker:My
 
 
 
-
+Thing mqtt:topic:rf433_skt_15  "Zone 3 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
+    Channels:
+        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power15" ]
+}
 ///////////////// below still to be converted to new format
 
 
@@ -84,10 +87,10 @@ Thing mqtt:topic:zone1ControllerPower  "Zone 1 controller Power 433 socket" (mqt
 }
 
 // 15 : zone3 power socket
-Thing mqtt:topic:zone3ControllerPower  "Zone 3 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
-    Channels:
-        Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power15" ]
-}
+// Thing mqtt:topic:zone3ControllerPower  "Zone 3 controller Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {
+//     Channels:
+//         Type switch : powerSwitch  [ commandTopic="433Bridge/cmnd/Power15" ]
+// }
 
 // 16 : outside sensor power socket
 Thing mqtt:topic:outsideSensorPower  "Outside sensor Power 433 socket" (mqtt:broker:MyMQTTBroker) @ "Shed" {

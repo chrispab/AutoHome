@@ -55,8 +55,8 @@ Switch radio "DAB Radio"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservator
 //zone1 power socket
 Switch zone1ControllerPower "Zone one power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:zone1ControllerPower:powerSwitch" }
 
-//zone3 power socket
-Switch zone3ControllerPower "Zone three power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:zone3ControllerPower:powerSwitch" }
+//zone3 power socket commandTopic="433Bridge/cmnd/Power15" 
+Switch zone3ControllerPower "Zone three power"  <poweroutlet_uk> (gZoneControllerSockets) { channel="mqtt:topic:rf433_skt_15:powerSwitch" }
 
 
 
