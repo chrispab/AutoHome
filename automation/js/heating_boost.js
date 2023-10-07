@@ -7,7 +7,7 @@ const { CountdownTimer, timeUtils } = require('openhab_rules_tools');
 // https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
 // var {TimerMgr} = require('openhab_rules_tools');
 
-var boostTimers = cache.private.get('boostTimers', () => ( { 'CT': 0, 'DR': null } ));
+var boostTimers = cache.private.get('boostTimers', () => ({ 'CT': 0, 'DR': null }));
 
 var ruleUID = "boost-heating";
 
@@ -15,10 +15,10 @@ const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.boost-heating
 
 // var boost_time = '894s'; // 15m';
+// out by 6 secs in 15m  900s
 // const boost_time = 'PT15m';
 const boost_time = 'PT1m';
 
-// out by 6 secs in 15m  900s
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded -  boost-heating');
@@ -29,7 +29,6 @@ scriptLoaded = function () {
   }
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 };
-
 
 
 rules.JSRule({
@@ -47,7 +46,7 @@ rules.JSRule({
     // const heaterPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
     // const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     logger.debug(`event.itemName.toString() : ${event.itemName.toString()}`);
-    
+
     //trim off initial'v_'
     const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     logger.debug(`heaterPrefixPartial : ${heaterPrefixPartial}`);
@@ -58,7 +57,7 @@ rules.JSRule({
 
     const HeaterItem = items.getItem(`${heaterPrefix}_Heater_Control`);
     logger.debug(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
-   
+
     // !handle an offline TRV - return
     const ReachableItem = items.getItem(`${heaterPrefix}_Heater_Reachable`);
     logger.debug(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
@@ -74,11 +73,10 @@ rules.JSRule({
 
     if (BoostItem) {
       logger.debug(`BoostItem.name: ${BoostItem.name ? BoostItem.name : 'undefined for heater'} : ,  BoostItem.state: ${BoostItem.state ? BoostItem.state : 'Not defined'}`);
-      // if (event.itemName === BoostItem.name) {
+
       if (event.newState === 'ON') { // gone Off->ON
         boostOnAction(heaterPrefix);
-      }
-      if (event.newState === 'OFF') { // gone ON->OFF
+      } else if(event.newState === 'OFF') { // gone ON->OFF
         boostOffAction(heaterPrefix);
       }
     }
@@ -99,7 +97,7 @@ function boostOnAction(heaterPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING : ${BoostItem}`);
 
-  boostTimers[heaterPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(heaterPrefix); }), `${heaterPrefix}_Boost_Countdown`,'boostCountdown');
+  boostTimers[heaterPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(heaterPrefix); }), `${heaterPrefix}_Boost_Countdown`, 'boostCountdown');
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
 
@@ -123,6 +121,7 @@ function boostOffAction(heaterPrefix) {
 
   HeaterItem.sendCommand('OFF');
 }
+
 
 function stopBoost(heaterPrefix) {
   actions.Voice.say('timer over');
