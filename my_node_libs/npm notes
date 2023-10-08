@@ -21,3 +21,5 @@ https://www.freecodecamp.org/news/npm-uninstall-how-to-remove-a-package/#:~:text
 npm uninstall package-name in the directory where the package is located.
 
 npm uninstall openhab_my_lib
+
+npm install /etc/openhab/my_node_libs/personal
