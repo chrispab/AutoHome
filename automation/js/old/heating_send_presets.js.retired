@@ -48,15 +48,15 @@
 //         items.getItem('gHeatingModes').members.forEach((heatingModeItem) => {
 //           // if any room mode is set to auto then set heater setpoint to the temp defined in the Heating_PresetTempNormal
 //           if (heatingModeItem.state.toString() === 'auto') {
-//             const heaterPrefix = `${heatingModeItem.name.toString().substr(0, heatingModeItem.name.indexOf('_'))}`;// get first index of '_'
-//             logger.error(`heaterPrefix: ${heaterPrefix}`);
-//             const roomHeaterSetpointItem = items.getItem(`${heaterPrefix}_TemperatureSetpoint`); //
+//             const roomPrefix = `${heatingModeItem.name.toString().substr(0, heatingModeItem.name.indexOf('_'))}`;// get first index of '_'
+//             logger.error(`roomPrefix: ${roomPrefix}`);
+//             const roomHeaterSetpointItem = items.getItem(`${roomPrefix}_TemperatureSetpoint`); //
 //             logger.error(`roomHeaterSetpointItem state: ${roomHeaterSetpointItem.state}`);
-//             const setpointPresetToApply = items.getItem(`${heaterPrefix}_Heating_PresetTempNormal`).state;
+//             const setpointPresetToApply = items.getItem(`${roomPrefix}_Heating_PresetTempNormal`).state;
 //             logger.error(`setpointPresetToApply: ${setpointPresetToApply}`);
 
 //             // skip if impl;emented in new timeline method
-//             // if ((heaterPrefix === 'CT') || (heaterPrefix === 'AT') || (heaterPrefix === 'OF') || (heaterPrefix === 'BR') || (heaterPrefix === 'FR')) {
+//             // if ((roomPrefix === 'CT') || (roomPrefix === 'AT') || (roomPrefix === 'OF') || (roomPrefix === 'BR') || (roomPrefix === 'FR')) {
 //             logger.error(`....>>== EXCLUDE: Heating_UpdateHeaters, NOT updating destination setpoint temperature preset by OLD Heating_UpdateHeaters method, handled by new timelines. NAME: ${roomHeaterSetpointItem.name}, STATE: : ${roomHeaterSetpointItem.state} `);
 //             // } else {
 //             // roomHeaterSetpointItem.postUpdate(setpointPresetToApply);

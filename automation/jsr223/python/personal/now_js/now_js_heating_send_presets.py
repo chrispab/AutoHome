@@ -26,9 +26,9 @@
 #         # prefix eg FR_, CT_ etc
 #         for heatingModeItem in ir.getItem("gHeatingModes").members:
 #             if ir.getItem(heatingModeItem.name).state.toString() == "auto":
-#                 heaterPrefix = heatingModeItem.name[0:heatingModeItem.name.rfind('_')+1]
-#                 ir.getItem(heaterPrefix+"TemperatureSetpoint").state = ir.getItem(heaterPrefix+"Heating_PresetTempNormal").state
-#                 # LogAction.logError("monitor_heating_mode", "TemperatureSetpoint prefix:{}", heaterPrefix)
+#                 roomPrefix = heatingModeItem.name[0:heatingModeItem.name.rfind('_')+1]
+#                 ir.getItem(roomPrefix+"TemperatureSetpoint").state = ir.getItem(roomPrefix+"Heating_PresetTempNormal").state
+#                 # LogAction.logError("monitor_heating_mode", "TemperatureSetpoint prefix:{}", roomPrefix)
 
 #     elif ir.getItem("masterHeatingMode").state.toString() == "off":
 #         LogAction.logError("monitor_heating_mode", "PPPPPPPPPP    processing case OFF MASTER Heating Mode: :{}", ir.getItem("masterHeatingMode").state.toString())

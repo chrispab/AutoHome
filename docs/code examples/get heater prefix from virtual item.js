@@ -3,6 +3,6 @@
 // e.g
 // convert label from setpoit timeline to a temperature vales e.g. 'min' to 17.0
 // roomPrefix is first 2 chars of triggering item name
-const heaterPrefixPartial = itemName.toString().substr(itemName.indexOf('_') + 1);
-const heaterPrefix = heaterPrefixPartial.substr(0, itemName.indexOf('_') + 1);
-logger.info(`--->>> heaterPrefix : ${heaterPrefix}`);
+const roomPrefixPartial = itemName.toString().substr(itemName.indexOf('_') + 1);
+const roomPrefix = roomPrefixPartial.substr(0, itemName.indexOf('_') + 1);
+logger.info(`--->>> roomPrefix : ${roomPrefix}`);

@@ -46,30 +46,31 @@ rules.JSRule({
     logger.debug(`>ReachableItem: ${ReachableItem.name}, state: ${ReachableItem.state}`);
 
     // !handle an offline TRV - return
-    // !if ANY trvs are unreachable - turn off hetarer to prevent false demand
-    // not just the calkkling device - which cant call anyway as its offline
+    // !if ANY trvs are unreachable - turn off heater to prevent false demand
+    // not just the calling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
       logger.info(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
-
-      items.getItem('HL_Heater_Control').sendCommand('OFF');//!
+      //===============================================
+      // items.getItem('HL_Heater_Control').sendCommand('OFF');//!
+      //=================================================
       // dont continue on and update the bolier control if this RTV is Offline
       return;
     }
-    items.getItem('HL_Heater_Control').sendCommand('OFF');//!
-
+    //-------------------------------------------------------
+    // items.getItem('HL_Heater_Control').sendCommand('OFF');//!
+    //-----------------------------------------------------------
     logger.debug(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
 
-    //! add if boost on - skip
     // if this heater is currently in being boosted, then just l;eave it alone and move on
     const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
     if (BoostItem && BoostItem.state.toString() === 'ON') {
-      logger.info(`>>>>Boosting item -->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
-      if (BoostItem.state === 'ON') { // in a boost period
+      logger.info(`>>>>Boosting item == 'ON'-->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
+      // if (BoostItem.state === 'ON') { // in a boost period
         return;
-      }
+      // }
     }
     // logger.debug('>>>>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
