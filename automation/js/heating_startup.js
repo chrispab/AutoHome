@@ -1,11 +1,11 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
+// const { myutils } = require('personal');
 var ruleUID = "heating-startup";
 
 const logger = log(ruleUID);
-const { timeUtils } = require('openhab_rules_tools');
+// const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
   logger.info('scriptLoaded -   Heating startup');

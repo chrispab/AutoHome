@@ -6,7 +6,8 @@ function someFunction() {
 module.exports = {
   someProperty,
   someFunction,
-  get utils() { return require('./utils.js') }
+  get utils() { return require('./utils.js') },
+  get alerting() { return require('./alerting.js') }
 
 };
 

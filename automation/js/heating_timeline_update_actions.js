@@ -1,9 +1,12 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
+// const { myutils } = require('personal');
+const { utils } = require('openhab-my-utils');
 
-const logger = log('auto_program_setpoint_UPDATE');
+var ruleUID = "auto_program_setpoint_UPDATE";
+const logger = log(ruleUID);
+// const logger = log('auto_program_setpoint_UPDATE');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
@@ -122,27 +125,3 @@ rules.JSRule({
   },
 });
 
-//= ============== heating mode
-// NEW
-// update real thermostst HeatingMode from incoming 'v_XX_Heater_Mode
-//! commented out to disable mode changes
-// rules.JSRule({
-//   name: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
-//   description: 'handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source',
-//   triggers: [triggers.GroupStateUpdateTrigger('gHeatingTimelineHeatingModeUpdateProxys')],
-//   execute: (event) => {
-//     logger.warn('???__>>>>>>>>>>>>>>>>>>>>>>> handle gHeatingTimelineHeatingModeUpdateProxys update from timeline or script source');
-//     // logger.warn(`???__> vCT_Heater_Mode: ${items.getItem('vCT_Heater_Mode').state}`);
-//     myutils.showEvent(event);
-
-//     // update real thermostst HeatingMode from incoming 'v_XX_Heater_Mode
-//     // bui;ld the 'real' thermostat heting mode item name
-//     // get roomprefix
-//     const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
-//     const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-//     logger.warn(`???__>>>>>>>>>>>>>>>>>>>>>>>  roomPrefix : ${roomPrefix}`);
-//     const targetItemName = `${roomPrefix}_Heater_Mode`;
-//     // send mode sent to actual _Heater_Mode
-//     items.getItem(targetItemName).sendCommand(event.receivedState);
-//   },
-// })

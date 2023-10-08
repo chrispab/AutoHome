@@ -20,6 +20,9 @@ scriptLoaded = function () {
   
   logger.info(`from my node lib: ${someProperty}`);
   logger.info(`from my node lib: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
+  logger.info(`whole name: ${'gBG_sockets_reachable'}`);
+
+  // logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable')}`);
 
 
 };

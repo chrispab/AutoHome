@@ -69,3 +69,17 @@ exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
   }
 
 }
+
+
+// extractRoomPrefix('gBG_sockets_reachable')
+exports.extractRoomPrefix = function (name, logger) {
+  var logger = (logger) ? logger : log('utils.showEvent');
+
+  logger.warn(
+    '=========: showEvent data: Event.itemName: ' + name.itemName
+    + ', LABEL: ' + items.getItem(event.itemName).label +
+    ', STATE: ' + items.getItem(event.itemName).state +
+    ', PREV STATExx: ' + items.getItem(event.itemName).history.previousState()
+  );
+  console.log(name);
+}
