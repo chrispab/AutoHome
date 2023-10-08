@@ -1,0 +1,11 @@
+{
+  "name": "openhab-my-utils",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test-utils"
+  },
+  "author": "",
+  "license": "ISC"
+}

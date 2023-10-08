@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "openhab_my_lib": "file:openhab_my_lib-1.0.0.tgz",
-    "openhab_rules_tools": "^2.0.3"
+    "openhab_rules_tools": "^2.0.3",
+    "openhab-my-utils": "file:../../my_node_libs/openhab-my-utils"
   },
   "devDependencies": {
     "eslint": "^8.18.0",

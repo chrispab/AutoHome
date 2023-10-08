@@ -2,6 +2,7 @@ const {
   log, items, rules, actions,
 } = require('openhab');
 const { myutils } = require('personal');
+const { someProperty } = require('openhab-my-utils');
 
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
@@ -16,6 +17,9 @@ scriptLoaded = function () {
   items.getItem('gBG_sockets_reachable').members.forEach((item) => {
     item.postUpdate('OFF');
   });
+  
+  logger.info(`from my node lib: ${someProperty}`);
+
 
 };
 // log:set DEBUG org.openhab.automation.openhab-js.bg_avail
