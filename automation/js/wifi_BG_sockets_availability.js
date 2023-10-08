@@ -11,10 +11,8 @@ const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
-
   logger.info('scriptLoaded - BG availability');
   // myutils.showGroupMembers('gBG_sockets_reachable');
-
   items.getItem('gBG_sockets_reachable').members.forEach((item) => {
     item.postUpdate('OFF');
   });
