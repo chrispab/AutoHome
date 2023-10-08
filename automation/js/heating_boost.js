@@ -39,8 +39,8 @@ scriptLoaded = function () {
 
 
 rules.JSRule({
-  name: 'Check if Boost button clicked',
-  description: 'Check if Boost button clicked',
+  name: 'action when Boost button clicked',
+  description: 'action when Boost button clicked',
   triggers: [
     triggers.GroupStateChangeTrigger('gvHeaterBoosters')
   ],

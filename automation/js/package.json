@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "openhab_my_lib": "file:openhab_my_lib-1.0.0.tgz",
     "openhab_rules_tools": "^2.0.3"
   },
   "devDependencies": {

@@ -1,0 +1,11 @@
+{
+  "name": "openhab_my_lib",
+  "version": "1.0.0",
+  "description": "my openhab lib",
+  "main": "index.js",
+  "scripts": {
+    "test": "test_my_lib"
+  },
+  "author": "",
+  "license": "ISC"
+}
