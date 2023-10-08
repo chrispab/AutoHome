@@ -12,8 +12,8 @@ const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on
 rules.JSRule({
-  name: 'Check if Heaters need changing etc',
-  description: 'Check if Heaters need changing etc',
+  name: 'Check if Heaters need changing',
+  description: 'Check if Heaters need changing',
   triggers: [
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
