@@ -1,8 +1,8 @@
 const {
   log, items, rules, actions,
 } = require('openhab');
-const { myutils } = require('personal');
-const { someProperty } = require('openhab-my-utils');
+// const { myutils } = require('personal');
+const { someProperty,utils,  showItem, showEvent, showGroupMembers } = require('openhab-my-utils');
 
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
@@ -19,6 +19,7 @@ scriptLoaded = function () {
   });
   
   logger.info(`from my node lib: ${someProperty}`);
+  logger.info(`from my node lib: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
 
 
 };
