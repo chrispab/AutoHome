@@ -8,10 +8,10 @@ const { myutils } = require('personal');
 // const logger = log('Boiler_Control');
 // const { timeUtils } = require('openhab_rules_tools');
 
-var ruleUID = "Boiler_Control";
+var ruleUID = "heating-Boiler_Control";
 
 const logger = log(ruleUID);
-const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
+// const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 // openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
 
 rules.JSRule({

@@ -3,11 +3,6 @@ const {
 } = require('openhab');
 const { CountdownTimer, timeUtils } = require('openhab_rules_tools');
 
-//timer mgr
-// https://community.openhab.org/t/making-sure-that-only-one-timer-exists-per-itemname/149723/2
-// var {TimerMgr} = require('openhab_rules_tools');
-
-var boostTimers = cache.private.get('boostTimers', () => ({ 'CT': 0, 'DR': null }));
 
 var ruleUID = "boost-heating";
 
@@ -18,6 +13,7 @@ const logger = log(ruleUID);
 // out by 6 secs in 15m  900s
 // const boost_time = 'PT15m';
 const boost_time = 'PT1m';
+var boostTimers = cache.private.get('boostTimers', () => ({ 'CT': 0, 'DR': null }));
 
 
 scriptLoaded = function () {
@@ -32,8 +28,8 @@ scriptLoaded = function () {
 
 
 rules.JSRule({
-  name: 'Check if Boost button clicked OFF->ON',
-  description: 'Check if Boost button clicked OFF->ON',
+  name: 'Check if Boost button clicked',
+  description: 'Check if Boost button clicked',
   triggers: [
     triggers.GroupStateChangeTrigger('gvHeaterBoosters')
   ],
@@ -42,11 +38,10 @@ rules.JSRule({
     // console.log(event);
     logger.debug(`event: ${JSON.stringify(event)}`);
 
-    // get prefix eg FR, CT etc
-    // const heaterPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-    // const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
+
     logger.debug(`event.itemName.toString() : ${event.itemName.toString()}`);
 
+    // get prefix eg FR, CT etc
     //trim off initial'v_'
     const heaterPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
     logger.debug(`heaterPrefixPartial : ${heaterPrefixPartial}`);
@@ -68,6 +63,7 @@ rules.JSRule({
       return;// dont continue on if this RTV is Offline
     }
 
+    //get the boostItem - if it exists yet, else get null if not
     const BoostItem = items.getItem(`${heaterPrefix}_Heater_Boost`, true);// return null if missing
     logger.debug(`>BoostItem.name: ${BoostItem.name} : ,  BoostItem.state: ${BoostItem.state}`);
 
@@ -95,7 +91,7 @@ function boostOnAction(heaterPrefix) {
 
   const BoostItem = items.getItem(`${heaterPrefix}_Heater_Boost`, true);// return null if missing
   BoostItem.sendCommand('ON');
-  logger.debug(`BOOSTING : ${BoostItem}`);
+  logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
   boostTimers[heaterPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(heaterPrefix); }), `${heaterPrefix}_Boost_Countdown`, 'boostCountdown');
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
@@ -103,39 +99,29 @@ function boostOnAction(heaterPrefix) {
 
 
 function boostOffAction(heaterPrefix) {
-  const HeaterItem = items.getItem(`${heaterPrefix}_Heater_Control`);
-
   logger.debug('>v_CT_Boost changed on->off');
   actions.Voice.say('Stopping conservatory BOOST');
   // cancel timer   // and turn stuff off
-  logger.debug('manual....BOOST OFF ');
-
-  // cancel the boost timer
   if (boostTimers[heaterPrefix]) {
     boostTimers[heaterPrefix].cancel();
     logger.debug('cancelling boost timer ');
   }
-
-  items.getItem(`${heaterPrefix}_Heater_Boost`).sendCommand('OFF');
-  items.getItem(`v_${heaterPrefix}_Heater_Boost`).sendCommand('OFF');
-
-  HeaterItem.sendCommand('OFF');
+  stopBoostItems(heaterPrefix);
 }
 
 
-function stopBoost(heaterPrefix) {
-  actions.Voice.say('timer over');
-  logger.debug('stopBoost');
+function stopBoostItems(heaterPrefix) {
+  logger.debug('stopBoostItems');
 
-  // items.getItem('CT_Heater_Boost').sendCommand('OFF');
   items.getItem(heaterPrefix + '_Heater_Boost').sendCommand('OFF');
+  logger.debug(`sendCommand('OFF') : ${heaterPrefix + '_Heater_Boost'}`);
 
-  // items.getItem('v_CT_Boost').sendCommand('OFF');
   items.getItem('v_' + heaterPrefix + '_Boost').sendCommand('OFF');
+  logger.debug(`sendCommand('OFF') : ${'v_' + heaterPrefix + '_Boost'}`);
 
-  // items.getItem('v_CT_Heater_Boost').sendCommand('OFF');
   items.getItem('v_' + heaterPrefix + '_Heater_Boost').sendCommand('OFF');
+  logger.debug(`sendCommand('OFF') : ${'v_' + heaterPrefix + '_Heater_Boost'}`);
 
-  // items.getItem('CT_Heater_Control').sendCommand('OFF');
-  items.getItem(heaterPrefix + '_Heater_Control').sendCommand('OFF'); // tv
+  items.getItem(heaterPrefix + '_Heater_Control').sendCommand('OFF');
+  logger.debug(`sendCommand('OFF') : ${heaterPrefix + '_Heater_Control'}`);
 }

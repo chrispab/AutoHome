@@ -2,8 +2,9 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 const { myutils } = require('personal');
+var ruleUID = "heating-startup";
 
-const logger = log('BG_Availability.js');
+const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
