@@ -25,20 +25,20 @@ scriptLoaded = function () {
 };
 
 
-rules.JSRule({
-  name: 'SystemStartlevelTrigger_70',
-  description: 'SystemStartlevelTrigger(70)',
-  // triggers: [triggers.SystemStartlevelTrigger(100)],
-  triggers: [triggers.SystemStartlevelTrigger(50)],
-  execute: () => {
-    // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
-    actions.Audio.playSound('barking.mp3');
-    // alerting.sendInfo('triggers.SystemStartlevelTrigger(70)');
-    alerting.sendEmail('openhab startup 70', 'triggers.SystemStartlevelTrigger(70)',logger);
+// rules.JSRule({
+//   name: 'SystemStartlevelTrigger_70',
+//   description: 'SystemStartlevelTrigger(70)',
+//   // triggers: [triggers.SystemStartlevelTrigger(100)],
+//   triggers: [triggers.SystemStartlevelTrigger(50)],
+//   execute: () => {
+//     // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
+//     actions.Audio.playSound('barking.mp3');
+//     // alerting.sendInfo('triggers.SystemStartlevelTrigger(70)');
+//     alerting.sendEmail('openhab startup 70', 'triggers.SystemStartlevelTrigger(70)',logger);
 
-    logger.info('triggers.SystemStartlevelTrigger(70) barking.mp3');
-  },
-});
+//     logger.info('triggers.SystemStartlevelTrigger(70) barking.mp3');
+//   },
+// });
 
 rules.JSRule({
   name: 'SystemStartlevelTrigger_100',
