@@ -1,13 +1,12 @@
 const {
   log, items, rules, actions, triggers, time,
 } = require('openhab');
+var ruleUID = "fan_recirc_heat";
+const logger = log(ruleUID);
 
-const logger = log('CT_heating_fan_recirc');
-// const { timeUtils } = require('openhab_rules_tools');
-// const { toToday } = require('openhab_rules_tools/timeUtils');
 
 scriptLoaded = function () {
-  logger.warn('scriptLoaded fan.js');
+  logger.info('scriptLoaded fan.js');
 };
 
 rules.JSRule({
@@ -36,22 +35,3 @@ rules.JSRule({
     }
   },
 });
-
-// rules.JSRule({
-//   name: 'Fan heat recirc ENABLE turned ON',
-//   description: 'Fan heat recirc ENABLE turned ON',
-//   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'OFF', 'ON')],
-//   execute: (data) => {
-//     logger.debug('conservatory_fan_heat_recirc_on - no action required');
-//   },
-// });
-
-// rules.JSRule({
-//   name: 'Fan heat recirc ENABLE turned off',
-//   description: 'Fan heat recirc ENABLE turned off',
-//   triggers: [triggers.ItemStateChangeTrigger('CT_Fan_Heating_circulate_enable', 'ON', 'OFF')],
-//   execute: (data) => {
-//     logger.debug('conservatory_fan_heat_recirc_off - CT_fan_power OFF');
-//     items.getItem('CT_fan_power').sendCommand('OFF');
-//   },
-// });

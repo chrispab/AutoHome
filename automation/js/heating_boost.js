@@ -13,16 +13,17 @@ const logger = log(ruleUID);
 // out by 6 secs in 15m  900s
 // const boost_time = 'PT15m';
 const boost_time = 'PT1m';
-var boostTimers = cache.private.get('boostTimers', () => ({ 'CT': 1,
-                                                            'FH': 2,
-                                                            'DR': 3,
-                                                            'FR': 4,
-                                                            'HL': 5,
-                                                            'OF': 6,
-                                                            'BR': 7,
-                                                            'ER': 8,
-                                                            'AT': 9
-                                                          }));
+var boostTimers = cache.private.get('boostTimers', () => ({
+  'CT': 1,
+  'FH': 2,
+  'DR': 3,
+  'FR': 4,
+  'HL': 5,
+  'OF': 6,
+  'BR': 7,
+  'ER': 8,
+  'AT': 9
+}));
 
 
 scriptLoaded = function () {
@@ -83,7 +84,7 @@ rules.JSRule({
 
       if (event.newState === 'ON') { // gone Off->ON
         boostOnAction(roomPrefix);
-      } else if(event.newState === 'OFF') { // gone ON->OFF
+      } else if (event.newState === 'OFF') { // gone ON->OFF
         boostOffAction(roomPrefix);
       }
     }

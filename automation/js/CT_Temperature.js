@@ -9,8 +9,8 @@ scriptLoaded = function () {
   logger.warn('scriptLoaded - init CT temp filter');
   // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
   // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-  items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(19);
-  items.getItem('CT_ThermostatTemperatureAmbient_raw').sendCommand(19);
+  // items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(19);
+  // items.getItem('CT_ThermostatTemperatureAmbient_raw').sendCommand(19);
 
   // logger.warn(`0 ==> STARTUP temp is: ${temp}`);
 };
