@@ -1,10 +1,12 @@
-
+// zb_colour_bulbs_lightCycle.js] - require TimerMgr instead of timerMgr and use TimerMgr() instead of new timerMgr.TimerMgr().
 const {
-  log, items, rules, actions, time, triggers, utils,
+  log, items, rules, actions, time, triggers
 } = require('openhab');
-const { CountdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+// const { CountdownTimer, timeUtils, timerMgr } = require('openhab_rules_tools');
+// var { TimerMgr } = require('openhab_rules_tools');
+
 // const { timeUtils } = require('openhab_rules_tools');
-const { myutils } = require('personal');
+const { utils } = require('openhab-my-utils');
 
 const logger = log('light cycle');
 
@@ -31,7 +33,7 @@ rules.JSRule({
   ],
   execute: (event) => {
     // Get the light associated with this cycler
-    myutils.showEvent(event);
+    utils.showEvent(event);
     // const light = items.getItem(event.itemName.toString().replace('CYCLE', 'RGB'));
     const light1 = items.getItem('ZbColourBulb01_color');
     const light2 = items.getItem('ZbColourBulb02_color');

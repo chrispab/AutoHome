@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-// const { myutils } = require('personal');
 // log:set WARN org.openhab.automation.openhab-js.outside_sensor
 // log:set DEBUG org.openhab.automation.openhab-js.outside_sensor
 const logger = log('outside_sensor');

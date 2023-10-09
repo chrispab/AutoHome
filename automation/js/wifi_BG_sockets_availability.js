@@ -1,15 +1,14 @@
 const {
   log, items, rules, actions,
 } = require('openhab');
-// const { myutils } = require('personal');
-const { someProperty,utils,  showItem, showEvent, showGroupMembers } = require('openhab-my-utils');
+const { someProperty,utils} = require('openhab-my-utils');
 
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
 
 var ruleUID = "bg_avail";
 const logger = log(ruleUID);
-const { timeUtils } = require('openhab_rules_tools');
+// const { timeUtils } = require('openhab_rules_tools');
 
 scriptLoaded = function () {
   logger.info('scriptLoaded - BG availability');
@@ -18,11 +17,11 @@ scriptLoaded = function () {
     item.postUpdate('OFF');
   });
   
-  logger.info(`from my node lib: ${someProperty}`);
-  logger.info(`from my node lib: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
+  logger.info(`from my node lib someProperty.. : ${someProperty}`);
+  logger.info(`from my node lib showGroupMembers gBG_sockets_reachable: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
   logger.info(`whole name: ${'gBG_sockets_reachable'}`);
 
-  // logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable')}`);
+  logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable',logger)}`);
 
 
 };

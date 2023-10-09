@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { alerting } = require('personal');
 var ruleUID = "CT_kodi_status";
 
 const logger = log(ruleUID);// const thingStatusInfo = actions.Things.getThingStatusInfo("zwave:serial_zstick:512");

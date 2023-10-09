@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-// const { myutils } = require('personal');
 const { utils } = require('openhab-my-utils');
 
 var ruleUID = "auto_program_setpoint_UPDATE";

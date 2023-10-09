@@ -1,9 +1,7 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-const { timeUtils } = require('openhab_rules_tools');
-const { myutils } = require('personal');
-const logger = log('TVs on off.js');
+const logger = log('tvs-on-off.js');
 
 let tStartup;
 

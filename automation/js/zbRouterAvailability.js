@@ -1,7 +1,6 @@
 // const {
 //   log, items, rules, actions, triggers,
 // } = require('openhab');
-// const { myutils } = require('personal');
 
 // const logger = log('BG_Availability.js');
 // const { timeUtils } = require('openhab_rules_tools');

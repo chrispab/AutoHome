@@ -1,14 +1,11 @@
 const {
-  log, items, rules, actions, triggers,
+  log, items, rules, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
 
-// log:set WARN org.openhab.automation.openhab-js.boiler
-// log:set DEBUG org.openhab.automation.openhab-js.boiler
-// const logger = log('Boiler_Control');
 // const { timeUtils } = require('openhab_rules_tools');
 
-var ruleUID = "heating-Boiler_Control";
+var ruleUID = "heating-boiler";
+// log:set DEBUG org.openhab.automation.openhab-js.heating-boiler
 
 const logger = log(ruleUID);
 // const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');

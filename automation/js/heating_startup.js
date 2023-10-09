@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-// const { myutils } = require('personal');
 var ruleUID = "heating-startup";
 
 const logger = log(ruleUID);

@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers, time,
 } = require('openhab');
-// const { myutils } = require('personal');
 
 const logger = log('CT_heating_fan_cooling.js');
 // const { timeUtils } = require('openhab_rules_tools');
@@ -24,7 +23,6 @@ rules.JSRule({
   execute: (data) => {
     logger.debug('conservatory_fan_ cool rulel - check if cooling fan reqd');
 
-    // var { alerting } = require('personal');
     // alerting.sendInfo('FROM fan OPENHABvv');
     // alerting.sendAlert('The following Chromecast devices are now in use');
 

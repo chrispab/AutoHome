@@ -1,13 +1,12 @@
 const {
-  log, items, rules, actions, time, triggers,
+  log, items, rules, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
 
 var ruleUID = "heating_change";
 
 const logger = log(ruleUID);
-const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
-// openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
+// const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
+// openhab> log:set DEBUG org.openhab.automation.openhab-js.heating_change
 
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on
@@ -17,15 +16,13 @@ rules.JSRule({
   triggers: [
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
-    triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients'),
-    // triggers.GroupStateUpdateTrigger('gThermostatModes'),
-    // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'OFF', 'ON'), // on edges only
-    // triggers.GroupStateChangeTrigger('gHeaterBoosters', 'ON', 'OFF'),
+    triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients')
   ],
   execute: (event) => {
-    // console.log(event);
+    logger.debug('>--------------------------------------------------------------------');
     logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
-    // const action = 'default';
+    logger.debug(`>item: ${event.itemName} triggered event, in group : ${event.groupName}`);
+
     // get prefix eg FR, CT etc
     const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
     logger.debug(`>roomPrefix: ${roomPrefix}`);
@@ -50,7 +47,7 @@ rules.JSRule({
     // not just the calling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
-      logger.info(`>>ZZZZ ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+      logger.info(`>ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
       //===============================================
@@ -62,36 +59,40 @@ rules.JSRule({
     //-------------------------------------------------------
     // items.getItem('HL_Heater_Control').sendCommand('OFF');//!
     //-----------------------------------------------------------
-    logger.debug(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
+    logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     // if this heater is currently in being boosted, then just l;eave it alone and move on
     const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
     if (BoostItem && BoostItem.state.toString() === 'ON') {
-      logger.info(`>>>>Boosting item == 'ON'-->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
-      // if (BoostItem.state === 'ON') { // in a boost period
-        return;
-      // }
+      logger.info(`>Boosting item == 'ON'-->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
+      return;
     }
-    // logger.debug('>>>>no boost item defined for this heater, process as normal');
+    logger.debug('>no boost item defined for this heater, process as normal');
     // if HEATER alowed to be on, check if need to turn on heater
     if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
-      logger.debug(`>>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
+      logger.debug(`>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
       const setpoint = setpointItem.rawState;
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
+      
       if (temp >= turnOffTemp  && HeaterItem.state.toString()=='ON') {
-        logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
+        //if heater on and and temp > sp turn local heater off
+        logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
       } else if (temp < turnOnTemp && HeaterItem.state.toString()=='OFF') {
-        logger.info(`Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
+        //if heater off and and temp < sp turn local heater on
+        logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
+      }else{
+        logger.debug('>no change to local heater reqd - do nothing');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {
+      //if local heating mode is off or master is off then turn local heater off
       if ((items.getItem('masterHeatingMode').state.toString() === 'off')) {
-        logger.info('Heating change... Master Heating Mode is OFF!');
+        logger.info('>Master Heating Mode is OFF!');
       }
-      logger.info(`Heating change...Turn ${roomPrefix} heater OFF, :. its Heating Mode is  ${heatingModeItem.state}`);
+      logger.info(`>Heating change...Turn ${roomPrefix} heater OFF, :. its Heating Mode is  ${heatingModeItem.state}`);
       HeaterItem.sendCommand('OFF');
     }
   },

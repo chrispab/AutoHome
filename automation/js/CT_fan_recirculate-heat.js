@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers, time,
 } = require('openhab');
-// const { myutils } = require('personal');
 
 const logger = log('CT_heating_fan_recirc');
 // const { timeUtils } = require('openhab_rules_tools');

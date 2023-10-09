@@ -1,12 +1,11 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-// const { myutils } = require('personal');
 
 const logger = log('auto CT lights');
 // const { timeUtils } = require('openhab_rules_tools');
 
-const { alerting } = require('personal');
+const { alerting } = require('openhab-my-utils');
 
 let previousLightSensorLevel = null;
 let currentLightSensorLevel = null;

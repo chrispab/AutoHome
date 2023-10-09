@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
 
 const logger = log('master-mode-changed');
 const { timeUtils } = require('openhab_rules_tools');

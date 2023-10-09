@@ -1,12 +1,10 @@
 // const {
 //   log, items, rules, actions, triggers,
 // } = require('openhab');
-// // const { myutils } = require('personal');
 
 // const logger = log('logreader:reader:bbbopenhabcloud:newCustomEvent');
 // // const { timeUtils } = require('openhab_rules_tools');
 
-// const { alerting } = require('personal');
 
 // const previousLightSensorLevel = null;
 // const Cloud_Test_Timer = null;

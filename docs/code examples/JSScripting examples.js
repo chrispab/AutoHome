@@ -32,7 +32,6 @@ rules.JSRule({
             console.error("CRON Hello  World");
             // items.getItem("gConservatoryLights").sendCommand("ON");
 
-            // var {alerting} = require('personal');
             // alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');
         }
     },
@@ -61,7 +60,7 @@ scriptLoaded = function () {
 };
 
 //sending emails
-var {alerting} = require('personal');
+var {alerting} = require('openhab-my-utils');
 alerting.sendInfo('CRON auto turn On conservatory lights MORNING if OFF');//email
 alerting.sendAlert('CRON auto turn On conservatory lights MORNING if OFF');
 

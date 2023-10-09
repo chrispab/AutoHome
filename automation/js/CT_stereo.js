@@ -1,7 +1,6 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
 
 let CT_stereo_off_timer = null;
 rules.JSRule({

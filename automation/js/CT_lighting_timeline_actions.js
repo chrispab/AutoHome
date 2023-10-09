@@ -1,12 +1,10 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
 
 const logger = log('master-mode-changed');
 const { timeUtils } = require('openhab_rules_tools');
-const { toToday } = require('openhab_rules_tools/timeUtils');
-const { alerting } = require('personal');
+const { alerting } = require('openhab-my-utils');
 
 // - turn CT lights ON if it is currently dark - REPLACE PREVIOUS 6.30 CRON JOB
 rules.JSRule({

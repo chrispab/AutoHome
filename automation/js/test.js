@@ -2,7 +2,6 @@ const {
     log, items, rules, actions, time, triggers,
 } = require('openhab');
 const { timeUtils } = require('openhab_rules_tools');
-const { myutils } = require('personal');
 const logger = log('wifi_skt_temp_sensors');
 
 

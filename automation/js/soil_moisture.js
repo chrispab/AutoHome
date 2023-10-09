@@ -1,8 +1,7 @@
 const {
     log, items, rules, actions, triggers,
 } = require('openhab');
-const { myutils } = require('personal');
-const { alerting } = require('personal');
+const { alerting } = require('openhab-my-utils');
 
 const logger = log('soil_moisture');
 

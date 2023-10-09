@@ -10,8 +10,17 @@ automation/js/1_startup_jobs.js
 /etc/openhab/automation/js/1_startup_jobs.js
 
 from the automation/js folder.
+npm uninstall openhab-my-utils
 npm install /etc/openhab/my_node_libs/openhab-my-utils
+
+
 ../../my_node_libs/openhab-my-utils
+npm ci /etc/openhab/my_node_libs/openhab-my-utils
+
+
+
+
+
 
 const { someProperty } = require('openhab_my_lib');
 logger.info(`from my node lib: ${someProperty}`);
