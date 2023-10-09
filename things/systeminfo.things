@@ -1,1 +1,1 @@
-Thing systeminfo:computer:work [interval_high=15, interval_medium=60]
+Thing systeminfo:computer:work [interval_high=30, interval_medium=90]
