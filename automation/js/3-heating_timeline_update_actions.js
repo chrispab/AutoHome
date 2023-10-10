@@ -3,33 +3,12 @@ const {
 } = require('openhab');
 const { utils } = require('openhab-my-utils');
 
-var ruleUID = "auto_program_setpoint_UPDATE";
+var ruleUID = "heating-auto-program-setpoint-update";
 const logger = log(ruleUID);
 // const logger = log('auto_program_setpoint_UPDATE');
 // const { timeUtils } = require('openhab_rules_tools');
 // const { toToday } = require('openhab_rules_tools/timeUtils');
 
-/**
- * Get setpoint for a location based roomPrefix
- * and temperature setpoint tag
- * returned value = value of the relevant setpoint item
- *
- * the room setpoint item name format is: <roomPrefix>_Setpoint_auto_<SetpointTag>
- * <roomPrefix> is one of : CT, BR, FR, AT, OF, HL, ER, DR, KT
- * <SetpointTag> is one of: min, morning, day, evening, night, max
- * e.g : CT_Setpoint_auto_evening, BR_Setpoint_auto_night
- *
- * @param {string} roomPrefix  CT, BR, FR, AT, OF, HL, ER, DR, KT
- * @param {string} setpointTag 'min, cool, comfort, warm, hot, max'
- * @return {number} temperature setpoint
- */
-function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
-  // build the setpoint item name
-  const setPointItemName = `${roomPrefix}_Setpoint_auto_${setpointTag}`;
-  logger.info(`---->>>> setPointItemName found : ${setPointItemName}`);
-
-  return items.getItem(setPointItemName).state;// return setpoint temperature value
-}
 
 //= ===========setpoints
 //= ===============================================================
@@ -57,7 +36,7 @@ rules.JSRule({
     logger.info(`--->>> itemName.state : ${items.getItem(itemName).state}`);
 
     // incoming event in format "itemName": "v_CT_SetPoint_auto_update_by_timeline",
-    // now get the actual temp setpoint from the corresponding setpoit item
+    // now get the actual temp setpoint from the corresponding setpoint item
     // e.g
     // roomPrefix is first 2 chars of triggering item name
     const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
@@ -124,3 +103,24 @@ rules.JSRule({
   },
 });
 
+/**
+ * Get setpoint for a location based roomPrefix
+ * and temperature setpoint tag
+ * returned value = value of the relevant setpoint item
+ *
+ * the room setpoint item name format is: <roomPrefix>_Setpoint_auto_<SetpointTag>
+ * <roomPrefix> is one of : CT, BR, FR, AT, OF, HL, ER, DR, KT
+ * <SetpointTag> is one of: min, morning, day, evening, night, max
+ * e.g : CT_Setpoint_auto_evening, BR_Setpoint_auto_night
+ *
+ * @param {string} roomPrefix  CT, BR, FR, AT, OF, HL, ER, DR, KT
+ * @param {string} setpointTag '1,2,3,4,5,6'
+ * @return {number} temperature setpoint
+ */
+function getSetpointAutoTempForRoom(roomPrefix, setpointTag) {
+  // build the setpoint item name
+  const setPointItemName = `${roomPrefix}_Setpoint_auto_${setpointTag}`;
+  logger.info(`---->>>> setPointItemName found : ${setPointItemName}`);
+
+  return items.getItem(setPointItemName).state;// return setpoint temperature value
+}

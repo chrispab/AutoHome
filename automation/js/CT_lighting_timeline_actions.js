@@ -2,8 +2,9 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 
-const logger = log('master-mode-changed');
-const { timeUtils } = require('openhab_rules_tools');
+var ruleUID = "ct-lighting-timeline-actions-mode-changed";
+const logger = log(ruleUID);
+
 const { alerting } = require('openhab-my-utils');
 
 // - turn CT lights ON if it is currently dark - REPLACE PREVIOUS 6.30 CRON JOB

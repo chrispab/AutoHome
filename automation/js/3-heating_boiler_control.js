@@ -8,8 +8,7 @@ var ruleUID = "heating-boiler";
 // log:set DEBUG org.openhab.automation.openhab-js.heating-boiler
 
 const logger = log(ruleUID);
-// const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
-// openhab> log:set DEBUG org.openhab.automation.openhab-js.zb1_pir
+
 
 rules.JSRule({
   name: 'when any heater states updated to ON, turn Boiler ON else OFF',

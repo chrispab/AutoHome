@@ -1,7 +1,8 @@
 const {
   log, items, rules, actions, triggers, time,
 } = require('openhab');
-var ruleUID = "fan_recirc_heat";
+
+var ruleUID = "heating-fan-reciculate";
 const logger = log(ruleUID);
 
 

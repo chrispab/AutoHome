@@ -2,13 +2,11 @@ const {
   log, items, rules, actions, triggers, time,
 } = require('openhab');
 
-const logger = log('CT_heating_fan_cooling.js');
-// const { timeUtils } = require('openhab_rules_tools');
-// const { toToday } = require('openhab_rules_tools/timeUtils');
+var ruleUID = "heating-fan-cooling";
+const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.info('scriptLoaded fCT_heating_fan_cooling.js');
-  // let loadedDate = Date.now();
 };
 
 rules.JSRule({
@@ -19,12 +17,8 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('Conservatory_Fan_ON_Setpoint'),
     triggers.ItemStateChangeTrigger('CT_Fan_Cooling_enable'),
   ],
-
   execute: (data) => {
     logger.debug('conservatory_fan_ cool rulel - check if cooling fan reqd');
-
-    // alerting.sendInfo('FROM fan OPENHABvv');
-    // alerting.sendAlert('The following Chromecast devices are now in use');
 
     if (items.getItem('CT_Fan_Cooling_enable').state.toString() === 'ON') {
       logger.debug('conservatory_fan_ cool rulel - detected CT_Fan_Cooling_enable   ON');
