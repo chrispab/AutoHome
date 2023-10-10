@@ -108,13 +108,13 @@ rules.JSRule({
 
     }
     if (event.itemName === 'pir03_occupancy') {
-      logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
+      logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeoutDefault}`);
       timerMgr.check(itemName, timeoutDefault, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }
     if (event.itemName === 'pir04_occupancy') {
-      logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeout}`);
+      logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeoutDefault}`);
       timerMgr.check(itemName, timeoutDefault, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
