@@ -16,7 +16,7 @@ scriptLoaded = function () {
 
   infoStr = `startup xscript loaded final-jobs - ${audioFile}`;
   actions.Audio.playSound(audioFile);
-  // alerting.sendInfo(infoStr);
+  // alerting.sendEmail('openhab email',infoStr);
   alerting.sendEmail('script loaded -final-jobs',infoStr,logger);
 
   logger.info(infoStr);
@@ -31,7 +31,7 @@ rules.JSRule({
     infoStr = `triggers.SystemStartlevelTrigger(100) -  - ${audioFile}`;
 
     actions.Audio.playSound(audioFile);
-    // alerting.sendInfo(infoStr);
+    // alerting.sendEmail('openhab email',infoStr);
     alerting.sendEmail('SystemStartlevelTrigger_100',infoStr,logger);
 
     logger.info(infoStr);

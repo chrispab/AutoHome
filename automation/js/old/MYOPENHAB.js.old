@@ -11,7 +11,7 @@
 
 // scriptLoaded = function () {
 //   logger.error('scriptLoaded - logreadernewCustomEvent');
-//   alerting.sendInfo('scriptLoadedx;;.........');
+//   alerting.sendEmail('openhab email','scriptLoadedx;;.........');
 // };
 
 // rules.JSRule({
@@ -21,7 +21,7 @@
 //   execute: () => {
 //     logger.error('triggered   logreader:reader:openhabcloud:newCustomEventt');
 
-//     alerting.sendInfo('logreader:reader============,,,======');
+//     alerting.sendEmail('openhab email','logreader:reader============,,,======');
 
 //     // Cancel any running timers. This is in case you have multiple disconnections/reconnections in a short time frame.
 
@@ -29,7 +29,7 @@
 //       Cloud_Test_Timer.cancel();
 //     }
 
-//     alerting.sendInfo('myopenHAB_Connection reconnected');
+//     alerting.sendEmail('openhab email','myopenHAB_Connection reconnected');
 
 //     items.getItem('myopenHAB_Connection_Success').postUpdate(items.getItem('myopenHAB_Connection_Success').rawState + 1);
 

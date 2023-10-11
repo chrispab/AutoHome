@@ -61,7 +61,7 @@ rules.JSRule({
 
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
         if (currentMoisture < 15) {
-            alerting.sendInfo(`zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
+            alerting.sendEmail('openhab email',`zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
             // secs = 0.5;
             // items.getItem('KT_light_1_Power').sendCommand('ON');
             // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1 * secs), () => {
