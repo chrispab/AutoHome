@@ -4,7 +4,7 @@ Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  
 
 Number KT_cupboard_lights_timeout
 
-//currently used for RPi mythtv_backend server
+//currently used for RPi mythtv_backend servercc
 Switch KT_light_1_Power "KT_light_1" (gMQTT, gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"] { channel = "mqtt:topic:KT_light_1:powerSwitch" }
 String KT_light_1_Reachable "KT_light_1 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_1:Reachable" }
 Number KT_light_1_RSSI "KT_light_1 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_1:rssi" }
