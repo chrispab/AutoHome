@@ -101,7 +101,7 @@ rules.JSRule({
     // timeoutDefaultPir3_4 = time.toZDT(1000);
 
     timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
-    if (time.toZDT().isBetweenTimes('17:00', '19:00')){
+    if (time.toZDT().isBetweenTimes('16:30', '19:30')){
       timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
     }
 

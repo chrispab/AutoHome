@@ -28,12 +28,9 @@ var boostTimers = cache.private.get('boostTimers', () => ({
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded -  boost-heating');
-  // console.log(boostTimers);
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
   for (let timer in boostTimers) {
     logger.debug(`timer : ${JSON.stringify(timer)}, val: ${boostTimers[timer]}`);
-    // logger.debug(`val : ${boostTimers[timer]}`);
-
   }
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 };
@@ -47,10 +44,7 @@ rules.JSRule({
   ],
   execute: (event) => {
     logger.debug('>Heater_Boost button change');
-    // console.log(event);
     logger.debug(`event: ${JSON.stringify(event)}`);
-
-
     logger.debug(`event.itemName.toString() : ${event.itemName.toString()}`);
 
     // get prefix eg FR, CT etc
@@ -105,7 +99,7 @@ function boostOnAction(roomPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
-  boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
 
@@ -120,7 +114,6 @@ function boostOffAction(roomPrefix) {
   }
   stopBoostItems(roomPrefix);
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
-
 }
 
 
