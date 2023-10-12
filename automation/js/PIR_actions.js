@@ -36,7 +36,9 @@ rules.JSRule({
     // timeoutMs = timeoutSeconds * 1000;
     // timeout = time.toZDT(timeoutMs);
     timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
-
+    if (time.toZDT().isBetweenTimes('17:00', '19:00')){
+      timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
+    }
     // timeoutDefaultPir3_4 = time.toZDT(1000);
     timeoutMsPir3_4 = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
 
@@ -79,7 +81,7 @@ rules.JSRule({
 
 
 rules.JSRule({
-  name: 'PIR n sensor changed ON to OFF',
+  name: 'PIR n changed ON to OFF',
   description: 'PIR sensor start OFF lights timer',
   triggers: [
     triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF'),
@@ -99,6 +101,10 @@ rules.JSRule({
     // timeoutDefaultPir3_4 = time.toZDT(1000);
 
     timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
+    if (time.toZDT().isBetweenTimes('17:00', '19:00')){
+      timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
+    }
+
     timeoutMsPir3_4 = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
 
     if (event.itemName === 'pir01_occupancy') {

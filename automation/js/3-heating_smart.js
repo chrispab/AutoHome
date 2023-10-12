@@ -23,37 +23,38 @@ rules.JSRule({
       triggers.GroupStateChangeTrigger('gThermostatTemperatureAmbients'),
     ],
     execute: (event) => {
-      logger.debug('>-------------------------------');
+      logger.debug('.....................................');
 
-      logger.debug('>smart heating');
-      logger.debug(`itemName: ${event.itemName}`);
-      logger.debug(`oldState: ${event.oldState}`);
-      logger.debug(`newState: ${event.newState}`);
+      logger.debug('...smart heating');
+      logger.debug(`...itemName: ${event.itemName}`);
+      logger.debug(`...oldState: ${event.oldState}`);
+      logger.debug(`...newState: ${event.newState}`);
 
       // const action = 'default';
       // get prefix eg FR, CT etc
       const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
-      logger.debug(`>roomPrefix: ${roomPrefix}`);
+      logger.debug(`...roomPrefix: ${roomPrefix}`);
   
       const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
-      logger.debug(`>heatingModeItem: ${heatingModeItem.name}: ${heatingModeItem.state}`);
+      logger.debug(`...heatingModeItem: ${heatingModeItem.name}: ${heatingModeItem.state}`);
   
       const setpointItem = items.getItem(`${roomPrefix}_ThermostatTemperatureSetpoint`);
-      logger.debug(`>setpointItem: ${setpointItem.name}: ${setpointItem.state}`);
+      logger.debug(`...setpointItem: ${setpointItem.name}: ${setpointItem.state}`);
   
       const TemperatureItem = items.getItem(`${roomPrefix}_ThermostatTemperatureAmbient`);
-      logger.debug(`>TemperatureItem: ${TemperatureItem.name}: ${TemperatureItem.state}`);
+      logger.debug(`...TemperatureItem: ${TemperatureItem.name}: ${TemperatureItem.state}`);
   
       const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
-      logger.debug(`>HeaterItem: ${HeaterItem.name}: ${HeaterItem.state}`);
+      logger.debug(`...HeaterItem: ${HeaterItem.name}: ${HeaterItem.state}`);
   
       const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
-      logger.debug(`>ReachableItem: ${ReachableItem.name}: ${ReachableItem.state}`);
+      logger.debug(`...ReachableItem: ${ReachableItem.name}: ${ReachableItem.state}`);
   
 
   
-      logger.debug(`>masterHeatingMode.state.toString() : ${items.getItem('masterHeatingMode').state.toString()}`);
-  
+      logger.debug(`...masterHeatingMode.state: ${items.getItem('masterHeatingMode').state.toString()}`);
+      logger.debug('.....................................');
+
       //! add if boost on - skip
       // if this heater is currently in being boosted, then just l;eave it alone and move on
       const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing

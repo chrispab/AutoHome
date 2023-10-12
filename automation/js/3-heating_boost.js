@@ -12,7 +12,7 @@ const logger = log(ruleUID);
 // var boost_time = '894s'; // 15m';
 // out by 6 secs in 15m  900s
 // const boost_time = 'PT15m';
-const boost_time = 'PT1m';
+const boost_time = 'PT15m';
 var boostTimers = cache.private.get('boostTimers', () => ({
   'CT': 1,
   'FH': 2,
@@ -105,7 +105,7 @@ function boostOnAction(roomPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
-  boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, 'boostCountdown');
+  boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { stopBoost(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
 
