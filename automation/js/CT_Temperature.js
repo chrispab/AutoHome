@@ -7,16 +7,16 @@ const logger = log(ruleUID);
 
 
 scriptLoaded = function () {
-  logger.info('scriptLoaded - init CT temp filter');
+  logger.debug('scriptLoaded - init CT temp filter');
   // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
   // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
   // items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(19);
   // items.getItem('CT_ThermostatTemperatureAmbient_raw').sendCommand(19);
 
-  // logger.info(`0 ==> STARTUP temp is: ${temp}`);
+  // logger.debug(`0 ==> STARTUP temp is: ${temp}`);
 };
 
-const divisor = 8;
+const divisor = 5;
 
 rules.JSRule({
   name: 'smooth out CT temperature readings',
@@ -24,36 +24,36 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
   execute: () => {
     let prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
-    // logger.info(`1 ==> previous temp is: ${prevTemp}`);
+    logger.debug(`1 ==> previous temp is: ${prevTemp}`);
 
     const rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
-    // logger.info(`2 ==> new raw temp is: ${rawTemp}`);
+    logger.debug(`2 ==> new raw temp is: ${rawTemp}`);
 
     if (prevTemp === 'NULL' || prevTemp < 5) {
       prevTemp = rawTemp;
-      // logger.info(`3 ==> setup initial value of prevTemp: ${prevTemp}`);
+      logger.debug(`3 ==> setup initial value of prevTemp: ${prevTemp}`);
     }
-    // logger.info(`4 ==> prev temp : ${prevTemp}`);
-    // logger.info(`5 ==> raw temp : ${rawTemp}`);
+    logger.debug(`4 ==> prev temp : ${prevTemp}`);
+    logger.debug(`5 ==> raw temp : ${rawTemp}`);
 
     const diff = prevTemp - rawTemp;
-    // logger.info(`6 ==> temp diff : ${diff}`);
-    // logger.info(`6-7 ==> divisor : ${divisor}`);
+    logger.debug(`6 ==> temp diff : ${diff}`);
+    logger.debug(`6-7 ==> divisor : ${divisor}`);
 
     const tempdiff = diff / divisor;
-    // logger.info(`5 ==> temp diff/divisor : ${tempdiff}`);
+    logger.debug(`5 ==> temp diff/divisor : ${tempdiff}`);
 
     let newTemp = prevTemp - tempdiff;
-    // logger.info(`5 ==> new temp : ${newTemp}`);
+    logger.debug(`5 ==> new temp : ${newTemp}`);
 
     newTemp = (Math.round((newTemp.toFixed(2)) * 10) / 10);
-    // logger.info(`6 ==> new temp after rounding: ${newTemp}`);
+    logger.debug(`6 ==> new temp after rounding: ${newTemp}`);
 
     items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(newTemp);
     items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(newTemp);
 
-    // logger.info(`7 ==> CT_Temperature(newTemp): ${items.getItem('CT_Temperature').state}`);
+    logger.debug(`7 ==> CT_Temperature(newTemp): ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
 
-    // logger.info(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_ThermostatTemperatureAmbient(newTemp): ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
+    logger.debug(`CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_ThermostatTemperatureAmbient(newTemp): ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
   },
 });
