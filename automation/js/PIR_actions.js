@@ -145,7 +145,6 @@ function pir2_off_body() {
 }
 function pir_dummy(itemName) {
   logger.debug(`pir_dummy_timer called by: ${itemName}`);
-
 }
 function timer_pir_off(itemName) {
   logger.debug(`timer_pir_off ${itemName} Power OFF`);

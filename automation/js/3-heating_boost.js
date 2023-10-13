@@ -106,14 +106,16 @@ function boostOnAction(roomPrefix) {
 
 function boostOffAction(roomPrefix) {
   logger.debug('boostOffAction on->off');
-  actions.Voice.say('boost off');
   // cancel timer   // and turn stuff off
   if (boostTimers[roomPrefix]) {
     boostTimers[roomPrefix].cancel();
     logger.debug('cancelling boost timer ');
   }
   stopBoostItems(roomPrefix);
+  actions.Voice.say('boost off');
+
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
+
 }
 
 

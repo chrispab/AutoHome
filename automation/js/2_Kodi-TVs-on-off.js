@@ -27,7 +27,7 @@ scriptLoaded = function scriptLoaded() {
       tv_startup_tbody();
     });
   }
-  actions.Voice.say('tvs and kodees now functional');
+  actions.Voice.say('tvs now available');
 };
 
 
