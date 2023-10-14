@@ -7,7 +7,7 @@ var ruleUID = "smart_heating";
 const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 // openhab> log:set DEBUG org.openhab.automation.openhab-js.smart_heating
-
+// openhab> log:set INFO org.openhab.automation.openhab-js.smart_heating
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
 

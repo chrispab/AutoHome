@@ -25,22 +25,11 @@ rules.JSRule({
     itemName = event.itemName.toString();
     logger.debug(`updated pirx_occupancy, Triggering item: ${itemName},state: ${items.getItem(itemName).state}`);
 
-    // logger.debug(`updated pirx_occupancy: ${items.getItem(itemName).state}`);
-    // logger.debug(`-BridgeLightSensorLevel: ${items.getItem('BridgeLightSensorLevel').rawState}`);
-    // logger.debug(`-ConservatoryLightTriggerLevel: ${items.getItem('ConservatoryLightTriggerLevel').rawState}`);
-
-    // timeout = items.getItem('KT_cupboard_lights_timeout').rawState
     timerName = ruleUID + '_' + itemName;
 
-    // timeoutSeconds = items.getItem('KT_cupboard_lights_timeout').rawState + 1;
-    // timeoutMs = timeoutSeconds * 1000;
-    // timeout = time.toZDT(timeoutMs);
-    timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
-    if (time.toZDT().isBetweenTimes('17:00', '19:00')){
-      timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
-    }
-    // timeoutDefaultPir3_4 = time.toZDT(1000);
-    timeoutMsPir3_4 = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
+    let { timeoutMsPir1_2, timeoutMsPir3_4 } = getTimeouts();
+    logger.debug(`pir01_ TIMER  OFF,time is: ${timeoutMsPir1_2}`);
+    logger.debug(`pir03_ TIMER  OFF,time is: ${timeoutMsPir3_4}`);
 
     if (itemName === 'pir01_occupancy' || itemName === 'pir02_occupancy') {
       if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
@@ -90,22 +79,13 @@ rules.JSRule({
     itemName = event.itemName.toString();
     logger.debug(`pirx_occupancy: ON -> OFF, Triggering item: ${itemName},state: ${items.getItem(itemName).state}`);
 
-    // logger.debug(`Triggering item: ${itemName}`);
-    // logger.debug(`pirx_occupancy: ON -> OFF`);
-
     timerName = ruleUID + '_' + itemName;
 
-    // timeoutSeconds = items.getItem('KT_cupboard_lights_timeout').rawState + 1;
-    // timeoutMs = timeoutSeconds * 1000;
-    // timeout = time.toZDT(timeoutMs);
-    // timeoutDefaultPir3_4 = time.toZDT(1000);
+    let { timeoutMsPir1_2, timeoutMsPir3_4 } = getTimeouts();
+    logger.debug(`pir01_ TIMER  OFF,time is: ${timeoutMsPir1_2}`);
+    logger.debug(`pir03_ TIMER  OFF,time is: ${timeoutMsPir3_4}`);
 
-    timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
-    if (time.toZDT().isBetweenTimes('16:30', '19:30')){
-      timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
-    }
 
-    timeoutMsPir3_4 = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
 
     if (event.itemName === 'pir01_occupancy') {
       logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_ Power: OFF,time is: ${timeoutMsPir1_2}`);
@@ -132,6 +112,19 @@ rules.JSRule({
     }
   },
 });
+
+function getTimeouts() { 
+  timeoutMsPir1_2 = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
+  if (time.toZDT().isBetweenTimes('16:30', '19:30')){
+    timeoutMsPir1_2 = timeoutMsPir1_2 * 4;
+  }
+  timeoutMsPir3_4 = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
+
+  return { 
+    timeoutMsPir1_2, 
+    timeoutMsPir3_4 
+  }; 
+}
 
 
 function pir1_off_body() {
