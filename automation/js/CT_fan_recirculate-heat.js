@@ -7,16 +7,16 @@ const logger = log(ruleUID);
 
 
 scriptLoaded = function () {
-  logger.info('scriptLoaded fan.js');
+  logger.info(`scriptLoaded - ${ruleUID}`);
 };
-
+const fanOnSecs = 120;
 rules.JSRule({
   name: 'conservatory fan circulate heat Cron',
   description: 'conservatory fan circulate heat Cron',
   triggers: [triggers.GenericCronTrigger('0 0/3 * * * ?')],
   execute: () => {
     logger.debug('conservatory fan circulate heat Cron   ZZZZZ');
-    const fanOnSecs = 45;
+    
     const setPoint = items.getItem('CT_ThermostatTemperatureSetpoint').state;
     const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     // and heater onBoiler_Control

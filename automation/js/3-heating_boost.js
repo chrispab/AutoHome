@@ -45,7 +45,7 @@ rules.JSRule({
   execute: (event) => {
     logger.debug('>Heater_Boost button change');
     logger.debug(`event: ${JSON.stringify(event)}`);
-    logger.debug(`event.itemName.toString() : ${event.itemName.toString()}`);
+    logger.debug(`event.itemName: ${event.itemName.toString()}`);
 
     // get prefix eg FR, CT etc
     //trim off initial'v_'
@@ -122,15 +122,19 @@ function boostOffAction(roomPrefix) {
 function stopBoostItems(roomPrefix) {
   logger.debug('stopBoostItems');
 
+  //; e.g CT_Heater_Boost
   items.getItem(roomPrefix + '_Heater_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${roomPrefix + '_Heater_Boost'}`);
 
+  //; e.g CT_Boost
   items.getItem('v_' + roomPrefix + '_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${'v_' + roomPrefix + '_Boost'}`);
 
+  //; e.g v_CT_Heater_Boost
   items.getItem('v_' + roomPrefix + '_Heater_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${'v_' + roomPrefix + '_Heater_Boost'}`);
 
+  //; e.g CT_Heater_Control
   items.getItem(roomPrefix + '_Heater_Control').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${roomPrefix + '_Heater_Control'}`);
 }

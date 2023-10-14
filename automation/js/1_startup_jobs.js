@@ -16,11 +16,14 @@ setZonesReachableOff = function () {
 scriptLoaded = function () {
   logger.info('script loaded - startup jobs');
   // actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
-  actions.Audio.playSound('now_disconnected.mp3');
-  // alerting.sendEmail('openhab email','startup xscript loaded zzz_startup_jobs');
-  alerting.sendEmail('openhab startup', 'startup xscript loaded zzz_startup_jobs',logger);
+  // actions.Audio.playSound('now_disconnected.mp3');
+  actions.Voice.say('rebooting');
 
-  logger.info('startup xscript loaded zzz_startup_jobs- now_disconnected.mp3');
+  // alerting.sendEmail('openhab email','startup xscript loaded zzz_startup_jobs');
+  alerting.sendEmail('openhab startup', 'startup loaded startup_jobs',logger);
+
+  logger.info('startup loaded startup_jobs - now_disconnected.mp3');
+
   setZonesReachableOff();
 };
 
