@@ -43,17 +43,17 @@ scriptLoaded = function () {
 //   },
 // });
 
-rules.JSRule({
-  name: 'SystemStartlevelTrigger_100',
-  description: 'SystemStartlevelTrigger(100)',
-  // triggers: [triggers.SystemStartlevelTrigger(100)],
-  triggers: [triggers.SystemStartlevelTrigger(100)],
-  execute: () => {
-    // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
-    actions.Audio.playSound('61 Transporter Materialization.mp3');
-    // alerting.sendEmail('openhab email','triggers.SystemStartlevelTrigger(100)');
-    alerting.sendEmail('openhab startup 100', 'triggers.SystemStartlevelTrigger(100)',logger);
+// rules.JSRule({
+//   name: 'SystemStartlevelTrigger_100',
+//   description: 'SystemStartlevelTrigger(100)',
+//   // triggers: [triggers.SystemStartlevelTrigger(100)],
+//   triggers: [triggers.SystemStartlevelTrigger(100)],
+//   execute: () => {
+//     // actions.Audio.playSound('0600_hours_regeneration_cycle_complete_normalised.mp3');
+//     actions.Audio.playSound('61 Transporter Materialization.mp3');
+//     // alerting.sendEmail('openhab email','triggers.SystemStartlevelTrigger(100)');
+//     alerting.sendEmail('openhab startup 100', 'triggers.SystemStartlevelTrigger(100)',logger);
 
-    logger.info('triggers.SystemStartlevelTrigger(100) 61 Transporter Materialization.mp3');
-  },
-});
+//     logger.info('triggers.SystemStartlevelTrigger(100) 61 Transporter Materialization.mp3');
+//   },
+// });

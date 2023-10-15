@@ -22,21 +22,30 @@ scriptLoaded = function () {
   logger.info(infoStr);
 };
 
-rules.JSRule({
-  name: 'SystemStartlevelTrigger_100',
-  description: 'SystemStartlevelTrigger(100)',
-  triggers: [triggers.SystemStartlevelTrigger(100)],
-  execute: () => {
-    audioFile = '0600_hours_regeneration_cycle_complete_normalised.mp3';
-    infoStr = `triggers.SystemStartlevelTrigger(100) -  - ${audioFile}`;
+require('@runtime').lifecycleTracker.addDisposeHook(() => {
+  // actions.Audio.playSound('61 Transporter Materialization.mp3');
+  // actions.Audio.playSound('61 Transporter Materialization.mp3');
+  alerting.sendEmail('openhab addDisposeHook', 'lifecycleTracker.addDisposeHook',logger);
+  logger.info('lifecycleTracker.addDisposeHook,,,, 61 Transporter Materialization.mp3');
+  actions.Voice.say('rebooting - final jobs');
 
-    actions.Audio.playSound(audioFile);
-    // alerting.sendEmail('openhab email',infoStr);
-    alerting.sendEmail('SystemStartlevelTrigger_100',infoStr,logger);
-
-    logger.info(infoStr);
-  },
 });
+
+// rules.JSRule({
+//   name: 'SystemStartlevelTrigger_100',
+//   description: 'SystemStartlevelTrigger(100)',
+//   triggers: [triggers.SystemStartlevelTrigger(100)],
+//   execute: () => {
+//     audioFile = '0600_hours_regeneration_cycle_complete_normalised.mp3';
+//     infoStr = `triggers.SystemStartlevelTrigger(100) -  - ${audioFile}`;
+
+//     actions.Audio.playSound(audioFile);
+//     // alerting.sendEmail('openhab email',infoStr);
+//     alerting.sendEmail('SystemStartlevelTrigger_100',infoStr,logger);
+
+//     logger.info(infoStr);
+//   },
+// });
 
 
 
