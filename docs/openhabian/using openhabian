@@ -76,4 +76,13 @@ openhab-cli clean-cache
 openhab-cli start
 sudo systemctl start openhab.service
 
+# this
+sudo systemctl status openhab.service
+
+sudo systemctl stop openhab.service
+
+sudo openhab-cli clean-cache
+
+sudo systemctl start openhab.service
+
 Watch openhablog for errors, test if the problems persist. If so, serach the forum and post a new thread if you do not find a solution. To get more information in openhab.log, use openhab-cli start --debug to enable debug logging.
