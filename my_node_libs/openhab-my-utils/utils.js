@@ -71,10 +71,16 @@ exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
 }
 
 
-// extractRoomPrefix('gBG_sockets_reachable')
-exports.extractRoomPrefix = function (itemName, logger) {
-  var logger = (logger) ? logger : log('utils.extractRoomPrefix');
-
-  logger.debug('bg extractRoomPrefix: ' + itemName);
-  return itemName;
+exports.getLocationPrefix = function(itemName, logger) {
+  // can prersent as 'v_ID_' or 'ID_'
+  // if first 2 chars are 'V_' then trim them off
+  var roomPrefix;
+  if (itemName.toString().startsWith("v_")) {
+    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_') + 1);
+    logger.debug(`startsWith v_, roomPrefixPartial : ${roomPrefix}`);
+  } else {
+    roomPrefix = itemName.substr(0, event.itemName.indexOf('_') + 1);
+    logger.debug(`immediate ID, roomPrefixPartial : ${roomPrefix}`);
+  }
+  return roomPrefix;
 }

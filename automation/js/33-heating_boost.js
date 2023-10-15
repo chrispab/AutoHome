@@ -3,6 +3,7 @@ const {
 } = require('openhab');
 const { CountdownTimer, timeUtils } = require('openhab_rules_tools');
 
+const { utils } = require('openhab-my-utils');
 
 var ruleUID = "boost-heating";
 
@@ -12,7 +13,7 @@ const logger = log(ruleUID);
 // var boost_time = '894s'; // 15m';
 // out by 6 secs in 15m  900s
 // const boost_time = 'PT15m';
-const boost_time = 'PT15m';
+const boost_time = 'PT1m';
 var boostTimers = cache.private.get('boostTimers', () => ({
   'CT': 1,
   'FH': 2,
@@ -49,12 +50,8 @@ rules.JSRule({
 
     // get prefix eg FR, CT etc
     //trim off initial'v_'
-    const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
-    logger.debug(`roomPrefixPartial : ${roomPrefixPartial}`);
-
-    //remove anything after and including the first'_', e.g leaving 'CT'
-    const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    logger.debug(`roomPrefix: ${roomPrefix}`);
+    const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    // logger.debug(`roomPrefix: ${roomPrefix}`);
 
     const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
     logger.debug(`>HeaterItem.name: ${HeaterItem.name} : ,  HeaterItem.state: ${HeaterItem.state}`);
@@ -68,6 +65,9 @@ rules.JSRule({
       HeaterItem.sendCommand('OFF');
       return;// dont continue on if this RTV is Offline
     }
+
+    // getThemostatHeaterItems(event.name);
+
 
     //get the boostItem - if it exists yet, else get null if not
     const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// return null if missing
