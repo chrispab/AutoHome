@@ -5,6 +5,8 @@ const {
 var ruleUID = "pir_action";
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.pir_action
+// log:set INFO org.openhab.automation.openhab-js.pir_action
+
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
 
@@ -128,11 +130,11 @@ function getTimeouts() {
 
 
 function pir1_off_body() {
-  logger.debug('pir01_occupancy - KT_light_1_Power OFF');
+  logger.info('pir01_occupancy - KT_light_1_Power OFF');
   items.getItem('KT_light_1_Power').sendCommand('OFF');
 }
 function pir2_off_body() {
-  logger.debug('pir02_occupancy - KT_light_2_3_Power OFF');
+  logger.info('pir02_occupancy - KT_light_2_3_Power OFF');
   items.getItem('KT_light_2_Power').sendCommand('OFF');
   items.getItem('KT_light_3_Power').sendCommand('OFF');
 }
@@ -140,6 +142,6 @@ function pir_dummy(itemName) {
   logger.debug(`pir_dummy_timer called by: ${itemName}`);
 }
 function timer_pir_off(itemName) {
-  logger.debug(`timer_pir_off ${itemName} Power OFF`);
+  logger.info(`timer_pir_off ${itemName} Power OFF`);
   items.getItem(itemName).sendCommand('OFF');
 }
