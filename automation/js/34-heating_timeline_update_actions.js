@@ -37,14 +37,12 @@ rules.JSRule({
 
     // incoming event in format "itemName": "v_CT_SetPoint_auto_update_by_timeline",
     // now get the actual temp setpoint from the corresponding setpoint item
-    // e.g
+    // e.g..
     // roomPrefix is first 2 chars of triggering item name
-    // const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
-    // const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
-
-
-    // logger.info(`--->>> roomPrefix : ${roomPrefix}`);
+    const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
+    const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
+    // const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    logger.info(`--->>> gHeatingTimelineSetpointUpdateProxys roomPrefix : ${roomPrefix}`);
 
     //! ONLY update auto setpoint if heater mode is 'auto'
 
@@ -83,6 +81,7 @@ rules.JSRule({
     // roomPrefix = 'CT'
     // const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    logger.info(`gHeating_Setpoint_auto_updates_webui roomPrefix: ${roomPrefix}`);
 
     // only update the thermosat temperaturte setpoint when one being adjusted on ui (min,cool,comfort ... etc )
     // is same as current active one, v_<roomPrefix>_SetPoint_auto_update_by_timeline

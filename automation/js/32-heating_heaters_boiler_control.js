@@ -5,12 +5,13 @@ const { utils } = require('openhab-my-utils');
 
 var ruleUID = "heating-heaters-boiler-control";
 
+
 const logger = log(ruleUID);
 // const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 // log:set DEBUG org.openhab.automation.openhab-js.heating-heaters-boiler-control
 
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
-// figure out if a room heater needs turning on
+// figure out if a room heater needs turning on..
 rules.JSRule({
   name: 'Check if Heaters need changing',
   description: 'Check if Heaters need changing',
@@ -20,6 +21,19 @@ rules.JSRule({
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients')
   ],
   execute: (event) => {
+
+let itemName = "v_CT_anything_nsns";
+let rp = utils.getLocationPrefix(itemName, logger);
+logger.info(`roomPrefix: ${rp}`);
+logger.info('roomPrefix: {}',rp);
+
+itemName = "CT_anything_nsns";
+rp = utils.getLocationPrefix(itemName, logger);
+logger.info(`roomPrefix: ${rp}`);
+logger.info('roomPrefix: {}',rp);
+
+
+
     logger.debug('>--------------------------------------------------------------------');
     logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     logger.debug(`>item: ${event.itemName} triggered event, in group : ${event.groupName}`);
