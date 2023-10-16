@@ -23,12 +23,16 @@ rules.JSRule({
   execute: (event) => {
 
 let itemName = "v_CT_anything_nsns";
+logger.info(`itemName: ${itemName}`);
 let rp = utils.getLocationPrefix(itemName, logger);
+
 logger.info(`roomPrefix: ${rp}`);
 logger.info('roomPrefix: {}',rp);
 
 itemName = "CT_anything_nsns";
+logger.info(`itemName: ${itemName}`);
 rp = utils.getLocationPrefix(itemName, logger);
+
 logger.info(`roomPrefix: ${rp}`);
 logger.info('roomPrefix: {}',rp);
 
