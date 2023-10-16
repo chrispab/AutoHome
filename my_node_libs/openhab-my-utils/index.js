@@ -1,6 +1,6 @@
 var someProperty = 'Hello bbbbbbbbbbbbbbbbbbbb world!';
 function someFunction() {
-  console.log('Hello bbbbbbbbbbbbbbbbbbbbfrom your personal library!');
+  console.log('Hello ur personal library!');
 }
 
 module.exports = {

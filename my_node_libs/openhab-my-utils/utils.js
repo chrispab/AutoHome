@@ -73,14 +73,14 @@ exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
 
 exports.getLocationPrefix = function(itemName, logger) {
   // can prersent as 'v_ID_' or 'ID_'
-  // if first 2 chars are 'V_' then trim them off
+  // if first 2 chars are 'V_' then trim them offnnvv
   var roomPrefix;
   if (itemName.toString().startsWith("v_")) {
-    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_') + 1);
+    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_'));
     logger.debug(`startsWith v_, roomPrefixPartial : ${roomPrefix}`);
   } else {
-    roomPrefix = itemName.substr(0, event.itemName.indexOf('_') + 1);
-    logger.debug(`immediate ID, roomPrefixPartial : ${roomPrefix}`);
+    roomPrefix = itemName.toString().substr(0, itemName.indexOf('_'));
+    logger.debug(`getLocationPrefix immediate ID, roomPrefix : ${roomPrefix}`);
   }
   return roomPrefix;
 }

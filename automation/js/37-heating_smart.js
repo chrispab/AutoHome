@@ -1,6 +1,7 @@
 const {
     log, items, rules, actions, triggers,
 } = require('openhab');
+const { utils } = require('openhab-my-utils');
 
 var ruleUID = "smart_heating";
 
@@ -29,7 +30,8 @@ rules.JSRule({
       triggers.GroupStateChangeTrigger('gThermostatTemperatureAmbients'),
     ],
     execute: (event) => {
-      const roomPrefix = doSetup(event);
+      // const roomPrefix = doSetup(event);
+      const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
 
       //get initial readings
 
@@ -55,8 +57,10 @@ function doSetup(event) {
 
   // const action = 'default';
   // get prefix eg FR, CT etc
-  const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
-  logger.debug(`...roomPrefix: ${roomPrefix}`);
+  // const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
+  // logger.debug(`...roomPrefix: ${roomPrefix}`);
+  const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+
 
   const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
   logger.debug(`...heatingModeItem: ${heatingModeItem.name}: ${heatingModeItem.state}`);
