@@ -5,13 +5,18 @@ const {
 var ruleUID = "ct-stereo";
 const logger = log(ruleUID);
 
+const tToAmpIRPowerOn = 20;
+const tToSelectAmpAux = 30;
+const tToTurnOffStereo = 30;
+
+
 let CT_stereo_off_timer = null;
 rules.JSRule({
   name: 'turn ON conservatory stereo',
   description: 'turn ON conservatory stereo',
   triggers: [triggers.ItemStateChangeTrigger('vCT_stereo', 'OFF', 'ON')],
   execute: (data) => {
-    logger.info('STEREO Turning on stereo - kodi, amp');
+    logger.info('Turning on stereo - kodi, amp');
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi, amp, ir bridge, hdmi audio extractor
     // items.getItem("bg_wifisocket_1_1_power").sendCommand("ON");//kodi pi
 
@@ -20,11 +25,11 @@ rules.JSRule({
       CT_stereo_off_timer.cancel();
     }
 
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), () => {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToAmpIRPowerOn), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       logger.info('STEREO - IR turn on amp from standby');
     });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToSelectAmpAux), () => {
       items.getItem('amplifier_IR_Aux').sendCommand('ON'); // IR code
 
       logger.info('STEREO - IR amp switch to AUX source');
@@ -57,7 +62,7 @@ rules.JSRule({
     logger.info('STEREO - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
-      CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+      CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToTurnOffStereo), () => {
         items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
         items.getItem('vCT_stereo').postUpdate('OFF'); // turn off virt trigger
 

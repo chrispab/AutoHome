@@ -123,40 +123,6 @@ function tv_startup_tbody() {
 
 
 
-function tv_alert_func() {
-  currentState = items.getItem('KT_light_1_Power').state;
-
-  items.getItem('KT_light_1_Power').sendCommand('ON');
-  logger.info('KT_light_1_Power ON');
-  actions.ScriptExecution.createTimer(time.toZDT((1 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('OFF');
-    logger.info('KT_light_1_Power OFF');
-  });
-  actions.ScriptExecution.createTimer(time.toZDT((2 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('ON');
-    logger.info('KT_light_1_Power ON');
-  });
-  actions.ScriptExecution.createTimer(time.toZDT((3 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('OFF');
-    logger.info('KT_light_1_Power OFF');
-  });
-
-  actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand(currentState);
-    logger.info('KT_light_1_Power restore original state');
-  });
-
-  //   actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
-  //     items.getItem('KT_light_1_Power').sendCommand('ON');
-  //     console.error('KT_light_1_Power ON');
-  //   });
-  //   actions.ScriptExecution.createTimer(time.toZDT((5 * 500)), () => {
-  //     items.getItem('KT_light_1_Power').sendCommand('OFF');
-  //     console.error('KT_light_1_Power OFF');
-  // });
-}
-
-
 // time.toZDT((500))
 function tv_alert() {
   currentState = items.getItem('KT_light_1_Power').state;
@@ -180,15 +146,6 @@ function tv_alert() {
     items.getItem('KT_light_1_Power').sendCommand(currentState);
     logger.info('KT_light_1_Power restore original state');
   });
-
-  //   actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
-  //     items.getItem('KT_light_1_Power').sendCommand('ON');
-  //     console.error('KT_light_1_Power ON');
-  //   });
-  //   actions.ScriptExecution.createTimer(time.toZDT((5 * 500)), () => {
-  //     items.getItem('KT_light_1_Power').sendCommand('OFF');
-  //     console.error('KT_light_1_Power OFF');
-  // });
 }
 
 
