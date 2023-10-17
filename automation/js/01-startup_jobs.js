@@ -5,12 +5,6 @@ const { alerting } = require('openhab-my-utils');
 var ruleUID = "startup-jobs";
 const logger = log(ruleUID);
 
-setZonesReachableOff = function () {
-  logger.info('setZonesReachableOff');
-  items.getItem('Zone1Reachable').postUpdate('OFF');
-  items.getItem('Zone3Reachable').postUpdate('OFF');
-};
-
 scriptLoaded = function () {
   logger.info('script loaded - startup jobs');
   // actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
@@ -24,3 +18,9 @@ scriptLoaded = function () {
   setZonesReachableOff();
 };
 
+
+setZonesReachableOff = function () {
+  logger.info('setZonesReachableOff');
+  items.getItem('Zone1Reachable').postUpdate('OFF');
+  items.getItem('Zone3Reachable').postUpdate('OFF');
+};

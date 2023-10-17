@@ -10,3 +10,9 @@ Switch BR_Heater_Control "Bedroom Heater"  <my_radiator>  (gChart_Minute, gHeate
 String BR_Heater_Mode "Bedroom Heating Mode" <settings> (gHeatingModes)
 String BR_Heater_Reachable "Bedroom Reachable" <qualityofservice> (gHeaterReachables)  { channel="mqtt:topic:bedroomRadThermoValve:reachable" }
 Number BR_Heater_Rssi "BR RTV RSSI [%.1f]" <qualityofservice>  { channel="mqtt:topic:bedroomRadThermoValve:rssi" }
+
+//boost
+Switch      BR_Heater_Boost "Bedroom Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_BR_Boost  "Bedroom virtual Heater boost"
+Switch      v_BR_Heater_Boost  "Bedroom virtual Heater boost" (gvHeaterBoosters)
+Number:Time BR_Boost_Countdown "Bedroom_Boost_Countdown"

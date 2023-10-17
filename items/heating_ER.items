@@ -10,3 +10,8 @@ Switch ER_Heater_Control "Elsie's Room Heater"  <my_radiator>  (gChart_Minute, g
 String ER_Heater_Mode "Elsie's Room Heating Mode" <settings> (gHeatingModes)
 String ER_Heater_Reachable "Elsie's Room Reachable" <qualityofservice> (gHeaterReachables)  { channel="mqtt:topic:elsiesRoomRadThermoValve:reachable" }
 Number ER_Heater_Rssi "ER RTV RSSI [%.1f]" <qualityofservice>  { channel="mqtt:topic:elsiesRoomRadThermoValve:rssi" }
+//boost
+Switch      ER_Heater_Boost "Elsie's Room Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_ER_Boost  "Elsie's Room virtual Heater boost"
+Switch      v_ER_Heater_Boost  "Elsie's Room virtual Heater boost" (gvHeaterBoosters)
+Number:Time ER_Boost_Countdown "Elsie's Room_Boost_Countdown"

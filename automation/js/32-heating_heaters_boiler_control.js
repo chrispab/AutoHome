@@ -22,19 +22,19 @@ rules.JSRule({
   ],
   execute: (event) => {
 
-let itemName = "v_CT_anything_nsns";
-logger.info(`itemName: ${itemName}`);
-let rp = utils.getLocationPrefix(itemName, logger);
+    // let itemName = "v_CT_anything_nsns";
+    // logger.info(`itemName: ${itemName}`);
+    // let rp = utils.getLocationPrefix(itemName, logger);
 
-logger.info(`roomPrefix: ${rp}`);
-logger.info('roomPrefix: {}',rp);
+    // logger.info(`roomPrefix: ${rp}`);
+    // logger.info('roomPrefix: {}',rp);
 
-itemName = "CT_anything_nsns";
-logger.info(`itemName: ${itemName}`);
-rp = utils.getLocationPrefix(itemName, logger);
+    // itemName = "CT_anything_nsns";
+    // logger.info(`itemName: ${itemName}`);
+    // rp = utils.getLocationPrefix(itemName, logger);
 
-logger.info(`roomPrefix: ${rp}`);
-logger.info('roomPrefix: {}',rp);
+    // logger.info(`roomPrefix: ${rp}`);
+    // logger.info('roomPrefix: {}',rp);
 
 
 
@@ -95,16 +95,16 @@ logger.info('roomPrefix: {}',rp);
       const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
-      
-      if (temp >= turnOffTemp  && HeaterItem.state.toString()=='ON') {
+
+      if (temp >= turnOffTemp && HeaterItem.state.toString() == 'ON') {
         //if heater on and and temp > sp turn local heater off
         logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
-      } else if (temp < turnOnTemp && HeaterItem.state.toString()=='OFF') {
+      } else if (temp < turnOnTemp && HeaterItem.state.toString() == 'OFF') {
         //if heater off and and temp < sp turn local heater on
         logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
-      }else{
+      } else {
         logger.debug('>no change to local heater reqd - do nothing');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {

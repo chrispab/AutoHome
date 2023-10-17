@@ -21,3 +21,9 @@ Switch                  DR_Heater_Control "Dining Room Heater"  <my_radiator>   
 String                  DR_Heater_Mode "Dining Room Heating Mode" <settings>        (gChart_Minute,gHeatingModes)
 String                  DR_Heater_Reachable "Dining Room Reachable" <qualityofservice>  (gHeaterReachables)  { channel="mqtt:topic:diningRoomRadThermoValve:reachable" }
 Number:Dimensionless    DR_Heater_Rssi "DR RTV RSSI [%.1f]" <qualityofservice>         { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }
+
+//boost
+Switch      DR_Heater_Boost "Dining Room Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_DR_Boost  "Dining Room virtual Heater boost"
+Switch      v_DR_Heater_Boost  "Dining Room virtual Heater boost" (gvHeaterBoosters)
+Number:Time DR_Boost_Countdown "Dining Room_Boost_Countdown"
