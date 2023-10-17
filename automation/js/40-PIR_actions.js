@@ -30,8 +30,8 @@ rules.JSRule({
     timerName = ruleUID + '_' + itemName;
 
     let { timeoutMsPir1_2, timeoutMsPir3_4 } = getTimeouts();
-    logger.debug(`pir01_ TIMER  OFF,time is: ${timeoutMsPir1_2}`);
-    logger.debug(`pir03_ TIMER  OFF,time is: ${timeoutMsPir3_4}`);
+    // logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMsPir1_2}`);
+    // logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMsPir3_4}`);
 
     if (itemName === 'pir01_occupancy' || itemName === 'pir02_occupancy') {
       if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
@@ -45,6 +45,8 @@ rules.JSRule({
           logger.info('pir02_occupancy KT_light_2_3 Power ON');
         }
         logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
+        logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMsPir1_2}`);
+
         timerMgr.check(itemName, timeoutMsPir1_2, () => { pir_dummy(timerName); }, true, null, timerName);
       } else {
         logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT setting ON : ${timerName}, for item: ${itemName}`);
@@ -63,6 +65,8 @@ rules.JSRule({
         }
         logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
         timerMgr.check(itemName, timeoutMsPir3_4, () => { pir_dummy(timerName); }, true, null, timerName);
+        logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMsPir3_4}`);
+
       } else {
         logger.debug(`BridgeLightSensorLevel ABOVE DR_Auto_Lighting_Trigger_SetPoint, NOT setting ON : ${timerName}, for item: ${itemName}`);
       }
@@ -84,31 +88,39 @@ rules.JSRule({
     timerName = ruleUID + '_' + itemName;
 
     let { timeoutMsPir1_2, timeoutMsPir3_4 } = getTimeouts();
-    logger.debug(`pir01_ TIMER  OFF,time is: ${timeoutMsPir1_2}`);
-    logger.debug(`pir03_ TIMER  OFF,time is: ${timeoutMsPir3_4}`);
+    // logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMsPir1_2}`);
+    // logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMsPir3_4}`);
 
 
 
     if (event.itemName === 'pir01_occupancy') {
       logger.debug(`pir01_occupancy: STARTING OFF TIMER KT_light_1_ Power: OFF,time is: ${timeoutMsPir1_2}`);
       timerMgr.check(itemName, timeoutMsPir1_2, () => { pir1_off_body(); }, true, null, timerName);
+      logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMsPir1_2}`);
+
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
     }
     if (event.itemName === 'pir02_occupancy') {
       logger.debug(`pir02_occupancy: STARTING OFF TIMER KT_light_2_3 Power: OFF,time is: ${timeoutMsPir1_2}`);
       timerMgr.check(itemName, timeoutMsPir1_2, () => { pir2_off_body(); }, true, null, timerName);
+      logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMsPir1_2}`);
+
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }
     if (event.itemName === 'pir03_occupancy') {
       logger.debug(`pir03_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeoutMsPir3_4}`);
       timerMgr.check(itemName, timeoutMsPir3_4, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
+      logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMsPir3_4}`);
+
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }
     if (event.itemName === 'pir04_occupancy') {
       logger.debug(`pir04_occupancy: STARTING OFF TIMER gDiningRoomAutoLights: OFF,time is: ${timeoutMsPir3_4}`);
       timerMgr.check(itemName, timeoutMsPir3_4, () => { timer_pir_off('gDiningRoomAutoLights'); }, true, null, timerName);
+      logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMsPir3_4}`);
+
       logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);
 
     }

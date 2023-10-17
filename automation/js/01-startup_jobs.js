@@ -1,5 +1,3 @@
-const email = 'cbattisson@gmail.com';
-
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
