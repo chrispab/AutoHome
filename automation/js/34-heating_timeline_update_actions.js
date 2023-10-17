@@ -39,10 +39,10 @@ rules.JSRule({
     // now get the actual temp setpoint from the corresponding setpoint item
     // e.g..
     // roomPrefix is first 2 chars of triggering item name
-    const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
-    const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
-    // const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
-    logger.info(`--->>> gHeatingTimelineSetpointUpdateProxys roomPrefix : ${roomPrefix}`);
+    // const roomPrefixPartial = event.itemName.toString().substr(event.itemName.indexOf('_') + 1);
+    // const roomPrefix = roomPrefixPartial.substr(0, event.itemName.indexOf('_') + 1);
+    const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    // logger.info(`--->>> gHeatingTimelineSetpointUpdateProxys roomPrefix : ${roomPrefix}`);
 
     //! ONLY update auto setpoint if heater mode is 'auto'
 
@@ -78,7 +78,7 @@ rules.JSRule({
     logger.debug('handle when a auto program setpoint is updated by a setpoint changed from webui');
     // myutils.showEvent(event);
     // e.g. "itemName": "CT_Setpoint_auto_min"
-    // roomPrefix = 'CT'
+    // roomPrefix = 'CT'.
     // const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     logger.info(`gHeating_Setpoint_auto_updates_webui roomPrefix: ${roomPrefix}`);

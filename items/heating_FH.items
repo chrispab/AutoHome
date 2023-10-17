@@ -1,4 +1,4 @@
-Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
 Number fan_heater_temperature_sensor	"fan_heater_temperature_sensor"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
 Number fan_heater_ON_Setpoint "fan_heater on setponit [%.1f °C]"    <degreesc>
 Switch FH_enable "FH_enable"
@@ -21,7 +21,9 @@ Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C
 //additional params for use in openhab functions etc
 // Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gHeaterControls, gAnyRoomHeaterOn) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 //! gAnyRoomHeaterOn has been removed so never triggers gas boiler - cos its a fan heater
-Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+// Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
+
 String FH_Heater_Mode "Fan Heater Heating Mode" <settings>  //(gTimepicker)
 // Number FH_Heating_PresetTempNormal "Fan Heater Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 

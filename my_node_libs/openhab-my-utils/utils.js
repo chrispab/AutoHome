@@ -75,6 +75,8 @@ exports.getLocationPrefix = function(itemName, logger) {
   // can prersent as 'v_ID_' or 'ID_'
   // if first 2 chars are 'v_' then trim them off
   var roomPrefix;
+  logger.info('getLocationPrefix :{}','v1');
+
   if (itemName.toString().startsWith("v_")) {
     roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_')+1);
     logger.info(`getLocationPrefix startsWith v_, roomPrefixPartial : ${roomPrefix}`);

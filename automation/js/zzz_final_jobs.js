@@ -16,8 +16,7 @@ scriptLoaded = function () {
 
   infoStr = `startup xscript loaded final-jobs - ${audioFile}`;
   actions.Audio.playSound(audioFile);
-  // alerting.sendEmail('openhab email',infoStr);
-  alerting.sendEmail('script loaded -final-jobs',infoStr,logger);
+  alerting.sendEmail('openhab script loaded -final-jobs',infoStr,logger);
 
   logger.info(infoStr);
 };
@@ -30,22 +29,6 @@ require('@runtime').lifecycleTracker.addDisposeHook(() => {
   actions.Voice.say('rebooting - final jobs');
 
 });
-
-// rules.JSRule({
-//   name: 'SystemStartlevelTrigger_100',
-//   description: 'SystemStartlevelTrigger(100)',
-//   triggers: [triggers.SystemStartlevelTrigger(100)],
-//   execute: () => {
-//     audioFile = '0600_hours_regeneration_cycle_complete_normalised.mp3';
-//     infoStr = `triggers.SystemStartlevelTrigger(100) -  - ${audioFile}`;
-
-//     actions.Audio.playSound(audioFile);
-//     // alerting.sendEmail('openhab email',infoStr);
-//     alerting.sendEmail('SystemStartlevelTrigger_100',infoStr,logger);
-
-//     logger.info(infoStr);
-//   },
-// });
 
 
 

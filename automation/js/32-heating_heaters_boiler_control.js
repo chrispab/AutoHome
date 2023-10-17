@@ -42,7 +42,7 @@ logger.info('roomPrefix: {}',rp);
     logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     logger.debug(`>item: ${event.itemName} triggered event, in group : ${event.groupName}`);
 
-    // get prefix eg FR, CT etc
+    // get prefix eg FR, CT etc.
     // const roomPrefix = event.itemName.toString().substr(0, event.itemName.indexOf('_'));
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     // logger.debug(`>roomPrefix: ${roomPrefix}`);
