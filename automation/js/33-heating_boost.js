@@ -9,6 +9,7 @@ var ruleUID = "boost-heating";
 
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.boost-heating
+// log:set INFO org.openhab.automation.openhab-js.boost-heating
 
 // var boost_time = '894s'; // 15m';
 // out by 6 secs in 15m  900s

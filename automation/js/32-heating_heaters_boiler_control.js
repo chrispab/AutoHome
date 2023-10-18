@@ -9,6 +9,7 @@ var ruleUID = "heating-heaters-boiler-control";
 const logger = log(ruleUID);
 // const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 // log:set DEBUG org.openhab.automation.openhab-js.heating-heaters-boiler-control
+// log:set INFO org.openhab.automation.openhab-js.heating-heaters-boiler-control
 
 // if gHeatingModes, gTemperatureSetpoints ,gThermostatTemperatureAmbients are updated
 // figure out if a room heater needs turning on..
