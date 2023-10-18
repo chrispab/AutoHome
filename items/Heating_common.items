@@ -21,6 +21,8 @@ Switch		Boiler_Control      "Boiler Control"    <my_radiator>   (gChart_Minute) 
 String      Boiler_Reachable    "Boiler Reachable"  <qualityofservice>  { channel="mqtt:topic:boiler:reachable"}
 Number      Boiler_Rssi         "Boiler Rssi"       <qualityofservice>  { channel="mqtt:topic:boiler:rssi"}
 
+// Number:Time Boost_Time  "Heater boost time"       <material:trending_up> { unit="min" }
+Number Boost_Time  "Heater boost time"  <material:trending_up>
 
 
 String		masterHeatingMode			"Global Master Heating Mode [%s]"

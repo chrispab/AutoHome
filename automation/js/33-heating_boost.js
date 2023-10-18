@@ -14,8 +14,8 @@ const logger = log(ruleUID);
 // var boost_time = '894s'; // 15m';
 // out by 6 secs in 15m  900s
 
-// const boost_time = 'PT1m';
-const boost_time = 'PT15m';
+let boost_time = 'PT1m';
+// const boost_time = 'PT15m';
 
 var boostTimers = cache.private.get('boostTimers', () => ({
   'CT': 1,
@@ -102,7 +102,18 @@ function boostOnAction(roomPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
+  const BoostTimeItem = items.getItem(`Boost_Time`);
+  logger.debug(`BOOSTING BoostTimeItem.rawState: ${BoostTimeItem.rawState}`);
+  boost_time = BoostTimeItem.state*1000*60;
   boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.rawState), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(Quantity(BoostTimeItem.state)), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(Quantity(`${BoostTimeItem.state}`)), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(Quantity(`${BoostTimeItem.rawState}`)), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+  // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state*1000*60), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
+
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
 
