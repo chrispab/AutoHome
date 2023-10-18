@@ -1,12 +1,12 @@
 const {
   log, items, rules, actions,
 } = require('openhab');
-const { someProperty,utils} = require('openhab-my-utils');
+const { utils} = require('openhab-my-utils');
 
 var { TimerMgr } = require('openhab_rules_tools');
 var timerMgr = cache.private.get('timers', () => TimerMgr());
 
-var ruleUID = "bg_avail";
+var ruleUID = "bg_sockets_avail";
 const logger = log(ruleUID);
 // const { timeUtils } = require('openhab_rules_tools');
 
@@ -17,8 +17,8 @@ scriptLoaded = function () {
     item.postUpdate('OFF');
   });
   
-  logger.info(`from my node lib someProperty.. : ${someProperty}`);
-  logger.info(`from my node lib showGroupMembers gBG_sockets_reachable: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
+  // logger.info(`from my node lib someProperty.. : ${someProperty}`);
+  // logger.info(`from my node lib showGroupMembers gBG_sockets_reachable: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
   logger.info(`whole name: ${'gBG_sockets_reachable'}`);
 
   // logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable',logger)}`);
@@ -35,10 +35,20 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gBG_socket_maxworktime_updates')],
   execute: (event) => {
     logger.debug(`update BG sockets Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
-   // myutils.showGroupMembers('gBG_socket_maxworktime_updates');
-    const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-    const itemNameReachable = `${stub}_reachable`;
-    logger.debug(`get id part of item reachable: ${stub} `);
+    utils.showGroupMembers('gBG_socket_maxworktime_updates');
+
+    // in as
+    // bg_wifisocket_9_maxworktime
+    // convert to
+    // bg_wifisocket_9_reachable
+    // bg_wifiadaptor_1_maxworktime
+    //to
+    // bg_wifiadaptor_1_reachable
+    const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
+    // const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+
+    const itemNameReachable = `${roomPrefix}_reachable`;
+    logger.debug(`get id part of item reachable: ${roomPrefix} `);
 
     items.getItem(itemNameReachable).postUpdate('ON');
     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
