@@ -23,22 +23,6 @@ rules.JSRule({
   ],
   execute: (event) => {
 
-    // let itemName = "v_CT_anything_nsns";
-    // logger.info(`itemName: ${itemName}`);
-    // let rp = utils.getLocationPrefix(itemName, logger);
-
-    // logger.info(`roomPrefix: ${rp}`);
-    // logger.info('roomPrefix: {}',rp);
-
-    // itemName = "CT_anything_nsns";
-    // logger.info(`itemName: ${itemName}`);
-    // rp = utils.getLocationPrefix(itemName, logger);
-
-    // logger.info(`roomPrefix: ${rp}`);
-    // logger.info('roomPrefix: {}',rp);
-
-
-
     logger.debug('>--------------------------------------------------------------------');
     logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     logger.debug(`>item: ${event.itemName} triggered event, in group : ${event.groupName}`);
@@ -68,7 +52,7 @@ rules.JSRule({
     // not just the calling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
     if (ReachableItem.state.toString() !== 'Online') {
-      logger.info(`>ReachableItem-Offline - sending OFF, leaving!!!!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+      logger.warn(`>ReachableItem-Offline - sending OFF, leaving!: ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
       //===============================================
@@ -85,7 +69,7 @@ rules.JSRule({
     // if this heater is currently in being boosted, then just l;eave it alone and move on
     const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
     if (BoostItem && BoostItem.state.toString() === 'ON') {
-      logger.info(`>Boosting item == 'ON'-->> BoostItem.name, return from heater routine: ${BoostItem.name}`);
+      logger.info('>Boosting item: {} == ON. dont process boiler ON/OFF', BoostItem.name);
       return;
     }
     logger.debug('>no boost item defined for this heater, process as normal');
@@ -125,11 +109,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateUpdateTrigger('gHeaterControls')],
   execute: (event) => {
     // logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
-    // console.log(event);
-    // myutils.showEvent(event);
-    // logger.debug(`....triggering item : ${event.itemName}`);
-    // logger.debug(`....item value : ${event.receivedState}`);
-    // logger.debug(`...gAnyRoomHeaterOn: ${items.getItem('gAnyRoomHeaterOn').state}`);
+
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
       // if boiler off, send on command
       if (items.getItem('Boiler_Control').state.toString() === 'OFF') {

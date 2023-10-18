@@ -44,11 +44,11 @@ rules.JSRule({
     // bg_wifiadaptor_1_maxworktime
     //to
     // bg_wifiadaptor_1_reachable
-    const roomPrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-    // const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    const bgItemNamePrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));//e.g. bg_wifiadaptor_1_
+    // const bgItemNamePrefix = utils.getLocationPrefix(event.itemName, logger);
 
-    const itemNameReachable = `${roomPrefix}_reachable`;
-    logger.debug(`get id part of item reachable: ${roomPrefix} `);
+    const itemNameReachable = `${bgItemNamePrefix}_reachable`;
+    logger.debug(`get id part of item reachable: ${bgItemNamePrefix} `);// e.g. bg_wifiadaptor_1_reachable
 
     items.getItem(itemNameReachable).postUpdate('ON');
     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
