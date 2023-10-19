@@ -102,7 +102,7 @@ function boostOnAction(roomPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
-  const BoostTimeItem = items.getItem(`Boost_Time`);
+  const BoostTimeItem = items.getItem(`${roomPrefix}_Boost_Time`);
   logger.debug(`BOOSTING BoostTimeItem.rawState: ${BoostTimeItem.rawState}`);
   boost_time = BoostTimeItem.state*1000*60;
   boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);

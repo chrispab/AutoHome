@@ -8,13 +8,10 @@ Switch FH_enable "FH_enable"
 // https://github.com/openhab/openhab-google-assistant/blob/master/docs/USAGE.md
 // thermostat definition formatted for Google home, assistant use
 Group gFH_Thermostat "Fan Heater Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
+
 String FH_ThermostatMode "Fan Heater Thermostat Mode" <settings> (gFH_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number:Temperature FH_ThermostatTemperatureSetpoint "Fan Heater Setpoint [%.1f °C]" <heating> (gChart_Minute, gFH_Thermostat) { ga="thermostatTemperatureSetpoint" }
-// Number FH_Temperature "Fan Heater Temperature [%.1f °C]" <temperature> (gFH_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
 Number:Temperature FH_ThermostatTemperatureAmbient "Fan Heater Temperature [%.1f °C]" <temperature> (gChart_Minute, gFH_Thermostat) // { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
-// Number FH_Temperature "Fan Heater Temperature [%.1f °C]" <temperature> (gCT_Thermostat, gThermostatTemperatureAmbients)
-// Number FH_Temperature_monitor
-// Number FH_Temperature_raw "Fan Heater Temperature rawz [%.1f °C]" <temperature>  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
 Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C]" <humidity> (gChart_Minute, gFH_Thermostat, gThermostatHumidityAmbients)
         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 
@@ -23,14 +20,18 @@ Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C
 //! gAnyRoomHeaterOn has been removed so never triggers gas boiler - cos its a fan heater
 // Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
-
 String FH_Heater_Mode "Fan Heater Heating Mode" <settings>  //(gTimepicker)
-// Number FH_Heating_PresetTempNormal "Fan Heater Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel="mqtt:topic:bg_wifisocket_9:reachable" }
+Number FH_Heater_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:bg_wifisocket_9:rssi" }
 
-String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel="mqtt:topic:wifi_socket_8:reachable" }
-Number FH_Heater_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:wifi_socket_8:rssi" }
+//boost
+Switch      FH_Heater_Boost "FanHeater Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_FH_Boost  "FanHeater virtual Heater boost"
+Switch      v_FH_Heater_Boost  "FanHeater virtual Heater boost" (gvHeaterBoosters)
+Number:Time FH_Boost_Countdown "FanHeater_Boost_Countdown"
+Number FH_Boost_Time "FH_Boost_Time"  (gBoost_Time)
+
 
 Switch FH_LinkSetpointToCTSetpoint "Link Fan Heater setpoint to CT Setpoint"
 Number FH_Link_TrackingOffset "FH_Link_TrackingOffset"
-
 Number FH_outside_temperature_enable "FH_outside_temperature_enable"

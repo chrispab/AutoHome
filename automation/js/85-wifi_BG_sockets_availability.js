@@ -9,6 +9,8 @@ var timerMgr = cache.private.get('timers', () => TimerMgr());
 var ruleUID = "bg_sockets_avail";
 const logger = log(ruleUID);
 // const { timeUtils } = require('openhab_rules_tools');
+// log:set DEBUG org.openhab.automation.openhab-js.bg_sockets_avail
+// log:set INFO org.openhab.automation.openhab-js.bg_sockets_avail
 
 scriptLoaded = function () {
   logger.info('scriptLoaded - BG availability');
@@ -25,7 +27,6 @@ scriptLoaded = function () {
 
 
 };
-// log:set DEBUG org.openhab.automation.openhab-js.bg_avail
 
 const timeout = 'PT1M'; // use an appropriate value
 
