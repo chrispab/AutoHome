@@ -30,38 +30,41 @@ scriptLoaded = function () {
 
 const timeout = 'PT1M'; // use an appropriate value
 
-rules.JSRule({
-  name: 'update BG sockets Online/Offline status',
-  description: 'update BG sockets Online/Offline status',
-  triggers: [triggers.GroupStateUpdateTrigger('gBG_socket_maxworktime_updates')],
-  execute: (event) => {
-    logger.debug(`update BG sockets Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
-    utils.showGroupMembers('gBG_socket_maxworktime_updates');
+// rules.JSRule({
+//   name: 'update BG sockets Online/Offline status',
+//   description: 'update BG sockets Online/Offline status',
+//   triggers: [triggers.GroupStateUpdateTrigger('gBG_socket_maxworktime_updates')],
+//   execute: (event) => {
+//     logger.debug(`update BG sockets Online/Offline status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+//     utils.showGroupMembers('gBG_socket_maxworktime_updates');
 
-    // in as
-    // bg_wifisocket_9_maxworktime
-    // convert to
-    // bg_wifisocket_9_reachable
-    // bg_wifiadaptor_1_maxworktime
-    //to
-    // bg_wifiadaptor_1_reachable
-    const bgItemNamePrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));//e.g. bg_wifiadaptor_1_
-    // const bgItemNamePrefix = utils.getLocationPrefix(event.itemName, logger);
+//     // in as
+//     // bg_wifisocket_9_maxworktime
+//     // convert to
+//     // bg_wifisocket_9_reachable
+//     // bg_wifiadaptor_1_maxworktime
+//     //to
+//     // bg_wifiadaptor_1_reachable
+//     const bgItemNamePrefix = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));//e.g. bg_wifiadaptor_1_
+//     // const bgItemNamePrefix = utils.getLocationPrefix(event.itemName, logger);
 
-    const itemNameReachable = `${bgItemNamePrefix}_reachable`;
-    logger.debug(`get id part of item reachable: ${bgItemNamePrefix} `);// e.g. bg_wifiadaptor_1_reachable
+//     const itemNameReachable = `${bgItemNamePrefix}_reachable`;
+//     logger.debug(`get id part of item reachable: ${bgItemNamePrefix} `);// e.g. bg_wifiadaptor_1_reachable
 
-    items.getItem(itemNameReachable).postUpdate('ON');
-    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
+//     items.getItem(itemNameReachable).postUpdate('ON');
+//     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
 
-    timerName = ruleUID + '_' + itemNameReachable;
-    logger.debug(`retriggering timer: ${timerName} `);
+//     items.getItem(itemNameReachable).sendCommand('ON');
+//     logger.debug(`sendCommand('ON'): ${itemNameReachable} `);
+
+//     timerName = ruleUID + '_' + itemNameReachable;
+//     logger.debug(`retriggering timer: ${timerName} `);
 
 
-    timerMgr.check(itemNameReachable, timeout, () => {
-      items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
-      // items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
-    }, true, null, timerName);
-  },
-});
+//     timerMgr.check(itemNameReachable, timeout, () => {
+//       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+//       // items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+//       logger.debug(`${timerName} TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+//     }, true, null, timerName);
+//   },
+// });

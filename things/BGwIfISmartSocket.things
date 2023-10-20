@@ -97,7 +97,7 @@ Thing mqtt:topic:bg_wifisocket_9  "MQTT Thing: BG WiFi Power Socket 9" (mqtt:bro
         Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_97_ed_66/power/1", on="1", off="0" ]
         Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_97_ed_66/power/2", on="1", off="0" ]
         Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
-        Type string : reachable "BG WiFi Power Socket 9"
+        Type string : reachable "BG WiFi Power Socket 9 reachable" [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="MAP:bg_skt_reachable_ON.map"]
 }
 
 

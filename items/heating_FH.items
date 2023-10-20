@@ -15,13 +15,15 @@ Number:Temperature FH_ThermostatTemperatureAmbient "Fan Heater Temperature [%.1f
 Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C]" <humidity> (gChart_Minute, gFH_Thermostat, gThermostatHumidityAmbients)
         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
 
-//additional params for use in openhab functions etc
+//additional params for use in openhab functions etc 
 // Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gHeaterControls, gAnyRoomHeaterOn) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 //! gAnyRoomHeaterOn has been removed so never triggers gas boiler - cos its a fan heater
 // Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
 Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
 String FH_Heater_Mode "Fan Heater Heating Mode" <settings>  //(gTimepicker)
-String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel="mqtt:topic:bg_wifisocket_9:reachable" }
+// String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel = "mqtt:topic:bg_wifisocket_9:reachable", expire="10s,state=Offline"  }
+String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel = "mqtt:topic:bg_wifisocket_9:reachable" , expire="30s,state=OFF"   }
+
 Number FH_Heater_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:bg_wifisocket_9:rssi" }
 
 //boost
