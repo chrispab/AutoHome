@@ -35,7 +35,7 @@ String bg_wifisocket_3_reachable "BG Socket 3-reachable" (gMQTT, gBGWiFiPowerSoc
         ["BG_Sockets_Check"]  { channel = "mqtt:topic:bg_wifisocket_3:reachable" , expire="35s,state=OFF" }
 
 
-//double socket 4 currently in kitchen
+//double socket 4 currently in kitchen, 1 is kitchen rad
 Switch bg_wifisocket_4_1_power "BG Socket 4-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_4:powerSwitch_1" }
 Switch bg_wifisocket_4_2_power "BG Socket 4-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
 Number bg_wifisocket_4_maxworktime "BG Socket 4-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_4:maxworktime" }
