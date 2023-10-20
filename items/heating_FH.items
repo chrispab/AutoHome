@@ -22,7 +22,7 @@ Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C
 Switch FH_Heater_Control "Fan Heater Heater"  <my_radiator>   (gChart_Minute, gHeaterControls) { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
 String FH_Heater_Mode "Fan Heater Heating Mode" <settings>  //(gTimepicker)
 // String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel = "mqtt:topic:bg_wifisocket_9:reachable", expire="10s,state=Offline"  }
-String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel = "mqtt:topic:bg_wifisocket_9:reachable" , expire="30s,state=OFF"   }
+String FH_Heater_Reachable "Fan Heater Reachable" <qualityofservice> (gFH_Thermostat,gHeaterReachables)  { channel = "mqtt:topic:bg_wifisocket_9:reachable" , expire="35s,state=OFF"   }
 
 Number FH_Heater_Rssi "FH RTV RSSI [%.1f]" <qualityofservice> (gFH_Thermostat) { channel="mqtt:topic:bg_wifisocket_9:rssi" }
 

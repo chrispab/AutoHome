@@ -1,34 +1,39 @@
-const {
-  log, items, rules, actions,
-} = require('openhab');
-const { utils} = require('openhab-my-utils');
+// replaced with item expire bingds
 
-var { TimerMgr } = require('openhab_rules_tools');
-var timerMgr = cache.private.get('timers', () => TimerMgr());
 
-var ruleUID = "bg_sockets_avail";
-const logger = log(ruleUID);
+
+
+// const {
+//   log, items, rules, actions,
+// } = require('openhab');
+// const { utils} = require('openhab-my-utils');
+
+// var { TimerMgr } = require('openhab_rules_tools');
+// var timerMgr = cache.private.get('timers', () => TimerMgr());
+
+// var ruleUID = "bg_sockets_avail";
+// const logger = log(ruleUID);
 // const { timeUtils } = require('openhab_rules_tools');
 // log:set DEBUG org.openhab.automation.openhab-js.bg_sockets_avail
 // log:set INFO org.openhab.automation.openhab-js.bg_sockets_avail
 
-scriptLoaded = function () {
-  logger.info('scriptLoaded - BG availability');
-  // myutils.showGroupMembers('gBG_sockets_reachable');
-  items.getItem('gBG_sockets_reachable').members.forEach((item) => {
-    item.postUpdate('OFF');
-  });
+// scriptLoaded = function () {
+//   logger.info('scriptLoaded - BG availability');
+//   // myutils.showGroupMembers('gBG_sockets_reachable');
+//   items.getItem('gBG_sockets_reachable').members.forEach((item) => {
+//     item.postUpdate('OFF');
+//   });
   
-  // logger.info(`from my node lib someProperty.. : ${someProperty}`);
-  // logger.info(`from my node lib showGroupMembers gBG_sockets_reachable: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
-  logger.info(`whole name: ${'gBG_sockets_reachable'}`);
+//   // logger.info(`from my node lib someProperty.. : ${someProperty}`);
+//   // logger.info(`from my node lib showGroupMembers gBG_sockets_reachable: ${utils.showGroupMembers('gBG_sockets_reachable', logger)}`);
+//   logger.info(`whole name: ${'gBG_sockets_reachable'}`);
 
-  // logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable',logger)}`);
+//   // logger.info(`location: ${utils.extractRoomPrefix('gBG_sockets_reachable',logger)}`);
 
 
-};
+// };
 
-const timeout = 'PT1M'; // use an appropriate value
+// const timeout = 'PT1M'; // use an appropriate value
 
 // rules.JSRule({
 //   name: 'update BG sockets Online/Offline status',

@@ -28,6 +28,18 @@ var boostTimers = cache.private.get('boostTimers', () => ({
   'ER': 8,
   'AT': 9
 }));
+var roomNamesObj = {
+  'CT': 'Conservatory',
+  'FH': 'Fan heater',
+  'DR': 'Dining room',
+  'FR': 'Front room',
+  'HL': 'Hall',
+  'OF': 'Office',
+  'BR': 'Bed rooom',
+  'ER': 'Elsie\'s room',
+  'AT': 'Attic'
+};
+let roomName = '';
 
 
 scriptLoaded = function () {
@@ -62,8 +74,9 @@ rules.JSRule({
     // !handle an offline TRV - return
     const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
     logger.debug(`>ReachableItem.name: ${ReachableItem.name} : ,  ReachableItem.state: ${ReachableItem.state}`);
-    if (ReachableItem.state.toString() !== 'Online') {
-      logger.debug(`ReachableItem-Offline - sending OFF, leaving!! : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+    reachableItemOnlineStatus = ReachableItem.state.toString();
+    if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
+      logger.debug(`ReachableItem-OFF - Offline : ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}, - sending OFF, leaving!! to heateritem`);
       // turn it off
       HeaterItem.sendCommand('OFF');
       return;// dont continue on if this RTV is Offline
@@ -93,7 +106,8 @@ function boostOnAction(roomPrefix) {
   const HeaterItem = items.getItem(`${roomPrefix}_Heater_Control`);
 
   logger.debug(`boostOnAction off->on : ${HeaterItem}`);
-  actions.Voice.say('boost on');
+  roomName = getRoomName(roomPrefix);
+  actions.Voice.say(`${roomName} boost on`);
 
   logger.debug(`BOOST ON, sending ON command to HeaterItem.name: ${HeaterItem.name}`);
   HeaterItem.sendCommand('ON');
@@ -104,7 +118,7 @@ function boostOnAction(roomPrefix) {
 
   const BoostTimeItem = items.getItem(`${roomPrefix}_Boost_Time`);
   logger.debug(`BOOSTING BoostTimeItem.rawState: ${BoostTimeItem.rawState}`);
-  boost_time = BoostTimeItem.state*1000*60;
+  boost_time = BoostTimeItem.state * 1000 * 60;
   boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.rawState), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
@@ -126,10 +140,17 @@ function boostOffAction(roomPrefix) {
     logger.debug('cancelling boost timer ');
   }
   stopBoostItems(roomPrefix);
-  actions.Voice.say('boost off');
+  roomName = getRoomName(roomPrefix);
+  actions.Voice.say(`${roomName} boost off`);
+  // actions.Voice.say('boost off');
 
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 
+}
+
+
+function getRoomName(roomPrefix) {
+  return roomNamesObj[`${roomPrefix}`];
 }
 
 
