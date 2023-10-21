@@ -5,8 +5,9 @@ const {
 const {
   ON, OFF, DecimalType, PercentType,
 } = require('@runtime');
+var ruleUID = "contact01";
+const logger = log(ruleUID);
 
-const logger = log('contact01.js');
 let number = 0;
 let fartString;
 let numString;

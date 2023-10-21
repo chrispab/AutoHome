@@ -4,8 +4,8 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 const { alerting } = require('openhab-my-utils');
-var ruleUID = "final-jobs";
 
+var ruleUID = "final-jobs";
 const logger = log(ruleUID);
 
 

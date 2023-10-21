@@ -1,9 +1,8 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-
-const logger = log('scenes');
-const { timeUtils } = require('openhab_rules_tools');
+var ruleUID = "scenes";
+const logger = log(ruleUID);
 
 let tsceneStartup;
 const resetSceneGoodnightDelay = 45 * 1000;

@@ -82,9 +82,6 @@ rules.JSRule({
       return;// dont continue on if this RTV is Offline
     }
 
-    // getThemostatHeaterItems(event.name);
-
-
     //get the boostItem - if it exists yet, else get null if not
     const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// return null if missing
     logger.debug(`>BoostItem.name: ${BoostItem.name} : ,  BoostItem.state: ${BoostItem.state}`);

@@ -7,8 +7,8 @@ const {
 
 // const { timeUtils } = require('openhab_rules_tools');
 const { utils } = require('openhab-my-utils');
-
-const logger = log('light cycle');
+var ruleUID = "light cycle";
+const logger = log(ruleUID);
 
 const {
   ON, OFF, PercentType, OnOffType, HSBType, DecimalType, RGBType, ChronoUnit,

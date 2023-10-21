@@ -2,8 +2,8 @@ const {
     log, items, rules, actions, triggers,
 } = require('openhab');
 const { alerting } = require('openhab-my-utils');
-
-const logger = log('soil_moisture');
+var ruleUID = "soil_moisture";
+const logger = log(ruleUID);
 
 function limitSensorValue(reading, min_limit, max_limit) {
     if (reading > max_limit) {

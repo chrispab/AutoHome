@@ -3,7 +3,8 @@ const {
 } = require('openhab');
 // log:set WARN org.openhab.automation.openhab-js.outside_sensor
 // log:set DEBUG org.openhab.automation.openhab-js.outside_sensor
-const logger = log('outside_sensor');
+var ruleUID = "outside_sensor";
+const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.info('scriptLoaded init outside sensor stuff');

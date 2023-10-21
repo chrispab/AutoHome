@@ -1,10 +1,9 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
+var ruleUID = "master-mode-changed";
+const logger = log(ruleUID);
 
-const logger = log('master-mode-changed');
-const { timeUtils } = require('openhab_rules_tools');
-const { toToday } = require('openhab_rules_tools/timeUtils');
 
 rules.JSRule({
   name: 'handle MasterHeatingMode updated',

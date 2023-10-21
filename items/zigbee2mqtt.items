@@ -1,11 +1,11 @@
 Group   gZb
 Group   gZbBridge    "Zigbee2mqtt Bridge"    (gZb)
 
-String  gZbBridgeState   "Zigbee2mqtt Bridge State"  (gZbBridge)  {channel="mqtt:topic:zigbeebridge:state"}
-Switch  gZbBridgePermitJoin  "Zigbee2mqtt Bridge Permit join"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:permitJoin"}
-String  gZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
-String  gZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
-String  gZbBridge_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
+String  ZbBridgeState   "Zigbee2mqtt Bridge State"  (gZbBridge)  {channel="mqtt:topic:zigbeebridge:state"}
+Switch  ZbBridgePermitJoin  "Zigbee2mqtt Bridge Permit join"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:permitJoin"}
+String  ZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
+String  ZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
+String  ZbBridge_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
 
 Number  ZbRouter_01_Quality "Zigbee2mqtt router  LinkQuality [%d]"  <qualityofservice>  {channel="mqtt:topic:zigbeerouter01:linkquality"}
 String  ZbRouter_01_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeerouter01:reachable", expire="2m,state=OFF" }

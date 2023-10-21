@@ -1,9 +1,9 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-// var  utils  = require('./utils.js');
-// const { showItem } = require('./utils.js');
-const logger = log('fan_heater');
+var ruleUID = "fan_heater";
+
+const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.info('scriptLoaded - init ft ct sp link');

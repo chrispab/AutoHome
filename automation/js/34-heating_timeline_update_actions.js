@@ -5,13 +5,6 @@ const { utils } = require('openhab-my-utils');
 
 var ruleUID = "heating-auto-program-setpoint-update";
 const logger = log(ruleUID);
-// const logger = log('auto_program_setpoint_UPDATE');
-// const { timeUtils } = require('openhab_rules_tools');
-// const { toToday } = require('openhab_rules_tools/timeUtils');
-
-
-//= ===========setpoints
-//= ===============================================================
 
 /**
  * When a setpoint is updated by a timeline automatic update

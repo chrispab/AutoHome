@@ -5,9 +5,7 @@ const { utils } = require('openhab-my-utils');
 
 var ruleUID = "heating-heaters-boiler-control";
 
-
 const logger = log(ruleUID);
-// const { CountdownTimer, timeUtils, TimerMgr } = require('openhab_rules_tools');
 // log:set DEBUG org.openhab.automation.openhab-js.heating-heaters-boiler-control
 // log:set INFO org.openhab.automation.openhab-js.heating-heaters-boiler-control
 
@@ -51,19 +49,15 @@ rules.JSRule({
     // !if ANY trvs are unreachable - turn off heater to prevent false demand
     // not just the calling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
-    if (ReachableItem.state.toString() !== 'Online') {
+    reachableItemOnlineStatus = ReachableItem.state.toString();
+    if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
       logger.warn(`>ReachableItem-Offline - sending OFF, leaving!: ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
-      //===============================================
-      // items.getItem('HL_Heater_Control').sendCommand('OFF');//!
-      //=================================================
       // dont continue on and update the bolier control if this RTV is Offline
       return;
     }
-    //-------------------------------------------------------
-    // items.getItem('HL_Heater_Control').sendCommand('OFF');//!
-    //-----------------------------------------------------------
+
     logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     // if this heater is currently in being boosted, then just l;eave it alone and move on

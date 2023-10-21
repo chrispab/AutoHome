@@ -1,8 +1,8 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-
-const logger = log('auto CT lights');
+var ruleUID = "auto CT lights";
+const logger = log(ruleUID);
 // const { timeUtils } = require('openhab_rules_tools');
 
 
