@@ -43,30 +43,30 @@ scriptLoaded = function () {
 
 const timeout = 'PT60M'; // use an appropriate value
 
-rules.JSRule({
-  name: 'monitor ZB temp sensor availability update Online/Offline status',
-  description: 'monitor ZB  temp sensor availability update Online/Offline status',
-  triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
-  execute: (event) => {
-    logger.debug(`update temp sensor availability status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
-    // myutils.showGroupMembers('gTHSensorTemperatures');
-    const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
-    const itemNameReachable = `${stub}_reachable`;
-    const itemNameBattery = `${stub}_battery`;
-    logger.debug(`get id part of item reachable: ${stub} `);
+// rules.JSRule({
+//   name: 'monitor ZB temp sensor availability update Online/Offline status',
+//   description: 'monitor ZB  temp sensor availability update Online/Offline status',
+//   triggers: [triggers.GroupStateUpdateTrigger('gTHSensorTemperatures')],
+//   execute: (event) => {
+//     logger.debug(`update temp sensor availability status, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
+//     // myutils.showGroupMembers('gTHSensorTemperatures');
+//     const stub = event.itemName.toString().substr(0, event.itemName.lastIndexOf('_'));
+//     const itemNameReachable = `${stub}_reachable`;
+//     const itemNameBattery = `${stub}_battery`;
+//     logger.debug(`get id part of item reachable: ${stub} `);
 
-    items.getItem(itemNameReachable).postUpdate('ON');
-    logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
+//     items.getItem(itemNameReachable).postUpdate('ON');
+//     logger.debug(`postUpdate('ON'): ${itemNameReachable} `);
 
-    timerName = ruleUID + '_' + itemNameReachable;
-    logger.debug(`retriggering timer: ${timerName} `);
+//     timerName = ruleUID + '_' + itemNameReachable;
+//     logger.debug(`retriggering timer: ${timerName} `);
 
 
-    timerMgr.check(itemNameReachable, timeout, () => {
-      items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
-      items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
-      logger.info(`${timerName} sensor availability TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
-    }, true, null, timerName);
+//     timerMgr.check(itemNameReachable, timeout, () => {
+//       items.getItem(itemNameReachable).postUpdate('OFF');// ???OFF???
+//       items.getItem(itemNameBattery).postUpdate(0);// ???OFF???
+//       logger.info(`${timerName} sensor availability TIMER HAS ENDED,POSTED OFFLINE: ${itemNameReachable} `);
+//     }, true, null, timerName);
 
-  },
-});
+//   },
+// });

@@ -12,7 +12,7 @@ Thing mqtt:topic:THPSensor01 "Xiaomi THPSensor01" (mqtt:broker:MyMQTTBroker) @ "
     Type number : linkquality "Xiaomi Temp Humi pressure Sensor 01 LinkQuality" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Xiaomi Temp Humi pressure Sensor 01 battery" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi pressure Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THPSensor01",  transformationPattern="JSONPATH:$.voltage" ]
-    Type string : reachable "Xiaomi THPSensor01 Reachable"
+    Type string : reachable "Xiaomi THPSensor01 Reachable" [ stateTopic="zigbee2mqtt/THPSensor01", transformationPattern="MAP:anything_to_ON.map" ]
 
 }
 
@@ -25,7 +25,7 @@ Thing mqtt:topic:THSensor01 "Xiaomi Temp Humi Sensor 01" (mqtt:broker:MyMQTTBrok
     Type number : linkquality "Xiaomi Temp Humi Sensor 01 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Xiaomi Temp Humi Sensor 01 battery" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 01 voltage" [ stateTopic="zigbee2mqtt/THSensor01",  transformationPattern="JSONPATH:$.voltage" ]
-    Type string : reachable "Xiaomi THSensor01 Reachable"
+    Type string : reachable "Xiaomi THSensor01 Reachable" [ stateTopic="zigbee2mqtt/THSensor01", transformationPattern="MAP:anything_to_ON.map" ]
     // Type timer  : timer "Xiaomi THSensor01 timer"
 
 }
@@ -37,7 +37,7 @@ Thing mqtt:topic:THSensor02 "Xiaomi Temp Humi Sensor 02" (mqtt:broker:MyMQTTBrok
     Type number : linkquality "Xiaomi Temp Humi Sensor 02 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Xiaomi Temp Humi Sensor 02 battery" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 02 voltage" [ stateTopic="zigbee2mqtt/THSensor02",  transformationPattern="JSONPATH:$.voltage" ]
-    Type string : reachable "Xiaomi THSensor02 Reachable"
+    Type string : reachable "Xiaomi THSensor02 Reachable" [ stateTopic="zigbee2mqtt/THSensor02", transformationPattern="MAP:anything_to_ON.map" ]
 
 }
 
@@ -48,7 +48,7 @@ Thing mqtt:topic:THSensor03 "Xiaomi Temp Humi Sensor 03" (mqtt:broker:MyMQTTBrok
     Type number : linkquality "Xiaomi Temp Humi Sensor 03 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Xiaomi Temp Humi Sensor 03 Battery" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 03 voltage" [ stateTopic="zigbee2mqtt/THSensor03",  transformationPattern="JSONPATH:$.voltage" ]
-    Type string : reachable "Xiaomi THSensor03 Reachable"
+    Type string : reachable "Xiaomi THSensor03 Reachable" [ stateTopic="zigbee2mqtt/THSensor03", transformationPattern="MAP:anything_to_ON.map" ]
 
 }
 
@@ -59,7 +59,7 @@ Thing mqtt:topic:THSensor04 "Xiaomi Temp Humi Sensor 04" (mqtt:broker:MyMQTTBrok
     Type number : linkquality "Xiaomi Temp Humi Sensor 04 LinkQuality" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.linkquality" ]
     Type number : battery "Xiaomi Temp Humi Sensor 04 battery" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.battery" ]
     Type number : voltage "Xiaomi Temp Humi Sensor 04 voltage" [ stateTopic="zigbee2mqtt/THSensor04",  transformationPattern="JSONPATH:$.voltage" ]
-    Type string : reachable "Xiaomi THSensor04 Reachable"
+    Type string : reachable "Xiaomi THSensor04 Reachable" [ stateTopic="zigbee2mqtt/THSensor04", transformationPattern="MAP:anything_to_ON.map" ]
 
 }
 
