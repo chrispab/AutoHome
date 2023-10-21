@@ -5,6 +5,7 @@ Channels:
     Type string : state              [ stateTopic="zigbee2mqtt/bridge/state" ]
     // Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
     // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
+    Type string : reachable "Zigbee2mqtt Bridge 01 Reachable" [ stateTopic="zigbee2mqtt/bridge/logging", transformationPattern="MAP:anything_to_ON.map"]
 }
 
 Thing mqtt:topic:zigbeerouter01 "Zigbee Router 01" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
@@ -15,7 +16,7 @@ Channels:
     // Type string : logType            [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.type" ]
     // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
     Type number : linkquality "Zigbee Router 01 LinkQuality" [ stateTopic="zigbee2mqtt/router01/linkquality" ]
-    Type string : reachable "Zigbee Router 01 Reachable"
+    Type string : reachable "Zigbee Router 01 Reachable"[ stateTopic="zigbee2mqtt/router01", transformationPattern="MAP:anything_to_ON.map"]
 }
 
 
