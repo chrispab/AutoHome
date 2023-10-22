@@ -8,12 +8,6 @@ const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded - init CT temp filter');
-  // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-  // const temp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-  // items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(19);
-  // items.getItem('CT_ThermostatTemperatureAmbient_raw').sendCommand(19);
-
-  // logger.debug(`0 ==> STARTUP temp is: ${temp}`);
 };
 
 const divisor = 4;

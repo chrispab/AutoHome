@@ -9,7 +9,7 @@ scriptLoaded = function () {
   logger.info('scriptLoaded - init ft ct sp link');
   const tracking_offset = items.getItem('FH_Link_TrackingOffset').state;
   if (tracking_offset === 'NULL') {
-    items.getItem('FH_Link_TrackingOffset').sendCommand(1.0);
+    items.getItem('FH_Link_TrackingOffset').sendCommand(2.0);
   }
 };
 

@@ -4,17 +4,13 @@ Group                   gThermostats
 //thermostat
 Group gCT_Thermostat "Conservatory Thermostat" (gThermostats)
 {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Conservatory" ]}
-String                  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings>
-                        (gCT_Thermostat, gThermostatModes)
+String  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}
-Number:Temperature      CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating>
-                        (gChart_Minute, gCT_Thermostat, gThermostatTemperatureSetpoints)
+Number:Temperature CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
-Number:Temperature      CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature>
-                        (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
+Number:Temperature CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
                         {ga="thermostatTemperatureAmbient"}
-Number:Dimensionless    CT_ThermostatHumidityAmbient     "Conservatory Humidity"      <humidity>
-                        (gChart_Minute, gCT_Thermostat, gThermostatHumidityAmbients)
+Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humidity> (gChart_Minute, gCT_Thermostat, gThermostatHumidityAmbients)
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
 //var for reading and smoothing temperature readings
