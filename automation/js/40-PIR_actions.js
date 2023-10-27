@@ -59,10 +59,15 @@ rules.JSRule({
       if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('DR_Auto_Lighting_Trigger_SetPoint').rawState) {
         if (itemName === 'pir03_occupancy') {
           items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+          items.getItem('ZbColourBulb02_CYCLE').sendCommand('ON');
+
+          ZbColourBulb02_CYCLE
           logger.info('gDiningRoomAutoLights Power ON');
         }
         if (itemName === 'pir04_occupancy') {
           items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+          items.getItem('ZbColourBulb02_CYCLE').sendCommand('ON');
+
           logger.info('gDiningRoomAutoLights Power ON');
         }
         logger.debug(`checking/starting/restarting Timer: ${timerName}, for item: ${itemName}`);

@@ -32,16 +32,33 @@ rules.JSRule({
     execute: (event) => {
       // const roomPrefix = doSetup(event);
       const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
-
+      logger.debug('~~roomPrefix: {}', roomPrefix);
       //get initial readings
+      tempNow = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
+      logger.debug('~~tempNow: {}', tempNow);
+
+      timeNow = time.toZDT();
+      logger.debug('~~timeNow: {}', timeNow.toString());
+
+      tempLastReading=items.getItem('CT_heating_tempLastReading').state
+      logger.debug('~~tempLastReading: {}', tempLastReading);
+
+      timeLastReading=items.getItem('CT_heating_timeLastReading').state 
+      logger.debug('~~timeLastReading: {}', timeLastReading);
 
       //establish on to temp inc time - latency
+      items.getItem('CT_heating_deltaTime').postUpdate(timeNow - timeLastReading);
+      deltaTime = items.getItem('CT_heating_deltaTime').state
+      logger.debug('~~deltaTime: {}', deltaTime);
 
+      items.getItem('CT_heating_deltaTemp').postUpdate(tempNow - tempLastReading);
+      deltaTemp = items.getItem('CT_heating_deltaTemp').state
+      logger.debug('~~deltaTemp: {}', deltaTemp);
 
+      items.getItem('CT_heating_slope').postUpdate(deltaTemp/deltaTime);
+      slope = items.getItem('CT_heating_slope').state
+      logger.debug('~~items.CT_heating_slope.state: {}', slope);
 
-
-      //! add if boost on - skip
-      // if this heater is currently in being boosted, then just l;eave it alone and move on
       const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
 
     },

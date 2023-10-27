@@ -30,6 +30,8 @@ rules.JSRule({
   description: 'A light color cycle',
   triggers: [
     triggers.GroupStateChangeTrigger('gLightCyclers'),
+    // triggers.GroupStateChangeTrigger('gDiningRoomAutoLights'),
+
   ],
   execute: (event) => {
     // Get the light associated with this cycler
