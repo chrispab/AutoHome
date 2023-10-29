@@ -14,9 +14,9 @@ Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humid
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
 //var for reading and smoothing temperature readings
-Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw" <temperature>
+Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw" <temperature> (gChart_Minute)
                         {channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
-
+Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature raw"  (gChart_Minute)
 //heater
 Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
 String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)
