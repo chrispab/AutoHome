@@ -10,3 +10,11 @@ Switch OF_Heater_Control "Office Heater"  <my_radiator> (gChart_Minute, gHeaterC
 String OF_Heater_Mode "Office Heating Mode" <settings> (gHeatingModes)
 String OF_Heater_Reachable "Office Reachable" <qualityofservice> (gOF_Thermostat,gHeaterReachables)  { channel="mqtt:topic:officeRadThermoValve:reachable" }
 Number OF_Heater_Rssi "Office RTV RSSI [%.1f]" <qualityofservice> (gOF_Thermostat) { channel="mqtt:topic:officeRadThermoValve:rssi" }
+
+//boost
+Switch      OF_Heater_Boost "Office Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_OF_Boost  "Office virtual Heater boost"
+Switch      v_OF_Heater_Boost  "Office virtual Heater boost" (gvHeaterBoosters)
+
+Number:Time OF_Boost_Countdown "OF_Boost_Countdown"
+Number OF_Boost_Time "OF_Boost_Time"  (gBoost_Time)

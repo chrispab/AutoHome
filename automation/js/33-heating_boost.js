@@ -49,7 +49,17 @@ scriptLoaded = function () {
     logger.debug(`timer : ${JSON.stringify(timer)}, val: ${boostTimers[timer]}`);
   }
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
+
+  logger.debug('scriptLoaded - initialising XX_Boost_Time');
+  items.getItem('gBoost_Time').members.forEach((item) => {
+    //if XX_Boost_time is null then set to 15 mins.
+    if (item.state === 'NULL') {
+      item.postUpdate(15);
+    }
+  });
 };
+
+
 
 
 rules.JSRule({
@@ -64,7 +74,7 @@ rules.JSRule({
     logger.debug(`event.itemName: ${event.itemName.toString()}`);
 
     // get prefix eg FR, CT etc
-    //trim off initial'v_'
+    //trim off initial'v_' if present, otherwise its the first 2 chars eg 'CT'
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     // logger.debug(`roomPrefix: ${roomPrefix}`);
 

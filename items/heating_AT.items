@@ -21,3 +21,11 @@ Switch                  AT_Heater_Control "Attic Heater"  <my_radiator>         
 String                  AT_Heater_Mode "Attic Heating Mode" <settings>         (gAT_Heater, gChart_Minute,gHeatingModes)
 String                  AT_Heater_Reachable "Attic Reachable" <qualityofservice>   (gAT_Heater, gHeaterReachables)    { channel="mqtt:topic:atticRadThermoValve:reachable" }
 Number:Dimensionless    AT_Heater_Rssi "attic RTV RSSI" <qualityofservice>     (gAT_Heater)               { channel="mqtt:topic:atticRadThermoValve:rssi" }
+
+//boost
+Switch      AT_Heater_Boost "AT Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_AT_Boost  "AT virtual Heater boost"
+Switch      v_AT_Heater_Boost  "AT virtual Heater boost" (gvHeaterBoosters)
+
+Number:Time AT_Boost_Countdown "AT_Boost_Countdown"
+Number AT_Boost_Time "AT_Boost_Time"  (gBoost_Time)

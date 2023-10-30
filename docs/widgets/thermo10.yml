@@ -1,0 +1,332 @@
+uid: Thermostat-Control-v10
+tags: []
+props:
+  parameters:
+    - default: CT
+      description: eg. 'FR', 'CT'
+      label: 2 character location and widget identifier
+      name: locationPrefix
+      required: true
+      type: TEXT
+    - default: Conservatory
+      description: Location of thermostat/heater to control e.g 'Front Room'
+      label: Location Name
+      name: LocationName
+      required: false
+      type: TEXT
+    - default: _ThermostatTemperatureAmbient
+      description: The thermostat ambient temperature suffix text. e.g '_ThermostatTemperatureAmbient'
+      label: thermostat ambient temperature suffix
+      name: thermostatTemperatureAmbientSuffix
+      required: true
+      type: TEXT
+    - default: _ThermostatHumidityAmbient
+      description: The thermostat ambient humidity suffix text. e.g '_ThermostatHumidityAmbient'
+      label: thermostat ambient humidity suffix
+      name: thermostatHumidityAmbientSuffix
+      required: true
+      type: TEXT
+    - default: _ThermostatTemperatureSetpoint
+      description: The thermostat temperature setpoint suffix e.g '_ThermostatTemperatureSetpoint'
+      label: Thermostat temperature Setpoint Item suffix
+      name: ThermostatTemperatureSetpointSuffix
+      required: true
+      type: TEXT
+    - default: _ThermostatMode
+      description: The thermostat mode suffix e.g '_ThermostatMode'
+      label: Thermostat Mode Item suffix - currently NOT used
+      name: ThermostatModeSuffix
+      required: true
+      type: TEXT
+    - default: _Heater_Control
+      description: The heater control suffix e.g '_Heater_Control'
+      label: heater control Item suffix
+      name: HeaterControlSuffix
+      required: true
+      type: TEXT
+    - default: _Heater_Mode
+      description: The Heater_Mode suffix e.g '_Heater_Mode'
+      label: Heater Mode Item suffix
+      name: HeaterModeSuffix
+      required: true
+      type: TEXT
+    - default: _Heater_Reachable
+      description: The Heater_Reachable suffix e.g '_Heater_Reachable'
+      label: Heater Reachable Item suffix
+      name: HeaterReachableSuffix
+      required: true
+      type: TEXT
+    - default: _Heater_Rssi
+      description: The Heater_Rssi suffix e.g '_Heater_Rssi'
+      label: Heater_Rssi Item suffix
+      name: HeaterRssiSuffix
+      required: true
+      type: TEXT
+    - default: v_
+      description: The Heater Boost prefix e.g 'v_CT_Heater_Boost'
+      label: Heater Boost Item prefix
+      name: HeaterBoostPrefix
+      required: true
+      type: TEXT
+    - default: _Heater_Boost
+      description: The Heater Boost suffix e.g '_Heater_Boost'
+      label: Heater Boost Item suffix
+      name: HeaterBoostSuffix
+      required: true
+      type: TEXT
+    - default: _Boost_Time
+      description: The Boost Time(m) suffix e.g '_Boost_Time'
+      label: Boost Time Item suffix
+      name: BoostTimeSuffix
+      required: true
+      type: TEXT
+    - context: command
+      default: "14"
+      description: Minimum temp
+      label: Minimum temp
+      name: minimumTemp
+      required: true
+      type: TEXT
+    - context: command
+      default: "28"
+      description: Maximum Temp
+      label: Maximum Temp
+      name: maximumTemp
+      required: true
+      type: TEXT
+    - default: auto,manual,off
+      description: Heating mode strings as csv eg. auto,manual,off.
+      label: Heating Mode Array
+      name: heatingModeArray
+      required: false
+      type: TEXT
+    - context: item
+      description: Trend item to display
+      label: Trend item
+      name: trendItem
+      required: true
+      type: TEXT
+    - default: NOT YET SET
+      description: URL to go to
+      label: URL
+      name: urlItem
+      required: false
+      type: TEXT
+timestamp: Oct 30, 2023, 7:25:14 PM
+component: f7-card
+config:
+  class: elevation-3
+  outline: true
+  style:
+    --f7-card-border-radius: 10px
+    --f7-card-box-shadow: 0px 5px 10px rgba(0,0,0,0.15)
+    --f7-card-content-padding-horizontal: 16px
+    --f7-card-content-padding-vertical: 0px
+    --f7-card-header-font-size: 14px
+    --f7-card-header-font-weight: 600
+    --f7-card-margin-horizontal: 5px
+slots:
+  content:
+    - component: f7-row
+      config: {}
+      slots:
+        default:
+          - component: f7-col
+            config:
+              style:
+                width: 75%
+            slots:
+              default:
+                - component: oh-label-card
+                  config:
+                    action: analyzer
+                    actionAnalyzerCoordSystem: time
+                    actionAnalyzerItems: "=(props.locationPrefix + props.ThermostatTemperatureSetpointSuffix) ? [props.locationPrefix + props.thermostatTemperatureAmbientSuffix,props.locationPrefix + props.ThermostatTemperatureSetpointSuffix,props.locationPrefix + props.HeaterControlSuffix,'Outside_Temperature'] : [props.locationPrefix + props.thermostatTemperatureAmbientSuffix]"
+                    item: =props.locationPrefix + props.thermostatTemperatureAmbientSuffix
+                    outline: true
+                    style:
+                      z-index: 1
+                    title: =(props.LocationName) + ' (' + props.locationPrefix + ')'
+                    trendItem: =props.locationPrefix + props.thermostatTemperatureAmbientSuffix
+                    vertical: true
+                - component: f7-row
+                  slots:
+                    default:
+                      - component: f7-col
+                        config:
+                          class:
+                            - display-flex
+                            - align-items-center
+                            - justify-content-space-evenly
+                          style:
+                            width: 100%
+                        slots:
+                          default:
+                            - component: oh-stepper
+                              config:
+                                autorepeat: true
+                                color-theme: blue
+                                fill: true
+                                item: =(props.locationPrefix) + props.ThermostatTemperatureSetpointSuffix
+                                large: false
+                                max: =(props.maximumTemp+1)
+                                min: =(props.minimumTemp-1)
+                                noShadow: true
+                                raised: true
+                                step: 0.1
+                                visible: "=props.locationPrefix ? true : true"
+                            - component: oh-button
+                              config:
+                                outline: true
+                                popoverOpen: ='.' + props.LocationName + '.popoverHeatingMode'
+                                raised: true
+                                round: true
+                                style:
+                                  color: "=props.colorButton ? props.colorButton + ' !important': ''"
+                                  margin-bottom: 10px
+                                  margin-top: 10px
+                                text: "=(items[props.locationPrefix + props.HeaterModeSuffix].state == 'manual' ? 'manual' : items[props.locationPrefix + props.HeaterModeSuffix].state == 'auto' ? 'auto' : items[props.locationPrefix + props.HeaterModeSuffix].state == 'off' ? 'off' : 'Mode')"
+                                textColor: blue
+                                visible: "=props.locationPrefix + props.ThermostatTemperatureSetpointSuffix ? true : false"
+                              slots:
+                                default:
+                                  - component: f7-icon
+                                    config:
+                                      f7: "=(items[props.locationPrefix + props.HeaterModeSuffix].state == 'manual' ? 'hand_point_left' : items[props.locationPrefix + props.HeaterModeSuffix].state == 'auto' ? 'arrow_2_squarepath' : items[props.locationPrefix + props.HeaterModeSuffix].state == 'off' ? 'stop_circle' : 'xmark')"
+                                      style:
+                                        font-size: "=props.fontSizeButtons ? props.fontSizeButtons : ''"
+                                  - component: f7-popover
+                                    config:
+                                      class: =props.LocationName + ' popoverHeatingMode'
+                                    slots:
+                                      default:
+                                        - component: f7-card
+                                          config:
+                                            action: variable
+                                            actionVariable: myVar
+                                            actionVariableValue: success
+                                            class:
+                                              - popover-close
+                                            clearVariable: true
+                                            noShadow: true
+                                          slots:
+                                            default:
+                                              - component: f7-row
+                                                config: {}
+                                                slots:
+                                                  default:
+                                                    - component: f7-col
+                                                      slots:
+                                                        default:
+                                                          - component: oh-repeater
+                                                            config:
+                                                              for: buttonlabel
+                                                              in: =props.heatingModeArray.split(",")
+                                                            slots:
+                                                              default:
+                                                                - component: oh-button
+                                                                  config:
+                                                                    action: command
+                                                                    actionCommand: =loop.buttonlabel
+                                                                    actionItem: =props.locationPrefix + props.HeaterModeSuffix
+                                                                    active: "=(items[props.locationPrefix + props.HeaterModeSuffix].state == loop.buttonlabel ? true : false)"
+                                                                    class: margin
+                                                                    color: =props.colorButton?props.colorButton:'blue'
+                                                                    outline: true
+                                                                    text: =loop.buttonlabel
+          - component: f7-col
+            config:
+              class:
+                - display-flex
+                - align-items-center
+                - flex-direction-column
+              style:
+                width: 25%
+            slots:
+              default:
+                - component: oh-link
+                  config:
+                    action: group
+                    actionGroupPopupItem: gAnyRoomHeaterOn
+                    style:
+                      margin-top: 60%
+                  slots:
+                    default:
+                      - component: oh-icon
+                        config:
+                          icon: f7:flame_fill
+                          color: "=(items[props.locationPrefix + props.HeaterControlSuffix].state == 'ON') ? 'red' : 'blue'"
+                          width: 30px
+                          style:
+                            animation: "=(items[props.locationPrefix + props.HeaterControlSuffix].state == 'ON') ? 'skeleton-effect-fade 2s linear infinite' : ''"
+                - component: Label
+                  config:
+                    style:
+                      #margin-top: -20%
+                    text: "=( items[props.locationPrefix + '_Boost_Countdown'].state.toString() != '0 s') ? (items[props.locationPrefix + '_Boost_Countdown'].state) : '-'"
+                - component: oh-stepper
+                  config:
+                    autorepeat: true
+                    color-theme: yellow
+                    fill: false
+                    item: =(props.locationPrefix) + props.BoostTimeSuffix
+                    max: =60
+                    min: =1
+                    noShadow: true
+                    step: 1
+                    style:
+                      scale: 70%
+                      z-index: 10
+                    visible: "=props.locationPrefix ? true : false"
+                - component: oh-button
+                  config:
+                    action: toggle
+                    actionCommand: ON
+                    actionCommandAlt: OFF
+                    actionItem: =props.HeaterBoostPrefix + props.locationPrefix + props.HeaterBoostSuffix
+                    fill: "=(items[props.HeaterBoostPrefix + props.locationPrefix + props.HeaterBoostSuffix].state == 'ON' ) ? true : false"
+                    large: true
+                    outline: true
+                    style:
+                      margin: auto
+                      scale: 90%
+                      z-index: 10
+                    text: Boost
+                - component: f7-icon
+                  config:
+                    color: "=(items[props.locationPrefix + props.HeaterReachableSuffix].state == 'Online') ? 'green' : 'red'"
+                    f7: "=(items[props.locationPrefix + props.HeaterReachableSuffix].state == 'Online') ? 'wifi' : 'wifi_slash'"
+                    style:
+                      position: absolute
+                      right: 15%
+                      top: 13%
+                - component: Label
+                  config:
+                    style:
+                      color: "=(items[props.locationPrefix + props.HeaterRssiSuffix].state > 50) ? 'green' : 'red'"
+                      position: absolute
+                      right: 8%
+                      top: 13%
+                    text: "=(items[props.locationPrefix + props.HeaterReachableSuffix].state == 'Online') ? (items[props.locationPrefix + props.HeaterRssiSuffix].state == 'NULL') ? '--' : items[props.locationPrefix + props.HeaterRssiSuffix].state : ''"
+    - component: oh-link
+      config:
+        action: url
+        actionUrl: =props.urlItem
+        style:
+          height: 10%
+          left: 0
+          position: absolute
+          top: 0
+          width: 100%
+    - component: oh-link
+      config:
+        action: url
+        actionUrl: =props.urlItem
+        style:
+          font-size: 0.7em
+          height: 1%
+          left: 0
+          position: absolute
+          top: 0
+          width: 100%
+        text: Thermostat-Control-v10
