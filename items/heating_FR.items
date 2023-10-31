@@ -24,3 +24,11 @@ String FR_Heater_Reachable "Front Room Reachable" <qualityofservice>
 Number:Dimensionless FR_Heater_Rssi "FR RTV RSSI [%.1f]" <qualityofservice>
          (gFR_Heater)
         { channel="mqtt:topic:frontRoomRadThermoValve:rssi" }
+
+//boost
+Switch      FR_Heater_Boost "Front room Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_FR_Boost  "Front room virtual Heater boost"
+Switch      v_FR_Heater_Boost  "Front room virtual Heater boost" (gvHeaterBoosters)
+
+Number:Time FR_Boost_Countdown "FR_Boost_Countdown"
+Number FR_Boost_Time "FR_Boost_Time"  (gBoost_Time)

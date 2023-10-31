@@ -11,3 +11,11 @@ String HL_Heater_Mode "Hall Heating Mode" <settings> (gHeatingModes)
 // Number HL_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
 String HL_Heater_Reachable "Hall Reachable" <qualityofservice> (gHL_Thermostat,gHeaterReachables)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
 Number HL_Heater_Rssi "HL RTV RSSI [%.1f]" <qualityofservice> (gHL_Thermostat) { channel="mqtt:topic:hallRadThermoValve:rssi" }
+
+//boost
+Switch      HL_Heater_Boost "Hall Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_HL_Boost  "Hall virtual Heater boost"
+Switch      v_HL_Heater_Boost  "Hall virtual Heater boost" (gvHeaterBoosters)
+
+Number:Time HL_Boost_Countdown "HL_Boost_Countdown"
+Number HL_Boost_Time "HL_Boost_Time"  (gBoost_Time)

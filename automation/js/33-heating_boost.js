@@ -52,7 +52,7 @@ scriptLoaded = function () {
 
   logger.debug('scriptLoaded - initialising XX_Boost_Time');
   items.getItem('gBoost_Time').members.forEach((item) => {
-    //if XX_Boost_time is null then set to 15 mins.
+    //if XX_Boost_time is null then set to 15 mins..
     if (item.state === 'NULL') {
       item.postUpdate(15);
     }

@@ -67,13 +67,13 @@ function calcNewTemp(previousTemperature, newTemperature) {
   logger.debug(`...temp diff : ${absDiff}`);
 
   if (absDiff <= 0.1) {
-    scaleFactor = 2
-  } else if (absDiff <= 0.5) {
-    scaleFactor = 2
-  } else if (absDiff <= 0.6) {
-    scaleFactor = 2
-  } else if (absDiff <= 0.8) {
+    scaleFactor = 1.5
+  } else if (absDiff <= 0.2) {
+    scaleFactor = 3
+  } else if (absDiff <= 0.3) {
     scaleFactor = 4
+  } else if (absDiff <= 0.4) {
+    scaleFactor = 5
   } else if (absDiff <= 1.0) {
     scaleFactor = 5
   } else if (absDiff <= 1.2) {
