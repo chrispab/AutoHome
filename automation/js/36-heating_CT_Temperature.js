@@ -21,28 +21,34 @@ rules.JSRule({
     logger.debug(`...............................`);
 
     var rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
-    logger.debug(`..new raw temp is: ${rawTemp}`);
+    logger.debug(`..new reading,raw temp is: ${rawTemp}`);
 
-    let prevTemp = items.getItem('CT_ThermostatTemperatureAmbient_precision').rawState;
-    logger.debug(`..previous _precision temp is: ${prevTemp}`);
+    let preciseTemp = items.getItem('CT_ThermostatTemperatureAmbient_precision').rawState;
+    logger.debug(`..previous _precision temp is: ${preciseTemp}`);
 
-    if (prevTemp === 'NULL' || prevTemp < 5) {
-      prevTemp = rawTemp;
-      logger.debug(`..setup initial value of prevTemp from rawtemp: ${prevTemp}`);
+    if (preciseTemp === 'NULL' || preciseTemp < 5) {
+      preciseTemp = rawTemp;
+      logger.debug(`..setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
     }
 
-    newTemp = calcNewTemp(prevTemp, rawTemp);
+    newTemp = calcNewTemp(preciseTemp, rawTemp);
 
-    items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(newTemp);
+    //to 1 dp for dispaly and rules etc
+    workingTemp = Number(newTemp).toFixed(1);
+    items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
+    logger.debug(`..writing new working 1dp temp too TemperatureAmbient_precision: ${workingTemp}`);
+
+    //store as precise 3dp value
     items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newTemp);
-    logger.debug(`..writing new temp too CT_ThermostatTemperatureAmbient_precision: ${newTemp}`);
+    logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newTemp}`);
 
-    items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(newTemp);
+    items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
 
+    //get temp in working item value
     let ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     logger.debug(`..CT_ThermostatTemperatureAmbient(newTemp): ${ctTemp}`);
 
-    logger.debug(`..CT_TEMP_CaLC, previous temp is: ${prevTemp}, new raw temp is: ${rawTemp}, CT_ThermostatTemperatureAmbient(newTemp): ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
+    logger.debug(`..saved precision temp is: ${preciseTemp}, new raw temp is: ${rawTemp}, TemperatureAmbient(newTemp): ${workingTemp}`);
   },
 });
 
@@ -64,7 +70,7 @@ function calcNewTemp(previousTemperature, newTemperature) {
   tempDiff = tempDiff.toFixed(prec);
   absDiff = Math.abs(tempDiff);
 
-  logger.debug(`...temp diff : ${absDiff}`);
+  logger.debug(`...temp diff : ${tempDiff}`);
 
   if (absDiff <= 0.1) {
     scaleFactor = 1.5
@@ -92,7 +98,7 @@ function calcNewTemp(previousTemperature, newTemperature) {
     scaleFactor = 15.0
   }
 
-  logger.debug(`...scaleFactor : ${scaleFactor}`);
+  logger.debug(`...scaleFactor/divisor : ${scaleFactor}`);
 
   let tempAdd = tempDiff / scaleFactor;
   logger.debug(`...tempAdd (tempDiff/scaleFactor) : ${tempAdd}`);
@@ -103,10 +109,11 @@ function calcNewTemp(previousTemperature, newTemperature) {
   //1 dp
   // newTemp = (Math.round((newTemp.toFixed(2)) * 10) / 10);
   //2 dp
-  logger.debug(`...newTemp.toFixed(prec) ${(newTemp.toFixed(prec))}`);
+  newTempFixed = newTemp.toFixed(prec)
+  // logger.debug(`...returnin newTemp.toFixed(prec) ${newTempFixed}`);
   // newTemp = (newTemp.toFixed(prec));
-  logger.debug(`...newTemp toFixed ${prec}dp : ${newTemp.toFixed(prec)}`);
+  logger.debug(`...newTemp toFixed ${prec}dp : ${newTempFixed}`);
 
-  logger.debug(`...returning to 2dp : ${newTemp.toFixed(2)}`);
-  return newTemp.toFixed(2);
+  // logger.debug(`...returning to ${prec}dp : ${newTempFixed}`);
+  return newTempFixed;
 }
