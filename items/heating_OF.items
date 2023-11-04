@@ -5,6 +5,7 @@ Number:Temperature  OF_ThermostatTemperatureSetpoint "Office Setpoint [%.1f °C]
 Number:Temperature  OF_ThermostatTemperatureAmbient "Office Temperature [%.1f °C]" <temperature> (gChart_Minute, gOF_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor02:temperature" }
 Number:Dimensionless OF_ThermostatHumidityAmbient "Office Humidity [%.1f °C]" <humidity> (gChart_Minute, gOF_Thermostat, gThermostatHumidityAmbients) {unit="%",   ga="thermostatHumidityAmbient", channel="mqtt:topic:THSensor02:humidity" }
 
+
 // //additional params for use in openhab functions etc
 Switch OF_Heater_Control "Office Heater"  <my_radiator> (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn)  { channel="mqtt:topic:officeRadThermoValve:powerSwitch" }
 String OF_Heater_Mode "Office Heating Mode" <settings> (gHeatingModes)

@@ -66,6 +66,8 @@ rules.JSRule({
         }
         if (itemName === 'pir04_occupancy') {
           items.getItem('gDiningRoomAutoLights').sendCommand('ON');
+
+          items.getItem('ZbColourBulb02_CYCLE').sendCommand('OFF');
           items.getItem('ZbColourBulb02_CYCLE').sendCommand('ON');
 
           logger.info('gDiningRoomAutoLights Power ON');

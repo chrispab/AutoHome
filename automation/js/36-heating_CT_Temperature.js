@@ -31,16 +31,16 @@ rules.JSRule({
       logger.debug(`..setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
     }
 
-    newTemp = calcNewTemp(preciseTemp, rawTemp);
+    newPreciseTemp = calcNewTemp(preciseTemp, rawTemp);
 
     //to 1 dp for dispaly and rules etc
-    workingTemp = Number(newTemp).toFixed(1);
+    workingTemp = Number(newPreciseTemp).toFixed(1);
     items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
     logger.debug(`..writing new working 1dp temp too TemperatureAmbient_precision: ${workingTemp}`);
 
     //store as precise 3dp value
-    items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newTemp);
-    logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newTemp}`);
+    items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newPreciseTemp);
+    logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
 
     items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
 
@@ -48,7 +48,7 @@ rules.JSRule({
     let ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     logger.debug(`..CT_ThermostatTemperatureAmbient(newTemp): ${ctTemp}`);
 
-    logger.debug(`..saved precision temp is: ${preciseTemp}, new raw temp is: ${rawTemp}, TemperatureAmbient(newTemp): ${workingTemp}`);
+    logger.debug(`..saved precision temp is: ${newPreciseTemp}, new raw temp is: ${rawTemp}, TemperatureAmbient(newTemp): ${workingTemp}`);
   },
 });
 
@@ -72,30 +72,32 @@ function calcNewTemp(previousTemperature, newTemperature) {
 
   logger.debug(`...temp diff : ${tempDiff}`);
 
-  if (absDiff <= 0.1) {
+  if (absDiff < 0.05) {
+    scaleFactor = 1
+  } else if (absDiff <= 0.1) {
     scaleFactor = 1.5
   } else if (absDiff <= 0.2) {
-    scaleFactor = 3
+    scaleFactor = 2
   } else if (absDiff <= 0.3) {
     scaleFactor = 4
   } else if (absDiff <= 0.4) {
     scaleFactor = 5
   } else if (absDiff <= 1.0) {
-    scaleFactor = 5
+    scaleFactor = 6
   } else if (absDiff <= 1.2) {
-    scaleFactor = 6.5
+    scaleFactor = 7
   } else if (absDiff <= 1.4) {
-    scaleFactor = 7.0
+    scaleFactor = 8
   } else if (absDiff <= 1.6) {
-    scaleFactor = 8.0
+    scaleFactor = 9
   } else if (absDiff <= 2.5) {
-    scaleFactor = 9.0
+    scaleFactor = 10
   } else if (absDiff <= 3.0) {
-    scaleFactor = 10.0
+    scaleFactor = 11
   } else if (absDiff <= 5.0) {
-    scaleFactor = 11.0
+    scaleFactor = 12
   } else {
-    scaleFactor = 15.0
+    scaleFactor = 13
   }
 
   logger.debug(`...scaleFactor/divisor : ${scaleFactor}`);

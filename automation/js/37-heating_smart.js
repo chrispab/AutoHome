@@ -85,7 +85,7 @@ rules.JSRule({
       items.getItem('CT_heating_deltaTemp').postUpdate(deltaTemp);
       items.getItem('CT_heating_deltaTime').postUpdate(deltaTime);
 
-      items.getItem('CT_heating_gradient').postUpdate(gradient);
+      items.getItem('CT_heating_gradient').postUpdate(gradient.toFixed(4));
 
       var ins = time.Instant.parse('2007-12-03T10:15:30.000Z') // 1196676930 in epoch seconds
 

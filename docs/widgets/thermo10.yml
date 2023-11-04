@@ -112,7 +112,7 @@ props:
       name: urlItem
       required: false
       type: TEXT
-timestamp: Oct 30, 2023, 7:25:14 PM
+timestamp: Nov 3, 2023, 5:49:43 PM
 component: f7-card
 config:
   class: elevation-3
@@ -254,15 +254,13 @@ slots:
                     default:
                       - component: oh-icon
                         config:
-                          icon: f7:flame_fill
                           color: "=(items[props.locationPrefix + props.HeaterControlSuffix].state == 'ON') ? 'red' : 'blue'"
-                          width: 30px
+                          icon: f7:flame_fill
                           style:
                             animation: "=(items[props.locationPrefix + props.HeaterControlSuffix].state == 'ON') ? 'skeleton-effect-fade 2s linear infinite' : ''"
+                          width: 30px
                 - component: Label
                   config:
-                    style:
-                      #margin-top: -20%
                     text: "=( items[props.locationPrefix + '_Boost_Countdown'].state.toString() != '0 s') ? (items[props.locationPrefix + '_Boost_Countdown'].state) : '-'"
                 - component: oh-stepper
                   config:
