@@ -11,23 +11,6 @@ scriptLoaded = function () {
     logger.info(`scriptLoaded - ${ruleUID}`);
 };
 
-
-// triggers:
-//   - id: "1"
-//     configuration:
-//       itemName: rokuitem
-// type: core.ItemStateUpdateTrigger
-// conditions: []
-// actions:
-//   - inputs: {}
-//     id: "2"
-//     configuration:
-//       type: application/javascript
-//       script: >+
-//         //need below to log to openhab.log file
-
-//         var logger = Java.type('org.slf4j.LoggerFactory').getLogger('org.openhab.rule.' + ctx.ruleUID);
-
 //below is if you are going to use the ececute command
 rules.JSRule({
     name: 'roku action',
@@ -150,5 +133,3 @@ rules.JSRule({
     }
 },
 );
-
-// type: script.ScriptAction
