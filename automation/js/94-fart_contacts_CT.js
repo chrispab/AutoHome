@@ -13,24 +13,6 @@ let fartString;
 let numString;
 const max = 29;// num farts-1
 
-function randomFartString() {
-  // generate  number in range 1 to max
-  number = Math.round(Math.random() * max) + 1;
-  // number = Math.round(num * 10)/10;
-
-  logger.debug(`VVV - fart number  : ${number}`);
-  // if len = 1, fs = '0'+`${number}`
-  if (number.toString().length === 1) {
-    numString = `0${number.toString()}`;
-  } else {
-    numString = number.toString();
-  }
-  logger.debug(`VVV - numString  : ${numString}`);
-
-  fartString = `farts/fart-${numString}.mp3`;
-  logger.info(`contact01 - fart string  : ${fartString}`);
-  return fartString;
-}
 
 const vol = 0.5;
 rules.JSRule({
@@ -52,29 +34,65 @@ rules.JSRule({
   // generate  number in range 1 to max
       if( Math.random() > 0.9){
         actions.Audio.playSound(randomFartString());
+        myPlaySound(randomFartString());
       }
 
     }
 
   },
 });
-// rules.JSRule({
-//   name: 'CT contact01 went true',
-//   description: 'CT contact01 went true',
-//   triggers: [
-//     triggers.ItemStateChangeTrigger('zb_contact_01_contact', 'false', 'true'),
-//     triggers.ItemStateChangeTrigger('v_test_switch_01', 'OFF', 'ON'),
-//   ],
-//   execute: () => {
-//     if (items.getItem('vFartDoorEnable').state.toString() === 'ON') {
 
-//       logger.debug('CT contact01 went true');
+// items
+// String        LivingRoomSpeaker_Playuri_backup    "Play uri backup"
 
-//       if( Math.random() > 0.9){
-//         actions.Audio.playSound(randomFartString());
-//       }
-//       // actions.Audio.setMasterVolume(vol);
-//       // logger.warn(`VVV - setMasterVolume to GHM : ${vol}`);
-//     }
-//   },
-// });
+// rule 
+// when
+//     Item received command 
+// then
+//     if (LivingRoomSpeaker_AppId.state == "CC1AD845" && LivingRoomSpeaker_Control.state == PLAY) {
+//     LivingRoomSpeaker_Playuri_backup.postUpdate(LivingRoomSpeaker_Playuri.state)
+//     playSound("doorbell.mp3")
+//     Thread::sleep(3000)
+//     LivingRoomSpeaker_Playuri.sendCommand(LivingRoomSpeaker_Playuri_backup.state.toString)
+//     LivingRoomSpeaker_Control.sendCommand(PLAY) }
+//     else {playSound("barking.mp3")}
+// end
+
+function myPlaySound() {
+//   // generate  number in range 1 to max
+//   number = Math.round(Math.random() * max) + 1;
+//   // number = Math.round(num * 10)/10;
+
+//   logger.debug(`VVV - fart number  : ${number}`);
+//   // if len = 1, fs = '0'+`${number}`
+//   if (number.toString().length === 1) {
+//     numString = `0${number.toString()}`;
+//   } else {
+//     numString = number.toString();
+//   }
+//   logger.debug(`VVV - numString  : ${numString}`);
+
+//   fartString = `farts/fart-${numString}.mp3`;
+//   logger.info(`contact01 - fart string  : ${fartString}`);
+//   return fartString;
+}
+
+
+function randomFartString() {
+  // generate  number in range 1 to max
+  number = Math.round(Math.random() * max) + 1;
+  // number = Math.round(num * 10)/10;
+
+  logger.debug(`VVV - fart number  : ${number}`);
+  // if len = 1, fs = '0'+`${number}`
+  if (number.toString().length === 1) {
+    numString = `0${number.toString()}`;
+  } else {
+    numString = number.toString();
+  }
+  logger.debug(`VVV - numString  : ${numString}`);
+
+  fartString = `farts/fart-${numString}.mp3`;
+  logger.info(`contact01 - fart string  : ${fartString}`);
+  return fartString;
+}
