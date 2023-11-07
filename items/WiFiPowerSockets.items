@@ -25,10 +25,10 @@ String wifi_socket_4_reachable "Socket four reachable" (gMQTT, gWiFiPowerSockets
 Number wifi_socket_4_rssi "Socket four RSSI" (gMQTT, gWiFiPowerSockets) { unit="%", channel = "mqtt:topic:WiFiSocket4:rssi" }
 Number:Temperature wifi_socket_4_temperature    "WiFi Socket 4 Temperature"(gChart_Minute) { channel = "mqtt:topic:WiFiSocket4:temperature" }
 
-//xmas lights
-Switch wifi_socket_5_power "attic tv & kodi power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
-String wifi_socket_5_reachable "attic tv reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket5:reachable" }
-Number:Dimensionless wifi_socket_5_rssi "attic tv RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:rssi" }
+//bog fan
+Switch wifi_socket_5_power "bog fan" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:powerSwitch" }
+String wifi_socket_5_reachable "bog fan" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:WiFiSocket5:reachable" }
+Number:Dimensionless wifi_socket_5_rssi "bog fan" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket5:rssi" }
 
 //not currently used
 Switch wifi_socket_6_power "Socket 6  power" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:WiFiSocket6:powerSwitch" }
