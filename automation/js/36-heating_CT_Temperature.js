@@ -75,9 +75,9 @@ function calcNewTemp(previousTemperature, newTemperature) {
   if (absDiff < 0.05) {
     scaleFactor = 1
   } else if (absDiff <= 0.1) {
-    scaleFactor = 1.5
-  } else if (absDiff <= 0.2) {
     scaleFactor = 2
+  } else if (absDiff <= 0.2) {
+    scaleFactor = 3
   } else if (absDiff <= 0.3) {
     scaleFactor = 4
   } else if (absDiff <= 0.4) {

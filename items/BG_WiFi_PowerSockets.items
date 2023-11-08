@@ -93,10 +93,12 @@ String bg_wifisocket_9_reachable "BG Socket 9-reachable" (gMQTT, gBGWiFiPowerSoc
 
 
 // single adapters
-Switch bg_wifiadaptor_1_power "BG adapter 1" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_1:powerSwitch" }
-Number bg_wifiadaptor_1_maxworktime "BG adapter 1-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifiadapter_1:maxworktime" }
-String bg_wifiadaptor_1_reachable "BG adapter 1-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)
-        ["BG_Sockets_Check"]  { channel = "mqtt:topic:bg_wifiadapter_1:reachable", expire="35s,state=OFF", expire="35s,state=OFF" }
+
+//!device is dead
+// Switch bg_wifiadaptor_1_power "BG adapter 1" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_1:powerSwitch" }
+// Number bg_wifiadaptor_1_maxworktime "BG adapter 1-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifiadapter_1:maxworktime" }
+// String bg_wifiadaptor_1_reachable "BG adapter 1-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)
+//         ["BG_Sockets_Check"]  { channel = "mqtt:topic:bg_wifiadapter_1:reachable", expire="35s,state=OFF", expire="35s,state=OFF" }
 
 Switch bg_wifiadaptor_2_power "BG adapter 2" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifiadapter_2:powerSwitch" }
 Number bg_wifiadaptor_2_maxworktime "BG adapter 2-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifiadapter_2:maxworktime" }
