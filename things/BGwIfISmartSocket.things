@@ -129,7 +129,7 @@ Thing mqtt:topic:bg_wifiadapter_2  "MQTT Thing: BG WiFi Power Adapter 2" (mqtt:b
 // setup the new socket in the app via AP mode - not 'smart setup'
 // this allows yoiu to connect to the socket via the phones wifi top the snmart socket as an AP
 // you then tell the socket which network SSID to connect to - 'notwork2' as this has a smaller secret than the main network
-//note : all new stuff shou;ld connect to notwork1 cos of this passwoprd length issue
+//note : all new stuff shou;ld connect to notwork2 cos of this passwoprd length issue
 
 // from iotstack docker restart broadlink-mqtt container and watch logs, you should get something along these lines
 //with new socket powered on
