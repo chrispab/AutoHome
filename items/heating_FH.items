@@ -1,4 +1,3 @@
-// Switch fan_heater "fan_heater pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:bg_wifisocket_9:powerSwitch_2" }
 // Number fan_heater_temperature_sensor	"fan_heater_temperature_sensor"		(gMQTT, gWiFiPowerSockets)		{ channel = "mqtt:topic:wifi_socket_8:temperature" }
 // Number fan_heater_ON_Setpoint "fan_heater on setponit [%.1f °C]"    <degreesc>
 Switch FH_Heater_Enable "FH_Heater_Enable"

@@ -16,6 +16,5 @@ Number HL_Heater_Rssi "HL RTV RSSI [%.1f]" <qualityofservice> (gHL_Thermostat) {
 Switch      HL_Heater_Boost "Hall Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
 Switch      v_HL_Boost  "Hall virtual Heater boost"
 Switch      v_HL_Heater_Boost  "Hall virtual Heater boost" (gvHeaterBoosters)
-
 Number:Time HL_Boost_Countdown "HL_Boost_Countdown"
 Number HL_Boost_Time "HL_Boost_Time"  (gBoost_Time)

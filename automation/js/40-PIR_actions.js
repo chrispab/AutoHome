@@ -32,8 +32,8 @@ rules.JSRule({
     timerName = ruleUID + '_' + itemName;
 
     let { timeoutMs_KN_RHS, timeoutMs_KN_LHS } = getTimeouts();
-    // logger.debug(`pir01_2 TIMER - OFFtimer is: ${timeoutMs_KN_RHS}`);
-    // logger.debug(`pir03_4 TIMER - OFFtimer is: ${timeoutMs_KN_LHS}`);
+    logger.debug(`pir01_2 timeoutMs_KN_RHS - OFFtimer is: ${timeoutMs_KN_RHS}`);
+    logger.debug(`pir03_4 timeoutMs_KN_LHS - OFFtimer is: ${timeoutMs_KN_LHS}`);
 
     if (itemName === kitchenRHSensorOccupancy || itemName === kitchenLHSensorOccupancy) {
       if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {

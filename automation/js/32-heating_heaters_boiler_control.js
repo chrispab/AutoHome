@@ -58,6 +58,13 @@ rules.JSRule({
       return;
     }
 
+    //skip if fanheater FH
+    if ((roomPrefix == 'FH')) {
+      logger.warn(`>Check if Heaters need changing- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+      // dont continue on and update the bolier control if this RTV is Offline
+      return;
+    }
+
     logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     // if this heater is currently in being boosted, then just l;eave it alone and move on
@@ -102,7 +109,15 @@ rules.JSRule({
   description: 'when any heater states updated, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gHeaterControls')],
   execute: (event) => {
+
     // logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
+    //skip if fanheater FH
+    const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    if ((roomPrefix == 'FH')) {
+      logger.warn(`>heater state has been updated turn Boiler ON else OFF- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+      // dont continue on
+      return;
+    }
 
     if (items.getItem('gAnyRoomHeaterOn').state === 'ON') {
       // if boiler off, send on command
@@ -151,7 +166,7 @@ rules.JSRule({
         // todo do not override mode if manual
         break;
       default:
-        logger.debug(`Unkown master heating mode: ${masterHeatingModeItemState}`);
+        logger.error(`Unkown master heating mode: ${masterHeatingModeItemState}`);
     }
     // events.sendCommand("Heating_UpdateHeaters", "ON") #trigger updating of heaters and boiler etc
     items.getItem('Heating_UpdateHeaters').sendCommand('ON');
