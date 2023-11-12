@@ -6,7 +6,7 @@ Group:Number:MIN    gBatteries
 Group:Number:MIN    gZbPIRSensorBatteries
 Group    gZbPIRSensorOccupancy
 
-Switch    pir99_occupancy    "pir99_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)
+// Switch    pir99_occupancy    "pir99_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)
 
 
 
