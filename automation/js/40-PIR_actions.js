@@ -39,8 +39,8 @@ const kitchenRHS = new SensorLight('pir01_occupancy', timeoutMs_KN_RHS, 'KT_ligh
 const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
 const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
 //test items
-const slPir06 = new SensorLight('pir06_occupancy', 5000, 'workLightsPowerSocket');
-const slPir02 = new SensorLight('pir02_occupancy', 5000, 'CT_FairyLights433Socket');
+const slPir06 = new SensorLight('pir06_occupancy', 5000, 'bg_wifisocket_6_2_power');
+const slPir02 = new SensorLight('pir02_occupancy', 5000, 'bg_wifisocket_9_1_power');
 
 // const testSensorLight = new SensorLight('pir99_occupancy', 29999, 'KT_light_zzzzzz_Power');
 // const testSensorLight2 = new SensorLight('pir02_occupancy', 29999, 'KT_light_2222222222222_Power');
@@ -143,7 +143,7 @@ function lightsOn(lightNames) {
 function getTimeouts() {
   let timeoutMs_KN_RHS = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
   if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
-    let timeoutMs_KN_RHS = timeoutMs_KN_RHS * 2;
+    timeoutMs_KN_RHS = timeoutMs_KN_RHS * 2;
   }
 
   // let timeoutMs_KN_LHS = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000
