@@ -32,12 +32,15 @@ class SensorLight {
     this.offTimerDuration = offTimerDuration;
     this.lightItemNames = lightItemNames;
   }
+
 }
 const { timeoutMs_KN_RHS, timeoutMs_KN_LHS } = getTimeouts();
 const kitchenLHS = new SensorLight('pir05_occupancy', timeoutMs_KN_LHS, 'KT_light_2_Power', 'KT_light_3_Power');
 const kitchenRHS = new SensorLight('pir01_occupancy', timeoutMs_KN_RHS, 'KT_light_1_Power');
-const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
-const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
+// const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
+// const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
+const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights');
+const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights');
 //test items
 const slPir06 = new SensorLight('pir06_occupancy', 5000, 'bg_wifisocket_6_2_power');
 const slPir02 = new SensorLight('pir02_occupancy', 5000, 'bg_wifisocket_9_1_power');
@@ -76,8 +79,8 @@ rules.JSRule({
 
       //re/start the timer
       // timerDuration = currentSensorLight.offTimerDuration;
-      timerDuration = 1000 * 60 * 10;
-      timerMgr.cancel(itemName);
+      timerDuration = 1000 * 60 * 4;
+      timerMgr.cancel(timerHandle);
       logger.debug('cancel timer - timerHandle:{}', timerHandle);
 
       timerMgr.check(timerHandle, timerDuration, () => { lightsOff(lightNames); }, true, null, timerName);
@@ -103,7 +106,6 @@ rules.JSRule({
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName} ON -> OFF,state: ${items.getItem(itemName).state}`);
     timerHandle = itemName;
-
     timerName = ruleUID + '_' + itemName;
 
     //find sensorlight that has occupancy triggered
@@ -115,6 +117,8 @@ rules.JSRule({
       lightsOn(lightNames);
     }
     //re/start the timer
+    //get off timer duration
+    // timerDuration = currentSensorLight.getOffTimerDuration();
     timerDuration = currentSensorLight.offTimerDuration;
     timerMgr.cancel(timerHandle);
     logger.debug('cancel timer - timerHandle:{}', timerHandle);
