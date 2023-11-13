@@ -22,33 +22,41 @@ scriptLoaded = function () {
   logger.debug('>>>>sensorLights: {}', JSON.stringify(sensorLights));
 };
 
-let kitchenLHSensorOccupancy = 'pir05_occupancy';
-let kitchenRHSensorOccupancy = 'pir01_occupancy';
+// let kitchenLHSensorOccupancy = 'pir05_occupancy';
+// let kitchenRHSensorOccupancy = 'pir01_occupancy';
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
 class SensorLight {
-  constructor(occupancyItemName, offTimerDuration, ...lightItemNames) {
+  constructor(occupancyItemName, offTimerDurationItemName, offTimerDuration, ...lightItemNames) {
     this.occupancyItemName = occupancyItemName;
+    this.offTimerDurationItemName = offTimerDurationItemName;
     this.offTimerDuration = offTimerDuration;
     this.lightItemNames = lightItemNames;
   }
-
+  getOffTimerDuration() {
+    let timerDuration = (items.getItem(this.offTimerDurationItemName).rawState + 1) * 1000
+    logger.debug('get offTimerDuration(): {}, for this.occupancyItemName:{}', timerDuration, this.occupancyItemName);
+    return timerDuration;
+  }
+  // set offTimerDuration(offTimerDurationItemName) {
+  //   this.offTimerDurationItemName = offTimerDurationItemName;
+  // }
 }
 const { timeoutMs_KN_RHS, timeoutMs_KN_LHS } = getTimeouts();
-const kitchenLHS = new SensorLight('pir05_occupancy', timeoutMs_KN_LHS, 'KT_light_2_Power', 'KT_light_3_Power');
-const kitchenRHS = new SensorLight('pir01_occupancy', timeoutMs_KN_RHS, 'KT_light_1_Power');
+const slPir05 = new SensorLight('pir05_occupancy', 'pir05_offTimerDurationItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
+const slPir01 = new SensorLight('pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
 // const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
 // const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
-const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights');
-const slPir04 = new SensorLight('pir04_occupancy', 5000, 'gDiningRoomAutoLights');
+const slPir03 = new SensorLight('pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'gDiningRoomAutoLights');
+const slPir04 = new SensorLight('pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights');
 //test items
-const slPir06 = new SensorLight('pir06_occupancy', 5000, 'bg_wifisocket_6_2_power');
-const slPir02 = new SensorLight('pir02_occupancy', 5000, 'bg_wifisocket_9_1_power');
+const slPir06 = new SensorLight('pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
+const slPir02 = new SensorLight('pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');
 
 // const testSensorLight = new SensorLight('pir99_occupancy', 29999, 'KT_light_zzzzzz_Power');
 // const testSensorLight2 = new SensorLight('pir02_occupancy', 29999, 'KT_light_2222222222222_Power');
 
-const sensorLights = [kitchenLHS, kitchenRHS, slPir02, slPir03, slPir04, slPir06];
+const sensorLights = [slPir01, slPir05, slPir02, slPir03, slPir04, slPir06];
 
 
 rules.JSRule({
@@ -86,7 +94,7 @@ rules.JSRule({
       // timerFunc = () => { lightsOff(lightNames); };
       timerFunc = () => { dummyOffTimer(lightNames); };
 
-      
+
 
       timerMgr.check(timerKey, timerDuration, timerFunc, true, null, timerName);
       // timerMgr.check(itemName, currentSensorLight.offTimerDuration, () => { pir_dummy(lightNames); }, true, null, timerName);
@@ -127,8 +135,9 @@ rules.JSRule({
     timerMgr = cache.private.get('timerMgr');
 
     //get off timer duration
-    // timerDuration = currentSensorLight.getOffTimerDuration();
-    timerDuration =  Math.round(currentSensorLight.offTimerDuration);
+    timerDuration = currentSensorLight.getOffTimerDuration();
+
+    // timerDuration = Math.round(currentSensorLight.offTimerDuration);
     timerMgr.cancel(timerKey);
     logger.debug('cancel timer - timerKey:{}', timerKey);
     timerFunc = () => { lightsOff(lightNames); };

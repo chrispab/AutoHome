@@ -7,7 +7,12 @@ Group:Number:MIN    gZbPIRSensorBatteries
 Group    gZbPIRSensorOccupancy
 
 // Switch    pir99_occupancy    "pir99_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)
-
+Number pir05_offTimerDurationItem
+Number pir01_offTimerDurationItem
+Number pir03_offTimerDurationItem
+Number pir04_offTimerDurationItem
+Number pir06_offTimerDurationItem
+Number pir02_offTimerDurationItem
 
 
 Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)   {channel="mqtt:topic:pir01:occupancy"}
