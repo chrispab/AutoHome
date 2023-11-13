@@ -77,14 +77,14 @@ rules.JSRule({
     logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
 
     // if (roomPrefix == "CT") {
-    if (items.getItem('Boiler_Control').state.toString() == "ON") {
+    // if (items.getItem('Boiler_Control').state.toString() == "ON") {
 
       // if (roomPrefix == "CT") {
-      logger.debug(`>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
-      const setpoint = setpointItem.rawState;
-      const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
-      const turnOffTemp = setpoint; //  # + 0.1
-      const temp = TemperatureItem.rawState; //  # get the current temperature
+      // logger.debug(`>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
+      // const setpoint = setpointItem.rawState;
+      // const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures
+      // const turnOffTemp = setpoint; //  # + 0.1
+      // const temp = TemperatureItem.rawState; //  # get the current temperature
 
       if (items.getItem('Boiler_Control').state.toString() == 'OFF') {
         logger.info(`>recirc fan: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, recirc fan OFF`);
@@ -94,6 +94,6 @@ rules.JSRule({
         items.getItem('CT_Fan_Heating_circulate_power').sendCommand('ON');
       }
       // }
-    }
+    // }
   }
 });
