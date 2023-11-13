@@ -62,7 +62,7 @@ rules.JSRule({
 
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
-    timerHandle = itemName;
+    timerKey = itemName;
     timerName = ruleUID + '_' + itemName;
 
     //find sensorlight that has occupancy triggered
@@ -78,20 +78,26 @@ rules.JSRule({
       }
 
       //re/start the timer
+      timerMgr = cache.private.get('timerMgr');
       // timerDuration = currentSensorLight.offTimerDuration;
-      timerDuration = 1000 * 60 * 4;
-      timerMgr.cancel(timerHandle);
-      logger.debug('cancel timer - timerHandle:{}', timerHandle);
+      timerDuration = Math.round(1000 * 60 * 3);
+      timerMgr.cancel(timerKey);
+      logger.debug('cancel timer - timerKey:{}', timerKey);
+      // timerFunc = () => { lightsOff(lightNames); };
+      timerFunc = () => { dummyOffTimer(lightNames); };
 
-      timerMgr.check(timerHandle, timerDuration, () => { lightsOff(lightNames); }, true, null, timerName);
+      
+
+      timerMgr.check(timerKey, timerDuration, timerFunc, true, null, timerName);
       // timerMgr.check(itemName, currentSensorLight.offTimerDuration, () => { pir_dummy(lightNames); }, true, null, timerName);
       // logger.debug('timerMgr - dummyOffTimer: {}, duration: {} : ', JSON.stringify(lightNames), timerDuration);
-      logger.debug('timerMgr.check - timerHandle:{}, duration:{}, lightNames:{}, timerRuleName:{} ', timerHandle, timerDuration, JSON.stringify(lightNames), timerName);
+      // logger.debug('OFF to ON timerMgr.check - timerKey:{}, duration:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration, JSON.stringify(lightNames), timerName);
+      logger.debug('OFF to ON timerMgr.check - timerKey:{}, duration:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration, timerFunc.toString(), JSON.stringify(lightNames), timerName);
 
     } else {
       logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT setting timer : ${timerName}, for item: ${itemName}`);
     }
-
+    cache.private.put('timerMgr', timerMgr);
   },
 });
 
@@ -105,7 +111,8 @@ rules.JSRule({
   execute: (event) => {
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName} ON -> OFF,state: ${items.getItem(itemName).state}`);
-    timerHandle = itemName;
+
+    timerKey = itemName;
     timerName = ruleUID + '_' + itemName;
 
     //find sensorlight that has occupancy triggered
@@ -117,29 +124,32 @@ rules.JSRule({
       lightsOn(lightNames);
     }
     //re/start the timer
+    timerMgr = cache.private.get('timerMgr');
+
     //get off timer duration
     // timerDuration = currentSensorLight.getOffTimerDuration();
-    timerDuration = currentSensorLight.offTimerDuration;
-    timerMgr.cancel(timerHandle);
-    logger.debug('cancel timer - timerHandle:{}', timerHandle);
-
-    timerMgr.check(timerHandle, timerDuration, () => { lightsOff(lightNames); }, true, null, timerName);
+    timerDuration =  Math.round(currentSensorLight.offTimerDuration);
+    timerMgr.cancel(timerKey);
+    logger.debug('cancel timer - timerKey:{}', timerKey);
+    timerFunc = () => { lightsOff(lightNames); };
+    timerMgr.check(timerKey, timerDuration, timerFunc, true, null, timerName);
     // timerMgr.check(itemName, currentSensorLight.offTimerDuration, () => { pir_dummy(lightNames); }, true, null, timerName);
     // logger.debug('timerMgr.check - itemName:{}, duration:{}, lightNames:{}, timerName:{} ', itemName, timerDuration, JSON.stringify(lightNames), timerName);
-    logger.debug('timerMgr.check - timerHandle:{}, duration:{}, lightNames:{}, timerRuleName:{} ', timerHandle, timerDuration, JSON.stringify(lightNames), timerName);
+    logger.debug('ON to OFF timerMgr.check - timerKey:{}, duration:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration, timerFunc.toString(), JSON.stringify(lightNames), timerName);
+    cache.private.put('timerMgr', timerMgr);
 
   },
 });
 
 function lightsOff(lightNames) {
   lightNames.forEach((lightName) => {
-    logger.debug('==lightsOff lightItemNames: sendCommand( OFF )---{}', lightName);
+    logger.debug('==lightsOff lightItemNames: sendCommand( OFF )->{}', lightName);
     items.getItem(lightName).sendCommand('OFF');
   });
 }
 function lightsOn(lightNames) {
   lightNames.forEach((lightName) => {
-    logger.debug('==lightsOn lightItemNames: sendCommand( ON )---{}', lightName);
+    logger.debug('==lightsOn lightItemNames: sendCommand( ON )->{}', lightName);
     items.getItem(lightName).sendCommand('ON');
   });
 }
@@ -147,7 +157,7 @@ function lightsOn(lightNames) {
 function getTimeouts() {
   let timeoutMs_KN_RHS = (items.getItem('KT_cupboard_lights_timeout').rawState + 1) * 1000
   if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
-    timeoutMs_KN_RHS = timeoutMs_KN_RHS * 2;
+    timeoutMs_KN_RHS = timeoutMs_KN_RHS;// * 2;
   }
 
   // let timeoutMs_KN_LHS = (items.getItem('DR_auto_lights_timeout').rawState + 1) * 1000

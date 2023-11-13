@@ -78,7 +78,7 @@ rules.JSRule({
 
     if (roomPrefix == "CT") {
 
-      if (HeaterItem.state.toString() == 'ON') {
+      if (roomPrefix == "CT") {
         logger.debug(`>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
         const setpoint = setpointItem.rawState;
         const turnOnTemp = setpoint; // # - 0.2// calculate the turn on/off temperatures

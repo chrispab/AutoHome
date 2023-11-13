@@ -51,7 +51,7 @@ rules.JSRule({
     // dont continue on and update the bolier control if this RTV is Offline
     reachableItemOnlineStatus = ReachableItem.state.toString();
     if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
-      logger.warn(`>ReachableItem-Offline - sending OFF, leaving!: ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
+      logger.debug(`>ReachableItem-Offline - sending OFF, leaving!: ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
       HeaterItem.sendCommand('OFF');
       // dont continue on and update the bolier control if this RTV is Offline
@@ -114,7 +114,7 @@ rules.JSRule({
     //skip if fanheater FH
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     if ((roomPrefix == 'FH')) {
-      logger.warn(`>heater state has been updated turn Boiler ON else OFF- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+      logger.debug(`>heater state has been updated turn Boiler ON else OFF- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
       // dont continue on
       return;
     }
