@@ -17,13 +17,10 @@ var timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
-  logger.info('>>>>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
-  logger.info('>>>>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
-  logger.debug('>>>>sensorLights: {}', JSON.stringify(sensorLights));
+  logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
+  logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
+  logger.debug('>sensorLights: {}', JSON.stringify(sensorLights));
 };
-
-// let kitchenLHSensorOccupancy = 'pir05_occupancy';
-// let kitchenRHSensorOccupancy = 'pir01_occupancy';
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
 class SensorLight {
@@ -34,15 +31,21 @@ class SensorLight {
     this.lightItemNames = lightItemNames;
   }
   getOffTimerDuration() {
-    let timerDuration = (items.getItem(this.offTimerDurationItemName).rawState + 1) * 1000
-    logger.debug('get offTimerDuration(): {}, for this.occupancyItemName:{}', timerDuration, this.occupancyItemName);
-    return timerDuration;
+    // let timerDuration = (items.getItem(this.offTimerDurationItemName).rawState + 1) * 1000
+    let timerDuration = items.getItem(this.offTimerDurationItemName, true).rawState;// get item for this offTimerDurationItemName, return null if missing
+    timerDuration = timerDuration ? timerDuration : 10;//default to 10s if offTimerDurationItemName not defined(null)
+    let timerDurationMs = (timerDuration * 1000) + 1;
+    logger.debug('occupancyItemName: {}, offTimerDuration()(secs): {}', this.occupancyItemName, timerDuration);
+
+    if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
+      timerDurationMs = timerDurationMs * 2;
+    }
+    return timerDurationMs;
   }
-  // set offTimerDuration(offTimerDurationItemName) {
-  //   this.offTimerDurationItemName = offTimerDurationItemName;
-  // }
 }
-const { timeoutMs_KN_RHS, timeoutMs_KN_LHS } = getTimeouts();
+
+
+// const { timeoutMs_KN_RHS, timeoutMs_KN_LHS } = getTimeouts();
 const slPir05 = new SensorLight('pir05_occupancy', 'pir05_offTimerDurationItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
 const slPir01 = new SensorLight('pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
 // const slPir03 = new SensorLight('pir03_occupancy', 5000, 'gDiningRoomAutoLights', 'ZbColourBulb02_CYCLE');
@@ -86,34 +89,32 @@ rules.JSRule({
       }
 
       //re/start the timer
-      //get off timer duration
       timerDuration = currentSensorLight.getOffTimerDuration();
 
-
-
-
       timerMgr = cache.private.get('timerMgr');
-      // timerDuration = currentSensorLight.offTimerDuration;
-      // timerDuration = Math.round(1000 * 60 * 3);
       timerMgr.cancel(timerKey);
-      logger.debug('cancel timer - timerKey:{}', timerKey);
+      logger.debug('cancel timer with timerKey: {}', timerKey);
       // timerFunc = () => { lightsOff(lightNames); };
 
-      var timerFunc = (lightNames) => {
+      // var timerFunc = (lightNames) => {
+      //   return () => {
+      //     logger.debug('Called expired function for {}', JSON.stringify(lightNames));
+      //     dummyOffTimer(lightNames);
+      //   }
+      // }
+      var timerFunc = (currentSensorLight) => {
         return () => {
-          logger.debug('Called expired function for {}', JSON.stringify(lightNames));
-          dummyOffTimer(lightNames); 
+          logger.debug('Called expired function for {}, lights: {}', JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
+          dummyOffTimer(currentSensorLight.lightItemNames);
         }
-      }
+      }      
       // timerFunc = () => { dummyOffTimer(lightNames); };
 
-
-
-      timerMgr.check(timerKey, timerDuration, timerFunc, true, null, timerName);
+      timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
       // timerMgr.check(itemName, currentSensorLight.offTimerDuration, () => { pir_dummy(lightNames); }, true, null, timerName);
       // logger.debug('timerMgr - dummyOffTimer: {}, duration: {} : ', JSON.stringify(lightNames), timerDuration);
       // logger.debug('OFF to ON timerMgr.check - timerKey:{}, duration:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration, JSON.stringify(lightNames), timerName);
-      logger.debug('OFF to ON timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, timerFunc.toString(), JSON.stringify(lightNames), timerName);
+      logger.debug('OFF to ON timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, Math.round(timerDuration / 1000), timerFunc.toString(), JSON.stringify(lightNames), timerName);
 
     } else {
       logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT setting timer : ${timerName}, for item: ${itemName}`);
@@ -152,20 +153,26 @@ rules.JSRule({
 
     // timerDuration = Math.round(currentSensorLight.offTimerDuration);
     timerMgr.cancel(timerKey);
-    logger.debug('cancel timer - timerKey:{}', timerKey);
+    logger.debug('cancel timer with timerKey:{}', timerKey);
     // timerFunc = () => { lightsOff(lightNames); };
 
-    var timerFunc = (lightNames) => {
+    // var timerFunc = (lightNames) => {
+    //   return () => {
+    //     logger.debug('Called expired function for {}', JSON.stringify(lightNames));
+    //     lightsOff(lightNames);
+    //   }
+    // }
+    var timerFunc = (currentSensorLight) => {
       return () => {
-        logger.debug('Called expired function for {}', JSON.stringify(lightNames));
-        lightsOff(lightNames); 
+        logger.debug('Called expired function for {}, lights: {}', JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
+        lightsOff(currentSensorLight.lightItemNames);
       }
-    }
-
-    timerMgr.check(timerKey, timerDuration, timerFunc(lightNames), true, null, timerName);
+    }    
+    timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
     // timerMgr.check(itemName, currentSensorLight.offTimerDuration, () => { pir_dummy(lightNames); }, true, null, timerName);
     // logger.debug('timerMgr.check - itemName:{}, duration:{}, lightNames:{}, timerName:{} ', itemName, timerDuration, JSON.stringify(lightNames), timerName);
     logger.debug('ON to OFF timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, timerFunc.toString(), JSON.stringify(lightNames), timerName);
+
     cache.private.put('timerMgr', timerMgr);
 
   },
