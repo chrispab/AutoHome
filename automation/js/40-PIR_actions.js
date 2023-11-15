@@ -50,7 +50,9 @@ const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_
 const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
 
 const slPir03 = new SensorLight('Stairs-senor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
-const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
+// const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
+// const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gLightCyclers');
+const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights');
 
 const slPir06 = new SensorLight('big-bulb-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
 const slPir02 = new SensorLight('small-spot-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');
@@ -74,7 +76,7 @@ rules.JSRule({
 
     //find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
-    logger.debug(`ON to OFF..currentSensorLight is: ${JSON.stringify(currentSensorLight)}`);
+    logger.debug('OFF -> ON..currentSensorLight is: {} - {}',currentSensorLight.name, currentSensorLight.occupancyItemName);
 
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
@@ -93,7 +95,7 @@ rules.JSRule({
 
       var timerFunc = (currentSensorLight) => {
         return () => {
-          logger.debug('on Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
+          logger.debug('ON Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
           dummyOffTimer(currentSensorLight.lightItemNames);
         }
       }
@@ -124,7 +126,7 @@ rules.JSRule({
 
     //find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
-    logger.debug(`ON to OFF..currentSensorLight is: ${JSON.stringify(currentSensorLight)}`);
+    logger.debug('ON -> OFF..currentSensorLight is: {} - {}',currentSensorLight.name, currentSensorLight.occupancyItemName);
 
     if (currentSensorLight !== undefined) {
       lightNames = currentSensorLight.lightItemNames;
@@ -141,7 +143,7 @@ rules.JSRule({
  
     var timerFunc = (currentSensorLight) => {
       return () => {
-        logger.debug('off Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
+        logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
         lightsOff(currentSensorLight.lightItemNames);
       }
     }
