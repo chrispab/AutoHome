@@ -59,11 +59,11 @@ rules.JSRule({
     }
 
     //skip if fanheater FH
-    if ((roomPrefix == 'FH')) {
-      logger.warn(`>Check if Heaters need changing- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
-      // dont continue on and update the bolier control if this RTV is Offline
-      return;
-    }
+    // if ((roomPrefix == 'FH')) {
+    //   logger.warn(`>fanheater FH chages - ignore FH - leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+    //   // dont continue on and update the bolier control if fanheater FH
+    //   return;
+    // }
 
     logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
 
@@ -114,7 +114,7 @@ rules.JSRule({
     //skip if fanheater FH
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     if ((roomPrefix == 'FH')) {
-      logger.debug(`>heater state has been updated turn Boiler ON else OFF- leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+      logger.debug(`>Avoid FH fan heater affecting boiler - leaving boiler control: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
       // dont continue on
       return;
     }
