@@ -39,7 +39,7 @@ rules.JSRule({
     // items.getItem('Heating_UpdateHeaters').sendCommand('OFF');
     // items.getItem('Heating_UpdateHeaters').sendCommand('ON');
 
-    items.getItem('gLightCyclers').postUpdate('OFF');
+    // items.getItem('gLightCyclers').postUpdate('OFF');
 
     items.getItem('Scene_Goodnight').postUpdate('OFF');
     items.getItem('workLightsPowerSocket').sendCommand('OFF');

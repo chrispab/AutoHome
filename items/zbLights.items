@@ -22,28 +22,22 @@ Group:Switch:OR(ON,OFF)     gColourBulbs        "colour bulbs switch"    (gAllBu
 // Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
 // Group   gZbColourBulbsColour        "both colour bulbs"    (gZbAllBulbs)  { ga="Light" }
 
-
 Group:Color:OR(ON, OFF)        gZbColourBulbsColour "both colour bulbs"    { ga="Light" }
 
 Group   gLightCyclers
 Group   gZbColourBulbsDim
 Group   gZbColourBulbsSwitch
 Group   gDiningRoomAutoLights
-Group   gZbColourBulb01                                                                                (gZbColourBulbs)
 
-Switch  ZbColourBulb01_switch        "Zb colour bulb 01"                                    (gZbColourBulb01, gDiningRoomAutoLights)      ["Switch","Light"]        {channel="mqtt:topic:ikeacolourbulb01:switch"}
+Group   gZbColourBulb01                                                                                (gZbColourBulbs)
+Switch  ZbColourBulb01_switch "Zb colour bulb 01" (gZbColourBulb01, gDiningRoomAutoLights) ["Switch","Light"] {channel="mqtt:topic:ikeacolourbulb01:switch"}
 Number  ZbColourBulb01Quality        "Zb colour bulb 01  LinkQuality [%d]"     (gZbColourBulb01)                            {channel="mqtt:topic:ikeacolourbulb01:linkquality"}
 Color   ZbColourBulb01_color        "colour bulb1"                                        (gZbColourBulb01)        {ga="Light", channel="mqtt:topic:ikeacolourbulb01:color"}
 Switch  ZbColourBulb01_CYCLE  "colour bulb1 cycle switch" (gLightCyclers)
 Number ZbColourBulb01_update_progress {channel="mqtt:topic:ikeacolourbulb01:update_progress"}
 
 Group   gZbColourBulb02
-// Switch  ZbColourBulb02_switch    "Zb colour bulb 02 switch [%s]"         (gZbColourBulb02)   {channel="mqtt:topic:ikeacolourbulb02:switch"}
-// Number  ZbColourBulb02Quality   "Zb colour bulb 02  LinkQuality [%d]"   (gZbColourBulb02)   {channel="mqtt:topic:ikeacolourbulb02:linkquality"}
-// Color   ZbColourBulb02_color    "colour bulb2"                          (gZbColourBulb02)   {ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
-// Switch  ZbColourBulb02_CYCLE    "colour bulb2 cycle switch"             (gLightCyclers)
-
-Switch  ZbColourBulb02_switch    "Zb colour bulb 02 switch [%s]"         (gZbColourBulb02, gDiningRoomAutoLights)  ["Switch","Light"]   {channel="mqtt:topic:ikeacolourbulb02:switch"}
+Switch  ZbColourBulb02_switch "Zb colour bulb 02 switch [%s]" (gZbColourBulb02, gDiningRoomAutoLights) ["Switch","Light"] {channel="mqtt:topic:ikeacolourbulb02:switch"}
 Number  ZbColourBulb02Quality   "Zb colour bulb 02  LinkQuality [%d]"   (gZbColourBulb02)   {channel="mqtt:topic:ikeacolourbulb02:linkquality"}
 Color   ZbColourBulb02_color    "colour bulb2"                          (gZbColourBulb02)   {ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
 Switch  ZbColourBulb02_CYCLE    "colour bulb2 cycle switch"             (gLightCyclers)
@@ -53,3 +47,5 @@ Number  lightCyclerHueStepSize        "lightCyclerHueStepSize"
 Number  lightCyclerIntervalMillis     "lightCyclerIntervalMillis"
 Number  lightCyclerSaturation         "lightCyclerSaturation"
 Number  lightCyclerBrightness         "lightCyclerBrightness"
+
+Switch  v_StartColourBulbsCycle  "colour bulbs cycle switch"

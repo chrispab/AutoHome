@@ -49,10 +49,10 @@ class SensorLight {
 const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
 const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
 
-const slPir03 = new SensorLight('Stairs-senor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
+const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 // const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
 // const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gLightCyclers');
-const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights');
+const slPir04 = new SensorLight('Stairs-senor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 
 const slPir06 = new SensorLight('big-bulb-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
 const slPir02 = new SensorLight('small-spot-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');

@@ -27,7 +27,7 @@ rules.JSRule({
     logger.debug('Link fan heater setpoint to CT setpoint triggered');
     if (items.getItem('FH_LinkSetpointToCTSetpoint').state === 'ON') {
 
-      logger.debug('tracking to CT setpoint');
+      logger.debug('Link fan heater setpoint to CT setpoint');
       // get ct setpoint and copy to fh setpoint - tracking_offset
       var CT_ThermostatTemperatureSetpoint_raw = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
       var FH_ThermostatTemperatureSetpoint_item = items.getItem('FH_ThermostatTemperatureSetpoint');
@@ -74,9 +74,9 @@ rules.JSRule({
 
       if ((Outside_Temperature_raw <= FH_outside_temperature_enable_raw)) {
         var FH_Thermostat_SetPoint = items.getItem('FH_ThermostatTemperatureSetpoint').rawState;
-        logger.debug('FH_ThermostatTemperatureSetpoint: {}', FH_Thermostat_SetPoint);
+        logger.debug('current FH_ThermostatTemperatureSetpoint: {}', FH_Thermostat_SetPoint);
         var current_room_temp = items.getItem('FH_ThermostatTemperatureAmbient').rawState;
-        logger.debug('current_room_temp: {},', FH_Thermostat_SetPoint);
+        logger.debug('current_room_temp: {},', current_room_temp);
 
         if (current_room_temp < FH_Thermostat_SetPoint) {
           items.getItem('FH_Heater_Control').sendCommand('ON');

@@ -4,8 +4,9 @@ const {
 var ruleUID = "heating-startup";
 
 const logger = log(ruleUID);
-// const { timeUtils } = require('openhab_rules_tools');
 
+// ! these must be set at least on first run to init them
+//! then use each rooms program setpoint page to set
 scriptLoaded = function () {
   logger.info('scriptLoaded -   Heating startup');
 
@@ -36,5 +37,4 @@ scriptLoaded = function () {
   }
 };
 
-// # // ! these must be set at least on first run to init them
-// # //! then use each rooms program setpoint page to set
+
