@@ -54,8 +54,9 @@ const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_
 // const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gLightCyclers');
 const slPir04 = new SensorLight('Stairs-senor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 
-const slPir06 = new SensorLight('big-bulb-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
-const slPir02 = new SensorLight('small-spot-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');
+const slPir06 = new SensorLight('big-bulb-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
+// const slPir02 = new SensorLight('small-spot-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');
+const slPir02 = new SensorLight('Dining-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 
 const sensorLights = [slPir01, slPir05, slPir02, slPir03, slPir04, slPir06];
 
@@ -80,18 +81,18 @@ rules.JSRule({
 
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
+      
       //turn on the sensorlight light item(s)
       if (currentSensorLight !== undefined) {
         lightNames = currentSensorLight.lightItemNames;
         lightsOn(lightNames);
       }
 
-      //re/start the timer
       timerDuration = currentSensorLight.getOffTimerDuration();
 
       timerMgr = cache.private.get('timerMgr');
       timerMgr.cancel(timerKey);
-      logger.debug('cancel timer with timerKey: {}', timerKey);
+      logger.debug('cancelled timer with timerKey: {}', timerKey);
 
       var timerFunc = (currentSensorLight) => {
         return () => {
@@ -100,6 +101,7 @@ rules.JSRule({
         }
       }
 
+      //re/start the timer
       timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
       logger.debug('OFF > ON timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, Math.round(timerDuration / 1000), 'dummyOffTimer', JSON.stringify(lightNames), timerName);
 
@@ -128,10 +130,11 @@ rules.JSRule({
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
     logger.debug('ON -> OFF..currentSensorLight is: {} - {}',currentSensorLight.name, currentSensorLight.occupancyItemName);
 
-    if (currentSensorLight !== undefined) {
-      lightNames = currentSensorLight.lightItemNames;
-      lightsOn(lightNames);
-    }
+    // if (currentSensorLight !== undefined) {
+    //   lightNames = currentSensorLight.lightItemNames;
+    //   lightsOn(lightNames);
+    // }
+
     //re/start the timer
     timerMgr = cache.private.get('timerMgr');
 
