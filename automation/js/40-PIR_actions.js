@@ -38,9 +38,10 @@ class SensorLight {
     let timerDurationMs = (timerDuration * 1000) + 1;
     logger.debug('occupancyItemName: {}, offTimerDuration()(secs): {}', this.occupancyItemName, timerDuration);
 
-    if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
-      timerDurationMs = timerDurationMs * 2;
-    }
+    // if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
+    //   timerDurationMs = timerDurationMs * 2;
+    // }
+
     return timerDurationMs;
   }
 }
@@ -48,15 +49,10 @@ class SensorLight {
 
 const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
 const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
-
 const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
-// const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gDiningRoomAutoLights', 'gLightCyclers');
-// const slPir04 = new SensorLight('Dining-room-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'gLightCyclers');
 const slPir04 = new SensorLight('Stairs-senor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
-
 const slPir06 = new SensorLight('big-bulb-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
-// const slPir02 = new SensorLight('small-spot-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_9_1_power');
-const slPir02 = new SensorLight('Dining-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
+const slPir02 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 
 const sensorLights = [slPir01, slPir05, slPir02, slPir03, slPir04, slPir06];
 
@@ -66,7 +62,6 @@ rules.JSRule({
   description: 'PIR occupancy ON - Turn ON light',
   triggers: [
     triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON'),
-    // triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON'),
   ],
   execute: (event) => {
 
@@ -102,7 +97,7 @@ rules.JSRule({
       }
 
       //re/start the timer
-      timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
+      // timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
       logger.debug('OFF > ON timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, Math.round(timerDuration / 1000), 'dummyOffTimer', JSON.stringify(lightNames), timerName);
 
     } else {
@@ -111,6 +106,7 @@ rules.JSRule({
     cache.private.put('timerMgr', timerMgr);
   },
 });
+
 
 
 rules.JSRule({
@@ -131,9 +127,10 @@ rules.JSRule({
     logger.debug('ON -> OFF..currentSensorLight is: {} - {}',currentSensorLight.name, currentSensorLight.occupancyItemName);
 
     // if (currentSensorLight !== undefined) {
-    //   lightNames = currentSensorLight.lightItemNames;
-    //   lightsOn(lightNames);
+      lightNames = currentSensorLight.lightItemNames;
+      // lightsOn(lightNames);
     // }
+
 
     //re/start the timer
     timerMgr = cache.private.get('timerMgr');
