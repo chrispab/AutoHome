@@ -51,8 +51,8 @@ const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_
 const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
 const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 const slPir04 = new SensorLight('Stairs-senor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
-const slPir06 = new SensorLight('big-bulb-sensor', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'bg_wifisocket_6_2_power');
-const slPir02 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
+const slPir02 = new SensorLight('top-of-stairs', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'ZbWhiteBulb01Switch');
+const slPir06 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
 
 const sensorLights = [slPir01, slPir05, slPir02, slPir03, slPir04, slPir06];
 

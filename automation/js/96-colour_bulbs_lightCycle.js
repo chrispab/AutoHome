@@ -1,7 +1,8 @@
 // zb_colour_bulbs_lightCycle.js] - require TimerMgr instead of cycleTimerMgr and use TimerMgr() instead of new cycleTimerMgr.TimerMgr().
 const {
-  log, items, rules, actions, time, triggers
+  rules,log, items, rules, actions, time, triggers
 } = require('openhab');
+
 
 const { utils } = require('openhab-my-utils');
 var ruleUID = "light-cycle";
