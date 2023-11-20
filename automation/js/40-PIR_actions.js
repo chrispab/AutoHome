@@ -68,12 +68,19 @@ rules.JSRule({
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
     timerKey = itemName;
-    timerName = ruleUID + '_' + itemName;
+    // timerName = ruleUID + '_' + itemName;
 
     //find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
-    logger.debug('OFF -> ON..currentSensorLight is: {} - {}', currentSensorLight.name, currentSensorLight.occupancyItemName);
+    logger.debug('PIR OFF > ON ..currentSensorLight is: {} - {}', currentSensorLight.name, currentSensorLight.occupancyItemName);
 
+    timerMgr = cache.private.get('timerMgr');
+    //if an old timer exists stop it
+    if (timerMgr.hasTimer(timerKey)) {
+      timerMgr.cancel(timerKey);
+      logger.debug('timer with timerKey: {}, exists - cancelling it', timerKey);
+    }
+    cache.private.put('timerMgr', timerMgr);
 
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
 
@@ -83,31 +90,9 @@ rules.JSRule({
         lightsOn(lightNames);
       }
 
-      timerDuration = currentSensorLight.getOffTimerDuration();
-
-      timerMgr = cache.private.get('timerMgr');
-
-      //if an old timer exists stop it
-      if (timerMgr.hasTimer(timerKey)) {
-        timerMgr.cancel(timerKey);
-        logger.debug('timer with timerKey: {}, exists - cancelling it', timerKey);
-      }
-
-      // var timerFunc = (currentSensorLight) => {
-      //   return () => {
-      //     logger.debug('ON Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
-      //     dummyOffTimer(currentSensorLight.lightItemNames);
-      //   }
-      // }
-
-      //re/start the timer
-      // timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
-      logger.debug('OFF > ON timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, Math.round(timerDuration / 1000), 'dummyOffTimer', JSON.stringify(lightNames), timerName);
-
     } else {
       logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT setting timer : ${timerName}, for item: ${itemName}`);
     }
-    cache.private.put('timerMgr', timerMgr);
   },
 });
 
@@ -131,7 +116,7 @@ rules.JSRule({
     logger.debug('ON -> OFF..currentSensorLight is: {} - {}', currentSensorLight.name, currentSensorLight.occupancyItemName);
 
     // if (currentSensorLight !== undefined) {
-    lightNames = currentSensorLight.lightItemNames;
+    // lightNames = currentSensorLight.lightItemNames;
     // lightsOn(lightNames);
     // }
 
@@ -152,7 +137,7 @@ rules.JSRule({
       }
     }
     timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
-    logger.debug('ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, 'lightsOff', JSON.stringify(lightNames), timerName);
+    logger.debug('ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, 'lightsOff', JSON.stringify(currentSensorLight.lightItemNames), timerName);
 
     cache.private.put('timerMgr', timerMgr);
 
