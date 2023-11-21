@@ -68,7 +68,6 @@ rules.JSRule({
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
     timerKey = itemName;
-    // timerName = ruleUID + '_' + itemName;
 
     //find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
@@ -87,7 +86,7 @@ rules.JSRule({
       //turn on the sensorlight light item(s)
       if (currentSensorLight !== undefined) {
         lightNames = currentSensorLight.lightItemNames;
-        lightsOn(lightNames);
+        lightsControl(lightNames,'ON');
       }
 
     } else {
@@ -95,7 +94,6 @@ rules.JSRule({
     }
   },
 });
-
 
 
 rules.JSRule({
@@ -115,12 +113,6 @@ rules.JSRule({
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancyItemName === itemName);
     logger.debug('ON -> OFF..currentSensorLight is: {} - {}', currentSensorLight.name, currentSensorLight.occupancyItemName);
 
-    // if (currentSensorLight !== undefined) {
-    // lightNames = currentSensorLight.lightItemNames;
-    // lightsOn(lightNames);
-    // }
-
-
     //re/start the timer
     timerMgr = cache.private.get('timerMgr');
 
@@ -130,12 +122,6 @@ rules.JSRule({
     timerMgr.cancel(timerKey);
     logger.debug('cancel timer with timerKey:{}', timerKey);
 
-    var timerFunc = (currentSensorLight) => {
-      return () => {
-        logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', currentSensorLight.name, JSON.stringify(currentSensorLight.occupancyItemName), JSON.stringify(currentSensorLight.lightItemNames));
-        lightsOff(currentSensorLight.lightItemNames);
-      }
-    }
     timerMgr.check(timerKey, timerDuration, timerFunc(currentSensorLight), true, null, timerName);
     logger.debug('ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, timerFunc:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, 'lightsOff', JSON.stringify(currentSensorLight.lightItemNames), timerName);
 
@@ -144,16 +130,17 @@ rules.JSRule({
   },
 });
 
-function lightsOff(lightNames) {
-  lightNames.forEach((lightName) => {
-    logger.debug('=>lightsOff - sendCommand( OFF )->{}', lightName);
-    items.getItem(lightName).sendCommand('OFF');
-  });
+var timerFunc = (ASensorLight) => {
+  return () => {
+    logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', ASensorLight.name, JSON.stringify(ASensorLight.occupancyItemName), JSON.stringify(ASensorLight.lightItemNames));
+    lightsControl(ASensorLight.lightItemNames,'OFF');
+  }
 }
-function lightsOn(lightNames) {
+
+function lightsControl(lightNames, state = 'OFF') {
   lightNames.forEach((lightName) => {
-    logger.debug('==lightsOn - sendCommand( ON )->{}', lightName);
-    items.getItem(lightName).sendCommand('ON');
+    logger.debug('send {} -> {}', state, lightName);
+    items.getItem(lightName).sendCommand(state);
   });
 }
 
