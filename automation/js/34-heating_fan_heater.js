@@ -1,10 +1,10 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
-var ruleUID = "fan_heater";
+var ruleUID = "heating_fan_heater";
 const logger = log(ruleUID);
-// log:set DEBUG org.openhab.automation.openhab-js.fan_heater
-// log:set INFO org.openhab.automation.openhab-js.fan_heater
+// log:set DEBUG org.openhab.automation.openhab-js.heating_fan_heater
+// log:set INFO org.openhab.automation.openhab-js.heating_fan_heater
 
 scriptLoaded = function () {
   logger.info('scriptLoaded - init ft ct sp link');

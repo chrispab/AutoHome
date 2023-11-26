@@ -43,6 +43,8 @@ let roomName = '';
 
 
 scriptLoaded = function () {
+  boostTimers = cache.private.get('boostTimers');
+
   logger.debug('scriptLoaded -  boost-heating');
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
   for (let timer in boostTimers) {
@@ -57,6 +59,8 @@ scriptLoaded = function () {
       item.postUpdate(15);
     }
   });
+  cache.private.put('boostTimers', boostTimers);
+
 };
 
 
@@ -123,6 +127,9 @@ function boostOnAction(roomPrefix) {
   BoostItem.sendCommand('ON');
   logger.debug(`BOOSTING BoostItem.sendCommand('ON'): ${BoostItem}`);
 
+
+  boostTimers = cache.private.get('boostTimers');
+
   const BoostTimeItem = items.getItem(`${roomPrefix}_Boost_Time`);
   logger.debug(`BOOSTING BoostTimeItem.rawState: ${BoostTimeItem.rawState}`);
   boost_time = BoostTimeItem.state * 1000 * 60;
@@ -134,12 +141,15 @@ function boostOnAction(roomPrefix) {
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(Quantity(`${BoostTimeItem.rawState}`)), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state*1000*60), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
-
+  cache.private.put('boostTimers', boostTimers);
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
 }
 
 
 function boostOffAction(roomPrefix) {
+
+  boostTimers = cache.private.get('boostTimers');
+
   logger.debug('boostOffAction on->off');
   // cancel timer   // and turn stuff off
   if (boostTimers[roomPrefix]) {
@@ -152,6 +162,8 @@ function boostOffAction(roomPrefix) {
   // actions.Voice.say('boost off');
 
   logger.debug(`boostTimers : ${JSON.stringify(boostTimers)}`);
+
+  cache.private.put('boostTimers', boostTimers);
 
 }
 

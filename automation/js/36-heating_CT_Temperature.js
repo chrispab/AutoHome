@@ -2,10 +2,10 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 
-var ruleUID = "ct-smooth-temperature";
+var ruleUID = "heating-ct-smooth-temperature";
 const logger = log(ruleUID);
-// log:set DEBUG org.openhab.automation.openhab-js.ct-smooth-temperature
-// log:set INFO org.openhab.automation.openhab-js.ct-smooth-temperature
+// log:set DEBUG org.openhab.automation.openhab-js.heating-ct-smooth-temperature
+// log:set INFO org.openhab.automation.openhab-js.heating-ct-smooth-temperature
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded - init CT temp filter');
