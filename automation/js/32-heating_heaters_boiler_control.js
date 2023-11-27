@@ -82,7 +82,7 @@ rules.JSRule({
       const turnOffTemp = setpoint; //  # + 0.1
       const temp = TemperatureItem.rawState; //  # get the current temperature
 
-      if (temp >= turnOffTemp && HeaterItem.state.toString() == 'ON') {
+      if (temp >= turnOffTemp && HeaterItem.state.toString() === 'ON') {
         //if heater on and and temp > sp turn local heater off
         logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
@@ -114,7 +114,7 @@ rules.JSRule({
     //skip if fanheater FH
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     if ((roomPrefix == 'FH')) {
-      logger.debug(`>Avoid FH fan heater affecting boiler - leaving boiler control: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
+      logger.debug(`>Avoid FH fan heater affecting boiler - leaving boiler control: ${roomPrefix} : ,  itemName: ${event.itemName}`);
       // dont continue on
       return;
     }

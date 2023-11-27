@@ -132,7 +132,7 @@ function boostOnAction(roomPrefix) {
 
   const BoostTimeItem = items.getItem(`${roomPrefix}_Boost_Time`);
   logger.debug(`BOOSTING BoostTimeItem.rawState: ${BoostTimeItem.rawState}`);
-  boost_time = BoostTimeItem.state * 1000 * 60;
+  boost_time = BoostTimeItem.state * 1000 * 60;//minutes to ms
   boostTimers[roomPrefix] = CountdownTimer(time.toZDT(boost_time), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.rawState), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
   // boostTimers[roomPrefix] = CountdownTimer(time.toZDT(BoostTimeItem.state), (() => { boostOffAction(roomPrefix); }), `${roomPrefix}_Boost_Countdown`, `${roomPrefix}_boostCountdown`);
