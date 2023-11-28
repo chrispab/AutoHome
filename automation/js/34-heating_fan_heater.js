@@ -1,13 +1,16 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
+
+const { utils } = require('openhab-my-utils');
+
 var ruleUID = "heating_fan_heater";
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.heating_fan_heater
 // log:set INFO org.openhab.automation.openhab-js.heating_fan_heater
 
 scriptLoaded = function () {
-  logger.info('scriptLoaded - init ft ct sp link');
+  logger.info('scriptLoaded - {}',ruleUID);
   const tracking_offset = items.getItem('FH_Link_TrackingOffset').state;
   if (tracking_offset === 'NULL') {
     items.getItem('FH_Link_TrackingOffset').sendCommand(2.0);
@@ -51,7 +54,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('FH_Heater_Enable'),
     triggers.ItemStateChangeTrigger('FH_outside_temperature_enable'),
   ],
-  execute: (data) => {
+  execute: (event) => {
     logger.debug('If fan heater demand turn on fan heater');
 
     FH_Heater_Enable_Item_State =items.getItem('FH_Heater_Enable').state.toString();
@@ -61,6 +64,15 @@ rules.JSRule({
       logger.debug('FH_Heater_Enable_Item_State === {}', FH_Heater_Enable_Item_State);
       items.getItem('FH_Heater_Control').sendCommand('OFF');
       logger.debug('FH_Heater_Control.sendCommand(OFF), and exit from - If fan heater demand turn on fan heater');
+      return;
+    }
+
+    //!skip if fh boost on
+    // if this heater is currently in being boosted, then just l;eave it alone and move on
+    const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
+    const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
+    if (BoostItem && BoostItem.state.toString() === 'ON') {
+      logger.info('>Boosting item: {} == ON. dont process fan heater ON/OFF', BoostItem.name);
       return;
     }
 
