@@ -176,19 +176,19 @@ function getRoomName(roomPrefix) {
 function stopBoostItems(roomPrefix) {
   logger.debug('stopBoostItems');
 
-  //; e.g CT_Heater_Boost
+  //; e.g CT_Heater_Boost.sendCommand('OFF')
   items.getItem(roomPrefix + '_Heater_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${roomPrefix + '_Heater_Boost'}`);
 
-  //; e.g CT_Boost
+  //; e.g CT_Boost.sendCommand('OFF')
   items.getItem('v_' + roomPrefix + '_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${'v_' + roomPrefix + '_Boost'}`);
 
-  //; e.g v_CT_Heater_Boost
+  //; e.g v_CT_Heater_Boost.sendCommand('OFF')
   items.getItem('v_' + roomPrefix + '_Heater_Boost').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${'v_' + roomPrefix + '_Heater_Boost'}`);
 
-  //; e.g CT_Heater_Control
+  //; e.g CT_Heater_Control.sendCommand('OFF')
   items.getItem(roomPrefix + '_Heater_Control').sendCommand('OFF');
   logger.debug(`sendCommand('OFF') : ${roomPrefix + '_Heater_Control'}`);
 }
