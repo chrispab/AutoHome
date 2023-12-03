@@ -44,6 +44,9 @@ var transferCurve = cache.private.get('transferCurve', () => ({
 }));
 
 
+// val DateTime datetime = new DateTime(1514484000)
+// val String time = datetime.toLocalTime().toString("HH:mm")
+
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
@@ -63,23 +66,26 @@ rules.JSRule({
     }
 
     let newPreciseTemp = calcNewTemp(preciseTemp, rawTemp);
-
+    //save now 'previous' temp
+    prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state
+    
+    
     //to 1 dp for dispaly and rules etc
     workingTemp = Number(newPreciseTemp).toFixed(1);
     items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
-    logger.debug(`..writing new working 1dp temp : ${workingTemp}`);
+    // logger.debug(`..writing new working 1dp temp : ${workingTemp}`);
 
     //store as precise 3dp value
     items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newPreciseTemp);
-    logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
+    // logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
 
     items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
 
     //get temp in working item value
     let ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-    logger.debug(`..CT_ThermostatTemperatureAmbient(newTemp): ${ctTemp}`);
+    logger.debug(`..newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
 
-    logger.debug(`..raw temp is: ${rawTemp},new precision temp is: ${newPreciseTemp},  newTemp: ${workingTemp}`);
+    logger.debug(`..prev temp: ${prevTemp}, raw temp: ${rawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
   },
 });
 
@@ -95,9 +101,9 @@ function calcNewTemp(previousTemperature, newTemperature) {
   var prec = 3;
 
   // logger.debug('...calcNewTemp');
-  logger.debug('...precision: {}', prec);
+  // logger.debug('...precision: {}', prec);
 
-  logger.debug('...previousTemperature: {}', previousTemperature);
+  logger.debug('...previousTemperature precise: {}', previousTemperature);
   logger.debug('...newTemperature raw: {}', newTemperature);
   // calc 
   var tempDiff = previousTemperature - newTemperature;
@@ -109,12 +115,12 @@ function calcNewTemp(previousTemperature, newTemperature) {
 
   factor = transferValue(absDiff)
   let tempAdd = tempDiff * factor;
-  logger.debug('...factor: {}', factor);
+  // logger.debug('...factor: {}', factor);
 
-  logger.debug('...tempAdd (tempDiff * transferValue(absDiff)): {}', tempAdd);
+  logger.debug('...temp to Add (temp diff: {} * factor: {}): {}', tempDiff, factor, tempAdd);
 
   let newTemp = previousTemperature - tempAdd;
-  logger.debug('...newTemp before toFixed: {}', newTemp);
+  // logger.debug('...newTemp before toFixed: {}', newTemp);
 
   newTempFixed = newTemp.toFixed(prec)
   // logger.debug(`...returnin newTemp.toFixed(prec) ${newTempFixed}`);
@@ -133,10 +139,10 @@ function transferValue(absDiff) {
   for (let transferPoint in transferCurve) {
     logger.debug('~~ transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
     for (let property in transferCurve[transferPoint]) {
-      logger.debug('~~~ property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
+      // logger.debug('~~~ property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
 
       if (absDiff <= transferCurve[transferPoint]['input']) {
-        logger.debug('~~~~ input is <=: {}, return factor: {}', transferCurve[transferPoint]['input'], transferCurve[transferPoint]['factor']) // '0.05' in the first iteration
+        // logger.debug('~~~~ input is <=: {}, return factor: {}', transferCurve[transferPoint]['input'], transferCurve[transferPoint]['factor']) // '0.05' in the first iteration
         return transferCurve[transferPoint]['factor']
       }
     }
