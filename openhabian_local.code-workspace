@@ -14,7 +14,7 @@
     "openhab.languageserver.remotePort": 5007,
     "openhab.connection.authToken": "oh.oh3token.BqQu4Zw9cBqlmW2wmchcSDvLKh6YMPSc3ySnEyOufQPdg3zD7pzQmspdhKio9DYpH0KJXg2JllJwv7jUKw",
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
     "eslint.validate": ["javascript"]
   }

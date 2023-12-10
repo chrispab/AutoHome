@@ -102,6 +102,34 @@ Thing mqtt:topic:bg_wifisocket_9  "MQTT Thing: BG WiFi Power Socket 9" (mqtt:bro
 
 }
 
+// broadlink/BG1_a0_43_b0_d6_c8_79
+Thing mqtt:topic:bg_wifisocket_10  "MQTT Thing: BG WiFi Power Socket 10" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 9 reachable" [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+        Type string : reachableOnline "BG WiFi Power Socket 9 reachableOnline" [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state", transformationPattern="MAP:anything_to_Online.map" ]
+}
+
+// Luceco-10-7b-03	192.168.0.3	EC:0B:AE:10:7B:03
+// broadlink/BG1_ec_0b_ae_10_7b_03
+Thing mqtt:topic:bg_wifisocket_11  "MQTT Thing: BG WiFi Power Socket 11" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 9 reachable" [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+        Type string : reachableOnline "BG WiFi Power Socket 9 reachableOnline" [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state", transformationPattern="MAP:anything_to_Online.map" ]
+}
+
+
+
+
 //!device is dead
 // Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 // {
