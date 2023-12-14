@@ -124,7 +124,7 @@ function tv_startup_tbody() {
 
 
 // time.toZDT((500))
-function tv_alert() {
+function alertTVOnOrOff() {
   currentState = items.getItem('KT_light_1_Power').state;
 
   items.getItem('KT_light_1_Power').sendCommand('ON');
@@ -154,7 +154,7 @@ let tvPowerOffTimer;
 function turnOnTV(onOffProxyItem, powerControlItem, message) {
   logger.info(`Turning on Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
-  tv_alert();
+  alertTVOnOrOff();
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
     tvPowerOffTimer.cancel();// = undefined;
@@ -166,7 +166,7 @@ function turnOnTV(onOffProxyItem, powerControlItem, message) {
 function turnOffTV(onOffProxyItem, powerControlItem, message) {
   logger.info(`Turning off Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
-  tv_alert();
+  alertTVOnOrOff();
 
   items.getItem(onOffProxyItem).postUpdate('OFF');
 
