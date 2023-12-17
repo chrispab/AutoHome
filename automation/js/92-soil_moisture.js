@@ -58,32 +58,10 @@ rules.JSRule({
         currentState = items.getItem('KT_light_1_Power').state;
         currentMoisture = items.getItem('Soil1_Moisture_OH_1').rawState;
 
-
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
         if (currentMoisture < 15) {
             alerting.sendEmail('openhab email',`zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
-            // secs = 0.5;
-            // items.getItem('KT_light_1_Power').sendCommand('ON');
-            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(1 * secs), () => {
-            //     items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            //     console.error('KT_light_1_Power');
-            // });
-            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2 * secs), () => {
-            //     items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-            //     console.error('KT_light_1_Power');
-            // });
-            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3 * secs), () => {
-            //     items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-            //     console.error('KT_light_1_Power');
-            // });
-
-
-            // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(8 * secs), () => {
-            //     items.getItem('KT_light_1_Power').sendCommand(currentState);
-            //     console.error('KT_light_1_Power restore original state');
-            // });
         }
-
 
     },
 });
