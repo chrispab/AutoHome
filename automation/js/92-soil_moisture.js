@@ -17,7 +17,9 @@ function limitSensorValue(reading, min_limit, max_limit) {
 
 
 const divisor = 8;
-const RAW_0PC_DRY = 2600.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+// const RAW_0PC_DRY = 2600.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+const RAW_0PC_DRY = 2970.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+
 const RAW_100PC_WET = 1570.0;//1725, 1712,1631,1630,1570
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 
@@ -32,11 +34,13 @@ rules.JSRule({
         logger.debug(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
 
         const limitedSensorValue = limitSensorValue(moistureRaw, RAW_100PC_WET, RAW_0PC_DRY);
+        logger.debug(`!!!!! limitedSensorValue: ${limitedSensorValue}`);
         const normalisedRangeSensorValue = Math.abs((RAW_RANGE - (limitedSensorValue - RAW_100PC_WET)) / (RAW_RANGE / 100.0));
+        logger.debug(`!!!!! normalisedRangeSensorValue: ${normalisedRangeSensorValue}`);
 
         // sprintf(normalisedRangeSensorValue_6Str, "%.1f", normalisedRangeSensorValue_6);// convert float to 1dp string
         const normalisedRangeSensorValue_1dp = (normalisedRangeSensorValue).toFixed(1);
-        logger.debug(`normalisedRangeSensorValue_1dp : ${normalisedRangeSensorValue_1dp}`);
+        logger.debug(`normalisedRangeSensorValue_1dp, Soil1_Moisture_OH_1 : ${normalisedRangeSensorValue_1dp}`);
 
         items.getItem('Soil1_Moisture_OH_1').postUpdate(normalisedRangeSensorValue_1dp);
         logger.debug(`!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!`);
@@ -53,14 +57,17 @@ rules.JSRule({
         triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
         // triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
         triggers.GenericCronTrigger("0 0 * ? * * *"),
+        // triggers.GenericCronTrigger("0 0/1 * * * *"),
+
+        // */5 * * * *
     ],
     execute: (data) => {
         currentState = items.getItem('KT_light_1_Power').state;
         currentMoisture = items.getItem('Soil1_Moisture_OH_1').rawState;
 
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
-        if (currentMoisture < 15) {
-            alerting.sendEmail('openhab email',`zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
+        if (currentMoisture < 10 && items.getItem('Soil1_Reachable').state.toString() == 'Online') {
+            alerting.sendEmail('openhab moisture', `zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
         }
 
     },
