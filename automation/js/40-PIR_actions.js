@@ -27,7 +27,7 @@ scriptLoaded = function () {
  * 
  */
 class SensorLight {
-  constructor(name, occupancyItemName, offTimerDurationItemName, offTimerDuration, ...lightItemNames) {
+  constructor(name, occupancyItemName, offTimerDurationItemName, lightLevelActiveThresholdItem, offTimerDuration, ...lightItemNames) {
     this.name = name;
     this.occupancyItemName = occupancyItemName;
     this.offTimerDurationItemName = offTimerDurationItemName;
@@ -50,12 +50,12 @@ class SensorLight {
 }
 
 
-const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
-const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 200, 'KT_light_1_Power');
-const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
-const slPir04 = new SensorLight('Stairs-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle', 'ZbWhiteBulb01Switch');
-const slPir02 = new SensorLight('top-of-stairs', 'pir02_occupancy', 'pir02_offTimerDurationItem', 5000, 'ZbWhiteBulb01Switch');
-const slPir06 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 5000, 'v_StartColourBulbsCycle');
+const slPir05 = new SensorLight('kitchen-LHS-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 'lightLevelActiveThresholdItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
+const slPir01 = new SensorLight('kitchen-RHS-sensor', 'pir01_occupancy', 'pir01_offTimerDurationItem', 'lightLevelActiveThresholdItem', 200, 'KT_light_1_Power');
+const slPir03 = new SensorLight('Dining-room-sensor', 'pir03_occupancy', 'pir03_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
+const slPir04 = new SensorLight('Stairs-sensor', 'pir04_occupancy', 'pir04_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle', 'ZbWhiteBulb01Switch');
+const slPir02 = new SensorLight('top-of-stairs', 'pir02_occupancy', 'pir02_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'ZbWhiteBulb01Switch');
+const slPir06 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
 
 const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 

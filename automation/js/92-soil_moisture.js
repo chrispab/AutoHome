@@ -56,8 +56,10 @@ rules.JSRule({
     triggers: [
         triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
         // triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
-        triggers.GenericCronTrigger("0 0 * ? * * *"),
-        // triggers.GenericCronTrigger("0 0/1 * * * *"),
+        // triggers.GenericCronTrigger("0 0 * ? * * *"),
+        triggers.GenericCronTrigger("0 0 0/4 ? * * *"),
+        // 0 0 0/4 ? * * *
+        // triggers.GenericCronTrigger("0 0/1 * * * * "),# ev minute
 
         // */5 * * * *
     ],
