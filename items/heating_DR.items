@@ -1,7 +1,7 @@
 //thermostat
 Group                   gDR_Thermostat "Dining Room Thermostat"
                         (gThermostats)
-                        {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Dining Room" ]}
+                        {ga="Thermostat" [thermostatModes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Dining Room" ]}
 String                  DR_ThermostatMode "Dining Room Thermostat Mode" <settings>
                         (gDR_Thermostat, gThermostatModes)
                         {ga="thermostatMode"}

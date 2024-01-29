@@ -1,7 +1,7 @@
 //thermostat
 Group                   gAT_Thermostat "Attic Thermostat"
                         (gThermostats)
-                        {ga="Thermostat" [modes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Attic" ]}
+                        {ga="Thermostat" [thermostatModes="off=OFF:WINDOW_OPEN,heat=COMFORT:BOOST,eco=ECO,on=ON,auto", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Attic" ]}
 String                  AT_ThermostatMode "Attic Thermostat Mode" <settings>
                         (gAT_Thermostat, gThermostatModes)
                         { ga="thermostatMode" }

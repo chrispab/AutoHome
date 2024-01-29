@@ -2,7 +2,7 @@ Group                   gThermostats
 
 
 //thermostat
-Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) {ga="Thermostat" [modes="off=OFF,heat=BOOST,eco=ECO,on=ON,auto=AUTO", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Conservatory" ]}
+Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) {ga="Thermostat" [thermostatModes="off=OFF,heat=BOOST,eco=ECO,on=ON,auto=AUTO", thermostatTemperatureRange="10,30", useFahrenheit=false, roomHint="Conservatory" ]}
 String  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) {ga="thermostatMode"}
 Number:Temperature CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
