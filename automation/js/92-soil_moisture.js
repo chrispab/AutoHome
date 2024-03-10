@@ -49,6 +49,7 @@ rules.JSRule({
     },
 });
 
+const alertMinimumMoistureLevel = 30;
 
 rules.JSRule({
     name: 'zone3 moisture low',
@@ -68,8 +69,8 @@ rules.JSRule({
         currentMoisture = items.getItem('Soil1_Moisture_OH_1').rawState;
 
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState
-        if (currentMoisture < 10 && items.getItem('Soil1_Reachable').state.toString() == 'Online') {
-            alerting.sendEmail('openhab moisture', `zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
+        if (currentMoisture < alertMinimumMoistureLevel && items.getItem('Soil1_Reachable').state.toString() == 'Online') {
+            alerting.sendEmail('openhab MOISTURE LOW!', `zone 3 moisture low: ${items.getItem('Soil1_Moisture_OH_1').state}`);
         }
 
     },

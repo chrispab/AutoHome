@@ -1,0 +1,5 @@
+Switch	propagator_HeaterControl		"propagator Power"	 { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+String	propagator_HeaterReachable	"propagator reachable"	 { channel = "mqtt:topic:wifi_socket_8:reachable"}
+// Number	Water1_RSSI			"Water one RSSI"					{ channel = "mqtt:topic:water1:rssi" }
+Number	propagator_TemperatureAmbient	"propagator Temperature"	{ channel = "mqtt:topic:wifi_socket_8:temperature"}
+Number	propagator_TemperatureSetpoint "propagator setpoint"
