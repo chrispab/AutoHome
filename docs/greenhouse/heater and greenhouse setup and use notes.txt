@@ -143,3 +143,10 @@ new
 Rule2 ON tele-DS18B20#Temperature<21.1 DO power1 1 BREAK ON tele-DS18B20#Temperature>=21.1 DO  power1 0 BREAK ENDON
 
 
+publish temp when it changes
+
+this works
+Rule1 ON DS18B20#Temperature!=%Var1% DO backlog Var1 %value%; publish wifi_socket_8/tele/SENSOR {"DS18B20":{"Temperature":%value%},"TempUnit":"C"} ENDON
+
+
+

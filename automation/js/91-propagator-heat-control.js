@@ -6,12 +6,12 @@ const {
   var ruleUID = "propagator-heat-control";
   
   const logger = log(ruleUID);
-  // log:set DEBUG org.openhab.automation.openhab-js.heating-heaters-boiler-control
-  // log:set INFO org.openhab.automation.openhab-js.heating-heaters-boiler-control
+  // log:set DEBUG org.openhab.automation.openhab-js.propagator-heat-control
+  // log:set INFO org.openhab.automation.openhab-js.propagator-heat-control
   
   rules.JSRule({
-    name: 'Check if needs on or off',
-    description: 'Check if needs on or off',
+    name: 'Check if prop needs on or off',
+    description: 'Check if prop needs on or off',
     triggers: [
     //   triggers.GroupStateUpdateTrigger('gHeatingModes'),
       triggers.ItemStateUpdateTrigger('propagator_TemperatureSetpoint'),
@@ -51,14 +51,14 @@ const {
       // !if ANY trvs are unreachable - turn off heater to prevent false demand
       // not just the calling device - which cant call anyway as its offline
       // dont continue on and update the bolier control if this RTV is Offline
-      reachableItemOnlineStatus = ReachableItem.state.toString();
-      if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
-        logger.debug(`>ReachableItem-Offline - sending OFF, leaving!: ReachableItem.state: ${ReachableItem.state}`);
-        // turn it off
-        HeaterItem.sendCommand('OFF');
-        // dont continue on and update the bolier control if this RTV is Offline
-        return;
-      }
+      // reachableItemOnlineStatus = ReachableItem.state.toString();
+      // if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
+      //   logger.debug(`>ReachableItem-Offline - sending OFF, leaving!: ReachableItem.state: ${ReachableItem.state}`);
+      //   // turn it off
+      //   HeaterItem.sendCommand('OFF');
+      //   // dont continue on and update the bolier control if this RTV is Offline
+      //   return;
+      // }
   
     //   logger.debug(`>masterHeatingMode.state : ${items.getItem('masterHeatingMode').state.toString()}`);
   
@@ -68,7 +68,7 @@ const {
         // logger.info('>Boosting item: {} == ON. dont process boiler ON/OFF', BoostItem.name);
         // return;
     //   }
-      logger.debug('>no boost item defined for this heater, process as normal');
+      // logger.debug('>no boost item defined for this heater, process as normal');
       // if HEATER alowed to be on, check if need to turn on heater
     //   if (((heatingModeItem.state.toString() === 'auto')) || ((heatingModeItem.state.toString() === 'manual'))) {
         // logger.debug(`>Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()}`);
@@ -79,11 +79,11 @@ const {
   
         if (temp >= turnOffTemp && HeaterItem.state.toString() === 'ON') {
           //if heater on and and temp > sp turn local heater off
-        //   logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
+          logger.info(`>Heating change. -> SendCommand to: ${HeaterItem}, Heater OFF`);
           HeaterItem.sendCommand('OFF');
         } else if (temp < turnOnTemp && HeaterItem.state.toString() == 'OFF') {
           //if heater off and and temp < sp turn local heater on
-        //   logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
+          logger.info(`>Heating change...  -> SendCommand to: ${HeaterItem}, Heater ON`);
           HeaterItem.sendCommand('ON');
         } else {
           logger.debug('>no change to local heater reqd - do nothing');

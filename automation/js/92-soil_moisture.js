@@ -49,7 +49,7 @@ rules.JSRule({
     },
 });
 
-const alertMinimumMoistureLevel = 30;
+const alertMinimumMoistureLevel = 45;
 
 rules.JSRule({
     name: 'zone3 moisture low',

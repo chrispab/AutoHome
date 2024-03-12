@@ -39,10 +39,10 @@ Number:Dimensionless wifi_socket_6_rssi "Socket 6 RSSI" (gMQTT, gWiFiPowerSocket
 // wifi_socket_7
 // MAC Address	60:01:94:D9:20:2D
 // IP Address (wifi)	192.168.0.86
-Switch wifi_socket_7_power "propagator power" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_7:powerSwitch"}
-String wifi_socket_7_reachable "propagator  reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:reachable" }
-Number:Dimensionless wifi_socket_7_rssi "propagator  RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }
-Number:Temperature wifi_socket_7_temperature	"propagator Temperature"    (gChart_Minute)   { channel = "mqtt:topic:wifi_socket_7:temperature" }
+Switch wifi_socket_7_power "wifi_socket_7_power" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_7:powerSwitch"}
+String wifi_socket_7_reachable "wifi_socket_7_reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_7:reachable" }
+Number:Dimensionless wifi_socket_7_rssi "wifi_socket_7_RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_7:rssi" }
+Number:Temperature wifi_socket_7_temperature	"wifi_socket_7_Temperature"    (gChart_Minute)   { channel = "mqtt:topic:wifi_socket_7:temperature" }
 
 // was propagator
 // Hostname	wifi-socket-8

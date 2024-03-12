@@ -1,5 +1,5 @@
-Switch	propagator_HeaterControl		"propagator Power"	(gChart_Minute) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
-String	propagator_HeaterReachable	"propagator reachable"	 { channel = "mqtt:topic:wifi_socket_8:reachable"}
+Switch	propagator_HeaterControl		"big propagator Power"	(gChart_Minute) { channel = "mqtt:topic:wifi_socket_8:powerSwitch"}
+String	propagator_HeaterReachable	"big propagator reachable"	 { channel = "mqtt:topic:wifi_socket_8:reachable"}
 // Number	Water1_RSSI			"Water one RSSI"					{ channel = "mqtt:topic:water1:rssi" }
-Number	propagator_TemperatureAmbient	"propagator Temperature"		(gChart_Minute) { channel = "mqtt:topic:wifi_socket_8:temperature"}
-Number	propagator_TemperatureSetpoint "propagator setpoint"	(gChart_Minute) 
+Number	propagator_TemperatureAmbient	"big propagator Temperature"		(gChart_Minute) { channel = "mqtt:topic:wifi_socket_8:temperature"}
+Number	propagator_TemperatureSetpoint "big propagator setpoint"	(gChart_Minute) 
