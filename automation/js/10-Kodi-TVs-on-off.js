@@ -121,30 +121,33 @@ function tv_startup_tbody() {
   }
 }
 
+// const alertTVItemName = 'KT_light_1_Power';
+const alertTVItemName = 'CT_FairyLights433Socket';
+
 
 
 // time.toZDT((500))
 function alertTVOnOrOff() {
-  currentState = items.getItem('KT_light_1_Power').state;
+  currentState = items.getItem(alertTVItemName).state;
 
-  items.getItem('KT_light_1_Power').sendCommand('ON');
-  logger.info('KT_light_1_Power ON');
+  items.getItem(alertTVItemName).sendCommand('ON');
+  logger.info(`${alertTVItemName} ON`);
   actions.ScriptExecution.createTimer(time.toZDT((1 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('OFF');
-    logger.info('KT_light_1_Power OFF');
+    items.getItem(alertTVItemName).sendCommand('OFF');
+    logger.info(`${alertTVItemName} OFF`);
   });
   actions.ScriptExecution.createTimer(time.toZDT((2 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('ON');
-    logger.info('KT_light_1_Power ON');
+    items.getItem(alertTVItemName).sendCommand('ON');
+    logger.info(`${alertTVItemName} ON`);
   });
   actions.ScriptExecution.createTimer(time.toZDT((3 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand('OFF');
-    logger.info('KT_light_1_Power OFF');
+    items.getItem(alertTVItemName).sendCommand('OFF');
+    logger.info(`${alertTVItemName} OFF`);
   });
 
   actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
-    items.getItem('KT_light_1_Power').sendCommand(currentState);
-    logger.info('KT_light_1_Power restore original state');
+    items.getItem(alertTVItemName).sendCommand(currentState);
+    logger.info(`${alertTVItemName} restore original state`);
   });
 }
 
