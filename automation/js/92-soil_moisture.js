@@ -18,9 +18,12 @@ function limitSensorValue(reading, min_limit, max_limit) {
 
 const divisor = 8;
 // const RAW_0PC_DRY = 2600.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
-const RAW_0PC_DRY = 2970.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+// const RAW_0PC_DRY = 2970.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
+const RAW_0PC_DRY = 2200.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
 
-const RAW_100PC_WET = 1570.0;//1725, 1712,1631,1630,1570
+// const RAW_100PC_WET = 1570.0;//1725, 1712,1631,1630,1570
+const RAW_100PC_WET = 1436.0;//1725, 1712,1631,1630,1570
+
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 
 rules.JSRule({
@@ -49,7 +52,7 @@ rules.JSRule({
     },
 });
 
-const alertMinimumMoistureLevel = 45;
+const alertMinimumMoistureLevel = 30;
 
 rules.JSRule({
     name: 'zone3 moisture low',
@@ -58,7 +61,8 @@ rules.JSRule({
         triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
         // triggers.ItemStateUpdateTrigger('Soil1_Moisture_OH_1'),
         // triggers.GenericCronTrigger("0 0 * ? * * *"),
-        triggers.GenericCronTrigger("0 0 0/4 ? * * *"),
+        triggers.GenericCronTrigger("0 0 0/2 ? * * *"),
+        // triggers.GenericCronTrigger("0 0 0/4 ? * * *"),
         // 0 0 0/4 ? * * *
         // triggers.GenericCronTrigger("0 0/1 * * * * "),# ev minute
 
