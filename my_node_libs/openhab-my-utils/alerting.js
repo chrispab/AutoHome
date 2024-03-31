@@ -58,3 +58,25 @@ exports.getNames = function (group, filterFunc) {
     .map(s => s.getMetadataValue('name') || s.label)
     .join(', ');
 }
+
+
+exports.flashItemAlert = function (flashItemName = 'CT_FairyLights433Socket', numFlashes = 2, pulseTimeMs = 500) {
+  const currentState = items.getItem(flashItemName).state;
+
+  items.getItem(flashItemName).sendCommand('ON');
+  logger.info(`${flashItemName} ON`);
+  let index = 0
+  for (index = 0; index < numFlashes * 2; index++) {
+    let state = (index % 2) == 1 ? 'ON' : 'OFF'
+    actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
+      items.getItem(flashItemName).sendCommand(state);
+      logger.error(`${flashItemName}: ${state}`);
+    });
+  }
+
+  actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
+    items.getItem(flashItemName).sendCommand(currentState);
+    logger.error(`${flashItemName}: ${currentState}`);
+  });
+
+}

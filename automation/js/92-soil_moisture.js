@@ -22,7 +22,8 @@ const divisor = 8;
 const RAW_0PC_DRY = 2200.0; //try 2970,2976,3000,3055 3100 3200,3100,2980
 
 // const RAW_100PC_WET = 1570.0;//1725, 1712,1631,1630,1570
-const RAW_100PC_WET = 1436.0;//1725, 1712,1631,1630,1570
+// const RAW_100PC_WET = 1436.0;//1725, 1712,1631,1630,1570
+const RAW_100PC_WET = 1370.0;//1725, 1712,1631,1630,1570
 
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 
@@ -52,7 +53,7 @@ rules.JSRule({
     },
 });
 
-const alertMinimumMoistureLevel = 30;
+const alertMinimumMoistureLevel = 33;
 
 rules.JSRule({
     name: 'zone3 moisture low',
@@ -69,7 +70,6 @@ rules.JSRule({
         // */5 * * * *
     ],
     execute: (data) => {
-        currentState = items.getItem('KT_light_1_Power').state;
         currentMoisture = items.getItem('Soil1_Moisture_OH_1').rawState;
 
         // currentLightSensorLevel > items.getItem('CT_Auto_Lighting_Trigger_SetPoint').rawState

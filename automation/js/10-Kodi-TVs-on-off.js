@@ -1,6 +1,7 @@
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
+const { alerting } = require('openhab-my-utils');
 
 var ruleUID = "tvs-on-off";
 
@@ -122,42 +123,62 @@ function tv_startup_tbody() {
 }
 
 // const alertTVItemName = 'KT_light_1_Power';
-const alertTVItemName = 'CT_FairyLights433Socket';
+// const alertTVItemName = 'CT_FairyLights433Socket';
 
 
 
 // time.toZDT((500))
-function alertTVOnOrOff() {
-  currentState = items.getItem(alertTVItemName).state;
+// function flashItemAlertold(flashItemName = 'CT_FairyLights433Socket') {
+//   currentState = items.getItem(alertTVItemName).state;
 
-  items.getItem(alertTVItemName).sendCommand('ON');
-  logger.info(`${alertTVItemName} ON`);
-  actions.ScriptExecution.createTimer(time.toZDT((1 * 500)), () => {
-    items.getItem(alertTVItemName).sendCommand('OFF');
-    logger.info(`${alertTVItemName} OFF`);
-  });
-  actions.ScriptExecution.createTimer(time.toZDT((2 * 500)), () => {
-    items.getItem(alertTVItemName).sendCommand('ON');
-    logger.info(`${alertTVItemName} ON`);
-  });
-  actions.ScriptExecution.createTimer(time.toZDT((3 * 500)), () => {
-    items.getItem(alertTVItemName).sendCommand('OFF');
-    logger.info(`${alertTVItemName} OFF`);
-  });
+//   items.getItem(alertTVItemName).sendCommand('ON');
+//   logger.info(`${alertTVItemName} ON`);
+//   actions.ScriptExecution.createTimer(time.toZDT((1 * 500)), () => {
+//     items.getItem(alertTVItemName).sendCommand('OFF');
+//     logger.info(`${alertTVItemName} OFF`);
+//   });
+//   actions.ScriptExecution.createTimer(time.toZDT((2 * 500)), () => {
+//     items.getItem(alertTVItemName).sendCommand('ON');
+//     logger.info(`${alertTVItemName} ON`);
+//   });
+//   actions.ScriptExecution.createTimer(time.toZDT((3 * 500)), () => {
+//     items.getItem(alertTVItemName).sendCommand('OFF');
+//     logger.info(`${alertTVItemName} OFF`);
+//   });
 
-  actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
-    items.getItem(alertTVItemName).sendCommand(currentState);
-    logger.info(`${alertTVItemName} restore original state`);
-  });
-}
+//   actions.ScriptExecution.createTimer(time.toZDT((4 * 500)), () => {
+//     items.getItem(alertTVItemName).sendCommand(currentState);
+//     logger.info(`${alertTVItemName} restore original state`);
+//   });
+// }
 
+// function flashItemAlert(flashItemName = 'CT_FairyLights433Socket', numFlashes = 2, pulseTimeMs = 500) {
+//   const currentState = items.getItem(flashItemName).state;
+
+//   items.getItem(flashItemName).sendCommand('ON');
+//   logger.info(`${flashItemName} ON`);
+//   let index = 0
+//   for (index = 0; index < numFlashes * 2; index++) {
+//     let state = (index % 2) == 1 ? 'ON' : 'OFF'
+//     actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
+//       items.getItem(flashItemName).sendCommand(state);
+//       logger.error(`${flashItemName}: ${state}`);
+//     });
+//   }
+
+//   actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
+//     items.getItem(flashItemName).sendCommand(currentState);
+//     logger.error(`${flashItemName}: ${currentState}`);
+//   });
+
+// }
 
 let tvPowerOffTimer;
 
 function turnOnTV(onOffProxyItem, powerControlItem, message) {
   logger.info(`Turning on Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
-  alertTVOnOrOff();
+  alerting.flashItemAlert();
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
     tvPowerOffTimer.cancel();// = undefined;
@@ -169,7 +190,7 @@ function turnOnTV(onOffProxyItem, powerControlItem, message) {
 function turnOffTV(onOffProxyItem, powerControlItem, message) {
   logger.info(`Turning off Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
-  alertTVOnOrOff();
+  alerting.flashItemAlert();
 
   items.getItem(onOffProxyItem).postUpdate('OFF');
 
