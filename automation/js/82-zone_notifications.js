@@ -1,4 +1,5 @@
 const { time, items } = require('openhab');
+const { alerting } = require('openhab-my-utils');
 
 var ruleUID = "bg_avail";
 const logger = log(ruleUID);
@@ -22,46 +23,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('Zone3LightStatusAlt', 'OFF', 'ON'),
   ],
   execute: (data) => {
-    // logger.info(
-    //   `ON ON ON =======  zone3 lights on : ${data.itemName
-    //   }, state: ${items.getItem(data.itemName).state
-    //   }, PREV state: ${items.getItem(data.itemName).history.previousState()}`,
-    // );
-    currentState = items.getItem('KT_light_1_Power').state;
-
-    items.getItem('KT_light_1_Power').sendCommand('ON');
-    actions.ScriptExecution.createTimer(time.toZDT(1000), () => {
-      items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(2), () => {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(3), () => {
-      items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(4), () => {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(5), () => {
-      items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(6), () => {
-      items.getItem('KT_light_1_Power').sendCommand('ON'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(7), () => {
-      items.getItem('KT_light_1_Power').sendCommand('OFF'); // IR code
-      logger.info('KT_light_1_Power');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(8), () => {
-      items.getItem('KT_light_1_Power').sendCommand(currentState);
-      logger.info('KT_light_1_Power restore original state');
-    });
+    alerting.flashItemAlert('KT_light_1_Power', 5, 400);
   },
 });
 
