@@ -6,6 +6,7 @@ ssh-copy-id -i ~/.ssh/id_rsa openhabian@openhabian2.local
 
 ssh-copy-id -i ~/.ssh/id_ed25519.pub pi@192.168.0.110
 
+ssh-copy-id -i ~/.ssh/id_rsa.pub pi@192.168.0.155
 
 
 https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
