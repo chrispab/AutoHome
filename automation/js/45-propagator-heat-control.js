@@ -20,7 +20,7 @@ const {
     execute: (event) => {
   
       logger.debug('>--------------------------------------------------------------------');
-      logger.debug('>Propagator setpoint or temp changed. Doee Heater need changing?');
+      logger.debug('>Propagator setpoint or temp changed. Does Heater need changing?');
       logger.debug(`>item: ${event.itemName} triggered event`);
   
       // get prefix eg FR, CT etc.
