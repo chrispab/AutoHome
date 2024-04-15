@@ -27,8 +27,27 @@ const divisor = 8;
 // const RAW_100PC_WET = 1370.0;//1725, 1712,1631,1630,1570
 // const RAW_100PC_WET = 1296.0;//1725, 1712,1631,1630,1570
 
-const RAW_0PC_DRY = 1821.0;
-const RAW_100PC_WET = 1230.0;
+// const RAW_0PC_DRY = 1821.0;
+// const RAW_100PC_WET = 1230.0;
+
+// const RAW_0PC_DRY = 3310.0;
+// const RAW_100PC_WET = 1570.0;
+// #define DRY_SENSOR_MAX_RAW 3950.0f
+// #define WET_SENSOR_MIN_RAW 1500.0f
+// const RAW_0PC_DRY = 3310.0;
+// const RAW_100PC_WET = 1500.0;
+
+// const RAW_0PC_DRY = 3300.0;
+// const RAW_100PC_WET = 2500.0;
+
+//1m ohm
+// const RAW_0PC_DRY = 2890.0;
+// const RAW_100PC_WET = 1700.0;
+
+//with plastic bag
+const RAW_0PC_DRY = 2770.0;
+const RAW_100PC_WET = 2066.0;
+
 
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 

@@ -1,7 +1,7 @@
 Thing mqtt:topic:soil1  "MQTT Thing: Soil 1 Moisture level" (mqtt:broker:MyMQTTBroker) @ "Shed"
 {
     Channels:
-        // Type switch : powerSwitch  [ stateTopic="sonoff_water1/stat/POWER" , commandTopic="sonoff_water1/cmnd/POWER", on="1", off="0"  ]
+        Type switch : triggerRead  [ stateTopic="soil1/read" , commandTopic="soil1/read", on="1", off="0"  ]
         Type string : Reachable    [ stateTopic="soil1/LWT"  ]
         // Type number : rssi         [ stateTopic="sonoff_water1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
         Type number : Moisture  [ stateTopic="soil1/moisture" ]
@@ -11,6 +11,6 @@ Thing mqtt:topic:soil1  "MQTT Thing: Soil 1 Moisture level" (mqtt:broker:MyMQTTB
         Type number : Moisture5  [ stateTopic="soil1/moisture_5" ]
         Type number : Moisture6  [ stateTopic="soil1/moisture_6" ]
 
-        Type number : MoistureRaw  [ stateTopic="soil1/moisture_raw" ]
+        Type number : MoistureRaw  [ stateTopic="soil1/moisture2_average_raw" ]
 
 }
