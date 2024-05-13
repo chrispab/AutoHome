@@ -60,7 +60,8 @@ rules.JSRule({
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       logger.info('STEREO - IR turn on amp from standby');
-    });
+      items.getItem('LG_TV0_Power').sendCommand('ON'); // IR code
+      logger.info('LG_TV0_Power turn on tv from standby');});
     // turn to audio source Video1
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
       items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
@@ -86,7 +87,10 @@ rules.JSRule({
     items.getItem('Kodi_CT_systemcommand').sendCommand('Shutdown'); // shutdown CT Pi
     logger.info('sent command - shutdown kodi');
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
-    items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
+    // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
+    items.getItem('LG_TV0_Power').sendCommand('OFF'); // IR code
+    logger.info('LG_TV0_Power turn off tv to standby');
+
     alerting.flashItemAlert('KT_light_1_Power',4,500);
 
     logger.info('tv - turned OFF amp, and bridges');
@@ -97,6 +101,10 @@ rules.JSRule({
         () => {
           items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
           // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
+     
+          items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
+
+
 
           items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
           logger.info('turned off kodi power');
