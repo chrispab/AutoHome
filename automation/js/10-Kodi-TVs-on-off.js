@@ -65,8 +65,6 @@ rules.JSRule({
       logger.info('LG_TV0_Power turn on tv from standby');
 
     });
-      // items.getItem('LG_TV0_Power').sendCommand('ON'); // IR code
-      // logger.info('LG_TV0_Power turn on tv from standby');});
 
     // turn to audio source Video1
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
@@ -81,13 +79,7 @@ rules.JSRule({
       items.getItem('LG_TV0_Application').sendCommand("com.webos.app.home");
 
     });
-    //});
-    //turn on tv last 
-    // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
-    // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(40), () => {
-    //   items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
-    //   logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
-    // });
+
   },
 });
 // ==================Conservatory TV OFF
