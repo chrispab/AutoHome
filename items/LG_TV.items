@@ -1,21 +1,28 @@
-Switch LG_TV0_Power "TV Power" <television>  { autoupdate="false", channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:power" }
-Switch LG_TV0_Mute  "TV Mute"                { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:mute"}
-Dimmer LG_TV0_Volume "Volume [%d]"           { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:volume" }
+Switch LG_TV0_Power "TV Power" <television>  { autoupdate="false", channel="lgwebos:WebOSTV:tv_conservatory:power" }
+Switch LG_TV0_Mute  "TV Mute"                { channel="lgwebos:WebOSTV:tv_conservatory:mute"}
+Dimmer LG_TV0_Volume "Volume [%d]"           { channel="lgwebos:WebOSTV:tv_conservatory:volume" }
 Number LG_TV0_VolDummy "VolumeUpDown"
-String LG_TV0_Channel "Channel [%s]"         { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:channel" }
+String LG_TV0_Channel "Channel [%s]"         { channel="lgwebos:WebOSTV:tv_conservatory:channel" }
 Number LG_TV0_ChannelDummy "ChannelUpDown"
-String LG_TV0_Toast                          { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:toast"}
-Switch LG_TV0_Stop "Stop"                    { autoupdate="false", channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:mediaStop" }
-String LG_TV0_Application "Application [%s]" { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:appLauncher"}
-Player LG_TV0_Player                         { channel="lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46:mediaPlayer"}
+String LG_TV0_Toast                          { channel="lgwebos:WebOSTV:tv_conservatory:toast"}
+Switch LG_TV0_Stop "Stop"                    { autoupdate="false", channel="lgwebos:WebOSTV:tv_conservatory:mediaStop" }
+String LG_TV0_Application "Application [%s]" { channel="lgwebos:WebOSTV:tv_conservatory:appLauncher"}
+Player LG_TV0_Player                         { channel="lgwebos:WebOSTV:tv_conservatory:mediaPlayer"}
+
+String LG_TV0_RcButton                       { channel="lgwebos:WebOSTV:tv_conservatory:rcButton"}
 
 // The binding provides a few commands you can use in the console. Enter the command openhab:lgwebos to get the usage.
 
 // Usage: openhab:lgwebos <thingUID> applications - list applications
 // Usage: openhab:lgwebos <thingUID> channels - list channels
-// Usage: openhab:lgwebos lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46 accesskey - show the access key
+// Usage: openhab:lgwebos lgwebos:WebOSTV:tv_conservatory accesskey - show the access key
+
+//  openhab:lgwebos lgwebos:WebOSTV:tv_conservatory accesskey
+
 
 // The command applications reports in the console the list of all applications with their id and name. The command channels reports in the console the list of all channels with their id, number and name. The command accesskey reports in the console the access key used to connect to your TV.
 // In case of issues you may find it helpful to enable debug level logging and check you log file. Log into openHAB console and enable debug logging for this binding:
 
 // log:set debug org.openhab.binding.lgwebos
+
+// http://openhabian2.local:8080/addons/binding-lgwebos
