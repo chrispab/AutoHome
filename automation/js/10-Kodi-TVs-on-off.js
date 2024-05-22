@@ -71,12 +71,8 @@ rules.JSRule({
       items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
       logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
 
-      // items.getItem('LG_TV0_RcButton').sendCommand("HOME");
-      // logger.info('LG_TV0_RcButton turn home on tv');
-      // actions.launchApplication("com.webos.app.home") // HOME
-      logger.info('launchApplication home on tv');
-      // actions.sendButton("HOME");
-      items.getItem('LG_TV0_Application').sendCommand("com.webos.app.home");
+      // logger.info('launchApplication home on tv');
+      // items.getItem('LG_TV0_Application').sendCommand("com.webos.app.home");
 
     });
 
