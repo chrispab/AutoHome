@@ -3,10 +3,9 @@ const {
 } = require('openhab');
 const { alerting } = require('openhab-my-utils');
 
-var ruleUID = "tvs-on-off";
+const ruleUID = 'tvs-on-off';
 
 const logger = log(ruleUID);
-
 
 let tStartup;
 
@@ -31,7 +30,6 @@ scriptLoaded = function scriptLoaded() {
   actions.Voice.say('tvs now available');
 };
 
-
 // ==================Conservatory TV ON
 let CT_TV_off_timer;
 
@@ -40,30 +38,28 @@ rules.JSRule({
   description: 'turn ON conservatory TV',
   triggers: [
     triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'OFF', 'ON'),
-    triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'OFF', 'ON')
+    triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'OFF', 'ON'),
   ],
   execute: () => {
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
     turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
     logger.info('Turning on CT - TV - kodi, amp, ir bridge');
-    items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
-    items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
+    // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
+    // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
+    alerting.flashItemAlert('KT_light_1_Power', 3, 500);
 
     // if there is a request to turn off the tv in progress cancel it as we want it on!
     if (CT_TV_off_timer && CT_TV_off_timer.isActive()) {
       CT_TV_off_timer.cancel();
     }
-    // actions = actions("lgwebos","lgwebos:WebOSTV:3aab9eea-953b-4272-bdbd-f0cd0ecf4a46");
 
     // Turn amp on from standby
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       logger.info('STEREO - IR turn on amp from standby');
-      items.getItem('LG_TV0_Power').sendCommand('ON'); // IR code
+      items.getItem('LG_TV0_Power').sendCommand('ON');
       logger.info('LG_TV0_Power turn on tv from standby');
-
     });
 
     // turn to audio source Video1
@@ -73,9 +69,7 @@ rules.JSRule({
 
       // logger.info('launchApplication home on tv');
       // items.getItem('LG_TV0_Application').sendCommand("com.webos.app.home");
-
     });
-
   },
 });
 // ==================Conservatory TV OFF
@@ -84,7 +78,7 @@ rules.JSRule({
   description: 'turn OFF conservatory tv',
   triggers: [
     triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers', 'ON', 'OFF'),
-    triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'ON', 'OFF')
+    triggers.ItemStateChangeTrigger('vCT_TVKodiSpeakers2', 'ON', 'OFF'),
   ],
   execute: () => {
     // actions.Voice.say('Turning OFF tv - kodi, amp, and bridges');
@@ -100,7 +94,7 @@ rules.JSRule({
     items.getItem('LG_TV0_Power').sendCommand('OFF'); // IR code
     logger.info('LG_TV0_Power turn off tv to standby');
 
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
 
     logger.info('tv - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer
@@ -110,10 +104,8 @@ rules.JSRule({
         () => {
           items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
           // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
-     
+
           items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
-
-
 
           items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
           logger.info('turned off kodi power');
@@ -122,7 +114,6 @@ rules.JSRule({
     }
   },
 });
-
 
 function tv_startup_tbody() {
   // logger.error('tv_startup_tbody()');
@@ -144,34 +135,33 @@ function tv_startup_tbody() {
 // const alertTVItemName = 'KT_light_1_Power';
 // const alertTVItemName = 'CT_FairyLights433Socket';
 
-
 let tvPowerOffTimer;
 
-function turnOnTV(onOffProxyItem, powerControlItem, message) {
-  logger.info(`Turning on Pi Kodi and TV:${message}`);
+function turnOnTV(controlItem1, controlItem2, message) {
+  logger.info(`Turn on :${message}`);
   // actions.Voice.say(message);
   // alerting.flashItemAlert();
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
     tvPowerOffTimer.cancel();// = undefined;
   }
-  items.getItem(onOffProxyItem).postUpdate('ON');
-  items.getItem(powerControlItem).sendCommand('ON');
+  items.getItem(controlItem1).sendCommand('ON');
+  items.getItem(controlItem2).sendCommand('ON');
 }
 
-function turnOffTV(onOffProxyItem, powerControlItem, message) {
+function turnOffTV(controlItem1, controlItem2, message) {
   logger.info(`Turning off Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
   // alerting.flashItemAlert();
 
-  items.getItem(onOffProxyItem).postUpdate('OFF');
+  items.getItem(controlItem1).sendCommand('OFF');
 
   // if off timer undefined start for pi shutdown
   // if (!(tvPowerOffTimer === undefined)) {
   tvPowerOffTimer = actions.ScriptExecution.createTimer(
     time.ZonedDateTime.now().plusSeconds(30),
     () => {
-      items.getItem(powerControlItem).sendCommand('OFF');
+      items.getItem(controlItem2).sendCommand('OFF');
       //     t_brtvPowerOff = None
       // undefine the off timer
       // tvPowerOffTimer = undefined;
@@ -189,8 +179,7 @@ rules.JSRule({
     logger.info('Turning on bedroom Pi Kodi and TV');
     const message = 'Turning on Bedroom TV';
     turnOnTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', message);
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
-
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
   },
 });
 
@@ -202,10 +191,9 @@ rules.JSRule({
   execute: () => {
     logger.info('Turning off bedroom Pi Kodi and TV');
     turnOffTV('shutdownKodiBedroomProxy', 'wifi_socket_3_power', 'Turning off Bedroom TV');
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
   },
 });
-
 
 // ==================
 
@@ -214,7 +202,7 @@ rules.JSRule({
   description: 'Turn ON FrontRoom Kodi-Pi, TV',
   triggers: [triggers.ItemStateUpdateTrigger('vFR_TVKodi', 'ON')],
   execute: () => {
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
     turnOnTV('shutdownKodiFrontRoomProxy', 'wifi_socket_2_power', 'Turning on FrontRoom TV');
   },
 });
@@ -225,8 +213,7 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('vFR_TVKodi', 'OFF')],
   execute: () => {
     turnOffTV('shutdownKodiFrontRoomProxy', 'wifi_socket_2_power', 'Turning off FrontRoom TV');
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
-
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
   },
 });
 
@@ -236,8 +223,7 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('vAT_TVKodi', 'ON')],
   execute: () => {
     turnOnTV('shutdownKodiAtticProxy', ' ', 'Turning on Attic TV');
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
-
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
   },
 });
 
@@ -247,7 +233,6 @@ rules.JSRule({
   triggers: [triggers.ItemStateUpdateTrigger('vAT_TVKodi', 'OFF')],
   execute: () => {
     turnOffTV('shutdownKodiAtticProxy', ' ', 'Turning off Attic TV');
-    alerting.flashItemAlert('KT_light_1_Power',4,500);
-
+    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
   },
 });
