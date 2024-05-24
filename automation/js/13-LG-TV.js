@@ -84,32 +84,25 @@ rules.JSRule({
   triggers: [
     triggers.GroupStateChangeTrigger('gTVPower', 'OFF', 'ON'),
   ],
-  execute: () => {
-    // logger.debug(`TV: Restore Last App: CT_TV_Application.state: ${items.getItem('CT_TV_Application').state}`);
-    // logger.debug(`TV: Restore Last App -  event.itemName: ${event.itemName}`);
+  execute: (event) => {
+    logger.debug('0--TV-Restore - gTVPower OFF->ON');
+    utils.showEvent(event, logger);
+    logger.debug(`1--TV-Restore - event.itemName: ${event.itemName}`);
 
     const appName = items.getItem('CT_TV_LastApp').state;
-    logger.debug(`1..TV: Restore Last App -  get appName from item CT_TV_LastApp: ${appName}`);
+    logger.debug(`2--TV-Restore - get appName from CT_TV_LastApp: ${appName}`);
 
     // wait for app data to come back from tv on power up
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(50), (appName) => {
-      logger.debug(`2..TV: Restore Last App -  get from appName passed into timer: ${appName}`);
-      // RESTORE
-      // utils.showEvent(event, logger);
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+      logger.debug(`3--TV-Restore -  appName passed into timer: ${appName}`);
 
-      // logger.debug(`1...AFTER PAUSE TV: Restore Last App:'CT_TV_LastApp.state: ${appName}`);
-
-      // items.getItem('CT_TV_Application').sendCommand(appName);
-      // logger.debug(`TV: Restore Last App: CT_TV_LastApp.state: ${items.getItem('CT_TV_LastApp').state}`);
-
-      // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), (appName) => {
       if (appName === undefined) {
         // items.getItem('CT_TV_LastApp').sendCommand('com.webos.app.home');
         items.getItem('CT_TV_Application').sendCommand('com.webos.app.home');
-        logger.debug('3...appName == undefined..TV: Restore Last App default CT_TV_LastApp.state: \'com.webos.app.home\'');
+        logger.debug('4--TV-Restore - appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
       } else {
         items.getItem('CT_TV_Application').sendCommand(appName);
-        logger.debug(`4...TV: Restore Last App:  restoring CT_TV_LastApp.state: ${appName}`);
+        logger.debug(`5--TV-Restore - restoring CT_TV_LastApp.state to: ${appName}`);
         // items.get
       }
       // }

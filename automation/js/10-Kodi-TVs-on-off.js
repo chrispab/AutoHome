@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
@@ -43,10 +44,11 @@ rules.JSRule({
   execute: () => {
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
+    // eslint-disable-next-line no-use-before-define
     turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
     logger.info('Turning on CT - TV - kodi, amp, ir bridge');
     // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
-    // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi pi,amp ir bridge hdmi audio extractor
+    // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi,amp ir bridge hdmi audio
     alerting.flashItemAlert('KT_light_1_Power', 3, 500);
 
     // if there is a request to turn off the tv in progress cancel it as we want it on!
@@ -54,21 +56,18 @@ rules.JSRule({
       CT_TV_off_timer.cancel();
     }
 
-    // Turn amp on from standby
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
+    // Turn amp on from standby, once ir device is on
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       logger.info('STEREO - IR turn on amp from standby');
       items.getItem('LG_TV0_Power').sendCommand('ON');
       logger.info('LG_TV0_Power turn on tv from standby');
     });
 
-    // turn to audio source Video1
+    // turn to amp audio source Video1
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
       items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
       logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
-
-      // logger.info('launchApplication home on tv');
-      // items.getItem('LG_TV0_Application').sendCommand("com.webos.app.home");
     });
   },
 });
@@ -116,8 +115,6 @@ rules.JSRule({
 });
 
 function tv_startup_tbody() {
-  // logger.error('tv_startup_tbody()');
-
   if (items.getItem('vFR_TVKodi').state === 'NULL') {
     items.getItem('vFR_TVKodi').postUpdate('OFF');
   }
@@ -132,11 +129,15 @@ function tv_startup_tbody() {
   }
 }
 
-// const alertTVItemName = 'KT_light_1_Power';
-// const alertTVItemName = 'CT_FairyLights433Socket';
-
 let tvPowerOffTimer;
 
+/**
+ * Turns on the TV by sending commands to the specified control items.
+ *
+ * @param {string} controlItem1 - The name of the first control item.
+ * @param {string} controlItem2 - The name of the second control item.
+ * @param {string} message - The message to be logged and optionally spoken.
+ */
 function turnOnTV(controlItem1, controlItem2, message) {
   logger.info(`Turn on :${message}`);
   // actions.Voice.say(message);
@@ -149,6 +150,14 @@ function turnOnTV(controlItem1, controlItem2, message) {
   items.getItem(controlItem2).sendCommand('ON');
 }
 
+/**
+ * Turns off the Pi Kodi and TV.
+ *
+ * @param {string} controlItem1 - The name of the first control item.
+ * @param {string} controlItem2 - The name of the second control item.
+ * @param {string} message - The message to be logged.
+ * @return {undefined} This function does not return a value.
+ */
 function turnOffTV(controlItem1, controlItem2, message) {
   logger.info(`Turning off Pi Kodi and TV:${message}`);
   // actions.Voice.say(message);
@@ -169,6 +178,7 @@ function turnOffTV(controlItem1, controlItem2, message) {
   );
   // }
 }
+
 // ==================== turn ON bedroom Pi Kodi and TV
 // let t_brtvPowerOff;
 rules.JSRule({
@@ -184,6 +194,11 @@ rules.JSRule({
 });
 
 // ==============Turn OFF bedroom Kodi-Pi, TV
+/**
+ * Turns off the bedroom Pi Kodi and TV.
+ *
+ * @return {undefined} This function does not return a value.
+ */
 rules.JSRule({
   name: 'Turn OFF bedroom Kodi-Pi, TV',
   description: 'Turn OFF bedroom Kodi-Pi, TV',
