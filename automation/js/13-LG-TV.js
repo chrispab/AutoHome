@@ -44,17 +44,14 @@ rules.JSRule({
   execute: (event) => {
     // save selected app name
     logger.debug(`1. TV: Keep track of app changes: current CT_TV_Application.state: ${items.getItem('CT_TV_Application').state}`);
-    // logger.debug(`TV: Keep track of app changes: event.itemName: ${event.itemName}`);
 
     // dont update if shutting down or starting up -  undef
     utils.showEvent(event, logger);
 
     if (items.getItem('CT_TV_Power').state === 'ON') {
-      // appName = items.getItem('CT_TV_Application').state;
       const appName = event.newState;
       logger.debug(`2.  TV: appName = event.newState ${appName}`);
       if (appName === undefined || appName === 'com.webos.app.hdmi2') {
-        // items.getItem('CT_TV_LastApp').sendCommand('com.webos.app.home');
         logger.debug(`3.TV: (appName === undefined || appName === 'com.webos.app.hdmi3'), do not update CT_TV_LastApp.state with: ${appName}`);
       } else {
         items.getItem('CT_TV_LastApp').sendCommand(appName);
@@ -97,16 +94,15 @@ rules.JSRule({
       logger.debug(`3--TV-Restore -  appName passed into timer: ${appName}`);
 
       if (appName === undefined) {
-        // items.getItem('CT_TV_LastApp').sendCommand('com.webos.app.home');
         items.getItem('CT_TV_Application').sendCommand('com.webos.app.home');
         logger.debug('4--TV-Restore - appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
       } else {
+        // if (appName === 'netflix') {
+        //   appName = 'com.webos.app.netflix';
+        // }
         items.getItem('CT_TV_Application').sendCommand(appName);
         logger.debug(`5--TV-Restore - restoring CT_TV_LastApp.state to: ${appName}`);
-        // items.get
       }
-      // }
-      // )
     });
   },
 });

@@ -2,6 +2,13 @@ const {
   log, items,
 } = require('openhab');
 
+/**
+ * Logs the information of an item.
+ *
+ * @param {Object} data - The data object containing the item information.
+ * @param {Object} [logger] - An optional logger object. If not provided, a default logger will be used.
+ * @return {void} This function does not return anything.
+ */
 exports.showItem = function (data, logger) {
   var logger = (logger) ? logger : log('utils.showItem');
 
@@ -33,16 +40,18 @@ exports.showEvent = function (event, logger) {
   var logger = (logger) ? logger : log('utils.showEvent');
 
   logger.debug(
-    '=========: showEvent data: Event.itemName: ' + event.itemName
-    + ', LABEL: ' + items.getItem(event.itemName).label +
-    ', STATE: ' + items.getItem(event.itemName).state +
-    ', PREV STATExx: ' + items.getItem(event.itemName).history.previousState()
+    '====: showEvent ====: Event.itemName: ' + event.itemName +
+    ', label: ' + items.getItem(event.itemName).label +
+    ', state: ' + items.getItem(event.itemName).state +
+    ', receivedState: ' + items.getItem(event.itemName).receivedState +
+    ', newState: ' + items.getItem(event.itemName).newState +
+    ', oldState: ' + items.getItem(event.itemName).oldState
   );
   // console.log(event);
 }
 
-const timersOn = [];
-const timersOff = [];
+// const timersOn = [];test
+// const timersOff = [];
 var tpos = 500;
 exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
   var logger = (logger) ? logger : log('sendInfo');
@@ -71,14 +80,14 @@ exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
 }
 
 
-exports.getLocationPrefix = function(itemName, logger) {
+exports.getLocationPrefix = function (itemName, logger) {
   // can prersent as 'v_ID_' or 'ID_'
   // if first 2 chars are 'v_' then trim them off
   var roomPrefix;
   // logger.debug('getLocationPrefix :{}','v2');
 
   if (itemName.toString().startsWith("v_")) {
-    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_')+1);
+    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_') + 1);
     // logger.debug(`getLocationPrefix startsWith v_, roomPrefixPartial : ${roomPrefix}`);
   } else {
     roomPrefix = itemName.toString().substr(0, itemName.indexOf('_'));
