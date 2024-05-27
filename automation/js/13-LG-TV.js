@@ -8,7 +8,8 @@ const ruleUID = 'lg_tv';
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.lg_tv
 // log:set INFO org.openhab.automation.openhab-js.lg-tv
-// let tStartup;
+// log:set debug org.openhab.binding.lgwebos
+// log:set INFO org.openhab.binding.lgwebos
 
 scriptLoaded = function scriptLoaded() {
   logger.info('scriptLoaded - System started - LG TV startup settings');
