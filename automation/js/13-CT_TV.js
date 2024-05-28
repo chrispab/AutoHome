@@ -13,7 +13,7 @@ const logger = log(ruleUID);
 
 scriptLoaded = function scriptLoaded() {
   logger.info('scriptLoaded - System started - LG TV startup settings');
-  actions.Voice.say('LG TV startup');
+  actions.Voice.say('TV');
 };
 
 // Group gTVApplication
@@ -91,16 +91,13 @@ rules.JSRule({
     logger.debug(`2--TV-Restore - get appName from CT_TV_LastApp: ${appName}`);
 
     // wait for app data to come back from tv on power up
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
       logger.debug(`3--TV-Restore -  appName passed into timer: ${appName}`);
 
       if (appName === undefined) {
         items.getItem('CT_TV_Application').sendCommand('com.webos.app.home');
         logger.debug('4--TV-Restore - appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
       } else {
-        // if (appName === 'netflix') {
-        //   appName = 'com.webos.app.netflix';
-        // }
         items.getItem('CT_TV_Application').sendCommand(appName);
         logger.debug(`5--TV-Restore - restoring CT_TV_LastApp.state to: ${appName}`);
       }

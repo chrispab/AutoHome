@@ -60,8 +60,8 @@ rules.JSRule({
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
       items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
       logger.info('STEREO - IR turn on amp from standby');
-      items.getItem('LG_TV0_Power').sendCommand('ON');
-      logger.info('LG_TV0_Power turn on tv from standby');
+      items.getItem('CT_TV_Power').sendCommand('ON');
+      logger.info('CT_TV_Power turn on tv from standby');
     });
 
     // turn to amp audio source Video1
@@ -90,8 +90,8 @@ rules.JSRule({
     logger.info('sent command - shutdown kodi');
     items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
     // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
-    items.getItem('LG_TV0_Power').sendCommand('OFF'); // IR code
-    logger.info('LG_TV0_Power turn off tv to standby');
+    items.getItem('CT_TV_Power').sendCommand('OFF'); // IR code
+    logger.info('CT_TV_Power turn off tv to standby');
 
     alerting.flashItemAlert('KT_light_1_Power', 4, 500);
 

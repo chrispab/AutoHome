@@ -1,13 +1,13 @@
 sitemap LG_TV label="LG_TV"
 {
     Frame label="TV" {
-        Switch item=LG_TV0_Power
-        Switch item=LG_TV0_Mute
-        Text item=LG_TV0_Volume
-        Switch item=LG_TV0_VolDummy icon="soundvolume" label="Volume" mappings=[1="▲", 0="▼"]
-        Default item=LG_TV0_Channel
-        Switch item=LG_TV0_ChannelDummy icon="television" label="Channel" mappings=[1="▲", 0="▼"]
-        Default item=LG_TV0_Player
-        Default item=LG_TV0_Application
+        Switch item=CT_TV_Power
+        Switch item=CT_TV_Mute
+        Text item=CT_TV_Volume
+        Switch item=CT_TV_VolDummy icon="soundvolume" label="Volume" mappings=[1="▲", 0="▼"]
+        Default item=CT_TV_Channel
+        Switch item=CT_TV_ChannelDummy icon="television" label="Channel" mappings=[1="▲", 0="▼"]
+        Default item=CT_TV_Player
+        Default item=CT_TV_Application
     }
 }
