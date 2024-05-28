@@ -1,9 +1,9 @@
 {
   "folders": [
-	{
-		"path": "."
-	}
-],
+    {
+      "path": "."
+    }
+  ],
   "settings": {
     "openhab.useRestApi": true,
     "openhab.connection.host": "192.168.0.101",
