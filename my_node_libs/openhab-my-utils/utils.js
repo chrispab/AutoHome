@@ -96,24 +96,24 @@ exports.getLocationPrefix = function (itemName, logger) {
   var roomPrefix;
   // logger.debug('getLocationPrefix :{}','v2');
 
-  if (itemName.toString().startsWith("v_")) {
-    roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_') + 1);
-    logger.error(`getLocationPrefix startsWith v_, roomPrefixPartial : ${roomPrefix}`);
-  } else {
-    roomPrefix = itemName.toString().substr(0, itemName.indexOf('_'));
-    logger.error(`getLocationPrefix immediate ID, roomPrefix : ${roomPrefix}`);
-  }
+  // if (itemName.toString().startsWith("v_")) {
+  //   roomPrefix = itemName.toString().substr(itemName.indexOf('_') + 1).substr(0, itemName.indexOf('_') + 1);
+  //   logger.error(`getLocationPrefix startsWith v_, roomPrefixPartial : ${roomPrefix}`);
+  // } else {
+  //   roomPrefix = itemName.toString().substr(0, itemName.indexOf('_'));
+  //   logger.error(`getLocationPrefix immediate ID, roomPrefix : ${roomPrefix}`);
+  // }
 
-  var roomPrefix2;
+  // var roomPrefix2;
   if (itemName.toString().startsWith("v_")) {
     var startIndex = itemName.indexOf('_') + 1;
     var endIndex = itemName.indexOf('_', startIndex);
-    roomPrefix2 = itemName.substring(startIndex, endIndex);
-    logger.error(`getLocationPrefix startsWith v_, roomPrefix2Partial : ${roomPrefix2}`);
+    roomPrefix = itemName.substring(startIndex, endIndex);
+    logger.debug(`getLocationPrefix startsWith v_, roomPrefixPartial : ${roomPrefix}`);
   } else {
     var endIndex = itemName.indexOf('_');
-    roomPrefix2 = itemName.substring(0, endIndex);
-    logger.error(`getLocationPrefix immediate ID, roomPrefix2 : ${roomPrefix2}`);
+    roomPrefix = itemName.substring(0, endIndex);
+    logger.debug(`getLocationPrefix immediate ID, roomPrefix : ${roomPrefix}`);
   }
   return roomPrefix;
 }

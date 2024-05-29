@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 const { utils } = require('openhab-my-utils');
 
-var ruleUID = "heating-heaters-boiler-control";
+const ruleUID = 'heating-heaters-boiler-control';
 
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.heating-heaters-boiler-control
@@ -17,10 +17,9 @@ rules.JSRule({
   triggers: [
     triggers.GroupStateUpdateTrigger('gHeatingModes'),
     triggers.GroupStateUpdateTrigger('gThermostatTemperatureSetpoints'),
-    triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients')
+    triggers.GroupStateUpdateTrigger('gThermostatTemperatureAmbients'),
   ],
   execute: (event) => {
-
     logger.debug('>--------------------------------------------------------------------');
     logger.debug('>Mode, setpoint or temp changed. Do any Heaters need . changing etc?');
     logger.debug(`>item: ${event.itemName} triggered event, in group : ${event.groupName}`);
@@ -58,7 +57,7 @@ rules.JSRule({
       return;
     }
 
-    //skip if fanheater FH
+    // skip if fanheater FH
     // if ((roomPrefix == 'FH')) {
     //   logger.warn(`>fanheater FH chages - ignore FH - leaving!: ${roomPrefix} : ,  event.itemName: ${event.itemName}`);
     //   // dont continue on and update the bolier control if fanheater FH
@@ -83,18 +82,18 @@ rules.JSRule({
       const temp = TemperatureItem.rawState; //  # get the current temperature
 
       if (temp >= turnOffTemp && HeaterItem.state.toString() === 'ON') {
-        //if heater on and and temp > sp turn local heater off
+        // if heater on and and temp > sp turn local heater off
         logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater OFF`);
         HeaterItem.sendCommand('OFF');
       } else if (temp < turnOnTemp && HeaterItem.state.toString() == 'OFF') {
-        //if heater off and and temp < sp turn local heater on
+        // if heater off and and temp < sp turn local heater on
         logger.info(`>Heating change... Heater: ${roomPrefix}, mode is: ${heatingModeItem.state.toString()} -> SendCommand to: ${roomPrefix}, Heater ON`);
         HeaterItem.sendCommand('ON');
       } else {
         logger.debug('>no change to local heater reqd - do nothing');
       }
     } else if ((heatingModeItem.state.toString() === 'off') || (items.getItem('masterHeatingMode').state.toString() === 'off')) {
-      //if local heating mode is off or master is off then turn local heater off
+      // if local heating mode is off or master is off then turn local heater off
       if ((items.getItem('masterHeatingMode').state.toString() === 'off')) {
         logger.info('>Master Heating Mode is OFF!');
       }
@@ -109,9 +108,8 @@ rules.JSRule({
   description: 'when any heater states updated, turn Boiler ON else turn boiler OFF',
   triggers: [triggers.GroupStateUpdateTrigger('gHeaterControls')],
   execute: (event) => {
-
     // logger.warn('A heater state has been updated!, do we turn Boiler ON or turn boiler OFF?');
-    //skip if fanheater FH
+    // skip if fanheater FH
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     if ((roomPrefix == 'FH')) {
       logger.debug(`>Avoid FH fan heater affecting boiler - leaving boiler control: ${roomPrefix} : ,  itemName: ${event.itemName}`);
@@ -135,7 +133,6 @@ rules.JSRule({
     }
   },
 });
-
 
 rules.JSRule({
   name: 'handle MasterHeatingMode updated',
