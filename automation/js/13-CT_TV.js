@@ -53,7 +53,7 @@ rules.JSRule({
       const appName = event.newState;
       logger.debug(`2.  TV: appName = event.newState ${appName}`);
       if (appName === undefined || appName === 'com.webos.app.hdmi2') {
-        logger.debug(`3.TV: (appName === undefined || appName === 'com.webos.app.hdmi3'), do not update CT_TV_LastApp.state with: ${appName}`);
+        logger.debug(`3.TV: (appName === undefined || appName === 'com.webos.app.hdmi2'),  not updating CT_TV_LastApp.state with: ${appName}`);
       } else {
         items.getItem('CT_TV_LastApp').sendCommand(appName);
         logger.debug(`4.TV: Keep track of app changes: new CT_TV_LastApp.state: ${appName}`);

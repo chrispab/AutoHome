@@ -48,7 +48,7 @@ rules.JSRule({
     // !if ANY trvs are unreachable - turn off heater to prevent false demand
     // not just the calling device - which cant call anyway as its offline
     // dont continue on and update the bolier control if this RTV is Offline
-    reachableItemOnlineStatus = ReachableItem.state.toString();
+    const reachableItemOnlineStatus = ReachableItem.state.toString();
     if ((reachableItemOnlineStatus !== 'ON') && (reachableItemOnlineStatus !== 'Online')) {
       logger.debug(`>ReachableItem-Offline - sending OFF, leaving!: ${roomPrefix} : ,  ReachableItem.state: ${ReachableItem.state}`);
       // turn it off
