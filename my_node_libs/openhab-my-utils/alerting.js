@@ -34,10 +34,6 @@ exports.sendEmail = function (subject, message, logger) {
   if (!actions.Things.getActions("mail", "mail:smtp:gmail").sendMail("cbattisson@gmail.com", subject, message)) {
     logger.debug("Failed to send email");
   }
-  // var mailActions = actions.Things.getActions("mail", "mail:smtp:gmail");
-  // success = mailActions.sendMail("cbattisson@gmail.com", "openHAB Info", message);
-  // if(!success){
-  // logger.warn("Failed to send email info alert");
   else {
     logger.debug("SUCCESS -- EMAIL SENT");
   }
@@ -60,7 +56,7 @@ exports.getNames = function (group, filterFunc) {
 }
 
 
-exports.flashItemAlert = function (flashItemName = 'CT_FairyLights433Socket', numFlashes = 2, pulseTimeMs = 500) {
+exports.flashItemAlert = function (flashItemName = 'CT_FairyLights433Socket', numFlashes = 1, pulseTimeMs = 500) {
   const currentState = items.getItem(flashItemName).state;
 
   items.getItem(flashItemName).sendCommand('ON');
