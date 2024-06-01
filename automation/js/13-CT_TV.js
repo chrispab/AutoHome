@@ -80,7 +80,9 @@ rules.JSRule({
   name: 'TV: Restore Last App',
   description: 'TV: Restore Last App',
   triggers: [
-    triggers.GroupStateChangeTrigger('gTVPower', 'OFF', 'ON'),
+    // triggers.GroupStateChangeTrigger('gTVPower', 'OFF', 'ON'),
+    triggers.ItemStateChangeTrigger('CT_TV_Power', 'OFF', 'ON'),
+    // CT_TV_Power
   ],
   execute: (event) => {
     logger.debug('0--TV-Restore - gTVPower OFF->ON');
@@ -91,7 +93,7 @@ rules.JSRule({
     logger.debug(`2--TV-Restore - get appName from CT_TV_LastApp: ${appName}`);
 
     // wait for app data to come back from tv on power up
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
       logger.debug(`3--TV-Restore -  appName passed into timer: ${appName}`);
 
       if (appName === undefined) {

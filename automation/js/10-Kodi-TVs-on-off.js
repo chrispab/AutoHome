@@ -17,7 +17,7 @@ scriptLoaded = function scriptLoaded() {
   const thingStatusInfo = actions.Things.getThingStatusInfo('kodi:kodi:4cc97fc0-c074-917d-e452-aed8219168eb');
   logger.info('Thing Kodi_CT_Online_Status status', thingStatusInfo.getStatus());
 
-  if (thingStatusInfo.getStatus().toString() == 'ONLINE') {
+  if (thingStatusInfo.getStatus().toString() === 'ONLINE') {
     items.getItem('Kodi_CT_Online_Status').postUpdate('ONLINE');
   } else {
     items.getItem('Kodi_CT_Online_Status').postUpdate('OFFLINE');
@@ -49,7 +49,7 @@ rules.JSRule({
     logger.info('Turning on CT - TV - kodi, amp, ir bridge');
     // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
     // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi,amp ir bridge hdmi audio
-    alerting.flashItemAlert('KT_light_1_Power', 3, 500);
+    alerting.flashItemAlert('KT_light_1_Power', 1, 500);
 
     // if there is a request to turn off the tv in progress cancel it as we want it on!
     if (CT_TV_off_timer && CT_TV_off_timer.isActive()) {

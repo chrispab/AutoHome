@@ -5,8 +5,9 @@ Group gTVApplication
 
 Group gCT_TV ["Television"]
 
-Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
-// Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower, gCT_TV)  { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
+//autoupdate="false"  waits for confirmation from TV that it is ON
+// Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
+Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="true"}
 Switch CT_TV_Mute  "TV Mute"                { channel="lgwebos:WebOSTV:tv_conservatory:mute"}
 Dimmer CT_TV_Volume "Volume [%d]"           { channel="lgwebos:WebOSTV:tv_conservatory:volume" }
 Number CT_TV_VolDummy "VolumeUpDown"

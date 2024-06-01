@@ -70,13 +70,13 @@ exports.flashItemAlert = function (flashItemName = 'CT_FairyLights433Socket', nu
     let state = (index % 2) == 1 ? 'ON' : 'OFF'
     actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
       items.getItem(flashItemName).sendCommand(state);
-      logger.error(`${flashItemName}: ${state}`);
+      logger.debug(`${flashItemName}: ${state}`);
     });
   }
 
   actions.ScriptExecution.createTimer(time.toZDT(((index + 1) * pulseTimeMs)), () => {
     items.getItem(flashItemName).sendCommand(currentState);
-    logger.error(`${flashItemName}: ${currentState}`);
+    logger.debug(`${flashItemName}: ${currentState}`);
   });
 
 }
