@@ -76,6 +76,8 @@ rules.JSRule({
 //   end
 // end
 
+const restoreTimer = 20;
+
 rules.JSRule({
   name: 'TV: Restore Last App',
   description: 'TV: Restore Last App',
@@ -93,15 +95,16 @@ rules.JSRule({
     logger.debug(`2--TV-Restore - get appName from CT_TV_LastApp: ${appName}`);
 
     // wait for app data to come back from tv on power up
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
-      logger.debug(`3--TV-Restore -  appName passed into timer: ${appName}`);
+    logger.debug(`2--TV-Restore - starting timer, secs: ${restoreTimer}`);
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(restoreTimer), () => {
+      logger.debug(`3--TV-Restore -Timer  appName passed into timer: ${appName}`);
 
       if (appName === undefined) {
         items.getItem('CT_TV_Application').sendCommand('com.webos.app.home');
-        logger.debug('4--TV-Restore - appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
+        logger.debug('4--TV-Restore -Timer appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
       } else {
         items.getItem('CT_TV_Application').sendCommand(appName);
-        logger.debug(`5--TV-Restore - restoring CT_TV_LastApp.state to: ${appName}`);
+        logger.debug(`5--TV-Restore -Timer restoring CT_TV_LastApp.state to: ${appName}`);
       }
     });
   },
