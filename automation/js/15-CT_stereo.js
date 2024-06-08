@@ -1,21 +1,21 @@
+/* eslint-disable max-len */
 const {
-  log, items, rules, actions, triggers,
+  time, log, items, rules, actions, triggers,
 } = require('openhab');
 
-var ruleUID = "ct-stereo";
+const ruleUID = 'ct-stereo';
 const logger = log(ruleUID);
 
 const tToAmpIRPowerOn = 20;
 const tToSelectAmpAux = 30;
 const tToTurnOffStereo = 30;
 
-
 let CT_stereo_off_timer = null;
 rules.JSRule({
   name: 'turn ON conservatory stereo',
   description: 'turn ON conservatory stereo',
   triggers: [triggers.ItemStateChangeTrigger('vCT_stereo', 'OFF', 'ON')],
-  execute: (data) => {
+  execute: () => {
     logger.info('Turning on stereo - kodi, amp');
     items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi, amp, ir bridge, hdmi audio extractor
     // items.getItem("bg_wifisocket_1_1_power").sendCommand("ON");//kodi pi
@@ -44,12 +44,12 @@ rules.JSRule({
     // triggers.ItemStateUpdateTrigger("vCT_stereo", "OFF"),
     triggers.ItemStateChangeTrigger('vCT_stereo', 'ON', 'OFF'),
   ],
-  execute: (data) => {
+  execute: () => {
     //! if being turned off by ct tv coming on then dont do the normal off routine
-    if (items.getItem('vCT_TVKodiSpeakers').state == 'ON') {
+    if (items.getItem('vCT_TVKodiSpeakers').state === 'ON') {
       // someone is turning on ct tv
       logger.info(
-        'CT tv being turned on - STereo is ON - so dont switch off the stereo - kodi, amp, and bridges reused',
+        'CT tv being turned on - Stereo is ON - so dont switch off the stereo - kodi, amp, and bridges reused',
       );
       // items.getItem('vCT_stereo').postUpdate('OFF'); //turn off virt trigger
       return;
