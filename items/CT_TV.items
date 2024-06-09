@@ -3,7 +3,7 @@ Group gTVApplication
 // Group gTVPower2
 Group  tvGroup "TV" { ga="TV" [ volumeDefaultPercentage="20", levelStepSize="10", volumeMaxLevel="100", transportControlSupportedCommands="NEXT,PREVIOUS,PAUSE,RESUME", 
                             availableChannels="1=Channel1=NBC,2=Channel2=CBS", availableInputs="hdmi1=xbox:gaming,hdmi2=settopbox", 
-                            availableApplications="emby=com.emby.app:Emby,netflix=Netflix,spotify=Spotify:Music" ] }
+                            availableApplications="emby=com.emby.app:Emby, netflix=Netflix, disney=com.disney.disneyplus-prod:Disney+, spotify=Spotify:Music" ] }
 
 Group gCT_TV ["Television"]
 
