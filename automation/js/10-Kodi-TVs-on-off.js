@@ -168,7 +168,7 @@ function turnOffTV(controlItem1, controlItem2, message) {
   // if off timer undefined start for pi shutdown
   // if (!(tvPowerOffTimer === undefined)) {
   tvPowerOffTimer = actions.ScriptExecution.createTimer(
-    time.ZonedDateTime.now().plusSeconds(30),
+    time.ZonedDateTime.now().plusSeconds(20),
     () => {
       items.getItem(controlItem2).sendCommand('OFF');
       //     t_brtvPowerOff = None
