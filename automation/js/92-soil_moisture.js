@@ -50,10 +50,7 @@ const RAW_0PC_DRY = 2135.0;
 // const RAW_100PC_WET = 1655.0;
 const RAW_100PC_WET = 1510.0;
 
-
-
-1512
-
+// 1512
 
 const RAW_RANGE = (RAW_0PC_DRY - RAW_100PC_WET);
 
