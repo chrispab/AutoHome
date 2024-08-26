@@ -6,15 +6,15 @@ Group gCT_Thermostat "Conservatory Thermostat" (gThermostats) {ga="Thermostat" [
 String  CT_ThermostatMode   "Conservatory Thermostat Mode" <settings> (gCT_Thermostat, gThermostatModes) {ga="thermostatMode"}
 Number:Temperature CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Setpoint" <heating> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureSetpoints)
                         {ga="thermostatTemperatureSetpoint"}
-Number:Temperature CT_ThermostatTemperatureAmbient "Conservatory Temperature" <temperature> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
+Number:Temperature CT_ThermostatTemperatureAmbient "Conservatory Temperature [%.1f %unit%]" <temperature> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
                         {ga="thermostatTemperatureAmbient"}
 Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humidity> (gChart_Minute, gCT_Thermostat, gThermostatHumidityAmbients)
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
 
 //var for reading and smoothing temperature readings
-Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw" <temperature> (gChart_Minute)
-                        {channel="mqtt:topic:conservatoryRadThermoValve:temperature"}
-Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature raw"  (gChart_Minute)
+Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gChart_Minute)
+                        {channel="mqtt:topic:conservatoryRadThermoValve:temperature", unit="°C"}
+Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature precision [%.1f %unit%]" <temperature> (gChart_Minute)
 //heater
 Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
 String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)

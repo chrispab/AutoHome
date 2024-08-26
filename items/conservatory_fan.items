@@ -11,7 +11,7 @@ Switch CT_Fan_Heating_circulate_power  "bog fan" (gMQTT, gWiFiPowerSockets) { ch
 // Switch  vCT_TVKodiSpeakers2 "Telly"           <switch>  (gConservatory, gCT_TVKodiSpeakers) { ga="Switch" [ roomHint="Conservatory" ] }
 
 
-Number:Temperature Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit"
+Number:Temperature Conservatory_Fan_ON_Setpoint "conservatory CT_fan_power on setponit [%.1f %unit%]"
 //conservatory Fan
 // Switch CT_fan_power "conservatory fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel="mqtt:topic:bg_wifisocket_4:powerSwitch_2" }
 Switch CT_fan_power "conservatory fan"  <poweroutlet_uk> { ga="Switch" [ roomHint="Conservatory" ], channel = "mqtt:topic:bg_wifisocket_11:powerSwitch_1" }
