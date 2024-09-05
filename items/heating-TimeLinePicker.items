@@ -15,12 +15,12 @@ Group:Number:SUM gHeating_Setpoint_auto_updates_webui
 String v_CT_SetPoint_auto_update_by_timeline    (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline ct setpoints for auto
-Number CT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number CT_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 
 
 //============== DR items ======================================================
@@ -29,12 +29,12 @@ Number CT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_DR_SetPoint_auto_update_by_timeline (gHeatingTimelineSetpointUpdateProxys)
 // oh.timeLinePickerToken.LXLThb83FbjE6figryGYDSGkrgbXQ3RHMSBbJfwqwH8HxXTas85GUZxchBgCRoeefWqFnsf66ieYZ9kdUJFig
 // new timeline setpoints for auto
-Number DR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number DR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number DR_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 //============== FR items ======================================================
@@ -43,12 +43,12 @@ Number DR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_FR_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-Number FR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FR_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 //============== HL items ======================================================
@@ -57,12 +57,12 @@ Number FR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_HL_SetPoint_auto_update_by_timeline (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-Number HL_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number HL_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 //============== OF Office items ======================================================
@@ -72,12 +72,12 @@ Number HL_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_OF_SetPoint_auto_update_by_timeline    (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-Number OF_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number OF_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number OF_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number OF_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number OF_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number OF_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number OF_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 
@@ -87,12 +87,12 @@ Number OF_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_BR_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-Number BR_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number BR_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number BR_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number BR_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number BR_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number BR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number BR_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 
 //============== ER items ======================================================
 // Setpoint items
@@ -100,12 +100,12 @@ Number BR_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
 String v_ER_SetPoint_auto_update_by_timeline (gHeatingTimelineSetpointUpdateProxys)
 
 // new timeline setpoints for auto
-Number ER_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number ER_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number ER_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number ER_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number ER_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number ER_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number ER_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 //============== AT items ======================================================
@@ -115,12 +115,12 @@ String v_AT_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdatePro
 
 // timeline setpoints for auto - 'min, cool, comfort, warm, hot, max'
 
-Number AT_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number AT_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number AT_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
 
 
@@ -133,10 +133,10 @@ Switch fan_heater_timeline_disable
 //proxy item to monitor any op from Transfer_CT_SetPoint_auto
 String v_FH_SetPoint_auto_update_by_timeline  (gHeatingTimelineSetpointUpdateProxys)
 
-Number FH_Setpoint_auto_1  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_2  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_3  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_4  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_5  (gHeating_Setpoint_auto_updates_webui)
-Number FH_Setpoint_auto_6  (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_1 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_2 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_3 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_4 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_5 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
+Number FH_Setpoint_auto_6 "[%.1f %unit%]" (gHeating_Setpoint_auto_updates_webui)
 //==============================================================================
