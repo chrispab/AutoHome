@@ -1,7 +1,10 @@
 Group gER_Thermostat "Elsie's Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Elsie's Room" ] }
 String ER_ThermostatMode "Elsie's Room Thermostat Mode" <settings> (gER_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number:Temperature ER_ThermostatTemperatureSetpoint "Elsie's Room Setpoint [%.1f °C]" <heating> (gChart_Minute, gER_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
-Number:Temperature ER_ThermostatTemperatureAmbient "Elsie's Room Temperature [%.1f °C]" <temperature> (gChart_Minute, gER_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor04:temperature"}
+
+// Number:Temperature ER_ThermostatTemperatureAmbient "Elsie's Room Temperature [%.1f °C]" <temperature> (gChart_Minute, gER_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor04:temperature"}
+Number:Temperature ER_ThermostatTemperatureAmbient "Elsie's Room Temperature [%.1f °C]" <temperature> (gChart_Minute, gER_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:elsiesRoomRadiatorValve:temperature"}
+
 Number:Dimensionless ER_ThermostatHumidityAmbient "Elsie's Room Humidity [%.1f °C]" <humidity> (gChart_Minute, gER_Thermostat, gThermostatHumidityAmbients) {unit="%",  ga="thermostatHumidityAmbient", channel="mqtt:topic:THSensor04:humidity" }
 
 // // // //additional params for use in openhab functions etc

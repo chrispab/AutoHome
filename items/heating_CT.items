@@ -9,17 +9,17 @@ Number:Temperature CT_ThermostatTemperatureSetpoint "Conservatory  Thermostat Se
 Number:Temperature CT_ThermostatTemperatureAmbient "Conservatory Temperature [%.1f %unit%]" <temperature> (gChart_Minute, gCT_Thermostat, gThermostatTemperatureAmbients)
                         {ga="thermostatTemperatureAmbient"}
 Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humidity> (gChart_Minute, gCT_Thermostat, gThermostatHumidityAmbients)
-                        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity"}
+                        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadiatorValve:humidity"}
 
 //var for reading and smoothing temperature readings
 Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gChart_Minute)
-                        {channel="mqtt:topic:conservatoryRadThermoValve:temperature", unit="°C"}
+                        {channel="mqtt:topic:conservatoryRadiatorValve:temperature", unit="°C"}
 Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature precision [%.1f %unit%]" <temperature> (gChart_Minute)
 //heater
-Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadThermoValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
+Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadiatorValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
 String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)
-String               CT_Heater_Reachable "Conservatory Reachable" <qualityofservice> (gHeaterReachables) {channel="mqtt:topic:conservatoryRadThermoValve:reachable"}
-Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadThermoValve:rssi"}
+String               CT_Heater_Reachable "Conservatory Reachable" <qualityofservice> (gHeaterReachables) {channel="mqtt:topic:conservatoryRadiatorValve:reachable"}
+Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadiatorValve:rssi"}
 
 //boost
 Switch      CT_Heater_Boost "Conservatory Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)

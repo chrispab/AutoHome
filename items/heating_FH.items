@@ -12,9 +12,9 @@ Number FH_outside_temperature_enable "FH_outside_temperature_enable"
 Group gFH_Thermostat "Fan Heater Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Conservatory" ] }
 String FH_ThermostatMode "Fan Heater Thermostat Mode" <settings> (gFH_Thermostat, gThermostatModes) { ga="thermostatMode" }
 Number:Temperature FH_ThermostatTemperatureSetpoint "Fan Heater Setpoint [%.1f °C]" <heating> (gChart_Minute, gFH_Thermostat) { ga="thermostatTemperatureSetpoint" }
-Number:Temperature FH_ThermostatTemperatureAmbient "Fan Heater Temperature [%.1f °C]" <temperature> (gChart_Minute, gFH_Thermostat) { ga="thermostatTemperatureAmbient"}//, channel="mqtt:topic:conservatoryRadThermoValve:temperature" }
+Number:Temperature FH_ThermostatTemperatureAmbient "Fan Heater Temperature [%.1f °C]" <temperature> (gChart_Minute, gFH_Thermostat) { ga="thermostatTemperatureAmbient"}//, channel="mqtt:topic:conservatoryRadiatorValve:temperature" }
 Number:Dimensionless FH_ThermostatHumidityAmbient "Fan Heater Humidity [%.1f °C]" <humidity> (gChart_Minute, gFH_Thermostat, gThermostatHumidityAmbients)
-        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadThermoValve:humidity" }
+        {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadiatorValve:humidity" }
 
 
 //additional params for use in openhab functions etc 

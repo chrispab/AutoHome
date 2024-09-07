@@ -8,7 +8,7 @@ Thing mqtt:topic:fanHeater  "Fan Heater" (mqtt:broker:MyMQTTBroker) {
 }
 
 
-Thing mqtt:topic:conservatoryRadThermoValve  "Conservatory RTV" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
+Thing mqtt:topic:conservatoryRadiatorValve  "Conservatory RTV" (mqtt:broker:MyMQTTBroker)  @ "Conservatory" {
     Channels:
         Type number : temperature  [ stateTopic="433Bridge/Temperature"]
         Type number : humidity     [ stateTopic="433Bridge/Humidity" ]
