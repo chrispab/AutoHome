@@ -6,7 +6,9 @@ Switch  ZbBridgePermitJoin  "Zigbee2mqtt Bridge Permit join"    (gZbBridge)  {ch
 String  ZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
 String  ZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
 String  ZbBridge_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
+String  ZbBridge_availability "ZbBridge_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeebridge:availability"}
 
 Number  ZbRouter_01_Quality "Zigbee2mqtt router  LinkQuality [%d]"  <qualityofservice>  {channel="mqtt:topic:zigbeerouter01:linkquality"}
 String  ZbRouter_01_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeerouter01:reachable", expire="2m,state=OFF" }
+String  ZbRouter_01_availability "ZbRouter_01_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeerouter01:availability"}
 
