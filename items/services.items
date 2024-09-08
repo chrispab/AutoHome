@@ -4,7 +4,7 @@ Group:Switch:OR(OFF,ON)    gServices_Support_Online // online Services
 
 Group:Switch:OR(OFF,ON)    gHeating_Temp_Sensors_Online // online Services
 
-Group:Switch:OR(OFF,ON)    gZigbee_Devices_Online // zigbee device availablity
+Group:Switch:OR(OFF,ON)    gZigbee_Devices_Availability // zigbee device availablity
 
 
 

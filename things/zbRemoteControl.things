@@ -4,4 +4,6 @@ Thing mqtt:topic:ikearemote01 "Tradfri Remote 01" (mqtt:broker:MyMQTTBroker)
     Type number : linkquality "Ikea remote 1 LinkQuality" [ stateTopic="zigbee2mqtt/ikearemote01/linkquality"]
     Type number : battery "Ikea remote 1 battery" [ stateTopic="zigbee2mqtt/ikearemote01/battery"]
     Type number : update_progress [ stateTopic="zigbee2mqtt/ikearemote01/update-progress"]
+    Type string : availability "remote 1 availability" [ stateTopic="zigbee2mqtt/ikearemote01/availability" ]
+
 }
