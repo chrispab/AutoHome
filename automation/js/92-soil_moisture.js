@@ -48,7 +48,8 @@ const divisor = 8;
 // with plastic bag
 const RAW_0PC_DRY = 2135.0;
 // const RAW_100PC_WET = 1655.0;
-const RAW_100PC_WET = 1510.0;
+// const RAW_100PC_WET = 1510.0;
+const RAW_100PC_WET = 1418.0;
 
 // 1512
 
