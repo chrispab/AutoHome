@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
+/* eslint-disable max-len */
 const {
-  log, items, rules, actions, time, triggers,
+  log, items, rules, triggers,
 } = require('openhab');
 
 // Log versions
@@ -18,6 +20,7 @@ scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
   logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
+  // eslint-disable-next-line no-use-before-define
   logger.debug('>sensorLights: {}', JSON.stringify(sensorLights));
 };
 
@@ -25,8 +28,19 @@ scriptLoaded = function () {
 /**
  *
  */
+
 class SensorLight {
-  constructor(name, occupancyItemName, offTimerDurationItemName, lightLevelActiveThresholdItem, offTimerDuration, ...lightItemNames) {
+  /**
+   * Initializes a SensorLight instance with the given parameters.
+   *
+   * @param {string} name - The name of the SensorLight instance.
+   * @param {string} occupancyItemName - The name of the occupancy item associated with this SensorLight instance.
+   * @param {string} offTimerDurationItemName - The name of the off-timer duration item associated with this SensorLight instance.
+   * @param {number} offTimerDuration - The duration of the off-timer in seconds.
+   * @param {...string} lightItemNames - The names of the light items associated with this SensorLight instance.
+   * @return {undefined}
+   */
+  constructor(name, occupancyItemName, offTimerDurationItemName, offTimerDuration, defaultOffTimerDuration, ...lightItemNames) {
     this.name = name;
     this.occupancyItemName = occupancyItemName;
     this.offTimerDurationItemName = offTimerDurationItemName;
@@ -41,6 +55,24 @@ class SensorLight {
     this.rawlabelitem.setLabel(this.label);
   }
 
+  /**
+   * Controls the lights associated with this SensorLight instance.
+   *
+   * @param {string} state - The state to set the lights to (default: 'OFF')
+   * @return {undefined}
+   */
+  lightsControl(state = 'OFF') {
+    this.lightItemNames.forEach((lightItemName) => {
+      logger.debug('send {} -> {}', state, lightItemName);
+      items.getItem(lightItemName).sendCommand(state);
+    });
+  }
+
+  /**
+   * Retrieves the timer duration for the off-timer duration item name associated with this SensorLight instance.
+   *
+   * @return {number} The timer duration in milliseconds, or null if the off-timer duration item name is missing.
+   */
   getOffTimerDuration() {
     // get timerDuration for this offTimerDurationItemName, return null if missing
     let timerDuration = items.getItem(this.offTimerDurationItemName, true).rawState;
@@ -48,13 +80,32 @@ class SensorLight {
     const timerDurationMs = (timerDuration * 1000) + 1;
     logger.debug('occupancyItemName: {}, offTimerDuration()(secs): {}', this.occupancyItemName, timerDuration);
 
-    // if (time.toZDT().isBetweenTimes('16:30', '19:30') || time.toZDT().isBetweenTimes('06:00', '07:30')) {
-    //   timerDurationMs = timerDurationMs * 2;
-    // }
-
     return timerDurationMs;
   }
 }
+
+/**
+ *
+ * @param {*} lightNames
+ * @param {*} state
+ */
+function lightsControl(lightNames, state = 'OFF') {
+  lightNames.forEach((lightName) => {
+    logger.debug('send {} -> {}', state, lightName);
+    items.getItem(lightName).sendCommand(state);
+  });
+}
+
+/**
+ *
+ * @param {*} ASensorLight
+ * @returns
+ */
+const occupancyOffTimerFunction = (ASensorLight) => () => {
+  logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', ASensorLight.name, JSON.stringify(ASensorLight.occupancyItemName), JSON.stringify(ASensorLight.lightItemNames));
+  // lightsControl(ASensorLight.lightItemNames, 'OFF');
+  ASensorLight.lightsControl('OFF'); // lightsControl(ASensorLight.lightItemNames, 'OFF');
+};
 
 // const kitchen_LHS_sensor =
 const slPir05 = new SensorLight('KT-LHS1', 'pir05_occupancy', 'pir05_offTimerDurationItem', 'lightLevelActiveThresholdItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
@@ -95,8 +146,9 @@ rules.JSRule({
     if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
       // turn on the sensorlight light item(s)
       if (currentSensorLight !== undefined) {
-        const lightNames = currentSensorLight.lightItemNames;
-        lightsControl(lightNames, 'ON');
+        // const lightNames = currentSensorLight.lightItemNames;
+        // lightsControl(lightNames, 'ON');
+        currentSensorLight.lightsControl('ON');
       }
     } else {
       logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT turning light on : ${currentSensorLight}, for item: ${itemName}`);
@@ -136,25 +188,3 @@ rules.JSRule({
     cache.private.put('timerMgr', timerMgr);
   },
 });
-
-/**
- *
- * @param {*} ASensorLight
- * @returns
- */
-var occupancyOffTimerFunction = (ASensorLight) => () => {
-  logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', ASensorLight.name, JSON.stringify(ASensorLight.occupancyItemName), JSON.stringify(ASensorLight.lightItemNames));
-  lightsControl(ASensorLight.lightItemNames, 'OFF');
-};
-
-/**
- *
- * @param {*} lightNames
- * @param {*} state
- */
-function lightsControl(lightNames, state = 'OFF') {
-  lightNames.forEach((lightName) => {
-    logger.debug('send {} -> {}', state, lightName);
-    items.getItem(lightName).sendCommand(state);
-  });
-}

@@ -2,9 +2,8 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 
-var ruleUID = "ct-auto-lights";
+const ruleUID = 'ct-auto-lights';
 const logger = log(ruleUID);
-
 
 const { alerting } = require('openhab-my-utils');
 
@@ -30,7 +29,7 @@ rules.JSRule({
     logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights','CRON auto turn OFF conservatory lights');
+    alerting.sendEmail('openhab lights', 'CRON auto turn OFF conservatory lights');
   },
 });
 
@@ -38,14 +37,15 @@ rules.JSRule({
 rules.JSRule({
   name: 'CRON auto turn On conservatory lights',
   description: 'CRON turn On conservatory lights dark work mornings',
-  triggers: [triggers.GenericCronTrigger('0 10 6 ? * TUE,WED,THU *')],
+  // triggers: [triggers.GenericCronTrigger('0 10 6 ? * TUE,WED,THU *')],
   // triggers: [triggers.GenericCronTrigger('0 0 19 ? * TUE,WED,THU *')],
+  triggers: [triggers.GenericCronTrigger('0 0 6 ? * MON,TUE,WED,THU,FRI *')],
 
   execute: () => {
     logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('ON');
     // items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights','CRON auto turn ON conservatory lights in work mornings');
+    alerting.sendEmail('openhab lights', 'CRON auto turn ON conservatory lights in work mornings');
   },
 });
 
@@ -58,7 +58,7 @@ rules.JSRule({
     logger.debug('turn OFF conservatory lights when ambient light level when goes from dark to light');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights','turn OFF conservatory lights when ambient light level when goes from dark to light');
+    alerting.sendEmail('openhab lights', 'turn OFF conservatory lights when ambient light level when goes from dark to light');
   },
 });
 
@@ -70,7 +70,7 @@ rules.JSRule({
   execute: () => {
     logger.debug('turn ON conservatory lights when ambient light level goes from light to dark');
     items.getItem('gConservatoryLights').sendCommand('ON');
-    alerting.sendEmail('openhab lights','auto turn ON conservatory lights  when ambient light level goes from light to dark');
+    alerting.sendEmail('openhab lights', 'auto turn ON conservatory lights  when ambient light level goes from light to dark');
   },
 });
 
@@ -111,7 +111,6 @@ rules.JSRule({
     }
   },
 });
-
 
 rules.JSRule({
   name: 'Turn ON conservatory lights via proxy',
