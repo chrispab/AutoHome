@@ -17,7 +17,7 @@ Number:Dimensionless    TL_ThermostatHumidityAmbient "Toilet Room Humidity [%.1f
 
 //heater
 Group                   gTL_Heater
-Switch                  TL_Heater_Control "Toilet Room Heater"  <my_radiator>               (gChart_Minute,gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:toiletRoomRadThermoValve:powerSwitch" }
+Switch                  TL_Heater_Control "Toilet Heating"  <my_radiator>               (gChart_Minute,gHeaterControls, gAnyRoomHeaterOn) {  ga="Switch", channel="mqtt:topic:toiletRoomRadThermoValve:powerSwitch" }
 String                  TL_Heater_Mode "Toilet Room Heating Mode" <settings>        (gChart_Minute,gHeatingModes)
 String                  TL_Heater_Reachable "Toilet Room Reachable" <qualityofservice>  (gHeaterReachables)  { channel="mqtt:topic:toiletRoomRadThermoValve:reachable" }
 Number:Dimensionless    TL_Heater_Rssi "TL RTV RSSI [%.1f]" <qualityofservice>         { channel="mqtt:topic:diningRoomRadThermoValve:rssi" }
@@ -25,6 +25,6 @@ Number:Dimensionless    TL_Heater_Rssi "TL RTV RSSI [%.1f]" <qualityofservice>  
 //boost
 Switch      TL_Heater_Boost "Toilet Room Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
 Switch      v_TL_Boost  "Toilet Room virtual Heater boost"
-Switch      v_TL_Heater_Boost  "Toilets only Heater boost" (gvHeaterBoosters) { ga="Switch" }
+Switch      v_TL_Heater_Boost  "Toilet Heating boost" (gvHeaterBoosters) { ga="Switch" }
 Number:Time TL_Boost_Countdown "Toilet Boost_Countdown"
 Number TL_Boost_Time "TL_Boost_Time"  (gBoost_Time)
