@@ -10,8 +10,8 @@ Switch  Zone1Reachable          "Zone 1"    <network>   (gServices_Core_Online) 
 Number	Zone1Rssi	    	    "Zone 1 RSSI"       			<vent>					{ channel="mqtt:topic:zone1Controller:rssi" }
 Number	Zone1_vent_on_delta_secs	    "Zone 1 vent_on_delta_secs"       	<vent>  (gChart_Minute)					{ channel="mqtt:topic:zone1Controller:vent_on_delta_secs" }
 Number	Zone1_vent_off_delta_secs	"Zone 1 vent_off_delta_secs"       	<vent>  (gChart_Minute)				    { channel="mqtt:topic:zone1Controller:vent_off_delta_secs" }
-Number:Temperature  Zone1_low_setpoint	    "Zone 1 low_setpoint"       	<vent>  (gChart_Minute)					{ channel="mqtt:topic:zone1Controller:low_setpoint" }
-Number:Temperature  Zone1_high_setpoint	    "Zone 1 high_setpoint"       	<vent>  (gChart_Minute)					{ channel="mqtt:topic:zone1Controller:high_setpoint" }
+Number:Temperature  Zone1_low_setpoint	    "Zone 1 low_setpoint [%.1f %unit%]"       	<vent>  (gChart_Minute)					{ channel="mqtt:topic:zone1Controller:low_setpoint" }
+Number:Temperature  Zone1_high_setpoint	    "Zone 1 high_setpoint [%.1f %unit%]"       	<vent>  (gChart_Minute)					{ channel="mqtt:topic:zone1Controller:high_setpoint" }
 
 // Number	Zone2Temperature		"Zone 2 Temperature [%.1f °C]"	<temperature>			{mqtt="<[mosquittoz:Zone2/TemperatureStatus:state:default]"}
 // Number	Zone2Humidity			"Zone 2 Humidity [%.1f ]"		<humidity>				{mqtt="<[mosquittoz:Zone2/HumidityStatus:state:default]"}
@@ -37,8 +37,8 @@ Switch  Zone3Reachable          "Zone 3"              <network>      (gServices_
 Number	Zone3Rssi	    	    "Zone 3 RSSI"       			<vent>					{ channel="mqtt:topic:zone3Controller:rssi" }
 Number	Zone3_vent_on_delta_secs	    "Zone 3 vent_on_delta_secs"       	<vent>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:vent_on_delta_secs" }
 Number	Zone3_vent_off_delta_secs	    "Zone 3 vent_off_delta_secs"       	<vent>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:vent_off_delta_secs" }
-Number:Temperature	Zone3_low_setpoint	    "Zone 3 low_setpoint"       	<temperature>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:low_setpoint" }
-Number:Temperature	Zone3_high_setpoint	    "Zone 3 high_setpoint"       	<temperature>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:high_setpoint" }
+Number:Temperature	Zone3_low_setpoint	    "Zone 3 low_setpoint [%.1f %unit%]"       	<temperature>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:low_setpoint" }
+Number:Temperature	Zone3_high_setpoint	    "Zone 3 high_setpoint [%.1f %unit%]"       	<temperature>	(gChart_Minute)				{ channel="mqtt:topic:zone3Controller:high_setpoint" }
 
 Switch	Zone3LightStatusAlt		"Zone 3 Light Status alt trigger"			<switch>
 
