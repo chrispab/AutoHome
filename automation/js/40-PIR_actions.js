@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 const {
-  log, items, rules, triggers,
+  log, items, rules, triggers, actions,
 } = require('openhab');
 
 // Log versions
@@ -37,7 +37,14 @@ class SensorLight {
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
    * @param {...string} lightItemNames - The names of the light items associated with this SensorLight instance.
    */
-  constructor(friendlyName, occupancySensorItemName, offTimerDurationItemName, lightLevelActiveThresholdItem, defaultOffTimerDuration, ...lightItemNames) {
+  constructor(
+    friendlyName,
+    occupancySensorItemName,
+    offTimerDurationItemName,
+    lightLevelActiveThresholdItem,
+    defaultOffTimerDuration,
+    ...lightItemNames
+  ) {
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
     // this.occupancySensorItem = items.getItem(occupancySensorItemName);
@@ -77,9 +84,13 @@ class SensorLight {
   getOffTimerDurationMs() {
     // get timerDuration for this offTimerDurationItemName, return null if missing
     let timerDuration = items.getItem(this.offTimerDurationItemName, true).rawState;
-    timerDuration = timerDuration || 10;// default to 10s if offTimerDurationItemName not defined(null)
-    const timerDurationMs = (timerDuration * 1000) + 1;
-    logger.debug('occupancySensorItemName: {}, lightLevelActiveThresholdItem()(secs): {}', this.occupancySensorItemName, timerDuration);
+    timerDuration = timerDuration || 10; // default to 10s if offTimerDurationItemName not defined(null)
+    const timerDurationMs = timerDuration * 1000 + 1;
+    logger.debug(
+      'occupancySensorItemName: {}, lightLevelActiveThresholdItem()(secs): {}',
+      this.occupancySensorItemName,
+      timerDuration,
+    );
 
     return timerDurationMs;
   }
@@ -91,18 +102,68 @@ class SensorLight {
  * @returns
  */
 const occupancyOffTimerFunction = (ASensorLight) => () => {
-  logger.debug('OFF Timer expired, location: {}, sensor: {} lights: {}', ASensorLight.friendlyName, JSON.stringify(ASensorLight.occupancySensorItemName), JSON.stringify(ASensorLight.lightItemNames));
+  logger.debug(
+    'OFF Timer expired, location: {}, sensor: {} lights: {}',
+    ASensorLight.friendlyName,
+    JSON.stringify(ASensorLight.occupancySensorItemName),
+    JSON.stringify(ASensorLight.lightItemNames),
+  );
   // lightsControl(ASensorLight.lightItemNames, 'OFF');
   ASensorLight.lightsControl('OFF');
 };
 
 // const kitchen_LHS_sensor =
-const slPir05 = new SensorLight('KT-LHS1', 'pir05_occupancy', 'pir05_offTimerDurationItem', 'lightLevelActiveThresholdItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
-const slPir06 = new SensorLight('KT-LHS2', 'pir06_occupancy', 'pir06_offTimerDurationItem', 'lightLevelActiveThresholdItem', 100, 'KT_light_2_Power', 'KT_light_3_Power');
-const slPir01 = new SensorLight('KT-RHS', 'pir01_occupancy', 'pir01_offTimerDurationItem', 'lightLevelActiveThresholdItem', 200, 'KT_light_1_Power');
-const slPir03 = new SensorLight('DR', 'pir03_occupancy', 'pir03_offTimerDurationItem', 'lightLevelActiveThresholdItem', 500, 'v_StartColourBulbsCycle');
-const slPir04 = new SensorLight('bottom-Stairs', 'pir04_occupancy', 'pir04_offTimerDurationItem', 'lightLevelActiveThresholdItem', 500, 'v_StartColourBulbsCycle', 'ZbWhiteBulb01Switch');
-const slPir02 = new SensorLight('top-of-stairs', 'pir02_occupancy', 'pir02_offTimerDurationItem', 'lightLevelActiveThresholdItem', 500, 'ZbWhiteBulb01Switch');
+const slPir05 = new SensorLight(
+  'KT-LHS1',
+  'pir05_occupancy',
+  'pir05_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  100,
+  'KT_light_2_Power',
+  'KT_light_3_Power',
+);
+const slPir06 = new SensorLight(
+  'KT-LHS2',
+  'pir06_occupancy',
+  'pir06_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  100,
+  'KT_light_2_Power',
+  'KT_light_3_Power',
+);
+const slPir01 = new SensorLight(
+  'KT-RHS',
+  'pir01_occupancy',
+  'pir01_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  200,
+  'KT_light_1_Power',
+);
+const slPir03 = new SensorLight(
+  'DR',
+  'pir03_occupancy',
+  'pir03_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  500,
+  'v_StartColourBulbsCycle',
+);
+const slPir04 = new SensorLight(
+  'bottom-Stairs',
+  'pir04_occupancy',
+  'pir04_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  500,
+  'v_StartColourBulbsCycle',
+  'ZbWhiteBulb01Switch',
+);
+const slPir02 = new SensorLight(
+  'top-of-stairs',
+  'pir02_occupancy',
+  'pir02_offTimerDurationItem',
+  'lightLevelActiveThresholdItem',
+  500,
+  'ZbWhiteBulb01Switch',
+);
 // const slPir06 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
 // const slPir05 = new SensorLight('CT-room-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
 
@@ -112,9 +173,7 @@ const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 rules.JSRule({
   name: 'PIR - OFF to ON',
   description: 'PIR occupancy ON - Turn ON light',
-  triggers: [
-    triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON'),
-  ],
+  triggers: [triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON')],
   execute: (event) => {
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
@@ -122,7 +181,17 @@ rules.JSRule({
 
     // find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
-    logger.debug('PIR OFF > ON ..currentSensorLight is: {} - {}', currentSensorLight.friendlyName, currentSensorLight.occupancySensorItemName);
+    logger.debug(
+      'PIR OFF > ON ..currentSensorLight is: {} - {}',
+      currentSensorLight.friendlyName,
+      currentSensorLight.occupancySensorItemName,
+    );
+
+    if (currentSensorLight.friendlyName === 'DR') {
+      logger.debug('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
+      // say 'possible cat alert'
+      actions.Voice.say('Alert, possible cat in the dining room');
+    }
 
     timerMgr = cache.private.get('timerMgr');
     // if an old timer exists stop it
@@ -139,7 +208,9 @@ rules.JSRule({
         currentSensorLight.lightsControl('ON');
       }
     } else {
-      logger.debug(`BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT turning light on : ${currentSensorLight}, for item: ${itemName}`);
+      logger.debug(
+        `BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT turning light on : ${currentSensorLight}, for item: ${itemName}`,
+      );
     }
   },
 });
@@ -147,9 +218,7 @@ rules.JSRule({
 rules.JSRule({
   name: 'PIR - ON to OFF',
   description: 'PIR sensor start OFF lights timer',
-  triggers: [
-    triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF'),
-  ],
+  triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: (event) => {
     itemName = event.itemName.toString();
     logger.debug(`Triggering item: ${itemName} ON -> OFF,state: ${items.getItem(itemName).state}`);
@@ -159,7 +228,11 @@ rules.JSRule({
 
     // find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
-    logger.debug('ON -> OFF..currentSensorLight is: {} - {}', currentSensorLight.friendlyName, currentSensorLight.occupancySensorItemName);
+    logger.debug(
+      'ON -> OFF..currentSensorLight is: {} - {}',
+      currentSensorLight.friendlyName,
+      currentSensorLight.occupancySensorItemName,
+    );
 
     // re/start the timer
     timerMgr = cache.private.get('timerMgr');
@@ -171,7 +244,14 @@ rules.JSRule({
     logger.debug('cancel timer with timerKey:{}', timerKey);
 
     timerMgr.check(timerKey, timerDuration, occupancyOffTimerFunction(currentSensorLight), true, null, timerName);
-    logger.debug('ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, occupancyOffTimerFunction:{}, lightNames:{}, timerRuleName:{} ', timerKey, timerDuration / 1000, 'lightsOff', JSON.stringify(currentSensorLight.lightItemNames), timerName);
+    logger.debug(
+      'ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, occupancyOffTimerFunction:{}, lightNames:{}, timerRuleName:{} ',
+      timerKey,
+      timerDuration / 1000,
+      'lightsOff',
+      JSON.stringify(currentSensorLight.lightItemNames),
+      timerName,
+    );
 
     cache.private.put('timerMgr', timerMgr);
   },
