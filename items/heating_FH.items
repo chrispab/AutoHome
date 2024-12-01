@@ -3,7 +3,7 @@
 Switch FH_Heater_Enable "FH_Heater_Enable"
 Switch FH_LinkSetpointToCTSetpoint "Link Fan Heater setpoint to CT Setpoint  [%.1f %unit%]"
 Number FH_Link_TrackingOffset "FH_Link_TrackingOffset  [%.1f %unit%]"
-Number FH_outside_temperature_enable "FH_outside_temperature_enable"
+Number FH_outside_temperature_enable "FH_outside_temperature_enable  [%.1f %unit%]"
 
 
 

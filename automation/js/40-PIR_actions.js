@@ -190,7 +190,7 @@ rules.JSRule({
     if (currentSensorLight.friendlyName === 'DR') {
       logger.debug('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
       // say 'possible cat alert'
-      actions.Voice.say('Alert, possible cat in the dining room');
+      actions.Voice.say('Possible cat in the dining room');
     }
 
     timerMgr = cache.private.get('timerMgr');
