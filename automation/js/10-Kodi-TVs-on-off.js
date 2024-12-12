@@ -24,7 +24,7 @@ scriptLoaded = function scriptLoaded() {
   }
 
   if (!tStartup) {
-    tStartup = actions.ScriptExecution.createTimer(time.toZDT((5 * 1000)), () => {
+    tStartup = actions.ScriptExecution.createTimer(time.toZDT(5 * 1000), () => {
       tv_startup_tbody();
     });
   }
@@ -45,7 +45,8 @@ rules.JSRule({
     // check if stereo already on - some stuff already on!
     // items.getItem('vCT_stereo').postUpdate('OFF'); // turn off stereo virt trigger button
     // eslint-disable-next-line no-use-before-define
-    turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
+    // turnOnTV('bg_wifisocket_1_1_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
+    turnOnTV('bg_wifisocket_1_2_power', 'bg_wifisocket_1_2_power', 'Turning on conservatory TV'); // turn off power
     logger.info('Turning on CT - TV - kodi, amp, ir bridge');
     // items.getItem('bg_wifisocket_1_2_power').sendCommand('ON'); // tv
     // items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // kodi,amp ir bridge hdmi audio
@@ -69,6 +70,11 @@ rules.JSRule({
       items.getItem('amplifier_IR_Video1').sendCommand('ON'); // IR code
       logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
     });
+    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
+      items.getItem('bg_wifisocket_1_1_power').sendCommand('ON'); // IR code
+      logger.info('STEREO - on');
+    });
+    // bg_wifisocket_1_2_power
   },
 });
 // ==================Conservatory TV OFF
@@ -93,23 +99,20 @@ rules.JSRule({
     items.getItem('CT_TV_Power').sendCommand('OFF'); // IR code
     logger.info('CT_TV_Power turn off tv to standby');
 
-    alerting.flashItemAlert('KT_light_1_Power', 4, 500);
+    alerting.flashItemAlert('KT_light_1_Power', 2, 500);
 
     logger.info('tv - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
-      CT_TV_off_timer = actions.ScriptExecution.createTimer(
-        time.ZonedDateTime.now().plusSeconds(25),
-        () => {
-          items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
-          // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
+      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
+        items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
+        // items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); //tv
 
-          items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
+        items.getItem('bg_wifisocket_1_2_power').sendCommand('OFF'); // tv
 
-          items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
-          logger.info('turned off kodi power');
-        },
-      );
+        items.getItem('vCT_TVKodiSpeakers').postUpdate('OFF'); // turn off virt trigger
+        logger.info('turned off kodi power');
+      });
     }
   },
 });
@@ -144,7 +147,7 @@ function turnOnTV(controlItem1, controlItem2, message) {
   // alerting.flashItemAlert();
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
   if (!(tvPowerOffTimer === undefined)) {
-    tvPowerOffTimer.cancel();// = undefined;
+    tvPowerOffTimer.cancel(); // = undefined;
   }
   items.getItem(controlItem1).sendCommand('ON');
   items.getItem(controlItem2).sendCommand('ON');
@@ -167,15 +170,12 @@ function turnOffTV(controlItem1, controlItem2, message) {
 
   // if off timer undefined start for pi shutdown
   // if (!(tvPowerOffTimer === undefined)) {
-  tvPowerOffTimer = actions.ScriptExecution.createTimer(
-    time.ZonedDateTime.now().plusSeconds(20),
-    () => {
-      items.getItem(controlItem2).sendCommand('OFF');
-      //     t_brtvPowerOff = None
-      // undefine the off timer
-      // tvPowerOffTimer = undefined;
-    },
-  );
+  tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), () => {
+    items.getItem(controlItem2).sendCommand('OFF');
+    //     t_brtvPowerOff = None
+    // undefine the off timer
+    // tvPowerOffTimer = undefined;
+  });
   // }
 }
 

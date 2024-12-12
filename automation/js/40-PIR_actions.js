@@ -190,7 +190,9 @@ rules.JSRule({
     if (currentSensorLight.friendlyName === 'DR') {
       logger.debug('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
       // say 'possible cat alert'
-      actions.Voice.say('Possible cat in the dining room');
+      const randomNumber = Math.floor(Math.random() * 100) + 1;
+      const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
+      actions.Voice.say(phrase);
     }
 
     timerMgr = cache.private.get('timerMgr');
