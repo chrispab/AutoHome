@@ -181,7 +181,7 @@ rules.JSRule({
 
     // find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
-    logger.debug(
+    logger.error(
       'PIR OFF > ON ..currentSensorLight is: {} - {}',
       currentSensorLight.friendlyName,
       currentSensorLight.occupancySensorItemName,
@@ -192,6 +192,9 @@ rules.JSRule({
       // say 'possible cat alert'
       const randomNumber = Math.floor(Math.random() * 100) + 1;
       const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
+
+      // actions.Audio.playSound('now_disconnected.mp3');
+
       actions.Voice.say(phrase);
     }
 
