@@ -112,7 +112,6 @@ const occupancyOffTimerFunction = (ASensorLight) => () => {
   ASensorLight.lightsControl('OFF');
 };
 
-// const kitchen_LHS_sensor =
 const slPir05 = new SensorLight(
   'KT-LHS1',
   'pir05_occupancy',
@@ -164,19 +163,19 @@ const slPir02 = new SensorLight(
   500,
   'ZbWhiteBulb01Switch',
 );
-// const slPir06 = new SensorLight('CT-room-sensor', 'pir06_occupancy', 'pir06_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
-// const slPir05 = new SensorLight('CT-room-sensor', 'pir05_occupancy', 'pir05_offTimerDurationItem', 'lightLevelActiveThresholdItem', 5000, 'v_StartColourBulbsCycle');
 
-//
 const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 
 rules.JSRule({
-  name: 'PIR - OFF to ON',
+  name: 'PIR - update   ON',
   description: 'PIR occupancy ON - Turn ON light',
-  triggers: [triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON')],
+  // triggers: [triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON')],
+  // triggers: [triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON')],
+  triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON')],
+
   execute: (event) => {
     itemName = event.itemName.toString();
-    logger.debug(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
+    logger.error(`Triggering item: ${itemName},state is: ${items.getItem(itemName).state}`);
     timerKey = itemName;
 
     // find sensorlight that has occupancy triggered
@@ -188,13 +187,12 @@ rules.JSRule({
     );
 
     if (currentSensorLight.friendlyName === 'DR') {
-      logger.debug('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
+      logger.error('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
       // say 'possible cat alert'
       const randomNumber = Math.floor(Math.random() * 100) + 1;
       const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
 
       // actions.Audio.playSound('now_disconnected.mp3');
-
       actions.Voice.say(phrase);
     }
 
@@ -226,14 +224,14 @@ rules.JSRule({
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: (event) => {
     itemName = event.itemName.toString();
-    logger.debug(`Triggering item: ${itemName} ON -> OFF,state: ${items.getItem(itemName).state}`);
+    logger.error(`Triggering item: ${itemName} ON -> OFF,state: ${items.getItem(itemName).state}`);
 
     timerKey = itemName;
     timerName = `${ruleUID}_${itemName}`;
 
     // find sensorlight that has occupancy triggered
     const currentSensorLight = sensorLights.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
-    logger.debug(
+    logger.error(
       'ON -> OFF..currentSensorLight is: {} - {}',
       currentSensorLight.friendlyName,
       currentSensorLight.occupancySensorItemName,
@@ -246,10 +244,10 @@ rules.JSRule({
     timerDuration = currentSensorLight.getOffTimerDurationMs();
 
     timerMgr.cancel(timerKey);
-    logger.debug('cancel timer with timerKey:{}', timerKey);
+    logger.error('cancel timer with timerKey:{}', timerKey);
 
     timerMgr.check(timerKey, timerDuration, occupancyOffTimerFunction(currentSensorLight), true, null, timerName);
-    logger.debug(
+    logger.error(
       'ON > OFF timerMgr.check - timerKey:{}, duration-s:{}, occupancyOffTimerFunction:{}, lightNames:{}, timerRuleName:{} ',
       timerKey,
       timerDuration / 1000,

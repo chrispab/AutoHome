@@ -14,7 +14,7 @@ Number pir01_offTimerDurationItem "pir01_offTimer" ["Slider","Light"]
 Number pir03_offTimerDurationItem "pir03_offTimer" ["Slider","Light"] 
 Number pir04_offTimerDurationItem "pir04_offTimer" ["Slider","Light"] 
 Number pir06_offTimerDurationItem "pir06_offTimer" ["Slider","Light"] 
-Number pir02_offTimerDurationItem  "pir02_offTimer" ["Slider","Light"]  
+Number pir02_offTimerDurationItem "pir02_offTimer" ["Slider","Light"]  
 
 
 Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)   ["Sensor","Pir"]  {channel="mqtt:topic:pir01:occupancy"}
