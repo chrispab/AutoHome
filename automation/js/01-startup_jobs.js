@@ -15,7 +15,7 @@ scriptLoaded = function () {
   logger.info('script loaded - startup jobs');
   // actions.Audio.playSound('regeneration_cycle_complete_normalised.mp3');
   // actions.Audio.playSound('now_disconnected.mp3');
-  actions.Voice.say('rebooting ');
+  actions.Voice.say('restarting');
 
   alerting.sendEmail('openhab startup', 'startup loaded startup_jobs', logger);
 
