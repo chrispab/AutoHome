@@ -113,7 +113,7 @@ const occupancyOffTimerFunction = (ASensorLight) => () => {
 };
 
 const slPir05 = new SensorLight(
-  'KT-LHS1',
+  'Kitchen-LHS1',
   'pir05_occupancy',
   'pir05_offTimerDurationItem',
   'lightLevelActiveThresholdItem',
@@ -122,7 +122,7 @@ const slPir05 = new SensorLight(
   'KT_light_3_Power',
 );
 const slPir06 = new SensorLight(
-  'KT-LHS2',
+  'Kitchen-LHS2',
   'pir06_occupancy',
   'pir06_offTimerDurationItem',
   'lightLevelActiveThresholdItem',
@@ -131,7 +131,7 @@ const slPir06 = new SensorLight(
   'KT_light_3_Power',
 );
 const slPir01 = new SensorLight(
-  'KT-RHS',
+  'Kitchen-RHS',
   'pir01_occupancy',
   'pir01_offTimerDurationItem',
   'lightLevelActiveThresholdItem',
@@ -139,7 +139,7 @@ const slPir01 = new SensorLight(
   'KT_light_1_Power',
 );
 const slPir03 = new SensorLight(
-  'DR',
+  'Dining Room',
   'pir03_occupancy',
   'pir03_offTimerDurationItem',
   'lightLevelActiveThresholdItem',
@@ -186,11 +186,22 @@ rules.JSRule({
       currentSensorLight.occupancySensorItemName,
     );
 
-    if (currentSensorLight.friendlyName === 'DR') {
+    if (currentSensorLight.friendlyName === slPir03.friendlyName) {
       logger.error('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
-      // say 'possible cat alert'
+
       const randomNumber = Math.floor(Math.random() * 100) + 1;
-      const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
+      const phrase1 = 'Possible cat in the dining room';
+      const phrase2 = 'Impossible cat in the dining room';
+      const phrase3 = 'Possible Twat in the dining room';
+      // const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
+      let phrase;
+      if (randomNumber < 45) {
+        phrase = phrase1;
+      } else if (randomNumber < 90) {
+        phrase = phrase2;
+      } else {
+        phrase = phrase3;
+      }
 
       // actions.Audio.playSound('now_disconnected.mp3');
       actions.Voice.say(phrase);
