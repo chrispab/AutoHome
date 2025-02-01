@@ -55,6 +55,8 @@ exports.getNames = function (group, filterFunc) {
     .join(', ');
 }
 
+//
+//
 // https://github.com/openhab/openhab-distro/releases/tag/4.3.0#breaking-changes-that-require-manual-interaction-after-the-upgrade
 exports.flashItemAlert = function (flashItemName = 'CT_FairyLights433Socket', numFlashes = 1, pulseTimeMs = 500) {
   const currentState = items.getItem(flashItemName).state;

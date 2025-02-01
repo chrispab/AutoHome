@@ -193,6 +193,30 @@ rules.JSRule({
       const phrase1 = 'Possible cat in the dining room';
       const phrase2 = 'Impossible cat in the dining room';
       const phrase3 = 'Possible Twat in the dining room';
+      const phrase4 = 'Impossible Twat in the dining room';
+
+      // const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
+      let phrase;
+      if (randomNumber < 25) {
+        phrase = phrase1;
+      } else if (randomNumber < 50) {
+        phrase = phrase2;
+      } else if (randomNumber < 75) {
+        phrase = phrase3;
+      } else {
+        phrase = phrase4;
+      }
+
+      // actions.Audio.playSound('now_disconnected.mp3');
+      actions.Voice.say(phrase);
+    }
+    if (currentSensorLight.friendlyName === slPir04.friendlyName) {
+      logger.error('DR PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
+
+      const randomNumber = Math.floor(Math.random() * 100) + 1;
+      const phrase1 = 'Possible cat in the dining room';
+      const phrase2 = 'Impossible cat in the dining room';
+      const phrase3 = 'Possible Twat in the dining room';
       // const phrase = randomNumber > 50 ? 'Possible cat in the dining room' : 'Impossible cat in the dining room';
       let phrase;
       if (randomNumber < 45) {
@@ -202,11 +226,11 @@ rules.JSRule({
       } else {
         phrase = phrase3;
       }
+      phrase = 'bottom of stairs';
 
       // actions.Audio.playSound('now_disconnected.mp3');
       actions.Voice.say(phrase);
     }
-
     timerMgr = cache.private.get('timerMgr');
     // if an old timer exists stop it
     if (timerMgr.hasTimer(timerKey)) {

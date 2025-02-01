@@ -2,7 +2,7 @@ const {
   log, items, rules, actions, triggers,
 } = require('openhab');
 
-var ruleUID = "heating-ct-smooth-temperature";
+const ruleUID = 'heating-ct-smooth-temperature';
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.heating-ct-smooth-temperature
 // log:set INFO org.openhab.automation.openhab-js.heating-ct-smooth-temperature
@@ -10,11 +10,11 @@ const logger = log(ruleUID);
 scriptLoaded = function () {
   logger.debug('scriptLoaded - {}', ruleUID);
 
-  for (let transferPoint in transferCurve) {
+  for (const transferPoint in transferCurve) {
     // logger.debug('==transferPoint: {}, transferCurve[transferPoint]: {}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
-    logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
+    logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
 
-    for (let property in transferCurve[transferPoint]) {
+    for (const property in transferCurve[transferPoint]) {
       // logger.debug('=== property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
 
       // if (absDiff <= transferCurve[transferPoint]['input']) {
@@ -25,8 +25,7 @@ scriptLoaded = function () {
   }
 };
 
-
-var transferCurve = cache.private.get('transferCurve', () => ({
+let transferCurve = cache.private.get('transferCurve', () => ({
   p_0: { input: 0.05, factor: 1.0 },
   p_1: { input: 0.1, factor: 0.9 },
   p_2: { input: 0.2, factor: 0.8 },
@@ -39,10 +38,9 @@ var transferCurve = cache.private.get('transferCurve', () => ({
   p_9: { input: 0.9, factor: 0.2 },
   p_10: { input: 1.0, factor: 0.2 },
   p_11: { input: 5.0, factor: 0.1 },
-  p_11: { input: 10.0, factor: 0.1 },
-  p_12: { input: 99.0, factor: 0.01 }
+  p_12: { input: 10.0, factor: 0.1 },
+  p_13: { input: 99.0, factor: 0.01 },
 }));
-
 
 // val DateTime datetime = new DateTime(1514484000)
 // val String time = datetime.toLocalTime().toString("HH:mm")
@@ -52,9 +50,9 @@ rules.JSRule({
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
   execute: () => {
-    logger.debug(`...............................`);
+    logger.debug('...............................');
 
-    var rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
+    const rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
     // logger.debug(`..new reading,raw temp is: ${rawTemp}`);
 
     let preciseTemp = items.getItem('CT_ThermostatTemperatureAmbient_precision').rawState;
@@ -65,64 +63,61 @@ rules.JSRule({
       logger.debug(`..setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
     }
 
-    let newPreciseTemp = calcNewTemp(preciseTemp, rawTemp);
-    //save now 'previous' temp
-    prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state
-    
-    
-    //to 1 dp for dispaly and rules etc
-    workingTemp = Number(newPreciseTemp).toFixed(1);
+    const newPreciseTemp = calcNewTemp(preciseTemp, rawTemp);
+    // save now 'previous' temp
+    const prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
+
+    // to 1 dp for dispaly and rules etc
+    const workingTemp = Number(newPreciseTemp).toFixed(1);
     items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
     // logger.debug(`..writing new working 1dp temp : ${workingTemp}`);
 
-    //store as precise 3dp value
+    // store as precise 3dp value
     items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newPreciseTemp);
     // logger.debug(`..writing new precision 3dp temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
 
     items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
 
-    //get temp in working item value
-    let ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
+    // get temp in working item value
+    const ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     logger.debug(`..newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
 
     logger.debug(`..prev temp: ${prevTemp}, raw temp: ${rawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
   },
 });
 
-
 /**
- * 
- * @param {string} roomPrefix 
+ *
+ * @param {string} roomPrefix
  */
 function calcNewTemp(previousTemperature, newTemperature) {
-
   transferCurve = cache.private.get('transferCurve');
 
-  var prec = 3;
+  const prec = 3;
 
   // logger.debug('...calcNewTemp');
   // logger.debug('...precision: {}', prec);
 
   logger.debug('...previousTemperature precise: {}', previousTemperature);
   logger.debug('...newTemperature raw: {}', newTemperature);
-  // calc 
-  var tempDiff = previousTemperature - newTemperature;
+  // calc
+  let tempDiff = previousTemperature - newTemperature;
   // tempDiff = tempDiff.toFixed(2);
   tempDiff = tempDiff.toFixed(prec);
   absDiff = Math.abs(tempDiff);
 
   logger.debug('...temp diff: {}', tempDiff);
 
-  factor = transferValue(absDiff)
-  let tempAdd = tempDiff * factor;
+  factor = transferValue(absDiff);
+  const tempAdd = tempDiff * factor;
   // logger.debug('...factor: {}', factor);
 
   logger.debug('...temp to Add (temp diff: {} * factor: {}): {}', tempDiff, factor, tempAdd);
 
-  let newTemp = previousTemperature - tempAdd;
+  const newTemp = previousTemperature - tempAdd;
   // logger.debug('...newTemp before toFixed: {}', newTemp);
 
-  newTempFixed = newTemp.toFixed(prec)
+  newTempFixed = newTemp.toFixed(prec);
   // logger.debug(`...returnin newTemp.toFixed(prec) ${newTempFixed}`);
   logger.debug('...newTemp toFixed {}dp: {}', prec, newTempFixed);
 
@@ -132,20 +127,17 @@ function calcNewTemp(previousTemperature, newTemperature) {
   return newTempFixed;
 }
 
-
-
 function transferValue(absDiff) {
-
-  for (let transferPoint in transferCurve) {
-    logger.debug('~~ transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
-    for (let property in transferCurve[transferPoint]) {
+  for (const transferPoint in transferCurve) {
+    logger.debug('~~ transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
+    for (const property in transferCurve[transferPoint]) {
       // logger.debug('~~~ property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
 
-      if (absDiff <= transferCurve[transferPoint]['input']) {
+      if (absDiff <= transferCurve[transferPoint].input) {
         // logger.debug('~~~~ input is <=: {}, return factor: {}', transferCurve[transferPoint]['input'], transferCurve[transferPoint]['factor']) // '0.05' in the first iteration
-        return transferCurve[transferPoint]['factor']
+        return transferCurve[transferPoint].factor;
       }
     }
   }
-  return 0.001
+  return 0.001;
 }
