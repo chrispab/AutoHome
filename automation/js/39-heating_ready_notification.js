@@ -1,11 +1,11 @@
 const {
-  log, actions
+  log, actions,
 } = require('openhab');
 
-var ruleUID = "heating-ready-notification";
+const ruleUID = 'heating-ready-notification';
 
 const logger = log(ruleUID);
 
 scriptLoaded = function () {
-  actions.Voice.say('heating control is now available');
+  // actions.Voice.say('heating control is now available');
 };

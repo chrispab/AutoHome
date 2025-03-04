@@ -70,7 +70,7 @@ scriptLoaded = function scriptLoaded() {
       tv_startup_tbody();
     });
   }
-  actions.Voice.say('tvs now available');
+  // actions.Voice.say('tvs now available');
 };
 
 function tv_startup_tbody() {

@@ -33,7 +33,7 @@ class SensorLight {
    * @param {string} friendlyName - The friendlyName of the SensorLight instance.
    * @param {string} occupancySensorItemName - The name of the occupancy item associated with this SensorLight instance.
    * @param {string} offTimerDurationItemName - The name of the off-timer duration item associated with this SensorLight instance.
-   * @param {string} lightLevelActiveThresholdItemName - The name of the light level active threshold item associated with this Sensor.
+   * @param {number} lightLevelActiveThresholdItem - The light level active threshold item associated with this Sensor.
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
    * @param {...string} lightItemNames - The names of the light items associated with this SensorLight instance.
    */
@@ -41,7 +41,7 @@ class SensorLight {
     friendlyName,
     occupancySensorItemName,
     offTimerDurationItemName,
-    lightLevelActiveThresholdItemName,
+    lightLevelActiveThresholdItem,
     defaultOffTimerDuration,
     ...lightItemNames
   ) {
@@ -50,7 +50,7 @@ class SensorLight {
     // this.occupancySensorItem = items.getItem(occupancySensorItemName);
 
     this.offTimerDurationItemName = offTimerDurationItemName;
-    this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;
+    this.lightLevelActiveThresholdItem = lightLevelActiveThresholdItem;
     this.defaultOffTimerDuration = defaultOffTimerDuration;
     this.lightItemNames = lightItemNames;
 
@@ -76,46 +76,23 @@ class SensorLight {
 
   /**
    * Retrieves the duration of the off timer for this SensorLight instance.
-   * If the off timer duration item is not defined, a default duration is used.
+   * If the off timer duration item is not defined, a default duration of 10 seconds is used.
    * The duration is returned in milliseconds.
    *
    * @return {number} The duration of the off timer in milliseconds.
    */
   getOffTimerDurationMs() {
-    // get timerDuration for this offTimerDurationItemName, return default if missing
+    // get timerDuration for this offTimerDurationItemName, return null if missing
     let timerDuration = items.getItem(this.offTimerDurationItemName, true).rawState;
-    if (timerDuration === undefined) {
-      timerDuration = this.defaultOffTimerDuration;
-    }
-
+    timerDuration = timerDuration || 10; // default to 10s if offTimerDurationItemName not defined(null)
     const timerDurationMs = timerDuration * 1000 + 1;
     logger.debug(
-      'occupancySensorItemName: {}, offTimerDurationItemName: {}, timerDuration(secs): {}',
+      'occupancySensorItemName: {}, lightLevelActiveThresholdItem()(secs): {}',
       this.occupancySensorItemName,
-      this.offTimerDurationItemName,
       timerDuration,
     );
 
     return timerDurationMs;
-  }
-
-  /**
-   * Checks if the current light level is below the active threshold for this SensorLight.
-   *
-   * @returns {boolean} True if the light level is below the threshold, false otherwise.
-   */
-  isLightLevelActive() {
-    const currentLightLevel = items.getItem('BridgeLightSensorLevel').rawState;
-    const lightLevelThreshold = items.getItem(this.lightLevelActiveThresholdItemName).rawState;
-    const isActive = currentLightLevel < lightLevelThreshold;
-    logger.debug(
-      'Checking light level for {}: Current level: {}, Threshold: {}, Active: {}',
-      this.friendlyName,
-      currentLightLevel,
-      lightLevelThreshold,
-      isActive,
-    );
-    return isActive;
   }
 }
 
@@ -139,7 +116,7 @@ const slPir05 = new SensorLight(
   'Kitchen-LHS1',
   'pir05_occupancy',
   'pir05_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   100,
   'KT_light_2_Power',
   'KT_light_3_Power',
@@ -148,7 +125,7 @@ const slPir06 = new SensorLight(
   'Kitchen-LHS2',
   'pir06_occupancy',
   'pir06_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   100,
   'KT_light_2_Power',
   'KT_light_3_Power',
@@ -157,7 +134,7 @@ const slPir01 = new SensorLight(
   'Kitchen-RHS',
   'pir01_occupancy',
   'pir01_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   200,
   'KT_light_1_Power',
 );
@@ -165,7 +142,7 @@ const slPir03 = new SensorLight(
   'Dining Room',
   'pir03_occupancy',
   'pir03_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   500,
   'v_StartColourBulbsCycle',
 );
@@ -173,7 +150,7 @@ const slPir04 = new SensorLight(
   'bottom-Stairs',
   'pir04_occupancy',
   'pir04_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   500,
   'v_StartColourBulbsCycle',
   'ZbWhiteBulb01Switch',
@@ -182,7 +159,7 @@ const slPir02 = new SensorLight(
   'top-of-stairs',
   'pir02_occupancy',
   'pir02_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
+  'lightLevelActiveThresholdItem',
   500,
   'ZbWhiteBulb01Switch',
 );
@@ -262,11 +239,15 @@ rules.JSRule({
     }
     cache.private.put('timerMgr', timerMgr);
 
-    if (currentSensorLight.isLightLevelActive()) {
-      currentSensorLight.lightsControl('ON');
+    if (items.getItem('BridgeLightSensorLevel').rawState < items.getItem('ConservatoryLightTriggerLevel').rawState) {
+      // turn on the sensorlight light item(s)
+      // if (currentSensorLight !== undefined) {
+      if (currentSensorLight) {
+        currentSensorLight.lightsControl('ON');
+      }
     } else {
       logger.debug(
-        `Light level above threshold, NOT turning light on : ${currentSensorLight.friendlyName}, for item: ${itemName}`,
+        `BridgeLightSensorLevel ABOVE ConservatoryLightTriggerLevel, NOT turning light on : ${currentSensorLight}, for item: ${itemName}`,
       );
     }
   },

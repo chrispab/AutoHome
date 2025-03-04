@@ -13,7 +13,7 @@ const logger = log(ruleUID);
 
 scriptLoaded = function scriptLoaded() {
   logger.info('scriptLoaded - System started - LG TV startup settings');
-  actions.Voice.say('TV');
+  // actions.Voice.say('TV');
 };
 
 // Group gTVApplication

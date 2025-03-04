@@ -3,9 +3,8 @@ const {
 } = require('openhab');
 const { alerting } = require('openhab-my-utils');
 
-var ruleUID = "final-jobs";
+const ruleUID = 'final-jobs';
 const logger = log(ruleUID);
-
 
 scriptLoaded = function () {
   logger.info('script loaded -final-jobs');
@@ -14,7 +13,7 @@ scriptLoaded = function () {
 
   infoStr = `startup script loaded final-jobs - ${audioFile}`;
   actions.Audio.playSound(audioFile);
-  alerting.sendEmail('openhab script loaded -final-jobs',infoStr,logger);
+  alerting.sendEmail('openhab script loaded -final-jobs', infoStr, logger);
 
   logger.info(infoStr);
 };
@@ -22,12 +21,7 @@ scriptLoaded = function () {
 require('@runtime').lifecycleTracker.addDisposeHook(() => {
   // actions.Audio.playSound('61 Transporter Materialization.mp3');
   // actions.Audio.playSound('61 Transporter Materialization.mp3');
-  alerting.sendEmail('openhab addDisposeHook', 'lifecycleTracker.addDisposeHook',logger);
+  alerting.sendEmail('openhab addDisposeHook', 'lifecycleTracker.addDisposeHook', logger);
   logger.info('lifecycleTracker.addDisposeHook,');
-  actions.Voice.say('final jobs complete');
-
+  // actions.Voice.say('startup complete');
 });
-
-
-
-
