@@ -1,0 +1,68 @@
+cmd works
+
+docker run -d --sysctl net.ipv4.ping_group_range="0 2147483647" 
+--env TWINGATE_NETWORK="dovecote" 
+--env TWINGATE_ACCESS_TOKEN="eyJhbGciOiJFUzI1NiIsImtpZCI6IjFRaHpOTkxmZ3h0UnQ5Y3JDdDNORWs0VDk5bF9XckVHb3dVNkJhSGZUU0kiLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiNDUxODE2IiwiZGlkIjoiMjAwMzYxOSIsImp0aSI6Ijc3ZGU1NjJmLTU5MjItNDFjZS1iNjMwLWM4N2UyM2ExYWM1YiIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoiZG92ZWNvdGUiLCJleHAiOjE3Mzk4MjEyMjgsImlhdCI6MTczOTgxNzYyOCwidmVyIjoiNCIsInRpZCI6IjEzNDQ2NCIsInJudyI6MTczOTgxNzg4MCwicm5ldGlkIjoiMTc1ODY3In0.Afd1y-sQ8zx9Dxk9YqUUfT9hRP5XceiwlmoCu6VEgmYMRa3yLUncNdwwqn1c6mMY4xApXFjz4QKgm17dQBjS4A" 
+--env TWINGATE_REFRESH_TOKEN="3Q-2kn5H4DsH6lijqnwLgZqJHu_nguNni4b-2GiD-zkUTVjV5SpvELFYN2acXoDpJSUn9c06q3byXb1UFVkwJRwoJNUrc_ybY4kRM0ZrRf1G8UYyWK9PsGo-kxTBocydySy_jg"  
+--env TWINGATE_LABEL_HOSTNAME="`hostname`" 
+--env TWINGATE_LABEL_DEPLOYED_BY="docker" 
+--name "twingate-versed-gibbon" 
+--restart=unless-stopped 
+--pull=always twingate/connector:1
+
+works
+
+  twingate-connector:
+    container_name: "twingate-versed-gibbon"    
+    restart: unless-stopped
+    image: twingate/connector:latest
+    #network_mode: host
+    environment:
+      - TWINGATE_NETWORK=dovecote
+      - TWINGATE_ACCESS_TOKEN=eyJhbGciOiJFUzI1NiIsImtpZCI6IjFRaHpOTkxmZ3h0UnQ5Y3JDdDNORWs0VDk5bF9XckVHb3dVNkJhSGZUU0kiLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiNDUxODE2IiwiZGlkIjoiMjAwMzYxOSIsImp0aSI6Ijc3ZGU1NjJmLTU5MjItNDFjZS1iNjMwLWM4N2UyM2ExYWM1YiIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoiZG92ZWNvdGUiLCJleHAiOjE3Mzk4MjEyMjgsImlhdCI6MTczOTgxNzYyOCwidmVyIjoiNCIsInRpZCI6IjEzNDQ2NCIsInJudyI6MTczOTgxNzg4MCwicm5ldGlkIjoiMTc1ODY3In0.Afd1y-sQ8zx9Dxk9YqUUfT9hRP5XceiwlmoCu6VEgmYMRa3yLUncNdwwqn1c6mMY4xApXFjz4QKgm17dQBjS4A
+      - TWINGATE_REFRESH_TOKEN=3Q-2kn5H4DsH6lijqnwLgZqJHu_nguNni4b-2GiD-zkUTVjV5SpvELFYN2acXoDpJSUn9c06q3byXb1UFVkwJRwoJNUrc_ybY4kRM0ZrRf1G8UYyWK9PsGo-kxTBocydySy_jg
+      - TWINGATE_LOG_ANALYTICS=v2
+      - TWINGATE_LOG_LEVEL=7
+      - TWINGATE_DNS=192.168.0.199
+      - TWINGATE_LABEL_HOSTNAME="`hostname`"
+      - TWINGATE_LABEL_DEPLOYED_BY="docker"
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"
+
+
+
+
+
+  twingate-connector:
+    container_name: "twingate-versed-gibbon"    
+    restart: unless-stopped
+    image: twingate/connector:latest
+    environment:
+      - TWINGATE_NETWORK=dovecote
+      - TWINGATE_ACCESS_TOKEN=eyJhbGciOiJFUzI1NiIsImtpZCI6IjFRaHpOTkxmZ3h0UnQ5Y3JDdDNORWs0VDk5bF9XckVHb3dVNkJhSGZUU0kiLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiNDUxODE2IiwiZGlkIjoiMjAwMzYxOSIsImp0aSI6Ijc3ZGU1NjJmLTU5MjItNDFjZS1iNjMwLWM4N2UyM2ExYWM1YiIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoiZG92ZWNvdGUiLCJleHAiOjE3Mzk4MjEyMjgsImlhdCI6MTczOTgxNzYyOCwidmVyIjoiNCIsInRpZCI6IjEzNDQ2NCIsInJudyI6MTczOTgxNzg4MCwicm5ldGlkIjoiMTc1ODY3In0.Afd1y-sQ8zx9Dxk9YqUUfT9hRP5XceiwlmoCu6VEgmYMRa3yLUncNdwwqn1c6mMY4xApXFjz4QKgm17dQBjS4A
+      - TWINGATE_REFRESH_TOKEN=3Q-2kn5H4DsH6lijqnwLgZqJHu_nguNni4b-2GiD-zkUTVjV5SpvELFYN2acXoDpJSUn9c06q3byXb1UFVkwJRwoJNUrc_ybY4kRM0ZrRf1G8UYyWK9PsGo-kxTBocydySy_jg
+      - TWINGATE_LOG_ANALYTICS=v2
+      - TWINGATE_LOG_LEVEL=7
+      #- TWINGATE_DNS="192.168.0.199"
+      - TWINGATE_LABEL_HOSTNAME="`hostname`"
+      - TWINGATE_LABEL_DEPLOYED_BY="docker"
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"
+
+
+
+  twingate-connector:
+    container_name: "twingate-versed-gibbon"    
+    restart: unless-stopped
+    image: twingate/connector:latest
+    environment:
+      - TWINGATE_NETWORK=dovecote
+      - TWINGATE_ACCESS_TOKEN=eyJhbGciOiJFUzI1NiIsImtpZCI6IjFRaHpOTkxmZ3h0UnQ5Y3JDdDNORWs0VDk5bF9XckVHb3dVNkJhSGZUU0kiLCJ0eXAiOiJEQVQifQ.eyJudCI6IkFOIiwiYWlkIjoiNDUxODE2IiwiZGlkIjoiMjAwMzYxOSIsImp0aSI6Ijc3ZGU1NjJmLTU5MjItNDFjZS1iNjMwLWM4N2UyM2ExYWM1YiIsImlzcyI6InR3aW5nYXRlIiwiYXVkIjoiZG92ZWNvdGUiLCJleHAiOjE3Mzk4MjEyMjgsImlhdCI6MTczOTgxNzYyOCwidmVyIjoiNCIsInRpZCI6IjEzNDQ2NCIsInJudyI6MTczOTgxNzg4MCwicm5ldGlkIjoiMTc1ODY3In0.Afd1y-sQ8zx9Dxk9YqUUfT9hRP5XceiwlmoCu6VEgmYMRa3yLUncNdwwqn1c6mMY4xApXFjz4QKgm17dQBjS4A
+      - TWINGATE_REFRESH_TOKEN=3Q-2kn5H4DsH6lijqnwLgZqJHu_nguNni4b-2GiD-zkUTVjV5SpvELFYN2acXoDpJSUn9c06q3byXb1UFVkwJRwoJNUrc_ybY4kRM0ZrRf1G8UYyWK9PsGo-kxTBocydySy_jg
+      - TWINGATE_LOG_ANALYTICS=v2
+      - TWINGATE_LOG_LEVEL=7
+      - TWINGATE_DNS="192.168.0.199"
+      - TWINGATE_LABEL_HOSTNAME="`hostname`"
+      - TWINGATE_LABEL_DEPLOYED_BY="docker"
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"

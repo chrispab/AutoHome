@@ -74,14 +74,14 @@ scriptLoaded = function scriptLoaded() {
 };
 
 function tv_startup_tbody() {
-  for (const roomName in tvConfig) {
+  Object.keys(tvConfig).forEach((roomName) => {
     const room = tvConfig[roomName];
     if (room.tvSwitch) {
       if (items.getItem(room.tvSwitch).state === 'NULL') {
         items.getItem(room.tvSwitch).postUpdate('OFF');
       }
     }
-  }
+  });
 }
 
 let tvPowerOffTimer;
@@ -166,8 +166,9 @@ function turnOffTV(roomName, message) {
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
       CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
-        items.getItem(room.kodiPower).sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
-        items.getItem(room.tvPower).sendCommand('OFF'); // tv
+        items.getItem(room.kodiPower).sendCommand('OFF'); // CT kodi, amp, ir bridge
+        items.getItem(room.tvPower).sendCommand('OFF'); // tv, hdmi audio extractor
+
         items.getItem(room.tvSwitch).postUpdate('OFF'); // turn off virt trigger
         logger.info('turned off kodi power');
       });

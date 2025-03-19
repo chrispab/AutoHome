@@ -48,14 +48,12 @@ rules.JSRule({
           logger.debug('3. App change ignored: appName is undefined.');
         } else if (appName === 'com.webos.app.hdmi2') {
           logger.debug('3. App change ignored: appName is HDMI2 input.');
-        } else {
+        } else if (items.getItem('CT_TV_LastApp').state !== appName) {
           // Send command only if the state has changed
-          if (items.getItem('CT_TV_LastApp').state !== appName) {
-            items.getItem('CT_TV_LastApp').sendCommand(appName);
-            logger.info(`4. Stored new last app: ${appName}`);
-          } else {
-            logger.debug('4. App not stored. App is the same as the current value.');
-          }
+          items.getItem('CT_TV_LastApp').sendCommand(appName);
+          logger.info(`4. Stored new last app: ${appName}`);
+        } else {
+          logger.debug('4. App not stored. App is the same as the current value.');
         }
       } else {
         logger.debug('App change ignored: TV is OFF.');
@@ -111,12 +109,11 @@ rules.JSRule({
           const commandResult = items.getItem('CT_TV_Application').sendCommand(appToLaunch);
           if (commandResult) {
             logger.info('5--TV-Restore: App Launched.');
+          } else {
+            const errorMessage = `5--TV-Restore: App Launch failed for: ${appToLaunch}`;
+            logger.error(errorMessage);
+            alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
           }
-          // else {
-          //   const errorMessage = `5--TV-Restore: App Launch failed for: ${appToLaunch}`;
-          //   logger.error(errorMessage);
-          //   alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
-          // }
         } else {
           logger.info('5--TV-Restore: No app launched. App is the same as the current value.');
         }
