@@ -106,14 +106,15 @@ rules.JSRule({
         }
         // Send command only if the state has changed
         if (items.getItem('CT_TV_Application').state !== appToLaunch) {
-          const commandResult = items.getItem('CT_TV_Application').sendCommand(appToLaunch);
-          if (commandResult) {
-            logger.info('5--TV-Restore: App Launched.');
-          } else {
-            const errorMessage = `5--TV-Restore: App Launch failed for: ${appToLaunch}`;
-            logger.error(errorMessage);
-            alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
-          }
+          // const commandResult = items.getItem('CT_TV_Application').sendCommand(appToLaunch);
+          items.getItem('CT_TV_Application').sendCommand(appToLaunch);
+          // if (commandResult) {
+          //   logger.info('5--TV-Restore: App Launched.');
+          // } else {
+          //   const errorMessage = `5--TV-Restore: App Launch failed for: ${appToLaunch}`;
+          //   logger.error(errorMessage);
+          //   alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
+          // }
         } else {
           logger.info('5--TV-Restore: No app launched. App is the same as the current value.');
         }

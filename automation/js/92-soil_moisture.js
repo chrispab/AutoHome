@@ -19,8 +19,10 @@ function limitSensorValue(reading, minLimit, maxLimit) {
 }
 
 // Sensor Calibration Values - Adjust these based on your sensor readings.
-const RAW_0PC_DRY = 1835.0;
-const RAW_100PC_WET = 1390.0;
+// const RAW_0PC_DRY = 1835.0;
+// const RAW_100PC_WET = 1390.0;
+const RAW_0PC_DRY = 1631.0;
+const RAW_100PC_WET = 1330.0;
 const RAW_RANGE = RAW_0PC_DRY - RAW_100PC_WET;
 
 rules.JSRule({

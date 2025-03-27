@@ -220,11 +220,7 @@ const slPir04 = new SensorLight(
   'ZbWhiteBulb01Switch',
 );
 slPir04.phrases = [
-  'Possible CAT BOTTOM of stairs',
-  'Impossible CAT BOTTOM of stairs',
-  'Possible Twat bottom of stairs',
-  'Impossible Twat bottom of stairs',
-  'Idiot BOTTOM of stairs',
+  'stairs',
 ];
 
 const slPir02 = new SensorLight(
@@ -236,11 +232,7 @@ const slPir02 = new SensorLight(
   'ZbWhiteBulb01Switch',
 );
 slPir02.phrases = [
-  'Possible CAT top of stairs',
-  'Impossible CAT top of stairs',
-  'Possible Twat top of stairs',
-  'Impossible Twat top of stairs',
-  'Idiot top of stairs',
+  'landing',
 ];
 const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 
