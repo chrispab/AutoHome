@@ -211,7 +211,7 @@ slPir03.phrases = [
 ];
 
 const slPir04 = new SensorLight(
-  'bottom-Stairs',
+  'Stairs',
   'pir04_occupancy',
   'pir04_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',
@@ -224,7 +224,7 @@ slPir04.phrases = [
 ];
 
 const slPir02 = new SensorLight(
-  'top-of-stairs',
+  'landing',
   'pir02_occupancy',
   'pir02_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',

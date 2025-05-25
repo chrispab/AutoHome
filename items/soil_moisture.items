@@ -1,13 +1,13 @@
-Number  Soil1_Moisture      "Soil 1 Moisture 1"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
+// Number  Soil1_Moisture      "Soil 1 Moisture 1"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
 
 Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw"}
 
-Number  Soil1_Moisture_2    "Soil 1 Moisture 2"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
-Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture3"}
-Number  Soil1_Moisture_4    "Soil 1 Moisture 4"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture4"}
-Number  Soil1_Moisture_5    "Soil 1 Moisture 5"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture5"}
-Number  Soil1_Moisture_6    "Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
-Number  Soil1_Moisture_xxx    "xxx Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
+// Number  Soil1_Moisture_2    "Soil 1 Moisture 2"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
+// Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture3"}
+// Number  Soil1_Moisture_4    "Soil 1 Moisture 4"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture4"}
+// Number  Soil1_Moisture_5    "Soil 1 Moisture 5"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture5"}
+// Number  Soil1_Moisture_6    "Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
+// Number  Soil1_Moisture_xxx    "xxx Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
 
 Number  Soil1_Moisture_OH_1    "Soil 1 Moisture OH 1 processed [%.1f %unit%]"
 

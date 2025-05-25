@@ -136,7 +136,7 @@ function turnOnTV(roomName, message) {
     });
   }
   // actions.Voice.say(roomName + ' tv on');
-  actions.Voice.say(`${roomName} tv on`);
+  actions.Voice.say(`that is ${roomName} tv on`);
 
   // `${roomName} tv on`
 }
@@ -179,7 +179,7 @@ function turnOffTV(roomName, message) {
     }
     items.getItem(room.kodiShutdownProxy).sendCommand('OFF');
     // if off timer undefined start for pi shutdown
-    tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(20), () => {
+    tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
       if (room.kodiPower) {
         items.getItem(room.kodiPower).sendCommand('OFF');
       }
