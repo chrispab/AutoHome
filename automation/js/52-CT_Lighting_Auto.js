@@ -33,19 +33,23 @@ rules.JSRule({
   },
 });
 
-// turn off CT lights when late - in case forgot to turn off
+// turn on CT lights in work mornings
 rules.JSRule({
   name: 'CRON auto turn On conservatory lights',
   description: 'CRON turn On conservatory lights dark work mornings',
-  // triggers: [triggers.GenericCronTrigger('0 10 6 ? * TUE,WED,THU *')],
-  // triggers: [triggers.GenericCronTrigger('0 0 19 ? * TUE,WED,THU *')],
   triggers: [triggers.GenericCronTrigger('0 0 6 ? * MON,TUE,WED,THU,FRI *')],
 
   execute: () => {
-    logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
-    items.getItem('gConservatoryLights').sendCommand('ON');
-    // items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('Openhab conservatory lights CRON turn ON', 'CRON auto turn ON conservatory lights in work mornings');
+    logger.info('CRON turn On conservatory lights dark work mornings');
+    if (items.getItem('CT_LightDark_State').state === 'OFF') {
+      logger.info('its dark, so turn ON conservatory lights in work mornings');
+      items.getItem('gConservatoryLights').sendCommand('ON');
+    }
+
+    alerting.sendEmail(
+      'Openhab conservatory lights CRON turn ON',
+      'CRON auto turn ON conservatory lights in work mornings',
+    );
   },
 });
 
@@ -58,7 +62,10 @@ rules.JSRule({
     logger.debug('turn OFF conservatory lights when ambient light level when goes from dark to light');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('Openhab conservatory lights auto turn OFF', 'turn OFF conservatory lights when ambient light level when goes from dark to light');
+    alerting.sendEmail(
+      'Openhab conservatory lights auto turn OFF',
+      'turn OFF conservatory lights when ambient light level when goes from dark to light',
+    );
   },
 });
 
@@ -70,7 +77,10 @@ rules.JSRule({
   execute: () => {
     logger.debug('turn ON conservatory lights when ambient light level goes from light to dark');
     items.getItem('gConservatoryLights').sendCommand('ON');
-    alerting.sendEmail('Openhab conservatory lights auto turn ON', 'auto turn ON conservatory lights  when ambient light level goes from light to dark');
+    alerting.sendEmail(
+      'Openhab conservatory lights auto turn ON',
+      'auto turn ON conservatory lights  when ambient light level goes from light to dark',
+    );
   },
 });
 
