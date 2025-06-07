@@ -35,11 +35,11 @@ let transferCurve = cache.private.get('transferCurve', () => ({
   p_6: { input: 0.6, factor: 0.4 },
   p_7: { input: 0.7, factor: 0.3 },
   p_8: { input: 0.8, factor: 0.3 },
-  p_9: { input: 0.9, factor: 0.2 },
+  p_9: { input: 0.9, factor: 0.3 },
   p_10: { input: 1.0, factor: 0.2 },
-  p_11: { input: 5.0, factor: 0.1 },
-  p_12: { input: 10.0, factor: 0.1 },
-  p_13: { input: 99.0, factor: 0.01 },
+  p_11: { input: 5.0, factor: 0.2 },
+  p_12: { input: 10.0, factor: 0.2 },
+  p_13: { input: 99.0, factor: 0.1 },
 }));
 
 // val DateTime datetime = new DateTime(1514484000)

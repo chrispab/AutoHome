@@ -29,7 +29,7 @@ rules.JSRule({
     logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights', 'CRON auto turn OFF conservatory lights');
+    alerting.sendEmail('Openhab conservatory lights CRON turn OFF', 'CRON auto turn OFF conservatory lights');
   },
 });
 
@@ -45,7 +45,7 @@ rules.JSRule({
     logger.info('CRON turn OFF conservatory lights when late - maybe forgot');
     items.getItem('gConservatoryLights').sendCommand('ON');
     // items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights', 'CRON auto turn ON conservatory lights in work mornings');
+    alerting.sendEmail('Openhab conservatory lights CRON turn ON', 'CRON auto turn ON conservatory lights in work mornings');
   },
 });
 
@@ -58,7 +58,7 @@ rules.JSRule({
     logger.debug('turn OFF conservatory lights when ambient light level when goes from dark to light');
     items.getItem('gConservatoryLights').sendCommand('OFF');
     items.getItem('gColourBulbs').sendCommand('OFF');
-    alerting.sendEmail('openhab lights', 'turn OFF conservatory lights when ambient light level when goes from dark to light');
+    alerting.sendEmail('Openhab conservatory lights auto turn OFF', 'turn OFF conservatory lights when ambient light level when goes from dark to light');
   },
 });
 
@@ -70,7 +70,7 @@ rules.JSRule({
   execute: () => {
     logger.debug('turn ON conservatory lights when ambient light level goes from light to dark');
     items.getItem('gConservatoryLights').sendCommand('ON');
-    alerting.sendEmail('openhab lights', 'auto turn ON conservatory lights  when ambient light level goes from light to dark');
+    alerting.sendEmail('Openhab conservatory lights auto turn ON', 'auto turn ON conservatory lights  when ambient light level goes from light to dark');
   },
 });
 
