@@ -136,7 +136,7 @@ function turnOnTV(roomName, message) {
     });
   }
   // actions.Voice.say(roomName + ' tv on');
-  actions.Voice.say(`that is ${roomName} tv on`);
+  actions.Voice.say(`${roomName} tv on`);
 
   // `${roomName} tv on`
 }
