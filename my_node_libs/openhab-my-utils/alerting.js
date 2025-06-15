@@ -30,7 +30,10 @@ exports.sendEmail = function (subject, message, logger) {
   var logger = (logger) ? logger : log('sendInfo');
   logger.debug('Email message to send: ' + message);
 
-
+  //prepend the sbject with 'Openhab Alert: ' if it doesn't already start with it
+  if (!subject.startsWith('Openhab: ')) {
+    subject = 'Openhab: ' + subject;
+  }
   if (!actions.Things.getActions("mail", "mail:smtp:gmail").sendMail("cbattisson@gmail.com", subject, message)) {
     logger.debug("Failed to send email");
   }
