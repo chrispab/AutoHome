@@ -1,6 +1,21 @@
 // Number  Soil1_Moisture      "Soil 1 Moisture 1"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
 
-Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw"}
+//primary item definitions for soil moisture sensor 1
+// Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw" }
+Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_average" }
+
+
+
+Number  Soil1_Moisture_Mode    "Soil 1 Moisture mode [%.1f %unit%]" (gMQTT)       { channel="mqtt:topic:soil1:MoistureMode"}
+Number  Soil1_Moisture_Moving_Average    "Soil 1 Moisture moving average [%.1f %unit%]" (gMQTT)       { channel="mqtt:topic:soil1:MoistureMovingAverage"}
+
+Number  sensor_method0_single_raw      "sensor_method0_single_raw [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method0_single_raw" }
+Number  sensor_method1_batch_average      "sensor_method1_batch_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method1_batch_average" }
+Number  sensor_method2_batch_mode      "sensor_method2_batch_mode [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method2_batch_mode" }
+Number  sensor_method3_batch_outlier      "sensor_method3_batch_outlier [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_outlier" }
+Number  sensor_method3_batch_average      "sensor_method3_batch_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_average" }
+Number  sensor_method4_batch_moving_average      "sensor_method4_batch_moving_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
+Number  sensor_method5_batch_moving_average_float      "sensor_method5_batch_moving_average_float [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method5_batch_moving_average_float" }
 
 // Number  Soil1_Moisture_2    "Soil 1 Moisture 2"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
 // Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture3"}

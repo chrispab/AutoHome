@@ -13,6 +13,7 @@ let currentLightSensorLevel = null;
 // when script reloaded, set auto detection lighting to suitable defaults
 scriptLoaded = function () {
   logger.debug('scriptLoaded - set all CT auto lighting items');
+  actions.Voice.say('CT auto lighting starting');
 
   previousLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;
   currentLightSensorLevel = items.getItem('BridgeLightSensorLevel').state;

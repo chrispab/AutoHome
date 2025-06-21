@@ -30,4 +30,17 @@ Items {
     Soil1_Moisture_Raw : strategy = everyUpdate
     Soil1_Moisture : strategy = everyUpdate
     Soil1_Moisture_OH_1 : strategy = everyUpdate
+    Soil1_Moisture_OH_2 : strategy = everyUpdate
+    Soil1_Moisture_Mode : strategy = everyUpdate
+    Soil1_Moisture_Moving_Average : strategy = everyUpdate
+    sensor_method0_single_raw : strategy = everyUpdate
+    sensor_method1_batch_average : strategy = everyUpdate
+    sensor_method2_batch_mode : strategy = everyUpdate
+    sensor_method3_batch_outlier : strategy = everyUpdate
+    sensor_method3_batch_average : strategy = everyUpdate
+    sensor_method4_batch_moving_average : strategy = everyUpdate
+    sensor_method5_batch_moving_average_float : strategy = everyUpdate
+
+
+
 }
