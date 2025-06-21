@@ -60,6 +60,8 @@ rules.JSRule({
     const moisturePercentage = Math.max(0, Math.min(100, ((RAW_RANGE - (limitedMoisture - RAW_100PC_WET)) / RAW_RANGE) * 100)).toFixed(1); // Improved calculation, handles edge cases
 
     items.getItem('Soil1_Moisture_OH_1').postUpdate(moisturePercentage);
+    items.getItem('Soil1_Moisture_Percentage_Calculated').postUpdate(moisturePercentage);
+
     logger.debug(`Soil moisture calculated: ${moisturePercentage}%`); // More concise logging
   },
 });
@@ -73,15 +75,17 @@ rules.JSRule({
     triggers.GenericCronTrigger('0 0 0/4 ? * * *'), // Check every 4 hours. Adjust as needed
   ],
   execute: () => {
-    const moistureItem = items.getItem('Soil1_Moisture_OH_1');
-    if (!moistureItem) {
-      logger.error('Soil1_Moisture_OH_1 item not found!');
+    // const moistureItem = items.getItem('Soil1_Moisture_OH_1');
+    const moisturePercentageItem = items.getItem('Soil1_Moisture_Percentage_Calculated');
+    if (!moisturePercentageItem) {
+      logger.error('Soil1_Moisture_Percentage_Calculated item not found!');
       return;
     }
-    const currentMoisture = parseFloat(moistureItem.state); // Explicit type conversion, Handles potential errors
+    // Explicit type conversion, Handles potential errors
+    const currentMoisture = parseFloat(moisturePercentageItem.state);
 
-    if (isNaN(currentMoisture)) {
-      logger.error(`Invalid value for Soil1_Moisture_OH_1: ${moistureItem.state}`);
+    if (Number.isNaN(currentMoisture)) {
+      logger.error(`Invalid value for Soil1_Moisture_OH_1: ${moisturePercentageItem.state}`);
       return;
     }
 

@@ -9,6 +9,7 @@ Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqt
 
 //computed miost percentages for soil moisture sensor 1
 Number  Soil1_Moisture_OH_1    "Soil 1 Moisture OH 1 processed [%.1f %unit%]"
+Number  Soil1_Moisture_Percentage_Calculated    "Soil1_Moisture_Percentage_Calculated [%.1f %unit%]"
 
 
 
