@@ -42,7 +42,7 @@ const RAW_RANGE = RAW_0PC_DRY - RAW_100PC_WET;
 
 rules.JSRule({
   name: 'Soil1_Moisture_Raw readings',
-  description: 'Calculates soil moisture percentage from raw sensor readings',
+  description: 'Calculates soil moisture percentage from sensor readings',
   triggers: [triggers.ItemStateUpdateTrigger('Soil1_Moisture_Raw')],
   execute: () => {
     const rawMoistureItem = items.getItem('Soil1_Moisture_Raw');
@@ -50,14 +50,19 @@ rules.JSRule({
       logger.error('Soil1_Moisture_Raw item not found!');
       return;
     }
-    const moistureRaw = parseFloat(rawMoistureItem.state); // Explicit type conversion. Handles potential errors
-    if (isNaN(moistureRaw)) {
+    // Explicit type conversion. Handles potential errors
+    const moistureRaw = parseFloat(rawMoistureItem.state);
+    if (Number.isNaN(moistureRaw)) {
       logger.error(`Invalid value for Soil1_Moisture_Raw: ${rawMoistureItem.state}`);
       return;
     }
-
-    const limitedMoisture = limitSensorValue(moistureRaw, RAW_100PC_WET, RAW_0PC_DRY); // Use the limited value
-    const moisturePercentage = Math.max(0, Math.min(100, ((RAW_RANGE - (limitedMoisture - RAW_100PC_WET)) / RAW_RANGE) * 100)).toFixed(1); // Improved calculation, handles edge cases
+    // Use the limited value
+    const limitedMoisture = limitSensorValue(moistureRaw, RAW_100PC_WET, RAW_0PC_DRY);
+    // Improved calculation, handles edge cases
+    const moisturePercentage = Math.max(
+      0,
+      Math.min(100, ((RAW_RANGE - (limitedMoisture - RAW_100PC_WET)) / RAW_RANGE) * 100),
+    ).toFixed(1);
 
     items.getItem('Soil1_Moisture_OH_1').postUpdate(moisturePercentage);
     items.getItem('Soil1_Moisture_Percentage_Calculated').postUpdate(moisturePercentage);
@@ -82,15 +87,15 @@ rules.JSRule({
       return;
     }
     // Explicit type conversion, Handles potential errors
-    const currentMoisture = parseFloat(moisturePercentageItem.state);
+    const currentMoisturePercentage = parseFloat(moisturePercentageItem.state);
 
-    if (Number.isNaN(currentMoisture)) {
+    if (Number.isNaN(currentMoisturePercentage)) {
       logger.error(`Invalid value for Soil1_Moisture_OH_1: ${moisturePercentageItem.state}`);
       return;
     }
 
-    if (currentMoisture < alertMinimumMoistureLevel && items.getItem('Soil1_Reachable').state.toString() === 'Online') {
-      alerting.sendEmail('MOISTURE LOW!', `Zone 3 moisture low: ${currentMoisture}%`);
+    if (currentMoisturePercentage < alertMinimumMoistureLevel && items.getItem('Soil1_Reachable').state.toString() === 'Online') {
+      alerting.sendEmail('MOISTURE LOW!', `Zone 3 moisture low: ${currentMoisturePercentage}%`);
     }
   },
 });

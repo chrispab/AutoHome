@@ -5,6 +5,7 @@
 // Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_average" }
 //used as input to calculatrion of perrcent moisture
 
+//used to trigger percent moisture calculation rule
 Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
 
 //computed miost percentages for soil moisture sensor 1
