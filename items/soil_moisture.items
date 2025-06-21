@@ -1,12 +1,9 @@
-// Number  Soil1_Moisture      "Soil 1 Moisture 1"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture"}
 
-//primary item definitions for soil moisture sensor 1
-// Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:MoistureRaw" }
-// Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_average" }
 //used as input to calculatrion of perrcent moisture
 
 //used to trigger percent moisture calculation rule
-Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
+// Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
+Number  Soil1_Moisture_Raw  "Soil 1 Moisture raw"   (gMQTT)       { channel="mqtt:topic:soil1:sensor_method5_batch_moving_average_float" }
 
 //computed miost percentages for soil moisture sensor 1
 Number  Soil1_Moisture_OH_1    "Soil 1 Moisture OH 1 processed [%.1f %unit%]"
