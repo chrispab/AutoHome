@@ -34,7 +34,7 @@ function limitSensorValue(reading, minLimit, maxLimit) {
 // const RAW_0PC_DRY = 2423.0;
 // const RAW_100PC_WET = 2000.0;
 // const RAW_100PC_WET = 1600.0;
-const RAW_0PC_DRY = 2255.0;
+const RAW_0PC_DRY = 2270.0;
 // const RAW_100PC_WET = 2020.0;
 const RAW_100PC_WET = 1920.0;
 
@@ -77,8 +77,8 @@ rules.JSRule({
   name: 'zone3 moisture low alert',
   description: 'Sends email alert if soil moisture is too low',
   triggers: [
-    // triggers.GenericCronTrigger('0 0 0/4 ? * * *'), // Check every 4 hours. Adjust as needed
-    triggers.GenericCronTrigger('0 0/30 * ? * * *'), // Check every 30 minutes. Adjust as needed
+    triggers.GenericCronTrigger('0 0 0/4 ? * * *'), // Check every 4 hours. Adjust as needed
+    // triggers.GenericCronTrigger('0 0/30 * ? * * *'), // Check every 30 minutes. Adjust as needed
   ],
   execute: () => {
     logger.info('Checking soil moisture levels...');

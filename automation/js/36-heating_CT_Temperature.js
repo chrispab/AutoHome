@@ -86,6 +86,45 @@ rules.JSRule({
   },
 });
 
+const tempReadings = cache.private.get('ctTempReadings', () => []);
+const MAX_READINGS = 5; // Adjust as needed, e.g., 10 for a 10-point moving average
+
+rules.JSRule({
+  name: 'Calculate CT Temperature Moving Average',
+  description: 'Calculates the moving average of the last 5 CT temperature readings',
+  triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient')],
+  execute: () => {
+    const currentTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_raw').state);
+
+    if (Number.isNaN(currentTemp)) {
+      logger.error(`Invalid temperature value for CT_ThermostatTemperatureAmbient: ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
+      return;
+    }
+
+    // Add the new reading to the array
+    tempReadings.push(currentTemp);
+
+    // Keep only the last MAX_READINGS
+    if (tempReadings.length > MAX_READINGS) {
+      tempReadings.shift(); // Remove the oldest reading
+    }
+
+    // Calculate the sum of the readings
+    const sum = tempReadings.reduce((acc, val) => acc + val, 0);
+
+    // Calculate the moving average
+    const movingAverage = sum / tempReadings.length;
+
+    // Post update to a new item (e.g., CT_ThermostatTemperatureAmbient_MovingAverage)
+    items.getItem('CT_ThermostatTemperatureAmbient_MovingAverage').postUpdate(movingAverage.toFixed(1));
+
+    logger.debug(`CT Temperature Moving Average (${tempReadings.length} readings): ${movingAverage.toFixed(1)}`);
+
+    // Store the updated array in cache
+    cache.private.put('ctTempReadings', tempReadings);
+  },
+});
+
 /**
  *
  * @param {string} roomPrefix
