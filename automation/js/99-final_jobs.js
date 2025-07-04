@@ -15,18 +15,54 @@ scriptLoaded = function () {
   actions.Audio.playSound(audioFile);
   alerting.sendEmail('openhab script loaded -final-jobs', infoStr, logger);
 
-  // turn off all items in gZbAllBulbs group
+  // turn off all items in gZbAllBulbs group gZbWhiteBulbs
+  // const allBulbs1 = items.getItem('gZbAllBulbs');
+  // const allBulbs2 = items.getItem('gZbWhiteBulbs');
+  // // iterate through all members of the group and sub groups and turn them off
+  // function turnOffGroupMembers(groupItem) {
+  //   if (!groupItem || !groupItem.members) return;
+  //   groupItem.members.forEach((member) => {
+  //     if (member.members && member.members.length > 0) {
+  //       // Recursively turn off sub-group members
+  //       turnOffGroupMembers(member);
+  //     } else {
+  //       member.sendCommand('OFF');
+  //     }
+  //   });
+  // }
 
-  const bulbs = items.getItem('gZbAllBulbs');
+  // turnOffGroupMembers(allBulbs2);
+
+  // if (allBulbs && allBulbs.members) {
+  //   allBulbs.members.forEach((bulb) => {
+  //     // if (bulb.state === 'ON') {
+  //     bulb.sendCommand('OFF');
+  //     // }
+  //   });
+  // }
+
+  const bulbs = items.getItem('gZbWhiteBulb02');
   if (bulbs && bulbs.members) {
     bulbs.members.forEach((bulb) => {
-      if (bulb.state === 'ON') {
-        bulb.sendCommand('OFF');
-      }
+      // if (bulb.state === 'ON') {
+      bulb.sendCommand('OFF');
+      // }
     });
   } else {
-    logger.warn('gZbAllBulbs group not found or has no members.');
+    logger.warn('gZbWhiteBulbs group not found or has no members.');
   }
+  // // repeat for gZbColourBulbs group
+  // const colourBulbs = items.getItem('gZbColourBulbs');
+  // if (colourBulbs && colourBulbs.members) {
+  //   colourBulbs.members.forEach((bulb) => {
+  //     // if (bulb.state === 'ON') {
+  //     bulb.sendCommand('OFF');
+  //     // }
+  //   });
+  // } else {
+  //   logger.warn('gZbColourBulbs group not found or has no members.');
+  // }
+
   logger.error(infoStr);
 };
 

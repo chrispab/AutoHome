@@ -2,14 +2,12 @@ Group   gZbAllBulbs     (gZb)
 Group   gAllBulbs       (gZb)
 Group   gZbWhiteBulbs   (gZbAllBulbs)
 
-
 Group   gZbWhiteBulb01          (gZbWhiteBulbs)
 Switch  ZbWhiteBulb01Switch     "Zb white bulb 1"       (gZbWhiteBulb01)  ["Switch","Light"] {channel="mqtt:topic:ikeabulb01:switch"}//, gConservatoryLights
 Dimmer  ZbWhiteBulb01Dim        "cyril"                             (gZbWhiteBulb01)            {ga="Light", channel="mqtt:topic:ikeabulb01:dimmer"}
 Number  ZbWhiteBulb01Quality    "Zb white bulb 1  LinkQuality [%d]" <qualityofservice>  (gZbWhiteBulb01)    {channel="mqtt:topic:ikeabulb01:linkquality"}
 Number ZbWhiteBulb01_update_progress {channel="mqtt:topic:ikeabulb01:update_progress"}
 String  ZbWhiteBulb01_availability "ZbWhiteBulb01_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikeabulb01:availability"}
-
 
 Group   gZbWhiteBulb02          (gZbWhiteBulbs)
 Switch  ZbWhiteBulb02Switch     "Zb white bulb 2"        (gZbWhiteBulb02)   ["Switch","Light"]   {channel="mqtt:topic:ikeabulb02:switch"}
@@ -18,9 +16,10 @@ Number  ZbWhiteBulb02Quality    "Zb white bulb 2  LinkQuality [%d]"    <qualityo
 Number ZbWhiteBulb02_update_progress {channel="mqtt:topic:ikeabulb02:update_progress"}
 String  ZbWhiteBulb02_availability "ZbWhiteBulb02_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikeabulb02:availability"}
 
+
+
 //colour bulbs
 // Group gDimmerBulbs "Dimmer bulbs" (gIkeaLights) { ga="Light" [ roomHint="Conservatory" ] }
-
 Group   gZbColourBulbs        "zb colour bulbs"    (gZbAllBulbs)
 Group:Switch:OR(ON,OFF)     gColourBulbs        "colour bulbs switch"    (gAllBulbs)
 // Group:Switch:AND(ON,OFF) gConservatoryLights "Conservatory Light Group" <switch>
