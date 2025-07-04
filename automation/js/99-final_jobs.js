@@ -34,36 +34,6 @@ scriptLoaded = function () {
 
   turnOffGroupMembers(allBulbs1);
 
-  // if (allBulbs && allBulbs.members) {
-  //   allBulbs.members.forEach((bulb) => {
-  //     // if (bulb.state === 'ON') {
-  //     bulb.sendCommand('OFF');
-  //     // }
-  //   });
-  // }
-
-  // const bulbs = items.getItem('gZbWhiteBulb02');
-  // if (bulbs && bulbs.members) {
-  //   bulbs.members.forEach((bulb) => {
-  //     // if (bulb.state === 'ON') {
-  //     bulb.sendCommand('OFF');
-  //     // }
-  //   });
-  // } else {
-  //   logger.warn('gZbWhiteBulbs group not found or has no members.');
-  // }
-  // // repeat for gZbColourBulbs group
-  // const colourBulbs = items.getItem('gZbColourBulbs');
-  // if (colourBulbs && colourBulbs.members) {
-  //   colourBulbs.members.forEach((bulb) => {
-  //     // if (bulb.state === 'ON') {
-  //     bulb.sendCommand('OFF');
-  //     // }
-  //   });
-  // } else {
-  //   logger.warn('gZbColourBulbs group not found or has no members.');
-  // }
-
   logger.error(infoStr);
 };
 
