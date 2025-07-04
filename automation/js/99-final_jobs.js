@@ -17,7 +17,7 @@ scriptLoaded = function () {
 
   // turn off all items in gZbAllBulbs group gZbWhiteBulbs
   const allBulbs1 = items.getItem('gZbAllBulbs');
-  const allBulbs2 = items.getItem('gZbWhiteBulbs');
+  // const allBulbs2 = items.getItem('gZbWhiteBulbs');
   // // iterate through all members of the group and sub groups and turn them off
   function turnOffGroupMembers(groupItem) {
     if (!groupItem || !groupItem.members) return;
@@ -27,7 +27,7 @@ scriptLoaded = function () {
         turnOffGroupMembers(member);
       } else {
         member.sendCommand('OFF');
-        logger.warn(`Turning off bulb: ${member.name} - ${member.label}`);
+        logger.warn(`Turning off: ${member.name} - ${member.label}`);
       }
     });
   }
