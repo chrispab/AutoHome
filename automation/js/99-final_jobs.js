@@ -16,22 +16,23 @@ scriptLoaded = function () {
   alerting.sendEmail('openhab script loaded -final-jobs', infoStr, logger);
 
   // turn off all items in gZbAllBulbs group gZbWhiteBulbs
-  // const allBulbs1 = items.getItem('gZbAllBulbs');
-  // const allBulbs2 = items.getItem('gZbWhiteBulbs');
+  const allBulbs1 = items.getItem('gZbAllBulbs');
+  const allBulbs2 = items.getItem('gZbWhiteBulbs');
   // // iterate through all members of the group and sub groups and turn them off
-  // function turnOffGroupMembers(groupItem) {
-  //   if (!groupItem || !groupItem.members) return;
-  //   groupItem.members.forEach((member) => {
-  //     if (member.members && member.members.length > 0) {
-  //       // Recursively turn off sub-group members
-  //       turnOffGroupMembers(member);
-  //     } else {
-  //       member.sendCommand('OFF');
-  //     }
-  //   });
-  // }
+  function turnOffGroupMembers(groupItem) {
+    if (!groupItem || !groupItem.members) return;
+    groupItem.members.forEach((member) => {
+      // Only recurse if this member is a group
+      if (member.type && member.type.startsWith('Group')) {
+        turnOffGroupMembers(member);
+      } else {
+        member.sendCommand('OFF');
+        logger.warn(`Turning off bulb: ${member.name} - ${member.label}`);
+      }
+    });
+  }
 
-  // turnOffGroupMembers(allBulbs2);
+  turnOffGroupMembers(allBulbs1);
 
   // if (allBulbs && allBulbs.members) {
   //   allBulbs.members.forEach((bulb) => {
@@ -41,16 +42,16 @@ scriptLoaded = function () {
   //   });
   // }
 
-  const bulbs = items.getItem('gZbWhiteBulb02');
-  if (bulbs && bulbs.members) {
-    bulbs.members.forEach((bulb) => {
-      // if (bulb.state === 'ON') {
-      bulb.sendCommand('OFF');
-      // }
-    });
-  } else {
-    logger.warn('gZbWhiteBulbs group not found or has no members.');
-  }
+  // const bulbs = items.getItem('gZbWhiteBulb02');
+  // if (bulbs && bulbs.members) {
+  //   bulbs.members.forEach((bulb) => {
+  //     // if (bulb.state === 'ON') {
+  //     bulb.sendCommand('OFF');
+  //     // }
+  //   });
+  // } else {
+  //   logger.warn('gZbWhiteBulbs group not found or has no members.');
+  // }
   // // repeat for gZbColourBulbs group
   // const colourBulbs = items.getItem('gZbColourBulbs');
   // if (colourBulbs && colourBulbs.members) {
