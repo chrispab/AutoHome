@@ -7,5 +7,6 @@ Switch  vFR_TVKodi2         "Lounge TV"       <switch>  (gFrontRoom)  { ga="Swit
 
 Switch  vCT_TVKodiSpeakers  "Conservatory TV" <switch>  (gConservatory, gCT_TVKodiSpeakers) { ga="Switch" [ roomHint="Conservatory" ] }
 Switch  vCT_TVKodiSpeakers2 "Telly"           <switch>  (gConservatory, gCT_TVKodiSpeakers) { ga="Switch" [ roomHint="Conservatory" ] }
+Switch  vCT_TVKodiSpeakers_ikea_remote "ct tv power" 
 
 Switch  vAT_TVKodi          "Attic TV"        <switch>  (gAttic)      { synonyms="Attic Telly", ga="Switch" [ roomHint="Attic" ] }

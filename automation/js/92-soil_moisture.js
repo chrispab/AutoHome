@@ -36,12 +36,13 @@ function limitSensorValue(reading, minLimit, maxLimit) {
 // const RAW_100PC_WET = 1600.0;
 // const RAW_0PC_DRY = 2270.0;
 // const RAW_0PC_DRY = 2280.0;
-const RAW_0PC_DRY = 2290.0;
+// const RAW_0PC_DRY = 2290.0;
+const RAW_0PC_DRY = 2000.0;
 
 // const RAW_100PC_WET = 2020.0;
 // const RAW_100PC_WET = 1920.0;
 // const RAW_100PC_WET = 1910.0;
-const RAW_100PC_WET = 1770.0;
+const RAW_100PC_WET = 1760.0;
 // const RAW_100PC_WET = 1900.0;
 const RAW_RANGE = RAW_0PC_DRY - RAW_100PC_WET;
 
@@ -71,8 +72,15 @@ rules.JSRule({
 
     items.getItem('Soil1_Moisture_OH_1').postUpdate(moisturePercentage);
     items.getItem('Soil1_Moisture_Percentage_Calculated').postUpdate(moisturePercentage);
-
-    logger.debug(`Soil moisture calculated: ${moisturePercentage}%`); // More concise logging
+    // send calculated moisture percentage via mqtt
+    // Get the MQTT Broker Thing actions
+    const mqttActions = actions.Things.getActions('mqtt', 'mqtt:broker:MyMQTTBroker'); // FIXME: Replace 'mqtt:broker:mosquitto' with your actual MQTT Broker Thing UID
+    if (mqttActions) {
+      mqttActions.publishMQTT('openhab/soil_moisture/percentage', moisturePercentage.toString());
+      logger.debug(`Soil moisture calculated and published: ${moisturePercentage}%`);
+    } else {
+      logger.error('Could not get MQTT actions. Please check your MQTT Broker Thing UID.');
+    }
   },
 });
 

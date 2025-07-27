@@ -14,6 +14,7 @@ const tvConfig = {
     name: 'Conservatory',
     tvSwitch: 'vCT_TVKodiSpeakers',
     tvSwitch2: 'vCT_TVKodiSpeakers2',
+    tvSwitch_ikea_remote: 'zb_remote01_action',
     kodiPower: 'bg_wifisocket_1_1_power',
     tvPower: 'bg_wifisocket_1_2_power',
     ampPowerOn: 'amplifier_IR_PowerOn',
@@ -197,6 +198,7 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'OFF', 'ON'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'OFF', 'ON'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle'),
   ],
   execute: () => {
     turnOnTV('conservatory', 'Turning on conservatory TV');
@@ -210,6 +212,8 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'ON', 'OFF'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'ON', 'OFF'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
+
   ],
   execute: () => {
     turnOffTV('conservatory', 'Turning OFF conservatory TV');
