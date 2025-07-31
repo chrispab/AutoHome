@@ -1,7 +1,8 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-var ruleUID = "scenes";
+
+const ruleUID = 'scenes';
 const logger = log(ruleUID);
 
 let tsceneStartup;
@@ -21,7 +22,11 @@ let tgoodnight;
 rules.JSRule({
   name: 'Goodnight Going to bed',
   description: 'Goodnight Going to bed',
-  triggers: [triggers.ItemStateChangeTrigger('Scene_Goodnight', 'OFF', 'ON')],
+  triggers: [
+    triggers.ItemStateChangeTrigger('Scene_Goodnight', 'OFF', 'ON'),
+    triggers.ItemStateUpdateTrigger('zb_remote01_action', 'brightness_down_click'),
+  ],
+
   execute: (event) => {
     logger.info(`Goodnight Going to bed, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
 
