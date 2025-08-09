@@ -15,10 +15,10 @@ Thing mqtt:topic:zone1Controller  "Zone 1 Controller" (mqtt:broker:MyMQTTBroker)
         Type number : vent_off_delta_secs "zone1 vent_off_delta_secs" [ stateTopic="Zone1/vent_off_delta_secs", commandTopic="Zone1/vent_off_delta_secs/set" ]
         Type number : vent_on_delta_dark_secs "zone1 vent_on_delta_dark_secs" [ stateTopic="Zone1/vent_on_delta_dark_secs", commandTopic="Zone1/vent_on_delta_dark_secs/set" ]
         Type number : vent_off_delta_dark_secs "zone1 vent_off_delta_dark_secs" [ stateTopic="Zone1/vent_off_delta_dark_secs", commandTopic="Zone1/vent_off_delta_dark_secs/set" ]
-        Type number : fan_on_delta "zone1 fan_on_delta" [ stateTopic="Zone1/fan_on_delta", commandTopic="Zone1/fan_on_delta/set" ]
-        Type number : fan_off_delta "zone1 fan_off_delta" [ stateTopic="Zone1/fan_off_delta", commandTopic="Zone1/fan_off_delta/set" ]
         Type number : low_setpoint "zone1 low_setpoint" [ stateTopic="Zone1/low_setpoint", commandTopic="Zone1/low_setpoint/set" ]
         Type number : high_setpoint "zone1 high_setpoint" [ stateTopic="Zone1/high_setpoint", commandTopic="Zone1/high_setpoint/set" ]
+        Type number : fanOnDurationSecs "zone1 fanOnDurationSecs" [ stateTopic="Zone1/fanOnDurationSecs", commandTopic="Zone1/fanOnDurationSecs/set" ]
+        Type number : fanOffDurationSecs "zone1 fanOffDurationSecs" [ stateTopic="Zone1/fanOffDurationSecs", commandTopic="Zone1/fanOffDurationSecs/set" ]        
 }
 
 //, on="1", off="0"
@@ -40,8 +40,8 @@ Thing mqtt:topic:zone3Controller  "Zone 3 Controller" (mqtt:broker:MyMQTTBroker)
         Type number : vent_off_delta_secs "zone3 vent_off_delta_secs" [ stateTopic="Zone3/vent_off_delta_secs", commandTopic="Zone3/vent_off_delta_secs/set" ]
         Type number : vent_on_delta_dark_secs "zone3 vent_on_delta_dark_secs" [ stateTopic="Zone3/vent_on_delta_dark_secs", commandTopic="Zone3/vent_on_delta_dark_secs/set" ]
         Type number : vent_off_delta_dark_secs "zone3 vent_off_delta_dark_secs" [ stateTopic="Zone3/vent_off_delta_dark_secs", commandTopic="Zone3/vent_off_delta_dark_secs/set" ]
-        Type number : fan_on_delta "zone3 fan_on_delta" [ stateTopic="Zone3/fan_on_delta", commandTopic="Zone3/fan_on_delta/set" ]
-        Type number : fan_off_delta "zone3 fan_off_delta" [ stateTopic="Zone3/fan_off_delta", commandTopic="Zone3/fan_off_delta/set" ]
         Type number : low_setpoint "zone3 low_setpoint" [ stateTopic="Zone3/low_setpoint", commandTopic="Zone3/low_setpoint/set" ]
         Type number : high_setpoint "zone3 high_setpoint" [ stateTopic="Zone3/high_setpoint", commandTopic="Zone3/high_setpoint/set" ]
+        Type number : fanOnDurationSecs "zone3 fanOnDurationSecs" [ stateTopic="Zone3/fanOnDurationSecs", commandTopic="Zone3/fanOnDurationSecs/set" ]
+        Type number : fanOffDurationSecs "zone3 fanOffDurationSecs" [ stateTopic="Zone3/fanOffDurationSecs", commandTopic="Zone3/fanOffDurationSecs/set" ]            
 }
