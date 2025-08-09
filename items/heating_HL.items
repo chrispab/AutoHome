@@ -1,0 +1,20 @@
+Group gHL_Thermostat "Hall Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Hall" ] }
+String HL_ThermostatMode "Hall Thermostat Mode" <settings> (gHL_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number:Temperature HL_ThermostatTemperatureSetpoint "Hall Setpoint [%.1f °C]" <heating> (gChart_Minute, gHL_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+Number:Temperature HL_ThermostatTemperatureAmbient "Hall Temperature [%.1f °C]" <temperature> (gChart_Minute, gHL_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:hallRadThermoValve:temperature" }
+Number:Dimensionless HL_ThermostatHumidityAmbient "Hall Humidity [%.1f °C]" <humidity> (gChart_Minute, gHL_Thermostat, gThermostatHumidityAmbients)
+        {unit="%",  ga="thermostatHumidityAmbient", channel="mqtt:topic:hallRadThermoValve:humidity" }
+
+// //additional params for use in openhab functions etc
+Switch HL_Heater_Control "Hall Heater"  <my_radiator>  (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:hallRadThermoValve:powerSwitch" }
+String HL_Heater_Mode "Hall Heating Mode" <settings> (gHeatingModes)
+// Number HL_Heating_PresetTempNormal "Hall Heating Preset (Normal Mode) [%.1f °C]" (gHeating_PresetTempNormal)
+String HL_Heater_Reachable "Hall Reachable" <qualityofservice> (gHL_Thermostat,gHeaterReachables)  { channel="mqtt:topic:hallRadThermoValve:reachable" }
+Number HL_Heater_Rssi "HL RTV RSSI [%.1f]" <qualityofservice> (gHL_Thermostat) { channel="mqtt:topic:hallRadThermoValve:rssi" }
+
+//boost
+Switch      HL_Heater_Boost "Hall Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_HL_Boost  "Hall virtual Heater boost"
+Switch      v_HL_Heater_Boost  "Hall virtual Heater boost" (gvHeaterBoosters)
+Number:Time HL_Boost_Countdown "HL_Boost_Countdown"
+Number HL_Boost_Time "HL_Boost_Time"  (gBoost_Time)

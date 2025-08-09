@@ -1,0 +1,28 @@
+Thing mqtt:topic:soil1  "MQTT Thing: Soil 1 Moisture level" (mqtt:broker:MyMQTTBroker) @ "Shed"
+{
+    Channels:
+        Type switch : triggerRead  [ stateTopic="soil1/read" , commandTopic="soil1/read", on="1", off="0"  ]
+        Type string : Reachable    [ stateTopic="soil1/LWT"  ]
+        // Type number : rssi         [ stateTopic="sonoff_water1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
+        // Type number : Moisture  [ stateTopic="soil1/moisture" ]
+        // Type number : Moisture2  [ stateTopic="soil1/moisture_2" ]
+        // Type number : Moisture3  [ stateTopic="soil1/moisture_3" ]
+        // Type number : Moisture4  [ stateTopic="soil1/moisture_4" ]
+        // Type number : Moisture5  [ stateTopic="soil1/moisture_5" ]
+        // Type number : Moisture6  [ stateTopic="soil1/moisture_6" ]
+
+        Type number : MoistureRaw  [ stateTopic="soil1/moisture_method3_average" ]
+        // Type number : MoistureMode  [ stateTopic="soil1/moisture_method2_mode" ]
+        // Type number : MoistureMovingAverage  [ stateTopic="soil1/moisture_method4_moving_average" ]
+
+        Type number : sensor_method0_single_raw  [ stateTopic="soil1/sensor_method0_single_raw" ]
+        Type number : sensor_method1_batch_average  [ stateTopic="soil1/sensor_method1_batch_average" ]
+        Type number : sensor_method2_batch_mode  [ stateTopic="soil1/sensor_method2_batch_mode" ]
+        Type number : sensor_method3_batch_outlier  [ stateTopic= "soil1/sensor_method3_batch_outlier" ]
+        Type number : sensor_method3_batch_average  [ stateTopic= "soil1/sensor_method3_batch_average" ]
+        Type number : sensor_method4_batch_moving_average  [ stateTopic="soil1/sensor_method4_batch_moving_average" ]
+        Type number : sensor_method5_batch_moving_average_float  [ stateTopic="soil1/sensor_method5_batch_moving_average_float" ]
+
+
+
+}

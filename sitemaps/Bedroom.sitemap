@@ -1,0 +1,13 @@
+sitemap Bedroom label="Bedroom"
+{
+  Frame label="TV" {
+    Switch item= vBR_TVKodi label="Bedroom Kodi and TV"
+  }
+  Frame label="Heating" {
+    Text item=BR_ThermostatTemperatureAmbient label="Current Temperature: [%.1f °C]"
+    Setpoint item=BR_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[BR_Heater_Mode=="auto", BR_Heater_Mode=="manual"]
+    Switch item=BR_Heater_Mode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
+    Switch item= BR_Heater_Control label="Radiator"
+    Text item=BR_Heater_Reachable label="Reachable: "
+  }
+}

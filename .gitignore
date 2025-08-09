@@ -1,0 +1,112 @@
+services/runtime.cfg.dpkg-old
+services/readme.txt.dpkg-old
+automation/lib/python/core/__init__$py.class
+automation/lib/python/core/actions$py.class
+automation/lib/python/core/jsr223$py.class
+automation/lib/python/core/log$py.class
+automation/lib/python/core/rules$py.class
+automation/lib/python/core/triggers$py.class
+automation/lib/python/core/utils$py.class
+automation/lib/python/configuration$py.class
+automation/lib/python/core/osgi/__init__$py.class
+automation/lib/python/core/osgi/events$py.class
+automation/lib/python/personal/__init__$py.class
+automation/lib/python/personal/util$py.class
+automation/lib/python/core/date$py.class
+automation/typings/
+
+# /automation/js/node_modules/**/*.*
+/automation/js/node_modules/**/LICENSE
+/automation/js/node_modules/**/LICENSE-MIT
+/automation/js/node_modules/**/license
+# /automation/js/node_modules/**/bin
+
+# !automation/js/node_modules/personal/alerting.js
+# !automation/js/node_modules/personal/index.js
+# !automation/js/node_modules/personal/package.json
+# !automation/js/node_modules/personal/utils.js
+# !automation/js/node_modules/personal/myutils.js
+
+openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/.gitignore
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/README.md
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/automation/js/RNTs-tlp3.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/automation/js/conf/00_RNTs-tlp3_conf.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/index.html
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/css/material.indigo-pink.min.css
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/css/roboto-fontfamily.css
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/css/switchPointSet.css
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/MaterialIcons-Regular.ttf
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.eot
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.ttf
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.woff
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-300.woff2
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-500.eot
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-500.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-500.ttf
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-500.woff
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-500.woff2
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-700.eot
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-700.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-700.ttf
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-700.woff
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-700.woff2
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.eot
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.ttf
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/fonts/roboto-v20-vietnamese_latin-ext_latin_greek-ext_greek_cyrillic-ext_cyrillic-regular.woff2
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/icons/Sunrise.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/icons/Sunset.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/icons/SunsetSunrise_1_Inkscape.svg
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/content.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/material.min.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/material.min.js.map
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/prefs.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/switchPointSet_jsr.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/timeScale.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/tlInactive.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/tlp_item_controller.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/tlp_thing_controller.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/tlpAdminSetup.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/tlpSingleSetup.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/html/tlp-jsr/js/vue.js
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/items/example.items
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/conf-openHAB/sitemaps/example.sitemap
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example1.PNG
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example2.PNG
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example3.PNG
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example4.PNG
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp_example5.PNG
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp-slides-small.gif
+# openhab-timeline-picker-develop_v3.x_for_OH3.x(GraalVM)/img/tlp-slides.gif
+
+secret.txt
+# things/mail.things
+# exec.whitelist
+misc/exec.whitelist
+# misc/exec.whitelist
+# automation/js/node_modules/.bin/acorn
+# automation/js/node_modules/.bin/eslint
+# automation/js/node_modules/.bin/js-yaml
+# automation/js/node_modules/.bin/json5
+# automation/js/node_modules/.bin/node-which
+# automation/js/node_modules/.bin/resolve
+# automation/js/node_modules/.bin/rimraf
+# automation/js/node_modules/.bin/semver
+# automation/js/node_modules/.bin/acorn
+# automation/js/node_modules/.bin/eslint
+# automation/js/node_modules/.bin/js-yaml
+# automation/js/node_modules/.bin/json5
+# automation/js/node_modules/.bin/node-which
+# automation/js/node_modules/.bin/resolve
+# automation/js/node_modules/.bin/rimraf
+# automation/js/node_modules/.bin/semver
+# automation/js/node_modules/.bin/acorn
+# automation/js/node_modules/.bin/eslint
+# automation/js/node_modules/.bin/js-yaml
+# automation/js/node_modules/.bin/json5
+# automation/js/node_modules/.bin/node-which
+# automation/js/node_modules/.bin/resolve
+# automation/js/node_modules/.bin/rimraf
+# automation/js/node_modules/.bin/semver

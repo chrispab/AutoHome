@@ -1,0 +1,100 @@
+https://community.openhab.org/t/howto-stop-start-restart-openhab-running-on-openhabian/36104
+
+So you could start stop or restart it in a ssh connection with
+
+sudo systemctl restart openhab.service
+sudo systemctl stop openhab.service
+
+
+https://community.openhab.org/t/openhab-cli-in-a-docker-container/137222/2
+
+userdata goes to /var/lib/openhab and conf goes to /etc/openhab.
+
+You might want to clear out the userdata/cache and userdata/tmp folders but that’s probably not strictly necessary.
+
+Just make sure that the new instance of OH is exactly the same as the version the configs are coming from. After the restore you can upgrade but not before.
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/91
+
+docker
+cli karaf
+openhabian@openhabian:/etc/openhab $ openhab-cli console -p habopen
+log:tail
+
+
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/82
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/132
+
+https://community.openhab.org/t/openhab-docker-usr-share-openhab-addons-does-not-exist-after-upgrade-to-oh-3-3-0/136954/5
+
+https://community.openhab.org/t/migration-from-docker-to-openhabian/125837/11
+
+
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/82
+
+sudo openhab-cli backup
+
+Which places a file in /var/lib/openhab2/backups, which can then be restored using:
+
+sudo openhab-cli restore /var/lib/openhab2/backups/filename.zip
+
+This backs up both text config from /etc/openhab and PaperUI config from /var/lib/openhab/
+
+
+openhabian-config
+
+
+2023-09-10 10:39:05.165 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require CountdownTimer instead of countdownTimer and use CountdownTimer() instead of new countdownTimer.CountdownTimer().
+2023-09-10 10:39:05.267 [WARN ] [.script.file.heating_CT_boost_OFF.js] - require TimerMgr instead of timerMgr and use TimerMgr() instead of new timerMgr.TimerMgr().
+
+
+vscode ssh remote issue
+ssh vscode cannot reconnect. please reload the window  Unknown reconnection token (never seen)
+https://github.com/microsoft/vscode-remote-release/issues/6515
+
+"remote.SSH.showLoginTerminal": true,
+"remote.SSH.useLocalServer": false
+
+
+backup
+https://community.openhab.org/t/recommended-way-to-backup-restore-oh2-configurations-and-things/7193/82
+
+
+Check EXTRA_JAVA_OPTS in /etc/defaults/openhab
+
+
+sudo openhab-cli clean-cache
+
+https://community.openhab.org/t/clear-the-cache/36424
+If you are running an installed OH (openHABian, installed using apt or yum):
+sudo systemctl status openhab.service
+
+openhab-cli stop
+sudo systemctl stop openhab.service
+
+openhab-cli clean-cache
+
+openhab-cli start
+sudo systemctl start openhab.service
+
+# this
+sudo systemctl status openhab.service
+
+sudo systemctl stop openhab.service
+
+sudo openhab-cli clean-cache
+
+sudo systemctl start openhab.service
+
+Watch openhablog for errors, test if the problems persist. If so, serach the forum and post a new thread if you do not find a solution. To get more information in openhab.log, use openhab-cli start --debug to enable debug logging.
+
+https://www.openhab.org/addons/automation/jsscripting/#deinitialization-hook
+
+Deinitialization Hook
+It is possible to hook into unloading of a script and register a function that is called when the script is unloaded.
+
+require('@runtime').lifecycleTracker.addDisposeHook(() => functionToCall());
+
+// Example
+require('@runtime').lifecycleTracker.addDisposeHook(() => {
+  console.log("Deinitialization hook runs...")
+});

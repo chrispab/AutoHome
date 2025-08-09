@@ -1,0 +1,120 @@
+openhab> shell:info
+Karaf
+  Karaf version               4.4.3
+  Karaf home                  /openhab/runtime
+  Karaf base                  /openhab/userdata
+  OSGi Framework              org.eclipse.osgi-3.18.0.v20220516-2155
+
+JVM
+  Java Virtual Machine        OpenJDK Server VM version 17.0.7+7-Debian-1deb11u1
+  Version                     17.0.7
+  Vendor                      Debian
+  Pid                         29
+  Uptime                      21 hours 28 minutes
+  Process CPU time            7 hours 47 minutes
+  Process CPU load            0.37
+  System CPU load             0.45
+  Open file descriptors       229
+  Max file descriptors        1,048,576
+  Total compile time          15 minutes
+Threads
+  Live threads                266
+  Daemon threads              100
+  Peak                        273
+  Total started               23687
+Memory
+  Current heap size           1,324,689 kbytes
+  Maximum heap size           2,097,152 kbytes
+  Committed heap size         1,758,208 kbytes
+  Pending objects             0
+  Garbage collector           Name = 'G1 Young Generation', Collections = 432, Time = 19.925 seconds
+  Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+  Current classes loaded      31,249
+  Total classes loaded        45,702
+  Total classes unloaded      14,453
+Operating system
+  Name                        Linux version 6.1.21-v8+
+  Architecture                arm
+  Processors                  4
+  Total physical memory       7,998,788 kbytes
+  Free physical memory        1,926,720 kbytes
+openhab> LOG:TAIL
+01:41:47.651 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.093 to 0.057
+01:41:49.208 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_Temperature' changed from 25.9 to 26
+01:41:49.220 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Temperature' changed from 25.9 °C to 26 °C
+01:41:49.225 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_Humidity' changed from 40.3 to 40.2
+01:41:49.235 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Humidity' changed from 40.3 to 40.2
+01:41:50.742 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.026 to 0.044
+01:41:50.781 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.3 °C to 44.8 °C
+01:41:50.785 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.057 to 0.086
+01:41:51.064 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThingOutsidesensor_Rssi' changed from 20 to 22
+01:41:51.067 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Outside_RSSI' changed from 20 to 22
+01:41:53.875 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.044 to 0.03
+01:41:53.911 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.086 to 0.064
+01:41:53.980 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater_Control-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:41:57.019 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.03 to 0.038
+01:41:57.037 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ElsiesRTV_Rssi' changed from 52 to 50
+01:41:57.045 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ER_Heater_Rssi' changed from 52 to 50
+01:41:57.101 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 43.8 °C
+01:41:57.106 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.064 to 0.11
+01:42:00.196 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.038 to 0.042
+01:42:00.232 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 44.8 °C
+01:42:00.236 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.11 to 0.061
+01:42:00.816 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+01:42:03.326 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.042 to 0.035
+01:42:03.403 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.8 °C to 43.8 °C
+01:42:03.407 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.061 to 0.101
+01:42:06.498 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.035 to 0.032
+01:42:06.536 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 44.3 °C
+01:42:06.539 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.101 to 0.045
+01:42:09.634 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.032 to 0.027
+01:42:09.725 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 44.3 °C to 43.8 °C
+01:42:09.732 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.045 to 0.075
+01:42:11.179 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_threads' changed from 279 to 281
+01:42:11.190 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Uptime' changed from 54384 s to 54444 s
+01:42:11.193 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Threads' changed from 749 to 751
+01:42:11.197 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load5' changed from 0.2 to 0.3
+01:42:11.558 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_Temperature' changed from 26 to 25.9
+01:42:11.562 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Temperature' changed from 26 °C to 25.9 °C
+01:42:11.568 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_Humidity' changed from 40.2 to 39.5
+01:42:11.571 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Humidity' changed from 40.2 to 39.5
+01:42:12.818 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.027 to 0.057
+01:42:12.855 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 44.8 °C
+01:42:17.855 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@15af105' takes more than 5000ms.
+01:42:24.005 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater_Control-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+01:42:25.164 [WARN ] [b.automation.openhab-js.heater_change] - >roomPrefix: AT
+01:45:00.816 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+01:45:40.600 [INFO ] [b.automation.openhab-js.soil_moisture] - !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+01:46:23.003 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+
+old
+:org.apache.felix.configadmin.revision:=L"60"
+automation=",jsscripting"
+binding="chromecast,astro,mail,systeminfo,mqtt,ntp"
+felix.fileinstall.filename="file:/openhab/userdata/etc/org.openhab.addons.cfg"
+legacy=B"false"
+misc="openhabcloud"
+package="standard"
+persistence="mapdb,influxdb"
+remote=B"true"
+service.pid="org.openhab.addons"
+transformation="map,xslt,regex,jsonpath,xpath"
+ui="basic,habpanel"
+voice="voicerss"
+
+new
+:org.apache.felix.configadmin.revision:=L"1"
+automation=",jsscripting"
+binding="chromecast,astro,mail,systeminfo,mqtt,ntp"
+felix.fileinstall.filename="file:/openhab/userdata/etc/org.openhab.addons.cfg"
+legacy=B"false"
+misc="openhabcloud"
+package="standard"
+persistence="mapdb,influxdb"
+remote=B"true"
+service.bundleLocation="?"
+service.pid="org.openhab.addons"
+transformation="map,xslt,regex,jsonpath,xpath"
+ui="basic,habpanel"
+voice="voicerss"

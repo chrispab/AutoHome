@@ -1,0 +1,58 @@
+enable join on sensor - push button
+zigbee to mqtt then interviews sensor:
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: Device '0x00124b002928189c' joined
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: MQTT publish: topic 'zigbee2mqtt/bridge/event', payload '{"data":{"friendly_name":"0x00124b002928189c","ieee_address":"0x00124b002928189c"},"type":"device_joined"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"message":{"friendly_name":"0x00124b002928189c"},"type":"device_connected"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: Starting interview of '0x00124b002928189c'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: MQTT publish: topic 'zigbee2mqtt/bridge/event', payload '{"data":{"friendly_name":"0x00124b002928189c","ieee_address":"0x00124b002928189c","status":"started"},"type":"device_interview"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 49: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"message":"interview_started","meta":{"friendly_name":"0x00124b002928189c"},"type":"pairing"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 50: MQTT publish: topic 'zigbee2mqtt/bridge/event', payload '{"data":{"friendly_name":"0x00124b002928189c","ieee_address":"0x00124b002928189c"},"type":"device_announce"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 46: 50: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"message":"announce","meta":{"friendly_name":"0x00124b002928189c"},"type":"device_announced"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 00: Successfully interviewed '0x00124b002928189c', device has successfully been paired
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 00: Device '0x00124b002928189c' is supported, identified as: SONOFF Motion sensor(SNZB - 03)
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 00: MQTT publish: topic 'zigbee2mqtt/bridge/event', payload '{"data":{"definition":{"description":"Motion sensor","exposes":[{"access":1,"description":"Indicates whether the device detected occupancy","name":"occupancy","property":"occupancy","type":"binary","value_off":false,"value_on":true},{"access":1,"description":"Indicates if the battery of this device is almost empty","name":"battery_low","property":"battery_low","type":"binary","value_off":false,"value_on":true},{"access":1,"description":"Remaining battery in %, can take up to 24 hours before reported.","name":"battery","property":"battery","type":"numeric","unit":"%","value_max":100,"value_min":0},{"access":1,"description":"Voltage of the battery in millivolts","name":"voltage","property":"voltage","type":"numeric","unit":"mV"},{"access":1,"description":"Link quality (signal strength)","name":"linkquality","property":"linkquality","type":"numeric","unit":"lqi","value_max":255,"value_min":0}],"model":"SNZB-03","options":[],"supports_ota":false,"vendor":"SONOFF"},"friendly_name":"0x00124b002928189c","ieee_address":"0x00124b002928189c","status":"successful","supported":true},"type":"device_interview"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 00: Configuring '0x00124b002928189c'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 00: MQTT publish: topic 'zigbee2mqtt/bridge/log', payload '{"message":"interview_successful","meta":{"description":"Motion sensor","friendly_name":"0x00124b002928189c","model":"SNZB-03","supported":true,"vendor":"SONOFF"},"type":"pairing"}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 02: MQTT publish: topic 'zigbee2mqtt/0x00124b002928189c', payload '{"linkquality":75,"voltage":3200}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 03: MQTT publish: topic 'zigbee2mqtt/0x00124b002928189c', payload '{"battery":100,"linkquality":72,"voltage":3200}'
+
+Zigbee2MQTT:info  2023 - 02 - 25 11: 47: 03: Successfully configured '0x00124b002928189c'
+
+/////////////////////
+add friendly name to configuration.yml-- / home / pi / IOTstack / volumes / zigbee2mqtt / data / configuration.yaml
+
+this will be PIR05
+note zigbee2mqtt gives it a name in file from id value - you need to change it to desired name
+
+---------------------------
+    '0x00124b0028930207':
+friendly_name: pir03
+'0x00124b002916fc87':
+friendly_name: pir04
+'0x00124b002928189c':
+friendly_name: pir05
+advanced:
+pan_id: 6757
+network_key:
+- 251
+    - 235
+    - 242
+
+
+create aan mqtt thing referencingg this device
+
+restart zigbee2mqtt

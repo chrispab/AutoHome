@@ -1,0 +1,139 @@
+Secondary Color
+#FFD700
+
+current heating auto setpoint in use (1,2,3,4,5,6)
+String v_CT_SetPoint_auto_update_by_timeline                     (gTimepicker, gHeatingTimelineSetpointUpdateProxys)
+
+compare the state of that with the setpoints item finla char
+e.g.
+CT_Setpoint_auto_1  last char is 1
+
+split a string
+toString().split(";")[0].split("=")[1]
+
+let text = "CT_Setpoint_auto_1";
+let result = text.lastIndexOf("_");
+let finalNumber = text.substr(result+1);
+
+//reduced
+let itemName = "CT_Setpoint_auto_1";
+let setPointNumber = itemName.substr( itemName.lastIndexOf("_")+1 );
+let finalNumber = setPointNumber;
+
+=props.setpointItem
+
+"=(items[props.reachableStateItem].state == 'ON') ? 'green' : 'red'"
+items[props.setpointItem].name // its name as string
+
+let setPointNumber = items[props.setpointItem].name.substr( items[props.setpointItem].name.lastIndexOf("_")+1 );
+
+"=items[props.setpointItem].name.substr( items[props.setpointItem].name.lastIndexOf('_')+1 )"
+try
+"=props.setpointItem.substr( props.setpointItem.lastIndexOf('_')+1 )"   correct
+
+if matches value of v_CT_SetPoint_auto_update_by_timeline, return red else green
+"=((props.setpointItem.substr( props.setpointItem.lastIndexOf('_')+1 )) == items['v_CT_SetPoint_auto_update_by_timeline'].state ) ? red : green"
+
+
+
+current widget
+uid: setpoint_control_v1
+tags: []
+props:
+  parameters:
+    - description: Title
+      label: Description
+      name: Title
+      required: false
+      type: TEXT
+    - context: item
+      description: setpointItem
+      label: setpointItem
+      name: setpointItem
+      required: true
+      type: TEXT
+
+
+    - description: Primary Colour
+      label: Primary Colour
+      name: PrimaryColour
+      required: false
+      type: TEXT
+
+    - description: Secondary Colour
+      label: Secondary Colour
+      name: SecondaryColour
+      required: false
+      type: TEXT
+
+    - context: item
+      description: The light state item
+      label: light state Item
+      name: lightStateItem
+      required: true
+      type: TEXT
+
+
+
+timestamp: Nov 12, 2022, 9:36:41 AM
+component: f7-card
+config:
+  class:
+    - card-outline
+    #noBorder: false
+    #noShadow: false
+    #outline: true
+    #padding: true
+
+  style:
+    --f7-card-bg-color: "=((props.setpointItem.substr( props.setpointItem.lastIndexOf('_')+1 )) == items['v_CT_SetPoint_auto_update_by_timeline'].state ) ? '#444444' : ''
+    --f7-card-border-radius: 20px
+    #--f7-card-box-shadow: 0px 15px 20px rgba(0,0,0,0.3)
+    #--f7-card-outline-border-color: rgba(245, 40, 145, 0.8)
+    --f7-card-outline-border-color: "=((props.setpointItem.substr( props.setpointItem.lastIndexOf('_')+1 )) == items['v_CT_SetPoint_auto_update_by_timeline'].state ) ? 'green' : ''"
+   # --f7-card-outline-border-width: 1px
+  title: =props.setpointItem
+
+
+slots:
+  default:
+    - component: f7-row
+      config:
+         class:
+           - justify-content-center
+      slots:
+        default:
+          - component: oh-knob
+            config:
+              item: =props.setpointItem
+              secondaryColor: =props.SecondaryColour
+              primaryColor: =props.PrimaryColour
+              min: 16
+              max: 24
+              step: 0.1
+              #outline: true
+              title: SetPoint
+
+    - component: f7-row
+      config:
+         class:
+           - justify-content-center
+      slots:
+        default:
+          - component: oh-stepper
+            config:
+              item: =props.setpointItem
+              min: 16
+              max: 24
+              step: 0.1
+              #outline: true
+              title: SetPoint:fine
+    - component: f7-link
+      config:
+        href: /page/zones/
+        style:
+          height: 10%
+          left: 0
+          position: absolute
+          top: 0
+          width: 100%

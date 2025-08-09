@@ -1,0 +1,48 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    everyHour : "0 0 * * * ?"
+    // everyDay : "0 0 0 * * ?"
+
+    default = everyChange
+}
+
+Items {
+//    * : strategy = everyUpdate
+    gChart_Minute* : strategy = everyChange, everyMinute
+    gChart_Hour*  : strategy = everyChange, everyHour
+
+    masterHeatingMode :  strategy = everyUpdate
+
+    pir01_occupancy : strategy = everyUpdate
+    pir02_occupancy : strategy = everyUpdate
+    pir03_occupancy : strategy = everyUpdate
+    pir04_occupancy : strategy = everyUpdate
+    pir05_occupancy : strategy = everyUpdate
+    pir06_occupancy : strategy = everyUpdate
+
+
+    PIRState : strategy = everyUpdate
+
+    pir01_illuminance_lux : strategy = everyUpdate
+    co2sensor_01_ppm : strategy = everyUpdate
+
+
+    Soil1_Moisture_Raw : strategy = everyUpdate
+    Soil1_Moisture : strategy = everyUpdate
+    Soil1_Moisture_OH_1 : strategy = everyUpdate
+    Soil1_Moisture_OH_2 : strategy = everyUpdate
+    Soil1_Moisture_Mode : strategy = everyUpdate
+    Soil1_Moisture_Moving_Average : strategy = everyUpdate
+    sensor_method0_single_raw : strategy = everyUpdate
+    sensor_method1_batch_average : strategy = everyUpdate
+    sensor_method2_batch_mode : strategy = everyUpdate
+    sensor_method3_batch_outlier : strategy = everyUpdate
+    sensor_method3_batch_average : strategy = everyUpdate
+    sensor_method4_batch_moving_average : strategy = everyUpdate
+    sensor_method5_batch_moving_average_float : strategy = everyUpdate
+    Soil1_Moisture_Percentage_Calculated : strategy = everyUpdate
+    CT_ThermostatTemperatureAmbient_MovingAverage : strategy = everyUpdate
+
+
+
+}

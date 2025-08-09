@@ -1,0 +1,59 @@
+Output from command /etc/openhab/backup_scripts/openhab_backup_archive.sh ..
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a password is required
+last seven local backup files are saved in /var/lib/openhab/backups/ & 192.168.0.110:/mnt/sata_unique1/currentbackups/openhabian_backups
+Copying /var/lib/openhab/backups/ to 192.168.0.110 /mnt/sata_unique1/currentbackups/openhabian_backups
+sending incremental file list
+deleting openhab-backup-23_11_16-02_01_01.zip
+deleting openhab-backup-23_11_15-02_01_01.zip
+deleting openhab-backup-23_11_14-02_01_01.zip
+deleting openhab-backup-23_11_13-02_01_01.zip
+deleting openhab-backup-23_11_12-02_01_01.zip
+deleting openhab-backup-23_11_11-02_01_01.zip
+deleting openhab-backup-23_11_10-02_01_01.zip
+deleting openhab-backup-23_11_09-02_01_01.zip
+deleting openhab-backup-23_11_08-02_01_01.zip
+deleting openhab-backup-23_11_07-02_01_01.zip
+deleting openhab-backup-23_11_06-02_01_01.zip
+deleting openhab-backup-23_11_05-02_01_01.zip
+deleting openhab-backup-23_11_04-02_01_01.zip
+deleting openhab-backup-23_11_03-02_01_01.zip
+deleting openhab-backup-23_11_02-02_01_01.zip
+deleting openhab-backup-23_11_01-02_01_02.zip
+deleting openhab-backup-23_10_31-02_01_01.zip
+deleting openhab-backup-23_10_30-02_01_01.zip
+deleting openhab-backup-23_10_29-02_01_01.zip
+deleting openhab-backup-23_10_28-02_01_01.zip
+deleting openhab-backup-23_10_27-02_01_01.zip
+deleting openhab-backup-23_10_26-02_01_01.zip
+deleting openhab-backup-23_10_25-02_01_01.zip
+deleting openhab-backup-23_10_24-02_01_01.zip
+deleting openhab-backup-23_10_23-02_01_01.zip
+deleting openhab-backup-23_10_22-02_01_01.zip
+deleting openhab-backup-23_10_21-02_01_01.zip
+deleting openhab-backup-23_10_20-02_01_01.zip
+deleting openhab-backup-23_10_19-02_01_01.zip
+deleting openhab-backup-23_10_18-02_01_01.zip
+deleting openhab-backup-23_10_17-02_01_01.zip
+deleting openhab-backup-23_10_16-02_01_01.zip
+deleting openhab-backup-23_10_15-02_01_01.zip
+deleting openhab-backup-23_10_14-02_01_01.zip
+deleting openhab-backup-23_10_13-02_01_01.zip
+deleting openhab-backup-23_10_12-02_01_01.zip
+deleting openhab-backup-23_10_11-02_01_01.zip
+deleting openhab-backup-23_10_10-02_01_01.zip
+deleting openhab-backup-23_10_09-02_01_01.zip
+deleting openhab-backup-23_10_08-02_01_01.zip
+deleting openhab-backup-23_10_07-02_01_01.zip
+deleting openhab-backup-23_10_06-02_01_01.zip
+deleting openhab-backup-23_10_05-02_01_01.zip
+deleting openhab-backup-23_10_04-02_01_01.zip
+deleting openhab-backup-23_10_03-02_01_01.zip
+deleting openhab-backup-23_10_02-19_01_54.zip
+deleting openhab-backup-23_10_01-02_01_01.zip
+./
+openhab-backup-23_11_16-02_01_01(1).zip
+openhab-backup-23_11_16-02_01_01(2).zip
+
+sent 3,409,694,770 bytes  received 1,937 bytes  22,358,666.93 bytes/sec
+total size is 11,930,978,049  speedup is 3.50

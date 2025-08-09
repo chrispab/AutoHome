@@ -1,0 +1,20 @@
+// timeline/ timepicker conf
+// version 3.0.2
+// ToSe 
+
+/////////////////////////////////////////////////////////////////////////////////////
+/*
+next steps:
+
+*/
+/////////////////////////////////////////////////////////////////////////////////////
+
+const tlp_ids = {
+  'b22': 'Test_Switch1, Test_Switch2',
+  'heating': 'HeatingSwitchMode',
+  // 'c1': 'Test_Switch3' // in url defined
+}
+
+module.exports = {
+  tlp_ids
+}

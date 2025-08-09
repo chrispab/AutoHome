@@ -1,0 +1,20 @@
+Group gER_Thermostat "Elsie's Room Thermostat" (gThermostats) { ga="Thermostat" [ roomHint="Elsie's Room" ] }
+String ER_ThermostatMode "Elsie's Room Thermostat Mode" <settings> (gER_Thermostat, gThermostatModes) { ga="thermostatMode" }
+Number:Temperature ER_ThermostatTemperatureSetpoint "Elsie's Room Setpoint [%.1f °C]" <heating> (gChart_Minute, gER_Thermostat, gThermostatTemperatureSetpoints) { ga="thermostatTemperatureSetpoint" }
+
+// Number:Temperature ER_ThermostatTemperatureAmbient "Elsie's Room Temperature [%.1f °C]" <temperature> (gChart_Minute, gER_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor04:temperature"}
+Number:Temperature ER_ThermostatTemperatureAmbient "Elsie's Room Temperature [%.1f °C]" <temperature> (gChart_Minute, gER_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:elsiesRoomRadiatorValve:temperature"}
+
+Number:Dimensionless ER_ThermostatHumidityAmbient "Elsie's Room Humidity [%.1f °C]" <humidity> (gChart_Minute, gER_Thermostat, gThermostatHumidityAmbients) {unit="%",  ga="thermostatHumidityAmbient", channel="mqtt:topic:THSensor04:humidity" }
+
+// // // //additional params for use in openhab functions etc
+Switch ER_Heater_Control "Elsie's Room Heater"  <my_radiator>  (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) { channel="mqtt:topic:elsiesRoomRadiatorValve:powerSwitch" }
+String ER_Heater_Mode "Elsie's Room Heating Mode" <settings> (gHeatingModes)
+String ER_Heater_Reachable "Elsie's Room Reachable" <qualityofservice> (gHeaterReachables)  { channel="mqtt:topic:elsiesRoomRadiatorValve:reachable" }
+Number ER_Heater_Rssi "ER RTV RSSI [%.1f]" <qualityofservice>  { channel="mqtt:topic:elsiesRoomRadiatorValve:rssi" }
+//boost
+Switch      ER_Heater_Boost "Elsie's Room Heater boost" <my_radiator> (gHeaterBoosters,gAnyRoomHeaterOn,gHeaterControls)
+Switch      v_ER_Boost  "Elsie's Room virtual Heater boost"
+Switch      v_ER_Heater_Boost  "Elsie's Room virtual Heater boost" (gvHeaterBoosters)
+Number:Time ER_Boost_Countdown "Elsie's Room_Boost_Countdown"
+Number ER_Boost_Time "ER_Boost_Time"  (gBoost_Time)

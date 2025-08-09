@@ -1,0 +1,11 @@
+sitemap Attic label="Attic"
+{
+
+    Frame label="Heating" {
+    Text item=AT_ThermostatTemperatureAmbient label="Current Temperature: [%.1f °C]"
+    Setpoint item=AT_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[AT_Heater_Mode=="auto", AT_Heater_Mode=="manual"]
+    Switch item=AT_Heater_Mode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
+    Switch item= AT_Heater_Control label="Radiator"
+    Text item=AT_Heater_Reachable label="Reachable: "
+  }
+}

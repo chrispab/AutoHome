@@ -1,0 +1,190 @@
+Group gTVPower 
+Group gTVApplication
+// Group gTVPower2
+Group  tvGroup "TV" { ga="TV" [ volumeDefaultPercentage="20", levelStepSize="10", volumeMaxLevel="100", transportControlSupportedCommands="NEXT,PREVIOUS,PAUSE,RESUME", 
+                            availableChannels="1=Channel1=NBC,2=Channel2=CBS", availableInputs="hdmi1=xbox:gaming,hdmi2=settopbox", 
+                            availableApplications="emby=com.emby.app:Emby, netflix=Netflix, disney=com.disney.disneyplus-prod:Disney+, spotify=Spotify:Music" ] }
+
+Group gCT_TV ["Television"]
+
+//autoupdate="false"  waits for confirmation from TV that it is ON
+// Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
+Switch CT_TV_Power  "Conservatory TV Power" (tvGroup, gTVPower,gCT_TV) ["Control", "Power"] {ga="tvPower", channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="true"}
+Switch CT_TV_Mute  "TV mute"                (tvGroup) {  ga="tvMute", channel="lgwebos:WebOSTV:tv_conservatory:mute"}
+Dimmer CT_TV_Volume "Volume [%d]"           (tvGroup) { ga="tvVolume", channel="lgwebos:WebOSTV:tv_conservatory:volume" }
+Number CT_TV_VolDummy "VolumeUpDown"
+String CT_TV_Channel "Channel [%s]"         (tvGroup) {  ga="tvChannel" ,channel="lgwebos:WebOSTV:tv_conservatory:channel" }
+Number CT_TV_ChannelDummy "ChannelUpDown"
+String CT_TV_Toast                                      { channel="lgwebos:WebOSTV:tv_conservatory:toast"}
+Switch CT_TV_Stop "Stop"                                { autoupdate="false", channel="lgwebos:WebOSTV:tv_conservatory:mediaStop" }
+String CT_TV_Application "Application [%s]" (tvGroup, gCT_TV, gTVApplication) ["Status"] { ga="tvApplication", channel="lgwebos:WebOSTV:tv_conservatory:appLauncher"}
+Player CT_TV_Player                         (tvGroup) { ga="tvTransport",  channel="lgwebos:WebOSTV:tv_conservatory:mediaPlayer"}
+String CT_TV_RcButton                                   { channel="lgwebos:WebOSTV:tv_conservatory:rcButton"}
+
+String CT_TV_LastApp "last Application [%s]" // (CT_TV, gTVApplication)
+
+
+// Switch powerItem       (tvGroup) { ga="tvPower" }
+// Switch muteItem        (tvGroup) { ga="tvMute" }
+// Dimmer volumeItem      (tvGroup) { ga="tvVolume" }
+// String channelItem     (tvGroup) { ga="tvChannel" }
+String inputItem       (tvGroup) { ga="tvInput" }
+// String applicationItem (tvGroup) { ga="tvApplication" }
+// Player transportItem   (tvGroup) { ga="tvTransport" }
+
+
+
+// The binding provides a few commands you can use in the console. Enter the command openhab:lgwebos to get the usage.
+
+// Usage: openhab:lgwebos <thingUID> applications - list applications
+// openhab:lgwebos lgwebos:WebOSTV:tv_conservatory applications
+
+// Usage: openhab:lgwebos <thingUID> channels - list channels
+// Usage: openhab:lgwebos lgwebos:WebOSTV:tv_conservatory accesskey - show the access key
+
+//  openhab:lgwebos lgwebos:WebOSTV:tv_conservatory accesskey
+
+
+// The command applications reports in the console the list of all applications with their id and name. The command channels reports in the console the list of all channels with their id, number and name. The command accesskey reports in the console the access key used to connect to your TV.
+// In case of issues you may find it helpful to enable debug level logging and check you log file. Log into openHAB console and enable debug logging for this binding:
+
+// log:set debug org.openhab.binding.lgwebos
+
+// http://openhabian2.local:8080/addons/binding-lgwebos
+
+// openhab> openhab:lgwebos lgwebos:WebOSTV:tv_conservatory applications                                                                                                                                         
+// airplay : AirPlay
+// aljazeera : Al Jazeera
+// amazon : Prime Video
+// amazon.alexa.view : Amazon Alexa
+// amazon.alexapr : Amazon Alexa
+// bbc.iplayer.3.0 : BBC iPlayer
+// bbc.sounds.1.0 : BBC Sounds
+// com.apple.appletv : Apple TV
+// com.discovery.dplus.emea : discovery+
+// com.disney.disneyplus-prod : Disney+
+// com.emby.app : Emby
+// com.fvp.ch4 : Channel 4
+// com.fvp.fve : Explore Freeview Play
+// com.fvp.itv : ITVX
+// com.fvp.uktv : UKTV Play
+// com.lgshop.app35 : Shop Time
+// com.magicworks.app.roxitv : ROXi - free music app
+// com.palm.app.firstuse : First Use
+// com.palm.app.settings : Settings
+// com.pplus.webapp.prod-intl : Paramount+
+// com.webos.app.acrcomponent : LivePlus
+// com.webos.app.acrhdmi1 : LivePlus
+// com.webos.app.acrhdmi2 : LivePlus
+// com.webos.app.acrhdmi3 : LivePlus
+// com.webos.app.acrhdmi4 : LivePlus
+// com.webos.app.acroverlay : LivePlus
+// com.webos.app.adapp : Advertisement
+// com.webos.app.appcasting : APP CASTING
+// com.webos.app.beanbrowser : BeanBrowser
+// com.webos.app.browser : Web Browser
+// com.webos.app.btspeakerapp : Bluetooth Audio Playback
+// com.webos.app.btsurroundautotuning : Bluetooth Surround Auto Tuning
+// com.webos.app.camera : Camera
+// com.webos.app.channeledit : PROGRAMME MANAGER
+// com.webos.app.channelsetting : Programme Tuning
+// com.webos.app.connectionwizard : Universal Control Settings
+// com.webos.app.crb : Connected Red Button
+// com.webos.app.customersupport : Customer Support
+// com.webos.app.dangbei-card : Search
+// com.webos.app.dangbei-overlay : Dangbei Assistant
+// com.webos.app.discovery : Apps
+// com.webos.app.dp1 : DP1
+// com.webos.app.dp2 : DP2
+// com.webos.app.dvrpopup : DvrPopup
+// com.webos.app.externalinput.av1 : AV
+// com.webos.app.externalinput.av2 : AV2
+// com.webos.app.externalinput.component : Component
+// com.webos.app.externalinput.scart : AV1
+// com.webos.app.factorywin : QML Factorywin
+// com.webos.app.familycare : Family Settings
+// com.webos.app.firstuse-overlay : First Use Overlay
+// com.webos.app.gamehome : Game
+// com.webos.app.gameoptimizer : GameOptimizer
+// com.webos.app.hdmi1 : HDMI1
+// com.webos.app.hdmi2 : HDMI2
+// com.webos.app.hdmi3 : HDMI3
+// com.webos.app.hdmi4 : HDMI4
+// com.webos.app.helpandtips : Tips
+// com.webos.app.home : Home
+// com.webos.app.homeconnect : Home Hub
+// com.webos.app.homeoffice : Home Office
+// com.webos.app.inputcommon : InputCommon
+// com.webos.app.installation : Installation
+// com.webos.app.lgchannels : LG Channels
+// com.webos.app.lifeonscreen : Life On Screen
+// com.webos.app.livedmost : Live Dmost
+// com.webos.app.liveginga : Live Ginga App Launcher
+// com.webos.app.livehbbtv : Live HbbTV
+// com.webos.app.liveinteractivecontent : Live Interactive Content
+// com.webos.app.livemenu : Guide
+// com.webos.app.livepick : LivePick App
+// com.webos.app.livetv : Live TV
+// com.webos.app.livetvopapp : Live TV OpApp Mode
+// com.webos.app.magicnum : Magic Number
+// com.webos.app.mediadiscovery : Media Player
+// com.webos.app.membership : LG Account
+// com.webos.app.miracast : Screen Share
+// com.webos.app.multiviewsettings : Multi View
+// com.webos.app.musicrecognition : Music Recognition App
+// com.webos.app.notificationcenter : Notifications
+// com.webos.app.onetouchsoundtuning : One Touch Sound Tuning
+// com.webos.app.oobe : First Use-OOBE
+// com.webos.app.picturewizard : Picture Wizard
+// com.webos.app.rdp : Remote PC
+// com.webos.app.rdpgui : Remote Desktop PC
+// com.webos.app.recordings : Recordings
+// com.webos.app.remotecontrolguide : Learn Remote Control
+// com.webos.app.remoteservice : Remote Service
+// com.webos.app.roomconnect-full : Room to Room Share
+// com.webos.app.scheduler : TV Scheduler
+// com.webos.app.screensaver : Screen Saver
+// com.webos.app.self-diagnosis : Quick Help
+// com.webos.app.shoppinghdmi1 : Shopping Overlay App
+// com.webos.app.shoppinghdmi2 : Shopping Overlay App
+// com.webos.app.shoppinghdmi3 : Shopping Overlay App
+// com.webos.app.shoppinghdmi4 : Shopping Overlay App
+// com.webos.app.shoppingoverlay : Shopping Overlay App
+// com.webos.app.softwareupdate : Software Update
+// com.webos.app.sportsteamsettings : Sports Alert
+// com.webos.app.store-demo : Store Demo
+// com.webos.app.sync-demo : Sync Demo
+// com.webos.app.totalmusic : Music
+// com.webos.app.tvhotkey : Local Control Panel
+// com.webos.app.tvsimpleviewer : Viewer
+// com.webos.app.tvuserguide : User Guide
+// com.webos.app.usbc1 : USB-C1
+// com.webos.app.usbc2 : USBC2
+// com.webos.app.voice : Search
+// com.webos.app.voiceweb : voiceweb
+// com.webos.app.weatherlocation : Location Setting
+// com.webos.app.webapphost : Web App
+// com.webos.exampleapp.enyoapp.epg : com.webos.exampleapp.enyoapp.epg
+// com.webos.exampleapp.groupowner : com.webos.exampleapp.groupowner
+// com.webos.exampleapp.nav : com.webos.exampleapp.nav
+// com.webos.exampleapp.qmlapp.client.negative.one : com.webos.exampleapp.qmlapp.client.negative.one
+// com.webos.exampleapp.qmlapp.client.negative.two : com.webos.exampleapp.qmlapp.client.negative.two
+// com.webos.exampleapp.qmlapp.client.positive.one : com.webos.exampleapp.qmlapp.client.positive.one
+// com.webos.exampleapp.qmlapp.client.positive.two : com.webos.exampleapp.qmlapp.client.positive.two
+// com.webos.exampleapp.qmlapp.discover : com.webos.exampleapp.qmlapp.discover
+// com.webos.exampleapp.qmlapp.epg : com.webos.exampleapp.qmlapp.epg
+// com.webos.exampleapp.qmlapp.hbbtv : com.webos.exampleapp.qmlapp.hbbtv
+// com.webos.exampleapp.qmlapp.livetv : com.webos.exampleapp.qmlapp.livetv
+// com.webos.exampleapp.qmlapp.search : com.webos.exampleapp.qmlapp.search
+// com.webos.exampleapp.systemui : System UI Example
+// com.webos.service.billing.app : Billing service launcher
+// com.webos.service.homeconnect.app : Home Dashboard service launcher
+// demand5 : My5
+// foundation.label.tracks : TRACKS - Music streaming
+// netflix : Netflix
+// now.tv : NOW
+// spotify-beehive : Spotify - Music and Podcasts
+// ui30 : Rakuten TV
+// yandex.alice : Yadex Alice
+// youtube.leanback.v4 : YouTube
+// openhab>                                                                                                                                                                                                      

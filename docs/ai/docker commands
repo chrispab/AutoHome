@@ -1,0 +1,52 @@
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+docker run -d --network=host -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+docker run -d --network=host -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+
+https://www.youtube.com/watch?v=5kFV20LatL8
+
+To Install DeepSeek R1 model, follow this five-step process:
+    Step 1: Install Llama https://ollama.com/
+    curl -fsSL https://ollama.com/install.sh | sh
+
+    Step 2 Part 1: Copy and paste Llama 3 install command using Terminal
+    ollama run llama3.3:70b
+
+    Step 2 Part 2: Add DeepSeek R1 via terminal https://ollama.com/library
+    ollama run deepseek-r1
+    ollama run deepseek-r1:14b
+    ollama run deepseek-r1:8b
+    ollama run deepseek-r1:7b
+
+    Note: Choose the default model first to make sure your computer can handle it
+    Step 3: Install Docker https://www.docker.com/
+    Step 4: Install OpenWebUI https://docs.openwebui.com/
+    Login to OpenWebUI, choose DeepSeek R1 from the model menu and start using your local AI chatbot.
+
+    docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+    

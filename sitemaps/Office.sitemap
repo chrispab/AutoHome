@@ -1,0 +1,11 @@
+sitemap Office label="Office"
+{
+  Frame label="Heating" {
+    Text item=OF_ThermostatTemperatureAmbient label="Temperature: [%.1f °C]"
+    Setpoint item=OF_ThermostatTemperatureSetpoint label="Target Temperature [%.1f °C]" minValue=13 maxValue=25 step=0.5 visibility=[OF_Heater_Mode=="auto", OF_Heater_Mode=="manual"]
+    Switch item=OF_Heater_Mode label="Heating Mode" mappings=[off="off", auto="auto", manual="manual"]
+    Switch item= OF_Heater_Control label="Radiator"
+  }
+}
+
+

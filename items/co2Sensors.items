@@ -1,0 +1,1 @@
+Number	co2sensor_01_ppm	"co2 sensor 01 reading in ppm"	{channel="mqtt:topic:co2sensor_01:ppm"}

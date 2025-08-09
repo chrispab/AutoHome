@@ -1,0 +1,8 @@
+sitemap demo label="example of timeline picker" {
+    Frame label="heating Example" {
+        Webview
+          icon="none"
+          url="/static/tlp-jsr/index.html?id=heating_central&mode=1,2,3,4,5,6,7&token=oh.TimeLinePicker.xxxxxxxxxxx"  // place your own token
+          height=14
+    }
+}

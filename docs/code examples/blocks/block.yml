@@ -1,0 +1,1049 @@
+config:
+  label: My Overview
+  order: "1"
+  sidebar: true
+  visibleTo:
+    - role:administrator
+blocks:
+  - component: oh-block
+    config:
+      title: Headlines
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerCoordSystem: time
+                        actionAnalyzerItems:
+                          - Outside_Temperature
+                        expandable: false
+                        item: Outside_Temperature
+                        noBorder: false
+                        outline: true
+                        title: Outside sensor
+                        trendItem: Outside_Temperature
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: gConservatoryLights
+                        outline: true
+                        title: All conservatory lights
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        action: toggle
+                        actionCommand: ON
+                        actionCommandAlt: OFF
+                        actionItem: workLightsPowerSocket
+                        item: workLightsPowerSocket
+                        noBorder: false
+                        outline: true
+                        title: work Lights
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: Conservatoryspeaker_Volume
+                        label: true
+                        max: 100
+                        min: 0
+                        outline: true
+                        releaseOnly: true
+                        scale: true
+                        scaleSteps: 5
+                        title: Conservatory speaker volume
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: AtticGHM_Volume
+                        label: true
+                        max: 100
+                        min: 0
+                        outline: true
+                        scale: true
+                        scaleSteps: 5
+                        title: Attic speaker volume
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: Kodi_CT_Volume
+                        label: true
+                        max: 100
+                        min: 50
+                        outline: true
+                        scale: true
+                        title: kodi CT volume
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        color: green
+                        icon: f7:lightbulb
+                        item: BridgeLightSensorState
+                        outline: true
+                        title: light sensor state
+                        vertical: false
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        action: toggle
+                        actionCommand: ON
+                        actionCommandAlt: OFF
+                        actionGroupPopupItem: RF433powersocket1
+                        actionItem: vCT_TVKodiSpeakers
+                        expandable: false
+                        icon: f7:power
+                        item: vCT_TVKodiSpeakers
+                        stateAsHeader: true
+                        subtitle: virtual item
+                        title: Conservatory TV kit on/off trigger
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: Zone3Controller_LightStatus
+                        title: zone 3 lights
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:ClickableCameraImage
+                      config:
+                        camera: camera1
+                        showAlarms: true
+                        showSettings: true
+                        streamURL: http://192.168.0.100:8080/ipcamera/camera1/ipcamera.mjpeg
+                        thumbnailURL: http://192.168.0.100:8080/ipcamera/camera1/ipcamera.jpg
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: group
+                        actionGroupPopupItem: ConservatoryTemperateSensor
+                        item: CT_ThermostatTemperatureAmbient
+                        title: Conservatory Temp
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        artistItem: Kodi_CT_MediaArtist
+                        footer: foot
+                        item: Kodi_CT
+                        outline: true
+                        showRewindFFward: true
+                        title: Kodi CT
+                        trackItem: Kodi_CT_Title
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: vCT_stereo
+                        outline: true
+                        title: Conservatory Stereo
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        action: toggle
+                        actionCommand: ON
+                        actionCommandAlt: OFF
+                        actionItem: gColourBulbs
+                        icon: f7:lightbulb
+                        item: gColourBulbs
+                        title: colour bulbs
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:amplifier_IR_control_v4
+                      config: {}
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:all_services_v1
+                      config:
+                        rollup: Online_Service
+                        tags: Service_Check
+                        title_good: All Services are Online
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:services_status_v1
+                      config:
+                        rollup: gServices_Core_Online
+                        title_good: All core services are Online
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:services_status_v1
+                      config:
+                        rollup: gServices_Support_Online
+                        service_group_label: Support Services
+                        tags: Support_Service_Status
+                        title_good: All support services are Online
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-gauge-card
+                      config:
+                        item: Soil1_Moisture_OH_1
+                        max: 100
+                        min: 0
+                        title: moisture oh 1
+                        type: semicircle
+                        valueTextColor: green
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: testSwitch1
+                        title: " test switch"
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: GHH_Kitchen_Volume
+                        label: true
+                        max: 100
+                        min: 0
+                        outline: true
+                        scale: true
+                        scaleSteps: 5
+                        title: Kitchen speaker volume
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:all_lights
+                      config: {}
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: widget:rlk_media_control_list
+                      config:
+                        name: kitchen
+                        prefix: GHH_Kitchen
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: toggle
+                        actionCommand: ON
+                        actionCommandAlt: OFF
+                        actionGroupPopupItem: RF433powersocket1
+                        actionItem: Scene_Goodnight
+                        color: green
+                        expandable: false
+                        icon: f7:power
+                        item: Scene_Goodnight
+                        stateAsHeader: true
+                        title: I'm going to bed
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: GHM_FrontRoom_Volume
+                        label: true
+                        max: 100
+                        min: 0
+                        outline: true
+                        releaseOnly: true
+                        scale: true
+                        scaleSteps: 5
+                        title: front room speaker volume
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: vFartDoorEnable
+                        title: fartDoorEnable
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        footer: KT_Heater_Mode_tl
+                        item: KT_Heater_Mode_tl
+                        outline: true
+                        title: KT_Heater_Mode_tl
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        footer: KT_Heater_Mode_t2
+                        item: KT_Heater_Mode_t2
+                        title: KT_Heater_Mode_t2
+  - component: oh-block
+    config:
+      title: Heating
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Conservatory
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: CT_Heater_Mode
+                        heatingStateItem: CT_Heater_Control
+                        location: CT
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: CT_Heater_Reachable
+                        rssiItem: CT_Heater_Rssi
+                        setpointItem: CT_ThermostatTemperatureSetpoint
+                        tempItem: CT_ThermostatTemperatureAmbient
+                        trendItem: CT_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Fan Heater
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: FH_Heater_Mode
+                        heatingStateItem: FH_Heater_Control
+                        location: FH
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: FH_Heater_Reachable
+                        rssiItem: FH_Heater_Rssi
+                        setpointItem: FH_ThermostatTemperatureSetpoint
+                        tempItem: FH_ThermostatTemperatureAmbient
+                        trendItem: FH_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Dining room
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: DR_Heater_Mode
+                        heatingStateItem: DR_Heater_Control
+                        location: DR
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: DR_Heater_Reachable
+                        rssiItem: DR_Heater_Rssi
+                        setpointItem: DR_ThermostatTemperatureSetpoint
+                        tempItem: DR_ThermostatTemperatureAmbient
+                        trendItem: DR_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Hall
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: HL_Heater_Mode
+                        heatingStateItem: HL_Heater_Control
+                        location: hl
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: HL_Heater_Reachable
+                        rssiItem: HL_Heater_Rssi
+                        setpointItem: HL_ThermostatTemperatureSetpoint
+                        tempItem: HL_ThermostatTemperatureAmbient
+                        trendItem: HL_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Front Room (THS01)
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: FR_Heater_Mode
+                        heatingStateItem: FR_Heater_Control
+                        location: fr
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: FR_Heater_Reachable
+                        rssiItem: FR_Heater_Rssi
+                        setpointItem: FR_ThermostatTemperatureSetpoint
+                        tempItem: FR_ThermostatTemperatureAmbient
+                        trendItem: FR_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Office (THS02)
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: OF_Heater_Mode
+                        heatingStateItem: OF_Heater_Control
+                        location: of
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: OF_Heater_Reachable
+                        rssiItem: OF_Heater_Rssi
+                        setpointItem: OF_ThermostatTemperatureSetpoint
+                        tempItem: OF_ThermostatTemperatureAmbient
+                        trendItem: OF_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Elsie's Room (THS04)
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: ER_Heater_Mode
+                        heatingStateItem: ER_Heater_Control
+                        location: er
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: ER_Heater_Reachable
+                        rssiItem: ER_Heater_Rssi
+                        setpointItem: ER_ThermostatTemperatureSetpoint
+                        tempItem: ER_ThermostatTemperatureAmbient
+                        trendItem: ER_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Bedroom (THS03)
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: BR_Heater_Mode
+                        heatingStateItem: BR_Heater_Control
+                        location: br
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: BR_Heater_Reachable
+                        rssiItem: BR_Heater_Rssi
+                        setpointItem: BR_ThermostatTemperatureSetpoint
+                        tempItem: BR_ThermostatTemperatureAmbient
+                        trendItem: BR_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Attic
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: AT_Heater_Mode
+                        heatingStateItem: AT_Heater_Control
+                        location: at
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: AT_Heater_Reachable
+                        rssiItem: AT_Heater_Rssi
+                        setpointItem: AT_ThermostatTemperatureSetpoint
+                        tempItem: AT_ThermostatTemperatureAmbient
+                        trendItem: AT_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: widget:Thermostat-Control-dev6
+                      config:
+                        Title: Boiler
+                        heatingStateItem: Boiler_Control
+                        location: bl
+                        maximumTemp: "26"
+                        minimumTemp: "13"
+                        reachableStateItem: Boiler_Reachable
+                        rssiItem: Boiler_Rssi
+                        tempItem: Boiler_Control
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: CT_Fan433PowerSocket
+                        outline: true
+                        title: Fan
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: CT_Fan_Cooling_enable
+                        outline: true
+                        title: CT Fan cooling enable
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: CT_Fan_Heating_circulate_enable
+                        outline: true
+                        title: CT Fan Heat re-circ
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: FanPulseSwitch
+                        title: fan pulse
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        footer: ="Current Conservatory Temp
+                          "+items.CT_ThermostatTemperatureAmbient.state
+                        item: Conservatory_Fan_ON_Setpoint
+                        max: 35
+                        min: 19
+                        stepSize: 0.5
+                        title: "fan on if CT temp above this:"
+              - component: oh-grid-col
+                config:
+                  medium: "50"
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: widget:master_heating_mode_select
+                      config:
+                        heatingModeArray: auto,manual,off
+                        heatingModeItem: masterHeatingMode
+                        location: master
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        footer: ="Current Conservatory Temp
+                          "+items.CT_ThermostatTemperatureAmbient.state
+                        item: fan_heater_ON_Setpoint
+                        max: 24
+                        min: 17
+                        stepSize: 0.2
+                        title: fan heater ON if below this temperature
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-stepper-card
+                      config:
+                        autorepeat: true
+                        autorepeatDynamic: true
+                        item: fan_heater_ON_Setpoint
+                        large: true
+                        max: 22
+                        min: 18
+                        raised: false
+                        step: 0.1
+                        title: Fan Heater setpoint
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: fan_heater
+                        outline: true
+                        title: Fan HEATER
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: fan_heater_enable
+                        outline: true
+                        title: Fan heater enable
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: Thermostat1
+                        title: thermo1
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: testBtn1
+                        title: testBtn1
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: v_CT_SetPoint_auto
+                        title: v ct setpoint auto
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - CT_Temperature_raw
+                          - CT_ThermostatTemperatureAmbient
+                        item: CT_ThermostatTemperatureAmbient
+                        title: CT_ThermostatTemperatureAmbient
+                        trendItem: CT_ThermostatTemperatureAmbient
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: CT_Temperature_raw
+                        title: CT_Temperature_raw
+                        trendItem: CT_Temperature_raw
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        item: CT_Temperature_monitor
+                        title: CT_Temperature_monitor
+  - component: oh-block
+    config:
+      title: Media
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-gauge-card
+                      config:
+                        item: Kodi_CT_CurrentTimeinPercent
+                        max: 100
+                        min: 0
+                        outline: true
+                        title: Track %
+                        type: circle
+                        valueText: =Number.parseInt(items.KodiConservatory_ctp.state)
+                        valueTextColor: red
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-gauge-card
+                      config:
+                        item: Kodi_CT_CurrentTime
+                        max: =Number.parseFloat(items.Kodi_CT_Duration.state)
+                        min: 0
+                        outline: true
+                        title: Track time
+                        type: circle
+                        value: =Number.parseFloat(items.Kodi_CT_CurrentTime.state)
+                        valueText: =items.Kodi_CT_CurrentTime.state
+                        valueTextColor: red
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: Kodi_CT_CurrentTime
+                        max: =Number.parseInt(items.Kodi_CT_duration.state)
+                        outline: true
+                        scale: true
+                        title: track time
+                        unit: seconds
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: Kodi_CT_Thumbnail
+                        title: kodi thumbnail
+                        visible: =(items.Kodi_CT_Thumbnail.state!='UNDEF')?true:false
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-image-card
+                      config:
+                        item: Kodi_CT_Fanart
+                        title: kodi fan art
+                        visible: =(items.Kodi_CT_Fanart.state!='UNDEF')?true:false
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: Kodi_CT_Volume
+                        label: true
+                        max: 100
+                        min: 50
+                        outline: true
+                        scale: true
+                        title: kodi volume
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: vCT_TVKodiSpeakers
+                        outline: true
+                        title: Conservatory vCT_TVKodiSpeakers
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "10"
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: vCT_stereo
+                        outline: true
+                        title: Conservatory Stereo
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "20"
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: url
+                        actionUrl: http://192.168.0.112:8080/
+                        icon: f7:link
+                        label: =(((items.Kodi_CT_Online_Status.state)=="ONLINE")?"click for Kodi web
+                          interface":"OFFLINE")
+                        outline: true
+                        title: Conservatory Kodi Web Page
+                        vertical: false
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: oh-player-card
+                      config:
+                        artistItem: Kodi_CT_MediaArtist
+                        footer: =items.Kodi_CT_Album.state
+                        item: Kodi_CT
+                        outline: true
+                        showRewindFFward: true
+                        title: Kodi ct
+                        trackItem: Kodi_CT_Title
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:amplifier_IR_control_v4
+                      config: {}
+              - component: oh-grid-col
+                config:
+                  width: "100"
+                  xlarge: "15"
+                slots:
+                  default:
+                    - component: widget:roku_remote
+                      config:
+                        item: rokuitem
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+  - component: oh-block
+    config:
+      title: Misc
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-gauge-card
+                      config:
+                        item: BridgeLightSensorLevel
+                        max: 5000
+                        min: 0
+                        size: 150
+                        title: bridge light level sensor
+                        type: semicircle
+                        valueTextColor: "#888888"
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        footer: trigger level
+                        item: ConservatoryLightTriggerLevel
+                        max: 4000
+                        min: 0
+                        stepSize: 100
+                        title: auto Kitchen lights if bridge < trigger level
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: BridgeLightSensorState
+                        title: BridgeLightSensorState
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: KT_cupboard_lights_timeout
+                        max: 100
+                        min: 1
+                        title: cupboard lights off timer
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        footer: trigger level
+                        item: CT_Auto_Lighting_Trigger_SetPoint
+                        max: 4000
+                        min: 0
+                        stepSize: 100
+                        title: auto CT  lights trigger level
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: CT_LightDark_State
+                        title: CT_LightDark_State calculated
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-slider-card
+                      config:
+                        item: IKEABulb01_IkeaBulb01Dimmer
+                        title: clip bulb 01
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-knob-card
+                      config:
+                        item: ZbWhiteBulb02Dim
+                        title: white bulb 02 dimmer
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default: []
+        - component: oh-grid-cells
+          config: {}
+          slots:
+            default:
+              - component: oh-slider-cell
+                config:
+                  item: ZbWhiteBulb02Dim
+                  label: false
+                  max: 100
+                  min: 0
+                  scale: false
+                  step: 1
+                  title: Conservatory white bulb fader
+                  vertical: 0
+masonry:
+  - component: oh-masonry
+    slots:
+      default: []
+grid: null
+canvas: null

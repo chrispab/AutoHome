@@ -1,0 +1,34 @@
+https://www.openhab.org/addons/automation/jsscripting/#advanced-scripting
+
+npm init
+npm pack
+
+npm install <name>-<version>.tgz from the automation/js folder.
+
+npm install <name>-<version>.tgz
+automation/js/1_startup_jobs.js
+/etc/openhab/automation/js/1_startup_jobs.js
+
+from the automation/js folder.
+npm uninstall openhab-my-utils
+npm install /etc/openhab/my_node_libs/openhab-my-utils
+
+
+../../my_node_libs/openhab-my-utils
+npm ci /etc/openhab/my_node_libs/openhab-my-utils
+
+
+
+
+
+
+const { someProperty } = require('openhab_my_lib');
+logger.info(`from my node lib: ${someProperty}`);
+
+https://www.freecodecamp.org/news/npm-uninstall-how-to-remove-a-package/#:~:text=How%20to%20Remove%20a%20Package%20with%20npm%20Uninstall,where%20the%20package%20is%20located.
+
+npm uninstall package-name in the directory where the package is located.
+
+npm uninstall openhab_my_lib
+
+npm install /etc/openhab/my_node_libs/personal

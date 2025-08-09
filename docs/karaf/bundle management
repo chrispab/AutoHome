@@ -1,0 +1,99 @@
+bundle:list # to get id of bundle to restasrt
+bundle:stop <id number>
+bundle:start <id number>
+bundle:restart <id number>
+
+
+openHAB Add-ons :: Bundles :: Automation :: JSScripting
+
+
+
+156 │ Active │  80 │ 3.3.0                  │ openHAB Core :: Bundles :: Automation Script Modules
+157 │ Active │  80 │ 3.3.0                  │ openHAB Core :: Bundles :: Automation Script RuleSupport
+
+
+
+
+log:tail
+log:set DEBUG org.openhab.automation.script
+
+
+
+to set only reqd bindings - remove legacy bindings found in boot up
+
+openhab> config:edit org.openhab.addons
+openhab> config:property-list
+   action =
+   automation = jythonscripting,jsscripting
+   binding = kodi,network,tcp1,pulseaudio,wol1,http1,ntp,mqtt,astro,expire1,exec,chromecast,mail
+   felix.fileinstall.filename = file:/var/lib/openhab2/etc/org.openhab.addons.cfg
+   legacy = false
+   misc = openhabcloud,ruleengine
+   package = standard
+   persistence = ,rrd4j,mqtt,influxdb,mapdb
+   remote = true
+   transformation = map,xslt,regex,jsonpath,javascript
+   ui = basic,paper,habpanel,homebuilder,habmin,restdocs
+   voice = voicerss
+
+openhab> config:update
+Error executing command: /var/lib/openhab2/etc/org.openhab.addons.cfg (No such file or directory)
+openhab>
+
+
+
+
+
+   to set only required ones-
+   kodi,network,tcp1,pulseaudio,wol1,http1,ntp,mqtt,astro,expire1,exec,chromecast,mail
+
+openhab> config:property-set binding kodi,network,pulseaudio,ntp,mqtt,astro,exec,chromecast,mail
+openhab> config:property-list
+   action =
+   automation = jythonscripting,jsscripting
+   binding = kodi,network,pulseaudio,ntp,mqtt,astro,exec,chromecast,mail
+   felix.fileinstall.filename = file:/var/lib/openhab2/etc/org.openhab.addons.cfg
+   legacy = false
+   misc = openhabcloud,ruleengine
+   package = standard
+   persistence = ,rrd4j,mqtt,influxdb,mapdb
+   remote = true
+   transformation = map,xslt,regex,jsonpath,javascript
+   ui = basic,paper,habpanel,homebuilder,habmin,restdocs
+   voice = voicerss
+openhab> config:update
+
+//others to clean
+16:46:54.545 [WARN ] [.core.karaf.internal.FeatureInstaller] - The misc add-on 'ruleengine' does not exist - ignoring it.
+16:46:54.557 [WARN ] [.core.karaf.internal.FeatureInstaller] - The persistence add-on 'mqtt' does not exist - ignoring it.
+16:46:54.579 [WARN ] [.core.karaf.internal.FeatureInstaller] - The ui add-on 'restdocs' does not exist - ignoring it.
+16:46:54.583 [WARN ] [.core.karaf.internal.FeatureInstaller] - The ui add-on 'homebuilder' does not exist - ignoring it.
+16:46:54.594 [WARN ] [.core.karaf.internal.FeatureInstaller] - The ui add-on 'habmin' does not exist - ignoring it.
+16:46:54.602 [WARN ] [.core.karaf.internal.FeatureInstaller] - The ui add-on 'paper' does not exist - ignoring it.
+config:property-set ui basic,habpanel
+
+16:50:10.635 [WARN ] [.core.karaf.internal.FeatureInstaller] - The misc add-on 'ruleengine' does not exist - ignoring it.
+16:50:10.644 [WARN ] [.core.karaf.internal.FeatureInstaller] - The persistence add-on 'mqtt' does not exist - ignoring it.
+config:edit org.openhab.addons
+config:property-set persistence rrd4j,influxdb,mapdb
+config:property-list
+config:update
+
+
+16:53:16.044 [WARN ] [.core.karaf.internal.FeatureInstaller] - The misc add-on 'ruleengine' does not exist - ignoring it.
+config:edit org.openhab.addons
+config:property-set misc openhabcloud
+config:property-list
+config:update
+
+
+https://community.openhab.org/t/solved-oh3-how-to-get-rid-of-old-bindings/111049/7
+
+17:48:33.539 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: gChristmasLights
+17:48:33.553 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+17:48:33.583 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: CT_rf433_skt_pi_kodi_power
+
+17:48:13.115 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+17:48:15.301 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: gChristmasLights
+17:48:15.312 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+17:48:15.317 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: CT_rf433_skt_pi_kodi_power

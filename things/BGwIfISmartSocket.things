@@ -1,0 +1,255 @@
+Thing mqtt:topic:bg_wifisocket_1  "MQTT Thing: BG WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" , transformationPattern="JSONPATH:$.pwr" , commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" ,  transformationPattern="JSONPATH:$.pwr1", commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" ,  transformationPattern="JSONPATH:$.pwr2", commandTopic="broadlink/BG1_c8_f7_42_fc_54_bd/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 1" [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+Thing mqtt:topic:bg_wifisocket_2  "MQTT Thing: BG WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_24_df_a7_a4_d7_2b/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_24_df_a7_a4_d7_2b/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_24_df_a7_a4_d7_2b/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 2" [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+Thing mqtt:topic:bg_wifisocket_3  "MQTT Thing: BG WiFi Power Socket 3" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_24_df_a7_b9_82_c1/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_24_df_a7_b9_82_c1/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_24_df_a7_b9_82_c1/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_24_df_a7_b9_82_c1/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_24_df_a7_b9_82_c1/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_24_df_a7_b9_82_c1/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_24_df_a7_b9_82_c1/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 3" [ stateTopic="broadlink/BG1_24_df_a7_b9_82_c1/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+Thing mqtt:topic:bg_wifisocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_24_df_a7_b9_86_27/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_24_df_a7_b9_86_27/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_24_df_a7_b9_86_27/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_24_df_a7_b9_86_27/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_24_df_a7_b9_86_27/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_24_df_a7_b9_86_27/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_24_df_a7_b9_86_27/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 4" [ stateTopic="broadlink/BG1_24_df_a7_b9_86_27/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+// # BG1 wifi smart dual socket broadlink/BG1_a0_43_b0_82_f2_31
+Thing mqtt:topic:bg_wifisocket_5  "MQTT Thing: BG WiFi Power Socket 5" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_82_f2_31/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_82_f2_31/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_82_f2_31/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_82_f2_31/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_82_f2_31/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_82_f2_31/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_82_f2_31/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 5" [ stateTopic="broadlink/BG1_a0_43_b0_82_f2_31/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+// BG1_a0_43_b0_82_f3_10   - 6
+Thing mqtt:topic:bg_wifisocket_6  "MQTT Thing: BG WiFi Power Socket 6" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_82_f3_10/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_82_f3_10/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_82_f3_10/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_82_f3_10/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_82_f3_10/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_82_f3_10/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_82_f3_10/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 6" [ stateTopic="broadlink/BG1_a0_43_b0_82_f3_10/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+// broadlink/BG1_a0_43_b0_83_02_f2 skt 7
+Thing mqtt:topic:bg_wifisocket_7  "MQTT Thing: BG WiFi Power Socket 7" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_83_02_f2/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_83_02_f2/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_83_02_f2/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_83_02_f2/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_83_02_f2/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_83_02_f2/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_83_02_f2/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 7" [ stateTopic="broadlink/BG1_a0_43_b0_83_02_f2/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+//'broadlink/BG1_a0_43_b0_ac_8c_8f/#' skt 8
+Thing mqtt:topic:bg_wifisocket_8  "MQTT Thing: BG WiFi Power Socket 8" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 8" [ stateTopic="broadlink/BG1_a0_43_b0_ac_8c_8f/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+}
+
+
+// broadlink/BG1_a0_43_b0_97_ed_66
+Thing mqtt:topic:bg_wifisocket_9  "MQTT Thing: BG WiFi Power Socket 9" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_97_ed_66/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_97_ed_66/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_97_ed_66/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 9 reachable" [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+        Type string : reachableOnline "BG WiFi Power Socket 9 reachableOnline" [ stateTopic="broadlink/BG1_a0_43_b0_97_ed_66/state", transformationPattern="MAP:anything_to_Online.map" ]
+}
+
+// broadlink/BG1_a0_43_b0_d6_c8_79
+Thing mqtt:topic:bg_wifisocket_10  "MQTT Thing: BG WiFi Power Socket 10" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr"  , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power", on="1", off="0" ]
+        Type switch : powerSwitch_1     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr1" , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.pwr2" , commandTopic="broadlink/BG1_a0_43_b0_d6_c8_79/power/2", on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 10 reachable" [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+        Type string : reachableOnline "BG WiFi Power Socket 10 reachableOnline" [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state", transformationPattern="MAP:anything_to_Online.map" ]
+}
+
+// Luceco-10-7b-03	192.168.0.3	EC:0B:AE:10:7B:03
+// broadlink/BG1_ec_0b_ae_10_7b_03
+Thing mqtt:topic:bg_wifisocket_11  "MQTT Thing: BG WiFi Power Socket 11" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch_1and2  [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state",  transformationPattern="JSONPATH:$.pwr", commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power", on="1", off="0" ]
+        Type switch : powerSwitch_1      [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state",  transformationPattern="JSONPATH:$.pwr1", commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power/1", on="1", off="0" ]
+        Type switch : powerSwitch_2      [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state",  transformationPattern="JSONPATH:$.pwr2", commandTopic="broadlink/BG1_ec_0b_ae_10_7b_03/power/2", on="1", off="0" ]
+        Type number : maxworktime        [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state",  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Socket 11 reachable" [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
+        Type string : reachableOnline "BG WiFi Power Socket 11 reachableOnline" [ stateTopic="broadlink/BG1_ec_0b_ae_10_7b_03/state", transformationPattern="MAP:anything_to_Online.map" ]
+}
+
+
+
+
+//!device is dead
+// Thing mqtt:topic:bg_wifiadapter_1  "MQTT Thing: BG WiFi Power Adapter 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+// {
+//     Channels:
+//         Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/power" , on="1", off="0" ]
+//         Type number : maxworktime     [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+//         Type string : reachable "BG WiFi Power Adapter 1" [ stateTopic="broadlink/SP4B_24_df_a7_a4_cc_ec/state" , transformationPattern="MAP:bg_skt_reachable_ON.map"]
+// }
+
+
+Thing mqtt:topic:bg_wifiadapter_2  "MQTT Thing: BG WiFi Power Adapter 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Channels:
+        Type switch : powerSwitch  [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state", transformationPattern="JSONPATH:$.pwr"   , commandTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/power" , on="1", off="0" ]
+        Type number : maxworktime     [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state" ,  transformationPattern="JSONPATH:$.maxworktime" ]
+        Type string : reachable "BG WiFi Power Adapter 2" [ stateTopic="broadlink/SP4B_24_df_a7_a4_c6_ec/state" , transformationPattern="MAP:bg_skt_reachable_ON.map"]
+}
+
+
+// [2021-03-31 16:13:21,343] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.10' (MAC c8:f7:42:fc:54:bd) and started listening to MQTT commands at 'broadlink/BG1_c8_f7_42_fc_54_bd/#'
+// [2021-03-31 16:13:21,361] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.18' (MAC 24:df:a7:a4:cc:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_cc_ec/#'
+// [2021-03-31 16:13:21,379] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.28' (MAC 24:df:a7:a4:c6:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_c6_ec/#'
+
+
+//to add a new BG smart socket type device to Openhab:
+//1. first you must use the BG Home app to give the new socket access to the network
+// setup the new socket in the app via AP mode - not 'smart setup'
+// this allows yoiu to connect to the socket via the phones wifi top the snmart socket as an AP
+// you then tell the socket which network SSID to connect to - 'notwork2' as this has a smaller secret than the main network
+//note : all new stuff shou;ld connect to notwork2 cos of this passwoprd length issue
+
+// from iotstack docker restart broadlink-mqtt container and watch logs, you should get something along these lines
+//with new socket powered on
+// [2022-10-30 14:50:40,385] DEBUG -- Starting up --
+// [2022-10-30 14:51:00,411] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 14:51:00,427] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.24' (MAC 24:df:a7:a4:d7:2b) and started listening to MQTT commands at 'broadlink/BG1_24_df_a7_a4_d7_2b/#'
+// [2022-10-30 14:51:00,427] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 14:51:00,429] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 14:51:00,441] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.11' (MAC c8:f7:42:fc:54:bd) and started listening to MQTT commands at 'broadlink/BG1_c8_f7_42_fc_54_bd/#'
+// [2022-10-30 14:51:00,441] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 14:51:00,443] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 14:51:00,454] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.19' (MAC 24:df:a7:a4:cc:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_cc_ec/#'
+// [2022-10-30 14:51:00,454] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 14:51:00,460] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 14:51:00,475] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.29' (MAC 24:df:a7:a4:c6:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_c6_ec/#'
+// [2022-10-30 14:51:00,475] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 14:51:00,482] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.34:80 / A0:43:B0:AC:8C:8F)
+// [2022-10-30 14:51:00,499] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.34' (MAC a0:43:b0:ac:8c:8f) and started listening to MQTT commands at 'broadlink/BG1_a0_43_b0_ac_8c_8f/#'
+// [2022-10-30 14:51:00,499] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.34:80 / A0:43:B0:AC:8C:8F)
+// [2022-10-30 14:51:00,513] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#
+// [2022-10-30 14:51:00,522] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_24_df_a7_a4_d7_2b/,BG1_c8_f7_42_fc_54_bd/,SP4B_24_df_a7_a4_cc_ec/,SP4B_24_df_a7_a4_c6_ec/,BG1_a0_43_b0_ac_8c_8f/
+// [2022-10-30 14:51:00,523] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_24_df_a7_a4_d7_2b/,BG1_c8_f7_42_fc_54_bd/,SP4B_24_df_a7_a4_cc_ec/,SP4B_24_df_a7_a4_c6_ec/,BG1_a0_43_b0_ac_8c_8f/
+// [2022-10-30 14:51:30,458] DEBUG Sending 'BG1' state '{"pwr": 0, "pwr1": 0, "pwr2": 0, "maxworktime": 0, "maxworktime1": 0, "maxworktime2": 0, "idcbrightness": 100, "childlock": 0, "childlock1": 0, "childlock2": 0, "childlock3": 0, "childlock4": 0}' to topic 'broadlink/BG1_24_df_a7_a4_d7_2b/state'
+// [2022-10-30 14:51:30,473] DEBUG Sending 'BG1' state '{"pwr": 1, "pwr1": 1, "pwr2": 0, "maxworktime": 0, "maxworktime1": 0, "maxworktime2": 0, "idcbrightness": 100, "childlock": 0, "childlock1": 0, "childlock2": 0, "childlock3": 0, "childlock4": 0}' to topic 'broadlink/BG1_c8_f7_42_fc_54_bd/state'
+// [2022-10-30 14:51:30,479] DEBUG Sending 'SP4B' state '{"pwr": 1, "maxworktime": 0, "childlock": 0}' to topic 'broadlink/SP4B_24_df_a7_a4_cc_ec/state'
+// [2022-10-30 14:51:30,527] DEBUG Sending 'SP4B' state '{"pwr": 0, "maxworktime": 0, "childlock": 0}' to topic 'broadlink/SP4B_24_df_a7_a4_c6_ec/state'
+
+//with new socket powered off
+// [2022-10-30 14:53:34,613] DEBUG -- Starting up --
+// [2022-10-30 14:53:54,641] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 14:53:54,654] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.24' (MAC 24:df:a7:a4:d7:2b) and started listening to MQTT commands at 'broadlink/BG1_24_df_a7_a4_d7_2b/#'
+// [2022-10-30 14:53:54,655] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 14:53:54,657] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 14:53:54,673] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.11' (MAC c8:f7:42:fc:54:bd) and started listening to MQTT commands at 'broadlink/BG1_c8_f7_42_fc_54_bd/#'
+// [2022-10-30 14:53:54,674] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 14:53:54,676] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 14:53:54,691] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.19' (MAC 24:df:a7:a4:cc:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_cc_ec/#'
+// [2022-10-30 14:53:54,692] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 14:53:54,694] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 14:53:54,709] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.29' (MAC 24:df:a7:a4:c6:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_c6_ec/#'
+// [2022-10-30 14:53:54,710] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 14:53:54,724] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#
+// [2022-10-30 14:53:54,727] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_24_df_a7_a4_d7_2b/,BG1_c8_f7_42_fc_54_bd/,SP4B_24_df_a7_a4_cc_ec/,SP4B_24_df_a7_a4_c6_ec/
+// [2022-10-30 14:53:54,728] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_24_df_a7_a4_d7_2b/,BG1_c8_f7_42_fc_54_bd/,SP4B_24_df_a7_a4_cc_ec/,SP4B_24_df_a7_a4_c6_ec/
+
+// so new socket is:;
+// [2022-10-30 14:51:00,499] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.34' (MAC a0:43:b0:ac:8c:8f) and started listening to MQTT commands at 'broadlink/BG1_a0_43_b0_ac_8c_8f/#'
+// [2022-10-30 14:51:00,499] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.34:80 / A0:43:B0:AC:8C:8F)
+
+// add thing
+// add items
+
+//WITHOUT
+// [2022-10-30 15:17:40,572] DEBUG -- Starting up --
+// [2022-10-30 15:18:00,608] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 15:18:00,620] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.29' (MAC 24:df:a7:a4:c6:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_c6_ec/#'
+// [2022-10-30 15:18:00,621] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 15:18:00,622] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 15:18:00,634] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.11' (MAC c8:f7:42:fc:54:bd) and started listening to MQTT commands at 'broadlink/BG1_c8_f7_42_fc_54_bd/#'
+// [2022-10-30 15:18:00,634] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 15:18:00,636] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 15:18:00,647] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.24' (MAC 24:df:a7:a4:d7:2b) and started listening to MQTT commands at 'broadlink/BG1_24_df_a7_a4_d7_2b/#'
+// [2022-10-30 15:18:00,647] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 15:18:00,648] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 15:18:00,659] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.19' (MAC 24:df:a7:a4:cc:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_cc_ec/#'
+// [2022-10-30 15:18:00,660] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 15:18:00,669] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#
+// [2022-10-30 15:18:00,678] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_24_df_a7_a4_c6_ec/,BG1_c8_f7_42_fc_54_bd/,BG1_24_df_a7_a4_d7_2b/,SP4B_24_df_a7_a4_cc_ec/
+// [2022-10-30 15:18:00,678] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of SP4B_24_df_a7_a4_c6_ec/,BG1_c8_f7_42_fc_54_bd/,BG1_24_df_a7_a4_d7_2b/,SP4B_24_df_a7_a4_cc_ec/
+
+//WITH
+// [2022-10-30 15:22:57,996] DEBUG -- Starting up --
+// [2022-10-30 15:23:18,015] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 15:23:18,031] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.11' (MAC c8:f7:42:fc:54:bd) and started listening to MQTT commands at 'broadlink/BG1_c8_f7_42_fc_54_bd/#'
+// [2022-10-30 15:23:18,031] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.11:80 / C8:F7:42:FC:54:BD)
+// [2022-10-30 15:23:18,033] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 15:23:18,046] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.24' (MAC 24:df:a7:a4:d7:2b) and started listening to MQTT commands at 'broadlink/BG1_24_df_a7_a4_d7_2b/#'
+// [2022-10-30 15:23:18,047] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.24:80 / 24:DF:A7:A4:D7:2B)
+// [2022-10-30 15:23:18,048] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 15:23:18,061] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.29' (MAC 24:df:a7:a4:c6:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_c6_ec/#'
+// [2022-10-30 15:23:18,062] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.29:80 / 24:DF:A7:A4:C6:EC)
+// [2022-10-30 15:23:18,064] DEBUG Discovered device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 15:23:18,076] DEBUG Connected to 'SP4B' Broadlink device at '192.168.0.19' (MAC 24:df:a7:a4:cc:ec) and started listening to MQTT commands at 'broadlink/SP4B_24_df_a7_a4_cc_ec/#'
+// 2022-10-30 15:23:18,077] DEBUG ==--Device authenticated, device: adapter (BG Electrical AHC/U-01 0x51e2 / 192.168.0.19:80 / 24:DF:A7:A4:CC:EC)
+// [2022-10-30 15:23:18,079] DEBUG Discovered device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.13:80 / A0:43:B0:97:ED:66)
+// [2022-10-30 15:23:18,092] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.13' (MAC a0:43:b0:97:ed:66) and started listening to MQTT commands at 'broadlink/BG1_a0_43_b0_97_ed_66/#'
+// [2022-10-30 15:23:18,093] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.13:80 / A0:43:B0:97:ED:66)
+// [2022-10-30 15:23:18,107] DEBUG Connected to MQTT broker, subscribing to topic broadlink/#
+// [2022-10-30 15:23:18,110] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_c8_f7_42_fc_54_bd/,BG1_24_df_a7_a4_d7_2b/,SP4B_24_df_a7_a4_c6_ec/,SP4B_24_df_a7_a4_cc_ec/,BG1_a0_43_b0_97_ed_66/
+// [2022-10-30 15:23:18,111] ERROR MQTT topic broadlink/LWT has no recognized device reference, expected one of BG1_c8_f7_42_fc_54_bd/,BG1_24_df_a7_a4_d7_2b/,SP4B_24_df_a7_a4_c6_ec/,SP4B_24_df_a7_a4_cc_ec/,BG1_a0_43_b0_97_ed_66/
+
+// SO NEW IS
+// [2022-10-30 15:23:18,092] DEBUG Connected to 'BG1' Broadlink device at '192.168.0.13' (MAC a0:43:b0:97:ed:66) and started listening to MQTT commands at 'broadlink/BG1_a0_43_b0_97_ed_66/#'
+// [2022-10-30 15:23:18,093] DEBUG ==--Device authenticated, device: socket (BG Electrical BG800/BG900 0x51e3 / 192.168.0.13:80 / A0:43:B0:97:ED:66)

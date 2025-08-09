@@ -1,0 +1,16 @@
+Number:Temperature  Outside_Temperature "Outside Temperature [%.1f °C]" <temperature>   (gChart_Minute)	[ "CurrentTemperature" ]	{ channel="mqtt:topic:outside:temperature"}
+// Number  Outside_Humidity            "Outside Humidity [%.1f °C]"				<humidity>		{ channel="mqtt:topic:outside:humidity"}
+Number:Temperature  Shed_Temperature    "Shed Temperature [%.1f °C]"    <temperature>  (gChart_Minute) 	{ channel="mqtt:topic:outside:shedTemperature"}
+Number outsideReboots    "outsideReboots"
+
+Number Outside_RSSI "outside Sensor socket RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:rssi" }
+Switch Outside_power "Outside_power" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:outside:powerSwitch" }
+
+String Outside_Reachable "outside Sensor socket reachable" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable" }
+
+Switch Outside_ReachableSwitch "outside Sensor reachable Switch" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachableSwitch" }
+
+// Number Outside_ReachableNumber "outside Sensor reachable  number" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:outside:reachable"
+// [profile="transform:MAP", function="outside_sensor.map"] }
+
+// String <itemName> { channel="<channelUID>"[profile="transform:MAP", function="<filename>", sourceFormat="<valueFormat>"]}

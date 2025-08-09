@@ -1,0 +1,22 @@
+// You need to add a camera account in the settings in the Tapo app. Create whatever credentials you want.
+// Then use the credentials, rtsp port 554 and onvif port 2020 in BI.
+//  rtsp://user:password@192.168.123.106/h264Preview_01_sub”,
+
+// https://www.youtube.com/watch?v=9kBakyre3WA
+
+// https://community.openhab.org/t/cant-get-ip-camera-tapo-c200-to-work-although-its-thing-is-online/119916
+
+// rtsp://192.168.0.13:554/stream1
+// rtsp://192.168.0.13/stream1
+
+// Thing ipcamera:onvif:tapo
+//     [
+//         ipAddress="192.168.0.13",
+//         onvifPort="2020",
+//         username="tapoc210",
+//         password="chutn3y",
+//         port="80",
+//         onvifMediaProfile="0",
+//         ffmpegInput="rtsp://192.168.0.13/stream1",
+//         onvifMediaProfile="1"
+//     ]

@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "openhab.useRestApi": true,
+    "openhab.connection.host": "192.168.0.101",
+    "openhab.connection.port": 8080,
+    "openhab.connection.basicAuth.username": "",
+    "openhab.connection.basicAuth.password": "",
+    "openhab.languageserver.remoteEnabled": true,
+    "openhab.languageserver.remotePort": 5007,
+    "openhab.connection.authToken": "oh.oh3token.BqQu4Zw9cBqlmW2wmchcSDvLKh6YMPSc3ySnEyOufQPdg3zD7pzQmspdhKio9DYpH0KJXg2JllJwv7jUKw",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "eslint.validate": ["javascript"]
+  }
+}

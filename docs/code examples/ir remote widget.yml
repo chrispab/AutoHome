@@ -1,0 +1,291 @@
+uid: amplifier_IR_control_v4
+tags: []
+props:
+  parameters:
+    - default: amplifier_IR_
+      description: IR remote item prefix e.g. amplifier_IR_
+      label: IR remote item prefix
+      name: IRRemote_prefix
+      required: false
+      type: TEXT
+    - context: item
+      default: amplifier_IR_rssi
+      description: Signal quality RSSI item (number)
+      label: Link quality item
+      name: rssiItem
+      required: false
+      type: TEXT
+    - context: item
+      default: amplifier_IR_reachable
+      description: Reachable item (switch)
+      label: Reachable item
+      name: reachableItem
+      required: false
+      type: TEXT
+    - default: green
+      description: HEX or rgba
+      label: color_active
+      name: color_active
+      required: false
+      type: TEXT
+    - default: white
+      description: HEX or rgba
+      label: color_inactive
+      name: color_inactive
+      required: false
+      type: TEXT
+    - default: black
+      description: standard color eg blue, green
+      label: button color
+      name: btnColor
+      required: false
+      type: TEXT
+    - default: yellow
+      description: button active fill color
+      label: button active fill color
+      name: btnActiveColor
+      required: false
+      type: TEXT
+    - default: rgb(20,20,90)
+      description: HEX or rgba
+      label: Background color
+      name: bgcolor
+      required: false
+      type: TEXT
+    - default: 0px 2px 5px -1px
+      description: 0px 2px 5px -1px
+      label: button shadow
+      name: btnShadow
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: May 29, 2022, 11:17:46 PM
+component: f7-block
+config:
+  style:
+    --f7-card-margin-horizontal: 0px
+    background-color: =props.bgcolor
+    border-radius: 30px
+    box-shadow: 2px 3px rgb(150,150,150)
+    height: 16rem
+    width: 14rem
+slots:
+  default:
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "PowerOn"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          left: 20px
+          position: absolute
+          top: 20px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "PowerOn"
+        iconF7: power
+        iconSize: 25
+        style:
+          color: '=((items[props.IRRemote_prefix + "PowerOn"].state == "ON")) ? props.color_active : "green"'
+          left: 35px
+          position: absolute
+          top: 26px
+    - component: oh-link
+      config:
+        iconSize: 35
+        style:
+          left: 103px
+          position: absolute
+          top: 16px
+        text: =(Number.parseFloat(items[props.rssiItem].state.split(" ")[0]) * 100 / 100).toFixed(0)
+    - component: oh-link
+      config:
+        iconF7: '=(items[props.reachableItem].state == "ON" ? "wifi" : "wifi_exclamationmark")'
+        iconSize: 35
+        style:
+          color: '=(items[props.reachableItem].state == "ON" ? "green" : "red")'
+          left: 94px
+          position: absolute
+          top: 28px
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "PowerOff"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          position: absolute
+          right: 20px
+          top: 20px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "PowerOff"
+        iconF7: power
+        iconSize: 25
+        style:
+          color: '=((items[props.IRRemote_prefix + "PowerOff"].state == "ON")) ? props.color_active : "red"'
+          position: absolute
+          right: 35px
+          top: 26px
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "Tuner"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          left: 20px
+          position: absolute
+          top: 90px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "Tuner"
+        iconSize: 25
+        style:
+          color: '=((items[props.IRRemote_prefix + "Tuner"].state == "ON")) ? props.color_active : props.color_inactive'
+          left: 29px
+          position: absolute
+          top: 98px
+        text: Tuner
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "Aux"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          left: 84px
+          position: absolute
+          top: 90px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "Aux"
+        iconSize: 25
+        style:
+          color: '=((items[props.IRRemote_prefix + "Aux"].state == "ON")) ? props.color_active : props.color_inactive'
+          left: 100px
+          position: absolute
+          top: 98px
+        text: Aux
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "Video1"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          position: absolute
+          right: 20px
+          top: 90px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "Video1"
+        iconSize: 25
+        style:
+          color: '=((items[props.IRRemote_prefix + "Video1"].state == "ON")) ? props.color_active : props.color_inactive'
+          position: absolute
+          right: 29px
+          top: 98px
+        text: Video
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "VolumeDown"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          left: 20px
+          position: absolute
+          top: 145px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "VolumeDown"
+        iconF7: speaker_1
+        iconSize: 27
+        style:
+          color: '=((items[props.IRRemote_prefix + "VolumeDown"].state == "ON")) ? props.btnActiveColor : props.color_inactive'
+          left: 35px
+          position: absolute
+          top: 151px
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "Mute"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          left: 84px
+          position: absolute
+          top: 145px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "Mute"
+        iconF7: speaker_slash
+        iconSize: 27
+        style:
+          color: '=((items[props.IRRemote_prefix + "Mute"].state == "ON")) ? props.btnActiveColor : props.color_inactive'
+          font-size: 25px
+          position: absolute
+          right: 98px
+          top: 152px
+    - component: f7-badge
+      config:
+        bgColor: '=((items[props.IRRemote_prefix + "VolumeUp"].state == "ON")) ? props.btnActiveColor : props.btnColor'
+        style:
+          border-radius: 15px
+          box-shadow: =props.btnShadow
+          height: 40px
+          position: absolute
+          right: 20px
+          top: 145px
+          width: 55px
+    - component: oh-link
+      config:
+        action: command
+        actionCommand: ON
+        actionItem: =props.IRRemote_prefix + "VolumeUp"
+        iconF7: speaker_3
+        iconSize: 27
+        style:
+          color: '=((items[props.IRRemote_prefix + "VolumeUp"].state == "ON")) ? props.btnActiveColor : props.color_inactive'
+          position: absolute
+          right: 33px
+          top: 150px
+          z-index: 2
+    - component: oh-link
+      config:
+        color: red
+        style:
+          bottom: 1px
+          display: flex
+          font-size: 15px
+          height: 40px
+          left: 20px
+          position: absolute
+          width: 200px
+        text: amplifier_IR_control_v4
+
+
+'=((items[props.Sensor_prefix + "temperature"].state )) ? items[props.Sensor_prefix + "temperature"].state : "no temp"'

@@ -1,0 +1,20 @@
+sitemap tradfri label="ikea tradfri"
+{
+    Frame {
+        Switch item=conservatoryLightsProxy label="item=conservatoryLightsProxy"
+        Slider item=Bulb1Brightness label="Bulb 1 Brightness [%.1f %%]" 
+        Slider item=Bulb2Brightness label="Bulb 2 Brightness [%.1f %%]" 
+        //Slider item=Bulb4 label="Bulb 4 Brightness [%.1f %%]"
+
+         Colorpicker item=Bulb3Colour label="Bulb 3 colour"
+         Colorpicker item=Bulb4Colour label="Bulb 4 colour"
+        // Slider item=Light2_ColorTemperature label="Light2 Color Temperature [%.1f %%]"
+        //Colorpicker item=ColourBulb1Colour label="C bulb 1 Color"
+        //Colorpicker item=IkeaLight2 label="IkeaLight2 Color"
+        // Text item=RemoteControlBatteryLevel label="Battery level [%d %%]"
+        // Switch item=RemoteControlBatteryLow label="Battery low warning"
+        //// Switch item=ControlOutlet label="Power Switch"
+        //Switch item=ClipLightPower label="ClipLight switch"
+        Switch item=testSwitch label="test switch"
+    }
+}

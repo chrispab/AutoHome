@@ -1,0 +1,14 @@
+// Number:Time Boost_Time  "Heater boost time"       <material:trending_up> { unit="min" }
+Number hTime  "Heater boost time"  <material:trending_up>
+
+
+String		Heatingstr		"Global Master Heating Mode [%s]"
+Switch		Heatingtrend		"Send Target Temperatures to Heaters"
+// Number		MaxHeatingTempAllowed		"Maximum allowed temperature [%.1f °C]"		<temperature>
+
+Number CT_heating_tempLastReading (gChart_Minute)
+Number CT_heating_timeLastReading (gChart_Minute)
+
+Number CT_heating_deltaTemp (gChart_Minute)
+Number CT_heating_deltaTime (gChart_Minute)
+Number CT_heating_gradient (gChart_Minute)

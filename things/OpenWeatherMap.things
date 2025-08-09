@@ -1,0 +1,12 @@
+// // Bridge openweathermap:weather-api:api "OpenWeatherMap Account" [apikey="ac2a069758f1a106d5d656ff22374894", refreshInterval=30, language="en"] {
+// //     Thing weather-and-forecast local "Local Weather And Forecast" [location="52.77461795841994,-1.2887179951797358", forecastHours=25, forecastDays=6]
+// // }
+
+// Bridge openweathermap:weather-api:bridge "OWM Bridge" [apikey="ac2a069758f1a106d5d656ff22374894", refreshInterval=30, language="en"] {
+//     Thing weather-and-forecast local "Local Weather And Forecast" [location="52.77461795841994,-1.2887179951797358", forecastDays=7]
+//     Thing onecall local "OneCall API" [location="52.77461795841994,-1.2887179951797358", forecastHours=25, forecastDays=7]
+// }
+
+// shepshed
+// 52.77461795841994
+// -1.2887179951797358

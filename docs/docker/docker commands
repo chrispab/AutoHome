@@ -1,0 +1,62 @@
+//container command line
+docker exec -it openhab /bin/bash
+
+
+https://docs.linuxserver.io/faq#libseccomp
+
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+
+	libseccomp2_2.5.1-1~bpo10+1_armhf.deb
+
+    wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.1-1~bpo10+1_armhf.deb
+sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+
+sudo dpkg -i libseccomp2_2.5.1-1~bpo10+1_armhf.deb
+
+
+
+
+https://sensorsiot.github.io/IOTstack/Basic_setup/
+
+updating images not built from Dockerfiles¶
+
+If new versions of this type of image become available on DockerHub, your local IOTstack copies can be updated by a pull command:
+
+cd ~/IOTstack
+
+docker-compose pull
+
+docker-compose up -d
+
+
+The pull downloads any new images. It does this without disrupting the running stack.
+
+
+
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+docker run -d --network=host -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+docker run -d --network=host -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+
+docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data --name open-webui ghcr.io/open-webui/open-webui:main
+
+docker run -d -p 3000:8080 -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+
+
+
+docker run -d --network=host -v open-webui:/app/backend/data -e OLLAMA_BASE_URL=http://127.0.0.1:11434 --name open-webui --restart always ghcr.io/open-webui/open-webui:main

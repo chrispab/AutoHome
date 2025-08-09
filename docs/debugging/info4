@@ -1,0 +1,168 @@
+2023-08-31 00:51:58.507 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.059 to 0.038
+2023-08-31 00:51:58.585 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Memory_Available' changed from 984 to 986
+2023-08-31 00:51:58.592 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Memory_Used' changed from 2945449984 B to 2944401408 B
+2023-08-31 00:51:58.597 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 41.9 °C to 41.4 °C
+2023-08-31 00:51:58.602 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.114 to 0.084
+2023-08-31 00:51:59.083 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Zone1Controller_Temperature' changed from 23.8 °C to 23.9 °C
+2023-08-31 00:51:59.088 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Zone1Temperature' changed from 23.8 °C to 23.9 °C
+2023-08-31 00:52:01.613 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'ElsiesRTV_Rssi' changed from 50 to 52
+2023-08-31 00:52:01.618 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'ER_RTV_Rssi' changed from 50 to 52
+2023-08-31 00:52:01.726 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.038 to 0.083
+2023-08-31 00:52:01.776 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 41.4 °C to 43.8 °C
+2023-08-31 00:52:01.781 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.084 to 0.223
+2023-08-31 00:52:04.892 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.083 to 0.072
+2023-08-31 00:52:04.989 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 43.8 °C to 41.4 °C
+2023-08-31 00:52:04.995 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.223 to 0.23
+2023-08-31 00:52:07.180 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Zone1Controller_FanStatus' changed from ON to OFF
+2023-08-31 00:52:07.182 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Zone1FanStatus' changed from ON to OFF
+2023-08-31 00:52:07.240 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'DR_RTV_Rssi' changed from 84 to 82
+2023-08-31 00:52:08.104 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.072 to 0.051
+2023-08-31 00:52:08.142 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 41.4 °C to 42.8 °C
+2023-08-31 00:52:08.145 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.23 to 0.105
+2023-08-31 00:52:11.255 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.051 to 0.039
+2023-08-31 00:52:11.325 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Memory_Available' changed from 986 to 985
+2023-08-31 00:52:11.335 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 42.8 °C to 42.4 °C
+2023-08-31 00:52:11.340 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.105 to 0.113
+2023-08-31 00:52:14.479 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.039 to 0.041
+2023-08-31 00:52:14.521 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.113 to 0.066
+2023-08-31 00:52:17.631 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.041 to 0.033
+2023-08-31 00:52:17.725 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 42.4 °C to 41.9 °C
+2023-08-31 00:52:17.728 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.066 to 0.081
+2023-08-31 00:52:20.850 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.033 to 0.041
+2023-08-31 00:52:20.896 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 41.9 °C to 42.8 °C
+2023-08-31 00:52:20.901 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.081 to 0.066
+2023-08-31 00:52:24.084 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 42.8 °C to 40.4 °C
+2023-08-31 00:52:24.094 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.066 to 0.072
+2023-08-31 00:52:27.221 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.041 to 0.037
+2023-08-31 00:52:27.265 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 40.4 °C to 42.4 °C
+2023-08-31 00:52:27.272 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Current_process_load' changed from 0.072 to 0.075
+2023-08-31 00:52:28.590 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Network_PacketsSent' changed from 5273 to 5274
+2023-08-31 00:52:28.597 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load1' changed from 0.2 to 0.4
+2023-08-31 00:52:28.602 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Uptime' changed from 63294 s to 63354 s
+2023-08-31 00:52:28.607 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Threads' changed from 825 to 824
+2023-08-31 00:52:29.726 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'AtticRTV_Temperature' changed from 19.5 °C to 19.4 °C
+2023-08-31 00:52:29.742 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'AT_Temperature' changed from 19.5 to 19.4
+2023-08-31 00:52:30.381 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'CPU_Load' changed from 0.037 to 0.077
+2023-08-31 00:52:30.420 [INFO ] [openhab.event.ItemStateChangedEvent ] - Item 'Sensor_CPUTemp' changed from 42.4 °C to 41.9 °C
+
+
+2023-08-31 00:51:00.635 [INFO ] [ion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+2023-08-31 00:51:23.918 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:51:53.946 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:52:23.982 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:52:29.729 [INFO ] [.automation.openhab-js.heater_change] - Heating change...Turn AT heater OFF, :. its Heating Mode is  off
+2023-08-31 00:52:29.747 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:52:29.772 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: AT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:52:29.833 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: AT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:52:35.420 [WARN ] [ab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@8f18d6' takes more than 5000ms.
+2023-08-31 00:52:54.005 [INFO ] [automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+2023-08-31 00:53:59.326 [INFO ] [.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+2023-08-31 00:54:00.634 [INFO ] [ion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+2023-08-31 00:56:21.803 [WARN ] [ab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+2023-08-31 01:30:00.618 [WARN ] [automation.openhab-js.auto ct lights] - CRON turn OFF conservatory lights when late - maybe forgot
+2023-08-31 04:50:04.343 [INFO ] [ab.ui.habpanel.internal.HABPanelTile] - Stopped HABPanel
+
+
+_   _     _     ____
+___   ___   ___   ___  | | | |   / \   | __ )
+/ _ \ / _ \ / _ \ / _ \ | |_| |  / _ \  |  _ \
+| (_) | (_) |  __/| | | ||  _  | / ___ \ | |_) )
+\___/|  __/ \___/|_| |_||_| |_|/_/   \_\|____/
+    |_|       4.0.2 - Release Build
+
+Use '<tab>' for a list of available commands
+and '[cmd] --help' for help on a specific command.
+To exit, use '<ctrl-d>' or 'logout'.
+
+openhab> shell:info
+Karaf
+Karaf version               4.4.3
+Karaf home                  /openhab/runtime
+Karaf base                  /openhab/userdata
+OSGi Framework              org.eclipse.osgi-3.18.0.v20220516-2155
+
+JVM
+Java Virtual Machine        OpenJDK Server VM version 17.0.7+7-Debian-1deb11u1
+Version                     17.0.7
+Vendor                      Debian
+Pid                         203
+Uptime                      9 hours 53 minutes
+Process CPU time            7 hours 12 minutes
+Process CPU load            0.19
+System CPU load             0.21
+Open file descriptors       241
+Max file descriptors        1,048,576
+Total compile time          8 minutes
+Threads
+Live threads                274
+Daemon threads              116
+Peak                        305
+Total started               12508
+Memory
+Current heap size           1,276,251 kbytes
+Maximum heap size           2,621,440 kbytes
+Committed heap size         1,775,616 kbytes
+Pending objects             0
+Garbage collector           Name = 'G1 Young Generation', Collections = 271, Time = 16.071 seconds
+Garbage collector           Name = 'G1 Old Generation', Collections = 0, Time = 0.000 seconds
+Classes
+Current classes loaded      33,124
+Total classes loaded        35,724
+Total classes unloaded      2,600
+Operating system
+Name                        Linux version 6.1.21-v8+
+Architecture                arm
+Processors                  4
+Total physical memory       3,884,372 kbytes
+Free physical memory        32,752 kbytes
+openhab> log:tail
+09:39:21.795 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:39:24.568 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.035 to 0.07
+09:39:24.639 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.8 °C to 45.3 °C
+09:39:24.643 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.073 to 0.229
+09:39:27.772 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.07 to 0.04
+09:39:27.813 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 45.3 °C to 46.3 °C
+09:39:27.816 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.229 to 0.076
+09:39:29.756 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3Controller_FanStatus' changed from OFF to ON
+09:39:29.760 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone3FanStatus' changed from OFF to ON
+09:39:29.866 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_FanStatus' changed from OFF to ON
+09:39:29.868 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1FanStatus' changed from OFF to ON
+09:39:30.930 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.04 to 0.042
+09:39:31.019 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.076 to 0.128
+09:39:34.124 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.042 to 0.033
+09:39:34.166 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.128 to 0.054
+09:39:36.758 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Temperature' changed from 20.6 to 22.2
+09:39:36.765 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Temperature' changed from 20.6 °C to 22.2 °C
+09:39:36.772 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Temperature' changed from 20.6 °C to 22.2 °C
+09:39:36.779 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Temperature_raw' changed from 20.6 °C to 22.2 °C
+09:39:36.788 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Temperature' changed from 21.6 °C to 21.7 °C
+09:39:36.788 [INFO ] [b.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+09:39:36.791 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'FH_Temperature' changed from 21.6 to 21.7
+09:39:36.803 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: HL_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:39:36.824 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'ConservatoryRTV_Humidity' changed from 80.1 to 82.5
+09:39:36.828 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'FH_Humidity' changed from 80.1 to 82.5
+09:39:36.831 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CT_Humidity' changed from 80.1 to 82.5
+09:39:36.834 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_Humidity' changed from 80.1 to 82.5
+09:39:36.836 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Bridge_Humidity' changed from 80.1 % to 82.5 %
+09:39:36.838 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: FH_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:39:36.842 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:39:37.277 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.033 to 0.067
+09:39:37.319 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Sensor_CPUTemp' changed from 46.3 °C to 45.8 °C
+09:39:37.321 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.054 to 0.206
+09:39:40.435 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.067 to 0.029
+09:39:40.476 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.206 to 0.057
+09:39:41.594 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'MQTTThing433MhzBridge_LightLevel' changed from 3114 to 3152
+09:39:41.595 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'BridgeLightSensorLevel' changed from 3114 to 3152
+09:39:43.461 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_Date' changed from 2023-08-31T09:38:43.454+0100 to 2023-08-31T09:39:43.455+0100
+09:39:43.584 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'CPU_Load' changed from 0.029 to 0.038
+09:39:43.625 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Current_process_load' changed from 0.057 to 0.099
+09:39:44.856 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1Controller_FanStatus' changed from ON to OFF
+09:39:44.858 [INFO ] [openhab.event.ItemStateChangedEvent  ] - Item 'Zone1FanStatus' changed from ON to OFF
+09:39:49.859 [WARN ] [hab.core.internal.events.EventHandler] - Dispatching event to subscriber 'org.openhab.core.io.monitor.internal.EventLogger@14b5c3a' takes more than 5000ms.
+09:39:49.979 [INFO ] [.automation.openhab-js.boiler_control] - Boiler -no action: CT_Heater-(OFF), all Heaters are OFF -> boiler already OFF so NOT sending OFF command
+09:39:51.775 [INFO ] [b.automation.openhab-js.heater_change] - Heating change... Heater: CT, mode is: auto -> SendCommand to: CT, Heater OFF
+09:42:00.037 [INFO ] [tion.openhab-js.ct_heating_fan_recirc] - conservatory fan circulate heat Cron   ZZZZZ
+09:43:06.799 [WARN ] [hab.core.internal.events.EventHandler] - The queue for a subscriber of type 'class org.openhab.core.io.monitor.internal.EventLogger' exceeds 5000 elements. System may be unstable.
+11:03:25.916 [WARN ] [.io.openhabcloud.internal.CloudClient] - Socket.IO disconnected: ping timeout
+16:31:05.953 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: undefined
+16:31:09.462 [WARN ] [se.internal.SseItemStatesEventBuilder] - Attempting to send a state update of an item which doesn't exist: wifi_socket_4_power

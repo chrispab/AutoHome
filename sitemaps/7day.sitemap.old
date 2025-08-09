@@ -1,0 +1,119 @@
+sitemap 7day label="The Qstat"
+{
+	
+	Frame label="Current Status"
+	{
+		Text item=ADownstairs 
+		Text item=AUpstairs 
+		Text item=AWater 
+
+	}
+
+	Frame label="Booster Buttons"
+	{
+	            	
+	    Selection item=DownstairsBoostTime label="Downstairs Boost Time" mappings=[30="0.5 Hours", 60="1 Hour", 90="1.5 Hours", 120="2 Hours", 150="2.5 Hours", 180="3 Hours", 210="3.5 hours", 240="4 Hours", 300="5 Hours"]
+		Switch item=DownBoostSwitch
+		Selection item=UpstairsBoostTime label="Upstairs Boost Time" mappings=[30="0.5 Hours", 60="1 Hour", 90="1.5 Hours", 120="2 Hours", 150="2.5 Hours", 180="3 Hours", 210="3.5 hours", 240="4 Hours", 300="5 Hours"]
+		Switch item=UpstairsBoostSwitch
+		Selection item=WaterBoostTime label="Water Boost Time" mappings=[30="0.5 Hours", 60="1 Hour"]
+		Switch item=WaterBoostSwitch
+	}
+	
+	
+    Frame label="Heating Schedules" {
+    	Text label="Downstairs" icon="clock-on" {
+    	
+	            Frame label="Enable Downstairs Schedule" {
+	                Switch item=EnableDownstairsScheduler label="Enable Scheduling"
+	            	
+	            }
+	            Frame label="Start Time" {
+	            	Selection item=DownWkSchedTimeHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=DownWkSchedTimeMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }
+	            Frame label="End Time" {
+	            	Selection item=DownWkSchedTimeEndHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=DownWkSchedTimeEndMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }	    
+	            Frame label="Days Enabled" {
+	                Switch item=DownWkSchedMonday
+	                Switch item=DownWkSchedTuesday
+	                Switch item=DownWkSchedWednesday
+	                Switch item=DownWkSchedThursday
+	                Switch item=DownWkSchedFriday
+	                Switch item=DownWkSchedSaturday
+	                Switch item=DownWkSchedSunday
+	            }
+        }
+    	Text label="Upstairs" icon="clock-on" {
+    	
+	            Frame label="Enable Upstairs Schedule" {
+	                Switch item=EnableUpstairsScheduler label="Enable Scheduling"
+	            	
+	            }
+	            Frame label="Start Time" {
+	            	Selection item=UpWkSchedTimeHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=UpWkSchedTimeMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }
+	            Frame label="End Time" {
+	            	Selection item=UpWkSchedTimeEndHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=UpWkSchedTimeEndMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }	    
+	            Frame label="Days Enabled" {
+	                Switch item=UpWkSchedMonday
+	                Switch item=UpWkSchedTuesday
+	                Switch item=UpWkSchedWednesday
+	                Switch item=UpWkSchedThursday
+	                Switch item=UpWkSchedFriday
+	                Switch item=UpWkSchedSaturday
+	                Switch item=UpWkSchedSunday
+	            }
+	        
+        }
+    	Text label="Hot Water" icon="clock-on" {
+ 
+ 	            Frame label="Enable Water Schedule" {
+	                Switch item=EnableWaterScheduler label="Enable Scheduling"
+	            	
+	            }   	
+
+	            Frame label="Start Time" {
+	            	Selection item=WaterWkSchedTimeHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=WaterWkSchedTimeMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }
+	            Frame label="End Time" {
+	            	Selection item=WaterWkSchedTimeEndHour label="Select Hour" mappings=[0="00:00", 1="01:00", 2="02:00", 3="03:00", 4="04:00", 5="05:00", 6="06:00", 7="07:00", 8="08:00", 9="09:00", 10="10:00", 11="11:00", 12="12:00",13="13:00", 14="14:00", 15="15:00", 16="16:00", 17="17:00", 18="18:00", 19="19:00", 20="20:00", 21="21:00", 22="22:00", 23="23:00"]
+	            	Selection item=WaterWkSchedTimeEndMinute label="Select Minutes" mappings=[0="00", 5="05", 10="10", 15="15", 20="20", 25="25", 30="30", 35="35", 40="40", 45="45", 50="50", 55="55"]
+	            	
+	            }	    
+	            Frame label="Days Enabled" {
+	                Switch item=WaterWkSchedMonday
+	                Switch item=WaterWkSchedTuesday
+	                Switch item=WaterWkSchedWednesday
+	                Switch item=WaterWkSchedThursday
+	                Switch item=WaterWkSchedFriday
+	                Switch item=WaterWkSchedSaturday
+	                Switch item=WaterWkSchedSunday
+	            }
+	        }  
+	}
+	
+	Frame label="Expert settings"
+	{
+
+		Text label="Overrides" icon="settings"	{
+			
+			Switch item=ADownstairs label="Hard Downstairs Switch"
+			Switch item=AUpstairs label="Hard Upstairs Switch"
+			Switch item=AWater label="Hard Water Switch"
+		}
+	}
+
+
+}

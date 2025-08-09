@@ -1,0 +1,6 @@
+        actionAnalyzerItems: "=props.setpointItem ? [props.tempItem,props.setpointItem,props.heatingStateItem,'Outside_Temperature'] : [props.tempItem]"
+        actionAnalyzerItems: "=(props.locationPrefix + props.ThermostatTemperatureSetpointSuffix)
+        ? [props.locationPrefix + props.thermostatTemperatureAmbientSuffix,
+        props.locationPrefix + props.ThermostatTemperatureSetpointSuffix,
+        props.locationPrefix + props.HeaterControlSuffix,'Outside_Temperature']
+        : [props.locationPrefix + props.thermostatTemperatureAmbientSuffix]"

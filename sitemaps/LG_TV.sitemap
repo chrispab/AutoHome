@@ -1,0 +1,13 @@
+sitemap LG_TV label="LG_TV"
+{
+    Frame label="TV" {
+        Switch item=CT_TV_Power
+        Switch item=CT_TV_Mute
+        Text item=CT_TV_Volume
+        Switch item=CT_TV_VolDummy icon="soundvolume" label="Volume" mappings=[1="▲", 0="▼"]
+        Default item=CT_TV_Channel
+        Switch item=CT_TV_ChannelDummy icon="television" label="Channel" mappings=[1="▲", 0="▼"]
+        Default item=CT_TV_Player
+        Default item=CT_TV_Application
+    }
+}
