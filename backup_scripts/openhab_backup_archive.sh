@@ -1,12 +1,16 @@
 #!/bin/bash
 #setup ssh keys
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
-# ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# remember tpo sudo su when passing keys as root for this cron job
+# sudo su
+# check for existing keys
+# ls -al ~/.ssh
+# Lists the files in your .ssh directory, if they exist
 # ssh-keygen -t ed25519 -C "cbattisson@gmail.com"
 # eval "$(ssh-agent -s)"
 # ssh-add ~/.ssh/id_ed25519
-# ssh-copy-id -i ~/.ssh/<public_key_file> <user>@<remote machine>
-# ssh-copy-id -i ~/.ssh/id_ed25519.pub openhabian@openhabian2.local
+# ssh-copy-id -i ~/.ssh/id_ed25519.pub chris@192.168.0.111
 
 ls -t1 /var/lib/openhab/backups/* | tail -n +8 | xargs rm -f
 echo "last 7 local backup files are saved in /var/lib/openhab/backups/ & 192.168.0.111:/mnt/usb_unique/currentbackups/openhabian_backups"
