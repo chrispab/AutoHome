@@ -7,7 +7,7 @@ Channels:
     // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
     Type string : reachable "Zigbee2mqtt Bridge 01 Reachable" [ stateTopic="zigbee2mqtt/bridge/logging", transformationPattern="MAP:anything_to_ON.map"]
     // Type string : availability "Zigbee2mqtt Bridge 01 availability" [ stateTopic="zigbee2mqtt/bridge/availability" ]
-    Type string : availability "Zigbee2mqtt Bridge 01 availability" [ stateTopic="zigbee2mqtt/bridge/state" ]
+    Type string : availability "Zigbee2mqtt Bridge 01 availability" [ stateTopic="zigbee2mqtt/bridge/state", transformationPattern="JSONPATH:$.state" ]
 
 
 }
@@ -21,7 +21,7 @@ Channels:
     // Type string : logMessage         [ stateTopic="zigbee2mqtt/bridge/log",  transformationPattern="JSONPATH:$.message" ]
     Type number : linkquality "Zigbee Router 01 LinkQuality" [ stateTopic="zigbee2mqtt/router01/linkquality" ]
     Type string : reachable "Zigbee Router 01 Reachable"[ stateTopic="zigbee2mqtt/router01", transformationPattern="MAP:anything_to_ON.map"]
-    Type string : availability "Zigbee Router 01 availability" [ stateTopic="zigbee2mqtt/router01/availability" ]
+    Type string : availability "Zigbee Router 01 availability" [ stateTopic="zigbee2mqtt/router01/availability", transformationPattern="JSONPATH:$.state" ]
 
 }
 
