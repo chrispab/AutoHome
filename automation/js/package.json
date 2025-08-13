@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "openhab_rules_tools": "^2.0.3",
+    "openhab_rules_tools": "^2.1.0",
     "openhab-my-utils": "file:../../my_node_libs/openhab-my-utils"
   },
   "devDependencies": {

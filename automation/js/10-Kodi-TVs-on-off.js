@@ -198,7 +198,7 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'OFF', 'ON'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'OFF', 'ON'),
-    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle'),
+    triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold', 'toggle'),
   ],
   execute: () => {
     turnOnTV('conservatory', 'Turning on conservatory TV');
@@ -212,7 +212,7 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'ON', 'OFF'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'ON', 'OFF'),
-    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
+    triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle', 'toggle_hold'),
 
   ],
   execute: () => {
