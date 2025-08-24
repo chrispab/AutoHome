@@ -22,7 +22,7 @@ const tvConfig = {
     ampInputVideo1: 'amplifier_IR_Video1',
     kodiSystemCommand: 'Kodi_CT_systemcommand',
     kodiOnlineStatus: 'Kodi_CT_Online_Status',
-    tvStandby: 'CT_TV_Power',
+    tvStandby: 'CT_LGWebOS_TV_Power',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
   },
@@ -30,6 +30,7 @@ const tvConfig = {
     name: 'Bedroom',
     tvSwitch: 'vBR_TVKodi',
     kodiPower: 'wifi_socket_3_power',
+    tvPower: 'wifi_socket_3_power',
     kodiShutdownProxy: 'shutdownKodiBedroomProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -38,6 +39,7 @@ const tvConfig = {
     name: 'Front Room',
     tvSwitch: 'vFR_TVKodi',
     kodiPower: 'wifi_socket_2_power',
+    tvPower: 'wifi_socket_2_power',
     kodiShutdownProxy: 'shutdownKodiFrontRoomProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -45,6 +47,7 @@ const tvConfig = {
   attic: {
     name: 'Attic',
     tvSwitch: 'vAT_TVKodi',
+    tvPower: 'wifi_socket_4_power',
     kodiShutdownProxy: 'shutdownKodiAtticProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -116,14 +119,17 @@ function turnOnTV(roomName, message) {
     alerting.flashItemAlert(room.flashItem, room.flashCount, 500);
   }
 
+  // if (room.tv)
+
   // Conservatory-specific actions
+
   if (roomName === 'conservatory') {
-    // Turn amp on from standby, once ir device is on
+  // Turn amp on from standby, once ir device is on
     actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
       items.getItem(room.ampPowerOn).sendCommand('ON');
       logger.info('STEREO - IR turn on amp from standby');
       items.getItem(room.tvStandby).sendCommand('ON');
-      logger.info('CT_TV_Power turn on tv from standby');
+      logger.info('CT_LGWebOS_TV_Power turn on tv from standby');
     });
 
     // turn to amp audio source Video1
@@ -136,8 +142,10 @@ function turnOnTV(roomName, message) {
       logger.info('STEREO - on');
     });
   }
+  // }
   // actions.Voice.say(roomName + ' tv on');
-  actions.Voice.say(`${roomName} tv on`);
+  // actions.Voice.say(`turning ${roomName} tv on`);
+  actions.Voice.say(`${message}`);
 
   // `${roomName} tv on`
 }
@@ -149,7 +157,7 @@ function turnOnTV(roomName, message) {
  * @param {string} message - The message to be logged.
  */
 function turnOffTV(roomName, message) {
-  logger.info(`Turning off ${roomName} Pi Kodi and TV: ${message}`);
+  logger.info(`Turning off ${roomName} TV and associated kit: ${message}`);
   const room = tvConfig[roomName];
   if (!room) {
     logger.error(`Room configuration not found: ${roomName}`);
@@ -160,7 +168,7 @@ function turnOffTV(roomName, message) {
     logger.info('sent command - shutdown kodi');
     items.getItem(room.ampPowerOff).sendCommand('ON');
     items.getItem(room.tvStandby).sendCommand('OFF');
-    logger.info('CT_TV_Power turn off tv to standby');
+    logger.info('CT_LGWebOS_TV_Power turn off tv to standby');
     if (room.flashItem) {
       alerting.flashItemAlert(room.flashItem, room.flashCount, 500);
     }
@@ -184,9 +192,14 @@ function turnOffTV(roomName, message) {
       if (room.kodiPower) {
         items.getItem(room.kodiPower).sendCommand('OFF');
       }
+      if (room.tvPower) {
+        items.getItem(room.tvPower).sendCommand('OFF');
+      }
     });
   }
-  actions.Voice.say(`${roomName} tv off`);
+  // actions.Voice.say(`turning ${roomName} tv off`);
+  // actions.Voice.say(`turning ${roomName} tv off`);
+  actions.Voice.say(`${message}`);
 }
 
 // ==================Conservatory TV ON
@@ -198,7 +211,9 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'OFF', 'ON'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'OFF', 'ON'),
-    triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold', 'toggle'),
+    // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch, 'ON'),
+    // triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold', 'toggle'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'brightness_up_click'),
   ],
   execute: () => {
     turnOnTV('conservatory', 'Turning on conservatory TV');
@@ -212,8 +227,9 @@ rules.JSRule({
   triggers: [
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch, 'ON', 'OFF'),
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'ON', 'OFF'),
-    triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle', 'toggle_hold'),
-
+    // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch, 'OFF'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'brightness_down_click'),
+    // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
   ],
   execute: () => {
     turnOffTV('conservatory', 'Turning OFF conservatory TV');

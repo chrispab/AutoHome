@@ -24,22 +24,30 @@ rules.JSRule({
   description: 'Goodnight Going to bed',
   triggers: [
     triggers.ItemStateChangeTrigger('Scene_Goodnight', 'OFF', 'ON'),
-    triggers.ItemStateUpdateTrigger('zb_remote01_action', 'brightness_down_click'),
+    triggers.ItemStateUpdateTrigger('zb_remote01_action', 'toggle_hold'),
   ],
 
   execute: (event) => {
     logger.info(`Goodnight Going to bed, triggering item name: ${event.itemName} : ,  received  update event.receivedState: ${event.receivedState}`);
 
     items.getItem('CT_FairyLights433Socket').sendCommand('OFF');
+    items.getItem('workLightsPowerSocket').sendCommand('OFF');
 
-    items.getItem('ZbColourBulb01_switch').sendCommand('OFF');
-    items.getItem('ZbColourBulb02_switch').sendCommand('OFF');
+    // items.getItem('ZbColourBulb01_switch').sendCommand('OFF');
+    // items.getItem('ZbColourBulb02_switch').sendCommand('OFF');
 
-    items.getItem('radio').sendCommand('OFF');
-    items.getItem('gCT_TVKodiSpeakers').sendCommand('OFF');
+    // items.getItem('radio').sendCommand('OFF');
+    // items.getItem('gCT_TVKodiSpeakers').sendCommand('OFF');
+
+    items.getItem('vCT_TVKodiSpeakers').sendCommand('OFF');
+
+    // vCT_TVKodiSpeakers
+    // vCT_TVKodiSpeakers2
+    // zb_remote01_action
+
     // items.getItem('vCT_TVKodiSpeakers2').sendCommand('OFF');
 
-    // turn off all heating
+    // turn off all heating,,,,,
 
     // items.getItem('Heating_UpdateHeaters').sendCommand('OFF');
     // items.getItem('Heating_UpdateHeaters').sendCommand('ON');
@@ -47,7 +55,6 @@ rules.JSRule({
     // items.getItem('gLightCyclers').postUpdate('OFF');
 
     items.getItem('Scene_Goodnight').postUpdate('OFF');
-    items.getItem('workLightsPowerSocket').sendCommand('OFF');
 
     tgoodnight = actions.ScriptExecution.createTimer(time.toZDT((300 * 1000)), () => {
       items.getItem('ZbWhiteBulb01Switch').sendCommand('OFF');

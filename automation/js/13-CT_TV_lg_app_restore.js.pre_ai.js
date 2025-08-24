@@ -44,19 +44,19 @@ rules.JSRule({
   ],
   execute: (event) => {
     // save selected app name
-    logger.debug(`1. TV: Keep track of app changes: current CT_TV_Application.state: ${items.getItem('CT_TV_Application').state}`);
+    logger.debug(`1. TV: Keep track of app changes: current CT_LGWebOS_TV_Application.state: ${items.getItem('CT_LGWebOS_TV_Application').state}`);
 
     // dont update if shutting down or starting up -  undef
     utils.showEvent(event, logger);
 
-    if (items.getItem('CT_TV_Power').state === 'ON') {
+    if (items.getItem('CT_LGWebOS_TV_Power').state === 'ON') {
       const appName = event.newState;
       logger.debug(`2.  TV: appName = event.newState ${appName}`);
       if (appName === undefined || appName === 'com.webos.app.hdmi2') {
-        logger.debug(`3.TV: (appName === undefined || appName === 'com.webos.app.hdmi2'),  not updating CT_TV_LastApp.state with: ${appName}`);
+        logger.debug(`3.TV: (appName === undefined || appName === 'com.webos.app.hdmi2'),  not updating CT_LGWebOS_TV_LastApp.state with: ${appName}`);
       } else {
-        items.getItem('CT_TV_LastApp').sendCommand(appName);
-        logger.debug(`4.TV: Keep track of app changes: new CT_TV_LastApp.state: ${appName}`);
+        items.getItem('CT_LGWebOS_TV_LastApp').sendCommand(appName);
+        logger.debug(`4.TV: Keep track of app changes: new CT_LGWebOS_TV_LastApp.state: ${appName}`);
       }
     }
   },
@@ -83,16 +83,15 @@ rules.JSRule({
   description: 'TV: Restore Last App',
   triggers: [
     // triggers.GroupStateChangeTrigger('gTVPower', 'OFF', 'ON'),
-    triggers.ItemStateChangeTrigger('CT_TV_Power', 'OFF', 'ON'),
-    // CT_TV_Power
+    triggers.ItemStateChangeTrigger('CT_LGWebOS_TV_Power', 'OFF', 'ON'),
   ],
   execute: (event) => {
     logger.debug('0--TV-Restore - gTVPower OFF->ON');
     utils.showEvent(event, logger);
     logger.debug(`1--TV-Restore - event.itemName: ${event.itemName}`);
 
-    const appName = items.getItem('CT_TV_LastApp').state;
-    logger.debug(`2--TV-Restore - get appName from CT_TV_LastApp: ${appName}`);
+    const appName = items.getItem('CT_LGWebOS_TV_LastApp').state;
+    logger.debug(`2--TV-Restore - get appName from CT_LGWebOS_TV_LastApp: ${appName}`);
 
     // wait for app data to come back from tv on power up
     logger.debug(`2--TV-Restore - starting timer, secs: ${restoreTimer}`);
@@ -100,11 +99,11 @@ rules.JSRule({
       logger.debug(`3--TV-Restore -Timer  appName passed into timer: ${appName}`);
 
       if (appName === undefined) {
-        items.getItem('CT_TV_Application').sendCommand('com.webos.app.home');
-        logger.debug('4--TV-Restore -Timer appName == undefined..set default CT_TV_LastApp.state: com.webos.app.home');
+        items.getItem('CT_LGWebOS_TV_Application').sendCommand('com.webos.app.home');
+        logger.debug('4--TV-Restore -Timer appName == undefined..set default CT_LGWebOS_TV_LastApp.state: com.webos.app.home');
       } else {
-        items.getItem('CT_TV_Application').sendCommand(appName);
-        logger.debug(`5--TV-Restore -Timer restoring CT_TV_LastApp.state to: ${appName}`);
+        items.getItem('CT_LGWebOS_TV_Application').sendCommand(appName);
+        logger.debug(`5--TV-Restore -Timer restoring CT_LGWebOS_TV_LastApp.state to: ${appName}`);
       }
     });
   },

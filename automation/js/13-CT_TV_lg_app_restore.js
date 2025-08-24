@@ -26,7 +26,7 @@ rules.JSRule({
   execute: (event) => {
     try {
       // Ensure the required items are available
-      if (!items.getItem('CT_TV_Application') || !items.getItem('CT_TV_Power') || !items.getItem('CT_TV_LastApp')) {
+      if (!items.getItem('CT_LGWebOS_TV_Application') || !items.getItem('CT_LGWebOS_TV_Power') || !items.getItem('CT_LGWebOS_TV_LastApp')) {
         const errorMessage = 'Rule \'TV: Keep track of app changes\' could not run. Missing openHAB items. Check the logs for details.';
         logger.error(errorMessage);
         alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
@@ -34,12 +34,12 @@ rules.JSRule({
       }
 
       logger.debug(
-        `1. App Change Detected: Current CT_TV_Application state: ${items.getItem('CT_TV_Application').state}`,
+        `1. App Change Detected: Current CT_LGWebOS_TV_Application state: ${items.getItem('CT_LGWebOS_TV_Application').state}`,
       );
       utils.showEvent(event, logger); // Log details about the triggering event
 
       // Only track app changes if the TV is ON
-      if (items.getItem('CT_TV_Power').state === 'ON') {
+      if (items.getItem('CT_LGWebOS_TV_Power').state === 'ON') {
         const appName = event.newState;
         logger.debug(`2. New appName detected: ${appName}`);
 
@@ -48,9 +48,9 @@ rules.JSRule({
           logger.debug('3. App change ignored: appName is undefined.');
         } else if (appName === 'com.webos.app.hdmi2') {
           logger.debug('3. App change ignored: appName is HDMI2 input.');
-        } else if (items.getItem('CT_TV_LastApp').state !== appName) {
+        } else if (items.getItem('CT_LGWebOS_TV_LastApp').state !== appName) {
           // Send command only if the state has changed
-          items.getItem('CT_TV_LastApp').sendCommand(appName);
+          items.getItem('CT_LGWebOS_TV_LastApp').sendCommand(appName);
           logger.info(`4. Stored new last app: ${appName}`);
         } else {
           logger.debug('4. App not stored. App is the same as the current value.');
@@ -72,11 +72,11 @@ const restoreTimer = 20; // Seconds to wait before restoring the app
 rules.JSRule({
   name: 'TV: Restore Last App',
   description: 'Restores the last used app on the LG TV when it powers on.',
-  triggers: [triggers.ItemStateChangeTrigger('CT_TV_Power', 'OFF', 'ON')],
+  triggers: [triggers.ItemStateChangeTrigger('CT_LGWebOS_TV_Power', 'OFF', 'ON')],
   execute: (event) => {
     try {
       // Ensure the required items are available
-      if (!items.getItem('CT_TV_Application') || !items.getItem('CT_TV_Power') || !items.getItem('CT_TV_LastApp')) {
+      if (!items.getItem('CT_LGWebOS_TV_Application') || !items.getItem('CT_LGWebOS_TV_Power') || !items.getItem('CT_LGWebOS_TV_LastApp')) {
         const errorMessage = 'Rule \'TV: Restore Last App\' could not run. Missing openHAB items. Check the logs for details.';
         logger.error(errorMessage);
         alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
@@ -87,8 +87,8 @@ rules.JSRule({
       utils.showEvent(event, logger);
       logger.debug(`1--TV-Restore: Triggering item: ${event.itemName}`);
 
-      const appName = items.getItem('CT_TV_LastApp').state;
-      logger.debug(`2--TV-Restore: Last app retrieved from CT_TV_LastApp: ${appName}`);
+      const appName = items.getItem('CT_LGWebOS_TV_LastApp').state;
+      logger.debug(`2--TV-Restore: Last app retrieved from CT_LGWebOS_TV_LastApp: ${appName}`);
 
       // Wait for the TV to fully boot before attempting to launch an app
       logger.info(`2--TV-Restore: Starting timer, waiting ${restoreTimer} seconds...`);
@@ -105,9 +105,9 @@ rules.JSRule({
           logger.info(`4--TV-Restore: Restoring last app: ${appToLaunch}`);
         }
         // Send command only if the state has changed
-        if (items.getItem('CT_TV_Application').state !== appToLaunch) {
-          // const commandResult = items.getItem('CT_TV_Application').sendCommand(appToLaunch);
-          items.getItem('CT_TV_Application').sendCommand(appToLaunch);
+        if (items.getItem('CT_LGWebOS_TV_Application').state !== appToLaunch) {
+          // const commandResult = items.getItem('CT_LGWebOS_TV_Application').sendCommand(appToLaunch);
+          items.getItem('CT_LGWebOS_TV_Application').sendCommand(appToLaunch);
           // if (commandResult) {
           //   logger.info('5--TV-Restore: App Launched.');
           // } else {

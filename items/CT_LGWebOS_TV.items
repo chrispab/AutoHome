@@ -8,20 +8,20 @@ Group  tvGroup "TV" { ga="TV" [ volumeDefaultPercentage="20", levelStepSize="10"
 Group gCT_TV ["Television"]
 
 //autoupdate="false"  waits for confirmation from TV that it is ON
-// Switch CT_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
-Switch CT_TV_Power  "Conservatory TV Power" (tvGroup, gTVPower,gCT_TV) ["Control", "Power"] {ga="tvPower", channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="true"}
-Switch CT_TV_Mute  "TV mute"                (tvGroup) {  ga="tvMute", channel="lgwebos:WebOSTV:tv_conservatory:mute"}
-Dimmer CT_TV_Volume "Volume [%d]"           (tvGroup) { ga="tvVolume", channel="lgwebos:WebOSTV:tv_conservatory:volume" }
-Number CT_TV_VolDummy "VolumeUpDown"
-String CT_TV_Channel "Channel [%s]"         (tvGroup) {  ga="tvChannel" ,channel="lgwebos:WebOSTV:tv_conservatory:channel" }
-Number CT_TV_ChannelDummy "ChannelUpDown"
-String CT_TV_Toast                                      { channel="lgwebos:WebOSTV:tv_conservatory:toast"}
-Switch CT_TV_Stop "Stop"                                { autoupdate="false", channel="lgwebos:WebOSTV:tv_conservatory:mediaStop" }
-String CT_TV_Application "Application [%s]" (tvGroup, gCT_TV, gTVApplication) ["Status"] { ga="tvApplication", channel="lgwebos:WebOSTV:tv_conservatory:appLauncher"}
-Player CT_TV_Player                         (tvGroup) { ga="tvTransport",  channel="lgwebos:WebOSTV:tv_conservatory:mediaPlayer"}
-String CT_TV_RcButton                                   { channel="lgwebos:WebOSTV:tv_conservatory:rcButton"}
+// Switch CT_LGWebOS_TV_Power  "Conservatory LG TV Power" (gTVPower,gCT_TV) ["Control", "Power"] { channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="false" }
+Switch CT_LGWebOS_TV_Power  "Conservatory LG TV Power - from standby" (tvGroup, gTVPower,gCT_TV) ["Control", "Power"] {ga="tvPower", channel="lgwebos:WebOSTV:tv_conservatory:power", autoupdate="true"}
+Switch CT_LGWebOS_TV_Mute  "TV mute"                (tvGroup) {  ga="tvMute", channel="lgwebos:WebOSTV:tv_conservatory:mute"}
+Dimmer CT_LGWebOS_TV_Volume "Volume [%d]"           (tvGroup) { ga="tvVolume", channel="lgwebos:WebOSTV:tv_conservatory:volume" }
+Number CT_LGWebOS_TV_VolDummy "VolumeUpDown"
+String CT_LGWebOS_TV_Channel "Channel [%s]"         (tvGroup) {  ga="tvChannel" ,channel="lgwebos:WebOSTV:tv_conservatory:channel" }
+Number CT_LGWebOS_TV_ChannelDummy "ChannelUpDown"
+String CT_LGWebOS_TV_Toast                                      { channel="lgwebos:WebOSTV:tv_conservatory:toast"}
+Switch CT_LGWebOS_TV_Stop "Stop"                                { autoupdate="false", channel="lgwebos:WebOSTV:tv_conservatory:mediaStop" }
+String CT_LGWebOS_TV_Application "Application [%s]" (tvGroup, gCT_TV, gTVApplication) ["Status"] { ga="tvApplication", channel="lgwebos:WebOSTV:tv_conservatory:appLauncher"}
+Player CT_LGWebOS_TV_Player                         (tvGroup) { ga="tvTransport",  channel="lgwebos:WebOSTV:tv_conservatory:mediaPlayer"}
+String CT_LGWebOS_TV_RcButton                                   { channel="lgwebos:WebOSTV:tv_conservatory:rcButton"}
 
-String CT_TV_LastApp "last Application [%s]" // (CT_TV, gTVApplication)
+String CT_LGWebOS_TV_LastApp "last Application [%s]" // (CT_TV, gTVApplication)
 
 
 // Switch powerItem       (tvGroup) { ga="tvPower" }
