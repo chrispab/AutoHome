@@ -44,8 +44,10 @@ const RAW_0PC_DRY = 2260.0;
 // const RAW_100PC_WET = 1920.0;
 // const RAW_100PC_WET = 1910.0;
 // const RAW_100PC_WET = 1760.0;
-const RAW_100PC_WET = 1730.0;
+// const RAW_100PC_WET = 1730.0;
 // const RAW_100PC_WET = 1900.0;
+const RAW_100PC_WET = 0.0;
+
 const RAW_RANGE = RAW_0PC_DRY - RAW_100PC_WET;
 
 rules.JSRule({

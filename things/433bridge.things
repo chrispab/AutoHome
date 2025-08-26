@@ -5,7 +5,7 @@ Thing mqtt:topic:bridge  "MQTT Thing: 433Mhz Bridge" (mqtt:broker:MyMQTTBroker) 
         Type switch : button1       [ stateTopic="433Bridge/Button1" ]
         Type number : lightLevel  [ stateTopic="433Bridge/LightLevel"]
         Type switch : lightSensorState      [ stateTopic="433Bridge/LightState", on="true", off="false"]
-        Type switch : pirState      [ stateTopic="433Bridge/PIRState" ]
+        Type switch : pirState      [ stateTopic="433Bridge/PIRState", on="true", off="false" ]
         Type switch : reachable [ stateTopic="433Bridge/LWT", on="Online", off="Offline" ]
         Type number : rssi       [ stateTopic="433Bridge/rssi" ]
 }
