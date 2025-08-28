@@ -38,7 +38,8 @@ function limitSensorValue(reading, minLimit, maxLimit) {
 // const RAW_0PC_DRY = 2280.0;
 // const RAW_0PC_DRY = 2290.0;
 // const RAW_0PC_DRY = 2000.0;
-const RAW_0PC_DRY = 2260.0;
+// const RAW_0PC_DRY = 2260.0;
+const RAW_0PC_DRY = 1000.0;
 
 // const RAW_100PC_WET = 2020.0;
 // const RAW_100PC_WET = 1920.0;

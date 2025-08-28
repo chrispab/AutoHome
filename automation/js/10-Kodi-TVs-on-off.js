@@ -164,14 +164,23 @@ function turnOffTV(roomName, message) {
     return;
   }
   if (roomName === 'conservatory') {
-    items.getItem(room.kodiSystemCommand).sendCommand('Shutdown'); // shutdown CT Pi
-    logger.info('sent command - shutdown kodi');
-    items.getItem(room.ampPowerOff).sendCommand('ON');
+    // items.getItem(room.kodiSystemCommand).sendCommand('Shutdown'); // shutdown CT Pi
+    // logger.info('sent command - shutdown kodi');
+    // items.getItem(room.ampPowerOff).sendCommand('ON');
+    if (items.getItem(room.tvPower).state === 'OFF') {
+      actions.Voice.say('The TV is already off. you knob');
+      return;
+    }
+
     items.getItem(room.tvStandby).sendCommand('OFF');
     logger.info('CT_LGWebOS_TV_Power turn off tv to standby');
+
+    // check if the tv is already off and say so
+
     if (room.flashItem) {
       alerting.flashItemAlert(room.flashItem, room.flashCount, 500);
     }
+
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
       CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
@@ -229,7 +238,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch2, 'ON', 'OFF'),
     // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch, 'OFF'),
     triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'brightness_down_click'),
-    // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
   ],
   execute: () => {
     turnOffTV('conservatory', 'Turning OFF conservatory TV');
