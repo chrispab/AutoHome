@@ -1,10 +1,11 @@
 const {
   log, items, rules, actions, triggers,
 } = require('openhab');
-var ruleUID = "auto CT lights";
+
+const ruleUID = 'auto CT lights';
 const logger = log(ruleUID);
 // const { timeUtils } = require('openhab_rules_tools');
-
+const { alerting } = require('openhab-my-utils');
 
 // let previousLightSensorLevel = null;
 // let currentLightSensorLevel = null;
@@ -26,3 +27,17 @@ rules.JSRule({
     // items.getItem('gColourBulbs').sendCommand('OFF');
   },
 });
+
+rules.JSRule({
+  name: 'alert when gKT_WiFiLightsReachable changed',
+  description: 'alert when gKT_WiFiLightsReachable changed',
+  triggers: [triggers.GroupStateChangeTrigger('gKT_WiFiLightsReachable')],
+  execute: (event) => {
+    logger.info(`alert when gKT_WiFiLightsReachable offline   gKT_WiFiLightsReachable==: ${JSON.stringify(event)}`);
+    alerting.sendEmail('gKT_WiFiLightsReachable!', `gKT_WiFiLightsReachable: ${JSON.stringify(event)}%`);
+
+    // items.getItem('gConservatoryLights').sendCommand('OFF');
+    // items.getItem('gColourBulbs').sendCommand('OFF');
+  },
+});
+// gKT_WiFiLightsReachable

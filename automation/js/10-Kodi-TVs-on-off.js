@@ -223,6 +223,7 @@ rules.JSRule({
     // triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch, 'ON'),
     // triggers.ItemStateChangeTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold', 'toggle'),
     triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'brightness_up_click'),
+    triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle'),
   ],
   execute: () => {
     turnOnTV('conservatory', 'Turning on conservatory TV');

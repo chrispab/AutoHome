@@ -10,7 +10,7 @@ const tToAmpIRPowerOn = 20;
 const tToSelectAmpAux = 30;
 const tToTurnOffStereo = 30;
 
-let CT_stereo_off_timer = null;
+const CT_stereo_off_timer = null;
 rules.JSRule({
   name: 'turn ON conservatory stereo',
   description: 'turn ON conservatory stereo',
@@ -21,19 +21,19 @@ rules.JSRule({
     // items.getItem("bg_wifisocket_1_1_power").sendCommand("ON");//kodi pi
 
     // if there is a request to turn off the stereo in progress cancel it as we want it on!
-    if (CT_stereo_off_timer && CT_stereo_off_timer.isActive()) {
-      CT_stereo_off_timer.cancel();
-    }
+    // if (CT_stereo_off_timer && CT_stereo_off_timer.isActive()) {
+    //   CT_stereo_off_timer.cancel();
+    // }
 
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToAmpIRPowerOn), () => {
-      items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
-      logger.info('STEREO - IR turn on amp from standby');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToSelectAmpAux), () => {
-      items.getItem('amplifier_IR_Aux').sendCommand('ON'); // IR code
+    // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToAmpIRPowerOn), () => {
+    //   items.getItem('amplifier_IR_PowerOn').sendCommand('ON'); // IR code
+    //   logger.info('STEREO - IR turn on amp from standby');
+    // });
+    // actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToSelectAmpAux), () => {
+    //   items.getItem('amplifier_IR_Aux').sendCommand('ON'); // IR code
 
-      logger.info('STEREO - IR amp switch to AUX source');
-    });
+    //   logger.info('STEREO - IR amp switch to AUX source');
+    // });
   },
 });
 
@@ -61,13 +61,13 @@ rules.JSRule({
 
     logger.info('STEREO - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer
-    if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
-      CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToTurnOffStereo), () => {
-        items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
-        items.getItem('vCT_stereo').postUpdate('OFF'); // turn off virt trigger
+    // if (!CT_stereo_off_timer || !CT_stereo_off_timer.isActive()) {
+    //   CT_stereo_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(tToTurnOffStereo), () => {
+    items.getItem('bg_wifisocket_1_1_power').sendCommand('OFF'); // CT kodi, amp, ir bridge, hdmi audio extractor
+    items.getItem('vCT_stereo').postUpdate('OFF'); // turn off virt trigger
 
-        logger.info('STEREO - turned OFF kodi');
-      });
-    }
+    logger.info('STEREO - turned OFF kodi');
+    // });
+    // }
   },
 });
