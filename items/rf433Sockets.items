@@ -41,6 +41,7 @@ Switch DR_FairyLights433Socket "Dining Room Fairy Lights"  <poweroutlet_uk>  (gF
 
 //conservatory fairy lights
 Switch CT_FairyLights433Socket "Conservatory Fairy Lights"  <poweroutlet_uk>  (gConservatoryLights, gFairyLights, gConservatory, gConservatoryFairyLights)  ["Switch","Light"] { channel="mqtt:topic:CT_FairyLights433Socket:powerSwitch" }
+Number CT_FairyLights433Socket_onDuration "KT_light_1 onDuration" //(gKT_WiFiLightsOnDurations)
 
 //conservatory/Dining Room Rads sockets (3 off, kitchen, cons, dining room)
 //! Note - this item is not direcly used. Implemeted in the Conservatory Radthermovalve.thing

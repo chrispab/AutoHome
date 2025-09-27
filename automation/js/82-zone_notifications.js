@@ -1,10 +1,9 @@
+/* eslint-disable no-undef */
 const { time, items } = require('openhab');
 const { alerting } = require('openhab-my-utils');
 
-var ruleUID = "bg_avail";
+const ruleUID = 'bg_avail';
 const logger = log(ruleUID);
-
-
 
 scriptLoaded = function () {
   console.log('zone3 notifications scriptLoaded function');
@@ -18,7 +17,6 @@ rules.JSRule({
   description: 'zone3 lights on',
   triggers: [
     triggers.ItemStateChangeTrigger('testBtn1', 'OFF', 'ON'),
-
     triggers.ItemStateChangeTrigger('Zone3LightStatus', 'OFF', 'ON'),
     triggers.ItemStateChangeTrigger('Zone3LightStatusAlt', 'OFF', 'ON'),
   ],
@@ -26,7 +24,6 @@ rules.JSRule({
     alerting.flashItemAlert('KT_light_1_Power', 5, 400);
   },
 });
-
 
 // t4 = None
 
