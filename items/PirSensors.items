@@ -16,6 +16,12 @@ Number pir04_offTimerDurationItem "pir04_offTimer" ["Slider","Light"]
 Number pir06_offTimerDurationItem "pir06_offTimer" ["Slider","Light"] 
 Number pir02_offTimerDurationItem "pir02_offTimer" ["Slider","Light"]  
 
+// other of timer durations, this time to be associated with the light config object passed to the timer
+// pert of use of on-off timer per light implementation
+// pir06
+Number v_StartColourBulbsCycle_onDuration "Colour Bulbs Cycle on-off Duration" ["Slider","Light"] 
+
+
 
 Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)   ["Sensor","Pir"]  {channel="mqtt:topic:pir01:occupancy"}
 Number    pir01_illuminance    "pir01_illuminance"    (gZb_pir)   {channel="mqtt:topic:pir01:illuminance"}

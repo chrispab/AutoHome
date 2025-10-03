@@ -203,10 +203,10 @@ const slPir03 = new SensorLight(
   'v_StartColourBulbsCycle',
 );
 slPir03.phrases = [
-  'Possible cat in the dining room',
-  'Impossible cat in the dining room',
-  'Possible Twat in the dining room',
-  'Impossible Twat in the dining room',
+  'dining room',
+  'dining room',
+  'dining room',
+  'dining room',
   'Idiot in the dining room',
 ];
 
