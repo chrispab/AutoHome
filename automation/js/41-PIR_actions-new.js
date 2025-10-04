@@ -219,9 +219,7 @@ const slPir03 = new SensorConfig(
   500,
   'v_StartColourBulbsCycle',
 );
-slPir03.phrases = [
-  'dining room',
-];
+slPir03.phrases = ['dining room'];
 
 const slPir04 = new SensorConfig(
   'Stairs',
@@ -293,10 +291,16 @@ const occupancyOnOffTimerFunctionTurnOffLight = (lightConfig) => () => {
   //   this.lightControlItemName = lightControlItemName;
   // this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
   // this.defaultLightOnOffTimerDurationSecs = defaultLightOnOffTimerDurationSecs;
+
+  const offTimerDurationItem = items.getItem(lightConfig.lightOnOffTimerDurationItemName, true);
+  logger.warn(`lightConfig.offTimerDurationItem: ${this.offTimerDurationItem}`);
+  const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
+
   logger.warn(
-    'on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} defaultLightOnOffTimerDurationSecs: {}',
+    'on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} timerDuration:{}, defaultLightOnOffTimerDurationSecs: {}',
     lightConfig.lightControlItemName,
     lightConfig.lightOnOffTimerDurationItemName,
+    timerDurationSecs,
     lightConfig.defaultLightOnOffTimerDurationSecs,
   );
   // lightsControl(ASensorLight.lightItemNames, 'OFF');
@@ -407,28 +411,38 @@ rules.JSRule({
     //
     // Use the longest duration to ensure all lights complete their cycles
     const timerDurationMs = Math.max(...allTimerDurationsMs);
-
     logger.warn(
       'Using maximum timer duration: {} ms from light configs: {}',
       timerDurationMs,
       JSON.stringify(allTimerDurationsMs),
     );
 
-    timerMgr.cancel(timerKey);
-    logger.warn('cancel timer with timerKey:{}', timerKey);
+    // Create timers for each light config
+    currentSensorConfig.lightConfigs.forEach((lightConfig, index) => {
+      const lightTimerKey = `${timerKey}_light${index}`;
+      const lightTimerName = `${timerName}_light${index}`;
+      const lightTimerDuration = lightConfig.getLightOnOffTimerDurationMs();
 
-    const currentLight = currentSensorConfig.lightConfigs[0];
-    // timerMgr.check(timerKey, timerDurationMs, occupancyOffTimerFunction(currentSensorConfig), true, null, timerName);
-    timerMgr.check(timerKey, timerDurationMs, occupancyOnOffTimerFunctionTurnOffLight(currentLight), true, null, timerName);
+      timerMgr.cancel(lightTimerKey);
+      logger.warn('cancel timer with lightTimerKey:{}', lightTimerKey);
 
-    logger.warn(
-      'ON > OFF timerMgr.check - timerKey:{}, duration-ms:{}, occupancyOffTimerFunction:{}, lightConfigs:{}, timerName:{} ',
-      timerKey,
-      timerDurationMs,
-      currentSensorConfig,
-      JSON.stringify(currentSensorConfig.lightConfigs),
-      timerName,
-    );
+      timerMgr.check(
+        lightTimerKey,
+        lightTimerDuration,
+        occupancyOnOffTimerFunctionTurnOffLight(lightConfig),
+        true,
+        null,
+        lightTimerName,
+      );
+
+      logger.warn(
+        'ON > OFF timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
+        lightTimerKey,
+        lightTimerDuration,
+        lightConfig.lightControlItemName,
+        lightTimerName,
+      );
+    });
 
     // save timerMgr to cache
     cache.private.put('timerMgr', timerMgr);
