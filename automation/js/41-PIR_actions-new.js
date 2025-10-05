@@ -316,19 +316,19 @@ rules.JSRule({
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON')],
 
   execute: (event) => {
-    const itemName = event.itemName.toString();
-    const item = items.getItem(itemName);
+    const triggertItemName = event.itemName.toString();
+    const item = items.getItem(triggertItemName);
     if (!item) {
-      logger.warn(`Item ${itemName} not found!`);
+      logger.warn(`Item ${triggertItemName} not found!`);
       return;
     }
-    logger.warn(`Triggering item: ${itemName},state is: ${item.state}`);
-    const timerKey = itemName;
+    logger.warn(`PIR - update   ON, Triggering item: ${triggertItemName},state is: ${item.state}`);
+    // const timerKey = triggertItemName;
 
     // find sensorlight that has occupancy triggered
-    const currentSensorConfig = SensorConfigs.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
+    const currentSensorConfig = SensorConfigs.find((sensorLight) => sensorLight.occupancySensorItemName === triggertItemName);
     if (!currentSensorConfig) {
-      logger.warn(`No SensorConfig found for item: ${itemName}`);
+      logger.warn(`No SensorConfig found for item: ${triggertItemName}`);
       return;
     }
     logger.warn(
@@ -345,19 +345,51 @@ rules.JSRule({
       // actions.Audio.playSound('now_disconnected.mp3');
       actions.Voice.say(phrase);
     }
+
     timerMgr = cache.private.get('timerMgr');
-    // if an old timer exists stop it
-    if (timerMgr.hasTimer(timerKey)) {
-      timerMgr.cancel(timerKey);
-      logger.warn('timer with timerKey: {}, exists - cancelling it', timerKey);
-    }
+    const timerKey = triggertItemName;
+    // const timerName = `${ruleUID}_${triggertItemName}`;
+    // if an old timer exists for any lights associated with the current sensor, stop it, we are restarting the process for this light again
+    // if (timerMgr.hasTimer(timerKey)) {
+    //   timerMgr.cancel(timerKey);
+    //   logger.warn('timer with timerKey: {}, exists - cancelling it', timerKey);
+    // }
+
+    // if an old timer exists for any lights associated with the current sensor, stop it, we are restarting the process for this light again
+    currentSensorConfig.lightConfigs.forEach((lightConfig, index) => {
+      const lightTimerKey = `${triggertItemName}_light${index}`;
+      // const lightTimerName = `${timerName}_light${index}`;
+      // const lightTimerDuration = lightConfig.getLightOnOffTimerDurationMs();
+
+      if (timerMgr.hasTimer(lightTimerKey)) {
+        timerMgr.cancel(lightTimerKey);
+        logger.warn('cancelling timer with lightTimerKey:{}', lightTimerKey);
+      }
+
+      // timerMgr.check(
+      //   lightTimerKey,
+      //   lightTimerDuration,
+      //   occupancyOnOffTimerFunctionTurnOffLight(lightConfig),
+      //   true,
+      //   null,
+      //   lightTimerName,
+      // );
+
+      // logger.warn(
+      //   'ON > OFF timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
+      //   lightTimerKey,
+      //   lightTimerDuration,
+      //   lightConfig.lightControlItemName,
+      //   lightTimerName,
+      // );
+    });
     cache.private.put('timerMgr', timerMgr);
 
     if (currentSensorConfig.isLightLevelActive()) {
       currentSensorConfig.sensorLightControl('ON');
     } else {
       logger.warn(
-        `Light level above threshold, NOT turning light on : ${currentSensorConfig.friendlyName}, for item: ${itemName}`,
+        `Light level above threshold, NOT turning light on : ${currentSensorConfig.friendlyName}, for item: ${triggertItemName}`,
       );
     }
   },
@@ -369,21 +401,18 @@ rules.JSRule({
   description: 'PIR sensor start OFF lights timer',
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: (event) => {
-    const itemName = event.itemName.toString();
-    const item = items.getItem(itemName);
+    const triggertItemName = event.itemName.toString();
+    const item = items.getItem(triggertItemName);
     if (!item) {
-      logger.warn(`Item ${itemName} not found!`);
+      logger.warn(`Item ${triggertItemName} not found!`);
       return;
     }
-    logger.warn(`Triggering item: ${itemName} ON -> OFF,state: ${item.state}`);
-
-    const timerKey = itemName;
-    const timerName = `${ruleUID}_${itemName}`;
+    logger.warn(`Triggering item: ${triggertItemName} ON -> OFF,state: ${item.state}`);
 
     // find sensorlight that has occupancy triggered
-    const currentSensorConfig = SensorConfigs.find((sensorLight) => sensorLight.occupancySensorItemName === itemName);
+    const currentSensorConfig = SensorConfigs.find((sensorLight) => sensorLight.occupancySensorItemName === triggertItemName);
     if (!currentSensorConfig) {
-      logger.warn(`No SensorConfig found for item: ${itemName}`);
+      logger.warn(`No SensorConfig found for item: ${triggertItemName}`);
       return;
     }
     logger.warn(
@@ -392,8 +421,6 @@ rules.JSRule({
       currentSensorConfig.occupancySensorItemName,
     );
 
-    // get timerMgr from cache
-    timerMgr = cache.private.get('timerMgr');
     // re/start the timer
     // Get timer durations for all light configs in this sensor
     const allTimerDurationsMs = currentSensorConfig.lightConfigs.map((lightConfig) => lightConfig.getLightOnOffTimerDurationMs());
@@ -402,7 +429,7 @@ rules.JSRule({
 
     // Create an array of objects containing light control item names and their timer durations
     const lightControls = currentSensorConfig.lightConfigs.map((lightConfig) => ({
-      itemName: lightConfig.lightControlItemName,
+      triggertItemName: lightConfig.lightControlItemName,
       duration: lightConfig.getLightOnOffTimerDurationMs(),
     }));
     // Log the light controls for debugging
@@ -417,7 +444,12 @@ rules.JSRule({
       JSON.stringify(allTimerDurationsMs),
     );
 
-    // Create timers for each light config
+    // get timerMgr from cache
+    timerMgr = cache.private.get('timerMgr');
+    const timerKey = triggertItemName;
+    const timerName = `${ruleUID}_${triggertItemName}`;
+
+    // Create timers for each light config for this sensor
     currentSensorConfig.lightConfigs.forEach((lightConfig, index) => {
       const lightTimerKey = `${timerKey}_light${index}`;
       const lightTimerName = `${timerName}_light${index}`;
