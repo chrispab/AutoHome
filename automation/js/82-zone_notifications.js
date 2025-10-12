@@ -25,18 +25,24 @@ rules.JSRule({
   },
 });
 
-// t4 = None
+rules.JSRule({
+  name: 'Zone 1 went Offline',
+  description: 'Zone 1 went Offline notification',
+  triggers: [triggers.ItemStateChangeTrigger('Zone1Reachable', 'ON', 'OFF')],
+  execute: () => {
+    logger.warn('Zone 1 went Offline');
+    alerting.sendNotification('cbattisson@gmail.com', 'Zone 1 went offline');
 
-// @rule("Zone 1 went Offline", description="Zone 1 went Offline", tags=["notification"])
-// @when("Item Zone1Reachable changed to OFF")
-// def zone1WentOffline(event):
-//     zone1WentOffline.log.warn("Zone 1 went Offline")
-//     NotificationAction.sendNotification("cbattisson@gmail.com","Zone 1 went offline")
+    alerting.flashItemAlert('KT_light_1_Power', 5, 400);
 
-//     global t4
-//     if items["tableLamp1"] == ON:
-//         events.sendCommand("tableLamp1", "OFF")
-//         t4 = ScriptExecution.createTimer(DateTime.now().plusSeconds(2), lambda: events.sendCommand("CT_FairyLights433Socket", "ON"))
+    // if (items.getItem('tableLamp1').state === 'ON') {
+    //   items.getItem('tableLamp1').sendCommand('OFF');
+    //   time.schedule('in 2s', () => {
+    //     items.getItem('CT_FairyLights433Socket').sendCommand('ON');
+    //   });
+    // }
+  },
+});
 
 // t5 = None
 

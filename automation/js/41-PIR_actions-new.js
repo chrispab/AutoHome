@@ -78,11 +78,12 @@ class SensorConfig {
    * Initializes a SensorConfig instance with the given parameters.
    *
    * @param {string} friendlyName - The friendlyName of the SensorConfig instance.
-   * @param {string} occupancySensorItemName - The name of the occupancy item associated with this SensorConfig instance.
-   * @param {string} offTimerDurationItemName - The name of the off-timer duration item associated with this SensorConfig instance.
-   * @param {string} lightLevelActiveThresholdItemName - The name of the light level active threshold item associated with this Sensor.
+   * @param {string} occupancySensorItemName - The name of the occupancy item.
+   * @param {string} offTimerDurationItemName - The name of the off-timer duration item.
+   * @param {string} lightLevelActiveThresholdItemName - The name of the light level threshold item.
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
-   * @param {...string} lightConfigs - The lightConfigs of the light items associated with this SensorConfig instance.
+   * @param {Array<string>} phrases - Optional array of phrases to be spoken
+   * @param {...LightConfig} lightConfigs - The light configurations.
    */
   constructor(
     friendlyName,
@@ -90,19 +91,19 @@ class SensorConfig {
     offTimerDurationItemName,
     lightLevelActiveThresholdItemName,
     defaultOffTimerDuration,
+    phrases = [],
     ...lightConfigs
   ) {
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
-    // this.occupancySensorItem = items.getItem(occupancySensorItemName);
-
     this.offTimerDurationItemName = offTimerDurationItemName;
     this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;
     this.defaultOffTimerDuration = defaultOffTimerDuration;
+    this.phrases = phrases;
     this.lightConfigs = lightConfigs;
     // Replace this.lightItemNames with:
     this.lightItemNames = lightConfigs.map((config) => config.itemName);
-    this.phrases = [];
+    // this.phrases = [];
 
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
@@ -192,15 +193,15 @@ class SensorConfig {
     return isActive;
   }
 }
-const slPir01 = new SensorConfig(
-  'Kitchen-RHS',
-  'pir01_occupancy',
-  'pir01_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  200,
-  new LightConfig('KT_light_1_Power', 'KT_light_1_onDuration', 5),
-);
-slPir01.phrases = [];
+// const slPir01 = new SensorConfig(
+//   'Kitchen-RHS',
+//   'pir01_occupancy',
+//   'pir01_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   200,
+//   new LightConfig('KT_light_1_Power', 'KT_light_1_onDuration', 5),
+// );
+// slPir01.phrases = [];
 
 const slPir02 = new SensorConfig(
   'landing',
@@ -208,40 +209,45 @@ const slPir02 = new SensorConfig(
   'pir02_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',
   500,
-  'ZbWhiteBulb01Switch',
+  ['test1', 'test2'],
+  new LightConfig('v_StartColourBulbsCycle', 'pir01_offTimerDurationItem', 1),
 );
-slPir02.phrases = ['landing'];
-const slPir03 = new SensorConfig(
-  'Dining Room',
-  'pir03_occupancy',
-  'pir03_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  500,
-  'v_StartColourBulbsCycle',
-);
-slPir03.phrases = ['dining room'];
+// slPir02.phrases = [
+//   'test1',
+//   'test2',
+// ];
 
-const slPir04 = new SensorConfig(
-  'Stairs',
-  'pir04_occupancy',
-  'pir04_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  500,
-  'v_StartColourBulbsCycle',
-  'ZbWhiteBulb01Switch',
-);
-slPir04.phrases = ['stairs'];
-const slPir05 = new SensorConfig(
-  'Kitchen-LHS1',
-  'pir05_occupancy',
-  'pir05_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  100,
-  new LightConfig('KT_light_2_Power', 'KT_light_2_onDuration', 10),
-  new LightConfig('KT_light_3_Power', 'KT_light_3_onDuration', 30),
-);
+// const slPir03 = new SensorConfig(
+//   'Dining Room',
+//   'pir03_occupancy',
+//   'pir03_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   500,
+//   'v_StartColourBulbsCycle',
+// );
+// slPir03.phrases = ['dining room'];
 
-slPir05.phrases = [];
+// const slPir04 = new SensorConfig(
+//   'Stairs',
+//   'pir04_occupancy',
+//   'pir04_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   500,
+//   'v_StartColourBulbsCycle',
+//   'ZbWhiteBulb01Switch',
+// );
+// slPir04.phrases = ['stairs'];
+// const slPir05 = new SensorConfig(
+//   'Kitchen-LHS1',
+//   'pir05_occupancy',
+//   'pir05_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   100,
+//   new LightConfig('KT_light_2_Power', 'KT_light_2_onDuration', 10),
+//   new LightConfig('KT_light_3_Power', 'KT_light_3_onDuration', 30),
+// );
+
+// slPir05.phrases = [];
 
 const slPir06 = new SensorConfig(
   'pir6-fairy',
@@ -249,16 +255,18 @@ const slPir06 = new SensorConfig(
   'pir06_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',
   100,
+  ['landing'],
   // new LightConfig('KT_light_2_Power', 'KT_light_2_onDuration', 3),
   // new LightConfig('KT_light_3_Power', 'KT_light_3_onDuration', 3),
   // new LightConfig('CT_FairyLights433Socket', 'CT_FairyLights433Socket_onDuration', 9),
   // new LightConfig('KT_light_2_Power', 'KT_light_2_onDuration', 10),
-  new LightConfig('v_StartColourBulbsCycle', 'v_StartColourBulbsCycle_onDuration', 11),
+  // new LightConfig('v_StartColourBulbsCycle', 'v_StartColourBulbsCycle_onDuration', 11),
+  new LightConfig('ZbWhiteBulb01Switch', 'v_StartColourBulbsCycle_onDuration', 11),
 );
-slPir06.phrases = ['test'];
+// slPir06.phrases = ['landing'];
 
 // const SensorConfigs = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
-const SensorConfigs = [slPir06];
+const SensorConfigs = [slPir02, slPir06];
 
 /**
  *
