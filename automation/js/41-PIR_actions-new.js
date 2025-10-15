@@ -204,7 +204,7 @@ class SensorConfig {
 // slPir01.phrases = [];
 
 const slPir02 = new SensorConfig(
-  'landing',
+  'pi02-test',
   'pir02_occupancy',
   'pir02_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',
@@ -250,7 +250,7 @@ const slPir02 = new SensorConfig(
 // slPir05.phrases = [];
 
 const slPir06 = new SensorConfig(
-  'pir6-fairy',
+  'pir6-landing',
   'pir06_occupancy',
   'pir06_offTimerDurationItem',
   'ConservatoryLightTriggerLevel',
