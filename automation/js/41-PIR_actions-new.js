@@ -4,46 +4,104 @@
 const {
   log, items, rules, triggers, actions,
 } = require('openhab');
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
 // Log versions
 const { helpers } = require('openhab_rules_tools');
-const { LightConfig, SensorConfig } = require('./lib/configClasses');
+
+// Assuming configClasses is in a 'lib' subdir relative to the current script
+const { TimerMgr } = require('openhab_rules_tools');
+// const { LightConfig, SensorConfig } = require('./lib/configClasses');
 
 const ruleUID = 'pir_action_new';
 const logger = log(ruleUID);
+logger.info('Starting script evaluation...');
 
-const { TimerMgr } = require('openhab_rules_tools');
-
-let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
+let timerMgr;
+try {
+  timerMgr = cache.private.get('timerMgr', () => new TimerMgr());
+  logger.info('TimerMgr initialized successfully.');
+} catch (e) {
+  logger.error('Error initializing TimerMgr: {}', e);
+}
 
 // Load sensor configurations from JSON file
-const configPath = '/etc/openhab/conf/automation/js/pir_config.json';
-const rawConfig = fs.readFileSync(configPath);
-const sensorData = JSON.parse(rawConfig);
+const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
 
-const SensorConfigs = sensorData.map((data) => new SensorConfig(
-  data.friendlyName,
-  data.occupancySensorItemName,
-  data.offTimerDurationItemName,
-  data.lightLevelActiveThresholdItemName,
-  data.defaultOffTimerDuration,
-  data.phrases,
-  ...data.lightConfigs,
-));
+let rawConfig;
+
+let sensorData;
+
+let SensorConfigs;
+
+try {
+//   logger.info('Reading config file at {}...', configPath);
+//   rawConfig = fs.readFileSync(configPath);
+//   logger.info('Config file read successfully.');
+//   sensorData = JSON.parse(rawConfig);
+//   logger.info('Config file parsed successfully.');
+  const Files = Java.type('java.nio.file.Files');
+  const Paths = Java.type('java.nio.file.Paths');
+  const Charset = Java.type('java.nio.charset.Charset');
+  const rawConfig = new String(Files.readAllBytes(Paths.get(configPath)), Charset.forName('UTF-8'));
+  const cleanedConfig = rawConfig.trim().replace(/^,/, '');
+  logger.info('rawConfig: {}', rawConfig);
+  logger.info('cleanedConfig: {}', cleanedConfig);
+  sensorData = JSON.parse(cleanedConfig);
+
+  SensorConfigs = sensorData.map((data) => new SensorConfig(
+    data.friendlyName,
+    data.occupancySensorItemName,
+    data.offTimerDurationItemName,
+    data.lightLevelActiveThresholdItemName,
+    data.defaultOffTimerDuration,
+    data.phrases,
+    ...data.lightConfigs,
+  ));
+  logger.info('SensorConfigs created successfully.');
+} catch (e) {
+  logger.error('Error during config loading. Message: {}. Stack: {}', e.message, e.stack);
+  SensorConfigs = []; // Prevent further errors
+}
 
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
-  logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
-  logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
-  logger.warn('>SensorConfigs: {}', JSON.stringify(SensorConfigs));
-  SensorConfigs.forEach((config) => config.setItemLabel());
+  try {
+    logger.info('> helpers object: {}', typeof helpers);
+    if (helpers) {
+      logger.info('> helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
+    }
+    // utils is a global in openHAB JS, let's check it
+    logger.info('> utils object: {}', typeof utils);
+    if (typeof utils !== 'undefined' && utils !== null) {
+      logger.info('> utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
+    } else {
+      logger.warn('> `utils` is not available or is null.');
+    }
+  } catch (e) {
+    logger.error('Error logging versions: {}', e);
+  }
+
+  try {
+    logger.warn('> SensorConfigs (pre-stringify): {}', SensorConfigs);
+    logger.warn('> SensorConfigs (stringified): {}', JSON.stringify(SensorConfigs));
+  } catch (e) {
+    logger.error('Error stringifying SensorConfigs: {}', e);
+  }
+
+  try {
+    SensorConfigs.forEach((config) => config.setItemLabel());
+    logger.info('SetItemLabel executed for all configs.');
+  } catch (e) {
+    logger.error('Error in SensorConfigs.forEach(setItemLabel): {}', e);
+  }
 };
 
 const occupancyOnOffTimerFunctionTurnOffLight = (lightConfig) => () => {
+  logger.info('Executing occupancyOnOffTimerFunctionTurnOffLight for {}', lightConfig.lightControlItemName);
   const offTimerDurationItem = items.getItem(lightConfig.lightOnOffTimerDurationItemName, true);
-  logger.warn(`lightConfig.offTimerDurationItem: ${this.offTimerDurationItem}`);
+  // logger.warn(`lightConfig.offTimerDurationItem: ${this.offTimerDurationItem}`); // 'this' is likely incorrect here
   const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
 
   logger.warn(
@@ -63,6 +121,7 @@ rules.JSRule({
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON')],
 
   execute: (event) => {
+    logger.info('Rule "PIR - update ON" triggered by {}', event.itemName);
     const triggertItemName = event.itemName.toString();
     const item = items.getItem(triggertItemName);
     if (!item) {
@@ -83,7 +142,16 @@ rules.JSRule({
     );
 
     if (currentSensorConfig.phrases.length > 0) {
-      logger.warn('PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
+      try {
+        const lightSensorItem = items.getItem('BridgeLightSensorLevel');
+        if (lightSensorItem) {
+          logger.warn('PIR ON - light level: {}', lightSensorItem.rawState);
+        } else {
+          logger.error('Item "BridgeLightSensorLevel" not found!');
+        }
+      } catch (e) {
+        logger.error('Error getting light level: {}', e);
+      }
 
       const phrase = currentSensorConfig.phrases[Math.floor(Math.floor(Math.random() * currentSensorConfig.phrases.length))];
 
@@ -119,6 +187,7 @@ rules.JSRule({
   description: 'PIR sensor start OFF lights timer',
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: (event) => {
+    logger.info('Rule "PIR - ON to OFF" triggered by {}', event.itemName);
     const triggertItemName = event.itemName.toString();
     const item = items.getItem(triggertItemName);
     if (!item) {
@@ -187,3 +256,5 @@ rules.JSRule({
     cache.private.put('timerMgr', timerMgr);
   },
 });
+
+logger.info('Script evaluation finished.');
