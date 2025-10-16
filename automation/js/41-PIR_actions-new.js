@@ -9,6 +9,7 @@ const {
 
 // Log versions
 const { helpers } = require('openhab_rules_tools');
+const JSON5 = require('json5');
 
 // Assuming configClasses is in a 'lib' subdir relative to the current script
 const { TimerMgr } = require('openhab_rules_tools');
@@ -29,10 +30,9 @@ try {
 // Load sensor configurations from JSON file
 const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
 
-let rawConfig;
+// let rawConfig;
 
 let sensorData;
-
 let SensorConfigs;
 
 try {
@@ -45,10 +45,14 @@ try {
   const Paths = Java.type('java.nio.file.Paths');
   const Charset = Java.type('java.nio.charset.Charset');
   const rawConfig = new String(Files.readAllBytes(Paths.get(configPath)), Charset.forName('UTF-8'));
-  const cleanedConfig = rawConfig.trim().replace(/^,/, '');
-  logger.info('rawConfig: {}', rawConfig);
-  logger.info('cleanedConfig: {}', cleanedConfig);
-  sensorData = JSON.parse(cleanedConfig);
+  // Trim whitespace, then remove a leading or trailing comma.
+  // This makes the JSON parsing more robust against malformed config files.
+  let cleanedConfig = rawConfig.trim().replace(/^,+/g, '').replace(/,+$/g, '');
+
+  // If the cleaned config is empty, default to an empty array to prevent JSON parsing errors.
+  if (!cleanedConfig) { cleanedConfig = '[]'; }
+
+  sensorData = JSON5.parse(cleanedConfig);
 
   SensorConfigs = sensorData.map((data) => new SensorConfig(
     data.friendlyName,
