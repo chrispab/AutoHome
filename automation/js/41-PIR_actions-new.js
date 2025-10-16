@@ -17,6 +17,19 @@ const { TimerMgr } = require('openhab_rules_tools');
 
 let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
+// Load sensor configurations from JSON file
+const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
+let sensorData;
+try {
+  const Files = Java.type('java.nio.file.Files');
+  const Paths = Java.type('java.nio.file.Paths');
+  const Charset = Java.type('java.nio.charset.Charset');
+  const rawConfig = new String(Files.readAllBytes(Paths.get(configPath)), Charset.forName('UTF-8'));
+  sensorData = JSON.parse(rawConfig);
+} catch (e) {
+  logger.error(`Error reading or parsing config file: ${e}`);
+}
+
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
