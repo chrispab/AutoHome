@@ -1,15 +1,15 @@
 [
   {
-    "friendlyName": "pi02-test",
+    "friendlyName": "pir2-test",
     "occupancySensorItemName": "pir02_occupancy",
     "offTimerDurationItemName": "pir02_offTimerDurationItem",
     "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
     "defaultOffTimerDuration": 500,
-    "phrases": ["test1", "test2"],
+    "phrases": ["testy1", "testy2"],
     "lightConfigs": [
       {
         "lightControlItemName": "v_StartColourBulbsCycle",
-        "lightOnOffTimerDurationItemName": "pir01_offTimerDurationItem",
+        "lightOnOffTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
         "defaultLightOnOffTimerDurationSecs": 1
       }
     ]
@@ -24,7 +24,7 @@
     "lightConfigs": [
       {
         "lightControlItemName": "ZbWhiteBulb01Switch",
-        "lightOnOffTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
+        "lightOnOffTimerDurationItemName": "pir06_offTimerDurationItem",
         "defaultLightOnOffTimerDurationSecs": 11
       }
     ]
