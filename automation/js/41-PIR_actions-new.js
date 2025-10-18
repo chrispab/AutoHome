@@ -8,6 +8,7 @@ const {
 } = require('openhab');
 
 // Log versions
+const { TimerMgr } = require('openhab_rules_tools');
 const { helpers } = require('openhab_rules_tools');
 
 const ruleUID = 'pir_action_new';
@@ -15,12 +16,10 @@ const logger = log(ruleUID);
 // log:set warn org.openhab.automation.openhab-js.pir_action
 // log:set INFO org.openhab.automation.openhab-js.pir_action
 
-const { TimerMgr } = require('openhab_rules_tools');
-
 let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 // Load sensor configurations from JSON file
-const JSON5 = require('json5');
+// const JSON5 = require('json5');
 
 const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
 let sensorData;
@@ -30,13 +29,17 @@ try {
   const Paths = Java.type('java.nio.file.Paths');
   rawConfig = Files.readString(Paths.get(configPath));
   // sensorData = JSON.parse(rawConfig);
-  sensorData = JSON5.parse(rawConfig);
+  logger.warn('rawConfig: {}', JSON.stringify(rawConfig));
+
+  sensorData = JSON.parse(rawConfig);
 } catch (e) {
   logger.error(`Error reading or parsing config file: ${e}`);
 }
 
 // sensorData = JSON5.parse(cleanedConfig);
 logger.info('sensorData: {}', JSON.stringify(sensorData));
+// const { LightConfig, SensorConfig } = require('./lib/configClasses');
+const { LightConfig, SensorConfig } = require('../lib/configClasses');
 
 // Example of reading a local file in openHAB JS
 // https://community.openhab.org/t/can-i-read-a-local-file-in-an-openhab-js-rule/165449/5
@@ -48,13 +51,13 @@ scriptLoaded = function () {
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
   logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
   // eslint-disable-next-line no-use-before-define
-  logger.warn('>SensorConfigs: {}', JSON.stringify(SensorConfigs));
+  // logger.warn('>scriptLoaded SensorConfigs: {}', JSON.stringify(SensorConfigs));
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
 
 // class to manage light configurations:
-class LightConfig {
+class LightConfigx {
   constructor(lightControlItemName, lightOnOffTimerDurationItemName, defaultLightOnOffTimerDurationSecs) {
     this.lightControlItemName = lightControlItemName;
     this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
@@ -99,7 +102,7 @@ class LightConfig {
   }
 }
 
-class SensorConfig {
+class SensorConfigx {
   /**
    * Initializes a SensorConfig instance with the given parameters.
    *
