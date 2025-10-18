@@ -2,7 +2,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 const {
+
   log, items, rules, triggers, actions,
+
 } = require('openhab');
 
 // Log versions
@@ -18,17 +20,28 @@ const { TimerMgr } = require('openhab_rules_tools');
 let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 // Load sensor configurations from JSON file
+const JSON5 = require('json5');
+
 const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
 let sensorData;
+let rawConfig;
 try {
   const Files = Java.type('java.nio.file.Files');
   const Paths = Java.type('java.nio.file.Paths');
-  const Charset = Java.type('java.nio.charset.Charset');
-  const rawConfig = new String(Files.readAllBytes(Paths.get(configPath)), Charset.forName('UTF-8'));
-  sensorData = JSON.parse(rawConfig);
+  rawConfig = Files.readString(Paths.get(configPath));
+  // sensorData = JSON.parse(rawConfig);
+  sensorData = JSON5.parse(rawConfig);
 } catch (e) {
   logger.error(`Error reading or parsing config file: ${e}`);
 }
+
+// sensorData = JSON5.parse(cleanedConfig);
+logger.info('sensorData: {}', JSON.stringify(sensorData));
+
+// Example of reading a local file in openHAB JS
+// https://community.openhab.org/t/can-i-read-a-local-file-in-an-openhab-js-rule/165449/5
+// var authInfo = require('/openhab/conf/other/asus.json');
+// var asusLogin = `${authInfo.user}:${authInfo.password}`;
 
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
