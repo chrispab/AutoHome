@@ -7,7 +7,7 @@ const { log, items } = require('openhab');
 const ruleUID = 'config_classes';
 const logger = log(ruleUID);
 
-class LightConfig {
+class PirLightConfig {
   constructor(lightControlItemName, lightOnOffTimerDurationItemName, defaultLightOnOffTimerDurationSecs) {
     this.lightControlItemName = lightControlItemName;
     this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
@@ -30,7 +30,7 @@ class LightConfig {
   }
 
   /**
-   * Controls the lights associated with this LightConfig instance.
+   * Controls the lights associated with this PirLightConfig instance.
    *
    * @param {string} state - The state to set the lights to (default: 'OFF')
    * @return {undefined}
@@ -50,17 +50,17 @@ class LightConfig {
   }
 }
 
-class SensorConfig {
+class PirSensorConfig {
   /**
-   * Initializes a SensorConfig instance with the given parameters.
+   * Initializes a PirSensorConfig instance with the given parameters.
    *
-   * @param {string} friendlyName - The friendlyName of the SensorConfig instance.
+   * @param {string} friendlyName - The friendlyName of the PirSensorConfig instance.
    * @param {string} occupancySensorItemName - The name of the occupancy item.
    * @param {string} offTimerDurationItemName - The name of the off-timer duration item.
    * @param {string} lightLevelActiveThresholdItemName - The name of the light level threshold item.
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
    * @param {Array<string>} phrases - Optional array of phrases to be spoken
-   * @param {...LightConfig} lightConfigs - The light configurations.
+   * @param {...PirLightConfig} lightConfigs - The light configurations.
    */
   constructor(
     friendlyName,
@@ -77,7 +77,7 @@ class SensorConfig {
     this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;
     this.defaultOffTimerDuration = defaultOffTimerDuration;
     this.phrases = phrases;
-    this.lightConfigs = lightConfigs.map((lc) => new LightConfig(lc.lightControlItemName, lc.lightOnOffTimerDurationItemName, lc.defaultLightOnOffTimerDurationSecs));
+    this.lightConfigs = lightConfigs.map((lc) => new PirLightConfig(lc.lightControlItemName, lc.lightOnOffTimerDurationItemName, lc.defaultLightOnOffTimerDurationSecs));
     this.lightItemNames = lightConfigs.map((config) => config.itemName);
 
     const endIndex = occupancySensorItemName.indexOf('_');
@@ -95,7 +95,7 @@ class SensorConfig {
   }
 
   /**
-   * Controls the lights associated with this SensorConfig instance.
+   * Controls the lights associated with this PirSensorConfig instance.
    *
    * @param {string} state - The state to set the lights to
    * @return {undefined}
@@ -117,7 +117,7 @@ class SensorConfig {
   }
 
   /**
-   * Retrieves the duration of the off timer for this SensorConfig instance.
+   * Retrieves the duration of the off timer for this PirSensorConfig instance.
    * If the off timer duration item is not defined, a default duration is used.
    * The duration is returned in milliseconds.
    *
@@ -145,7 +145,7 @@ class SensorConfig {
   }
 
   /**
-   * Checks if the current light level is below the active threshold for this SensorConfig.
+   * Checks if the current light level is below the active threshold for this PirSensorConfig.
    *
    * @returns {boolean} True if the light level is below the threshold, false otherwise.
    */
@@ -172,6 +172,6 @@ class SensorConfig {
 }
 
 module.exports = {
-  LightConfig,
-  SensorConfig,
+  PirLightConfig,
+  PirSensorConfig,
 };
