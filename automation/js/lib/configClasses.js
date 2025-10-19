@@ -8,7 +8,8 @@ const ruleUID = 'config_classes';
 const logger = log(ruleUID);
 
 class PirLightConfig {
-  constructor(lightControlItemName, lightOnOffTimerDurationItemName, defaultLightOnOffTimerDurationSecs) {
+  constructor(name, lightControlItemName, lightOnOffTimerDurationItemName, defaultLightOnOffTimerDurationSecs) {
+    this.name = name;
     this.lightControlItemName = lightControlItemName;
     this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
     this.defaultLightOnOffTimerDurationSecs = defaultLightOnOffTimerDurationSecs;
@@ -60,7 +61,8 @@ class PirSensorConfig {
    * @param {string} lightLevelActiveThresholdItemName - The name of the light level threshold item.
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
    * @param {Array<string>} phrases - Optional array of phrases to be spoken
-   * @param {...PirLightConfig} lightConfigs - The light configurations.
+   * @param {Array<string>} lightConfigNames - The names of the light configurations.
+   * @param {Map<string, PirLightConfig>} allLightConfigsMap - A map of all light configurations.
    */
   constructor(
     friendlyName,
@@ -69,7 +71,8 @@ class PirSensorConfig {
     lightLevelActiveThresholdItemName,
     defaultOffTimerDuration,
     phrases = [],
-    ...lightConfigs
+    lightConfigNames = [],
+    allLightConfigsMap,
   ) {
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
@@ -77,8 +80,9 @@ class PirSensorConfig {
     this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;
     this.defaultOffTimerDuration = defaultOffTimerDuration;
     this.phrases = phrases;
-    this.lightConfigs = lightConfigs.map((lc) => new PirLightConfig(lc.lightControlItemName, lc.lightOnOffTimerDurationItemName, lc.defaultLightOnOffTimerDurationSecs));
-    this.lightItemNames = lightConfigs.map((config) => config.itemName);
+    this.lightConfigNames = lightConfigNames;
+    this.lightConfigs = this.lightConfigNames.map((name) => allLightConfigsMap.get(name));
+    this.lightItemNames = this.lightConfigs.map((config) => config.lightControlItemName);
 
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);

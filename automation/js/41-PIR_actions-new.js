@@ -19,6 +19,7 @@ const logger = log(ruleUID);
 let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 // Load sensor configurations from JSON file
+
 // const JSON5 = require('json5');
 
 const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
@@ -41,19 +42,27 @@ logger.info('sensorData: {}', JSON.stringify(sensorData));
 // const { PirLightConfig, PirSensorConfig } = require('./lib/configClasses');
 const { PirLightConfig, PirSensorConfig } = require('../lib/configClasses');
 
-// Example of reading a local file in openHAB JS
-// https://community.openhab.org/t/can-i-read-a-local-file-in-an-openhab-js-rule/165449/5
-// var authInfo = require('/openhab/conf/other/asus.json');
-// var asusLogin = `${authInfo.user}:${authInfo.password}`;
+// Create a map of light configurations
+const lightConfigsMap = new Map();
+sensorData.lightConfigs.forEach((lcData) => {
+  lightConfigsMap.set(lcData.name, new PirLightConfig(
+    lcData.name,
+    lcData.lightControlItemName,
+    lcData.lightOnOffTimerDurationItemName,
+    lcData.defaultLightOnOffTimerDurationSecs,
+  ));
+});
 
-const PirSensorConfigs = sensorData.map((data) => new PirSensorConfig(
+// Create sensor configurations, passing the map of light configs
+const PirSensorConfigs = sensorData.pirSensorConfigs.map((data) => new PirSensorConfig(
   data.friendlyName,
   data.occupancySensorItemName,
   data.offTimerDurationItemName,
   data.lightLevelActiveThresholdItemName,
   data.defaultOffTimerDuration,
   data.phrases,
-  ...data.lightConfigs,
+  data.lightConfigNames,
+  lightConfigsMap,
 ));
 
 scriptLoaded = function () {
@@ -67,22 +76,6 @@ scriptLoaded = function () {
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
-
-// /**
-//  *
-//  * @param {*} ASensorLight
-//  * @returns
-//  */
-// const occupancyOffTimerFunction = (ASensorLight) => () => {
-//   logger.warn(
-//     'OFF Timer expired, location: {}, sensor: {} lights: {}',
-//     ASensorLight.friendlyName,
-//     JSON.stringify(ASensorLight.occupancySensorItemName),
-//     JSON.stringify(ASensorLight.lightConfigs),
-//   );
-//   // lightsControl(ASensorLight.lightItemNames, 'OFF');
-//   ASensorLight.sensorLightControl('OFF');
-// };
 
 /**
  *

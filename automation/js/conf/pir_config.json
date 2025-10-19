@@ -1,32 +1,46 @@
-[
-  {
-    "friendlyName": "pir2-test",
-    "occupancySensorItemName": "pir02_occupancy",
-    "offTimerDurationItemName": "pir02_offTimerDurationItem",
-    "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
-    "defaultOffTimerDuration": 500,
-    "phrases": ["testy1", "testy2"],
-    "lightConfigs": [
-      {
-        "lightControlItemName": "v_StartColourBulbsCycle",
-        "lightOnOffTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
-        "defaultLightOnOffTimerDurationSecs": 1
-      }
-    ]
-  },
-  {
-    "friendlyName": "pir6-landing",
-    "occupancySensorItemName": "pir06_occupancy",
-    "offTimerDurationItemName": "pir06_offTimerDurationItem",
-    "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
-    "defaultOffTimerDuration": 100,
-    "phrases": ["landing"],
-    "lightConfigs": [
-      {
-        "lightControlItemName": "ZbWhiteBulb01Switch",
-        "lightOnOffTimerDurationItemName": "pir06_offTimerDurationItem",
-        "defaultLightOnOffTimerDurationSecs": 11
-      }
-    ]
-  }
-]
+{
+  "lightConfigs": [
+    {
+      "name": "colourBulbsCycle",
+      "lightControlItemName": "v_StartColourBulbsCycle",
+      "lightOnOffTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
+      "defaultLightOnOffTimerDurationSecs": 1
+    },
+    {
+      "name": "landingLight",
+      "lightControlItemName": "ZbWhiteBulb01Switch",
+      "lightOnOffTimerDurationItemName": "pir06_offTimerDurationItem",
+      "defaultLightOnOffTimerDurationSecs": 11
+    }
+  ],
+  "pirSensorConfigs": [
+    {
+      "friendlyName": "pir2-test",
+      "occupancySensorItemName": "pir02_occupancy",
+      "offTimerDurationItemName": "pir02_offTimerDurationItem",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "defaultOffTimerDuration": 500,
+      "phrases": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "lightConfigNames": [
+        "colourBulbsCycle"
+      ]
+    },
+    {
+      "friendlyName": "pir6-landing",
+      "occupancySensorItemName": "pir06_occupancy",
+      "offTimerDurationItemName": "pir06_offTimerDurationItem",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "defaultOffTimerDuration": 100,
+      "phrases": [
+        "landing"
+      ],
+      "lightConfigNames": [
+        "landingLight"
+      ]
+    }
+  ]
+}
