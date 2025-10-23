@@ -55,8 +55,8 @@ class PirLightConfig {
       const offTimerDurationItem = items.getItem(this.lightOnOffTimerDurationItemName, true);
       const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
 
-      logger.warn(
-        'on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} timerDuration:{}, defaultLightOnOffTimerDurationSecs: {}',
+      logger.error(
+        '..Turning OFF light:on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} timerDuration:{}, defaultLightOnOffTimerDurationSecs: {}',
         this.lightControlItemName,
         this.lightOnOffTimerDurationItemName,
         timerDurationSecs,
@@ -127,7 +127,7 @@ class PirSensorConfig {
         logger.warn('send {} -> {}', state, lightConfig.lightControlItemName);
         if (state === 'ON') {
           const duration = lightConfig.getLightOnOffTimerDurationMs();
-          logger.warn('sensorLightControl( {} ON duration: {} ms', lightConfig.lightControlItemName, duration);
+          logger.warn('sensorLightControl( {} ON-> OFF duration: {} ms', lightConfig.lightControlItemName, duration);
         }
         lightItem.sendCommand(state);
       } else {

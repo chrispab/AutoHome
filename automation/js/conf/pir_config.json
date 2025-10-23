@@ -11,6 +11,18 @@
       "lightControlItemName": "ZbWhiteBulb01Switch",
       "lightOnOffTimerDurationItemName": "pir06_offTimerDurationItem",
       "defaultLightOnOffTimerDurationSecs": 11
+    },
+    {
+      "name": "workLight",
+      "lightControlItemName": "workLightsPowerSocket",
+      "lightOnOffTimerDurationItemName": "pir02_offTimerDurationItem",
+      "defaultLightOnOffTimerDurationSecs": 5
+    },
+    {
+      "name": "fairyLights",
+      "lightControlItemName": "CT_FairyLights433Socket",
+      "lightOnOffTimerDurationItemName": "pir03_offTimerDurationItem",
+      "defaultLightOnOffTimerDurationSecs": 5
     }
   ],
   "pirSensorConfigs": [
