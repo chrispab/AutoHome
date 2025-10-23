@@ -4,12 +4,12 @@
 const {
 
   log, items, rules, triggers, actions,
-
 } = require('openhab');
 
 // Log versions
 const { TimerMgr } = require('openhab_rules_tools');
 const { helpers } = require('openhab_rules_tools');
+// const { configClasses } = require('openhab-my-utils');
 
 const ruleUID = 'pir_action_new';
 const logger = log(ruleUID);
@@ -40,7 +40,10 @@ try {
 // sensorData = JSON5.parse(cleanedConfig);
 logger.info('sensorData: {}', JSON.stringify(sensorData));
 // const { PirLightConfig, PirSensorConfig } = require('./lib/configClasses');
-const { PirLightConfig, PirSensorConfig } = require('../lib/configClasses');
+// const { PirLightConfig, PirSensorConfig } = require('../lib/configClasses');
+// const { PirLightConfig, PirSensorConfig } = require('configClasses');
+// const { PirLightConfig, PirSensorConfig } = require('configClasses');
+const { PirLightConfig, PirSensorConfig } = require('../41-configClasses.js');
 
 // Create a map of light configurations
 const lightConfigsMap = new Map();
@@ -76,37 +79,6 @@ scriptLoaded = function () {
 };
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects
-
-/**
- *
- * @param {*} Light
- * @returns
- */
-const occupancyOnOffTimerFunctionTurnOffLight = (lightConfig) => () => {
-  // logger.warn(
-  //   'OFF Timer expired, location: {}, sensor: {} lights: {}',
-  //   lightConfig.friendlyName,
-  //   JSON.stringify(ASensorLight.occupancySensorItemName),
-  //   JSON.stringify(ASensorLight.lightConfigs),
-  // );
-  //   this.lightControlItemName = lightControlItemName;
-  // this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
-  // this.defaultLightOnOffTimerDurationSecs = defaultLightOnOffTimerDurationSecs;
-
-  const offTimerDurationItem = items.getItem(lightConfig.lightOnOffTimerDurationItemName, true);
-  logger.warn(`lightConfig.offTimerDurationItem: ${this.offTimerDurationItem}`);
-  const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
-
-  logger.warn(
-    'on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} timerDuration:{}, defaultLightOnOffTimerDurationSecs: {}',
-    lightConfig.lightControlItemName,
-    lightConfig.lightOnOffTimerDurationItemName,
-    timerDurationSecs,
-    lightConfig.defaultLightOnOffTimerDurationSecs,
-  );
-  // lightsControl(ASensorLight.lightItemNames, 'OFF');
-  lightConfig.lightControl('OFF');
-};
 
 // PIR occupancy ON - Turn ON light
 rules.JSRule({
@@ -147,6 +119,10 @@ rules.JSRule({
       logger.warn('PIR ON - saying phrase: {}', phrase);
       // actions.Audio.playSound('now_disconnected.mp3');
       actions.Voice.say(phrase);
+      // Send a standard notification with icon, tag and title to two specific users
+      // actions.notificationBuilder('Hello World!').addUserId('cbattisson@gmail.com').withIcon('f7:bell_fill').withTag('important')
+      //   .withTitle('Important notification')
+      //   .send();
     }
 
     timerMgr = cache.private.get('timerMgr');
@@ -264,7 +240,7 @@ rules.JSRule({
       timerMgr.check(
         lightTimerKey,
         lightTimerDuration,
-        occupancyOnOffTimerFunctionTurnOffLight(lightConfig),
+        lightConfig.getTurnOffTimerFunction(),
         true,
         null,
         lightTimerName,
