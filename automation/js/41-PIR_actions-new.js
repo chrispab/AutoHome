@@ -81,6 +81,12 @@ const PirSensorConfigs = sensorData.pirSensorConfigs.map(
   ),
 );
 
+// Function to generate timer key
+function genTimerKey(triggeringItemName, index) {
+  return `${triggeringItemName}_light${index}`;
+}
+
+// Script loaded function
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
@@ -145,7 +151,7 @@ rules.JSRule({
     activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
       // get the lightConfig using the lightConfigName from the lightConfigs
       const lightConfig = lightConfigs[lightConfigName];
-      const lightTimerKey = `${triggeringItemName}_light${index}`;
+      const lightTimerKey = genTimerKey(triggeringItemName, index);
       logger.error('==calculated lightTimerKey: {}', lightTimerKey);
 
       if (lightConfig) {
@@ -239,7 +245,7 @@ rules.JSRule({
 
     // if an old timer exists for any lights associated with the current sensor, stop it, we are restarting the process for this light again
     activePirSensorConfig.lightConfigs.forEach((lightConfig, index) => {
-      const lightTimerKey = `${triggeringItemName}_light${index}`;
+      const lightTimerKey = genTimerKey(triggeringItemName, index);
       // const lightTimerName = `${timerName}_light${index}`;
       // const lightTimerDuration = lightConfig.getLightOnOffTimerDurationMs();
       logger.error('== on calculated lightTimerKey: {}', lightTimerKey);
@@ -295,7 +301,7 @@ rules.JSRule({
 
       // loop through lightConfigs and find the one that matches the lightConfigName
       lightConfigs.forEach((lconfig, index) => {
-        const lightTimerKey = `${triggeringItemName}_light${index}`;
+        const lightTimerKey = genTimerKey(triggeringItemName, index);
         logger.error('==timer with lightTimerKey:{}', lightTimerKey);
         if (lconfig.name === lightConfigName) {
           logger.warn('Found matching lightConfig: {} for PIR sensor: {}', lconfig.name, activePirSensorConfig.friendlyName);
@@ -384,21 +390,15 @@ rules.JSRule({
 
     // Create timers for each light config for this sensor
     activePirSensorConfig.lightConfigs.forEach((lightConfig, index) => {
-      const lightTimerKey = `${triggeringItemName}_light${index}`;
+      const lightTimerKey = genTimerKey(triggeringItemName, index);
       const lightTimerName = `${timerName}_light${index}`;
       const lightTimerDuration = lightConfig.getLightOnOffTimerDurationMs();
 
       timerMgr.cancel(lightTimerKey);
       logger.error('!== on-off  lightTimerKey: {}', lightTimerKey);
 
-      timerMgr.check(
-        lightTimerKey,
-        lightTimerDuration,
-        lightConfig.getTurnOffTimerFunction(),
-        true,
-        null,
-        lightTimerName,
-      );
+      // create and start the timer
+      timerMgr.check(lightTimerKey, lightTimerDuration, lightConfig.getTurnOffTimerFunction(), true, null, lightTimerName);
 
       logger.warn(
         'ON > OFF timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
