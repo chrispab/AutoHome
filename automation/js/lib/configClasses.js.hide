@@ -50,7 +50,7 @@ class PirLightConfig {
     }
   }
 
-  getTurnOffTimerFunction() {
+  getLightTurnOffTimerFunction() {
     return () => {
       const offTimerDurationItem = items.getItem(this.lightOnOffTimerDurationItemName, true);
       const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
