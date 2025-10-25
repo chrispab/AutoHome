@@ -20,9 +20,10 @@ let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 // Load sensor configurations from JSON file
 // const JSON5 = require('json5');
 
-const configPath = '/etc/openhab/automation/js/conf/pir_config.json';
+const configPath = '/etc/openhab/automation/js/conf/pir_light_config.json';
 let sensorData;
 let rawConfig;
+
 try {
   const Files = Java.type('java.nio.file.Files');
   const Paths = Java.type('java.nio.file.Paths');
@@ -47,8 +48,8 @@ const lightConfigs = sensorData.lightConfigs.map(
   (lcData) => new PirLightConfig(
     lcData.name,
     lcData.lightControlItemName,
-    lcData.lightOnOffTimerDurationItemName,
-    lcData.defaultLightOnOffTimerDurationSecs,
+    lcData.lightOffDelayTimerDurationItemName,
+    lcData.defaultLightOffDelayTimerDurationSecs,
   ),
 );
 
@@ -60,8 +61,8 @@ sensorData.lightConfigs.forEach((lcData) => {
     new PirLightConfig(
       lcData.name,
       lcData.lightControlItemName,
-      lcData.lightOnOffTimerDurationItemName,
-      lcData.defaultLightOnOffTimerDurationSecs,
+      lcData.lightOffDelayTimerDurationItemName,
+      lcData.defaultLightOffDelayTimerDurationSecs,
     ),
   );
 });
@@ -148,18 +149,17 @@ rules.JSRule({
       //   .send();
     }
 
-    // get timerMgr from cache and cancel any existing timers for lights associated with this sensor
+    // get timerMgr from cache and cancel any existing off-timers for lights associated with this sensor
     timerMgr = cache.private.get('timerMgr');
     // if any running timers exists for any lightConfigs associated with the current sensorConfig, stop them, we are restarting the process for this light again
     // for each lightName in activePirSensorConfig.lightConfigNames, find the index in lightConfigs array
     activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
       // get the lightConfig using the lightConfigName from the lightConfigs
       const lightConfig = lightConfigs[lightConfigName];
-      const lightTimerKey = genTimerKey(triggeringItemName, lightConfigName, index);
-      logger.error('P9-==calculated lightTimerKey: {}', lightTimerKey);
-
       if (lightConfig) {
         // cancel if present
+        const lightTimerKey = genTimerKey(triggeringItemName, lightConfigName, index);
+        logger.error('P9-==calculated lightTimerKey: {}', lightTimerKey);
         if (timerMgr.hasTimer(lightTimerKey)) {
           timerMgr.cancel(lightTimerKey);
           logger.error('P10-cancelling timer with lightTimerKey:{}', lightTimerKey);
@@ -168,9 +168,8 @@ rules.JSRule({
     });
     cache.private.put('timerMgr', timerMgr);
 
-    // use the activePirSensorConfig.lightConfigNames to log the light configs being controlled
+    // use the activePirSensorConfig.lightConfigNames to turn lights ON
     logger.warn('P11-..Current PIR Sensor lightConfigNames: {}', JSON.stringify(activePirSensorConfig.lightConfigNames));
-
     activePirSensorConfig.lightConfigNames.forEach((lightConfigName) => {
       const lightConfig = lightConfigs.find((config) => config.name === lightConfigName);
       if (lightConfig) {
@@ -342,74 +341,49 @@ rules.JSRule({
     const triggeringItemName = event.itemName.toString();
     const item = items.getItem(triggeringItemName);
     if (!item) {
-      logger.warn(`Item ${triggeringItemName} not found!`);
+      logger.warn(`o1-Item ${triggeringItemName} not found!`);
       return;
     }
-    logger.warn(`Triggering item: ${triggeringItemName} ON -> OFF,state: ${item.state}`);
+    logger.warn(`o2-Triggering item: ${triggeringItemName} ON -> OFF,state: ${item.state}`);
 
     // find sensorlight that has occupancy triggered
     const activePirSensorConfig = PirSensorConfigs.find(
       (sensorConfig) => sensorConfig.occupancySensorItemName === triggeringItemName,
     );
     if (!activePirSensorConfig) {
-      logger.warn(`No PirSensorConfig found for item: ${triggeringItemName}`);
+      logger.warn(`o3-No PirSensorConfig found for item: ${triggeringItemName}`);
       return;
     }
-    logger.warn(
-      'ON -> OFF..activePirSensorConfig is: {} - {}',
-      activePirSensorConfig.friendlyName,
-      activePirSensorConfig.occupancySensorItemName,
-    );
+    logger.warn('o4-ON -> OFF..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
 
-    // re/start the timer
-    // Get timer durations for all light configs in this sensor
-    const allTimerDurationsMs = activePirSensorConfig.lightConfigs.map((lightConfig) => lightConfig.getLightOnOffTimerDurationMs());
-    // print allTimerDurationsMs to logger warn message
-    logger.warn('Timer durations for light configs ms: {}', JSON.stringify(allTimerDurationsMs));
-
-    // Create an array of objects containing light control item names and their timer durations
-    const lightControls = activePirSensorConfig.lightConfigs.map((lightConfig) => ({
-      triggeringItemName: lightConfig.lightControlItemName,
-      duration: lightConfig.getLightOnOffTimerDurationMs(),
-    }));
-    // Log the light controls for debugging
-    logger.warn('Light controls and durations: {}', JSON.stringify(lightControls));
-
-    //
-    // Use the longest duration to ensure all lights complete their cycles
-    const timerDurationMs = Math.max(...allTimerDurationsMs);
-    logger.warn(
-      'Using maximum timer duration: {} ms from light configs: {}',
-      timerDurationMs,
-      JSON.stringify(allTimerDurationsMs),
-    );
-
+    // re/start the timers for each light associated with this sensor
     // get timerMgr from cache
     timerMgr = cache.private.get('timerMgr');
-
     const timerName = `${ruleUID}_${triggeringItemName}`;
+    // use the activePirSensorConfig.lightConfigNames to turn lights OFF
+    logger.warn('o5-..Current PIR Sensor lightConfigNames: {}', JSON.stringify(activePirSensorConfig.lightConfigNames));
+    activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
+      const lightConfig = lightConfigs.find((config) => config.name === lightConfigName);
+      if (lightConfig) {
+        const lightTimerKey = genTimerKey(triggeringItemName, lightConfig.name, index);
+        const lightTimerName = `${timerName}_light${index}`;
+        const lightTimerDurationMs = lightConfig.getLightOnOffTimerDurationMs();
 
-    // Create timers for each light config associated with this sensor
-    activePirSensorConfig.lightConfigs.forEach((lightConfig, index) => {
-      const lightTimerKey = genTimerKey(triggeringItemName, lightConfig.name, index);
-      const lightTimerName = `${timerName}_light${index}`;
-      const lightTimerDurationMs = lightConfig.getLightOnOffTimerDurationMs();
+        timerMgr.cancel(lightTimerKey);
+        logger.error('o6-createtimer off light: {} for PIR sensor: {}', lightConfig.lightControlItemName, activePirSensorConfig.friendlyName);
 
-      timerMgr.cancel(lightTimerKey);
-      logger.error('!== on-off  lightTimerKey: {}', lightTimerKey);
-
-      // create and start the timer
-      timerMgr.check(lightTimerKey, lightTimerDurationMs, lightConfig.getLightTurnOffTimerFunction(), true, null, lightTimerName);
-
-      logger.warn(
-        'ON>OFF-create and start the timer - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
-        lightTimerKey,
-        lightTimerDurationMs,
-        lightConfig.lightControlItemName,
-        lightTimerName,
-      );
+        timerMgr.check(lightTimerKey, lightTimerDurationMs, lightConfig.getLightTurnOffTimerFunction(), true, null, lightTimerName);
+        logger.warn(
+          'o7-ON -> OFF timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
+          lightTimerKey,
+          lightTimerDurationMs,
+          lightConfig.lightControlItemName,
+          lightTimerName,
+        );
+      } else {
+        logger.error('o8-LightConfig: {} not found in map!', lightConfigName);
+      }
     });
-
     // save timerMgr to cache
     cache.private.put('timerMgr', timerMgr);
   },

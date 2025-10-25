@@ -3,26 +3,32 @@
     {
       "name": "colourBulbsCycle",
       "lightControlItemName": "v_StartColourBulbsCycle",
-      "lightOnOffTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
-      "defaultLightOnOffTimerDurationSecs": 1
+      "lightOffDelayTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
+      "defaultLightOffDelayTimerDurationSecs": 1
     },
     {
       "name": "landingLight",
       "lightControlItemName": "ZbWhiteBulb01Switch",
-      "lightOnOffTimerDurationItemName": "pir06_offTimerDurationItem",
-      "defaultLightOnOffTimerDurationSecs": 11
+      "lightOffDelayTimerDurationItemName": "pir06_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 11
     },
     {
       "name": "workLight",
       "lightControlItemName": "workLightsPowerSocket",
-      "lightOnOffTimerDurationItemName": "pir02_offTimerDurationItem",
-      "defaultLightOnOffTimerDurationSecs": 5
+      "lightOffDelayTimerDurationItemName": "pir02_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 5
     },
     {
       "name": "fairyLights",
       "lightControlItemName": "CT_FairyLights433Socket",
-      "lightOnOffTimerDurationItemName": "pir03_offTimerDurationItem",
-      "defaultLightOnOffTimerDurationSecs": 5
+      "lightOffDelayTimerDurationItemName": "pir03_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 5
+    },
+    {
+      "name": "kitchenLight",
+      "lightControlItemName": "KT_light_1_Power",
+      "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 5
     }
   ],
   "pirSensorConfigs": [
@@ -38,7 +44,8 @@
         "t3"
       ],
       "lightConfigNames": [
-        "colourBulbsCycle"
+        "colourBulbsCycle",
+        "kitchenLight"
       ]
     },
     {

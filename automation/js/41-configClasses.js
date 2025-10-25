@@ -8,22 +8,22 @@ const ruleUID = 'config_classes';
 const logger = log(ruleUID);
 
 class PirLightConfig {
-  constructor(name, lightControlItemName, lightOnOffTimerDurationItemName, defaultLightOnOffTimerDurationSecs) {
+  constructor(name, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
     this.name = name;
     this.lightControlItemName = lightControlItemName;
-    this.lightOnOffTimerDurationItemName = lightOnOffTimerDurationItemName;
-    this.defaultLightOnOffTimerDurationSecs = defaultLightOnOffTimerDurationSecs;
+    this.lightOffDelayTimerDurationItemName = lightOffDelayTimerDurationItemName;
+    this.defaultLightOffDelayTimerDurationSecs = defaultLightOffDelayTimerDurationSecs;
   }
 
   getLightOnOffTimerDurationMs() {
-    const offTimerDurationItem = items.getItem(this.lightOnOffTimerDurationItemName, true);
+    const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
 
-    logger.warn(`this.defaultLightOnOffTimerDurationSecs: ${this.defaultLightOnOffTimerDurationSecs}`);
+    logger.warn(`this.defaultLightOffDelayTimerDurationSecs: ${this.defaultLightOffDelayTimerDurationSecs}`);
     let timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
     if (timerDurationSecs === undefined) {
-      timerDurationSecs = this.defaultLightOnOffTimerDurationSecs;
+      timerDurationSecs = this.defaultLightOffDelayTimerDurationSecs;
       logger.warn(
-        `lightOnOffTimerDurationItemName: ${this.onTimerDurationItemName} not defined. Using default: ${this.defaultLightOnOffTimerDurationSecs}`,
+        `lightOffDelayTimerDurationItemName: ${this.onTimerDurationItemName} not defined. Using default: ${this.defaultLightOffDelayTimerDurationSecs}`,
       );
     }
     logger.warn(`timerDurationSecs: ${timerDurationSecs}`);
@@ -52,15 +52,15 @@ class PirLightConfig {
 
   getLightTurnOffTimerFunction() {
     return () => {
-      const offTimerDurationItem = items.getItem(this.lightOnOffTimerDurationItemName, true);
+      const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
       const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
 
       logger.error(
-        '..Turning OFF light:on-OFF Timer expired, lightControlItemName: {}, lightOnOffTimerDurationItemName: {} timerDuration:{}, defaultLightOnOffTimerDurationSecs: {}',
+        'LightTurnOffTimerFunction.Turning OFF light:on-OFF Timer expired, lightControlItemName: {}, lightOffDelayTimerDurationItemName: {} timerDuration:{}, defaultLightOffDelayTimerDurationSecs: {}',
         this.lightControlItemName,
-        this.lightOnOffTimerDurationItemName,
+        this.lightOffDelayTimerDurationItemName,
         timerDurationSecs,
-        this.defaultLightOnOffTimerDurationSecs,
+        this.defaultLightOffDelayTimerDurationSecs,
       );
       this.lightControl('OFF');
     };
