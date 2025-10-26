@@ -156,18 +156,18 @@ const occupancyOffTimerFunction = (ASensorLight) => () => {
   ASensorLight.lightsControl('OFF');
 };
 
-const slPir05 = new SensorLight(
-  'Kitchen-LHS1',
-  'pir05_occupancy',
-  'pir05_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  100,
-  'KT_light_2_Power',
-  'KT_light_3_Power',
-);
-slPir05.phrases = [
+// const slPir05 = new SensorLight(
+//   'Kitchen-LHS1',
+//   'pir05_occupancy',
+//   'pir05_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   100,
+//   'KT_light_2_Power',
+//   'KT_light_3_Power',
+// );
+// slPir05.phrases = [
 
-];
+// ];
 
 // const slPir06 = new SensorLight(
 //   'Kitchen-LHS2',
@@ -236,7 +236,7 @@ slPir05.phrases = [
 // ];
 // const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 // const sensorLights = [slPir01, slPir03, slPir04, slPir05];
-const sensorLights = [slPir05];
+const sensorLights = [];
 
 rules.JSRule({
   name: 'PIR - update   ON',

@@ -34,6 +34,20 @@
       "lightControlItemName": "KT_light_1_Power",
       "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
+    },
+    {
+      "name": "kitchenLight_2",
+      "location": "Kitchen prep Area",
+      "lightControlItemName": "KT_light_2_Power",
+      "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 5
+    },
+      {
+      "name": "kitchenLight_3",
+      "location": "Kitchen Island Area",
+      "lightControlItemName": "KT_light_3_Power",
+      "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
+      "defaultLightOffDelayTimerDurationSecs": 5
     }
   ],
   "pirSensorConfigs": [
@@ -95,7 +109,22 @@
         "colourBulbsCycle",
         "landingLight"
       ]
-    },    
+    },
+    {
+      "name": "pir05",
+      "location": "Kitchen prep Area",
+      "friendlyName": "pir5-work",
+      "occupancySensorItemName": "pir05_occupancy",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
+      "phrases": [
+        "work"
+      ],
+      "lightConfigNames": [
+        "kitchenLight_2",
+        "kitchenLight_3"
+      ]
+    },
     {
       "name": "pir6",
       "location": "Landing",
