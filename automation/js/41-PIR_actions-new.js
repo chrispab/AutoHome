@@ -21,6 +21,7 @@ let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 // const JSON5 = require('json5');
 
 const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
+
 let sensorData;
 let rawConfig;
 
