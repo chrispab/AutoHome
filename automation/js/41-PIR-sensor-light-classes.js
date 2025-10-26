@@ -79,7 +79,6 @@ class PirSensorConfig {
    * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
    * @param {Array<string>} phrases - Optional array of phrases to be spoken
    * @param {Array<string>} lightConfigNames - The names of the light configurations.
-   * @param {Map<string, PirLightConfig>} allLightConfigsMap - A map of all light configurations.
    */
   constructor(
     friendlyName,
@@ -89,7 +88,6 @@ class PirSensorConfig {
     defaultOffTimerDuration,
     phrases = [],
     lightConfigNames = [],
-    allLightConfigsMap,
   ) {
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
@@ -98,8 +96,6 @@ class PirSensorConfig {
     this.defaultOffTimerDuration = defaultOffTimerDuration;
     this.phrases = phrases;
     this.lightConfigNames = lightConfigNames;
-    this.lightConfigs = this.lightConfigNames.map((name) => allLightConfigsMap.get(name));
-    this.lightItemNames = this.lightConfigs.map((config) => config.lightControlItemName);
 
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
@@ -113,28 +109,6 @@ class PirSensorConfig {
     } else {
       logger.warn(`Item ${this.occupancySensorItemName} or its rawItem not found to set label to ${this.label}`);
     }
-  }
-
-  /**
-   * Controls the lights associated with this PirSensorConfig instance.
-   *
-   * @param {string} state - The state to set the lights to
-   * @return {undefined}
-   */
-  sensorLightControl(state) {
-    this.lightConfigs.forEach((lightConfig) => {
-      const lightItem = items.getItem(lightConfig.lightControlItemName);
-      if (lightItem) {
-        logger.debug('send {} -> {}', state, lightConfig.lightControlItemName);
-        if (state === 'ON') {
-          const duration = lightConfig.getLightOnOffTimerDurationMs();
-          logger.debug('sensorLightControl( {} ON-> OFF duration: {} ms', lightConfig.lightControlItemName, duration);
-        }
-        lightItem.sendCommand(state);
-      } else {
-        logger.warn(`sensorLightControl Item ${lightConfig.lightControlItemName} not found!`);
-      }
-    });
   }
 
   /**

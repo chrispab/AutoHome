@@ -49,21 +49,7 @@ const lightConfigs = sensorData.lightConfigs.map(
   ),
 );
 
-// Create a map of light configurations
-const lightConfigsMap = new Map();
-sensorData.lightConfigs.forEach((lcData) => {
-  lightConfigsMap.set(
-    lcData.name,
-    new PirLightConfig(
-      lcData.name,
-      lcData.lightControlItemName,
-      lcData.lightOffDelayTimerDurationItemName,
-      lcData.defaultLightOffDelayTimerDurationSecs,
-    ),
-  );
-});
-
-// Create sensor configurations, passing the map of light configs
+// Create sensor configurations
 const PirSensorConfigs = sensorData.pirSensorConfigs.map(
   (data) => new PirSensorConfig(
     data.friendlyName,
@@ -73,7 +59,6 @@ const PirSensorConfigs = sensorData.pirSensorConfigs.map(
     data.defaultOffTimerDuration,
     data.phrases,
     data.lightConfigNames,
-    lightConfigsMap,
   ),
 );
 
@@ -133,7 +118,7 @@ rules.JSRule({
     if (activePirSensorConfig.phrases.length > 0) {
       logger.debug('P7-PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
 
-      const phrase = activePirSensorConfig.phrases[Math.floor(Math.floor(Math.random() * activePirSensorConfig.phrases.length))];
+      const phrase = activePirSensorConfig.phrases[Math.floor(Math.random() * activePirSensorConfig.phrases.length)];
       logger.debug('P8-PIR ON - saying phrase: {}', phrase);
       // actions.Audio.playSound('now_disconnected.mp3');
       actions.Voice.say(phrase);
@@ -183,7 +168,7 @@ rules.JSRule({
 
 // PIR sensor start OFF lights timer
 rules.JSRule({
-  name: 'PIR - ON to OFF',
+  name: 'PIR - occupancy ON to OFF',
   description: 'PIR sensor start OFF lights timer',
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: (event) => {
