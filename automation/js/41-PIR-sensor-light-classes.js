@@ -1,3 +1,8 @@
+/**
+ * @file This file defines classes for configuring PIR sensor and light interactions in openHAB.
+ * It provides structured objects for managing individual light settings and sensor behaviors,
+ * which are then used by the main PIR automation script.
+ */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
@@ -8,7 +13,18 @@ const ruleUID = 'pir_sensor_light_classes';
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.pir_sensor_light_classes
 
-class PirLightConfig {
+/**
+ * Represents the configuration for a single light or group of lights
+ * that can be controlled by a PIR sensor.
+ */
+class LightConfig {
+  /**
+   * Creates an instance of LightConfig.
+   * @param {string} name - A unique name for this light configuration.
+   * @param {string} lightControlItemName - The name of the openHAB item that controls the light (e.g., a Switch or Dimmer).
+   * @param {string} lightOffDelayTimerDurationItemName - The name of the openHAB item that stores the turn-off delay in seconds.
+   * @param {number} defaultLightOffDelayTimerDurationSecs - A default turn-off delay in seconds if the item is not set.
+   */
   constructor(name, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
     this.name = name;
     this.lightControlItemName = lightControlItemName;
@@ -16,6 +32,11 @@ class PirLightConfig {
     this.defaultLightOffDelayTimerDurationSecs = defaultLightOffDelayTimerDurationSecs;
   }
 
+  /**
+   * Gets the configured turn-off delay for the light.
+   * It reads the value from the associated openHAB item, falling back to the default if the item is not set.
+   * @returns {number} The turn-off delay in milliseconds.
+   */
   getLightOnOffTimerDurationMs() {
     const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
 
@@ -32,9 +53,8 @@ class PirLightConfig {
   }
 
   /**
-   * Controls the lights associated with this PirLightConfig instance.
-   *
-   * @param {string} state - The state to set the lights to (default: 'OFF')
+   * Sends a command to the light's control item.
+   * @param {string} state - The command to send (e.g., 'ON', 'OFF').
    * @return {undefined}
    */
   lightControl(state) {
@@ -51,6 +71,10 @@ class PirLightConfig {
     }
   }
 
+  /**
+   * Returns a function that can be used as a callback for a timer to turn the light off.
+   * @returns {function(): void} A function that sends an 'OFF' command to the light.
+   */
   getLightTurnOffTimerFunction() {
     return () => {
       const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
@@ -68,16 +92,19 @@ class PirLightConfig {
   }
 }
 
+/**
+ * Represents the configuration for a PIR motion sensor.
+ * It links a sensor to one or more light configurations and defines its behavior.
+ */
 class PirSensorConfig {
   /**
-   * Initializes a PirSensorConfig instance with the given parameters.
-   *
-   * @param {string} friendlyName - The friendlyName of the PirSensorConfig instance.
-   * @param {string} occupancySensorItemName - The name of the occupancy item.
-   * @param {string} offTimerDurationItemName - The name of the off-timer duration item.
-   * @param {string} lightLevelActiveThresholdItemName - The name of the light level threshold item.
-   * @param {number} defaultOffTimerDuration - The default duration of the off-timer in seconds.
-   * @param {Array<string>} phrases - Optional array of phrases to be spoken
+   * Creates an instance of PirSensorConfig.
+   * @param {string} friendlyName - A user-friendly name for the sensor (e.g., "Kitchen Sensor").
+   * @param {string} occupancySensorItemName - The name of the openHAB item representing the sensor's occupancy state.
+   * @param {string} offTimerDurationItemName - The name of the openHAB item for this sensor's specific off-timer duration.
+   * @param {string} lightLevelActiveThresholdItemName - The name of the openHAB item that holds the ambient light level threshold.
+   * @param {number} defaultOffTimerDuration - A default off-timer duration in seconds.
+   * @param {Array<string>} [phrases=[]] - An optional array of phrases to be spoken when motion is detected.
    * @param {Array<string>} lightConfigNames - The names of the light configurations.
    */
   constructor(
@@ -102,6 +129,9 @@ class PirSensorConfig {
     this.label = `${this.pirPrefix} - ${friendlyName}`;
   }
 
+  /**
+   * Sets the label of the associated occupancy sensor item in openHAB for better identification in the UI.
+   */
   setItemLabel() {
     const item = items.getItem(this.occupancySensorItemName);
     if (item && item.rawItem) {
@@ -112,12 +142,10 @@ class PirSensorConfig {
   }
 
   /**
-   * Retrieves the duration of the off timer for this PirSensorConfig instance.
-   * If the off timer duration item is not defined, a default duration is used.
-   * The duration is returned in milliseconds.
-   *
-   * @return {number} The duration of the off timer in milliseconds.
+   * Gets the sensor's specific turn-off delay.
+   * @returns {number} The turn-off delay in milliseconds.
    */
+  // This method seems redundant with LightConfig.getLightOnOffTimerDurationMs and might be a candidate for refactoring.
   getSensorOnOffTimerDurationMs() {
     const offTimerDurationItem = items.getItem(this.offTimerDurationItemName, true);
     let timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
@@ -140,8 +168,8 @@ class PirSensorConfig {
   }
 
   /**
-   * Checks if the current light level is below the active threshold for this PirSensorConfig.
-   *
+   * Checks if the current ambient light level is below the configured threshold.
+   * This is used to decide whether to turn on lights when motion is detected.
    * @returns {boolean} True if the light level is below the threshold, false otherwise.
    */
   isLightLevelActive() {
@@ -167,6 +195,6 @@ class PirSensorConfig {
 }
 
 module.exports = {
-  PirLightConfig,
+  LightConfig,
   PirSensorConfig,
 };

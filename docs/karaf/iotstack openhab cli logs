@@ -8,7 +8,16 @@ openhab> log:tail
 log:set DEBUG org.openhab.automation.openhab-js.pir_testing
 log:set DEBUG org.openhab.automation.openhab-js.pir_sensor_light_classes
 
+$ systemctl stop openhab.service 
 
+$ openhab-cli clean-cache 
+
+This command will delete the temporary files within openHAB.
+May resolve issues with addon installation and configuration.
+The next start of openHAB will take a bit longer.
+
+Okay to Continue? [y/N]: 
+$ systemctl restart openhab.service
 
 
 
