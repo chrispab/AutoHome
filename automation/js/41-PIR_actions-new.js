@@ -40,7 +40,7 @@ try {
   logger.error(`Error reading or parsing config file: ${e}`);
 }
 
-// Import configuration classes.
+// Import configuration classes .
 logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
 const { LightConfig, PirSensorConfig } = require('../41-PIR-sensor-light-classes.js');
 

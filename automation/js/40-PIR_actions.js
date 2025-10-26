@@ -210,18 +210,18 @@ slPir05.phrases = [
 //   'Idiot in the dining room',
 // ];
 
-const slPir04 = new SensorLight(
-  'Stairs',
-  'pir04_occupancy',
-  'pir04_offTimerDurationItem',
-  'ConservatoryLightTriggerLevel',
-  500,
-  'v_StartColourBulbsCycle',
-  'ZbWhiteBulb01Switch',
-);
-slPir04.phrases = [
-  'stairs',
-];
+// const slPir04 = new SensorLight(
+//   'Stairs',
+//   'pir04_occupancy',
+//   'pir04_offTimerDurationItem',
+//   'ConservatoryLightTriggerLevel',
+//   500,
+//   'v_StartColourBulbsCycle',
+//   'ZbWhiteBulb01Switch',
+// );
+// slPir04.phrases = [
+//   'stairs',
+// ];
 
 // const slPir02 = new SensorLight(
 //   'landing',
@@ -236,7 +236,7 @@ slPir04.phrases = [
 // ];
 // const sensorLights = [slPir01, slPir02, slPir03, slPir04, slPir05, slPir06];
 // const sensorLights = [slPir01, slPir03, slPir04, slPir05];
-const sensorLights = [slPir04, slPir05];
+const sensorLights = [slPir05];
 
 rules.JSRule({
   name: 'PIR - update   ON',

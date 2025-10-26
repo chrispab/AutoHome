@@ -38,7 +38,7 @@
   ],
   "pirSensorConfigs": [
     {
-      "name": "pir1",
+      "name": "pir01",
       "location": "Kitchen Kettle Area",
       "friendlyName": "pir1-Kitchen-RHS",
       "occupancySensorItemName": "pir01_occupancy",
@@ -52,7 +52,7 @@
       ]
     },
     {
-      "name": "pir2",
+      "name": "pir02",
       "location": "Dining Room",
       "friendlyName": "pir2-test",
       "occupancySensorItemName": "pir02_occupancy",
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "name": "pir3",
+      "name": "pir03",
       "location": "Dining Room",
       "friendlyName": "pir3-dining room",
       "occupancySensorItemName": "pir03_occupancy",
@@ -79,6 +79,21 @@
       ],
       "lightConfigNames": [
         "colourBulbsCycle"
+      ]
+    },    
+    {
+      "name": "pir04",
+      "location": "Stairs",
+      "friendlyName": "pir4-stairs",
+      "occupancySensorItemName": "pir04_occupancy",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
+      "phrases": [
+        "Stairs"
+      ],
+      "lightConfigNames": [
+        "colourBulbsCycle",
+        "landingLight"
       ]
     },    
     {
