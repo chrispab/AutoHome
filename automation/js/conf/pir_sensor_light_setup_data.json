@@ -2,30 +2,35 @@
   "lightConfigs": [
     {
       "name": "colourBulbsCycle",
+      "location": "Dining Room",
       "lightControlItemName": "v_StartColourBulbsCycle",
       "lightOffDelayTimerDurationItemName": "v_StartColourBulbsCycle_onDuration",
       "defaultLightOffDelayTimerDurationSecs": 1
     },
     {
       "name": "landingLight",
+      "location": "Landing",
       "lightControlItemName": "ZbWhiteBulb01Switch",
       "lightOffDelayTimerDurationItemName": "pir06_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 11
     },
     {
       "name": "workLight",
+      "location": "Work",
       "lightControlItemName": "workLightsPowerSocket",
       "lightOffDelayTimerDurationItemName": "pir02_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
     },
     {
       "name": "fairyLights",
+      "location": "Fairy Lights",
       "lightControlItemName": "CT_FairyLights433Socket",
       "lightOffDelayTimerDurationItemName": "pir03_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
     },
     {
-      "name": "kitchenLight",
+      "name": "kitchenLight_1",
+      "location": "Kitchen Kettle Area",
       "lightControlItemName": "KT_light_1_Power",
       "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
@@ -33,6 +38,22 @@
   ],
   "pirSensorConfigs": [
     {
+      "name": "pir1",
+      "location": "Kitchen Kettle Area",
+      "friendlyName": "pir1-Kitchen-RHS",
+      "occupancySensorItemName": "pir01_occupancy",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
+      "phrases": [
+        "k1"
+      ],
+      "lightConfigNames": [
+        "kitchenLight_1"
+      ]
+    },
+    {
+      "name": "pir2",
+      "location": "Dining Room",
       "friendlyName": "pir2-test",
       "occupancySensorItemName": "pir02_occupancy",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
@@ -47,6 +68,22 @@
       ]
     },
     {
+      "name": "pir3",
+      "location": "Dining Room",
+      "friendlyName": "pir3-dining room",
+      "occupancySensorItemName": "pir03_occupancy",
+      "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
+      "phrases": [
+        "dining"
+      ],
+      "lightConfigNames": [
+        "colourBulbsCycle"
+      ]
+    },    
+    {
+      "name": "pir6",
+      "location": "Landing",
       "friendlyName": "pir6-landing",
       "occupancySensorItemName": "pir06_occupancy",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",

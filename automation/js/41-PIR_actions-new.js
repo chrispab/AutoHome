@@ -1,7 +1,7 @@
 /**
  * @file This script manages PIR sensor-based lighting automation in openHAB.
  * It reads sensor and light configurations from a JSON file, and creates rules
- * to turn lights on when motion is detected and off after a delay when motion stops.
+ * to turn lights on when motion is detected and off after a delay when motion stops  .
  */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable no-undef */
@@ -9,6 +9,7 @@
 const {
   log, items, rules, triggers, actions,
 } = require('openhab');
+
 const { TimerMgr } = require('openhab_rules_tools');
 const { helpers } = require('openhab_rules_tools');
 // const { configClasses } = require('openhab-my-utils');
