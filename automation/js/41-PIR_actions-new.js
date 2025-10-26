@@ -53,14 +53,16 @@ const lightConfigs = sensorData.lightConfigs.map(
   ),
 );
 
+// Create a map for efficient lookup of light configurations by name.
+const lightConfigsMap = new Map(lightConfigs.map((config) => [config.name, config]));
+
 // Create instances of PIR sensor configurations from the loaded sensor data.
 const PirSensorConfigs = sensorData.pirSensorConfigs.map(
   (data) => new PirSensorConfig(
     data.friendlyName,
     data.occupancySensorItemName,
-    data.offTimerDurationItemName,
     data.lightLevelActiveThresholdItemName,
-    data.defaultOffTimerDuration,
+    data.lightLevelSensorItemName,
     data.phrases,
     data.lightConfigNames,
   ),
@@ -139,7 +141,7 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
   // get timerMgr from cache and cancel any existing off-timers for lights associated with this sensor
   timerMgr = cache.private.get('timerMgr');
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
-    const lightConfig = lightConfigs.find((config) => config.name === lightConfigName);
+    const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
       const lightTimerKey = genTimerKey(triggeringItemName, lightConfigName, index);
       if (timerMgr.hasTimer(lightTimerKey)) {
@@ -152,7 +154,7 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
 
   // use the activePirSensorConfig.lightConfigNames to turn lights ON
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName) => {
-    const lightConfig = lightConfigs.find((config) => config.name === lightConfigName);
+    const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
       if (activePirSensorConfig.isLightLevelActive()) {
         logger.debug(`Light level below threshold, turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
@@ -179,7 +181,7 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
   timerMgr = cache.private.get('timerMgr');
   const timerName = `${ruleUID}_${triggeringItemName}`;
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
-    const lightConfig = lightConfigs.find((config) => config.name === lightConfigName);
+    const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
       const lightTimerKey = genTimerKey(triggeringItemName, lightConfig.name, index);
       const lightTimerName = `${timerName}_light${index}`;

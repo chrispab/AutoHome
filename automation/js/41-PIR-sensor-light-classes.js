@@ -101,32 +101,29 @@ class PirSensorConfig {
    * Creates an instance of PirSensorConfig.
    * @param {string} friendlyName - A user-friendly name for the sensor (e.g., "Kitchen Sensor").
    * @param {string} occupancySensorItemName - The name of the openHAB item representing the sensor's occupancy state.
-   * @param {string} offTimerDurationItemName - The name of the openHAB item for this sensor's specific off-timer duration.
    * @param {string} lightLevelActiveThresholdItemName - The name of the openHAB item that holds the ambient light level threshold.
-   * @param {number} defaultOffTimerDuration - A default off-timer duration in seconds.
+   * @param {string} lightLevelSensorItemName - The name of the openHAB item that holds the ambient light level.
    * @param {Array<string>} [phrases=[]] - An optional array of phrases to be spoken when motion is detected.
    * @param {Array<string>} lightConfigNames - The names of the light configurations.
    */
   constructor(
     friendlyName,
     occupancySensorItemName,
-    offTimerDurationItemName,
     lightLevelActiveThresholdItemName,
-    defaultOffTimerDuration,
+    lightLevelSensorItemName,
     phrases = [],
     lightConfigNames = [],
   ) {
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
-    this.offTimerDurationItemName = offTimerDurationItemName;
     this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;
-    this.defaultOffTimerDuration = defaultOffTimerDuration;
+    this.lightLevelSensorItemName = lightLevelSensorItemName;
     this.phrases = phrases;
     this.lightConfigNames = lightConfigNames;
 
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
-    this.label = `${this.pirPrefix} - ${friendlyName}`;
+    this.label = `${this.pirPrefix} - ${this.friendlyName}`;
   }
 
   /**
@@ -142,41 +139,15 @@ class PirSensorConfig {
   }
 
   /**
-   * Gets the sensor's specific turn-off delay.
-   * @returns {number} The turn-off delay in milliseconds.
-   */
-  // This method seems redundant with LightConfig.getLightOnOffTimerDurationMs and might be a candidate for refactoring.
-  getSensorOnOffTimerDurationMs() {
-    const offTimerDurationItem = items.getItem(this.offTimerDurationItemName, true);
-    let timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
-    if (timerDurationSecs === undefined) {
-      timerDurationSecs = this.defaultOffTimerDuration;
-      logger.warn(
-        `OffTimerDurationItem: ${this.offTimerDurationItemName} not defined. Using default: ${this.defaultOffTimerDuration}`,
-      );
-    }
-
-    const timerDurationMs = timerDurationSecs * 1000;
-    logger.debug(
-      'occupancySensorItemName: {}, offTimerDurationItemName: {}, timerDurationSecs(secs): {}',
-      this.occupancySensorItemName,
-      this.offTimerDurationItemName,
-      timerDurationSecs,
-    );
-
-    return timerDurationMs;
-  }
-
-  /**
    * Checks if the current ambient light level is below the configured threshold.
    * This is used to decide whether to turn on lights when motion is detected.
    * @returns {boolean} True if the light level is below the threshold, false otherwise.
    */
   isLightLevelActive() {
-    const bridgeLightSensorLevelItem = items.getItem('BridgeLightSensorLevel');
+    const bridgeLightSensorLevelItem = items.getItem(this.lightLevelSensorItemName);
     const lightLevelThresholdItem = items.getItem(this.lightLevelActiveThresholdItemName);
     if (!bridgeLightSensorLevelItem || !lightLevelThresholdItem) {
-      logger.warn('Cant get BridgeLightSensorLevel or LightLevelThreshold item for isLightLevelActive check');
+      logger.warn('Cant get bridgeLightSensorLevelItem or LightLevelThreshold item for isLightLevelActive check');
       return false;
     }
 

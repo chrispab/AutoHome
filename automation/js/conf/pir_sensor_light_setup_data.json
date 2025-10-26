@@ -35,9 +35,8 @@
     {
       "friendlyName": "pir2-test",
       "occupancySensorItemName": "pir02_occupancy",
-      "offTimerDurationItemName": "pir02_offTimerDurationItem",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
-      "defaultOffTimerDuration": 500,
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
         "t1",
         "t2",
@@ -50,9 +49,8 @@
     {
       "friendlyName": "pir6-landing",
       "occupancySensorItemName": "pir06_occupancy",
-      "offTimerDurationItemName": "pir06_offTimerDurationItem",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
-      "defaultOffTimerDuration": 100,
+      "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
         "landing"
       ],
