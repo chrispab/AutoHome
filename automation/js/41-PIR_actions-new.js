@@ -20,13 +20,14 @@ let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 // Load sensor configurations from JSON file
 // const JSON5 = require('json5');
 
-const configPath = '/etc/openhab/automation/js/conf/pir_light_config.json';
+const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
 let sensorData;
 let rawConfig;
 
 try {
   const Files = Java.type('java.nio.file.Files');
   const Paths = Java.type('java.nio.file.Paths');
+  logger.debug(`Reading PIR sensor/light config from: ${configPath}`);
   rawConfig = Files.readString(Paths.get(configPath));
   // sensorData = JSON.parse(rawConfig);
   // logger.warn('rawConfig: {}', JSON.stringify(rawConfig));
@@ -35,13 +36,8 @@ try {
   logger.error(`Error reading or parsing config file: ${e}`);
 }
 
-// sensorData = JSON5.parse(cleanedConfig);
-// logger.info('sensorData: {}', JSON.stringify(sensorData));
-// const { PirLightConfig, PirSensorConfig } = require('./lib/configClasses');
-// const { PirLightConfig, PirSensorConfig } = require('../lib/configClasses');
-// const { PirLightConfig, PirSensorConfig } = require('configClasses');
-// const { PirLightConfig, PirSensorConfig } = require('configClasses');
-const { PirLightConfig, PirSensorConfig } = require('../41-configClasses.js');
+logger.debug('Importing PirLightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
+const { PirLightConfig, PirSensorConfig } = require('../41-PIR-sensor-light-classes.js');
 
 // create instances of light configurations
 const lightConfigs = sensorData.lightConfigs.map(
@@ -113,8 +109,9 @@ rules.JSRule({
     // Get the triggering item name and item
     const triggeringItemName = event.itemName.toString();
     const { receivedState } = event;
-    logger.debug(`PIR ON Event. Trigger: ${triggeringItemName}, State: ${receivedState}`);
-    logger.debug(`PIR ON Event. event: ${JSON.stringify(event)}`);
+    logger.debug(`PIR ON Event. Trigger: ${triggeringItemName}, event: ${JSON.stringify(event)}`);
+
+    // logger.debug(`PIR ON Event. event: ${JSON.stringify(event)}`);
     const item = items.getItem(triggeringItemName);
 
     if (!item) {
