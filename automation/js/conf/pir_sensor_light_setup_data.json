@@ -118,7 +118,7 @@
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
-        "work"
+        "Kitchen prep Area"
       ],
       "lightConfigNames": [
         "kitchenLight_2",
