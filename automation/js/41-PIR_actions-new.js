@@ -108,7 +108,7 @@ rules.JSRule({
   execute: (event) => {
     // Get the triggering item name and item
     const triggeringItemName = event.itemName.toString();
-    const { receivedState } = event;
+    // const { receivedState } = event;
     logger.debug(`PIR ON Event. Trigger: ${triggeringItemName}, event: ${JSON.stringify(event)}`);
 
     // logger.debug(`PIR ON Event. event: ${JSON.stringify(event)}`);
