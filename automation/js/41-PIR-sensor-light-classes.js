@@ -6,6 +6,7 @@ const { log, items } = require('openhab');
 
 const ruleUID = 'pir_sensor_light_classes';
 const logger = log(ruleUID);
+// log:set DEBUG org.openhab.automation.openhab-js.pir_sensor_light_classes
 
 class PirLightConfig {
   constructor(name, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
@@ -18,15 +19,15 @@ class PirLightConfig {
   getLightOnOffTimerDurationMs() {
     const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
 
-    logger.warn(`this.defaultLightOffDelayTimerDurationSecs: ${this.defaultLightOffDelayTimerDurationSecs}`);
+    logger.debug(`this.defaultLightOffDelayTimerDurationSecs: ${this.defaultLightOffDelayTimerDurationSecs}`);
     let timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
     if (timerDurationSecs === undefined) {
       timerDurationSecs = this.defaultLightOffDelayTimerDurationSecs;
       logger.warn(
-        `lightOffDelayTimerDurationItemName: ${this.onTimerDurationItemName} not defined. Using default: ${this.defaultLightOffDelayTimerDurationSecs}`,
+        `lightOffDelayTimerDurationItemName: ${this.lightOffDelayTimerDurationItemName} not defined. Using default: ${this.defaultLightOffDelayTimerDurationSecs}`,
       );
     }
-    logger.warn(`timerDurationSecs: ${timerDurationSecs}`);
+    logger.debug(`timerDurationSecs: ${timerDurationSecs}`);
     return timerDurationSecs * 1000;
   }
 
@@ -39,10 +40,10 @@ class PirLightConfig {
   lightControl(state) {
     const lightItem = items.getItem(this.lightControlItemName);
     if (lightItem) {
-      logger.warn('send {} -> {}', state, this.lightControlItemName);
+      logger.debug('send {} -> {}', state, this.lightControlItemName);
       if (state === 'ON') {
         const duration = this.getLightOnOffTimerDurationMs();
-        logger.warn('lightControl( {} ON duration: {} ms', this.lightControlItemName, duration);
+        logger.debug('lightControl( {} ON duration: {} ms', this.lightControlItemName, duration);
       }
       lightItem.sendCommand(state);
     } else {
@@ -55,8 +56,8 @@ class PirLightConfig {
       const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
       const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
 
-      logger.error(
-        'LightTurnOffTimerFunction.Turning OFF light:on-OFF Timer expired, lightControlItemName: {}, lightOffDelayTimerDurationItemName: {} timerDuration:{}, defaultLightOffDelayTimerDurationSecs: {}',
+      logger.debug(
+        'LightTurnOffTimerFunction: Turning OFF light. Timer expired. lightControlItemName: {}, lightOffDelayTimerDurationItemName: {} timerDuration:{}, defaultLightOffDelayTimerDurationSecs: {}',
         this.lightControlItemName,
         this.lightOffDelayTimerDurationItemName,
         timerDurationSecs,
@@ -124,10 +125,10 @@ class PirSensorConfig {
     this.lightConfigs.forEach((lightConfig) => {
       const lightItem = items.getItem(lightConfig.lightControlItemName);
       if (lightItem) {
-        logger.warn('send {} -> {}', state, lightConfig.lightControlItemName);
+        logger.debug('send {} -> {}', state, lightConfig.lightControlItemName);
         if (state === 'ON') {
           const duration = lightConfig.getLightOnOffTimerDurationMs();
-          logger.warn('sensorLightControl( {} ON-> OFF duration: {} ms', lightConfig.lightControlItemName, duration);
+          logger.debug('sensorLightControl( {} ON-> OFF duration: {} ms', lightConfig.lightControlItemName, duration);
         }
         lightItem.sendCommand(state);
       } else {
@@ -154,7 +155,7 @@ class PirSensorConfig {
     }
 
     const timerDurationMs = timerDurationSecs * 1000;
-    logger.warn(
+    logger.debug(
       'occupancySensorItemName: {}, offTimerDurationItemName: {}, timerDurationSecs(secs): {}',
       this.occupancySensorItemName,
       this.offTimerDurationItemName,
@@ -180,7 +181,7 @@ class PirSensorConfig {
     const currentLightLevel = bridgeLightSensorLevelItem.rawState;
     const lightLevelThreshold = lightLevelThresholdItem.rawState;
     const isActive = currentLightLevel < lightLevelThreshold;
-    logger.warn(
+    logger.debug(
       'Checking light level for {}: Current level: {}, Threshold: {}, Active: {}',
       this.friendlyName,
       currentLightLevel,

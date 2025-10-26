@@ -1,9 +1,20 @@
-chris@OX7020:/mnt/nfs/iotstack/volumes/openhab/conf$ ssh pi@iotstack.local
+ssh openhabian@192.168.0.101
+openhabian@192.168.0.101's password: 
 
-pi@iotstack:~ $ cd IOTstack
-docker exec -it openhab /openhab/runtime/bin/client -p habopen
+openhabian@openhabian:~ $ openhab-cli console -p habopen
 
 openhab> log:tail
+
+log:set DEBUG org.openhab.automation.openhab-js.pir_testing
+log:set DEBUG org.openhab.automation.openhab-js.pir_sensor_light_classes
+
+
+
+
+
+
+
+
 
 
 ///////////////////
