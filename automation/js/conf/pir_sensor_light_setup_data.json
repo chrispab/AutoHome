@@ -126,7 +126,7 @@
       ]
     },
     {
-      "name": "pir6",
+      "name": "pir06",
       "location": "Landing",
       "friendlyName": "pir6-landing",
       "occupancySensorItemName": "pir06_occupancy",

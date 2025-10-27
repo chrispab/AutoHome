@@ -21,12 +21,14 @@ class LightConfig {
   /**
    * Creates an instance of LightConfig.
    * @param {string} name - A unique name for this light configuration.
+   * @param {string} location - The location of the light (e.g., "Dining Room").
    * @param {string} lightControlItemName - The name of the openHAB item that controls the light (e.g., a Switch or Dimmer).
    * @param {string} lightOffDelayTimerDurationItemName - The name of the openHAB item that stores the turn-off delay in seconds.
    * @param {number} defaultLightOffDelayTimerDurationSecs - A default turn-off delay in seconds if the item is not set.
    */
-  constructor(name, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
+  constructor(name, location, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
     this.name = name;
+    this.location = location;
     this.lightControlItemName = lightControlItemName;
     this.lightOffDelayTimerDurationItemName = lightOffDelayTimerDurationItemName;
     this.defaultLightOffDelayTimerDurationSecs = defaultLightOffDelayTimerDurationSecs;
@@ -99,6 +101,8 @@ class LightConfig {
 class PirSensorConfig {
   /**
    * Creates an instance of PirSensorConfig.
+   * @param {string} name - A unique name for this sensor configuration.
+   * @param {string} location - The location of the sensor (e.g., "Kitchen").
    * @param {string} friendlyName - A user-friendly name for the sensor (e.g., "Kitchen Sensor").
    * @param {string} occupancySensorItemName - The name of the openHAB item representing the sensor's occupancy state.
    * @param {string} lightLevelActiveThresholdItemName - The name of the openHAB item that holds the ambient light level threshold.
@@ -107,6 +111,8 @@ class PirSensorConfig {
    * @param {Array<string>} lightConfigNames - The names of the light configurations.
    */
   constructor(
+    name,
+    location,
     friendlyName,
     occupancySensorItemName,
     lightLevelActiveThresholdItemName,
@@ -114,6 +120,8 @@ class PirSensorConfig {
     phrases = [],
     lightConfigNames = [],
   ) {
+    this.name = name;
+    this.location = location;
     this.friendlyName = friendlyName;
     this.occupancySensorItemName = occupancySensorItemName;
     this.lightLevelActiveThresholdItemName = lightLevelActiveThresholdItemName;

@@ -49,6 +49,7 @@ const { LightConfig, PirSensorConfig } = require('../41-PIR-sensor-light-classes
 const lightConfigs = sensorData.lightConfigs.map(
   (lcData) => new LightConfig(
     lcData.name,
+    lcData.location,
     lcData.lightControlItemName,
     lcData.lightOffDelayTimerDurationItemName,
     lcData.defaultLightOffDelayTimerDurationSecs,
@@ -61,6 +62,8 @@ const lightConfigsMap = new Map(lightConfigs.map((config) => [config.name, confi
 // Create instances of PIR sensor configurations from the loaded sensor data.
 const PirSensorConfigs = sensorData.pirSensorConfigs.map(
   (data) => new PirSensorConfig(
+    data.name,
+    data.location,
     data.friendlyName,
     data.occupancySensorItemName,
     data.lightLevelActiveThresholdItemName,
@@ -130,6 +133,8 @@ const createOccupancyRuleHandler = (ruleLogic) => (event) => {
  */
 const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => {
   logger.debug('PIR ON ..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
+  // log event details
+  logger.debug('PIR ON Event details: {}', JSON.stringify(event));
 
   // announce phrase if any are configured
   if (activePirSensorConfig.phrases.length > 0) {
@@ -215,8 +220,11 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
  */
 rules.JSRule({
   name: 'PIR - occupancy ON',
-  description: 'PIR occupancy ON - Turn ON or re-trigger light',
-  triggers: [triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON')],
+  description: 'PIR occupancy ON - Turn OFF-ON or re-trigger ON light',
+  triggers: [
+    triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'OFF', 'ON'),
+    triggers.GroupStateUpdateTrigger('gZbPIRSensorOccupancy', 'ON'),
+  ],
   execute: createOccupancyRuleHandler(handleOccupancyOn),
 });
 /**
