@@ -32,7 +32,7 @@
       "name": "kitchenLight_1",
       "location": "Kitchen Kettle Area",
       "lightControlItemName": "KT_light_1_Power",
-      "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
+      "lightOffDelayTimerDurationItemName": "pir01_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
     },
     {
@@ -46,7 +46,7 @@
       "name": "kitchenLight_3",
       "location": "Kitchen Island Area",
       "lightControlItemName": "KT_light_3_Power",
-      "lightOffDelayTimerDurationItemName": "pir04_offTimerDurationItem",
+      "lightOffDelayTimerDurationItemName": "pir05_offTimerDurationItem",
       "defaultLightOffDelayTimerDurationSecs": 5
     }
   ],
@@ -67,7 +67,7 @@
     },
     {
       "name": "pir02",
-      "location": "Dining Room",
+      "location": "desk area",
       "friendlyName": "pir2-test",
       "occupancySensorItemName": "pir02_occupancy",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
@@ -84,7 +84,7 @@
     {
       "name": "pir03",
       "location": "Dining Room",
-      "friendlyName": "pir3-dining room",
+      "friendlyName": "p3-dining-room",
       "occupancySensorItemName": "pir03_occupancy",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",
@@ -113,7 +113,7 @@
     {
       "name": "pir05",
       "location": "Kitchen prep Area",
-      "friendlyName": "pir5-work",
+      "friendlyName": "pir5-Kitchen-prep",
       "occupancySensorItemName": "pir05_occupancy",
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",

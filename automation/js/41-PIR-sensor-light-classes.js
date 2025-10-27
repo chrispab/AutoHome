@@ -131,19 +131,7 @@ class PirSensorConfig {
 
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
-    this.label = `${this.pirPrefix} - ${this.friendlyName}`;
-  }
-
-  /**
-   * Sets the label of the associated occupancy sensor item in openHAB for better identification in the UI.
-   */
-  setItemLabel() {
-    const item = items.getItem(this.occupancySensorItemName);
-    if (item && item.rawItem) {
-      item.rawItem.setLabel(this.label);
-    } else {
-      logger.warn(`Item ${this.occupancySensorItemName} or its rawItem not found to set label to ${this.label}`);
-    }
+    this.label = `${this.name} - ${this.location}`;
   }
 
   /**

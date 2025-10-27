@@ -81,7 +81,7 @@ scriptLoaded = function () {
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
   logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
   // eslint-disable-next-line no-use-before-define
-  PirSensorConfigs.forEach((config) => config.setItemLabel());
+
   logger.debug('>scriptLoaded PirSensorConfigs: {}', JSON.stringify(PirSensorConfigs));
   logger.debug('>scriptLoaded lightConfigs: {}', JSON.stringify(lightConfigs));
 };
@@ -116,6 +116,7 @@ const createOccupancyRuleHandler = (ruleLogic) => (event) => {
   const activePirSensorConfig = PirSensorConfigs.find(
     (sensorConfig) => sensorConfig.occupancySensorItemName === triggeringItemName,
   );
+
   if (!activePirSensorConfig) {
     logger.warn(`No PirSensorConfig found for item: ${triggeringItemName}`);
     return;
@@ -150,11 +151,17 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
+      // logger.debug('PIR ON - cancelling any existing off-timer for light: {}', lightConfig.lightControlItemName);
       const lightTimerKey = genTimerKey(triggeringItemName, lightConfigName, index);
       if (timerMgr.hasTimer(lightTimerKey)) {
+        logger.debug('PIR ON - found existing timer for key: {}, cancelling it', lightTimerKey);
         timerMgr.cancel(lightTimerKey);
         logger.debug('cancelling timer with lightTimerKey:{}', lightTimerKey);
+      } else {
+        logger.debug('PIR ON - no existing timer found for key: {}', lightTimerKey);
       }
+    } else {
+      logger.warn('LightConfig: {} not found in lightConfigs array!', lightConfigName);
     }
   });
   cache.private.put('timerMgr', timerMgr);
