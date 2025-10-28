@@ -9,17 +9,20 @@ Group:Number:MIN    gZbPIRSensorBatteries
 Group    gZbPIRSensorOccupancy
 
 // Switch    pir99_occupancy    "pir99_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)
-Number pir05_offTimerDurationItem "pir05_offTimer" ["Slider","Light"] 
-Number pir01_offTimerDurationItem "pir01_offTimer" ["Slider","Light"]  
-Number pir03_offTimerDurationItem "pir03_offTimer" ["Slider","Light"] 
-Number pir04_offTimerDurationItem "pir04_offTimer" ["Slider","Light"] 
-Number pir06_offTimerDurationItem "pir06_offTimer" ["Slider","Light"] 
-Number pir02_offTimerDurationItem "pir02_offTimer" ["Slider","Light"]  
+Number pir05_offTimerDurationItem "pir05_offTimer" ["OffDelayTime"] 
+Number pir01_offTimerDurationItem "pir01_offTimer" ["OffDelayTime"]  
+Number pir03_offTimerDurationItem "pir03_offTimer" ["OffDelayTime"] 
+Number pir04_offTimerDurationItem "pir04_offTimer" ["OffDelayTime"] 
+Number pir06_offTimerDurationItem "pir06_offTimer" ["OffDelayTime"] 
+Number pir02_offTimerDurationItem "pir02_offTimer" ["OffDelayTime"]  
 
 // other of timer durations, this time to be associated with the light config object passed to the timer
-// pert of use of on-off timer per light implementation
+// part of use of on-off timer per light implementation
 // pir06
-Number v_StartColourBulbsCycle_onDuration "Colour Bulbs Cycle on-off Duration" ["Slider","Light"] 
+Number v_StartColourBulbsCycle_onDuration "Colour Bulbs Cycle on-off Duration" ["OffDelayTime"] 
+Number kitchen_prep_offDelayTimerDurationItem "kitchen_prep_off_Time" ["OffDelayTime"]  
+Number kitchen_toaster_offDelayTimerDurationItem "kitchen_toaster_off_Time" ["OffDelayTime"]  
+Number kitchen_kettle_offDelayTimerDurationItem "kitchen_kettle_off_Time" ["OffDelayTime"]  
 
 
 

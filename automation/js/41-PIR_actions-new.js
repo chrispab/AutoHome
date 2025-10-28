@@ -34,8 +34,6 @@ try {
   const Paths = Java.type('java.nio.file.Paths');
   logger.debug(`Reading PIR sensor/light config from: ${configPath}`);
   rawConfig = Files.readString(Paths.get(configPath));
-  // sensorData = JSON.parse(rawConfig);
-  // logger.warn('rawConfig: {}', JSON.stringify(rawConfig));
   sensorData = JSON.parse(rawConfig);
 } catch (e) {
   logger.error(`Error reading or parsing config file: ${e}`);
@@ -81,7 +79,6 @@ scriptLoaded = function () {
   logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
   logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
   // eslint-disable-next-line no-use-before-define
-
   logger.debug('>scriptLoaded PirSensorConfigs: {}', JSON.stringify(PirSensorConfigs));
   logger.debug('>scriptLoaded lightConfigs: {}', JSON.stringify(lightConfigs));
 };
@@ -199,15 +196,16 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
   const timerName = `${ruleUID}_${triggeringItemName}`;
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
+
     if (lightConfig) {
       const lightTimerKey = genTimerKey(triggeringItemName, lightConfig.name, index);
       const lightTimerName = `${timerName}_light${index}`;
-      const lightTimerDurationMs = lightConfig.getLightOnOffTimerDurationMs();
+      const lightTimerDurationMs = lightConfig.getLightOffDelayTimerDurationMs();
 
       timerMgr.cancel(lightTimerKey);
       logger.debug('2 PIR ON->OFF - createtimer off light: {} for PIR sensor: {}', lightConfig.lightControlItemName, activePirSensorConfig.friendlyName);
 
-      timerMgr.check(lightTimerKey, lightTimerDurationMs, lightConfig.getLightTurnOffTimerFunction(), true, null, lightTimerName);
+      timerMgr.check(lightTimerKey, lightTimerDurationMs, lightConfig.getLightOffDelayTimerFunction(), true, null, lightTimerName);
       logger.debug(
         '3 PIR ON->OFF - timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
         lightTimerKey,

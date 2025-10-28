@@ -39,18 +39,18 @@ class LightConfig {
    * It reads the value from the associated openHAB item, falling back to the default if the item is not set.
    * @returns {number} The turn-off delay in milliseconds.
    */
-  getLightOnOffTimerDurationMs() {
+  getLightOffDelayTimerDurationMs() {
     const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
 
-    logger.debug(`this.defaultLightOffDelayTimerDurationSecs: ${this.defaultLightOffDelayTimerDurationSecs}`);
+    logger.debug(`L 1 - this.defaultLightOffDelayTimerDurationSecs: ${this.defaultLightOffDelayTimerDurationSecs}`);
     let timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
     if (timerDurationSecs === undefined) {
       timerDurationSecs = this.defaultLightOffDelayTimerDurationSecs;
       logger.warn(
-        `lightOffDelayTimerDurationItemName: ${this.lightOffDelayTimerDurationItemName} not defined. Using default: ${this.defaultLightOffDelayTimerDurationSecs}`,
+        `L 2 - lightOffDelayTimerDurationItemName: ${this.lightOffDelayTimerDurationItemName} not defined. Using default: ${this.defaultLightOffDelayTimerDurationSecs}`,
       );
     }
-    logger.debug(`timerDurationSecs: ${timerDurationSecs}`);
+    logger.debug(`L 3 - timerDurationSecs: ${timerDurationSecs}`);
     return timerDurationSecs * 1000;
   }
 
@@ -62,10 +62,10 @@ class LightConfig {
   lightControl(state) {
     const lightItem = items.getItem(this.lightControlItemName);
     if (lightItem) {
-      logger.debug('send {} -> {}', state, this.lightControlItemName);
+      logger.debug('L 4 - send {} -> {}', state, this.lightControlItemName);
       if (state === 'ON') {
-        const duration = this.getLightOnOffTimerDurationMs();
-        logger.debug('lightControl( {} ON duration: {} ms', this.lightControlItemName, duration);
+        const duration = this.getLightOffDelayTimerDurationMs();
+        logger.debug('L 5 - lightControl( {} ON duration: {} ms', this.lightControlItemName, duration);
       }
       lightItem.sendCommand(state);
     } else {
@@ -77,13 +77,13 @@ class LightConfig {
    * Returns a function that can be used as a callback for a timer to turn the light off.
    * @returns {function(): void} A function that sends an 'OFF' command to the light.
    */
-  getLightTurnOffTimerFunction() {
+  getLightOffDelayTimerFunction() {
     return () => {
       const offTimerDurationItem = items.getItem(this.lightOffDelayTimerDurationItemName, true);
       const timerDurationSecs = offTimerDurationItem ? offTimerDurationItem.rawState : undefined;
 
       logger.debug(
-        'LightTurnOffTimerFunction: Turning OFF light. Timer expired. lightControlItemName: {}, lightOffDelayTimerDurationItemName: {} timerDuration:{}, defaultLightOffDelayTimerDurationSecs: {}',
+        'L 6 - LightOffDelayTimerFunction expired: Turning OFF lightControlItemName: {}, lightOffDelayTimerDurationItemName: {} timerDuration:{}, defaultLightOffDelayTimerDurationSecs: {}',
         this.lightControlItemName,
         this.lightOffDelayTimerDurationItemName,
         timerDurationSecs,
@@ -132,6 +132,20 @@ class PirSensorConfig {
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
     this.label = `${this.name} - ${this.location}`;
+    // set the label of the PIR sensor to something like "Kitchen - Prep Area"
+    this.setItemLabel();
+  }
+
+  /**
+   * Sets the label of the associated occupancy sensor item in openHAB for better identification in the UI.
+   */
+  setItemLabel() {
+    const item = items.getItem(this.occupancySensorItemName);
+    if (item && item.rawItem) {
+      item.rawItem.setLabel(this.label);
+    } else {
+      logger.warn(`Item ${this.occupancySensorItemName} or its rawItem not found to set label to ${this.label}`);
+    }
   }
 
   /**
@@ -143,7 +157,7 @@ class PirSensorConfig {
     const bridgeLightSensorLevelItem = items.getItem(this.lightLevelSensorItemName);
     const lightLevelThresholdItem = items.getItem(this.lightLevelActiveThresholdItemName);
     if (!bridgeLightSensorLevelItem || !lightLevelThresholdItem) {
-      logger.warn('Cant get bridgeLightSensorLevelItem or LightLevelThreshold item for isLightLevelActive check');
+      logger.warn('P 1 - Cant get bridgeLightSensorLevelItem or LightLevelThreshold item for isLightLevelActive check');
       return false;
     }
 
@@ -151,7 +165,7 @@ class PirSensorConfig {
     const lightLevelThreshold = lightLevelThresholdItem.rawState;
     const isActive = currentLightLevel < lightLevelThreshold;
     logger.debug(
-      'Checking light level for {}: Current level: {}, Threshold: {}, Active: {}',
+      'P 2 - Checking light level for {}: Current level: {}, Threshold: {}, Active: {}',
       this.friendlyName,
       currentLightLevel,
       lightLevelThreshold,
