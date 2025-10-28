@@ -59,7 +59,7 @@
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
-        "k1"
+        "kettle"
       ],
       "lightConfigNames": [
         "kitchenLight_1"
@@ -73,9 +73,7 @@
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
-        "t1",
-        "t2",
-        "t3"
+        "desk"
       ],
       "lightConfigNames": [
         "colourBulbsCycle"
@@ -118,7 +116,7 @@
       "lightLevelActiveThresholdItemName": "ConservatoryLightTriggerLevel",
       "lightLevelSensorItemName": "BridgeLightSensorLevel",
       "phrases": [
-        "Kitchen prep Area"
+        "prep"
       ],
       "lightConfigNames": [
         "kitchenLight_2",

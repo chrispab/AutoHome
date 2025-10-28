@@ -133,32 +133,35 @@ const createOccupancyRuleHandler = (ruleLogic) => (event) => {
  * @param {string} triggeringItemName - The name of the item that triggered the rule.
  */
 const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => {
-  logger.debug('PIR ON ..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
+  logger.debug('1 PIR ON ..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
   // log event details
-  logger.debug('PIR ON Event details: {}', JSON.stringify(event));
+  logger.debug('2 PIR ON Event details: {}', JSON.stringify(event));
 
-  // announce phrase if any are configured
-  if (activePirSensorConfig.phrases.length > 0) {
-    logger.debug('PIR ON - light level: {}', items.getItem('BridgeLightSensorLevel').rawState);
-
-    const phrase = activePirSensorConfig.phrases[Math.floor(Math.random() * activePirSensorConfig.phrases.length)];
-    logger.debug('PIR ON - saying phrase: {}', phrase);
-    actions.Voice.say(phrase);
+  // if its a change type event, it must be initial off->on, so we can say the phrase, else its an update type event
+  if (event.eventType === 'change') {
+    logger.debug('3 PIR ON - detected OFF->ON transition for item: {}', triggeringItemName);
+    // announce phrase if any are configured
+    if (activePirSensorConfig.phrases.length > 0) {
+      const phrase = activePirSensorConfig.phrases[Math.floor(Math.random() * activePirSensorConfig.phrases.length)];
+      logger.debug('4 PIR ON - saying phrase: {}', phrase);
+      actions.Voice.say(phrase);
+    }
+  } else {
+    logger.debug('5 PIR ON - detected ON update for item: {}, not announcing phrase', triggeringItemName);
   }
 
-  // get timerMgr from cache and cancel any existing off-timers for lights associated with this sensor
+  // get timerMgr from cache and cancel any existing off-delay timers for lights associated with this sensor
   timerMgr = cache.private.get('timerMgr');
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
-      // logger.debug('PIR ON - cancelling any existing off-timer for light: {}', lightConfig.lightControlItemName);
       const lightTimerKey = genTimerKey(triggeringItemName, lightConfigName, index);
       if (timerMgr.hasTimer(lightTimerKey)) {
-        logger.debug('PIR ON - found existing timer for key: {}, cancelling it', lightTimerKey);
+        logger.debug('6 PIR ON - found existing timer for key: {}, cancelling it', lightTimerKey);
         timerMgr.cancel(lightTimerKey);
-        logger.debug('cancelling timer with lightTimerKey:{}', lightTimerKey);
+        logger.debug('7 PIR ON - cancelling timer with lightTimerKey:{}', lightTimerKey);
       } else {
-        logger.debug('PIR ON - no existing timer found for key: {}', lightTimerKey);
+        logger.debug('8 PIR ON - no existing timer found for key: {}', lightTimerKey);
       }
     } else {
       logger.warn('LightConfig: {} not found in lightConfigs array!', lightConfigName);
@@ -171,10 +174,10 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
       if (activePirSensorConfig.isLightLevelActive()) {
-        logger.debug(`Light level below threshold, turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
+        logger.debug(`9 PIR ON - Light level below threshold, turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
         lightConfig.lightControl('ON');
       } else {
-        logger.warn(`Light level above threshold, NOT turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
+        logger.warn(`10 PIR ON - Light level above threshold, NOT turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
       }
     } else {
       logger.warn('LightConfig: {} not found in lightConfigs array!', lightConfigName);
@@ -189,7 +192,7 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
  * @param {string} triggeringItemName - The name of the item that triggered the rule.
  */
 const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName) => {
-  logger.debug('ON -> OFF..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
+  logger.debug('1 PIR ON->OFF..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
 
   // re/start the timers for each light associated with this sensor
   timerMgr = cache.private.get('timerMgr');
@@ -202,11 +205,11 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
       const lightTimerDurationMs = lightConfig.getLightOnOffTimerDurationMs();
 
       timerMgr.cancel(lightTimerKey);
-      logger.debug('createtimer off light: {} for PIR sensor: {}', lightConfig.lightControlItemName, activePirSensorConfig.friendlyName);
+      logger.debug('2 PIR ON->OFF - createtimer off light: {} for PIR sensor: {}', lightConfig.lightControlItemName, activePirSensorConfig.friendlyName);
 
       timerMgr.check(lightTimerKey, lightTimerDurationMs, lightConfig.getLightTurnOffTimerFunction(), true, null, lightTimerName);
       logger.debug(
-        'ON -> OFF timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
+        '3 PIR ON->OFF - timerMgr.check - timerKey:{}, duration-ms:{}, lightConfig:{}, timerName:{}',
         lightTimerKey,
         lightTimerDurationMs,
         lightConfig.lightControlItemName,
@@ -240,7 +243,7 @@ rules.JSRule({
  */
 rules.JSRule({
   name: 'PIR - ON to OFF',
-  description: 'PIR sensor start OFF lights timer',
+  description: 'PIR off, start OFF delay lights timer',
   triggers: [triggers.GroupStateChangeTrigger('gZbPIRSensorOccupancy', 'ON', 'OFF')],
   execute: createOccupancyRuleHandler(handleOccupancyOnToOff),
 });
