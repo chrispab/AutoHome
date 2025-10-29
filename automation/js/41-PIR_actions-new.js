@@ -24,20 +24,23 @@ let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 // --- Configuration Loading ---
 const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
+// const configPath = '/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json';
+// let sensorData;
+// let rawConfig;
 
-let sensorData;
+// try {
+//   const Files = Java.type('java.nio.file.Files');
+//   const Paths = Java.type('java.nio.file.Paths');
+//   logger.debug(`Reading PIR sensor/light config from: ${configPath}`);
+//   rawConfig = Files.readString(Paths.get(configPath));
+//   sensorData = JSON.parse(rawConfig);
+// } catch (e) {
+//   logger.error(`Error reading or parsing config file: ${e}`);
+// }
+// sensorData = require('/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json');
 
-let rawConfig;
-
-try {
-  const Files = Java.type('java.nio.file.Files');
-  const Paths = Java.type('java.nio.file.Paths');
-  logger.debug(`Reading PIR sensor/light config from: ${configPath}`);
-  rawConfig = Files.readString(Paths.get(configPath));
-  sensorData = JSON.parse(rawConfig);
-} catch (e) {
-  logger.error(`Error reading or parsing config file: ${e}`);
-}
+// note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
+const sensorData = require('../41-pir_sensor_light_setup_data.json');
 
 // Import configuration classes .
 logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
@@ -134,6 +137,7 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
   // log event details
   logger.debug('2 PIR ON Event details: {}', JSON.stringify(event));
 
+  // logger.debug('----dumpObject({}', utils.dumpObject(event));
   // if its a change type event, it must be initial off->on, so we can say the phrase, else its an update type event
   if (event.eventType === 'change') {
     logger.debug('3 PIR ON - detected OFF->ON transition for item: {}', triggeringItemName);
