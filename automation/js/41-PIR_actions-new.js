@@ -23,7 +23,7 @@ const logger = log(ruleUID);
 let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 
 // --- Configuration Loading ---
-const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
+// const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
 // const configPath = '/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json';
 // let sensorData;
 // let rawConfig;
@@ -40,7 +40,9 @@ const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.
 // sensorData = require('/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json');
 
 // note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
-const sensorData = require('../41-pir_sensor_light_setup_data.json');
+// const sensorData = require('../41-pir_sensor_light_setup_data.json');
+
+const sensorData = require('../41-pir_sensor_light_setup_data.js');
 
 // Import configuration classes .
 logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
