@@ -42,14 +42,14 @@ let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
 // note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
 // const sensorData = require('../41-pir_sensor_light_setup_data.json');
 
-const sensorData = require('../41-pir_sensor_light_setup_data.js');
+const { lightConfigs: lightConfigsData, pirSensorConfigs: pirSensorConfigsData } = require('../41-pir_sensor_light_setup_data.js');
 
 // Import configuration classes .
 logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
 const { LightConfig, PirSensorConfig } = require('../41-PIR-sensor-light-classes.js');
 
 // Create instances of light configurations from the loaded sensor data.
-const lightConfigs = sensorData.lightConfigs.map(
+const lightConfigs = lightConfigsData.map(
   (lcData) => new LightConfig(
     lcData.name,
     lcData.location,
@@ -63,7 +63,7 @@ const lightConfigs = sensorData.lightConfigs.map(
 const lightConfigsMap = new Map(lightConfigs.map((config) => [config.name, config]));
 
 // Create instances of PIR sensor configurations from the loaded sensor data.
-const PirSensorConfigs = sensorData.pirSensorConfigs.map(
+const PirSensorConfigs = pirSensorConfigsData.map(
   (data) => new PirSensorConfig(
     data.name,
     data.location,
@@ -85,6 +85,7 @@ scriptLoaded = function () {
   logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
   // eslint-disable-next-line no-use-before-define
   logger.debug('>scriptLoaded PirSensorConfigs: {}', JSON.stringify(PirSensorConfigs));
+
   logger.debug('>scriptLoaded lightConfigs: {}', JSON.stringify(lightConfigs));
 };
 
