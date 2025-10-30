@@ -1,3 +1,10 @@
+/**
+ * @file This file contains the configuration data for PIR sensor-based lighting automation.
+ * It defines the lights that can be controlled and the PIR sensors that trigger them.
+ * This data is imported and used by '41-PIR_actions-new.js'.
+ */
+
+// --- Light Configurations ---
 const lightConfigs = [
   {
     name: 'colourBulbsCycle',
@@ -15,7 +22,7 @@ const lightConfigs = [
   },
   {
     name: 'workLight',
-    location: 'Work',
+    location: 'Desk Area',
     lightControlItemName: 'workLightsPowerSocket',
     lightOffDelayTimerDurationItemName: 'pir02_offTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
@@ -50,6 +57,7 @@ const lightConfigs = [
   },
 ];
 
+// --- PIR Sensor Configurations ---
 const pirSensorConfigs = [
   {
     name: 'pir01',
@@ -67,7 +75,7 @@ const pirSensorConfigs = [
   },
   {
     name: 'pir02',
-    location: 'desk area',
+    location: 'Desk Area',
     friendlyName: 'pir2-test',
     occupancySensorItemName: 'pir02_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
@@ -82,7 +90,7 @@ const pirSensorConfigs = [
   {
     name: 'pir03',
     location: 'Dining Room',
-    friendlyName: 'p3-dining-room',
+    friendlyName: 'pir3-dining-room',
     occupancySensorItemName: 'pir03_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
@@ -96,7 +104,7 @@ const pirSensorConfigs = [
   {
     name: 'pir04',
     location: 'Stairs',
-    friendlyName: 'pir4-stairs',
+    friendlyName: 'pir4-Stairs',
     occupancySensorItemName: 'pir04_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
@@ -111,7 +119,7 @@ const pirSensorConfigs = [
   {
     name: 'pir05',
     location: 'Kitchen prep Area',
-    friendlyName: 'pir5-Kitchen-prep',
+    friendlyName: 'pir5-Kitchen-Prep',
     occupancySensorItemName: 'pir05_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
@@ -126,7 +134,7 @@ const pirSensorConfigs = [
   {
     name: 'pir06',
     location: 'Landing',
-    friendlyName: 'pir6-landing',
+    friendlyName: 'pir6-Landing',
     occupancySensorItemName: 'pir06_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',

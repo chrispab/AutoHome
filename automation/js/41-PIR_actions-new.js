@@ -11,7 +11,6 @@ const {
 } = require('openhab');
 
 const { TimerMgr } = require('openhab_rules_tools');
-const { helpers } = require('openhab_rules_tools');
 // const { configClasses } = require('openhab-my-utils');
 
 const ruleUID = 'pir_testing';
@@ -20,24 +19,7 @@ const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.pir_testing
 
 // Initialize a timer manager from the cache or create a new one.
-let timerMgr = cache.private.get('timerMgr', () => TimerMgr());
-
-// --- Configuration Loading ---
-// const configPath = '/etc/openhab/automation/js/conf/pir_sensor_light_setup_data.json';
-// const configPath = '/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json';
-// let sensorData;
-// let rawConfig;
-
-// try {
-//   const Files = Java.type('java.nio.file.Files');
-//   const Paths = Java.type('java.nio.file.Paths');
-//   logger.debug(`Reading PIR sensor/light config from: ${configPath}`);
-//   rawConfig = Files.readString(Paths.get(configPath));
-//   sensorData = JSON.parse(rawConfig);
-// } catch (e) {
-//   logger.error(`Error reading or parsing config file: ${e}`);
-// }
-// sensorData = require('/etc/openhab/automation/js/41-pir_sensor_light_setup_data.json');
+const timerMgr = cache.private.get('timerMgr', () => new TimerMgr());
 
 // note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
 // const sensorData = require('../41-pir_sensor_light_setup_data.json');
@@ -81,8 +63,6 @@ const PirSensorConfigs = pirSensorConfigsData.map(
  */
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
-  logger.info('>utils.OPENHAB_JS_VERSION: {}', utils.OPENHAB_JS_VERSION);
-  logger.info('>helpers.OHRT_VERSION: {}', helpers.OHRT_VERSION);
   // eslint-disable-next-line no-use-before-define
   logger.debug('>scriptLoaded PirSensorConfigs: {}', JSON.stringify(PirSensorConfigs));
 
@@ -109,24 +89,28 @@ function genTimerKey(triggeringItemName, lightConfigName, index) {
  * @returns {function} An event handler function for a JSRule.
  */
 const createOccupancyRuleHandler = (ruleLogic) => (event) => {
-  const triggeringItemName = event.itemName.toString();
-  const item = items.getItem(triggeringItemName);
-  if (!item) {
-    logger.warn(`Item ${triggeringItemName} not found!`);
-    return;
+  try {
+    const triggeringItemName = event.itemName.toString();
+    const item = items.getItem(triggeringItemName);
+    if (!item) {
+      logger.warn(`Item ${triggeringItemName} not found!`);
+      return;
+    }
+
+    const activePirSensorConfig = PirSensorConfigs.find(
+      (sensorConfig) => sensorConfig.occupancySensorItemName === triggeringItemName,
+    );
+
+    if (!activePirSensorConfig) {
+      logger.warn(`No PirSensorConfig found for item: ${triggeringItemName}`);
+      return;
+    }
+
+    // Call the specific logic for the rule
+    ruleLogic(event, activePirSensorConfig, triggeringItemName);
+  } catch (e) {
+    logger.error(`Error in occupancy rule handler: ${e.message}\n${e.stack}`);
   }
-
-  const activePirSensorConfig = PirSensorConfigs.find(
-    (sensorConfig) => sensorConfig.occupancySensorItemName === triggeringItemName,
-  );
-
-  if (!activePirSensorConfig) {
-    logger.warn(`No PirSensorConfig found for item: ${triggeringItemName}`);
-    return;
-  }
-
-  // Call the specific logic for the rule
-  ruleLogic(event, activePirSensorConfig, triggeringItemName);
 };
 
 /**
@@ -155,7 +139,6 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
   }
 
   // get timerMgr from cache and cancel any existing off-delay timers for lights associated with this sensor
-  timerMgr = cache.private.get('timerMgr');
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
@@ -171,7 +154,6 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
       logger.warn('LightConfig: {} not found in lightConfigs array!', lightConfigName);
     }
   });
-  cache.private.put('timerMgr', timerMgr);
 
   // use the activePirSensorConfig.lightConfigNames to turn lights ON
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName) => {
@@ -199,7 +181,6 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
   logger.debug('1 PIR ON->OFF..activePirSensorConfig is: {} - {}', activePirSensorConfig.friendlyName, activePirSensorConfig.occupancySensorItemName);
 
   // re/start the timers for each light associated with this sensor
-  timerMgr = cache.private.get('timerMgr');
   const timerName = `${ruleUID}_${triggeringItemName}`;
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName, index) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
@@ -224,7 +205,6 @@ const handleOccupancyOnToOff = (event, activePirSensorConfig, triggeringItemName
       logger.error('LightConfig: {} not found in sensorconfig!', lightConfigName);
     }
   });
-  cache.private.put('timerMgr', timerMgr);
 };
 
 // --- Rules ---
