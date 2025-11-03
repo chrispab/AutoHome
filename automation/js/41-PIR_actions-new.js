@@ -78,7 +78,8 @@ scriptLoaded = function () {
  * @returns {string} A unique key for the timer.
  */
 function genTimerKey(triggeringItemName, lightConfigName, index) {
-  return `${triggeringItemName}_${lightConfigName}_light_${index}`;
+  // return `${triggeringItemName}_${lightConfigName}_light_${index}`;
+  return `Timerkey_${lightConfigName}_light`;
 }
 
 // --- Rule Logic ---

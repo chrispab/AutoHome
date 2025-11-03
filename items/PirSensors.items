@@ -19,10 +19,10 @@ Group    gZbPIRSensorOccupancy
 // other of timer durations, this time to be associated with the light config object passed to the timer
 // part of use of on-off timer per light implementation
 // pir06
-Number v_StartColourBulbsCycle_onDuration "Colour Bulbs Cycle on-off Duration" ["OffDelayTime"] 
-Number kitchen_prep_offDelayTimerDurationItem "kitchen_prep_off_Time" ["OffDelayTime"]  
-Number kitchen_toaster_offDelayTimerDurationItem "kitchen_toaster_off_Time" ["OffDelayTime"]  
-Number kitchen_kettle_offDelayTimerDurationItem "kitchen_kettle_off_Time" ["OffDelayTime"]  
+Number v_StartColourBulbsCycle_onDuration "Colour Bulbs Cycle off_delay Duration" ["OffDelayTime"] 
+Number kitchen_prep_offDelayTimerDurationItem "kitchen_prep_off_delay_Time" ["OffDelayTime"]  
+Number kitchen_toaster_offDelayTimerDurationItem "kitchen_toaster_off_delay_Time" ["OffDelayTime"]  
+Number kitchen_kettle_offDelayTimerDurationItem "kitchen_kettle_off_delay_Time" ["OffDelayTime"]  
 Number stairs_offDelayTimerDurationItem "stairs_off_delay_Time" ["OffDelayTime"]  
 Number landing_offDelayTimerDurationItem "landing_off_delay_Time" ["OffDelayTime"]  
 Number work_light_offDelayTimerDurationItem "work_light_off_delay_Time" ["OffDelayTime"]  
