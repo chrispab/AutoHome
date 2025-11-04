@@ -1,9 +1,8 @@
 /**
  * @file This script manages PIR sensor-based lighting automation in openHAB.
- * It reads sensor and light configurations from a JSON file, and creates rules
+ * It reads sensor and light configurations from a file, and creates rules
  * to turn lights on when motion is detected and off after a delay when motion stops  .
  */
-/* eslint-disable max-classes-per-file */
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
 const {
@@ -25,11 +24,11 @@ const timerMgr = cache.private.get('timerMgr', () => new TimerMgr());
 // note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
 // const sensorData = require('../41-pir_sensor_light_setup_data.json');
 
-const { lightConfigs: lightConfigsData, pirSensorConfigs: pirSensorConfigsData } = require('../41-pir_sensor_light_setup_data.js');
+const { lightConfigs: lightConfigsData, pirSensorConfigs: pirSensorConfigsData } = require('../41-PIR_sensor_light_setup_data.js');
 
 // Import configuration classes .
-logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR-sensor-light-classes.js');
-const { LightConfig, PirSensorConfig } = require('../41-PIR-sensor-light-classes.js');
+logger.debug('Importing LightConfig and PirSensorConfig from 41-PIR_sensor_light_classes.js');
+const { LightConfig, PirSensorConfig } = require('../41-PIR_sensor_light_classes.js');
 
 // Create instances of light configurations from the loaded sensor data.
 const lightConfigs = lightConfigsData.map(
