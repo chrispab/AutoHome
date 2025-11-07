@@ -61,13 +61,12 @@ const lightConfigs = [
 const pirSensorConfigs = [
   {
     name: 'pir01',
-    location: 'Kitchen Kettle Area',
-    friendlyName: 'pir1-Kitchen-RHS',
+    location: 'Kettle',
+    friendlyName: 'pir1-Kitchen-kettle',
     occupancySensorItemName: 'pir01_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
-      'kettle',
     ],
     lightConfigNames: [
       'kitchenLight_1',
@@ -75,16 +74,16 @@ const pirSensorConfigs = [
   },
   {
     name: 'pir02',
-    location: 'Desk Area',
-    friendlyName: 'pir2-test',
+    location: 'prep',
+    friendlyName: 'pir2-prep1',
     occupancySensorItemName: 'pir02_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
-      'desk',
     ],
     lightConfigNames: [
-      'colourBulbsCycle',
+      'kitchenLight_2',
+      'kitchenLight_3',
     ],
   },
   {
@@ -118,13 +117,12 @@ const pirSensorConfigs = [
   },
   {
     name: 'pir05',
-    location: 'Kitchen prep Area',
-    friendlyName: 'pir5-Kitchen-Prep',
+    location: 'sink',
+    friendlyName: 'pir5-Kitchen-Sink',
     occupancySensorItemName: 'pir05_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
-      'prep',
     ],
     lightConfigNames: [
       'kitchenLight_2',
@@ -143,6 +141,20 @@ const pirSensorConfigs = [
     ],
     lightConfigNames: [
       'landingLight',
+    ],
+  },
+  {
+    name: 'pir07',
+    location: 'desk',
+    friendlyName: 'pir7-desk',
+    occupancySensorItemName: 'pir07_occupancy',
+    lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
+    lightLevelSensorItemName: 'BridgeLightSensorLevel',
+    phrases: [
+      'test',
+    ],
+    lightConfigNames: [
+      'colourBulbsCycle',
     ],
   },
 ];
