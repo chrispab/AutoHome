@@ -81,3 +81,14 @@ Thing mqtt:topic:pir07 "PIR 07" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
     Type string : reachable "PIR 07 Reachable"  [ stateTopic="zigbee2mqtt/pir07", transformationPattern="MAP:anything_to_ON.map"]
     Type string : availability "PIR 07 availability" [ stateTopic="zigbee2mqtt/pir07/availability", transformationPattern="JSONPATH:$.state" ]
 }
+Thing mqtt:topic:pir08 "PIR 08" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
+{
+    Type switch : occupancy "PIR 08 occupancy"          [stateTopic="zigbee2mqtt/pir08", transformationPattern="JS:truefalse2onoff_occupancy.js" ]
+    Type number : linkquality "PIR 08 LinkQuality"   [ stateTopic="zigbee2mqtt/pir08",  transformationPattern="JSONPATH:$.linkquality" ]
+    Type number : battery "PIR 08 battery"   [ stateTopic="zigbee2mqtt/pir08",  transformationPattern="JSONPATH:$.battery" ]
+    Type switch : battery_low "PIR 08 battery_low"   [ stateTopic="zigbee2mqtt/pir08",  transformationPattern="JS:truefalse2onoff_battery_low.js" ]
+    Type switch : tamper "PIR 08 tamper"   [ stateTopic="zigbee2mqtt/pir08",  transformationPattern="JS:truefalse2onoff_tamper.js" ]
+    Type number : voltage "PIR 08 voltage"   [ stateTopic="zigbee2mqtt/pir08",  transformationPattern="JSONPATH:$.voltage" ]
+    Type string : reachable "PIR 08 Reachable"  [ stateTopic="zigbee2mqtt/pir08", transformationPattern="MAP:anything_to_ON.map"]
+    Type string : availability "PIR 08 availability" [ stateTopic="zigbee2mqtt/pir08/availability", transformationPattern="JSONPATH:$.state" ]
+}

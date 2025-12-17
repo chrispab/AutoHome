@@ -13,6 +13,7 @@ const { TimerMgr } = require('openhab_rules_tools');
 // const { configClasses } = require('openhab-my-utils');
 
 const ruleUID = 'pir_testing';
+
 const logger = log(ruleUID);
 
 // log:set warn org.openhab.automation.openhab-js.pir_action

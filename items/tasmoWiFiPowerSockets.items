@@ -57,4 +57,4 @@ Number:Temperature wifi_socket_8_temperature	"wifi_socket_8 Temperature"		(gChar
 //outside xmas lights
 Switch wifi_socket_9_power "wifi_socket_9 pwr" (gMQTT, gWiFiPowerSockets )  { channel = "mqtt:topic:wifi_socket_9:powerSwitch"}
 String wifi_socket_9_reachable "wifi_socket_9 reachable" (gMQTT, gWiFiPowerSockets, gWiFiPowerSocketsReachable) { channel = "mqtt:topic:wifi_socket_9:reachable" }
-Number:Dimensionless wifi_socket_9_rssi "wifi_socket_8 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_9:rssi" }
+Number:Dimensionless wifi_socket_9_rssi "wifi_socket_9 RSSI" (gMQTT, gWiFiPowerSockets) { channel = "mqtt:topic:wifi_socket_9:rssi" }

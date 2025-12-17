@@ -1,7 +1,7 @@
 sitemap LG_TV label="LG_TV"
 {
     Frame label="TV" {
-        Switch item=CT_TV_Power
+        // Switch item=CT_TV_Power
         Switch item=CT_LGWebOS_TV_Mute
         Text item=CT_LGWebOS_TV_Volume
         Switch item=CT_LGWebOS_TV_VolDummy icon="soundvolume" label="Volume" mappings=[1="▲", 0="▼"]

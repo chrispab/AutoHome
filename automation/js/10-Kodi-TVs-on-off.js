@@ -226,7 +226,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle'),
   ],
   execute: () => {
-    // turnOnTV('conservatory', 'Turning on conservatory TV');
+    turnOnTV('conservatory', 'Turning on conservatory TV');
     actions.Voice.say('turning conservatory tv on');
   },
 });
@@ -243,7 +243,7 @@ rules.JSRule({
     triggers.ItemStateUpdateTrigger(tvConfig.conservatory.tvSwitch_ikea_remote, 'toggle_hold'),
   ],
   execute: () => {
-    // turnOffTV('conservatory', 'Turning OFF conservatory TV');
+    turnOffTV('conservatory', 'Turning OFF conservatory TV');
     actions.Voice.say('turning conservatory tv off');
   },
 });

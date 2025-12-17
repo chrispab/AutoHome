@@ -97,3 +97,12 @@ Number    pir07_voltage        "pir07_voltage"    (gZb_pir)    {channel="mqtt:to
 Switch    pir07_tamper    "pir07_tamper"    (gZb_pir)   {channel="mqtt:topic:pir07:tamper"}
 String    pir07_reachable    "pir07_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir07:reachable", expire="2h,state=OFF" }
 String  pir07_availability "pir07_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir07:availability"}
+
+Switch    pir08_occupancy    "pir08_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir08:occupancy"}
+Number    pir08_linkquality    "pir08_linkquality" (gZb_pir)   {channel="mqtt:topic:pir08:linkquality"}
+Number    pir08_battery        "pir08_battery"    (gZb_pir,gBatteries, gZbPIRSensorBatteries)   {channel="mqtt:topic:pir08:battery", expire="4h,state=0"}
+Switch    pir08_battery_low    "pir08_battery_low"    (gZb_pir)   {channel="mqtt:topic:pir08:battery_low"}
+Number    pir08_voltage        "pir08_voltage"    (gZb_pir)    {channel="mqtt:topic:pir08:voltage"}
+Switch    pir08_tamper    "pir08_tamper"    (gZb_pir)   {channel="mqtt:topic:pir08:tamper"}
+String    pir08_reachable    "pir08_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir08:reachable", expire="2h,state=OFF" }
+String  pir08_availability "pir08_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir08:availability"}

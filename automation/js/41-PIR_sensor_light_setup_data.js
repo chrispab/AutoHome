@@ -151,7 +151,6 @@ const pirSensorConfigs = [
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
-      'test',
     ],
     lightConfigNames: [
       'colourBulbsCycle',
