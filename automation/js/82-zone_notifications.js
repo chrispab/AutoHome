@@ -31,7 +31,7 @@ rules.JSRule({
   triggers: [triggers.ItemStateChangeTrigger('Zone1Reachable', 'ON', 'OFF')],
   execute: () => {
     logger.warn('Zone 1 went Offline');
-    alerting.sendNotification('cbattisson@gmail.com', 'Zone 1 went offline');
+    alerting.sendEmail('cbattisson@gmail.com', 'Zone 1 went offline');
 
     alerting.flashItemAlert('KT_light_1_Power', 5, 400);
 

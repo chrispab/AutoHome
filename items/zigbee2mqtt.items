@@ -3,12 +3,16 @@ Group   gZbBridge    "Zigbee2mqtt Bridge"    (gZb)
 
 String  ZbBridgeState   "Zigbee2mqtt Bridge State"  (gZbBridge)  {channel="mqtt:topic:zigbeebridge:state"}
 Switch  ZbBridgePermitJoin  "Zigbee2mqtt Bridge Permit join"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:permitJoin"}
-String  ZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
-String  ZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
+// String  ZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
+// String  ZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
 String  ZbBridge_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
-String  ZbBridge_availability "ZbBridge_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeebridge:availability"}
+// String  ZbBridge_availability "ZbBridge_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeebridge:availability"}
+Switch  ZbBridge_availability "zb Bridge availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]
+        {channel="mqtt:topic:zigbeebridge:availability" [profile="basic-profiles:inactivity", timeout="1m", inverted=true] }
+
 
 Number  ZbRouter_01_Quality "Zigbee2mqtt router  LinkQuality [%d]"  <qualityofservice>  {channel="mqtt:topic:zigbeerouter01:linkquality"}
 String  ZbRouter_01_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeerouter01:reachable", expire="2m,state=OFF" }
-String  ZbRouter_01_availability "ZbRouter_01_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeerouter01:availability"}
+Switch  ZbRouter_01_availability "zb Router01 availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]
+        {channel="mqtt:topic:zigbeerouter01:availability" [profile="basic-profiles:inactivity", timeout="1m", inverted=true] }
 
