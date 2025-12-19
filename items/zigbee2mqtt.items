@@ -1,11 +1,12 @@
 Group   gZb
 Group   gZbBridge    "Zigbee2mqtt Bridge"    (gZb)
 
-String  ZbBridgeState   "Zigbee2mqtt Bridge State"  (gZbBridge)  {channel="mqtt:topic:zigbeebridge:state"}
-Switch  ZbBridgePermitJoin  "Zigbee2mqtt Bridge Permit join"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:permitJoin"}
-// String  ZbBridgeLogType "Zigbee2mqtt Bridge LogType"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logType"}
-// String  ZbBridgeLogMessage  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logMessage"}
-String  ZbBridge_Reachable  "Zigbee2mqtt Bridge LogMessage" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
+String  ZbBridgeState   "zb Bridge State"  (gZbBridge)  {channel="mqtt:topic:zigbeebridge:state"}
+Switch  ZbBridgePermitJoin  "zb Bridge Permit join"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:permitJoin"}
+String  ZbBridgeLogging "zb Bridge Logging"    (gZbBridge)  {channel="mqtt:topic:zigbeebridge:logging"}
+String  ZbBridgeHealth  "zb Bridge Health" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:health"}
+String  ZbBridgeDevices "zb Bridge Devices" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:devices"}
+String  ZbBridge_Reachable  "zb Bridge Reachable" (gZbBridge)  {channel="mqtt:topic:zigbeebridge:reachable", expire="2m,state=OFF" }
 // String  ZbBridge_availability "ZbBridge_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:zigbeebridge:availability"}
 Switch  ZbBridge_availability "zb Bridge availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]
         {channel="mqtt:topic:zigbeebridge:availability" [profile="basic-profiles:inactivity", timeout="1m", inverted=true] }

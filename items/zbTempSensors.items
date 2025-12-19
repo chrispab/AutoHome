@@ -24,7 +24,7 @@ String	Zb_THPSensor_01_reachable	"Xiaomi THPSensor01 Reachable"                 
 // https://www.openhab.org/addons/transformations/basicprofiles/#inactivity-profile
 Switch  Zb_THPSensor_01_availability "THPSensor01 availability"    (gZigbee_Devices_Availability, gZbTHSensorsAvailability, gHeating_Temp_Sensors_Online) 
         ["tZigbee_Devices_Availability", "Heating_Temp_Sensor_availability"]   
-        {channel="mqtt:topic:THPSensor01:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+        {channel="mqtt:topic:THPSensor01:availability" [ profile="basic-profiles:inactivity", timeout="2h", inverted=true ] }
 
 
 
@@ -37,7 +37,7 @@ Number	Zb_THSensor_01_voltage		"Xiaomi Temp Humi Sensor 01 voltage"							(gZbTH
 String	Zb_THSensor_01_reachable	"Xiaomi THSensor01 Reachable"		(gZb_THSensor_01, gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor01:reachable", expire="2h,state=OFF" }
 Switch  Zb_THSensor_01_availability "THSensor01 availability"    (gZigbee_Devices_Availability, gZbTHSensorsAvailability, gHeating_Temp_Sensors_Online) 
         ["tZigbee_Devices_Availability", "Heating_Temp_Sensor_availability"]   
-        {channel="mqtt:topic:THSensor01:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+        {channel="mqtt:topic:THSensor01:availability" [ profile="basic-profiles:inactivity", timeout="2h", inverted=true ] }
 
 
 Group	gZb_THSensor_02
@@ -49,7 +49,7 @@ Number	Zb_THSensor_02_voltage		"Xiaomi Temp Humi Sensor 02 voltage"							(gZbTH
 String	Zb_THSensor_02_reachable	"Xiaomi THSensor02 Reachable"		(gZbTHSensorsReachable, gZb_THSensor_02, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor02:reachable", expire="2h,state=OFF" }
 Switch  Zb_THSensor_02_availability "THSensor02 availability"    (gZigbee_Devices_Availability, gZbTHSensorsAvailability, gHeating_Temp_Sensors_Online) 
         ["tZigbee_Devices_Availability", "Heating_Temp_Sensor_availability"]   
-        {channel="mqtt:topic:THSensor02:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+        {channel="mqtt:topic:THSensor02:availability" [ profile="basic-profiles:inactivity", timeout="2h", inverted=true ] }
 
 
 Group	gZb_THSensor_03
@@ -61,7 +61,7 @@ Number	Zb_THSensor_03_voltage		"Xiaomi Temp Humi Sensor 03 voltage"							(gZbTH
 String	Zb_THSensor_03_reachable	"Xiaomi THSensor03 Reachable"		(gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor03:reachable", expire="2h,state=OFF" }
 Switch  Zb_THSensor_03_availability "THSensor03 availability"    (gZigbee_Devices_Availability, gZbTHSensorsAvailability, gHeating_Temp_Sensors_Online) 
         ["tZigbee_Devices_Availability", "Heating_Temp_Sensor_availability"]   
-        {channel="mqtt:topic:THSensor03:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+        {channel="mqtt:topic:THSensor03:availability" [ profile="basic-profiles:inactivity", timeout="2h", inverted=true ] }
 
 
 Group	gZb_THSensor_04
@@ -73,4 +73,4 @@ Number	Zb_THSensor_04_voltage		"Xiaomi Temp Humi Sensor 04 voltage"							(gZbTH
 String	Zb_THSensor_04_reachable	"Xiaomi THSensor04 Reachable"		(gZbTHSensorsReachable, gHeating_Temp_Sensors_Online) ["Heating_Temp_Sensor_Check"] {channel="mqtt:topic:THSensor04:reachable", expire="2h,state=OFF" }
 Switch  Zb_THSensor_04_availability "THSensor04 availability"    (gZigbee_Devices_Availability, gZbTHSensorsAvailability, gHeating_Temp_Sensors_Online) 
         ["tZigbee_Devices_Availability", "Heating_Temp_Sensor_availability"]   
-        {channel="mqtt:topic:THSensor04:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+        {channel="mqtt:topic:THSensor04:availability" [ profile="basic-profiles:inactivity", timeout="2h", inverted=true ] }

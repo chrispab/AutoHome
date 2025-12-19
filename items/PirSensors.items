@@ -37,7 +37,10 @@ Number    pir01_linkquality    "pir01_linkquality" (gZb_pir)   {channel="mqtt:to
 Number    pir01_battery        "pir01_battery"    (gZb_pir,gBatteries, gZbPIRSensorBatteries)   {channel="mqtt:topic:pir01:battery", expire="4h,state=0"}
 Number    pir01_voltage        "pir01_voltage"    (gZb_pir)    {channel="mqtt:topic:pir01:voltage"}
 String    pir01_reachable    "pir01_reachable"    (gZbPIRSensorsReachable)        {channel="mqtt:topic:pir01:reachable", expire="2h,state=OFF" }
-String    pir01_availability "pir01_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir01:availability"}
+// String    pir01_availability "pir01_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir01:availability"}
+Switch  pir01_availability "pir01_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir01:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 
 Switch    pir02_occupancy    "pir02_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)   ["Sensor","Pir"]  {channel="mqtt:topic:pir02:occupancy"}
@@ -47,7 +50,9 @@ Number    pir02_linkquality    "pir02_linkquality" (gZb_pir)   {channel="mqtt:to
 Number    pir02_battery        "pir02_battery"    (gZb_pir,gBatteries, gZbPIRSensorBatteries)   {channel="mqtt:topic:pir02:battery", expire="4h,state=0"}
 Number    pir02_voltage        "pir02_voltage"    (gZb_pir)    {channel="mqtt:topic:pir02:voltage"}
 String    pir02_reachable    "pir02_reachable"        (gZbPIRSensorsReachable)     {channel="mqtt:topic:pir02:reachable", expire="2h,state=OFF" }
-String  pir02_availability "pir02_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir02:availability"}
+Switch  pir02_availability "pir02_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir02:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 // Number    pir02_illuminance    "pir02_illuminance"    (gZb_pir)   {channel="mqtt:topic:pir02:illuminance"}
 // Number    pir02_illuminance_lux    "pir02_illuminance_lux"    (gZb_pir)   {channel="mqtt:topic:pir02:illuminance_lux"}
@@ -58,7 +63,9 @@ Switch    pir03_battery_low    "pir03_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir03_voltage        "pir03_voltage"    (gZb_pir)    {channel="mqtt:topic:pir03:voltage"}
 Switch    pir03_tamper    "pir03_tamper"    (gZb_pir)   {channel="mqtt:topic:pir03:tamper"}
 String  pir03_reachable    "pir03_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir03:reachable", expire="2h,state=OFF" }
-String  pir03_availability "pir03_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir03:availability"}
+Switch  pir03_availability "pir03_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir03:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 Switch    pir04_occupancy    "pir04_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir04:occupancy"}
 Number    pir04_linkquality    "pir04_linkquality" (gZb_pir)   {channel="mqtt:topic:pir04:linkquality"}
@@ -67,7 +74,9 @@ Switch    pir04_battery_low    "pir04_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir04_voltage        "pir04_voltage"    (gZb_pir)    {channel="mqtt:topic:pir04:voltage"}
 Switch    pir04_tamper    "pir04_tamper"    (gZb_pir)   {channel="mqtt:topic:pir04:tamper"}
 String    pir04_reachable    "pir04_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir04:reachable", expire="2h,state=OFF" }
-String  pir04_availability "pir04_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir04:availability"}
+Switch  pir04_availability "pir04_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir04:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 
 Switch    pir05_occupancy    "pir05_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir05:occupancy"}
@@ -77,7 +86,9 @@ Switch    pir05_battery_low    "pir05_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir05_voltage        "pir05_voltage"    (gZb_pir)    {channel="mqtt:topic:pir05:voltage"}
 Switch    pir05_tamper    "pir05_tamper"    (gZb_pir)   {channel="mqtt:topic:pir05:tamper"}
 String    pir05_reachable    "pir05_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir05:reachable", expire="2h,state=OFF" }
-String  pir05_availability "pir05_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir05:availability"}
+Switch  pir05_availability "pir05_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir05:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 
 Switch    pir06_occupancy    "pir06_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir06:occupancy"}
@@ -87,7 +98,10 @@ Switch    pir06_battery_low    "pir06_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir06_voltage        "pir06_voltage"    (gZb_pir)    {channel="mqtt:topic:pir06:voltage"}
 Switch    pir06_tamper    "pir06_tamper"    (gZb_pir)   {channel="mqtt:topic:pir06:tamper"}
 String    pir06_reachable    "pir06_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir06:reachable", expire="2h,state=OFF" }
-String  pir06_availability "pir06_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir06:availability"}
+Switch  pir06_availability "pir06_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir06:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
+
 
 Switch    pir07_occupancy    "pir07_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir07:occupancy"}
 Number    pir07_linkquality    "pir07_linkquality" (gZb_pir)   {channel="mqtt:topic:pir07:linkquality"}
@@ -96,7 +110,9 @@ Switch    pir07_battery_low    "pir07_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir07_voltage        "pir07_voltage"    (gZb_pir)    {channel="mqtt:topic:pir07:voltage"}
 Switch    pir07_tamper    "pir07_tamper"    (gZb_pir)   {channel="mqtt:topic:pir07:tamper"}
 String    pir07_reachable    "pir07_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir07:reachable", expire="2h,state=OFF" }
-String  pir07_availability "pir07_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir07:availability"}
+Switch  pir07_availability "pir07_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir07:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
 
 Switch    pir08_occupancy    "pir08_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)  ["Sensor","Pir"]   {channel="mqtt:topic:pir08:occupancy"}
 Number    pir08_linkquality    "pir08_linkquality" (gZb_pir)   {channel="mqtt:topic:pir08:linkquality"}
@@ -105,4 +121,6 @@ Switch    pir08_battery_low    "pir08_battery_low"    (gZb_pir)   {channel="mqtt
 Number    pir08_voltage        "pir08_voltage"    (gZb_pir)    {channel="mqtt:topic:pir08:voltage"}
 Switch    pir08_tamper    "pir08_tamper"    (gZb_pir)   {channel="mqtt:topic:pir08:tamper"}
 String    pir08_reachable    "pir08_reachable"   (gZbPIRSensorsReachable)          {channel="mqtt:topic:pir08:reachable", expire="2h,state=OFF" }
-String  pir08_availability "pir08_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:pir08:availability"}
+Switch  pir08_availability "pir08_availability"    (gZbPIRSensorsAvailability, gZb_pir, gZigbee_Devices_Availability) 
+        ["tZigbee_Devices_Availability"]   
+        {channel="mqtt:topic:pir08:availability" [ profile="basic-profiles:inactivity", timeout="1h", inverted=true ] }
