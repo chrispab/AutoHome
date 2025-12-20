@@ -156,6 +156,19 @@ const pirSensorConfigs = [
       'colourBulbsCycle',
     ],
   },
+  {
+    name: 'pir08',
+    location: 'unplaced',
+    friendlyName: 'pir8-desk',
+    occupancySensorItemName: 'pir08_occupancy',
+    lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
+    lightLevelSensorItemName: 'BridgeLightSensorLevel',
+    phrases: [
+    ],
+    lightConfigNames: [
+      'colourBulbsCycle',
+    ],
+  },
 ];
 
 module.exports = {

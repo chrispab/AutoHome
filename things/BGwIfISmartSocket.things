@@ -1,3 +1,4 @@
+
 Thing mqtt:topic:bg_wifisocket_1  "MQTT Thing: BG WiFi Power Socket 1" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -8,6 +9,10 @@ Thing mqtt:topic:bg_wifisocket_1  "MQTT Thing: BG WiFi Power Socket 1" (mqtt:bro
         Type string : reachable "BG WiFi Power Socket 1" [ stateTopic="broadlink/BG1_c8_f7_42_fc_54_bd/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
 }
 
+// Luceco-a4-d7-2b
+// 24:df:a7:a4:d7:2b
+// 192.168.0.95
+// BG_2_a4-d7-2b
 Thing mqtt:topic:bg_wifisocket_2  "MQTT Thing: BG WiFi Power Socket 2" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -18,7 +23,10 @@ Thing mqtt:topic:bg_wifisocket_2  "MQTT Thing: BG WiFi Power Socket 2" (mqtt:bro
         Type string : reachable "BG WiFi Power Socket 2" [ stateTopic="broadlink/BG1_24_df_a7_a4_d7_2b/state", transformationPattern="MAP:bg_skt_reachable_ON.map" ]
 }
 
-
+// Luceco-b9-82-c1
+// 24:df:a7:b9:82:c1
+// 192.168.0.61
+// BG_3_b9_82_c1
 Thing mqtt:topic:bg_wifisocket_3  "MQTT Thing: BG WiFi Power Socket 3" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -42,6 +50,10 @@ Thing mqtt:topic:bg_wifisocket_4  "MQTT Thing: BG WiFi Power Socket 4" (mqtt:bro
 
 
 // # BG1 wifi smart dual socket broadlink/BG1_a0_43_b0_82_f2_31
+// Luceco-82-f2-31
+// a0:43:b0:82:f2:31
+// BG_5_82-f2-31
+// 192.168.0.64
 Thing mqtt:topic:bg_wifisocket_5  "MQTT Thing: BG WiFi Power Socket 5" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -54,6 +66,10 @@ Thing mqtt:topic:bg_wifisocket_5  "MQTT Thing: BG WiFi Power Socket 5" (mqtt:bro
 
 
 // BG1_a0_43_b0_82_f3_10   - 6
+// Luceco-82-f3-10
+// a0:43:b0:82:f3:10
+// BG_6_82-f3-10
+// 192.168.0.97
 Thing mqtt:topic:bg_wifisocket_6  "MQTT Thing: BG WiFi Power Socket 6" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -66,6 +82,10 @@ Thing mqtt:topic:bg_wifisocket_6  "MQTT Thing: BG WiFi Power Socket 6" (mqtt:bro
 
 
 // broadlink/BG1_a0_43_b0_83_02_f2 skt 7
+// Luceco-83-02-f2
+// a0:43:b0:83:02:f2
+// BG_7_83-02-f2
+// 192.168.0.96
 Thing mqtt:topic:bg_wifisocket_7  "MQTT Thing: BG WiFi Power Socket 7" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -77,7 +97,13 @@ Thing mqtt:topic:bg_wifisocket_7  "MQTT Thing: BG WiFi Power Socket 7" (mqtt:bro
 }
 
 
+
+
 //'broadlink/BG1_a0_43_b0_ac_8c_8f/#' skt 8
+// Luceco-ac-8c-8f
+// a0:43:b0:ac:8c:8f
+// BG_8_ac-8c-8f
+// 192.168.0.65
 Thing mqtt:topic:bg_wifisocket_8  "MQTT Thing: BG WiFi Power Socket 8" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"
 {
     Channels:
@@ -113,6 +139,9 @@ Thing mqtt:topic:bg_wifisocket_10  "MQTT Thing: BG WiFi Power Socket 10" (mqtt:b
         Type string : reachableOnline "BG WiFi Power Socket 10 reachableOnline" [ stateTopic="broadlink/BG1_a0_43_b0_d6_c8_79/state", transformationPattern="MAP:anything_to_Online.map" ]
 }
 
+
+
+// 11
 // Luceco-10-7b-03	192.168.0.3	EC:0B:AE:10:7B:03
 // broadlink/BG1_ec_0b_ae_10_7b_03
 Thing mqtt:topic:bg_wifisocket_11  "MQTT Thing: BG WiFi Power Socket 11" (mqtt:broker:MyMQTTBroker) @ "YetToBePlaced"

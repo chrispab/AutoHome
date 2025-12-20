@@ -133,7 +133,7 @@ class PirSensorConfig {
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
     this.label = `${this.name} - ${this.location}`;
     // this.label = 'test';
-
+    logger.error('this.label - {}', JSON.stringify(this.label));
     // set the label of the PIR sensor to something like "pir01 - Prep Area"
     this.setItemLabel();
   }
@@ -143,7 +143,14 @@ class PirSensorConfig {
    */
   setItemLabel() {
     const item = items.getItem(this.occupancySensorItemName);
-    if (item && item.rawItem) {
+    // if (item && item.rawItem) {
+    //   item.rawItem.setLabel(this.label);
+    // } else {
+    //   logger.warn(`Item ${this.occupancySensorItemName} or its rawItem not found to set label to ${this.label}`);
+    // }
+    // logger.error('this.item - {}', JSON.stringify(this.item));
+    this.label = `${this.name} - ${this.location}`;
+    if (item) {
       item.rawItem.setLabel(this.label);
     } else {
       logger.warn(`Item ${this.occupancySensorItemName} or its rawItem not found to set label to ${this.label}`);
