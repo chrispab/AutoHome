@@ -2,4 +2,4 @@ String  zb_remote01_action    "remote 01 action: [%s]"    {channel="mqtt:topic:i
 Number:Dimensionless  zb_remote01_quality   "Zb remote 1 LinkQuality"  {channel="mqtt:topic:ikearemote01:linkquality"}
 Number:Dimensionless  zb_remote01_battery   "Zb remote 1 battery" (gBatteries) {unit="%", channel="mqtt:topic:ikearemote01:battery"}
 Number:Dimensionless zb_remote01_update_progress {channel="mqtt:topic:ikearemote01:update_progress"}
-String  zb_remote01_availability "zb_remote01_availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikearemote01:availability"}
+String  zb_remote01_availability "remote01 availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikearemote01:availability"}

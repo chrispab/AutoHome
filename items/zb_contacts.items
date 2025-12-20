@@ -15,7 +15,7 @@ Number	zb_contact_01_linkquality   "zb contact 01 LinkQuality" (gZb_contacts_Lin
 Number	zb_contact_01_battery       "zb contact 01 battery"     (gZb_contacts_Battery, gZb_contact_01,gBatteries)       {channel="mqtt:topic:contact01:battery"}
 Number	zb_contact_01_voltage       "zb contact 01 voltage"     (gZb_contacts_Voltage, gZb_contact_01)       {channel="mqtt:topic:contact01:voltage"}
 String	zb_contact_01_reachable     "zb contact 01 Reachable"      (gZb_contacts_Reachable,gZb_contact_01) ["contact01_Sensor_Check"] {channel="mqtt:topic:contact01:reachable"}
-String  zb_contact_01_availability "zb_contact_01_availability"    (gZigbee_Devices_Availability) 
+String  zb_contact_01_availability "contact 01 availability"    (gZigbee_Devices_Availability) 
         ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:contact01:availability"}
 
 
