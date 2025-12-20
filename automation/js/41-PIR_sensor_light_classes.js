@@ -132,7 +132,9 @@ class PirSensorConfig {
     const endIndex = occupancySensorItemName.indexOf('_');
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
     this.label = `${this.name} - ${this.location}`;
-    // set the label of the PIR sensor to something like "Kitchen - Prep Area"
+    // this.label = 'test';
+
+    // set the label of the PIR sensor to something like "pir01 - Prep Area"
     this.setItemLabel();
   }
 

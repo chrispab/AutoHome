@@ -38,8 +38,13 @@ Switch xmas_lights_bg_wifisocket_5_2_power "bg_wifisocket_5_2_power 2"
         (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights,gFront_Room_Christmas_Lights) 
         ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_5:powerSwitch_2" }
 
-// Switch xmas_lights_bg_wifisocket_6_1_power "xmas_lights_bg_wifisocket_6_1_power" (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }
-// Switch xmas_lights_bg_wifisocket_6_2_power "xmas_lights_bg_wifisocket_6_2_power" (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_2" }
+//entry hall xmas lights
+Switch xmas_lights_bg_wifisocket_6_1_power "xmas_lights_bg_wifisocket_6_1_power" 
+        (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  
+        ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }
+Switch xmas_lights_bg_wifisocket_6_2_power "xmas_lights_bg_wifisocket_6_2_power" 
+        (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  
+        ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_2" }
 
 // xmas tree
 Switch xmas_lights_bg_wifisocket_7_1_power "FR xmas tree lights 1" 

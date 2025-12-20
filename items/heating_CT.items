@@ -25,7 +25,8 @@ Number:Temperature      CT_ThermostatTemperatureAmbient_MovingAverage "Conservat
 
 
 //heater
-Switch               CT_Heater_Control "Conservatory Heater" <my_radiator>               (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) {channel="mqtt:topic:conservatoryRadiatorValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
+Switch  CT_Heater_Control "Conservatory Heater" <my_radiator> (gChart_Minute, gHeaterControls, gAnyRoomHeaterOn) 
+        {channel="mqtt:topic:conservatoryRadiatorValve:powerSwitch", channel="mqtt:topic:kitchenRadThermoValve:powerSwitch"}
 String               CT_Heater_Mode "Conservatory Heating Mode" <settings>       (gHeatingModes)
 String               CT_Heater_Reachable "Conservatory Reachable" <qualityofservice> (gHeaterReachables) {channel="mqtt:topic:conservatoryRadiatorValve:reachable"}
 Number:Dimensionless CT_Heater_Rssi "CT RTV RSSI" <qualityofservice>                               {channel="mqtt:topic:conservatoryRadiatorValve:rssi"}

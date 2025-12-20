@@ -56,12 +56,12 @@ String bg_wifisocket_5_reachable "BG Socket 5-reachable" (gMQTT, gBGWiFiPowerSoc
 
 
 //double socket 6
-// Switch bg_wifisocket_6_1and2_power "BG Socket 6-one and two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1and2" }
-// Switch bg_wifisocket_6_1_power "BG Socket 6-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }
-// Switch bg_wifisocket_6_2_power "BG Socket 6-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_2" }
-// Number bg_wifisocket_6_maxworktime "BG Socket 6-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_6:maxworktime" }
-// String bg_wifisocket_6_reachable "BG Socket 6-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)
-//         ["BG_Sockets_Check"]  { channel = "mqtt:topic:bg_wifisocket_6:reachable", expire="35s,state=OFF"  }
+Switch bg_wifisocket_6_1and2_power "BG Socket 6-one and two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1and2" }
+Switch bg_wifisocket_6_1_power "BG Socket 6-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }
+Switch bg_wifisocket_6_2_power "BG Socket 6-two" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_2" }
+Number bg_wifisocket_6_maxworktime "BG Socket 6-maxworktime" (gMQTT, gBGWiFiPowerSockets, gBG_socket_maxworktime_updates)  { channel = "mqtt:topic:bg_wifisocket_6:maxworktime" }
+String bg_wifisocket_6_reachable "BG Socket 6-reachable" (gMQTT, gBGWiFiPowerSockets, gBG_sockets_reachable)
+        ["BG_Sockets_Check"]  { channel = "mqtt:topic:bg_wifisocket_6:reachable", expire="35s,state=OFF"  }
 
 // broadlink/BG1_a0_43_b0_83_02_f2 skt 7
 //double socket 7
