@@ -39,10 +39,10 @@ Switch xmas_lights_bg_wifisocket_5_2_power "bg_wifisocket_5_2_power 2"
         ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_5:powerSwitch_2" }
 
 //entry hall xmas lights
-Switch xmas_lights_bg_wifisocket_6_1_power "xmas_lights_bg_wifisocket_6_1_power" 
+Switch xmas_lights_bg_wifisocket_6_1_power "hall xmas lights 1" 
         (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  
         ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_1" }
-Switch xmas_lights_bg_wifisocket_6_2_power "xmas_lights_bg_wifisocket_6_2_power" 
+Switch xmas_lights_bg_wifisocket_6_2_power "hall xmas lights 2" 
         (gMQTT, gBGWiFiPowerSockets, gAll_Christmas_Lights, gInside_Christmas_Lights, gDining_Room_Christmas_Lights)  
         ["Xmas_Power_Socket"]  { channel = "mqtt:topic:bg_wifisocket_6:powerSwitch_2" }
 
