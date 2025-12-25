@@ -1,0 +1,73 @@
+https://tasmota.github.io/docs/Expanding-Tasmota/
+
+Connect switch~
+
+If you take a Sonoff Basic and connect a switch between pin4 (GND) and pin5 (GPIO14) of the 5 pin programming header you now have a second switch connected to the device. You can set this through the module config page as option Switch1 (9) or from the command line with gpio14 9.
+
+See Buttons and Switches for more information.
+Connect jack~
+
+Instead of connecting a switch, you could connect a 4-pin 2.5mm jack, with the pins wired:
+Jack 	Pin 	ESP8266
+tip 	5 	GPIO14
+R1 		no connection
+R2 	1 	GND
+R3 	4 	3.3V
+
+You can then plug a sensor into the jack like you would to a Sonoff TH and define what sensor you have connected to GPIO14.
+
+https://tasmota.github.io/docs/Expanding-Tasmota/#restrictions
+
+
+Danger
+
+If you can avoid it, don't use GPIOs: 0, 1, 2, 6-11, 15 and 16. That leaves 4, 5, 12, 13, 14 as GPIOs without any constraints. 3 being RX is also good to avoid (PWM is not working on this GPIO).
+Electrical Considerations~
+
+When you switch a GPIO pin to an input and hang a long wire off of it, that wire can pick up stray signals and cause the voltage on the GPIO pin to vary. This can cause the system to think the switch has changed.
+
+To fix this, there are several things you can do.
+
+    add a pull-up resistor
+    add a bypass capacitor
+    shielding on the wire
+    use twisted pair wiring
+
+A pull-up resistor is a resistor connected between the GPIO pin and 3.3v. The exact value of this is not critical, 4.7k is a common value to use, as is 10k. This ensures that when the switch it open, the GPIO pin will go high.
+
+A bypass capacitor is a small (pF range) capacitor that is connected between the GPIO and ground. This provides a path for any radio signals that are picked up by the wire to go to ground and not confuse the system.
+
+Shielding or using twisted pair wiring are other ways to reduce the effect of radio signals on the system.
+
+Example for 10K Resistor (issue#2708)
+
+https://tasmota.github.io/docs/devices/Sonoff-Basic/
+
+https://tasmota.github.io/docs/devices/Sonoff-Basic/#sonoff-basic-r2
+https://tasmota.github.io/docs/Templates/#how-to-use
+
+Sonoff Basic R2~
+
+Around November 2018, Itead changed the layout of the Sonoff Basic (issue #4515). The new board is labeled as Sonoff RF R2 POWER V1.0. It is easily discerned from previous revisions since it uses wires instead of thick solder traces for mains power.
+
+The new version of the Sonoff Basic smart switch uses an ESP8285 SoC with the 1MB flash integrated into the same SoC chip.
+
+GPIO14 is no longer broken out to a contact on the PCB. Instead, GPIO02 (no pullup) is broken out. It is labeled as IO2 on the board. To use GPIO02, take care that it is not being pulled low when the device is booting. Otherwise, the device will not boot into its regular operational mode. Alternatively, you can use use GPIO03 (Rx) which does not have any boot function restrictions. However, both of these GPIO are pulled high momentarily after boot. This means that any connected device may "blink" when the Sonoff is powering up.
+
+Unlike GPIO03, the GPIO02 PCB contact is not prepared for a pin. You will need to solder your cable directly on the board. Be careful. Too high a temperature or long heating can damage the contact and its connectivity. You should also make sure that there is no tension on the cable. Affix the cable with a cable tie and perhaps some hot glue.
+
+    GPIO02 as a user configurable input is implemented in the Sonoff Basic module (introduced in 6.3.0.15). If you use GPIO03, you must use a device template (rather than selecting the Sonoff Basic module), and also disable serial logging (SerialLog 0).
+
+VIEW FROM TOP OF BOARD
+
+TOP   |------------------------------------------------TO WALL SWITCH
+GND ---- CAPACITOR-100NF-- TO - GPIO3 -|
+TX                                     |
+RX GPIO3---------------------------------------R4K7--- TO WALL SWITCH
+3V3
+BOTTOM
+
+SWITCH
+
+
+https://www.keysight.com/used/au/en/knowledge/calculators/low-pass-filter-calculator

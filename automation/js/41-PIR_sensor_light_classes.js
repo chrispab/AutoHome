@@ -51,7 +51,8 @@ class LightConfig {
       );
     }
     logger.debug(`L 3 - timerDurationSecs: ${timerDurationSecs}`);
-    return timerDurationSecs * 1000;
+    // return timerDurationSecs * 1000;
+    return 10000;
   }
 
   /**
@@ -133,7 +134,7 @@ class PirSensorConfig {
     this.pirPrefix = occupancySensorItemName.substring(0, endIndex);
     this.label = `${this.name} - ${this.location}`;
     // this.label = 'test';
-    logger.error('this.label - {}', JSON.stringify(this.label));
+    logger.warn('this.label - {}', JSON.stringify(this.label));
     // set the label of the PIR sensor to something like "pir01 - Prep Area"
     this.setItemLabel();
   }

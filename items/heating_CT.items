@@ -12,16 +12,28 @@ Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humid
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadiatorValve:humidity"}
 
 //var for reading and smoothing temperature readings
-Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gEveryUpdate)
                         {channel="mqtt:topic:conservatoryRadiatorValve:temperature", unit="°C"}
-Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature precision [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature precision [%.2f %unit%]" <temperature> (gChart_Minute)
 
 Number:Temperature      CT_ThermostatTemperatureAmbient_MovingAverage "Conservatory Temperature Moving Average [%.1f %unit%]" <temperature> (gChart_Minute)
 
+Number:Temperature      CT_TemperatureCalculation_1 "Conservatory Temperature Calculation_1 [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_TemperatureCalculation_2 "Conservatory Temperature Calculation_2 [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_TemperatureCalculation_3 "Conservatory Temperature Calculation_3 [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_TemperatureCalculation_4 "Conservatory Temperature Calculation_4 [%.1f %unit%]" <temperature> (gChart_Minute)
+Number:Temperature      CT_TemperatureCalculation_5 "Conservatory Temperature Calculation_5 [%.1f %unit%]" <temperature> (gChart_Minute)
 
-
-
-
+Number:Temperature      temp1 "Conservatory Temperature Calculation_1 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp2 "Conservatory Temperature Calculation_2 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp3 "Conservatory Temperature Calculation_3 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp4 "Conservatory Temperature Calculation_4 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp5 "Conservatory Temperature Calculation_5 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp6 "Conservatory Temperature Calculation_6 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp7 "Conservatory Temperature Calculation_7 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp8 "Conservatory Temperature Calculation_8 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp9 "Conservatory Temperature Calculation_9 [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      temp10 "Conservatory Temperature Calculation_10 [%.1f %unit%]" <temperature> (gEveryUpdate)
 
 
 //heater

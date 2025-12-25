@@ -171,7 +171,6 @@ function boostOffAction(roomPrefix) {
 // --- Script Loading ---
 scriptLoaded = function () {
   logger.debug('scriptLoaded -  boost-heating');
-
   // ensure all boost timers are initialised, when script starts
   roomBoostTimers.CT.stopTimer();
   roomBoostTimers.FH.stopTimer();

@@ -1,0 +1,29 @@
+Group:String:AND("heat","notdef") gThermostatModes
+
+Group:Number:SUM    gThermostatTemperatureSetpoints
+Group:Number:SUM    gThermostatTemperatureAmbients
+Group       gThermostatHumidityAmbients
+Group       gHeaterControls
+Group       gHeaterReachables
+Group:Switch:OR(ON,OFF) gHeaterBoosters
+Group:Switch:OR(ON,OFF) gvHeaterBoosters
+Group:Number gBoost_Time
+
+DateTime	Current_Date				"[%1$tA, %1$td.%1$tm.%1$tY %1$tH:%1$tM]"	<date>											{ channel="ntp:ntp:demo:dateTime" }
+
+
+Number Boost_Time  "Heater boost time"  <material:trending_up>
+
+
+Group gHeatingModes
+
+Group:Switch:OR(ON,OFF) gAnyRoomHeaterOn <switch>
+
+Switch  Heating_UpdateHeaters   "Send Target Temperatures to Heaters"
+
+
+String  masterHeatingMode   "Global Master Heating Mode [%s]"
+
+Switch  Boiler_Control      "Boiler Control"    <my_radiator>   (gChart_Minute) { channel="mqtt:topic:boiler:powerSwitch"}
+String  Boiler_Reachable    "Boiler Reachable"  <qualityofservice>  { channel="mqtt:topic:boiler:reachable"}
+Number  Boiler_Rssi         "Boiler Rssi"       <qualityofservice>  { channel="mqtt:topic:boiler:rssi"}

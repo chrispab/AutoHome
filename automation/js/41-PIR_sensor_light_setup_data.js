@@ -145,15 +145,15 @@ const pirSensorConfigs = [
   },
   {
     name: 'pir07',
-    location: 'desk',
-    friendlyName: 'pir7-desk',
+    location: 'kettle',
+    friendlyName: 'pir7-kettle',
     occupancySensorItemName: 'pir07_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
     ],
     lightConfigNames: [
-      'colourBulbsCycle',
+      'kitchenLight_1',
     ],
   },
   {

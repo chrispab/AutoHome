@@ -33,7 +33,7 @@ const light1_switch = items.getItem('ZbColourBulb01_switch');
 const light2_switch = items.getItem('ZbColourBulb02_switch');
 
 const func = () => {
-  if (items.getItem('v_StartColourBulbsCycle').state == 'ON') {
+  if (items.getItem('v_StartColourBulbsCycle').state === 'ON') {
     // get stored hue
     hueStored = cache.private.get('hueStored');
     if (hueStored === undefined) {
@@ -74,7 +74,12 @@ rules.JSRule({
       light1_switch.sendCommand('ON');
       light2_switch.sendCommand('ON');
 
-      const timerDuration = items.getItem('lightCyclerIntervalMillis').rawState;
+      let timerDuration = items.getItem('lightCyclerIntervalMillis').rawState;
+      // if timerDuration is null or 0, set it to 1000
+      if (items.getItem('lightCyclerIntervalMillis').state === 'NULL' || timerDuration <= 0) {
+        timerDuration = 1000;
+      }
+      logger.debug(`CycleColor - starting loop with interval millis: ${timerDuration}`);
       lt.loop(func, timerDuration);
     } else {
       logger.debug('CycleColor - outer-event.newState == OFF');

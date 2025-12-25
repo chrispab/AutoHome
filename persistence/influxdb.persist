@@ -3,13 +3,28 @@ Strategies {
     everyHour : "0 0 * * * ?"
     // everyDay : "0 0 0 * * ?"
 
-    default = everyChange
+    // default = everyChange
 }
 
 Items {
 //    * : strategy = everyUpdate
     gChart_Minute* : strategy = everyChange, everyMinute
     gChart_Hour*  : strategy = everyChange, everyHour
+    gDefaultPersistence* : strategy = everyChange
+    gEveryUpdate* : strategy = everyUpdate
+
+    gHeatingModes : strategy = everyChange
+    gThermostatModes : strategy = everyChange
+    gThermostatTemperatureSetpoints : strategy = everyUpdate
+    gThermostatTemperatureAmbients : strategy = everyUpdate
+    gThermostatHumidityAmbients : strategy = everyUpdate
+    gHeaterControls : strategy = everyUpdate
+    gAnyRoomHeaterOn : strategy = everyUpdate
+    gHeaterReachables : strategy = everyUpdate
+    gHeaterBoosters : strategy = everyUpdate
+    gvHeaterBoosters : strategy = everyUpdate
+    gBoost_Time : strategy = everyUpdate
+    gTHSensorTemperatures : strategy = everyUpdate
 
     masterHeatingMode :  strategy = everyUpdate
 
@@ -19,7 +34,8 @@ Items {
     pir04_occupancy : strategy = everyUpdate
     pir05_occupancy : strategy = everyUpdate
     pir06_occupancy : strategy = everyUpdate
-
+    pir07_occupancy : strategy = everyUpdate
+    pir08_occupancy : strategy = everyUpdate
 
     PIRState : strategy = everyUpdate
 
@@ -43,6 +59,28 @@ Items {
     Soil1_Moisture_Percentage_Calculated : strategy = everyUpdate
     CT_ThermostatTemperatureAmbient_MovingAverage : strategy = everyUpdate
 
+    lightCyclerIntervalMillis : strategy = everyUpdate
+    CT_ThermostatTemperatureAmbient_precision : strategy = everyUpdate
+
+    lightCyclerIntervalMillis : strategy = everyUpdate
+
+    //   lightCyclerHueStepSize : strategy = everyUpdate
+    //   lightCyclerIntervalMillis : strategy = everyUpdate
+    //   lightCyclerSaturation : strategy = everyUpdate
+    //   lightCyclerBrightness : strategy = everyUpdate
+
+    v_StartColourBulbsCycle : strategy = everyUpdate
+
+    // temp1 : strategy = everyUpdate
+    // temp2 : strategy = everyUpdate
+    // temp3 : strategy = everyUpdate
+    // temp4 : strategy = everyUpdate
+    // temp5 : strategy = everyUpdate
+    // temp6 : strategy = everyUpdate
+    // temp7 : strategy = everyUpdate
+    // temp8 : strategy = everyUpdate
+    // temp9 : strategy = everyUpdate
+    // temp10 : strategy = everyUpdate
 
 
 }

@@ -17,7 +17,6 @@ Number ZbWhiteBulb02_update_progress {channel="mqtt:topic:ikeabulb02:update_prog
 String  ZbWhiteBulb02_availability "WhiteBulb02 availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikeabulb02:availability"}
 
 
-
 //colour bulbs
 // Group gDimmerBulbs "Dimmer bulbs" (gIkeaLights) { ga="Light" [ roomHint="Conservatory" ] }
 Group   gZbColourBulbs        "zb colour bulbs"    (gZbAllBulbs)
@@ -49,9 +48,9 @@ Number ZbColourBulb02_update_progress {channel="mqtt:topic:ikeacolourbulb02:upda
 String  ZbColourBulb02_availability "ColourBulb02 availability"    (gZigbee_Devices_Availability) ["tZigbee_Devices_Availability"]   {channel="mqtt:topic:ikeacolourbulb02:availability"}
 
 // Color   ZbColourBulb02Colour "Color M24 lamp [%s]"  (gZbColourBulb02, gZbColourBulbsColour) {ga="Light", channel="mqtt:topic:ikeacolourbulb02:color"}
-Number  lightCyclerHueStepSize        "lightCyclerHueStepSize"
-Number  lightCyclerIntervalMillis     "lightCyclerIntervalMillis"
-Number  lightCyclerSaturation         "lightCyclerSaturation"
-Number  lightCyclerBrightness         "lightCyclerBrightness"
+Number  lightCyclerHueStepSize        "lightCyclerHueStepSize" (gDefaultPersistence)
+Number  lightCyclerIntervalMillis     "lightCyclerIntervalMillis" (gDefaultPersistence)
+Number  lightCyclerSaturation         "lightCyclerSaturation" (gDefaultPersistence)
+Number  lightCyclerBrightness         "lightCyclerBrightness" (gDefaultPersistence)
 
 Switch  v_StartColourBulbsCycle  "colour bulbs cycle switch"

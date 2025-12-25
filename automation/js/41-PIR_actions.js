@@ -20,6 +20,7 @@ const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.pir_testing
 
 // Initialize a timer manager from the cache or create a new one.
+
 const timerMgr = cache.private.get('timerMgr', () => new TimerMgr());
 
 // note: using relative path from automation/js folder, but requires two dots to go up one level to automation folder. should really be just one dot?
@@ -81,9 +82,8 @@ function genTimerKey(triggeringItemName, lightConfigName, index) {
   // return `${triggeringItemName}_${lightConfigName}_light_${index}`;
   return `Timerkey_${lightConfigName}_light`;
 }
-
 // --- Rule Logic ---
-
+// --- Rule Logic ---
 /**
  * A factory function that creates a rule handler for occupancy events.
  * This abstracts the common logic of identifying the triggering sensor.
@@ -161,7 +161,8 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
   activePirSensorConfig.lightConfigNames.forEach((lightConfigName) => {
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
-      if (activePirSensorConfig.isLightLevelActive()) {
+      // if (activePirSensorConfig.isLightLevelActive()) {
+      if (1 === 1) { // temporarily disable light level check for testing
         logger.debug(`9 PIR ON - Light level below threshold, turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
         lightConfig.lightControl('ON');
       } else {

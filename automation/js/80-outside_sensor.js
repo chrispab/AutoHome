@@ -3,7 +3,7 @@ const {
 } = require('openhab');
 // log:set WARN org.openhab.automation.openhab-js.outside_sensor
 // log:set DEBUG org.openhab.automation.openhab-js.outside_sensor
-var ruleUID = "outside_sensor";
+const ruleUID = 'outside_sensor';
 const logger = log(ruleUID);
 
 scriptLoaded = function () {
@@ -18,7 +18,7 @@ rules.JSRule({
   ],
   execute: () => {
     logger.info('outside sensor went offline');
-    if (items.getItem('outsideReboots').state == 'NULL') {
+    if (items.getItem('outsideReboots').state === 'NULL') {
       logger.debug('++++++++++++++++++++++Checking outsideRebbots is NULL?');
       items.getItem('outsideReboots').postUpdate('OFF');
     }

@@ -3,23 +3,50 @@ const {
 } = require('openhab');
 const { utils } = require('openhab-my-utils');
 
-var ruleUID = "smart_heating";
+const ruleUID = 'smart_heating';
 
 const logger = log(ruleUID);
 const { timeUtils } = require('openhab_rules_tools');
 // openhab> log:set DEBUG org.openhab.automation.openhab-js.smart_heating
 // openhab> log:set INFO org.openhab.automation.openhab-js.smart_heating
-var { TimerMgr } = require('openhab_rules_tools');
-var timerMgr = cache.private.get('timers', () => TimerMgr());
+const { TimerMgr } = require('openhab_rules_tools');
+
+const timerMgr = cache.private.get('timers', () => TimerMgr());
 
 scriptLoaded = function () {
   logger.info(`scriptLoaded - ${ruleUID}`);
-};
 
+  // Initialize any required variables or state here
+  if (items.getItem('CT_ThermostatTemperatureAmbient').state === 'NULL') {
+    items.getItem('CT_ThermostatTemperatureAmbient').postUpdate(20.0);
+  }
+  if (items.getItem('CT_ThermostatTemperatureSetpoint').state === 'NULL') {
+    items.getItem('CT_ThermostatTemperatureSetpoint').postUpdate(20.0);
+  }
+  if (items.getItem('CT_heating_tempLastReading').state === 'NULL') {
+    items.getItem('CT_heating_tempLastReading').postUpdate(20.0);
+  }
+  if (items.getItem('CT_heating_timeLastReading').state === 'NULL') {
+    const timeNow = time.Instant.now();
+    items.getItem('CT_heating_timeLastReading').postUpdate(timeNow.epochSecond());
+  }
+  if (items.getItem('CT_heating_deltaTemp').state === 'NULL') {
+    items.getItem('CT_heating_deltaTemp').postUpdate(0.0);
+  }
+  if (items.getItem('CT_heating_deltaTime').state === 'NULL') {
+    items.getItem('CT_heating_deltaTime').postUpdate(0);
+  }
+  if (items.getItem('CT_heating_gradient').state === 'NULL') {
+    items.getItem('CT_heating_gradient').postUpdate(0.0);
+  }
+  if (items.getItem('masterHeatingMode').state === 'NULL') {
+    items.getItem('masterHeatingMode').postUpdate('OFF');
+  }
+};
 
 //   on 16m
 // if no temp inc on 15m
-//calc gradient
+// calc gradient
 
 rules.JSRule({
   name: 'smart heating',
@@ -31,68 +58,69 @@ rules.JSRule({
   ],
   execute: (event) => {
     // const roomPrefix = doSetup(event);
-    logger.debug('.....................................');
+    logger.debug('ZZZ.....................................');
 
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     logger.debug('~~roomPrefix: {}', roomPrefix);
 
-    if (roomPrefix == 'CT') {
-
-
-      //get initial readings
-      tempNow = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
+    if (roomPrefix === 'CT') {
+      // get initial readings
+      const tempNow = items.getItem('CT_ThermostatTemperatureAmbient').rawState;
       logger.debug('~~tempNow: {}', tempNow);
 
       // timeNow = time.toZDT();
       // timeNow = time.LocalTime.now();
-      timeNow = time.Instant.now();
+      const timeNow = time.Instant.now();
       // timeNowStr = timeNow.withFixedOffsetZone().toString();//https://js-joda.github.io/js-joda/manual/ZonedDateTime.html
       // '2023-10-28T15:30:37.378+01:00' could not be parsed at index 23
       logger.debug('~~timeNow: {}', timeNow.toString());
       // logger.debug('~~timeNow: {}', timeNowStr);
-      var ins = time.Instant.parse(timeNow.toString()) // in epoch secondsText '2023-10-28T15:47:38.348Z' could not be parsed: : 2023-10-28T15:47:38.348Z, at index: 0
+      // in epoch secondsText '2023-10-28T15:47:38.348Z' could not be parsed: : 2023-10-28T15:47:38.348Z, at index: 0
+      const ins = time.Instant.parse(timeNow.toString());
       logger.debug('~~timeNow ins.toString(): {}', ins.toString());
       logger.debug('~~timeNow ins.epochSecond(): {}', ins.epochSecond());
 
       // ZonedDateTime.now().withFixedOffsetZone().toString();
 
-      tempLastReading = items.getItem('CT_heating_tempLastReading').state
+      const tempLastReading = items.getItem('CT_heating_tempLastReading').state;
       logger.debug('~~tempLastReading: {}', tempLastReading);
 
-      timeLastReading = items.getItem('CT_heating_timeLastReading').state
+      const timeLastReading = items.getItem('CT_heating_timeLastReading').state;
       logger.debug('~~timeLastReading: {}', timeLastReading);
 
-      //establish on to temp inc time - latency
-      deltaTime = ins.epochSecond() - timeLastReading
+      // establish on to temp inc time - latency
+      const deltaTime = ins.epochSecond() - timeLastReading;
       items.getItem('CT_heating_deltaTime').postUpdate(deltaTime);
       // deltaTime = items.getItem('CT_heating_deltaTime').state
       logger.debug('~~deltaTime: {}', deltaTime);
 
-      deltaTemp = tempNow - tempLastReading
+      let deltaTemp = tempNow - tempLastReading;
       deltaTemp = deltaTemp.toFixed(2);
       items.getItem('CT_heating_deltaTemp').postUpdate(deltaTemp);
       // deltaTemp = items.getItem('CT_heating_deltaTemp').state
       logger.debug('~~deltaTemp: {}', deltaTemp);
 
-      gradient = deltaTemp / deltaTime
-      items.getItem('CT_heating_gradient').postUpdate(gradient);
-      // gradient = items.getItem('CT_heating_gradient').state
-      logger.debug('~~CT_heating_gradient.state: {}', gradient.toFixed(4));
+      // compute numeric gradient safely (deltaTemp may be a string from toFixed)
+      let gradient = parseFloat(deltaTemp) / parseFloat(deltaTime);
+      if (Number.isNaN(gradient) || !isFinite(gradient)) {
+        gradient = 0;
+      }
+      const gradientFixed = Number(gradient).toFixed(4);
+      items.getItem('CT_heating_gradient').postUpdate(gradientFixed);
+      logger.debug('~~CT_heating_gradient.state: {}', gradientFixed);
 
-      //save info to vars
+      // save info to vars
       items.getItem('CT_heating_tempLastReading').postUpdate(tempNow);
       items.getItem('CT_heating_timeLastReading').postUpdate(ins.epochSecond());
       items.getItem('CT_heating_deltaTemp').postUpdate(deltaTemp);
       items.getItem('CT_heating_deltaTime').postUpdate(deltaTime);
 
-      items.getItem('CT_heating_gradient').postUpdate(gradient.toFixed(4));
+      items.getItem('CT_heating_gradient').postUpdate(gradientFixed);
 
-      var ins = time.Instant.parse('2007-12-03T10:15:30.000Z') // 1196676930 in epoch seconds
-
+      // ins = time.Instant.parse('2007-12-03T10:15:30.000Z'); // 1196676930 in epoch seconds
     }
 
     // const BoostItem = items.getItem(`${roomPrefix}_Heater_Boost`, true);// get boost item for this heater, return null if missing
-
   },
 });
 
@@ -110,7 +138,6 @@ function doSetup(event) {
   // logger.debug(`...roomPrefix: ${roomPrefix}`);
   const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
 
-
   const heatingModeItem = items.getItem(`${roomPrefix}_Heater_Mode`);
   logger.debug(`...heatingModeItem: ${heatingModeItem.name}: ${heatingModeItem.state}`);
 
@@ -125,7 +152,6 @@ function doSetup(event) {
 
   const ReachableItem = items.getItem(`${roomPrefix}_Heater_Reachable`);
   logger.debug(`...ReachableItem: ${ReachableItem.name}: ${ReachableItem.state}`);
-
 
   logger.debug(`...masterHeatingMode.state: ${items.getItem('masterHeatingMode').state.toString()}`);
   logger.debug('.....................................');

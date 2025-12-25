@@ -5,3 +5,6 @@ Group gChart_Hour     // for Items to persist for charting
 
 Group gHistory   // for Items to preserve their history
 //Group gRestore // for Items to restore on startup (currently everything so commented out)
+
+Group gDefaultPersistence // for Items to have default persistence
+Group gEveryUpdate // for Items to be persisted on every update
