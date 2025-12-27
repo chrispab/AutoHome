@@ -13,94 +13,33 @@ scriptLoaded = function () {
   for (const transferPoint in transferCurve) {
     // logger.debug('==transferPoint: {}, transferCurve[transferPoint]: {}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
     logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
-
-    for (const property in transferCurve[transferPoint]) {
-      // logger.debug('=== property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
-
-      // if (absDiff <= transferCurve[transferPoint]['input']) {
-      //   logger.debug('====input is <=: {}, return factor: {}', transferCurve[transferPoint]['input'], transferCurve[transferPoint]['factor']) // '0.05' in the first iteration
-      //   return transferCurve[transferPoint]['factor']
-      // }
-    }
   }
 };
 
+// get transfer alpha value based on difference in degrees (upto), e.g absDiff <= tp.degreesDiff;
 let transferCurve = cache.private.get('transferCurve', () => ({
-  p_0: { input: 0.05, factor: 1.0 },
-  p_1: { input: 0.1, factor: 0.9 },
-  p_2: { input: 0.2, factor: 0.8 },
-  p_3: { input: 0.3, factor: 0.7 },
-  p_4: { input: 0.4, factor: 0.6 },
-  p_5: { input: 0.5, factor: 0.5 },
-  p_6: { input: 0.6, factor: 0.4 },
-  p_7: { input: 0.7, factor: 0.3 },
-  p_8: { input: 0.8, factor: 0.3 },
-  p_9: { input: 0.9, factor: 0.3 },
-  p_10: { input: 1.0, factor: 0.3 },
-  p_11: { input: 5.0, factor: 0.2 },
-  p_12: { input: 10.0, factor: 0.2 },
-  p_13: { input: 99.0, factor: 0.1 },
+  diffAlpha_0: { degreesDiff: 0.05, alpha: 1.0 },
+  diffAlpha_1: { degreesDiff: 0.1, alpha: 0.7 },
+  diffAlpha_2: { degreesDiff: 0.2, alpha: 0.6 },
+  diffAlpha_3: { degreesDiff: 0.3, alpha: 0.5 },
+  diffAlpha_4: { degreesDiff: 0.4, alpha: 0.4 },
+  diffAlpha_5: { degreesDiff: 0.5, alpha: 0.3 },
+  diffAlpha_6: { degreesDiff: 0.6, alpha: 0.1 },
+  diffAlpha_7: { degreesDiff: 0.7, alpha: 0.1 },
+  diffAlpha_8: { degreesDiff: 0.8, alpha: 0.1 },
+  diffAlpha_9: { degreesDiff: 0.9, alpha: 0.1 },
+  diffAlpha_10: { degreesDiff: 1.0, alpha: 0.1 },
+  diffAlpha_11: { degreesDiff: 5.0, alpha: 0.01 },
+  diffAlpha_12: { degreesDiff: 10.0, alpha: 0.001 },
+  diffAlpha_13: { degreesDiff: 99.0, alpha: 0.0001 },
 }));
 
-// val DateTime datetime = new DateTime(1514484000)
-// val String time = datetime.toLocalTime().toString("HH:mm")
-// function transferValue(absDiff) {
-//   for (const transferPoint in transferCurve) {
-//     logger.debug('~~ transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
-//     for (const property in transferCurve[transferPoint]) {
-//       // logger.debug('~~~ property: {}, value: {}', property, transferCurve[transferPoint][property]) // '0.05' in the first iteration
-
-//       if (absDiff <= transferCurve[transferPoint].input) {
-//         // logger.debug('~~~~ input is <=: {}, return factor: {}', transferCurve[transferPoint]['input'], transferCurve[transferPoint]['factor']) // '0.05' in the first iteration
-//         return transferCurve[transferPoint].factor;
-//       }
-//     }
-//   }
-//   return 0.001;
-// }
 function transferValue(absDiff) {
   const found = Object.entries(transferCurve).find(([transferPoint, tp]) => {
     logger.debug('?? transferPoint: {}->{}', transferPoint, JSON.stringify(tp));
-    return absDiff <= tp.input;
+    return absDiff <= tp.degreesDiff;
   });
-  return found ? found[1].factor : 0.001;
-}
-
-function calcNewTemp(previousTemperature, newTemperature) {
-  transferCurve = cache.private.get('transferCurve');
-
-  const prec = 3;
-
-  // logger.debug('...calcNewTemp');
-  // logger.debug('...precision: {}', prec);
-
-  logger.debug('...previousTemperature precise: {}', previousTemperature);
-  logger.debug('...newTemperature raw: {}', newTemperature);
-  // calc
-  let tempDiff = previousTemperature - newTemperature;
-  // tempDiff = tempDiff.toFixed(2);
-  tempDiff = tempDiff.toFixed(prec);
-  const absDiff = Math.abs(tempDiff);
-
-  logger.debug('...temp diff: {}', tempDiff);
-
-  const factor = transferValue(absDiff);
-  const tempAdd = tempDiff * factor;
-  // logger.debug('...factor: {}', factor);
-
-  logger.debug('...temp to Add (temp diff: {} * factor: {}): {}', tempDiff, factor, tempAdd);
-
-  const newTemp = previousTemperature - tempAdd;
-  // logger.debug('...newTemp before toFixed: {}', newTemp);
-
-  const newTempFixed = newTemp.toFixed(prec);
-  // logger.debug(`...returnin newTemp.toFixed(prec) ${newTempFixed}`);
-  logger.debug('...newTemp toFixed {}decimalPlaces: {}', prec, newTempFixed);
-
-  cache.private.put('transferCurve', transferCurve);
-
-  // logger.debug(`...returning to ${prec}decimalPlaces : ${newTempFixed}`);
-  return newTempFixed;
+  return found ? found[1].alpha : 0.001;
 }
 
 /**
@@ -109,13 +48,31 @@ function calcNewTemp(previousTemperature, newTemperature) {
  * @param {number} prev - Previous smoothed value
  * @param {number} curr - Current raw reading
  * @param {number} alpha - Smoothing factor (0.0 - 1.0). Lower = more smoothing.
+ * @param {string} debugTag - Tag for logging
  */
 function calcStandardEMA(prev, curr, alpha = 0.1, debugTag = 'EMA') {
   curr = parseFloat(curr);
   prev = parseFloat(prev);
+  if (Number.isNaN(prev)) return curr;
   const ema = (alpha * curr) + ((1 - alpha) * prev);
   logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, alpha, curr, alpha, prev, ema);
   return ema;
+}
+
+function calcWeightedEMA(prev, curr, debugTag = 'WeightedEMA') {
+  curr = parseFloat(curr);
+  prev = parseFloat(prev);
+  if (Number.isNaN(prev)) return curr;
+  logger.debug('calcWeightedEMA..{} curr: {}, prev: {}', debugTag, curr, prev);
+  // calculate alpha weighted EMA based on change between curr and prev
+  let delta = curr - prev;
+  // limit to 1 dp
+  delta = delta.toFixed(1);
+  const dynamicAlpha = transferValue(Math.abs(delta));
+  logger.debug('..{} delta: {}, dynamicAlpha: {}', debugTag, delta, dynamicAlpha);
+  const weightedEma = (dynamicAlpha * curr) + ((1 - dynamicAlpha) * prev);
+  logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, dynamicAlpha, curr, dynamicAlpha, prev, weightedEma);
+  return weightedEma;
 }
 
 /**
@@ -153,6 +110,22 @@ function calcAverage(curr, windowSize = 3, bufferName = 'averageBuffer', debugTa
   return average;
 }
 
+// function to smooth out CT temperature readings
+// take previous temperature and new raw temperature
+// calculate new temperature from 25% of new and 75% of previous temperature
+function smoothCTTemperature(previousTemperature, newTemperature, debugTag = 'temp') {
+  const prev = parseFloat(previousTemperature);
+  const curr = parseFloat(newTemperature);
+
+  if (Number.isNaN(prev)) return curr;
+  if (Number.isNaN(curr)) return prev;
+
+  const splitFactor = 0.25;
+  const newTemp = (prev * (1 - splitFactor)) + (curr * splitFactor);
+  logger.debug('..{} smoothCTTemperature: ({} * {}) + ({} * {}) = {}', debugTag, prev, splitFactor, curr, (1 - splitFactor), newTemp);
+  return newTemp;
+}
+
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
@@ -180,52 +153,52 @@ rules.JSRule({
     const decimalPlaces = 1;
     let temp1 = calcMedian(rawTemp);
     temp1 = Number(temp1).toFixed(decimalPlaces);
-    logger.debug(`..calculated median temp1: ${temp1}`);
+    logger.debug(`temp1..calculated median temp1: ${temp1}`);
     items.getItem('temp1').sendCommand(temp1);
 
     let temp2 = calcAverage(rawTemp, 2, 'Average2Buffer', 'temp2');
     temp2 = Number(temp2).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp2: ${temp2}`);
+    logger.debug(`temp2..calculated average temp2: ${temp2}`);
     items.getItem('temp2').sendCommand(temp2);
 
     let temp3 = calcAverage(rawTemp, 3, 'Average3Buffer', 'temp3');
     temp3 = Number(temp3).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp3: ${temp3}`);
+    logger.debug(`temp3..calculated average temp3: ${temp3}`);
     items.getItem('temp3').sendCommand(temp3);
 
     let temp4 = calcAverage(rawTemp, 4, 'Average4Buffer', 'temp4');
     temp4 = Number(temp4).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp4: ${temp4}`);
+    logger.debug(`temp4..calculated average temp4: ${temp4}`);
     items.getItem('temp4').sendCommand(temp4);
 
     let temp5 = calcAverage(rawTemp, 5, 'Average5Buffer', 'temp5');
     temp5 = Number(temp5).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp5: ${temp5}`);
+    logger.debug(`temp5..calculated average temp5: ${temp5}`);
     items.getItem('temp5').sendCommand(temp5);
 
     let temp6 = calcAverage(rawTemp, 6, 'Average6Buffer', 'temp6');
     temp6 = Number(temp6).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp6: ${temp6}`);
+    logger.debug(`temp6..calculated average temp6: ${temp6}`);
     items.getItem('temp6').sendCommand(temp6);
 
-    let temp7 = calcAverage(rawTemp, 7, 'Average7Buffer', 'temp7');
+    let temp7 = smoothCTTemperature(prevTemp, rawTemp, 'temp7');
     temp7 = Number(temp7).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp7: ${temp7}`);
+    logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
     items.getItem('temp7').sendCommand(temp7);
 
     let temp8 = calcAverage(rawTemp, 8, 'Average8Buffer', 'temp8');
     temp8 = Number(temp8).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp8: ${temp8}`);
+    logger.debug(`temp8..calculated average temp8: ${temp8}`);
     items.getItem('temp8').sendCommand(temp8);
 
-    let temp9 = calcAverage(rawTemp, 9, 'Average9Buffer', 'temp9');
+    let temp9 = calcWeightedEMA(prevTemp, rawTemp, 'temp9');
     temp9 = Number(temp9).toFixed(decimalPlaces);
-    logger.debug(`..calculated average temp9: ${temp9}`);
+    logger.debug(`temp9..calculated average temp9: ${temp9}`);
     items.getItem('temp9').sendCommand(temp9);
 
-    let temp10 = calcStandardEMA(preciseTemp, rawTemp, 0.9, 'temp10');
+    let temp10 = calcStandardEMA(prevTemp, rawTemp, 0.4, 'temp10');
     temp10 = Number(temp10).toFixed(decimalPlaces);
-    logger.debug(`..calculated standard EMA temp10: ${temp10}`);
+    logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
     items.getItem('temp10').sendCommand(temp10);
 
     const newPreciseTemp = temp2;
@@ -254,45 +227,3 @@ rules.JSRule({
     logger.debug(`..prev temp: ${prevTemp}, raw temp: ${rawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
   },
 });
-
-// rules.JSRule({
-//   name: 'Calculate CT Temperature Moving Average',
-//   description: 'Calculates the moving average of the last 5 CT temperature readings',
-//   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient')],
-//   execute: () => {
-//     const tempReadings = cache.private.get('ctTempReadings', () => []);
-//     const MAX_READINGS = 5; // Adjust as needed, e.g., 10 for a 10-point moving average
-
-//     const currentTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_raw').state);
-
-//     if (Number.isNaN(currentTemp)) {
-//       logger.error(`Invalid temperature value for CT_ThermostatTemperatureAmbient: ${items.getItem('CT_ThermostatTemperatureAmbient').state}`);
-//       return;
-//     }
-
-//     // Add the new reading to the array
-//     tempReadings.push(currentTemp);
-
-//     // Keep only the last MAX_READINGS
-//     if (tempReadings.length > MAX_READINGS) {
-//       tempReadings.shift(); // Remove the oldest reading
-//     }
-
-//     // Calculate the sum of the readings
-//     const sum = tempReadings.reduce((acc, val) => acc + val, 0);
-
-//     // Calculate the moving average
-//     const movingAverage = sum / tempReadings.length;
-
-//     // Post update to a new item (e.g., CT_ThermostatTemperatureAmbient_MovingAverage)
-//     items.getItem('CT_ThermostatTemperatureAmbient_MovingAverage').postUpdate(movingAverage.toFixed(1));
-
-//     // Store the updated array in cache
-//     cache.private.put('ctTempReadings', tempReadings);
-
-//     logger.debug(`CT Temperature Moving Average (${tempReadings.length} readings): ${movingAverage.toFixed(1)}`);
-
-//     const newPreciseTemp = calcAverage(currentTemp, 5, 'Average5Buffer');
-//     logger.debug(`CT Temperature 5-point Average precise: ${newPreciseTemp.toFixed(1)}`);
-//   },
-// });

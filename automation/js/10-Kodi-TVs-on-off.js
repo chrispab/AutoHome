@@ -17,6 +17,7 @@ const tvConfig = {
     tvSwitch_ikea_remote: 'zb_remote01_action',
     kodiPower: 'bg_wifisocket_1_1_power',
     tvPower: 'bg_wifisocket_1_2_power',
+    turnOffDelaySec: 10,
     ampPowerOn: 'amplifier_IR_PowerOn',
     ampPowerOff: 'amplifier_IR_PowerOff',
     ampInputVideo1: 'amplifier_IR_Video1',
@@ -31,6 +32,7 @@ const tvConfig = {
     tvSwitch: 'vBR_TVKodi',
     kodiPower: 'wifi_socket_3_power',
     tvPower: 'wifi_socket_3_power',
+    turnOffDelaySec: 3,
     kodiShutdownProxy: 'shutdownKodiBedroomProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -40,6 +42,7 @@ const tvConfig = {
     tvSwitch: 'vFR_TVKodi',
     kodiPower: 'wifi_socket_2_power',
     tvPower: 'wifi_socket_2_power',
+    turnOffDelaySec: 10,
     kodiShutdownProxy: 'shutdownKodiFrontRoomProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -48,6 +51,7 @@ const tvConfig = {
     name: 'Attic',
     tvSwitch: 'vAT_TVKodi',
     tvPower: 'wifi_socket_4_power',
+    kodiPower: 'wifi_socket_4_power',
     kodiShutdownProxy: 'shutdownKodiAtticProxy',
     flashItem: 'KT_light_1_Power',
     flashCount: 2,
@@ -168,7 +172,7 @@ function turnOffTV(roomName, message) {
     // logger.info('sent command - shutdown kodi');
     // items.getItem(room.ampPowerOff).sendCommand('ON');
     if (items.getItem(room.tvPower).state === 'OFF') {
-      actions.Voice.say('The TV is already off. you knob');
+      actions.Voice.say('The TV is already off');
       return;
     }
 
@@ -183,7 +187,7 @@ function turnOffTV(roomName, message) {
 
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
-      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(25), () => {
+      CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(room.turnOffDelaySec), () => {
         items.getItem(room.kodiPower).sendCommand('OFF'); // CT kodi, amp, ir bridge
         items.getItem(room.tvPower).sendCommand('OFF'); // tv, hdmi audio extractor
 
@@ -197,7 +201,7 @@ function turnOffTV(roomName, message) {
     }
     items.getItem(room.kodiShutdownProxy).sendCommand('OFF');
     // if off timer undefined start for pi shutdown
-    tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
+    tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(room.turnOffDelaySec), () => {
       if (room.kodiPower) {
         items.getItem(room.kodiPower).sendCommand('OFF');
       }
