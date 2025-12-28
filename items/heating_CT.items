@@ -24,6 +24,7 @@ Number:Temperature      CT_TemperatureCalculation_3 "Conservatory Temperature Ca
 Number:Temperature      CT_TemperatureCalculation_4 "Conservatory Temperature Calculation_4 [%.1f %unit%]" <temperature> (gChart_Minute)
 Number:Temperature      CT_TemperatureCalculation_5 "Conservatory Temperature Calculation_5 [%.1f %unit%]" <temperature> (gChart_Minute)
 
+Number:Temperature      temp0 "Conservatory Temperature Calculation_0 [%.1f %unit%]" <temperature> (gEveryUpdate)
 Number:Temperature      temp1 "Conservatory Temperature Calculation_1 [%.1f %unit%]" <temperature> (gEveryUpdate)
 Number:Temperature      temp2 "Conservatory Temperature Calculation_2 [%.1f %unit%]" <temperature> (gEveryUpdate)
 Number:Temperature      temp3 "Conservatory Temperature Calculation_3 [%.1f %unit%]" <temperature> (gEveryUpdate)

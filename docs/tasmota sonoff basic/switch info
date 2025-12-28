@@ -67,7 +67,13 @@ RX GPIO3---------------------------------------R4K7--- TO WALL SWITCH
 3V3
 BOTTOM
 
-SWITCH
+push button -located at bottom of header
+
+try
+1k and 1uf
+
+try a 4k7 pull uip first
+
 
 
 https://www.keysight.com/used/au/en/knowledge/calculators/low-pass-filter-calculator

@@ -64,23 +64,6 @@ Items {
 
     lightCyclerIntervalMillis : strategy = everyUpdate
 
-    //   lightCyclerHueStepSize : strategy = everyUpdate
-    //   lightCyclerIntervalMillis : strategy = everyUpdate
-    //   lightCyclerSaturation : strategy = everyUpdate
-    //   lightCyclerBrightness : strategy = everyUpdate
-
     v_StartColourBulbsCycle : strategy = everyUpdate
-
-    // temp1 : strategy = everyUpdate
-    // temp2 : strategy = everyUpdate
-    // temp3 : strategy = everyUpdate
-    // temp4 : strategy = everyUpdate
-    // temp5 : strategy = everyUpdate
-    // temp6 : strategy = everyUpdate
-    // temp7 : strategy = everyUpdate
-    // temp8 : strategy = everyUpdate
-    // temp9 : strategy = everyUpdate
-    // temp10 : strategy = everyUpdate
-
 
 }

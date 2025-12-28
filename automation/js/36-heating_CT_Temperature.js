@@ -1,5 +1,10 @@
+/**
+ * @file 36-heating_CT_Temperature.js
+ * @description Smooths raw temperature readings for the Conservatory (CT) thermostat using various algorithms
+ * (EMA, Median, Average, Slope detection) to prevent jitter and spikes in heating control.
+ */
 const {
-  log, items, rules, actions, triggers,
+  log, items, rules, actions, triggers, cache,
 } = require('openhab');
 
 const ruleUID = 'heating-ct-smooth-temperature';
@@ -34,172 +39,311 @@ let transferCurve = cache.private.get('transferCurve', () => ({
   diffAlpha_13: { degreesDiff: 99.0, alpha: 0.0001 },
 }));
 
+/**
+ * Retrieves the smoothing factor (alpha) based on the absolute difference between readings.
+ *
+ * @param {number} absDiff - The absolute difference between current and previous reading.
+ * @returns {number} The alpha value for smoothing.
+ */
 function transferValue(absDiff) {
-  const found = Object.entries(transferCurve).find(([transferPoint, tp]) => {
-    logger.debug('?? transferPoint: {}->{}', transferPoint, JSON.stringify(tp));
-    return absDiff <= tp.degreesDiff;
-  });
+  const found = Object.entries(transferCurve).find(([transferPoint, tp]) =>
+    // logger.debug('?? transferPoint: {}->{}', transferPoint, JSON.stringify(tp));
+    absDiff <= tp.degreesDiff);
   return found ? found[1].alpha : 0.001;
 }
 
 /**
  * Alternative: Standard Exponential Moving Average (EMA)
  * Good for reducing constant small jitter/noise.
- * @param {number} prev - Previous smoothed value
- * @param {number} curr - Current raw reading
- * @param {number} alpha - Smoothing factor (0.0 - 1.0). Lower = more smoothing.
+ * @param {number} previousValue - Previous smoothed value
+ * @param {number} currentReading - Current raw reading
+ * @param {number} smoothingFactor - Smoothing factor (0.0 - 1.0). Lower = more smoothing.
  * @param {string} debugTag - Tag for logging
  */
-function calcStandardEMA(prev, curr, alpha = 0.1, debugTag = 'EMA') {
-  curr = parseFloat(curr);
-  prev = parseFloat(prev);
-  if (Number.isNaN(prev)) return curr;
-  const ema = (alpha * curr) + ((1 - alpha) * prev);
-  logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, alpha, curr, alpha, prev, ema);
-  return ema;
-}
-
-function calcWeightedEMA(prev, curr, debugTag = 'WeightedEMA') {
-  curr = parseFloat(curr);
-  prev = parseFloat(prev);
-  if (Number.isNaN(prev)) return curr;
-  logger.debug('calcWeightedEMA..{} curr: {}, prev: {}', debugTag, curr, prev);
-  // calculate alpha weighted EMA based on change between curr and prev
-  let delta = curr - prev;
-  // limit to 1 dp
-  delta = delta.toFixed(1);
-  const dynamicAlpha = transferValue(Math.abs(delta));
-  logger.debug('..{} delta: {}, dynamicAlpha: {}', debugTag, delta, dynamicAlpha);
-  const weightedEma = (dynamicAlpha * curr) + ((1 - dynamicAlpha) * prev);
-  logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, dynamicAlpha, curr, dynamicAlpha, prev, weightedEma);
-  return weightedEma;
+function calcStandardEMA(previousValue, currentReading, smoothingFactor = 0.1, debugTag = 'EMA') {
+  const currentNumeric = parseFloat(currentReading);
+  const previousNumeric = parseFloat(previousValue);
+  if (Number.isNaN(previousNumeric)) return currentNumeric;
+  const exponentialMovingAverage = (smoothingFactor * currentNumeric) + ((1 - smoothingFactor) * previousNumeric);
+  // logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, smoothingFactor, currentNumeric, smoothingFactor, previousNumeric, exponentialMovingAverage);
+  return exponentialMovingAverage;
 }
 
 /**
- * Alternative: Median Filter
- * Good for rejecting random spikes.
- * @param {number} curr - Current raw reading
+ * Calculates a weighted Exponential Moving Average (EMA) where the smoothing factor (alpha)
+ * is dynamic based on the magnitude of change.
+ *
+ * @param {number|string} previousValue - The previous smoothed value.
+ * @param {number|string} currentReading - The current raw reading.
+ * @param {string} [debugTag='WeightedEMA'] - Tag for debug logging.
+ * @returns {number} The calculated weighted EMA.
  */
-function calcMedian(curr) {
-  const buffer = cache.private.get('medianBuffer', () => []);
-  const maxSize = 2; // Size of the median filter buffer
-  const val = parseFloat(curr);
-  buffer.push(val);
-  logger.debug('..median buffer size: {}, values: {}', buffer.length, JSON.stringify(buffer));
-  if (buffer.length >= maxSize) buffer.shift();
-  cache.private.put('medianBuffer', buffer);
+function calcWeightedEMA(previousValue, currentReading, debugTag = 'WeightedEMA') {
+  const currentNumeric = parseFloat(currentReading);
+  const previousNumeric = parseFloat(previousValue);
 
-  const sorted = [...buffer].sort((a, b) => a - b);
-  const mid = Math.floor(sorted.length / 2);
-  return sorted.length % 2 !== 0 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+  if (Number.isNaN(previousNumeric)) return currentNumeric;
+
+  // logger.debug('calcWeightedEMA..{} current: {}, previous: {}', debugTag, currentNumeric, previousNumeric);
+
+  // calculate alpha weighted EMA based on change between current and previous
+  let difference = currentNumeric - previousNumeric;
+  // limit to 1 decimal place for lookup/stability
+  difference = parseFloat(difference.toFixed(1));
+
+  const smoothingFactor = transferValue(Math.abs(difference));
+  // logger.debug('..{} difference: {}, smoothingFactor: {}', debugTag, difference, smoothingFactor);
+
+  const weightedAverage = (smoothingFactor * currentNumeric) + ((1 - smoothingFactor) * previousNumeric);
+  // logger.debug('..{} calc: ({} * {}) + ((1 - {}) * {}) = {}', debugTag, smoothingFactor, currentNumeric, smoothingFactor, previousNumeric, weightedAverage);
+
+  return weightedAverage;
 }
 
-function calcAverage(curr, windowSize = 3, bufferName = 'averageBuffer', debugTag = 'temp') {
+/**
+ * Calculates the median of a value over a specified window size.
+ * Good for rejecting random spikes.
+ *
+ * @param {number|string} currentReading - The current raw reading.
+ * @param {number} [windowSize=3] - The size of the median filter buffer.
+ * @returns {number} The calculated median value.
+ */
+function calcMedian(currentReading, windowSize = 3) {
+  const buffer = cache.private.get('medianBuffer', () => []);
+  const numericValue = parseFloat(currentReading);
+  buffer.push(numericValue);
+  // logger.debug('..median buffer size: {}, values: {}', buffer.length, JSON.stringify(buffer));
+  if (buffer.length > windowSize) buffer.shift();
+  cache.private.put('medianBuffer', buffer);
+
+  const sortedBuffer = [...buffer].sort((a, b) => a - b);
+  const midIndex = Math.floor(sortedBuffer.length / 2);
+  return sortedBuffer.length % 2 !== 0 ? sortedBuffer[midIndex] : (sortedBuffer[midIndex - 1] + sortedBuffer[midIndex]) / 2;
+}
+
+/**
+ * Calculates the moving average of a value over a specified window size.
+ *
+ * @param {number|string} currentReading - The current value to add to the buffer.
+ * @param {number} [windowSize=3] - The size of the moving average buffer.
+ * @param {string} [debugTag='temp'] - A tag used for debug logging.
+ * @returns {number} The calculated average.
+ */
+function calcAverage(currentReading, windowSize = 3, debugTag = 'temp') {
+  const bufferName = `averageBuffer${windowSize}`;
   const buffer = cache.private.get(bufferName, () => []);
-  const maxSize = windowSize; // Size of the moving average buffer
-  const val = parseFloat(curr);
-  buffer.push(val);
-  if (buffer.length > maxSize) buffer.shift();
-  logger.debug('..{}:{} buffer size: {}, values: {}', debugTag, bufferName, buffer.length, JSON.stringify(buffer));
+
+  const numericValue = parseFloat(currentReading);
+  buffer.push(numericValue);
+  if (buffer.length > windowSize) buffer.shift();
+  // logger.debug('..{}:{} buffer size: {}, values: {}', debugTag, bufferName, buffer.length, JSON.stringify(buffer));
 
   cache.private.put(bufferName, buffer);
 
-  const sum = buffer.reduce((acc, v) => acc + v, 0);
+  const sum = buffer.reduce((accumulator, value) => accumulator + value, 0);
   const average = sum / buffer.length;
-  logger.debug('..{} average value: {}', debugTag, average);
+  // logger.debug('..{} average value: {}', debugTag, average);
   return average;
 }
 
-// function to smooth out CT temperature readings
-// take previous temperature and new raw temperature
-// calculate new temperature from 25% of new and 75% of previous temperature
-function smoothCTTemperature(previousTemperature, newTemperature, debugTag = 'temp') {
-  const prev = parseFloat(previousTemperature);
-  const curr = parseFloat(newTemperature);
+/**
+ * Smooths out temperature readings using a fixed weighted average (EMA).
+ * Calculates new temperature from 40% of new and 60% of previous temperature.
+ *
+ * @param {number|string} previousSmoothedTemp - The previous smoothed temperature value.
+ * @param {number|string} currentRawTemp - The new raw temperature reading.
+ * @param {string} [debugTag='temp'] - Tag for debug logging.
+ * @returns {number} The calculated smoothed temperature.
+ */
+function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 'temp') {
+  const previousNumeric = parseFloat(previousSmoothedTemp);
+  const currentNumeric = parseFloat(currentRawTemp);
 
-  if (Number.isNaN(prev)) return curr;
-  if (Number.isNaN(curr)) return prev;
+  if (Number.isNaN(previousNumeric)) return currentNumeric;
+  if (Number.isNaN(currentNumeric)) return previousNumeric;
 
-  const splitFactor = 0.25;
-  const newTemp = (prev * (1 - splitFactor)) + (curr * splitFactor);
-  logger.debug('..{} smoothCTTemperature: ({} * {}) + ({} * {}) = {}', debugTag, prev, splitFactor, curr, (1 - splitFactor), newTemp);
-  return newTemp;
+  const smoothingFactor = 0.6;
+  const smoothedTemp = (previousNumeric * smoothingFactor) + (currentNumeric * (1 - smoothingFactor));
+  // logger.debug('..{} smoothCTTemperature: ({} * {}) + ({} * {}) = {}', debugTag, previousNumeric, (1 - smoothingFactor), currentNumeric, smoothingFactor, smoothedTemp);
+  return smoothedTemp;
+}
+
+/**
+ * Calculates the slope between two temperature points and filters out spikes
+ * if the rate of change exceeds a threshold.
+ *
+ * @param {number|string} previousTemp - The previous temperature value.
+ * @param {number} previousTemp - The epoch timestamp of the previous reading.
+ * @param {number|string} currentTemp - The current temperature value.
+ * @param {number} currentTime - The epoch timestamp of the current reading.
+ * @returns {number} The filtered temperature (either current or previous).
+ */
+function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
+  // convert to floats into local variables (do not reassign parameters)
+  let previousTemp = parseFloat(prevTemp);
+  const currentTemp = parseFloat(currTemp);
+
+  // check cache for last accepted previousTemp to avoid using a spike as previous
+  const cachedPreviousTemp = cache.private.get('slopePreviousTemp');
+  // logger.debug('..xxcachedPreviousTemp: {}', cachedPreviousTemp);
+  if (cachedPreviousTemp !== null) {
+    logger.debug('..ZZ calculateSlope using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
+    previousTemp = cachedPreviousTemp;
+    // clear cache now used
+    cache.private.remove('slopePreviousTemp');
+  }
+  const deltaTemp = currentTemp - previousTemp;
+  const deltaTime = currTime - prevTime;
+  logger.debug('..deltaTemp: {} - {} = {}', currentTemp, previousTemp, deltaTemp);
+  logger.debug('..deltaTime: {} - {} = {}', currTime, prevTime, deltaTime);
+  if (deltaTime === 0) {
+    logger.debug('..calculateSlope deltaTime is 0, returning previousTemp: {}', previousTemp);
+    return previousTemp;
+  }
+  const slope = Math.abs(deltaTemp / deltaTime);
+  logger.debug('..Slope deltaTemp: {} / deltaTime: {} = slope: {}', deltaTemp, deltaTime, slope);
+
+  // when slope is positive and above a threshold, increase alpha to respond faster to rising temps
+  let alpha = 0.0;
+  let result = previousTemp;
+  const maxRateOfChange = 1 / 400;
+
+  if (slope !== 0) {
+    if (slope >= maxRateOfChange) { // greater than 7 degrees per second
+      alpha = 0.0;
+      result = previousTemp;
+      logger.debug('..slope TOO STEEP {} >= maxRateOfChange {}, returning previousTemp: {} (spike rejected)', slope, maxRateOfChange, previousTemp);
+      // an ignored spike must also be not used as previous for next calc
+      // set and store previousTemp as currentTemp for next calc
+      cache.private.put('slopePreviousTemp', previousTemp);
+      logger.debug('..storing slopePreviousTemp in cache as: {} to avoid using spike as previous next time', previousTemp);
+    } else {
+      alpha = 1.0;
+      result = currentTemp;
+      logger.debug('..slope SLOW CHANGE {} < maxRateOfChange {}, returning currentTemp: {}', slope, maxRateOfChange, currentTemp);
+    }
+  } else {
+    // alpha = 1.0;
+    // result = currentTemp;
+    logger.debug('..slope NO CHANGE, returning currentTemp: {}', currentTemp);
+  }
+
+  // cache.private.put('slopePreviousTemp', previousTemp);
+  // logger.debug('..storing slopePreviousTemp in cache as: {} testing', previousTemp);
+
+  logger.debug('..Slope result: {} + ({} * {}) = {}', previousTemp, deltaTemp, alpha, result);
+  return result;
 }
 
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
-  execute: () => {
-    logger.error('smoothing ct raw temp..........');
+  execute: (event) => {
+    logger.warn('smoothing ct raw temp.........');
+
+    const rawTempItem = items.getItem('CT_ThermostatTemperatureAmbient_raw');
+
+    const historicItem = rawTempItem.persistence.previousState();
+    let previousRawTemp = historicItem ? historicItem.state : rawTempItem.state;
+    const previousRawTempTimestamp = historicItem ? historicItem.timestamp : null;
+    logger.debug(`previous raw CT temp is: ${previousRawTemp}`);
+    logger.debug(`previous raw CT temp timestamp is: ${previousRawTempTimestamp}`);
+
+    const newRawTemp = rawTempItem.state;
+    const newRawTempTimestamp = rawTempItem.lastStateUpdateTimestamp;
+    logger.debug(`new raw CT temp is: ${newRawTemp}`);
+    logger.debug(`new raw CT temp timestamp is: ${newRawTempTimestamp}`);
+
+    if (newRawTemp === 'NULL' || newRawTemp === 'UNDEF') {
+      logger.warn('CT_ThermostatTemperatureAmbient_raw state is NULL or UNDEF, skipping smoothing.');
+      return;
+    }
+
+    if (previousRawTemp === 'NULL' || previousRawTemp === 'UNDEF') {
+      logger.debug('Previous raw temp is NULL or UNDEF, using current raw temp.');
+      previousRawTemp = newRawTemp;
+    }
 
     // save old 'previous' temp
     const prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-    logger.debug(`..previous CT temp is: ${prevTemp}`);
+    const prevTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').persistence.lastUpdate();
+    logger.debug(`previous USED CT temp is: ${prevTemp}`);
+    logger.debug(`previous USED CT temp timestamp is: ${prevTempTimestamp}`);
 
-    const rawTemp = items.getItem('CT_ThermostatTemperatureAmbient_raw').rawState;
-    logger.debug(`..new raw CT temp is: ${rawTemp}`);
+    let preciseTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_precision').state);
 
-    let preciseTemp = items.getItem('CT_ThermostatTemperatureAmbient_precision').rawState;
-    // logger.debug(`..ct temp_precision').rawState is: ${items.getItem('CT_ThermostatTemperatureAmbient_precision').rawState}`);
     // if preciseTemp is null set to rawTemp
     if (items.getItem('CT_ThermostatTemperatureAmbient_precision').state === 'NULL') {
-      preciseTemp = rawTemp;
-      logger.error(`..setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
+      preciseTemp = newRawTemp;
+      logger.error(`setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
     }
-    logger.debug(`..previous precision temp is: ${preciseTemp}`);
+    // logger.debug(`..previous precision temp is: ${preciseTemp}`);
 
-    // const newPreciseTemp = calcNewTemp(preciseTemp, rawTemp);
+    // const newPreciseTemp = calcNewTemp(preciseTemp, newRawTemp);
     const decimalPlaces = 1;
-    let temp1 = calcMedian(rawTemp);
-    temp1 = Number(temp1).toFixed(decimalPlaces);
-    logger.debug(`temp1..calculated median temp1: ${temp1}`);
-    items.getItem('temp1').sendCommand(temp1);
 
-    let temp2 = calcAverage(rawTemp, 2, 'Average2Buffer', 'temp2');
+    // Convert timestamps to epoch seconds for calculation
+    const prevTime = prevTempTimestamp ? prevTempTimestamp.toEpochSecond() : 0;
+    const rawTime = newRawTempTimestamp ? newRawTempTimestamp.toEpochSecond() : 0;
+    const previousRawTempTimestampEpoch = previousRawTempTimestamp ? previousRawTempTimestamp.toEpochSecond() : 0;
+    logger.debug(`prevTime: ${prevTime}, rawTime: ${rawTime}\n`);
+
+    // calculate various smoothing methods for analysis
+    let temp0 = calculateSlope(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
+    temp0 = Number(temp0).toFixed(decimalPlaces);
+    logger.debug(`temp0..calculated slope temp0: ${temp0}\n`);
+    items.getItem('temp0').postUpdate(temp0);
+
+    let temp1 = calcMedian(newRawTemp);
+    temp1 = Number(temp1).toFixed(decimalPlaces);
+    // logger.debug(`temp1..calculated median temp1: ${temp1}`);
+    items.getItem('temp1').postUpdate(temp1);
+
+    let temp2 = calcAverage(newRawTemp, 2, 'temp2');
     temp2 = Number(temp2).toFixed(decimalPlaces);
     logger.debug(`temp2..calculated average temp2: ${temp2}`);
-    items.getItem('temp2').sendCommand(temp2);
+    items.getItem('temp2').postUpdate(temp2);
 
-    let temp3 = calcAverage(rawTemp, 3, 'Average3Buffer', 'temp3');
+    let temp3 = calcAverage(newRawTemp, 3, 'temp3');
     temp3 = Number(temp3).toFixed(decimalPlaces);
-    logger.debug(`temp3..calculated average temp3: ${temp3}`);
-    items.getItem('temp3').sendCommand(temp3);
+    // logger.debug(`temp3..calculated average temp3: ${temp3}`);
+    items.getItem('temp3').postUpdate(temp3);
 
-    let temp4 = calcAverage(rawTemp, 4, 'Average4Buffer', 'temp4');
+    let temp4 = calcAverage(newRawTemp, 4, 'temp4');
     temp4 = Number(temp4).toFixed(decimalPlaces);
-    logger.debug(`temp4..calculated average temp4: ${temp4}`);
-    items.getItem('temp4').sendCommand(temp4);
+    // logger.debug(`temp4..calculated average temp4: ${temp4}`);
+    items.getItem('temp4').postUpdate(temp4);
 
-    let temp5 = calcAverage(rawTemp, 5, 'Average5Buffer', 'temp5');
+    let temp5 = calcAverage(newRawTemp, 5, 'temp5');
     temp5 = Number(temp5).toFixed(decimalPlaces);
-    logger.debug(`temp5..calculated average temp5: ${temp5}`);
-    items.getItem('temp5').sendCommand(temp5);
+    // logger.debug(`temp5..calculated average temp5: ${temp5}`);
+    items.getItem('temp5').postUpdate(temp5);
 
-    let temp6 = calcAverage(rawTemp, 6, 'Average6Buffer', 'temp6');
+    let temp6 = calcAverage(newRawTemp, 6, 'temp6');
     temp6 = Number(temp6).toFixed(decimalPlaces);
-    logger.debug(`temp6..calculated average temp6: ${temp6}`);
-    items.getItem('temp6').sendCommand(temp6);
+    // logger.debug(`temp6..calculated average temp6: ${temp6}`);
+    items.getItem('temp6').postUpdate(temp6);
 
-    let temp7 = smoothCTTemperature(prevTemp, rawTemp, 'temp7');
+    let temp7 = smoothCTTemperature(prevTemp, newRawTemp, 'temp7');
     temp7 = Number(temp7).toFixed(decimalPlaces);
-    logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
-    items.getItem('temp7').sendCommand(temp7);
+    // logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
+    items.getItem('temp7').postUpdate(temp7);
 
-    let temp8 = calcAverage(rawTemp, 8, 'Average8Buffer', 'temp8');
+    let temp8 = calcAverage(newRawTemp, 8, 'temp8');
     temp8 = Number(temp8).toFixed(decimalPlaces);
-    logger.debug(`temp8..calculated average temp8: ${temp8}`);
-    items.getItem('temp8').sendCommand(temp8);
+    // logger.debug(`temp8..calculated average temp8: ${temp8}`);
+    items.getItem('temp8').postUpdate(temp8);
 
-    let temp9 = calcWeightedEMA(prevTemp, rawTemp, 'temp9');
+    let temp9 = calcWeightedEMA(prevTemp, newRawTemp, 'temp9');
     temp9 = Number(temp9).toFixed(decimalPlaces);
-    logger.debug(`temp9..calculated average temp9: ${temp9}`);
-    items.getItem('temp9').sendCommand(temp9);
+    // logger.debug(`temp9..calculated average temp9: ${temp9}`);
+    items.getItem('temp9').postUpdate(temp9);
 
-    let temp10 = calcStandardEMA(prevTemp, rawTemp, 0.4, 'temp10');
+    let temp10 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp10');
     temp10 = Number(temp10).toFixed(decimalPlaces);
-    logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
-    items.getItem('temp10').sendCommand(temp10);
+    // logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
+    items.getItem('temp10').postUpdate(temp10);
 
     const newPreciseTemp = temp2;
 
@@ -208,22 +352,22 @@ rules.JSRule({
     // to 1 decimalPlaces for display and rules etc
     const workingTemp = Number(newPreciseTemp).toFixed(1);
     // if workingTemp is NaN then log error and return
-    if (Number.isNaN(workingTemp)) {
-      logger.error(`..calculated workingTemp is NaN: ${workingTemp}, rawTemp: ${rawTemp}, preciseTemp: ${preciseTemp}, newPreciseTemp: ${newPreciseTemp}`);
+    if (Number.isNaN(parseFloat(workingTemp))) {
+      logger.error(`calculated workingTemp is NaN: ${workingTemp}, rawTemp: ${newRawTemp}, preciseTemp: ${preciseTemp}, newPreciseTemp: ${newPreciseTemp}`);
       return;
     }
     items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
     items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
-    logger.debug(`..writing new ct temp 1decimalPlaces temp CT and FH ambient: ${workingTemp}`);
+    logger.debug(`writing new ct temp 1decimalPlaces temp CT and FH ambient: ${workingTemp}`);
 
     // store as precise 3decimalPlaces value
     items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newPreciseTemp);
-    logger.debug(`..writing new precision 3decimalPlaces temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
+    logger.debug(`writing new precision 3decimalPlaces temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
 
     // get temp in working item value
     const ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-    logger.debug(`..newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
+    logger.debug(`newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
 
-    logger.debug(`..prev temp: ${prevTemp}, raw temp: ${rawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
+    logger.debug(`prev temp: ${prevTemp}, raw temp: ${newRawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
   },
 });

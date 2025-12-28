@@ -52,12 +52,19 @@ const func = () => {
     logger.debug(`move Color - Command(HSBType) H: ${hueStored.toString()}, S: ${saturation.toString()}, B: ${brightness.toString()}`);
     light1.sendCommand(`${hueStored.toString()},${saturation.toString()},${brightness.toString()}`);
     light2.sendCommand(`${hueStored.toString()},${saturation.toString()},${brightness.toString()}`);
-  } else {
-    logger.debug('CycleColor - inner off');
-    lt.cancel();
-    light1_switch.sendCommand('OFF');
-    light2_switch.sendCommand('OFF');
+
+    let timerDuration = items.getItem('lightCyclerIntervalMillis').rawState;
+    // if timerDuration is null or 0, set it to 1000
+    if (items.getItem('lightCyclerIntervalMillis').state === 'NULL' || timerDuration <= 0) {
+      timerDuration = 1000;
+    }
+    return timerDuration;
   }
+  logger.debug('CycleColor - inner off');
+  lt.cancel();
+  light1_switch.sendCommand('OFF');
+  light2_switch.sendCommand('OFF');
+  return null;
 };
 
 rules.JSRule({
@@ -69,7 +76,7 @@ rules.JSRule({
   execute: (event) => {
     logger.debug('entered light color cycle ItemStateChangeTrigger');
 
-    if (event.newState == 'ON') {
+    if (event.newState === 'ON') {
       logger.debug('CycleColor ON - Color Loop Activated');
       light1_switch.sendCommand('ON');
       light2_switch.sendCommand('ON');
