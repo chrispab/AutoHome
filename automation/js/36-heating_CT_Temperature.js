@@ -178,7 +178,7 @@ function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 't
  * @param {number} currentTime - The epoch timestamp of the current reading.
  * @returns {number} The filtered temperature (either current or previous).
  */
-function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
+function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   // convert to floats into local variables (do not reassign parameters)
   let previousTemp = parseFloat(prevTemp);
   const currentTemp = parseFloat(currTemp);
@@ -207,7 +207,8 @@ function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
   let alpha = 0.0;
   let result = previousTemp;
   // const maxRateOfChange = 1 / 650;
-  const maxRateOfChange = 1 / 900;
+  // const maxRateOfChange = 1 / 900;
+  const maxRateOfChange = 1 / 800;
 
   if (slope !== 0) {
     if (slope >= maxRateOfChange) { // greater than 7 degrees per second
@@ -291,7 +292,7 @@ rules.JSRule({
     logger.debug(`prevTime: ${prevTime}, rawTime: ${rawTime}\n`);
 
     // calculate various smoothing methods for analysis
-    let temp0 = calculateSlope(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
+    let temp0 = calculateLimitRateOfChange(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
     temp0 = Number(temp0).toFixed(decimalPlaces);
     logger.debug(`temp0..calculated slope temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
