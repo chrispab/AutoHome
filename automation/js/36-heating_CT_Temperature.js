@@ -187,7 +187,7 @@ function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
   const cachedPreviousTemp = cache.private.get('slopePreviousTemp');
   // logger.debug('..xxcachedPreviousTemp: {}', cachedPreviousTemp);
   if (cachedPreviousTemp !== null) {
-    logger.debug('..ZZ calculateSlope using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
+    logger.debug('..calculateSlope using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
     previousTemp = cachedPreviousTemp;
     // clear cache now used
     cache.private.remove('slopePreviousTemp');
@@ -206,7 +206,8 @@ function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
   // when slope is positive and above a threshold, increase alpha to respond faster to rising temps
   let alpha = 0.0;
   let result = previousTemp;
-  const maxRateOfChange = 1 / 400;
+  // const maxRateOfChange = 1 / 650;
+  const maxRateOfChange = 1 / 900;
 
   if (slope !== 0) {
     if (slope >= maxRateOfChange) { // greater than 7 degrees per second
@@ -216,7 +217,7 @@ function calculateSlope(prevTemp, prevTime, currTemp, currTime) {
       // an ignored spike must also be not used as previous for next calc
       // set and store previousTemp as currentTemp for next calc
       cache.private.put('slopePreviousTemp', previousTemp);
-      logger.debug('..storing slopePreviousTemp in cache as: {} to avoid using spike as previous next time', previousTemp);
+      logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
     } else {
       alpha = 1.0;
       result = currentTemp;
@@ -345,7 +346,7 @@ rules.JSRule({
     // logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
     items.getItem('temp10').postUpdate(temp10);
 
-    const newPreciseTemp = temp2;
+    const newPreciseTemp = temp0;
 
     // const newPreciseTemp = calcStandardEMA(prevTemp, rawTemp, 0.9);
 
