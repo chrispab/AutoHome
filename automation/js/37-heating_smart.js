@@ -76,9 +76,7 @@ rules.JSRule({
       logger.debug('~~timeNow: {}', timeNow.toString());
       // logger.debug('~~timeNow: {}', timeNowStr);
       // in epoch secondsText '2023-10-28T15:47:38.348Z' could not be parsed: : 2023-10-28T15:47:38.348Z, at index: 0
-      const ins = time.Instant.parse(timeNow.toString());
-      logger.debug('~~timeNow ins.toString(): {}', ins.toString());
-      logger.debug('~~timeNow ins.epochSecond(): {}', ins.epochSecond());
+      logger.debug('~~timeNow epochSecond: {}', timeNow.epochSecond());
 
       // ZonedDateTime.now().withFixedOffsetZone().toString();
 
@@ -89,7 +87,7 @@ rules.JSRule({
       logger.debug('~~timeLastReading: {}', timeLastReading);
 
       // establish on to temp inc time - latency
-      const deltaTime = ins.epochSecond() - timeLastReading;
+      const deltaTime = timeNow.epochSecond() - timeLastReading;
       items.getItem('CT_heating_deltaTime').postUpdate(deltaTime);
       // deltaTime = items.getItem('CT_heating_deltaTime').state
       logger.debug('~~deltaTime: {}', deltaTime);
@@ -111,7 +109,7 @@ rules.JSRule({
 
       // save info to vars
       items.getItem('CT_heating_tempLastReading').postUpdate(tempNow);
-      items.getItem('CT_heating_timeLastReading').postUpdate(ins.epochSecond());
+      items.getItem('CT_heating_timeLastReading').postUpdate(timeNow.epochSecond());
       items.getItem('CT_heating_deltaTemp').postUpdate(deltaTemp);
       items.getItem('CT_heating_deltaTime').postUpdate(deltaTime);
 

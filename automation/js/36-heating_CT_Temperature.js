@@ -14,11 +14,11 @@ const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded - {}', ruleUID);
-
   for (const transferPoint in transferCurve) {
     // logger.debug('==transferPoint: {}, transferCurve[transferPoint]: {}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
-    logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
+    // logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
   }
+  // logger.debug('.....................................');
 };
 
 // get transfer alpha value based on difference in degrees (upto), e.g absDiff <= tp.degreesDiff;
@@ -169,72 +169,94 @@ function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 't
 }
 
 /**
- * Calculates the slope between two temperature points and filters out spikes
+ * Calculates the currentReadingGradient between two temperature points and filters out spikes
  * if the rate of change exceeds a threshold.
  *
- * @param {number|string} previousTemp - The previous temperature value.
- * @param {number} previousTemp - The epoch timestamp of the previous reading.
- * @param {number|string} currentTemp - The current temperature value.
- * @param {number} currentTime - The epoch timestamp of the current reading.
+ * @param {number|string} prevTemp - The previous temperature value.
+ * @param {number} prevTime - The epoch timestamp of the previous reading.
+ * @param {number|string} currTemp - The current temperature value.
+ * @param {number} currTime - The epoch timestamp of the current reading.
  * @returns {number} The filtered temperature (either current or previous).
  */
 function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   // convert to floats into local variables (do not reassign parameters)
   let previousTemp = parseFloat(prevTemp);
+  let previousTime = prevTime;
+  let numberReadingsTooSteep = 0;
   const currentTemp = parseFloat(currTemp);
+  const currentTime = currTime;
+
+  if (Number.isNaN(previousTemp) || Number.isNaN(currentTemp)) {
+    logger.warn('calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', prevTemp, currTemp);
+    return !Number.isNaN(currentTemp) ? currentTemp : previousTemp;
+  }
 
   // check cache for last accepted previousTemp to avoid using a spike as previous
   const cachedPreviousTemp = cache.private.get('slopePreviousTemp');
-  // logger.debug('..xxcachedPreviousTemp: {}', cachedPreviousTemp);
-  if (cachedPreviousTemp !== null) {
+  const cachedPreviousTime = cache.private.get('slopePreviousTime');
+  const cachedNumberReadingsTooSteep = cache.private.get('slopeNumberReadingsTooSteep');
+
+  if (cachedPreviousTemp !== null && cachedPreviousTemp !== undefined) {
     logger.debug('..calculateSlope using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
+    logger.debug('..calculateSlope using CACHED previousTime: {} instead of spike previousTime: {}', cachedPreviousTime, previousTime);
+    logger.debug('..calculateSlope had {} consecutive TOO STEEP readings cached', cachedNumberReadingsTooSteep);
+
     previousTemp = cachedPreviousTemp;
+    previousTime = cachedPreviousTime;
+    numberReadingsTooSteep = cachedNumberReadingsTooSteep || 0;
     // clear cache now used
     cache.private.remove('slopePreviousTemp');
+    cache.private.remove('slopePreviousTime');
+    cache.private.remove('slopeNumberReadingsTooSteep');
+    logger.debug('..calculateSlope cleared CACHED previousTemp and previousTime after use');
   }
   const deltaTemp = currentTemp - previousTemp;
-  const deltaTime = currTime - prevTime;
+  const deltaTime = currentTime - previousTime;
   logger.debug('..deltaTemp: {} - {} = {}', currentTemp, previousTemp, deltaTemp);
-  logger.debug('..deltaTime: {} - {} = {}', currTime, prevTime, deltaTime);
+  logger.debug('..deltaTime: {} - {} = {}', currentTime, previousTime, deltaTime);
   if (deltaTime === 0) {
     logger.debug('..calculateSlope deltaTime is 0, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
-  const slope = Math.abs(deltaTemp / deltaTime);
-  logger.debug('..Slope deltaTemp: {} / deltaTime: {} = slope: {}', deltaTemp, deltaTime, slope);
+  const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
+  logger.debug('..currentReadingGradient deltaTemp: {} / deltaTime: {} = currentReadingGradient: {}', deltaTemp, deltaTime, currentReadingGradient);
 
-  // when slope is positive and above a threshold, increase alpha to respond faster to rising temps
-  let alpha = 0.0;
-  let result = previousTemp;
-  // const maxRateOfChange = 1 / 650;
-  // const maxRateOfChange = 1 / 900;
-  const maxRateOfChange = 1 / 800;
+  const maxAllowedGradient = 1 / 700; // 1 degree per 700 seconds
 
-  if (slope !== 0) {
-    if (slope >= maxRateOfChange) { // greater than 7 degrees per second
-      alpha = 0.0;
-      result = previousTemp;
-      logger.debug('..slope TOO STEEP {} >= maxRateOfChange {}, returning previousTemp: {} (spike rejected)', slope, maxRateOfChange, previousTemp);
-      // an ignored spike must also be not used as previous for next calc
-      // set and store previousTemp as currentTemp for next calc
-      cache.private.put('slopePreviousTemp', previousTemp);
-      logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
-    } else {
-      alpha = 1.0;
-      result = currentTemp;
-      logger.debug('..slope SLOW CHANGE {} < maxRateOfChange {}, returning currentTemp: {}', slope, maxRateOfChange, currentTemp);
+  // express currentReadingGradient as degrees per hour
+  const currentReadingGradientPerHour = currentReadingGradient * 3600;
+  logger.debug('..currentReadingGradient (degrees/hr): {}', currentReadingGradientPerHour);
+  // express maxAllowedGradient as degrees per hour for logging
+  const maxAllowedGradientPerHour = maxAllowedGradient * 3600;
+  logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
+
+  if (currentReadingGradient >= maxAllowedGradient) { // greater than threshold
+    logger.debug('..SLOPE TOO STEEP {} >= maxAllowedGradient {}, returning previousTemp: {} (spike rejected)', currentReadingGradient, maxAllowedGradient, previousTemp);
+    // an ignored spike must also be not used as previous for next calc
+    // set and store previousTemp as currentTemp for next calc
+    // also store timestamp of previousTemp
+    numberReadingsTooSteep += 1;
+    // if there have been 3 consecutive too steep readings, accept the currentTemp anyway
+    // implies genuine rapid temp change, e.g window opened etc, not a sensor spike
+    if (numberReadingsTooSteep >= 3) {
+      logger.debug('..SLOPE TOO STEEP BUT {} consecutive readings, ACCEPTING currentTemp: {} anyway', numberReadingsTooSteep, currentTemp);
+      // reset counter
+      numberReadingsTooSteep = 0;
+      // store reset counter
+      cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
+      return currentTemp;
     }
-  } else {
-    // alpha = 1.0;
-    // result = currentTemp;
-    logger.debug('..slope NO CHANGE, returning currentTemp: {}', currentTemp);
+    cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
+    logger.debug('..numberReadingsTooSteep incremented to: {}', numberReadingsTooSteep);
+    cache.private.put('slopePreviousTime', previousTime);
+    cache.private.put('slopePreviousTemp', previousTemp);
+    logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
+    logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', previousTime);
+    return previousTemp;
   }
 
-  // cache.private.put('slopePreviousTemp', previousTemp);
-  // logger.debug('..storing slopePreviousTemp in cache as: {} testing', previousTemp);
-
-  logger.debug('..Slope result: {} + ({} * {}) = {}', previousTemp, deltaTemp, alpha, result);
-  return result;
+  logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradient {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradient, currentTemp);
+  return currentTemp;
 }
 
 rules.JSRule({
@@ -294,7 +316,7 @@ rules.JSRule({
     // calculate various smoothing methods for analysis
     let temp0 = calculateLimitRateOfChange(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
     temp0 = Number(temp0).toFixed(decimalPlaces);
-    logger.debug(`temp0..calculated slope temp0: ${temp0}\n`);
+    logger.debug(`temp0..calculated currentReadingGradient temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
 
     let temp1 = calcMedian(newRawTemp);

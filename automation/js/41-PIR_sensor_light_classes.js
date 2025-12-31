@@ -26,12 +26,13 @@ class LightConfig {
    * @param {string} lightOffDelayTimerDurationItemName - The name of the openHAB item that stores the turn-off delay in seconds.
    * @param {number} defaultLightOffDelayTimerDurationSecs - A default turn-off delay in seconds if the item is not set.
    */
-  constructor(name, location, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs) {
+  constructor(name, location, lightControlItemName, lightOffDelayTimerDurationItemName, defaultLightOffDelayTimerDurationSecs, overridePIRItemName) {
     this.name = name;
     this.location = location;
     this.lightControlItemName = lightControlItemName;
     this.lightOffDelayTimerDurationItemName = lightOffDelayTimerDurationItemName;
     this.defaultLightOffDelayTimerDurationSecs = defaultLightOffDelayTimerDurationSecs;
+    this.overridePIRItemName = overridePIRItemName;
   }
 
   /**
@@ -67,6 +68,18 @@ class LightConfig {
       if (state === 'ON') {
         const duration = this.getLightOffDelayTimerDurationMs();
         logger.debug('L 5 - lightControl( {} ON duration: {} ms', this.lightControlItemName, duration);
+      }
+      // only send the command if the property exists and overridePIRItemName is not set to ON
+      if (this.overridePIRItemName && items.getItem(this.overridePIRItemName, true)) {
+        const overridePIRItem = items.getItem(this.overridePIRItemName);
+        if (overridePIRItem && overridePIRItem.state === 'ON') {
+          logger.debug(
+            'L 7 - Not sending command to {} because override PIR {} is ON',
+            this.lightControlItemName,
+            this.overridePIRItemName,
+          );
+          return;
+        }
       }
       lightItem.sendCommand(state);
     } else {

@@ -12,6 +12,7 @@ const lightConfigs = [
     lightControlItemName: 'v_StartColourBulbsCycle',
     lightOffDelayTimerDurationItemName: 'v_StartColourBulbsCycle_onDuration',
     defaultLightOffDelayTimerDurationSecs: 1,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
   {
     name: 'landingLight',
@@ -19,6 +20,7 @@ const lightConfigs = [
     lightControlItemName: 'ZbWhiteBulb01Switch',
     lightOffDelayTimerDurationItemName: 'landing_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 11,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
   {
     name: 'workLight',
@@ -26,6 +28,7 @@ const lightConfigs = [
     lightControlItemName: 'workLightsPowerSocket',
     lightOffDelayTimerDurationItemName: 'work_light_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
   {
     name: 'fairyLights',
@@ -33,6 +36,7 @@ const lightConfigs = [
     lightControlItemName: 'CT_FairyLights433Socket',
     lightOffDelayTimerDurationItemName: 'fairy_lights_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
   {
     name: 'kitchenLight_1',
@@ -40,6 +44,7 @@ const lightConfigs = [
     lightControlItemName: 'KT_light_1_Power',
     lightOffDelayTimerDurationItemName: 'kitchen_kettle_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
   {
     name: 'kitchenLight_2',
@@ -47,6 +52,7 @@ const lightConfigs = [
     lightControlItemName: 'KT_light_2_Power',
     lightOffDelayTimerDurationItemName: 'kitchen_prep_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_2_overridePIR',
   },
   {
     name: 'kitchenLight_3',
@@ -54,6 +60,15 @@ const lightConfigs = [
     lightControlItemName: 'KT_light_3_Power',
     lightOffDelayTimerDurationItemName: 'kitchen_toaster_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_3_overridePIR',
+  },
+  {
+    name: 'toilet_Light',
+    location: 'Toilet Area',
+    lightControlItemName: 'TAPO_510_bulb',
+    lightOffDelayTimerDurationItemName: 'toilet_light_offDelayTimerDurationItem',
+    defaultLightOffDelayTimerDurationSecs: 5,
+    overridePIRItemName: 'KT_light_1_overridePIR',
   },
 ];
 
@@ -158,15 +173,15 @@ const pirSensorConfigs = [
   },
   {
     name: 'pir08',
-    location: 'unplaced',
-    friendlyName: 'pir8-desk',
+    location: 'toilet',
+    friendlyName: 'pir8-toilet',
     occupancySensorItemName: 'pir08_occupancy',
     lightLevelActiveThresholdItemName: 'ConservatoryLightTriggerLevel',
     lightLevelSensorItemName: 'BridgeLightSensorLevel',
     phrases: [
     ],
     lightConfigNames: [
-      'colourBulbsCycle',
+      'toilet_Light',
     ],
   },
 ];

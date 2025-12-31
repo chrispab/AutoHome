@@ -27,7 +27,7 @@ Number stairs_offDelayTimerDurationItem "stairs_off_delay_Time" ["OffDelayTime"]
 Number landing_offDelayTimerDurationItem "landing_off_delay_Time" ["OffDelayTime"]  
 Number work_light_offDelayTimerDurationItem "work_light_off_delay_Time" ["OffDelayTime"]  
 Number fairy_lights_offDelayTimerDurationItem "fairy_lights_off_delay_Time" ["OffDelayTime"]  
-
+Number toilet_light_offDelayTimerDurationItem "toilet_light_off_delay_Time" ["OffDelayTime"]
 
 
 Switch    pir01_occupancy    "pir01_occupancy"    (gZb_pir,gZbPIRSensorOccupancy)   ["Sensor","Pir"]  {channel="mqtt:topic:pir01:occupancy"}

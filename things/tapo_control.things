@@ -1,0 +1,13 @@
+// tapocontrol:bridge:myTapoBridge                 "Cloud-Login"               [ username="cbattisson@gmail.com", password=",RaX^Rpmn@*$mU5" ]
+// tapocontrol:P100:myTapoBridge:mySocket          "My-Socket"     (tapocontrol:bridge:myTapoBridge)   [ ipAddress="192.168.178.150" ]
+
+
+tapocontrol:L510:tapo_bridge:whiteBulb         "white-light"   (tapocontrol:bridge:tapo_bridge)   [ ipAddress="192.168.0.67", httpPort=80, pollingInterval=30, protocol="KLAP" ]
+
+
+// Bridge tapocontrol:bridge:secondBridgeExample            "Cloud-Login"        [ username="youtoo@anyprovider.com", password="verysecret" ] {
+//    Thing P110 mySocket   "My-Socket"          [ ipAddress="192.168.101.51", pollingInterval=30 ]
+// }
+
+
+// Thing tapocontrol:L510:tapo_bridge:tapo-510 "Tapo L510 White-Light-Bulb" (tapocontrol:bridge:tapo_bridge) [ipAddress="192.168.0.67", protocol="KLAP"]

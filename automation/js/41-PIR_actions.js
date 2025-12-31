@@ -13,7 +13,6 @@ const { TimerMgr } = require('openhab_rules_tools');
 // const { configClasses } = require('openhab-my-utils');
 
 const ruleUID = 'pir_testing';
-
 const logger = log(ruleUID);
 
 // log:set warn org.openhab.automation.openhab-js.pir_action
@@ -40,6 +39,7 @@ const lightConfigs = lightConfigsData.map(
     lcData.lightControlItemName,
     lcData.lightOffDelayTimerDurationItemName,
     lcData.defaultLightOffDelayTimerDurationSecs,
+    lcData.overridePIRItemName,
   ),
 );
 
@@ -59,7 +59,6 @@ const PirSensorConfigs = pirSensorConfigsData.map(
     data.lightConfigNames,
   ),
 );
-
 /**
  * Function executed when the script is loaded.
  */
@@ -98,7 +97,6 @@ const createOccupancyRuleHandler = (ruleLogic) => (event) => {
       logger.warn(`Item ${triggeringItemName} not found!`);
       return;
     }
-
     const activePirSensorConfig = PirSensorConfigs.find(
       (sensorConfig) => sensorConfig.occupancySensorItemName === triggeringItemName,
     );
@@ -114,7 +112,6 @@ const createOccupancyRuleHandler = (ruleLogic) => (event) => {
     logger.error(`Error in occupancy rule handler: ${e.message}\n${e.stack}`);
   }
 };
-
 /**
  * Handles the logic when an occupancy sensor state updates as 'ON'.
  * @param {object} event - The event object from the rule trigger.
@@ -162,7 +159,7 @@ const handleOccupancyOn = (event, activePirSensorConfig, triggeringItemName) => 
     const lightConfig = lightConfigsMap.get(lightConfigName);
     if (lightConfig) {
       // if (activePirSensorConfig.isLightLevelActive()) {
-      if (1 === 1) { // temporarily disable light level check for testing
+      if (activePirSensorConfig.isLightLevelActive()) {
         logger.debug(`9 PIR ON - Light level below threshold, turning light on : ${activePirSensorConfig.friendlyName}, for item: ${triggeringItemName}`);
         lightConfig.lightControl('ON');
       } else {
