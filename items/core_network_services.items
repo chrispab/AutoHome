@@ -5,8 +5,8 @@ Switch  mosquitto_server_reachable  "mosquitto server"  <network>  (gServices_Co
 Switch  mythtv_server_reachable  "mythtv server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:mythtv_server:online" }
 
 
-Switch  dev_server_reachable  "dev server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
-Switch  nas_server_reachable  "nas server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
+// Switch  dev_server_reachable  "dev server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
+// Switch  nas_server_reachable  "nas server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:dev_server:online" }
 
 Switch  backuppi_server_reachable  "backuppi server"  <network>  (gServices_Core_Online) ["Service_Core_Check"]  { channel="network:pingdevice:backuppi_server:online" }
 
