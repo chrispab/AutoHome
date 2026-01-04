@@ -2,26 +2,28 @@ Group gKT_WiFiLightsPower
 Group gKT_WiFiLightsReachable
 Group gKT_WiFiLightsOnDurations
 
+Group gAllPIRControlledLights
+
 Group:Switch:OR(ON,OFF) 	gKT_cupboardLights		"all cupboard lights"	(gAllBulbs)  { ga="Light" [ roomHint="Conservatory" ] }
 
 Number KT_cupboard_lights_timeout
 
 //currently used for RPi mythtv_backend servercc
-Switch KT_light_1_Power "KT_light_1" (gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_1:powerSwitch" }
+Switch KT_light_1_Power "KT_light_1" (gKT_WiFiLightsPower, gKT_cupboardLights,gAllPIRControlledLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_1:powerSwitch" }
 String KT_light_1_Reachable "KT_light_1 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_1:Reachable" }
 Number KT_light_1_RSSI "KT_light_1 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_1:rssi" }
 Number KT_light_1_onDuration "KT_light_1 onDuration" (gKT_WiFiLightsOnDurations)
-Switch KT_light_1_overridePIR "KT_light_1 override PIR" (gKT_WiFiLightsPower) ["override_PIR"]
+Switch KT_light_1_overridePIR "KT_light_1_PIROverride" (gKT_WiFiLightsPower) ["override_PIR"]
 // ! TODO add to THINGS file
 
 // Switch KT_light_2_Power "KT_light_2" (gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_2:powerSwitch" }
-Switch KT_light_2_Power "KT_light_2"   ["Switch","Light"]  { channel = "mqtt:topic:KT_light_2:powerSwitch" }
+Switch KT_light_2_Power "KT_light_2" (gAllPIRControlledLights)  ["Switch","Light"]  { channel = "mqtt:topic:KT_light_2:powerSwitch" }
 String KT_light_2_Reachable "KT_light_2 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_2:Reachable" }
 Number KT_light_2_RSSI "KT_light_2 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_2:rssi" }
 Number KT_light_2_onDuration "KT_light_2 onDuration" (gKT_WiFiLightsOnDurations)
 Switch KT_light_2_overridePIR "KT_light_2 override PIR" (gKT_WiFiLightsPower) ["override_PIR"]
 
-Switch KT_light_3_Power "KT_light_3" (gKT_WiFiLightsPower, gKT_cupboardLights)  ["Switch","Light","allow_override"]   { channel = "mqtt:topic:KT_light_3:powerSwitch" }
+Switch KT_light_3_Power "KT_light_3" (gKT_WiFiLightsPower, gKT_cupboardLights,gAllPIRControlledLights)  ["Switch","Light","allow_override"]   { channel = "mqtt:topic:KT_light_3:powerSwitch" }
 String KT_light_3_Reachable "KT_light_3 reachable" (gMQTT, gKT_WiFiLightsReachable) { channel = "mqtt:topic:KT_light_3:Reachable" }
 Number KT_light_3_RSSI "KT_light_3 RSSI" (gMQTT) { channel = "mqtt:topic:KT_light_3:rssi" }
 Number KT_light_3_onDuration "KT_light_3 onDuration" (gKT_WiFiLightsOnDurations)

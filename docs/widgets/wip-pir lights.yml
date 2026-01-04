@@ -1,0 +1,142 @@
+uid: all_lights_with_override_v1
+tags:
+  - card
+  - lights
+props:
+  parameters:
+    - description: A text prop
+      label: Prop 1
+      name: prop1
+      required: false
+      type: TEXT
+    - context: item
+      description: An item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Jan 2, 2026, 1:01:25 PM
+component: f7-card
+config:
+  title: Lights with overrides
+slots:
+  default:
+    - component: oh-list
+      slots:
+        default:
+          - component: oh-repeater
+            config:
+              filter: loop.item.label.includes("Christmas") == false ||
+                items.TisTheSeason.state == "ON"
+              for: item
+              fragment: true
+              groupItem: gAllPIRControlledLights
+              sourceType: itemsInGroup
+              listContainer: true
+            slots:
+              default:
+                - component: oh-toggle-item
+                  config:
+                    color: '=(items[loop.item.name].state == "ON") ? "yellow" : "gray"'
+                    icon: f7:lightbulb
+                    iconColor: '=(items[loop.item.name].state == "ON") ? "yellow" : "gray"'
+                    item: =loop.item.name
+                    title: =loop.item.label
+                    subtitle: ='test2'
+                    badge: 
+                - component: oh-list-item
+                  config:
+                    icon: material:visibility_off
+                    iconColor: '=(items[loop.item.name].state == "ON") ? "yellow" : "blue"'
+                    #listButton: true
+                    #listButtonColor: red
+
+uid: all_lights_with_override_v1
+tags:
+  - card
+  - lights
+props:
+  parameters:
+    - description: A text prop
+      label: Prop 1
+      name: prop1
+      required: false
+      type: TEXT
+    - context: item
+      description: An item to control
+      label: Item
+      name: item
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Jan 2, 2026, 1:01:25 PM
+component: f7-card
+config:
+  title: Lights with overrides
+slots:
+  default:
+    - component: oh-list
+      slots:
+        default:
+          - component: oh-repeater
+            config:
+              for: item
+              fragment: true
+              groupItem: gAllPIRControlledLights
+              sourceType: itemsInGroup
+            slots:
+              default:
+                - component: f7-row
+                  config:
+                  slots:
+                    - component: oh-button
+                      config:
+                        action: variable
+                        actionVariable: =loop.item.name
+                        actionVariableValue: more
+                    # - component: f7-row
+                    #   config:
+                    #   visible: '=(vars[loop.item.name] === "more")'
+                    #   slots:
+                    #     default:
+                    #       - component: oh-button
+                    #         config:
+                              
+
+https://community.openhab.org/t/split-string-only-on-last-seperator/146000
+Fenster_Badezimmer_Nord_Rechts_LetztesUpdate
+items[loop.item.name.split("_")[0]+"_"+items[loop.item.name.split("_")[1]+ "_LetztesUpdate"].state
+
+Is there any possibility to split the loop.item.name only on the last “_”?
+
+There are a couple of ways to achieve this:
+
+If you know that the starting item will always end in _Zustand then you can just use the string method slice to remove the last 8 characters of the string:
+loop.item.name.slice(0,-8)
+
+mine:
+Switch KT_light_1_Power last 6 characters = _Power
+loop.item.name.slice(0,-6)
+gives you KT_light_1
+then add the suffix back on:
+items[loop.item.name.slice(0,-6) + "_overridePIR"].state
+
+='KT_light_1_Power'.slice(0,-6) + "_overridePIR"
+=items['KT_light_1_Power'.slice(0,-6) + "_overridePIR"]
+
+this works fine if the suffix is always the same length.
+actionItem: '=loop.item.name.slice(0,-6) + "_overridePIR"'
+
+                          # color: '=(items[loop.item.name.slice(0,-6) + "_overridePIR"].state === "ON") ? "red" : "green"'
+                          active: '=(items[loop.item.name.slice(0,-6) + "_overridePIR"].state === "ON") ? "true" : "false"'
+
+If you have variable length suffixes on the item name then you can use split and then slice the last element off of the array and re-merge the elements with join:
+
+loop.item.name.split("_").slice(0,-1).join("_")
+
+You can also use lastIndexOf as in @rlkoshak’s answer, but there is no assignment in widget expressions so you’d have to combine that into one expression:
+
+loop.item.name.substring(0, loop.item.name.lastIndexOf('_'))
+
+

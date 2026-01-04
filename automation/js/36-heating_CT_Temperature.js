@@ -221,7 +221,8 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
   logger.debug('..currentReadingGradient deltaTemp: {} / deltaTime: {} = currentReadingGradient: {}', deltaTemp, deltaTime, currentReadingGradient);
 
-  const maxAllowedGradient = 1 / 700; // 1 degree per 700 seconds
+  // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
+  const maxAllowedGradient = 0.1 / 90; // 0.1 degree per 90 seconds
 
   // express currentReadingGradient as degrees per hour
   const currentReadingGradientPerHour = currentReadingGradient * 3600;
@@ -247,7 +248,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
       return currentTemp;
     }
     cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
-    logger.debug('..numberReadingsTooSteep incremented to: {}', numberReadingsTooSteep);
+    logger.debug('..storing numberReadingsTooSteep in CACHE incremented to: {} ', numberReadingsTooSteep);
     cache.private.put('slopePreviousTime', previousTime);
     cache.private.put('slopePreviousTemp', previousTemp);
     logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);

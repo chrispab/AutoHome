@@ -58,7 +58,7 @@ rules.JSRule({
   ],
   execute: (event) => {
     // const roomPrefix = doSetup(event);
-    logger.debug('ZZZ.....................................');
+    // logger.debug('ZZZ.....................................');
 
     const roomPrefix = utils.getLocationPrefix(event.itemName, logger);
     logger.debug('~~roomPrefix: {}', roomPrefix);
