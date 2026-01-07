@@ -8,7 +8,9 @@ String                  AT_ThermostatMode "Attic Thermostat Mode" <settings>
 Number:Temperature      AT_ThermostatTemperatureSetpoint "Attic Setpoint" <heating> 
                         (gChart_Minute,gAT_Thermostat, gThermostatTemperatureSetpoints,gDefaultPersistence)
                         { ga="thermostatTemperatureSetpoint" }
-Number:Temperature      AT_ThermostatTemperatureAmbient "Attic Temperature [%.1f °C]" <temperature> (gChart_Minute,gAT_Thermostat, gThermostatTemperatureAmbients) { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
+Number:Temperature      AT_ThermostatTemperatureAmbient "Attic Temperature [%.1f °C]" <temperature> 
+                        (gChart_Minute,gAT_Thermostat, gThermostatTemperatureAmbients) 
+                        { ga="thermostatTemperatureAmbient", channel="mqtt:topic:atticRadThermoValve:temperature" }
 // Number:Temperature BR_ThermostatTemperatureAmbient "Bedroom Temperature [%.1f °C]" <temperature> (gChart_Minute, gBR_Thermostat, gThermostatTemperatureAmbients)  { ga="thermostatTemperatureAmbient", channel="mqtt:topic:THSensor03:temperature" }
 
 

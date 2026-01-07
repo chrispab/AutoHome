@@ -222,7 +222,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   logger.debug('..currentReadingGradient deltaTemp: {} / deltaTime: {} = currentReadingGradient: {}', deltaTemp, deltaTime, currentReadingGradient);
 
   // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
-  const maxAllowedGradient = 0.1 / 90; // 0.1 degree per 90 seconds
+  const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
 
   // express currentReadingGradient as degrees per hour
   const currentReadingGradientPerHour = currentReadingGradient * 3600;
@@ -257,6 +257,11 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   }
 
   logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradient {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradient, currentTemp);
+  // if the temperature is above the conservatory setpoint show a message indicating heating off
+  const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').state;
+  if (currentTemp > setpoint) {
+    logger.warn('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
+  }
   return currentTemp;
 }
 
