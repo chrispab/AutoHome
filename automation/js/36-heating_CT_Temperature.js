@@ -258,7 +258,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
 
   logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradient {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradient, currentTemp);
   // if the temperature is above the conservatory setpoint show a message indicating heating off
-  const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').state;
+  const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
   if (currentTemp > setpoint) {
     logger.warn('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
   }
