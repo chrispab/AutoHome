@@ -59,6 +59,9 @@ const tvConfig = {
 };
 
 let tStartup;
+let tvPowerOffTimer;
+let CT_TV_off_timer;
+let ctOnTimers = [];
 
 scriptLoaded = function scriptLoaded() {
   logger.info('scriptLoaded - System started - set all rooms TV startup settings');
@@ -75,7 +78,11 @@ scriptLoaded = function scriptLoaded() {
 
   if (!tStartup) {
     tStartup = actions.ScriptExecution.createTimer(time.toZDT(5 * 1000), () => {
-      tv_startup_tbody();
+      try {
+        tv_startup_tbody();
+      } catch (e) {
+        logger.error(`Error in startup timer: ${e}`);
+      }
     });
   }
   // actions.Voice.say('tvs now available');
@@ -92,8 +99,6 @@ function tv_startup_tbody() {
   });
 }
 
-let tvPowerOffTimer;
-
 /**
  * Turns on the TV and associated devices based on the configuration.
  *
@@ -109,8 +114,14 @@ function turnOnTV(roomName, message) {
     return;
   }
   // if off timer defined (someone tried to turn tv off), stop it so it dosent prevent powering ON
-  if (!(tvPowerOffTimer === undefined)) {
-    tvPowerOffTimer.cancel(); // = undefined;
+  if (roomName === 'conservatory') {
+    if (CT_TV_off_timer && CT_TV_off_timer.isActive()) {
+      CT_TV_off_timer.cancel();
+    }
+    ctOnTimers.forEach((t) => { if (t.isActive()) t.cancel(); });
+    ctOnTimers = [];
+  } else if (tvPowerOffTimer && tvPowerOffTimer.isActive()) {
+    tvPowerOffTimer.cancel();
   }
   if (room.kodiPower) {
     items.getItem(room.kodiPower).sendCommand('ON');
@@ -129,22 +140,47 @@ function turnOnTV(roomName, message) {
 
   if (roomName === 'conservatory') {
   // Turn amp on from standby, once ir device is on
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
-      items.getItem(room.ampPowerOn).sendCommand('ON');
-      logger.info('STEREO - IR turn on amp from standby');
-      items.getItem(room.tvStandby).sendCommand('ON');
-      logger.info('CT_LGWebOS_TV_Power turn on tv from standby');
-    });
+    ctOnTimers.push(actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(15), () => {
+      try {
+        const ampPowerOnItem = items.getItem(room.ampPowerOn, true);
+        if (ampPowerOnItem) {
+          ampPowerOnItem.sendCommand('ON');
+          logger.info('STEREO - IR turn on amp from standby');
+        } else {
+          logger.warn(`Item '${room.ampPowerOn}' not found, skipping amp power on.`);
+        }
+        const tvStandbyItem = items.getItem(room.tvStandby, true);
+        if (tvStandbyItem) {
+          tvStandbyItem.sendCommand('ON');
+          logger.info('CT_LGWebOS_TV_Power turn on tv from standby');
+        }
+      } catch (e) {
+        logger.error(`Error in turnOnTV timer 15s: ${e}`);
+      }
+    }));
 
     // turn to amp audio source Video1
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
-      items.getItem(room.ampInputVideo1).sendCommand('ON');
-      logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
-    });
-    actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
-      items.getItem(room.kodiPower).sendCommand('ON');
-      logger.info('STEREO - on');
-    });
+    ctOnTimers.push(actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(30), () => {
+      try {
+        const ampInputVideo1Item = items.getItem(room.ampInputVideo1, true);
+        if (ampInputVideo1Item) {
+          ampInputVideo1Item.sendCommand('ON');
+          logger.info('STEREO - IR amp switch to amplifier_IR_Video1 source');
+        } else {
+          logger.warn(`Item '${room.ampInputVideo1}' not found, skipping amp input switch.`);
+        }
+      } catch (e) {
+        logger.error(`Error in turnOnTV timer 30s: ${e}`);
+      }
+    }));
+    ctOnTimers.push(actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(10), () => {
+      try {
+        items.getItem(room.kodiPower).sendCommand('ON');
+        logger.info('STEREO - on');
+      } catch (e) {
+        logger.error(`Error in turnOnTV timer 10s: ${e}`);
+      }
+    }));
   }
   // }
   // actions.Voice.say(roomName + ' tv on');
@@ -168,6 +204,10 @@ function turnOffTV(roomName, message) {
     return;
   }
   if (roomName === 'conservatory') {
+    // Cancel any pending ON sequence timers
+    ctOnTimers.forEach((t) => { if (t.isActive()) t.cancel(); });
+    ctOnTimers = [];
+
     // items.getItem(room.kodiSystemCommand).sendCommand('Shutdown'); // shutdown CT Pi
     // logger.info('sent command - shutdown kodi');
     // items.getItem(room.ampPowerOff).sendCommand('ON');
@@ -188,11 +228,15 @@ function turnOffTV(roomName, message) {
     // if stereo off timer is not defined or completed, restart the stereo off timer
     if (!CT_TV_off_timer || !CT_TV_off_timer.isActive()) {
       CT_TV_off_timer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(room.turnOffDelaySec), () => {
-        items.getItem(room.kodiPower).sendCommand('OFF'); // CT kodi, amp, ir bridge
-        items.getItem(room.tvPower).sendCommand('OFF'); // tv, hdmi audio extractor
+        try {
+          items.getItem(room.kodiPower).sendCommand('OFF'); // CT kodi, amp, ir bridge
+          items.getItem(room.tvPower).sendCommand('OFF'); // tv, hdmi audio extractor
 
-        items.getItem(room.tvSwitch).postUpdate('OFF'); // turn off virt trigger
-        logger.info('turned off kodi power');
+          items.getItem(room.tvSwitch).postUpdate('OFF'); // turn off virt trigger
+          logger.info('turned off kodi power');
+        } catch (e) {
+          logger.error(`Error in CT_TV_off_timer: ${e}`);
+        }
       });
     }
   } else {
@@ -202,11 +246,15 @@ function turnOffTV(roomName, message) {
     items.getItem(room.kodiShutdownProxy).sendCommand('OFF');
     // if off timer undefined start for pi shutdown
     tvPowerOffTimer = actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(room.turnOffDelaySec), () => {
-      if (room.kodiPower) {
-        items.getItem(room.kodiPower).sendCommand('OFF');
-      }
-      if (room.tvPower) {
-        items.getItem(room.tvPower).sendCommand('OFF');
+      try {
+        if (room.kodiPower) {
+          items.getItem(room.kodiPower).sendCommand('OFF');
+        }
+        if (room.tvPower) {
+          items.getItem(room.tvPower).sendCommand('OFF');
+        }
+      } catch (e) {
+        logger.error(`Error in tvPowerOffTimer: ${e}`);
       }
     });
   }
@@ -216,8 +264,6 @@ function turnOffTV(roomName, message) {
 }
 
 // ==================Conservatory TV ON
-let CT_TV_off_timer;
-
 rules.JSRule({
   name: 'turn ON conservatory TV',
   description: 'turn ON conservatory TV',

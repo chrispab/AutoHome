@@ -93,30 +93,32 @@ rules.JSRule({
       // Wait for the TV to fully boot before attempting to launch an app
       logger.info(`2--TV-Restore: Starting timer, waiting ${restoreTimer} seconds...`);
       actions.ScriptExecution.createTimer(time.ZonedDateTime.now().plusSeconds(restoreTimer), () => {
-        logger.debug(`3--TV-Restore: Timer elapsed. Attempting to restore app: ${appName}`);
+        try {
+          // Check if TV is still ON before proceeding
+          if (items.getItem('CT_LGWebOS_TV_Power').state !== 'ON') {
+            logger.info('3--TV-Restore: TV is no longer ON. Aborting app restore.');
+            return;
+          }
 
-        // Determine which app to launch
-        let appToLaunch;
-        if (appName === undefined) {
-          appToLaunch = 'com.webos.app.home'; // Default to home screen if no last app
-          logger.info('4--TV-Restore: No last app stored. Setting default app: TV Home.');
-        } else {
-          appToLaunch = appName;
-          logger.info(`4--TV-Restore: Restoring last app: ${appToLaunch}`);
-        }
-        // Send command only if the state has changed
-        if (items.getItem('CT_LGWebOS_TV_Application').state !== appToLaunch) {
-          // const commandResult = items.getItem('CT_LGWebOS_TV_Application').sendCommand(appToLaunch);
-          items.getItem('CT_LGWebOS_TV_Application').sendCommand(appToLaunch);
-          // if (commandResult) {
-          //   logger.info('5--TV-Restore: App Launched.');
-          // } else {
-          //   const errorMessage = `5--TV-Restore: App Launch failed for: ${appToLaunch}`;
-          //   logger.error(errorMessage);
-          //   alerting.sendEmail('OpenHAB Error', errorMessage); // Send email alert
-          // }
-        } else {
-          logger.info('5--TV-Restore: No app launched. App is the same as the current value.');
+          logger.debug(`3--TV-Restore: Timer elapsed. Attempting to restore app: ${appName}`);
+
+          // Determine which app to launch
+          let appToLaunch;
+          if (appName === undefined || appName === 'NULL' || appName === 'UNDEF') {
+            appToLaunch = 'com.webos.app.home'; // Default to home screen if no last app
+            logger.info('4--TV-Restore: No last app stored. Setting default app: TV Home.');
+          } else {
+            appToLaunch = appName;
+            logger.info(`4--TV-Restore: Restoring last app: ${appToLaunch}`);
+          }
+          // Send command only if the state has changed
+          if (items.getItem('CT_LGWebOS_TV_Application').state !== appToLaunch) {
+            items.getItem('CT_LGWebOS_TV_Application').sendCommand(appToLaunch);
+          } else {
+            logger.info('5--TV-Restore: No app launched. App is the same as the current value.');
+          }
+        } catch (timerError) {
+          logger.error(`Error inside restore timer: ${timerError}`);
         }
       });
     } catch (err) {

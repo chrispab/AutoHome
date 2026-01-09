@@ -4,7 +4,7 @@
  * (EMA, Median, Average, Slope detection) to prevent jitter and spikes in heating control.
  */
 const {
-  log, items, rules, actions, triggers, cache,
+  log, items, rules, actions, triggers, cache, time,
 } = require('openhab');
 
 const ruleUID = 'heating-ct-smooth-temperature';
@@ -169,6 +169,17 @@ function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 't
 }
 
 /**
+ * Converts an epoch timestamp (seconds) to a formatted time string (HH:mm:ss).
+ *
+ * @param {number} epochSeconds - The timestamp in seconds.
+ * @returns {string} The formatted time string.
+ */
+function formatEpochToTime(epochSeconds) {
+  const zdt = time.toZDT(time.toInstant(epochSeconds * 1000));
+  return zdt.format(time.DateTimeFormatter.ofPattern('HH:mm:ss'));
+}
+
+/**
  * Calculates the currentReadingGradient between two temperature points and filters out spikes
  * if the rate of change exceeds a threshold.
  *
@@ -179,6 +190,10 @@ function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 't
  * @returns {number} The filtered temperature (either current or previous).
  */
 function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
+  // show message entering function. show epoch timestamp in hours minutes and seconds
+  // convert epoch seconds to zdt for logging
+  logger.warn('..entering calculateLimitRateOfChange: prevTemp: {}, prevTime: {}, currTemp: {}, currTime: {}', prevTemp, formatEpochToTime(prevTime), currTemp, formatEpochToTime(currTime));
+
   // convert to floats into local variables (do not reassign parameters)
   let previousTemp = parseFloat(prevTemp);
   let previousTime = prevTime;
@@ -197,9 +212,9 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   const cachedNumberReadingsTooSteep = cache.private.get('slopeNumberReadingsTooSteep');
 
   if (cachedPreviousTemp !== null && cachedPreviousTemp !== undefined) {
-    logger.debug('..calculateSlope using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
-    logger.debug('..calculateSlope using CACHED previousTime: {} instead of spike previousTime: {}', cachedPreviousTime, previousTime);
-    logger.debug('..calculateSlope had {} consecutive TOO STEEP readings cached', cachedNumberReadingsTooSteep);
+    logger.debug('..using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
+    logger.debug('..using CACHED previousTime: {} instead of spike previousTime: {}', formatEpochToTime(cachedPreviousTime), formatEpochToTime(previousTime));
+    logger.debug('..had {} consecutive TOO STEEP readings cached', cachedNumberReadingsTooSteep);
 
     previousTemp = cachedPreviousTemp;
     previousTime = cachedPreviousTime;
@@ -208,31 +223,32 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
     cache.private.remove('slopePreviousTemp');
     cache.private.remove('slopePreviousTime');
     cache.private.remove('slopeNumberReadingsTooSteep');
-    logger.debug('..calculateSlope cleared CACHED previousTemp and previousTime after use');
+    logger.debug('..cleared CACHED previousTemp and previousTime after use');
   }
-  const deltaTemp = currentTemp - previousTemp;
+  const deltaTemp = parseFloat((currentTemp - previousTemp).toFixed(2));
   const deltaTime = currentTime - previousTime;
   logger.debug('..deltaTemp: {} - {} = {}', currentTemp, previousTemp, deltaTemp);
-  logger.debug('..deltaTime: {} - {} = {}', currentTime, previousTime, deltaTime);
+  logger.debug('..deltaTime: {} - {} = {}', formatEpochToTime(currentTime), formatEpochToTime(previousTime), formatEpochToTime(deltaTime));
   if (deltaTime === 0) {
-    logger.debug('..calculateSlope deltaTime is 0, returning previousTemp: {}', previousTemp);
+    logger.debug('..deltaTime is 0, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
   const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
-  logger.debug('..currentReadingGradient deltaTemp: {} / deltaTime: {} = currentReadingGradient: {}', deltaTemp, deltaTime, currentReadingGradient);
+  // express currentReadingGradient as degrees per hour
+  const currentReadingGradientPerHour = currentReadingGradient * 3600;
+  // logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
+  // logger.debug('..deltaTemp: {}/ deltaTime: {} = currentReadingGradient-d/h: {}', deltaTemp, formatEpochToTime(deltaTime), currentReadingGradientPerHour);
 
   // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
   const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
 
-  // express currentReadingGradient as degrees per hour
-  const currentReadingGradientPerHour = currentReadingGradient * 3600;
-  logger.debug('..currentReadingGradient (degrees/hr): {}', currentReadingGradientPerHour);
+  logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
   // express maxAllowedGradient as degrees per hour for logging
   const maxAllowedGradientPerHour = maxAllowedGradient * 3600;
   logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
 
   if (currentReadingGradient >= maxAllowedGradient) { // greater than threshold
-    logger.debug('..SLOPE TOO STEEP {} >= maxAllowedGradient {}, returning previousTemp: {} (spike rejected)', currentReadingGradient, maxAllowedGradient, previousTemp);
+    logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning previousTemp: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, previousTemp);
     // an ignored spike must also be not used as previous for next calc
     // set and store previousTemp as currentTemp for next calc
     // also store timestamp of previousTemp
@@ -245,6 +261,8 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
       numberReadingsTooSteep = 0;
       // store reset counter
       cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
+      // show message leaving function
+      logger.warn('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
       return currentTemp;
     }
     cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
@@ -252,16 +270,20 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
     cache.private.put('slopePreviousTime', previousTime);
     cache.private.put('slopePreviousTemp', previousTemp);
     logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
-    logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', previousTime);
+    logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', formatEpochToTime(previousTime));
+    // show message leaving function
+    logger.warn('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
 
-  logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradient {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradient, currentTemp);
+  logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradientPerHour {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradientPerHour, currentTemp);
   // if the temperature is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
   if (currentTemp > setpoint) {
     logger.warn('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
   }
+  // show message leaving function
+  logger.warn('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
   return currentTemp;
 }
 
@@ -278,12 +300,12 @@ rules.JSRule({
     let previousRawTemp = historicItem ? historicItem.state : rawTempItem.state;
     const previousRawTempTimestamp = historicItem ? historicItem.timestamp : null;
     logger.debug(`previous raw CT temp is: ${previousRawTemp}`);
-    logger.debug(`previous raw CT temp timestamp is: ${previousRawTempTimestamp}`);
+    logger.debug(`previous raw CT temp timestamp is: ${previousRawTempTimestamp ? formatEpochToTime(previousRawTempTimestamp.toEpochSecond()) : 'null'}`);
 
     const newRawTemp = rawTempItem.state;
     const newRawTempTimestamp = rawTempItem.lastStateUpdateTimestamp;
     logger.debug(`new raw CT temp is: ${newRawTemp}`);
-    logger.debug(`new raw CT temp timestamp is: ${newRawTempTimestamp}`);
+    logger.debug(`new raw CT temp timestamp is: ${newRawTempTimestamp ? formatEpochToTime(newRawTempTimestamp.toEpochSecond()) : 'null'}`);
 
     if (newRawTemp === 'NULL' || newRawTemp === 'UNDEF') {
       logger.warn('CT_ThermostatTemperatureAmbient_raw state is NULL or UNDEF, skipping smoothing.');
@@ -299,7 +321,7 @@ rules.JSRule({
     const prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     const prevTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').persistence.lastUpdate();
     logger.debug(`previous USED CT temp is: ${prevTemp}`);
-    logger.debug(`previous USED CT temp timestamp is: ${prevTempTimestamp}`);
+    logger.debug(`previous USED CT temp timestamp is: ${prevTempTimestamp ? formatEpochToTime(prevTempTimestamp.toEpochSecond()) : 'null'}`);
 
     let preciseTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_precision').state);
 
@@ -315,9 +337,11 @@ rules.JSRule({
 
     // Convert timestamps to epoch seconds for calculation
     const prevTime = prevTempTimestamp ? prevTempTimestamp.toEpochSecond() : 0;
+    const prevTimeString = prevTempTimestamp ? formatEpochToTime(prevTime) : 'null';
     const rawTime = newRawTempTimestamp ? newRawTempTimestamp.toEpochSecond() : 0;
+    const rawTimeString = newRawTempTimestamp ? formatEpochToTime(rawTime) : 'null';
     const previousRawTempTimestampEpoch = previousRawTempTimestamp ? previousRawTempTimestamp.toEpochSecond() : 0;
-    logger.debug(`prevTime: ${prevTime}, rawTime: ${rawTime}\n`);
+    logger.debug(`prevTime: ${prevTimeString}, rawTime: ${rawTimeString}\n`);
 
     // calculate various smoothing methods for analysis
     let temp0 = calculateLimitRateOfChange(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
