@@ -57,7 +57,12 @@ rules.JSRule({
     logger.info('Turning OFF stereo - kodi, amp, and bridges');
     items.getItem('Kodi_CT_systemcommand').sendCommand('Shutdown'); // shutdown CT Pi
     // logger.info("err 2");
-    items.getItem('amplifier_IR_PowerOff').sendCommand('ON');
+    const ampOffItem = items.getItem('amplifier_IR_PowerOff', true);
+    if (ampOffItem) {
+      ampOffItem.sendCommand('ON');
+    } else {
+      logger.warn("Item 'amplifier_IR_PowerOff' not found, skipping IR command");
+    }
 
     logger.info('STEREO - turned OFF amp, and bridges');
     // if stereo off timer is not defined or completed, restart the stereo off timer

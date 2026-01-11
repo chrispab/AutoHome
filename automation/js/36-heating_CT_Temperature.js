@@ -14,15 +14,10 @@ const logger = log(ruleUID);
 
 scriptLoaded = function () {
   logger.debug('scriptLoaded - {}', ruleUID);
-  for (const transferPoint in transferCurve) {
-    // logger.debug('==transferPoint: {}, transferCurve[transferPoint]: {}', transferPoint, JSON.stringify(transferCurve[transferPoint])) // '0.05' in the first iteration
-    // logger.debug('== transferPoint: {}->{}', transferPoint, JSON.stringify(transferCurve[transferPoint])); // '0.05' in the first iteration
-  }
-  // logger.debug('.....................................');
 };
 
 // get transfer alpha value based on difference in degrees (upto), e.g absDiff <= tp.degreesDiff;
-let transferCurve = cache.private.get('transferCurve', () => ({
+const transferCurve = cache.private.get('transferCurve', () => ({
   diffAlpha_0: { degreesDiff: 0.05, alpha: 1.0 },
   diffAlpha_1: { degreesDiff: 0.1, alpha: 0.7 },
   diffAlpha_2: { degreesDiff: 0.2, alpha: 0.6 },
@@ -192,7 +187,7 @@ function formatEpochToTime(epochSeconds) {
 function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   // show message entering function. show epoch timestamp in hours minutes and seconds
   // convert epoch seconds to zdt for logging
-  logger.warn('..entering calculateLimitRateOfChange: prevTemp: {}, prevTime: {}, currTemp: {}, currTime: {}', prevTemp, formatEpochToTime(prevTime), currTemp, formatEpochToTime(currTime));
+  logger.debug('..entering calculateLimitRateOfChange: prevTemp: {}, prevTime: {}, currTemp: {}, currTime: {}', prevTemp, formatEpochToTime(prevTime), currTemp, formatEpochToTime(currTime));
 
   // convert to floats into local variables (do not reassign parameters)
   let previousTemp = parseFloat(prevTemp);
@@ -227,24 +222,23 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   }
   const deltaTemp = parseFloat((currentTemp - previousTemp).toFixed(2));
   const deltaTime = currentTime - previousTime;
-  logger.debug('..deltaTemp: {} - {} = {}', currentTemp, previousTemp, deltaTemp);
-  logger.debug('..deltaTime: {} - {} = {}', formatEpochToTime(currentTime), formatEpochToTime(previousTime), formatEpochToTime(deltaTime));
+  logger.debug('..deltaTemp = {} ({} - {})', deltaTemp, currentTemp, previousTemp);
+  logger.debug('..deltaTime = {} ({} - {})', formatEpochToTime(deltaTime), formatEpochToTime(currentTime), formatEpochToTime(previousTime));
   if (deltaTime === 0) {
     logger.debug('..deltaTime is 0, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
   const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
   // express currentReadingGradient as degrees per hour
-  const currentReadingGradientPerHour = currentReadingGradient * 3600;
+  const currentReadingGradientPerHour = parseFloat((currentReadingGradient * 3600).toFixed(2));
   // logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
-  // logger.debug('..deltaTemp: {}/ deltaTime: {} = currentReadingGradient-d/h: {}', deltaTemp, formatEpochToTime(deltaTime), currentReadingGradientPerHour);
 
   // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
   const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
 
   logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
   // express maxAllowedGradient as degrees per hour for logging
-  const maxAllowedGradientPerHour = maxAllowedGradient * 3600;
+  const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
   logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
 
   if (currentReadingGradient >= maxAllowedGradient) { // greater than threshold
@@ -262,7 +256,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
       // store reset counter
       cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
       // show message leaving function
-      logger.warn('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
+      logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
       return currentTemp;
     }
     cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
@@ -272,7 +266,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
     logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
     logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', formatEpochToTime(previousTime));
     // show message leaving function
-    logger.warn('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
+    logger.debug('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
 
@@ -280,10 +274,10 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   // if the temperature is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
   if (currentTemp > setpoint) {
-    logger.warn('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
+    logger.debug('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
   }
   // show message leaving function
-  logger.warn('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
+  logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
   return currentTemp;
 }
 
@@ -292,7 +286,7 @@ rules.JSRule({
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
   execute: (event) => {
-    logger.warn('smoothing ct raw temp.........');
+    logger.debug('smoothing ct raw temp.........');
 
     const rawTempItem = items.getItem('CT_ThermostatTemperatureAmbient_raw');
 
