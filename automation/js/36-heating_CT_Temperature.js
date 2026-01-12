@@ -255,22 +255,24 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
       numberReadingsTooSteep = 0;
       // store reset counter
       cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
+      logger.debug('..storing numberReadingsTooSteep in CACHE reset to: {} ', numberReadingsTooSteep);
       // show message leaving function
       logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
+
       return currentTemp;
     }
     cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
     logger.debug('..storing numberReadingsTooSteep in CACHE incremented to: {} ', numberReadingsTooSteep);
     cache.private.put('slopePreviousTime', previousTime);
     cache.private.put('slopePreviousTemp', previousTemp);
-    logger.debug('..storing slopePreviousTemp in CACHE as: {} to avoid using spike as previous next time', previousTemp);
-    logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', formatEpochToTime(previousTime));
+    logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', previousTemp, formatEpochToTime(previousTime));
+    // logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', formatEpochToTime(previousTime));
     // show message leaving function
     logger.debug('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
     return previousTemp;
   }
 
-  logger.debug('..SLOPE ACCEPTABLE {} < maxAllowedGradientPerHour {}, returning currentTemp: {}', currentReadingGradient, maxAllowedGradientPerHour, currentTemp);
+  logger.debug('..SLOPE ACCEPTABLE currentReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning currentTemp: {}', currentReadingGradientPerHour, maxAllowedGradientPerHour, currentTemp);
   // if the temperature is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
   if (currentTemp > setpoint) {

@@ -1,0 +1,16 @@
+sitemap emby label="Emby Control"
+{
+    Frame label="Controls" {
+        Switch item=Emby_PlayPause
+        Switch item=Emby_Stop
+        Switch item=Emby_Mute
+    }
+    Frame label="Now Playing" {
+        Text item=Emby_Title
+        Text item=Emby_ShowTitle
+        Text item=Emby_MediaType
+        Text item=Emby_CurrentTime
+        Text item=Emby_Duration
+        Text item=Emby_ImageURL
+    }
+}

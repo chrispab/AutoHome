@@ -1,0 +1,53 @@
+Bridge emby:controller:myEmbyServer [
+    ipAddress="192.168.0.111",
+    api="acfdabc7d09f4076b0344ca7ccffc521",
+    bufferSize=16384,
+    refreshInterval=2000,
+    discovery=true
+] {
+    Thing emby:device:myEmbyServer:myClientDevice [
+        deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"
+    ]
+}
+// version: 1
+// things:
+//   emby:device:myEmbyServer:uuidUYHJKU50d44bacUYHJKUdc02UYHJKU42a2UYHJKUbf07UYHJKU2cfa5c87c74e:
+//     bridge: emby:controller:myEmbyServer
+//     config:
+//       deviceID: uuidUYHJKU50d44bacUYHJKUdc02UYHJKU42a2UYHJKUbf07UYHJKU2cfa5c87c74e
+
+// 7f046585218d41f6b4aaad43eae993bb
+// uuidUYHJKU50d44bacUYHJKUdc02UYHJKU42a2UYHJKUbf07UYHJKU2cfa5c87c74e
+// 73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc
+// 6c6be234UYHJKUe652UYHJKU44baUYHJKU89e6UYHJKU57a4e057a297
+// uuidUYHJKU9f788949UYHJKUf56dUYHJKU80d3UYHJKU0aa0UYHJKU746f2387486d
+// 2a98b711adac8bae
+
+
+Thing emby:device:myEmbyServer:73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc (emby:controller:myEmbyServer) [deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"]
+// 73dbcb36-2168-4a23-9efb-d77e63b476dc
+// uuidUYHJKU9f788949UYHJKUf56dUYHJKU80d3UYHJKU0aa0UYHJKU746f2387486d
+// 17:04:58.616[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device embyserver with id 7f046585218d41f6b4aaad43eae993bb
+// 17:04:58.616[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:04:58.617[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:04:58.617[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device Network Device with id uuidUYHJKU50d44bacUYHJKUdc02UYHJKU42a2UYHJKUbf07UYHJKU2cfa5c87c74e
+// 17:05:00.613[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.613[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.614[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device LG Smart TV (65UR80006LJ) with id 73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc
+// 17:05:00.615[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.615[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.615[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device Firefox with id 6c6be234UYHJKUe652UYHJKU44baUYHJKU89e6UYHJKU57a4e057a297
+// 17:05:00.616[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.616[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.616[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device embyserver with id 7f046585218d41f6b4aaad43eae993bb
+// 17:05:00.616[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.617[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.617[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device [LG] webOS TV UR80006LJ with id uuidUYHJKU9f788949UYHJKUf56dUYHJKU80d3UYHJKU0aa0UYHJKU746f2387486d
+// 17:05:00.617[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.618[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.618[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device Redmi Note 10 Pro with id 2a98b711adac8bae
+// 17:05:00.618[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.619[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
+// 17:05:00.619[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device embyserver with id 7f046585218d41f6b4aaad43eae993bb
+// 17:05:00.619[DEBUG] [org.openhab.binding.emby.internal.protocol.EmbyConnection] - Received event from EMBY server, passing to bridge: host=192.168.0.111, port=8096
+// 17:05:00.619[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - adding new emby device
