@@ -7,3 +7,14 @@ Number:Time Emby_CurrentTime "Current Time [%d %unit%]" { channel="emby:device:m
 Number:Time Emby_Duration    "Duration [%d %unit%]"     { channel="emby:device:myEmbyServer:myClientDevice:duration" }
 String      Emby_MediaType   "Media Type [%s]"   { channel="emby:device:myEmbyServer:myClientDevice:media-type" }
 String      Emby_ImageURL    "Artwork URL [%s]"  { channel="emby:device:myEmbyServer:myClientDevice:image-url" }
+
+
+Switch      Emby_firefox_1_PlayPause   "Play/Pause"        { channel="emby:device:myEmbyServer:firefox_1:control" }
+Switch      Emby_firefox_1_Stop        "Stop"              { channel="emby:device:myEmbyServer:firefox_1:stop" }
+Switch      Emby_firefox_1_Mute        "Mute"              { channel="emby:device:myEmbyServer:firefox_1:mute" }
+String      Emby_firefox_1_Title       "Title [%s]"        { channel="emby:device:myEmbyServer:firefox_1:title" }
+String      Emby_firefox_1_ShowTitle   "Show Title [%s]"   { channel="emby:device:myEmbyServer:firefox_1:show-title" }
+Number:Time Emby_firefox_1_CurrentTime "Current Time [%d %unit%]" { channel="emby:device:myEmbyServer:firefox_1:current-time" }
+Number:Time Emby_firefox_1_Duration    "Duration [%d %unit%]"     { channel="emby:device:myEmbyServer:firefox_1:duration" }
+String      Emby_firefox_1_MediaType   "Media Type [%s]"   { channel="emby:device:myEmbyServer:firefox_1:media-type" }
+String      Emby_firefox_1_ImageURL    "Artwork URL [%s]"  { channel="emby:device:myEmbyServer:firefox_1:image-url" }

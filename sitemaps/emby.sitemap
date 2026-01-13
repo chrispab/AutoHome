@@ -13,4 +13,17 @@ sitemap emby label="Emby Control"
         Text item=Emby_Duration
         Text item=Emby_ImageURL
     }
+        Frame label="Controls" {
+        Switch item=Emby_firefox_1_PlayPause
+        Switch item=Emby_firefox_1_Stop
+        Switch item=Emby_firefox_1_Mute
+    }
+    Frame label="Now Playing" {
+        Text item=Emby_firefox_1_Title
+        Text item=Emby_firefox_1_ShowTitle
+        Text item=Emby_firefox_1_MediaType
+        Text item=Emby_firefox_1_CurrentTime
+        Text item=Emby_firefox_1_Duration
+        Text item=Emby_firefox_1_ImageURL
+    }
 }

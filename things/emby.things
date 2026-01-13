@@ -8,7 +8,17 @@ Bridge emby:controller:myEmbyServer [
     Thing emby:device:myEmbyServer:myClientDevice [
         deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"
     ]
+        Thing emby:device:myEmbyServer:firefox_1 [
+        deviceID="6c6be234UYHJKUe652UYHJKU44baUYHJKU89e6UYHJKU57a4e057a297"
+    ]
 }
+
+// {
+//     Thing emby:device:myEmbyServer:firefox_1 [
+//         deviceID="6c6be234UYHJKUe652UYHJKU44baUYHJKU89e6UYHJKU57a4e057a297"
+//     ]
+// }
+
 // version: 1
 // things:
 //   emby:device:myEmbyServer:uuidUYHJKU50d44bacUYHJKUdc02UYHJKU42a2UYHJKUbf07UYHJKU2cfa5c87c74e:
@@ -24,7 +34,11 @@ Bridge emby:controller:myEmbyServer [
 // 2a98b711adac8bae
 
 
-Thing emby:device:myEmbyServer:73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc (emby:controller:myEmbyServer) [deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"]
+// Thing emby:device:myEmbyServer:73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc (emby:controller:myEmbyServer) [deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"]
+
+
+
+
 // 73dbcb36-2168-4a23-9efb-d77e63b476dc
 // uuidUYHJKU9f788949UYHJKUf56dUYHJKU80d3UYHJKU0aa0UYHJKU746f2387486d
 // 17:04:58.616[DEBUG] [org.openhab.binding.emby.internal.discovery.EmbyClientDiscoveryService] - Disovered device embyserver with id 7f046585218d41f6b4aaad43eae993bb
