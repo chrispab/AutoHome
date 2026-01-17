@@ -10,3 +10,5 @@ Switch  vCT_TVKodiSpeakers2 "Telly"           <switch>  (gConservatory, gCT_TVKo
 Switch  vCT_TVKodiSpeakers_ikea_remote "ct tv power" 
 
 Switch  vAT_TVKodi          "Attic TV"        <switch>  (gAttic)      { synonyms="Attic Telly", ga="Switch" [ roomHint="Attic" ] }
+
+

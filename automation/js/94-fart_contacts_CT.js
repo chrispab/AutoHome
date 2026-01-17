@@ -5,14 +5,11 @@ const {
 const {
   ON, OFF, DecimalType, PercentType,
 } = require('@runtime');
-var ruleUID = "contact01";
+
+const ruleUID = 'contact01';
 const logger = log(ruleUID);
 
-let number = 0;
-let fartString;
-let numString;
 const max = 29;// num farts-1
-
 
 const vol = 0.5;
 rules.JSRule({
@@ -31,23 +28,20 @@ rules.JSRule({
       // logger.warn(`VVV - getMasterVolume from GHM : ${vol}`);
 
       // actions.Audio.setMasterVolume(newVol);
-  // generate  number in range 1 to max
-      if( Math.random() > 0.9){
+      // generate  number in range 1 to max
+      if (Math.random() > 0.9) {
         actions.Audio.playSound(randomFartString());
-        myPlaySound(randomFartString());
       }
-
     }
-
   },
 });
 
 // items
 // String        LivingRoomSpeaker_Playuri_backup    "Play uri backup"
 
-// rule 
+// rule
 // when
-//     Item received command 
+//     Item received command
 // then
 //     if (LivingRoomSpeaker_AppId.state == "CC1AD845" && LivingRoomSpeaker_Control.state == PLAY) {
 //     LivingRoomSpeaker_Playuri_backup.postUpdate(LivingRoomSpeaker_Playuri.state)
@@ -58,30 +52,11 @@ rules.JSRule({
 //     else {playSound("barking.mp3")}
 // end
 
-function myPlaySound() {
-//   // generate  number in range 1 to max
-//   number = Math.round(Math.random() * max) + 1;
-//   // number = Math.round(num * 10)/10;
-
-//   logger.debug(`VVV - fart number  : ${number}`);
-//   // if len = 1, fs = '0'+`${number}`
-//   if (number.toString().length === 1) {
-//     numString = `0${number.toString()}`;
-//   } else {
-//     numString = number.toString();
-//   }
-//   logger.debug(`VVV - numString  : ${numString}`);
-
-//   fartString = `farts/fart-${numString}.mp3`;
-//   logger.info(`contact01 - fart string  : ${fartString}`);
-//   return fartString;
-}
-
-
 function randomFartString() {
   // generate  number in range 1 to max
-  number = Math.round(Math.random() * max) + 1;
+  const number = Math.round(Math.random() * max) + 1;
   // number = Math.round(num * 10)/10;
+  let numString;
 
   logger.debug(`VVV - fart number  : ${number}`);
   // if len = 1, fs = '0'+`${number}`
@@ -92,7 +67,7 @@ function randomFartString() {
   }
   logger.debug(`VVV - numString  : ${numString}`);
 
-  fartString = `farts/fart-${numString}.mp3`;
+  const fartString = `farts/fart-${numString}.mp3`;
   logger.info(`contact01 - fart string  : ${fartString}`);
   return fartString;
 }

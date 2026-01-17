@@ -17,7 +17,7 @@ scriptLoaded = function () {
 };
 
 // get transfer alpha value based on difference in degrees (upto), e.g absDiff <= tp.degreesDiff;
-const transferCurve = cache.private.get('transferCurve', () => ({
+const transferCurve = {
   diffAlpha_0: { degreesDiff: 0.05, alpha: 1.0 },
   diffAlpha_1: { degreesDiff: 0.1, alpha: 0.7 },
   diffAlpha_2: { degreesDiff: 0.2, alpha: 0.6 },
@@ -32,7 +32,7 @@ const transferCurve = cache.private.get('transferCurve', () => ({
   diffAlpha_11: { degreesDiff: 5.0, alpha: 0.01 },
   diffAlpha_12: { degreesDiff: 10.0, alpha: 0.001 },
   diffAlpha_13: { degreesDiff: 99.0, alpha: 0.0001 },
-}));
+};
 
 /**
  * Retrieves the smoothing factor (alpha) based on the absolute difference between readings.
@@ -101,15 +101,17 @@ function calcWeightedEMA(previousValue, currentReading, debugTag = 'WeightedEMA'
  *
  * @param {number|string} currentReading - The current raw reading.
  * @param {number} [windowSize=3] - The size of the median filter buffer.
+ * @param {string} [key='default'] - Unique key to separate buffers for different items.
  * @returns {number} The calculated median value.
  */
-function calcMedian(currentReading, windowSize = 3) {
-  const buffer = cache.private.get('medianBuffer', () => []);
+function calcMedian(currentReading, windowSize = 3, key = 'default') {
+  const bufferKey = `medianBuffer_${key}`;
+  const buffer = cache.private.get(bufferKey, () => []);
   const numericValue = parseFloat(currentReading);
   buffer.push(numericValue);
   // logger.debug('..median buffer size: {}, values: {}', buffer.length, JSON.stringify(buffer));
   if (buffer.length > windowSize) buffer.shift();
-  cache.private.put('medianBuffer', buffer);
+  cache.private.put(bufferKey, buffer);
 
   const sortedBuffer = [...buffer].sort((a, b) => a - b);
   const midIndex = Math.floor(sortedBuffer.length / 2);
@@ -125,7 +127,7 @@ function calcMedian(currentReading, windowSize = 3) {
  * @returns {number} The calculated average.
  */
 function calcAverage(currentReading, windowSize = 3, debugTag = 'temp') {
-  const bufferName = `averageBuffer${windowSize}`;
+  const bufferName = `averageBuffer_${debugTag}`;
   const buffer = cache.private.get(bufferName, () => []);
 
   const numericValue = parseFloat(currentReading);
@@ -139,28 +141,6 @@ function calcAverage(currentReading, windowSize = 3, debugTag = 'temp') {
   const average = sum / buffer.length;
   // logger.debug('..{} average value: {}', debugTag, average);
   return average;
-}
-
-/**
- * Smooths out temperature readings using a fixed weighted average (EMA).
- * Calculates new temperature from 40% of new and 60% of previous temperature.
- *
- * @param {number|string} previousSmoothedTemp - The previous smoothed temperature value.
- * @param {number|string} currentRawTemp - The new raw temperature reading.
- * @param {string} [debugTag='temp'] - Tag for debug logging.
- * @returns {number} The calculated smoothed temperature.
- */
-function smoothCTTemperature(previousSmoothedTemp, currentRawTemp, debugTag = 'temp') {
-  const previousNumeric = parseFloat(previousSmoothedTemp);
-  const currentNumeric = parseFloat(currentRawTemp);
-
-  if (Number.isNaN(previousNumeric)) return currentNumeric;
-  if (Number.isNaN(currentNumeric)) return previousNumeric;
-
-  const smoothingFactor = 0.6;
-  const smoothedTemp = (previousNumeric * smoothingFactor) + (currentNumeric * (1 - smoothingFactor));
-  // logger.debug('..{} smoothCTTemperature: ({} * {}) + ({} * {}) = {}', debugTag, previousNumeric, (1 - smoothingFactor), currentNumeric, smoothingFactor, smoothedTemp);
-  return smoothedTemp;
 }
 
 /**
@@ -197,29 +177,26 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   const currentTime = currTime;
 
   if (Number.isNaN(previousTemp) || Number.isNaN(currentTemp)) {
-    logger.warn('calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', prevTemp, currTemp);
+    logger.warn('..calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', prevTemp, currTemp);
     return !Number.isNaN(currentTemp) ? currentTemp : previousTemp;
   }
 
   // check cache for last accepted previousTemp to avoid using a spike as previous
-  const cachedPreviousTemp = cache.private.get('slopePreviousTemp');
-  const cachedPreviousTime = cache.private.get('slopePreviousTime');
-  const cachedNumberReadingsTooSteep = cache.private.get('slopeNumberReadingsTooSteep');
+  const slopeCache = cache.private.get('slopeCache');
 
-  if (cachedPreviousTemp !== null && cachedPreviousTemp !== undefined) {
-    logger.debug('..using CACHED previousTemp: {} instead of spike previousTemp: {}', cachedPreviousTemp, previousTemp);
-    logger.debug('..using CACHED previousTime: {} instead of spike previousTime: {}', formatEpochToTime(cachedPreviousTime), formatEpochToTime(previousTime));
-    logger.debug('..had {} consecutive TOO STEEP readings cached', cachedNumberReadingsTooSteep);
+  if (slopeCache && slopeCache.previousTemp !== null && slopeCache.previousTemp !== undefined) {
+    logger.debug('..using CACHED previousTemp: {} instead of spike previousTemp: {}', slopeCache.previousTemp, previousTemp);
+    logger.debug('..using CACHED previousTime: {} instead of spike previousTime: {}', formatEpochToTime(slopeCache.previousTime), formatEpochToTime(previousTime));
+    logger.debug('..had {} consecutive TOO STEEP readings cached', slopeCache.numberReadingsTooSteep);
 
-    previousTemp = cachedPreviousTemp;
-    previousTime = cachedPreviousTime;
-    numberReadingsTooSteep = cachedNumberReadingsTooSteep || 0;
+    previousTemp = slopeCache.previousTemp;
+    previousTime = slopeCache.previousTime;
+    numberReadingsTooSteep = slopeCache.numberReadingsTooSteep || 0;
     // clear cache now used
-    cache.private.remove('slopePreviousTemp');
-    cache.private.remove('slopePreviousTime');
-    cache.private.remove('slopeNumberReadingsTooSteep');
-    logger.debug('..cleared CACHED previousTemp and previousTime after use');
+    cache.private.remove('slopeCache');
+    logger.debug('..cleared slopeCache after use');
   }
+
   const deltaTemp = parseFloat((currentTemp - previousTemp).toFixed(2));
   const deltaTime = currentTime - previousTime;
   logger.debug('..deltaTemp = {} ({} - {})', deltaTemp, currentTemp, previousTemp);
@@ -234,7 +211,9 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   // logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
 
   // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
-  const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
+  // const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
+  // const maxAllowedGradient = 0.1 / 120; // 0.1 degree per 120 seconds
+  const maxAllowedGradient = 0.1 / 50; // 0.1 degree per 60 seconds
 
   logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
   // express maxAllowedGradient as degrees per hour for logging
@@ -254,19 +233,20 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
       // reset counter
       numberReadingsTooSteep = 0;
       // store reset counter
-      cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
-      logger.debug('..storing numberReadingsTooSteep in CACHE reset to: {} ', numberReadingsTooSteep);
+      cache.private.remove('slopeCache');
+      logger.debug('..resetting slopeCache in CACHE');
       // show message leaving function
       logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
 
       return currentTemp;
     }
-    cache.private.put('slopeNumberReadingsTooSteep', numberReadingsTooSteep);
-    logger.debug('..storing numberReadingsTooSteep in CACHE incremented to: {} ', numberReadingsTooSteep);
-    cache.private.put('slopePreviousTime', previousTime);
-    cache.private.put('slopePreviousTemp', previousTemp);
+    cache.private.put('slopeCache', {
+      previousTemp,
+      previousTime,
+      numberReadingsTooSteep,
+    });
+    logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
     logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', previousTemp, formatEpochToTime(previousTime));
-    // logger.debug('..storing slopePreviousTime in CACHE as: {} to avoid using spike time as previous next time', formatEpochToTime(previousTime));
     // show message leaving function
     logger.debug('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
     return previousTemp;
@@ -345,7 +325,7 @@ rules.JSRule({
     logger.debug(`temp0..calculated currentReadingGradient temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
 
-    let temp1 = calcMedian(newRawTemp);
+    let temp1 = calcMedian(newRawTemp, 3, 'temp1');
     temp1 = Number(temp1).toFixed(decimalPlaces);
     // logger.debug(`temp1..calculated median temp1: ${temp1}`);
     items.getItem('temp1').postUpdate(temp1);
@@ -375,7 +355,8 @@ rules.JSRule({
     // logger.debug(`temp6..calculated average temp6: ${temp6}`);
     items.getItem('temp6').postUpdate(temp6);
 
-    let temp7 = smoothCTTemperature(prevTemp, newRawTemp, 'temp7');
+    // Equivalent to smoothCTTemperature (0.6 on prev is 0.4 on current)
+    let temp7 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp7');
     temp7 = Number(temp7).toFixed(decimalPlaces);
     // logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
     items.getItem('temp7').postUpdate(temp7);

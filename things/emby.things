@@ -5,7 +5,7 @@ Bridge emby:controller:myEmbyServer [
     refreshInterval=2000,
     discovery=true
 ] {
-    Thing emby:device:myEmbyServer:myClientDevice [
+    Thing emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ [
         deviceID="73dbcb36UYHJKU2168UYHJKU4a23UYHJKU9efbUYHJKUd77e63b476dc"
     ]
         Thing emby:device:myEmbyServer:firefox_1 [

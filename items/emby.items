@@ -1,12 +1,12 @@
-Switch      Emby_PlayPause   "Play/Pause"        { channel="emby:device:myEmbyServer:myClientDevice:control" }
-Switch      Emby_Stop        "Stop"              { channel="emby:device:myEmbyServer:myClientDevice:stop" }
-Switch      Emby_Mute        "Mute"              { channel="emby:device:myEmbyServer:myClientDevice:mute" }
-String      Emby_Title       "Title [%s]"        { channel="emby:device:myEmbyServer:myClientDevice:title" }
-String      Emby_ShowTitle   "Show Title [%s]"   { channel="emby:device:myEmbyServer:myClientDevice:show-title" }
-Number:Time Emby_CurrentTime "Current Time [%d %unit%]" { channel="emby:device:myEmbyServer:myClientDevice:current-time" }
-Number:Time Emby_Duration    "Duration [%d %unit%]"     { channel="emby:device:myEmbyServer:myClientDevice:duration" }
-String      Emby_MediaType   "Media Type [%s]"   { channel="emby:device:myEmbyServer:myClientDevice:media-type" }
-String      Emby_ImageURL    "Artwork URL [%s]"  { channel="emby:device:myEmbyServer:myClientDevice:image-url" }
+Switch      Emby_PlayPause   "Play/Pause"        { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:control" }
+Switch      Emby_Stop        "Stop"              { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:stop" }
+Switch      Emby_Mute        "Mute"              { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:mute" }
+String      Emby_Title       "Title [%s]"        { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:title" }
+String      Emby_ShowTitle   "Show Title [%s]"   { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:show-title" }
+Number:Time Emby_CurrentTime "Current Time [%d %unit%]" { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:current-time" }
+Number:Time Emby_Duration    "Duration [%d %unit%]"     { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:duration" }
+String      Emby_MediaType   "Media Type [%s]"   { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:media-type" }
+String      Emby_ImageURL    "Artwork URL [%s]"  { channel="emby:device:myEmbyServer:LG_Smart_TV_65UR80006LJ:image-url" }
 
 
 Switch      Emby_firefox_1_PlayPause   "Play/Pause"        { channel="emby:device:myEmbyServer:firefox_1:control" }

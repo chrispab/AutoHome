@@ -1,3 +1,6 @@
 Switch	vCT_stereo	"Conservatory stereo"	<switch>	(gConservatory)		{ ga="Switch" [ roomHint="Conservatory" ] }
 // Switch	vCT_TVKodiSpeakers2	"the telly"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
 // Switch	vCT_TVKodiSpeakers	"Conservatory TV"	<switch>	(gConservatory, gCT_TVKodiSpeakers)		{ ga="Switch" [ roomHint="Conservatory" ] }
+
+
+Switch CT_amplifier_bg_wifisocket_1_power "BG Socket one-one" (gMQTT, gBGWiFiPowerSockets)  { channel = "mqtt:topic:bg_wifisocket_1:powerSwitch_1" }
