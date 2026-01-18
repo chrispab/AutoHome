@@ -223,7 +223,7 @@ function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
   if (currentReadingGradient >= maxAllowedGradient) { // greater than threshold
     logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning previousTemp: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, previousTemp);
     // an ignored spike must also be not used as previous for next calc
-    // set and store previousTemp as currentTemp for next calc
+    // set and store previousTemp for next calc
     // also store timestamp of previousTemp
     numberReadingsTooSteep += 1;
     // if there have been 3 consecutive too steep readings, accept the currentTemp anyway
@@ -268,7 +268,8 @@ rules.JSRule({
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
   execute: (event) => {
-    logger.debug('smoothing ct raw temp.........');
+    logger.debug('--------------------------------------------------------------------');
+    logger.debug('>smoothing ct raw temp.........');
 
     const rawTempItem = items.getItem('CT_ThermostatTemperatureAmbient_raw');
 
@@ -325,56 +326,56 @@ rules.JSRule({
     logger.debug(`temp0..calculated currentReadingGradient temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
 
-    let temp1 = calcMedian(newRawTemp, 3, 'temp1');
-    temp1 = Number(temp1).toFixed(decimalPlaces);
-    // logger.debug(`temp1..calculated median temp1: ${temp1}`);
-    items.getItem('temp1').postUpdate(temp1);
+    // let temp1 = calcMedian(newRawTemp, 3, 'temp1');
+    // temp1 = Number(temp1).toFixed(decimalPlaces);
+    // // logger.debug(`temp1..calculated median temp1: ${temp1}`);
+    // items.getItem('temp1').postUpdate(temp1);
 
-    let temp2 = calcAverage(newRawTemp, 2, 'temp2');
-    temp2 = Number(temp2).toFixed(decimalPlaces);
-    logger.debug(`temp2..calculated average temp2: ${temp2}`);
-    items.getItem('temp2').postUpdate(temp2);
+    // let temp2 = calcAverage(newRawTemp, 2, 'temp2');
+    // temp2 = Number(temp2).toFixed(decimalPlaces);
+    // logger.debug(`temp2..calculated average temp2: ${temp2}`);
+    // items.getItem('temp2').postUpdate(temp2);
 
-    let temp3 = calcAverage(newRawTemp, 3, 'temp3');
-    temp3 = Number(temp3).toFixed(decimalPlaces);
-    // logger.debug(`temp3..calculated average temp3: ${temp3}`);
-    items.getItem('temp3').postUpdate(temp3);
+    // let temp3 = calcAverage(newRawTemp, 3, 'temp3');
+    // temp3 = Number(temp3).toFixed(decimalPlaces);
+    // // logger.debug(`temp3..calculated average temp3: ${temp3}`);
+    // items.getItem('temp3').postUpdate(temp3);
 
-    let temp4 = calcAverage(newRawTemp, 4, 'temp4');
-    temp4 = Number(temp4).toFixed(decimalPlaces);
-    // logger.debug(`temp4..calculated average temp4: ${temp4}`);
-    items.getItem('temp4').postUpdate(temp4);
+    // let temp4 = calcAverage(newRawTemp, 4, 'temp4');
+    // temp4 = Number(temp4).toFixed(decimalPlaces);
+    // // logger.debug(`temp4..calculated average temp4: ${temp4}`);
+    // items.getItem('temp4').postUpdate(temp4);
 
-    let temp5 = calcAverage(newRawTemp, 5, 'temp5');
-    temp5 = Number(temp5).toFixed(decimalPlaces);
-    // logger.debug(`temp5..calculated average temp5: ${temp5}`);
-    items.getItem('temp5').postUpdate(temp5);
+    // let temp5 = calcAverage(newRawTemp, 5, 'temp5');
+    // temp5 = Number(temp5).toFixed(decimalPlaces);
+    // // logger.debug(`temp5..calculated average temp5: ${temp5}`);
+    // items.getItem('temp5').postUpdate(temp5);
 
-    let temp6 = calcAverage(newRawTemp, 6, 'temp6');
-    temp6 = Number(temp6).toFixed(decimalPlaces);
-    // logger.debug(`temp6..calculated average temp6: ${temp6}`);
-    items.getItem('temp6').postUpdate(temp6);
+    // let temp6 = calcAverage(newRawTemp, 6, 'temp6');
+    // temp6 = Number(temp6).toFixed(decimalPlaces);
+    // // logger.debug(`temp6..calculated average temp6: ${temp6}`);
+    // items.getItem('temp6').postUpdate(temp6);
 
-    // Equivalent to smoothCTTemperature (0.6 on prev is 0.4 on current)
-    let temp7 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp7');
-    temp7 = Number(temp7).toFixed(decimalPlaces);
-    // logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
-    items.getItem('temp7').postUpdate(temp7);
+    // // Equivalent to smoothCTTemperature (0.6 on prev is 0.4 on current)
+    // let temp7 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp7');
+    // temp7 = Number(temp7).toFixed(decimalPlaces);
+    // // logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
+    // items.getItem('temp7').postUpdate(temp7);
 
-    let temp8 = calcAverage(newRawTemp, 8, 'temp8');
-    temp8 = Number(temp8).toFixed(decimalPlaces);
-    // logger.debug(`temp8..calculated average temp8: ${temp8}`);
-    items.getItem('temp8').postUpdate(temp8);
+    // let temp8 = calcAverage(newRawTemp, 8, 'temp8');
+    // temp8 = Number(temp8).toFixed(decimalPlaces);
+    // // logger.debug(`temp8..calculated average temp8: ${temp8}`);
+    // items.getItem('temp8').postUpdate(temp8);
 
-    let temp9 = calcWeightedEMA(prevTemp, newRawTemp, 'temp9');
-    temp9 = Number(temp9).toFixed(decimalPlaces);
-    // logger.debug(`temp9..calculated average temp9: ${temp9}`);
-    items.getItem('temp9').postUpdate(temp9);
+    // let temp9 = calcWeightedEMA(prevTemp, newRawTemp, 'temp9');
+    // temp9 = Number(temp9).toFixed(decimalPlaces);
+    // // logger.debug(`temp9..calculated average temp9: ${temp9}`);
+    // items.getItem('temp9').postUpdate(temp9);
 
-    let temp10 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp10');
-    temp10 = Number(temp10).toFixed(decimalPlaces);
-    // logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
-    items.getItem('temp10').postUpdate(temp10);
+    // let temp10 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp10');
+    // temp10 = Number(temp10).toFixed(decimalPlaces);
+    // // logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
+    // items.getItem('temp10').postUpdate(temp10);
 
     const newPreciseTemp = temp0;
 
@@ -399,6 +400,6 @@ rules.JSRule({
     const ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     logger.debug(`newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
 
-    logger.debug(`prev temp: ${prevTemp}, raw temp: ${newRawTemp},new precision temp: ${newPreciseTemp},  new Temp: ${workingTemp}`);
+    logger.debug(` new raw temp:${newRawTemp}, prev temp:${prevTemp}, new working Temp:${workingTemp}, new precision temp:${newPreciseTemp}`);
   },
 });
