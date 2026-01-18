@@ -12,7 +12,7 @@ Number:Dimensionless CT_ThermostatHumidityAmbient "Conservatory Humidity" <humid
                         {unit="%", ga="thermostatHumidityAmbient", channel="mqtt:topic:conservatoryRadiatorValve:humidity"}
 
 //var for reading and smoothing temperature readings
-Number:Temperature      CT_ThermostatTemperatureAmbient_raw "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gEveryUpdate)
+Number:Temperature      CT_Temperature_sensor "Conservatory Temperature raw [%.1f %unit%]" <temperature> (gEveryUpdate)
                         {channel="mqtt:topic:conservatoryRadiatorValve:temperature", unit="°C"}
 Number:Temperature      CT_ThermostatTemperatureAmbient_precision "Conservatory Temperature precision [%.2f %unit%]" <temperature> (gChart_Minute)
 

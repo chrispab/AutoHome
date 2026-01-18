@@ -155,251 +155,221 @@ function formatEpochToTime(epochSeconds) {
 }
 
 /**
+ * Clears the slope cache and logs a debug message.
+ * @param {string} message - The message to log.
+ */
+function clearSlopeCache(message) {
+  cache.private.remove('slopeCache');
+  logger.debug(`.${message}`);
+}
+
+/**
  * Calculates the currentReadingGradient between two temperature points and filters out spikes
  * if the rate of change exceeds a threshold.
  *
- * @param {number|string} prevTemp - The previous temperature value.
- * @param {number} prevTime - The epoch timestamp of the previous reading.
- * @param {number|string} currTemp - The current temperature value.
- * @param {number} currTime - The epoch timestamp of the current reading.
+ * @param {number|string} oldTemp - The previous temperature value.
+ * @param {number} oldTime - The epoch timestamp of the previous reading.
+ * @param {number|string} newTemp - The current temperature value.
+ * @param {number} newTime - The epoch timestamp of the current reading.
  * @returns {number} The filtered temperature (either current or previous).
  */
-function calculateLimitRateOfChange(prevTemp, prevTime, currTemp, currTime) {
-  // show message entering function. show epoch timestamp in hours minutes and seconds
-  // convert epoch seconds to zdt for logging
-  logger.debug('..entering calculateLimitRateOfChange: prevTemp: {}, prevTime: {}, currTemp: {}, currTime: {}', prevTemp, formatEpochToTime(prevTime), currTemp, formatEpochToTime(currTime));
-
+function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   // convert to floats into local variables (do not reassign parameters)
-  let previousTemp = parseFloat(prevTemp);
-  let previousTime = prevTime;
+  let oldTempVal = parseFloat(oldTemp);
+  let oldTimeVal = oldTime;
+  const newTempVal = parseFloat(newTemp);
+  const newTimeVal = newTime;
   let numberReadingsTooSteep = 0;
-  const currentTemp = parseFloat(currTemp);
-  const currentTime = currTime;
 
-  if (Number.isNaN(previousTemp) || Number.isNaN(currentTemp)) {
-    logger.warn('..calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', prevTemp, currTemp);
-    return !Number.isNaN(currentTemp) ? currentTemp : previousTemp;
+  logger.debug('..oldTempVal: {}, oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
+  logger.debug('..newTempVal: {}, newTimeVal: {}', newTempVal, formatEpochToTime(newTimeVal));
+
+  const maxAllowedGradient = 0.1 / 40; // 0.1 degree per 60 seconds
+  // number of consecutive too steep readings before accepting newTempVal anyway
+  // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
+  const maxRejectedGradientSamples = 2;
+
+  if (Number.isNaN(oldTempVal) || Number.isNaN(newTempVal)) {
+    logger.warn('..calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', oldTemp, newTemp);
+    return !Number.isNaN(newTempVal) ? newTempVal : oldTempVal;
   }
 
-  // check cache for last accepted previousTemp to avoid using a spike as previous
+  // check cache for last accepted oldTempVal to avoid using a spike as previous
   const slopeCache = cache.private.get('slopeCache');
-
-  if (slopeCache && slopeCache.previousTemp !== null && slopeCache.previousTemp !== undefined) {
-    logger.debug('..using CACHED previousTemp: {} instead of spike previousTemp: {}', slopeCache.previousTemp, previousTemp);
-    logger.debug('..using CACHED previousTime: {} instead of spike previousTime: {}', formatEpochToTime(slopeCache.previousTime), formatEpochToTime(previousTime));
+  if (slopeCache && slopeCache.oldTempVal !== null && slopeCache.oldTempVal !== undefined) {
+    logger.debug('..using CACHED oldTempVal: {} instead of spike oldTempVal: {}', slopeCache.oldTempVal, oldTempVal);
+    logger.debug('..using CACHED oldTimeVal: {} instead of spike oldTimeVal: {}', formatEpochToTime(slopeCache.oldTimeVal), formatEpochToTime(oldTimeVal));
     logger.debug('..had {} consecutive TOO STEEP readings cached', slopeCache.numberReadingsTooSteep);
 
-    previousTemp = slopeCache.previousTemp;
-    previousTime = slopeCache.previousTime;
+    oldTempVal = slopeCache.oldTempVal;
+    oldTimeVal = slopeCache.oldTimeVal;
     numberReadingsTooSteep = slopeCache.numberReadingsTooSteep || 0;
     // clear cache now used
-    cache.private.remove('slopeCache');
-    logger.debug('..cleared slopeCache after use');
+    clearSlopeCache('..cleared slopeCache after use');
+  } else {
+    logger.debug('..no slopeCache in CACHE, using passed oldTempVal: {} and oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
   }
 
-  const deltaTemp = parseFloat((currentTemp - previousTemp).toFixed(2));
-  const deltaTime = currentTime - previousTime;
-  logger.debug('..deltaTemp = {} ({} - {})', deltaTemp, currentTemp, previousTemp);
-  logger.debug('..deltaTime = {} ({} - {})', formatEpochToTime(deltaTime), formatEpochToTime(currentTime), formatEpochToTime(previousTime));
-  if (deltaTime === 0) {
-    logger.debug('..deltaTime is 0, returning previousTemp: {}', previousTemp);
-    return previousTemp;
-  }
+  const deltaTemp = parseFloat((newTempVal - oldTempVal).toFixed(2));
+  const deltaTime = (newTimeVal - oldTimeVal);
+  logger.debug('..deltaTemp = {} ({} - {})', deltaTemp, newTempVal, oldTempVal);
+  logger.debug('..deltaTime = {} ({} - {})', formatEpochToTime(deltaTime), formatEpochToTime(newTimeVal), formatEpochToTime(oldTimeVal));
+  // if (deltaTime === 0) {
+  //   logger.debug('..deltaTime is 0, returning oldTempVal: {}', oldTempVal);
+  //   return oldTempVal;
+  // }
   const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
   // express currentReadingGradient as degrees per hour
   const currentReadingGradientPerHour = parseFloat((currentReadingGradient * 3600).toFixed(2));
-  // logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
-
-  // const maxAllowedGradient = 1 / 900; // 1 degree per 900 seconds
-  // const maxAllowedGradient = 0.1 / 180; // 0.1 degree per 180 seconds
-  // const maxAllowedGradient = 0.1 / 120; // 0.1 degree per 120 seconds
-  const maxAllowedGradient = 0.1 / 50; // 0.1 degree per 60 seconds
-
   logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
+
   // express maxAllowedGradient as degrees per hour for logging
   const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
   logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
 
-  if (currentReadingGradient >= maxAllowedGradient) { // greater than threshold
-    logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning previousTemp: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, previousTemp);
-    // an ignored spike must also be not used as previous for next calc
-    // set and store previousTemp for next calc
-    // also store timestamp of previousTemp
+  if (currentReadingGradient > maxAllowedGradient) { // gradient greater than threshold
     numberReadingsTooSteep += 1;
-    // if there have been 3 consecutive too steep readings, accept the currentTemp anyway
-    // implies genuine rapid temp change, e.g window opened etc, not a sensor spike
-    if (numberReadingsTooSteep >= 3) {
-      logger.debug('..SLOPE TOO STEEP BUT {} consecutive readings, ACCEPTING currentTemp: {} anyway', numberReadingsTooSteep, currentTemp);
-      // reset counter
-      numberReadingsTooSteep = 0;
-      // store reset counter
-      cache.private.remove('slopeCache');
-      logger.debug('..resetting slopeCache in CACHE');
-      // show message leaving function
-      logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
-
-      return currentTemp;
-    }
+    logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning oldTempVal: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, oldTempVal);
+    logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
+    logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', oldTempVal, formatEpochToTime(oldTimeVal));
+    // an ignored spike must also be not used as previous for next calc
+    // set and store oldTempVal for next calc
+    // also store timestamp of oldTempVal
     cache.private.put('slopeCache', {
-      previousTemp,
-      previousTime,
+      oldTempVal,
+      oldTimeVal,
       numberReadingsTooSteep,
     });
-    logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
-    logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', previousTemp, formatEpochToTime(previousTime));
-    // show message leaving function
-    logger.debug('..leaving calculateLimitRateOfChange, returning previousTemp: {}', previousTemp);
-    return previousTemp;
-  }
 
-  logger.debug('..SLOPE ACCEPTABLE currentReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning currentTemp: {}', currentReadingGradientPerHour, maxAllowedGradientPerHour, currentTemp);
+    // if there have been n consecutive too steep readings, accept the newTempVal anyway
+    // implies genuine rapid temp change, e.g window opened etc, not a sensor spike
+    if (numberReadingsTooSteep >= maxRejectedGradientSamples) {
+      logger.debug('..SLOPE TOO STEEP BUT {} consecutive readings, ACCEPTING newTempVal: {} anyway', numberReadingsTooSteep, newTempVal);
+      // reset counter
+      // remove counter, cache
+      clearSlopeCache(`..numberReadingsTooSteep ${numberReadingsTooSteep} reset to clear from CACHE`);
+      // show message leaving function
+      logger.debug('..numberReadingsTooSteep limit. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
+
+      return newTempVal;
+    }
+
+    // show message leaving function
+    logger.debug('..gradient greater than threshold, leaving calculateLimitRateOfChange, returning oldTempVal: {}', oldTempVal);
+    return oldTempVal;
+  }
+  // else less than threshold
+  logger.debug('..SLOPE ACCEPTABLE currentReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newTempVal: {}', currentReadingGradientPerHour, maxAllowedGradientPerHour, newTempVal);
+  clearSlopeCache('..resetting slopeCache in CACHE');
+
   // if the temperature is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
-  if (currentTemp > setpoint) {
-    logger.debug('..temperature {} is above setpoint {}, heating off', currentTemp, setpoint);
+  if (newTempVal > setpoint) {
+    logger.debug('..temperature {} is above setpoint {}, heating off', newTempVal, setpoint);
+  } else {
+    logger.debug('..temperature {} is at or below setpoint {}, heating on', newTempVal, setpoint);
   }
   // show message leaving function
-  logger.debug('..leaving calculateLimitRateOfChange, returning currentTemp: {}', currentTemp);
-  return currentTemp;
+  logger.debug('..less than threshold. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
+  return newTempVal;
 }
 
 rules.JSRule({
   name: 'smooth out CT temperature readings',
   description: 'smooth out CT temperature readings',
-  triggers: [triggers.ItemStateUpdateTrigger('CT_ThermostatTemperatureAmbient_raw')],
+  triggers: [triggers.ItemStateUpdateTrigger('CT_Temperature_sensor')],
   execute: (event) => {
-    logger.debug('--------------------------------------------------------------------');
-    logger.debug('>smoothing ct raw temp.........');
+    logger.debug('------------------------------------------');
+    logger.debug('>NEW CT Temp Sensor: smoothing ct sensor temp reading.........');
+    logger.debug(`Event: ${JSON.stringify(event)}`);
+    logger.debug('------------------------------------------');
 
-    const rawTempItem = items.getItem('CT_ThermostatTemperatureAmbient_raw');
+    // get new temp sensor reading and timestamp
+    const tempSensorItem = items.getItem('CT_Temperature_sensor');
+    let newTempSensorState = tempSensorItem.state;
+    if (newTempSensorState !== 'NULL' && newTempSensorState !== 'UNDEF') {
+      newTempSensorState = parseFloat(newTempSensorState).toFixed(1);
+    }
+    const newTempSensorStateTimestamp = tempSensorItem.lastStateUpdateTimestamp;
 
-    const historicItem = rawTempItem.persistence.previousState();
-    let previousRawTemp = historicItem ? historicItem.state : rawTempItem.state;
-    const previousRawTempTimestamp = historicItem ? historicItem.timestamp : null;
-    logger.debug(`previous raw CT temp is: ${previousRawTemp}`);
-    logger.debug(`previous raw CT temp timestamp is: ${previousRawTempTimestamp ? formatEpochToTime(previousRawTempTimestamp.toEpochSecond()) : 'null'}`);
+    // get previousTempSensorState from persistence
+    let previousTempSensorState = tempSensorItem.persistence.previousState().state;
+    const previousSensorTempSateTimestamp = tempSensorItem.persistence.previousState().timestamp;
+    if (previousTempSensorState !== null && previousTempSensorState !== 'NULL' && previousTempSensorState !== 'UNDEF') {
+      previousTempSensorState = parseFloat(previousTempSensorState).toFixed(1);
+    }
+    logger.debug(`previousTempSensorState.: ${previousTempSensorState}, ${previousSensorTempSateTimestamp ? formatEpochToTime(previousSensorTempSateTimestamp.toEpochSecond()) : 'null'}`);
+    if (previousTempSensorState === 'NULL' || previousTempSensorState === 'UNDEF') {
+      logger.debug('previousTempSensorState is NULL or UNDEF, using newTempSensorState.');
+      previousTempSensorState = newTempSensorState;
+    }
 
-    const newRawTemp = rawTempItem.state;
-    const newRawTempTimestamp = rawTempItem.lastStateUpdateTimestamp;
-    logger.debug(`new raw CT temp is: ${newRawTemp}`);
-    logger.debug(`new raw CT temp timestamp is: ${newRawTempTimestamp ? formatEpochToTime(newRawTempTimestamp.toEpochSecond()) : 'null'}`);
+    // get previous temp Ambient Used from persistence
+    const ambientTempItem = items.getItem('CT_ThermostatTemperatureAmbient');
+    let previousAmbientTempState = ambientTempItem.persistence.previousState().state;
+    const previousAmbientTempSateTimestamp = ambientTempItem.persistence.previousState().timestamp;
+    if (previousAmbientTempState !== null && previousAmbientTempState !== 'NULL' && previousAmbientTempState !== 'UNDEF') {
+      previousAmbientTempState = parseFloat(previousAmbientTempState).toFixed(1);
+    }
+    logger.debug(`previousAmbientTempState: ${previousAmbientTempState}, ${previousAmbientTempSateTimestamp ? formatEpochToTime(previousAmbientTempSateTimestamp.toEpochSecond()) : 'null'}`);
+    if (previousAmbientTempState === 'NULL' || previousAmbientTempState === 'UNDEF') {
+      logger.debug('previousAmbientTempState is NULL or UNDEF, using current ambientTempItem.');
+      previousAmbientTempState = ambientTempItem.state;
+    }
 
-    if (newRawTemp === 'NULL' || newRawTemp === 'UNDEF') {
-      logger.warn('CT_ThermostatTemperatureAmbient_raw state is NULL or UNDEF, skipping smoothing.');
+    // currentAmbientTempState in use temp
+    let currentAmbientTempState = items.getItem('CT_ThermostatTemperatureAmbient').state;
+    if (currentAmbientTempState !== 'NULL' && currentAmbientTempState !== 'UNDEF') {
+      currentAmbientTempState = parseFloat(currentAmbientTempState).toFixed(1);
+    }
+    const currentAmbientTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').lastStateUpdateTimestamp;
+    logger.debug(`currentAmbientTempState.: ${currentAmbientTempState}, ${currentAmbientTempTimestamp ? formatEpochToTime(currentAmbientTempTimestamp.toEpochSecond()) : 'null'}`);
+
+    // newTempSensorState and timestamp from persistence
+    logger.debug(`newTempSensorState......: ${newTempSensorState}, ${newTempSensorStateTimestamp ? formatEpochToTime(newTempSensorStateTimestamp.toEpochSecond()) : 'null'}`);
+    if (newTempSensorState === 'NULL' || newTempSensorState === 'UNDEF') {
+      logger.warn('newTempSensorState is NULL or UNDEF, skipping smoothing.');
       return;
     }
-
-    if (previousRawTemp === 'NULL' || previousRawTemp === 'UNDEF') {
-      logger.debug('Previous raw temp is NULL or UNDEF, using current raw temp.');
-      previousRawTemp = newRawTemp;
-    }
-
-    // save old 'previous' temp
-    const prevTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-    const prevTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').persistence.lastUpdate();
-    logger.debug(`previous USED CT temp is: ${prevTemp}`);
-    logger.debug(`previous USED CT temp timestamp is: ${prevTempTimestamp ? formatEpochToTime(prevTempTimestamp.toEpochSecond()) : 'null'}`);
 
     let preciseTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_precision').state);
 
     // if preciseTemp is null set to rawTemp
     if (items.getItem('CT_ThermostatTemperatureAmbient_precision').state === 'NULL') {
-      preciseTemp = newRawTemp;
+      preciseTemp = newTempSensorState;
       logger.error(`setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
     }
-    // logger.debug(`..previous precision temp is: ${preciseTemp}`);
 
-    // const newPreciseTemp = calcNewTemp(preciseTemp, newRawTemp);
     const decimalPlaces = 1;
 
     // Convert timestamps to epoch seconds for calculation
-    const prevTime = prevTempTimestamp ? prevTempTimestamp.toEpochSecond() : 0;
-    const prevTimeString = prevTempTimestamp ? formatEpochToTime(prevTime) : 'null';
-    const rawTime = newRawTempTimestamp ? newRawTempTimestamp.toEpochSecond() : 0;
-    const rawTimeString = newRawTempTimestamp ? formatEpochToTime(rawTime) : 'null';
-    const previousRawTempTimestampEpoch = previousRawTempTimestamp ? previousRawTempTimestamp.toEpochSecond() : 0;
-    logger.debug(`prevTime: ${prevTimeString}, rawTime: ${rawTimeString}\n`);
+    const currentAmbientTempTimestampEpoch = currentAmbientTempTimestamp ? currentAmbientTempTimestamp.toEpochSecond() : 0;
+    const newTempSensorStateTimestampEpoch = newTempSensorStateTimestamp ? newTempSensorStateTimestamp.toEpochSecond() : 0;
 
-    // calculate various smoothing methods for analysis
-    let temp0 = calculateLimitRateOfChange(previousRawTemp, previousRawTempTimestampEpoch, newRawTemp, rawTime);
+    // calculate
+    let temp0 = calculateLimitRateOfChange(currentAmbientTempState, currentAmbientTempTimestampEpoch, newTempSensorState, newTempSensorStateTimestampEpoch);
+    // let temp0 = calculateLimitRateOfChange(previousAmbientTempState, previousAmbientTempSateTimestamp.toEpochSecond(), newTempSensorState, newTempSensorStateTimestampEpoch);
+
     temp0 = Number(temp0).toFixed(decimalPlaces);
     logger.debug(`temp0..calculated currentReadingGradient temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
 
-    // let temp1 = calcMedian(newRawTemp, 3, 'temp1');
-    // temp1 = Number(temp1).toFixed(decimalPlaces);
-    // // logger.debug(`temp1..calculated median temp1: ${temp1}`);
-    // items.getItem('temp1').postUpdate(temp1);
-
-    // let temp2 = calcAverage(newRawTemp, 2, 'temp2');
-    // temp2 = Number(temp2).toFixed(decimalPlaces);
-    // logger.debug(`temp2..calculated average temp2: ${temp2}`);
-    // items.getItem('temp2').postUpdate(temp2);
-
-    // let temp3 = calcAverage(newRawTemp, 3, 'temp3');
-    // temp3 = Number(temp3).toFixed(decimalPlaces);
-    // // logger.debug(`temp3..calculated average temp3: ${temp3}`);
-    // items.getItem('temp3').postUpdate(temp3);
-
-    // let temp4 = calcAverage(newRawTemp, 4, 'temp4');
-    // temp4 = Number(temp4).toFixed(decimalPlaces);
-    // // logger.debug(`temp4..calculated average temp4: ${temp4}`);
-    // items.getItem('temp4').postUpdate(temp4);
-
-    // let temp5 = calcAverage(newRawTemp, 5, 'temp5');
-    // temp5 = Number(temp5).toFixed(decimalPlaces);
-    // // logger.debug(`temp5..calculated average temp5: ${temp5}`);
-    // items.getItem('temp5').postUpdate(temp5);
-
-    // let temp6 = calcAverage(newRawTemp, 6, 'temp6');
-    // temp6 = Number(temp6).toFixed(decimalPlaces);
-    // // logger.debug(`temp6..calculated average temp6: ${temp6}`);
-    // items.getItem('temp6').postUpdate(temp6);
-
-    // // Equivalent to smoothCTTemperature (0.6 on prev is 0.4 on current)
-    // let temp7 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp7');
-    // temp7 = Number(temp7).toFixed(decimalPlaces);
-    // // logger.debug(`temp7..smoothCTTemperature temp7: ${temp7}`);
-    // items.getItem('temp7').postUpdate(temp7);
-
-    // let temp8 = calcAverage(newRawTemp, 8, 'temp8');
-    // temp8 = Number(temp8).toFixed(decimalPlaces);
-    // // logger.debug(`temp8..calculated average temp8: ${temp8}`);
-    // items.getItem('temp8').postUpdate(temp8);
-
-    // let temp9 = calcWeightedEMA(prevTemp, newRawTemp, 'temp9');
-    // temp9 = Number(temp9).toFixed(decimalPlaces);
-    // // logger.debug(`temp9..calculated average temp9: ${temp9}`);
-    // items.getItem('temp9').postUpdate(temp9);
-
-    // let temp10 = calcStandardEMA(prevTemp, newRawTemp, 0.4, 'temp10');
-    // temp10 = Number(temp10).toFixed(decimalPlaces);
-    // // logger.debug(`temp10..calculated standard EMA temp10: ${temp10}`);
-    // items.getItem('temp10').postUpdate(temp10);
-
-    const newPreciseTemp = temp0;
-
-    // const newPreciseTemp = calcStandardEMA(prevTemp, rawTemp, 0.9);
-
     // to 1 decimalPlaces for display and rules etc
-    const workingTemp = Number(newPreciseTemp).toFixed(1);
+    const workingTemp = Number(temp0).toFixed(1);
     // if workingTemp is NaN then log error and return
     if (Number.isNaN(parseFloat(workingTemp))) {
-      logger.error(`calculated workingTemp is NaN: ${workingTemp}, rawTemp: ${newRawTemp}, preciseTemp: ${preciseTemp}, newPreciseTemp: ${newPreciseTemp}`);
+      logger.error(`calculated workingTemp is NaN: ${workingTemp}, rawTemp: ${newTempSensorState}, preciseTemp: ${preciseTemp}`);
       return;
     }
-    items.getItem('CT_ThermostatTemperatureAmbient').sendCommand(workingTemp);
-    items.getItem('FH_ThermostatTemperatureAmbient').sendCommand(workingTemp);
-    logger.debug(`writing new ct temp 1decimalPlaces temp CT and FH ambient: ${workingTemp}`);
 
-    // store as precise 3decimalPlaces value
-    items.getItem('CT_ThermostatTemperatureAmbient_precision').sendCommand(newPreciseTemp);
-    logger.debug(`writing new precision 3decimalPlaces temp too CT_ThermostatTemperatureAmbient_precision: ${newPreciseTemp}`);
+    items.getItem('CT_ThermostatTemperatureAmbient').postUpdate(workingTemp);
+    items.getItem('FH_ThermostatTemperatureAmbient').postUpdate(workingTemp);
+    logger.debug(`writing new ct temp 1 decimal Places to CT and FH ambient temp: ${workingTemp}`);
 
     // get temp in working item value
     const ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
     logger.debug(`newTemp CT_ThermostatTemperatureAmbient: ${ctTemp}`);
 
-    logger.debug(` new raw temp:${newRawTemp}, prev temp:${prevTemp}, new working Temp:${workingTemp}, new precision temp:${newPreciseTemp}`);
+    logger.debug(`newTempSensorState:${newTempSensorState}, currentAmbientTempState:${currentAmbientTempState}, new workingTemp:${workingTemp}`);
   },
 });
