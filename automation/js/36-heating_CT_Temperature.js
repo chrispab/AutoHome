@@ -174,6 +174,12 @@ function clearSlopeCache(message) {
  * @returns {number} The filtered temperature (either current or previous).
  */
 function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
+  // maximum allowed gradient (degrees per second)
+  const maxAllowedGradient = 0.1 / 80; // 0.1 degree per 80 seconds
+  // number of consecutive too steep readings before accepting newTempVal anyway
+  // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
+  const maxRejectedGradientSamples = 2;
+
   // convert to floats into local variables (do not reassign parameters)
   let oldTempVal = parseFloat(oldTemp);
   let oldTimeVal = oldTime;
@@ -183,11 +189,6 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
 
   logger.debug('..oldTempVal: {}, oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
   logger.debug('..newTempVal: {}, newTimeVal: {}', newTempVal, formatEpochToTime(newTimeVal));
-
-  const maxAllowedGradient = 0.1 / 40; // 0.1 degree per 60 seconds
-  // number of consecutive too steep readings before accepting newTempVal anyway
-  // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
-  const maxRejectedGradientSamples = 2;
 
   if (Number.isNaN(oldTempVal) || Number.isNaN(newTempVal)) {
     logger.warn('..calculateLimitRateOfChange: Invalid inputs. prev: {}, curr: {}', oldTemp, newTemp);
