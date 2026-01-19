@@ -175,9 +175,11 @@ function clearSlopeCache(message) {
  */
 function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   // maximum allowed gradient (degrees per second)
-  const maxAllowedGradient = 0.1 / 80; // 0.1 degree per 80 seconds
+  const maxAllowedGradient = 0.1 / 90; // 0.1 degree per 90 seconds
+
   // number of consecutive too steep readings before accepting newTempVal anyway
   // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
+  // handles genuine rapid temp changes, e.g window opened etc
   const maxRejectedGradientSamples = 2;
 
   // convert to floats into local variables (do not reassign parameters)
@@ -195,10 +197,10 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     return !Number.isNaN(newTempVal) ? newTempVal : oldTempVal;
   }
 
-  // check cache for last accepted oldTempVal to avoid using a spike as previous
+  // check cache for a last accepted oldTempVal to avoid using a spike(last time through) as oldTempVal
   const slopeCache = cache.private.get('slopeCache');
   if (slopeCache && slopeCache.oldTempVal !== null && slopeCache.oldTempVal !== undefined) {
-    logger.debug('..using CACHED oldTempVal: {} instead of spike oldTempVal: {}', slopeCache.oldTempVal, oldTempVal);
+    logger.debug('..using CACHED slopeCache.oldTempVal: {} instead of spike oldTempVal: {}', slopeCache.oldTempVal, oldTempVal);
     logger.debug('..using CACHED oldTimeVal: {} instead of spike oldTimeVal: {}', formatEpochToTime(slopeCache.oldTimeVal), formatEpochToTime(oldTimeVal));
     logger.debug('..had {} consecutive TOO STEEP readings cached', slopeCache.numberReadingsTooSteep);
 
@@ -219,7 +221,11 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   //   logger.debug('..deltaTime is 0, returning oldTempVal: {}', oldTempVal);
   //   return oldTempVal;
   // }
-  const currentReadingGradient = Math.abs(deltaTemp / deltaTime);
+  // if (deltaTemp === 0) {
+  //   logger.debug('..deltaTemp is 0, returning newTempVal: {}', newTempVal);
+  //   return newTempVal;
+  // }
+  const currentReadingGradient = deltaTemp / deltaTime;
   // express currentReadingGradient as degrees per hour
   const currentReadingGradientPerHour = parseFloat((currentReadingGradient * 3600).toFixed(2));
   logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
@@ -228,8 +234,16 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
   logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
 
-  if (currentReadingGradient > maxAllowedGradient) { // gradient greater than threshold
-    numberReadingsTooSteep += 1;
+  if (Math.abs(currentReadingGradient) > maxAllowedGradient) { // gradient greater than threshold
+    // increment counter of too steep readings if curreent gradient is positive, decrement if negative but not below zero
+    if (currentReadingGradient > 0) {
+      numberReadingsTooSteep += 1;
+      logger.debug('..incrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
+    } else {
+      numberReadingsTooSteep -= 1;
+      logger.debug('..decrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
+    }
+    // numberReadingsTooSteep += 1;
     logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning oldTempVal: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, oldTempVal);
     logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
     logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', oldTempVal, formatEpochToTime(oldTimeVal));
@@ -239,15 +253,15 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     cache.private.put('slopeCache', {
       oldTempVal,
       oldTimeVal,
+      currentReadingGradient,
       numberReadingsTooSteep,
     });
 
     // if there have been n consecutive too steep readings, accept the newTempVal anyway
     // implies genuine rapid temp change, e.g window opened etc, not a sensor spike
-    if (numberReadingsTooSteep >= maxRejectedGradientSamples) {
-      logger.debug('..SLOPE TOO STEEP BUT {} consecutive readings, ACCEPTING newTempVal: {} anyway', numberReadingsTooSteep, newTempVal);
-      // reset counter
-      // remove counter, cache
+    if (Math.abs(numberReadingsTooSteep) >= maxRejectedGradientSamples) {
+      logger.debug('..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newTempVal: {} anyway', numberReadingsTooSteep, newTempVal);
+      // remove counter, clear cache
       clearSlopeCache(`..numberReadingsTooSteep ${numberReadingsTooSteep} reset to clear from CACHE`);
       // show message leaving function
       logger.debug('..numberReadingsTooSteep limit. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
@@ -271,7 +285,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     logger.debug('..temperature {} is at or below setpoint {}, heating on', newTempVal, setpoint);
   }
   // show message leaving function
-  logger.debug('..less than threshold. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
+  logger.debug('..less than maxAllowedGradient threshold. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
   return newTempVal;
 }
 
