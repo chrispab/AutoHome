@@ -27,4 +27,4 @@ Switch      DR_Heater_Boost "Dining Room Heater boost" <my_radiator> (gHeaterBoo
 Switch      v_DR_Boost  "Dining Room virtual Heater boost"
 Switch      v_DR_Heater_Boost  "Dining Room virtual Heater boost" (gvHeaterBoosters)
 Number:Time DR_Boost_Countdown "Dining Room_Boost_Countdown"
-Number DR_Boost_Time "DR_Boost_Time"  (gBoost_Time)
+Number DR_Boost_Time "DR_Boost_Time [%.1f %unit%]"  (gBoost_Time)

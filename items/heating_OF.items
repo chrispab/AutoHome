@@ -18,4 +18,4 @@ Switch      v_OF_Boost  "Office virtual Heater boost"
 Switch      v_OF_Heater_Boost  "Office virtual Heater boost" (gvHeaterBoosters)
 
 Number:Time OF_Boost_Countdown "OF_Boost_Countdown"
-Number OF_Boost_Time "OF_Boost_Time"  (gBoost_Time)
+Number OF_Boost_Time "OF_Boost_Time [%.1f %unit%]"  (gBoost_Time)

@@ -17,4 +17,4 @@ Switch      BR_Heater_Boost "Bedroom Heater boost" <my_radiator> (gHeaterBooster
 Switch      v_BR_Boost  "Bedroom virtual Heater boost"
 Switch      v_BR_Heater_Boost  "Bedroom virtual Heater boost" (gvHeaterBoosters)
 Number:Time BR_Boost_Countdown "Bedroom_Boost_Countdown"
-Number BR_Boost_Time "BR_Boost_Time"  (gBoost_Time)
+Number BR_Boost_Time "BR_Boost_Time [%.1f %unit%]"  (gBoost_Time)

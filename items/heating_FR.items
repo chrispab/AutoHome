@@ -20,4 +20,4 @@ Switch      v_FR_Boost  "Front room virtual Heater boost"
 Switch      v_FR_Heater_Boost  "Front room virtual Heater boost" (gvHeaterBoosters)
 
 Number:Time FR_Boost_Countdown "FR_Boost_Countdown"
-Number FR_Boost_Time "FR_Boost_Time"  (gBoost_Time)
+Number FR_Boost_Time "FR_Boost_Time [%.1f %unit%]"  (gBoost_Time)

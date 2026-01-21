@@ -17,4 +17,4 @@ Switch      ER_Heater_Boost "Elsie's Room Heater boost" <my_radiator> (gHeaterBo
 Switch      v_ER_Boost  "Elsie's Room virtual Heater boost"
 Switch      v_ER_Heater_Boost  "Elsie's Room virtual Heater boost" (gvHeaterBoosters)
 Number:Time ER_Boost_Countdown "Elsie's Room_Boost_Countdown"
-Number ER_Boost_Time "ER_Boost_Time"  (gBoost_Time)
+Number ER_Boost_Time "ER_Boost_Time [%.1f %unit%]"  (gBoost_Time)

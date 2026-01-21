@@ -50,4 +50,4 @@ Switch      v_CT_Boost  "Conservatory virtual Heater boost"
 Switch      v_CT_Heater_Boost  "Conservatory virtual Heater boost" (gvHeaterBoosters)
 
 Number:Time CT_Boost_Countdown "CT_Boost_Countdown"
-Number CT_Boost_Time "CT_Boost_Time"  (gBoost_Time)
+Number CT_Boost_Time "CT_Boost_Time [%.1f %unit%]"  (gBoost_Time)

@@ -31,4 +31,4 @@ Switch      v_AT_Boost  "AT virtual Heater boost"
 Switch      v_AT_Heater_Boost  "AT virtual Heater boost" (gvHeaterBoosters)
 
 Number:Time AT_Boost_Countdown "AT_Boost_Countdown"
-Number AT_Boost_Time "AT_Boost_Time"  (gBoost_Time)
+Number AT_Boost_Time "AT_Boost_Time [%.1f %unit%]"  (gBoost_Time)

@@ -35,6 +35,6 @@ Switch      FH_Heater_Boost "FanHeater Heater boost" <my_radiator> (gHeaterBoost
 Switch      v_FH_Boost  "FanHeater virtual Heater boost"
 Switch      v_FH_Heater_Boost  "FanHeater virtual Heater boost" (gvHeaterBoosters)
 Number:Time FH_Boost_Countdown "FanHeater_Boost_Countdown"
-Number FH_Boost_Time "FH_Boost_Time"  (gBoost_Time)
+Number FH_Boost_Time "FH_Boost_Time [%.1f %unit%]"  (gBoost_Time)
 
 

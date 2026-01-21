@@ -27,4 +27,4 @@ Switch      TL_Heater_Boost "Toilet Room Heater boost" <my_radiator> (gHeaterBoo
 Switch      v_TL_Boost  "Toilet Room virtual Heater boost"
 Switch      v_TL_Heater_Boost  "Toilet Heating boost" (gvHeaterBoosters) { ga="Switch" }
 Number:Time TL_Boost_Countdown "Toilet Boost_Countdown"
-Number TL_Boost_Time "TL_Boost_Time"  (gBoost_Time)
+Number TL_Boost_Time "TL_Boost_Time [%.1f %unit%]"  (gBoost_Time)

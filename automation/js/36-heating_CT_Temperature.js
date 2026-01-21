@@ -175,12 +175,12 @@ function clearSlopeCache(message) {
  */
 function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   // maximum allowed gradient (degrees per second)
-  const maxAllowedGradient = 0.1 / 90; // 0.1 degree per 90 seconds
+  const maxAllowedGradient = 0.1 / 70; // 0.1 degree per 90 seconds
 
   // number of consecutive too steep readings before accepting newTempVal anyway
   // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
   // handles genuine rapid temp changes, e.g window opened etc
-  const maxRejectedGradientSamples = 2;
+  const maxRejectedGradientSamples = 3;
 
   // convert to floats into local variables (do not reassign parameters)
   let oldTempVal = parseFloat(oldTemp);
@@ -225,18 +225,18 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   //   logger.debug('..deltaTemp is 0, returning newTempVal: {}', newTempVal);
   //   return newTempVal;
   // }
-  const currentReadingGradient = deltaTemp / deltaTime;
-  // express currentReadingGradient as degrees per hour
-  const currentReadingGradientPerHour = parseFloat((currentReadingGradient * 3600).toFixed(2));
-  logger.debug('..currentReadingGradientPerHour: {}', currentReadingGradientPerHour);
+  const newReadingGradient = deltaTemp / deltaTime;
+  // express newReadingGradient as degrees per hour
+  const newReadingGradientPerHour = parseFloat((newReadingGradient * 3600).toFixed(2));
+  logger.debug('..newReadingGradientPerHour: {}', newReadingGradientPerHour);
 
   // express maxAllowedGradient as degrees per hour for logging
   const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
-  logger.debug('..maxAllowedGradient (degrees/hr): {}', maxAllowedGradientPerHour);
+  logger.debug('..maxAllowedGradient d/hr: {}', maxAllowedGradientPerHour);
 
-  if (Math.abs(currentReadingGradient) > maxAllowedGradient) { // gradient greater than threshold
-    // increment counter of too steep readings if curreent gradient is positive, decrement if negative but not below zero
-    if (currentReadingGradient > 0) {
+  if (Math.abs(newReadingGradient) > maxAllowedGradient) { // gradient greater than threshold
+    // increment counter if curreent gradient is positive, decrement if negative
+    if (newReadingGradient > 0) {
       numberReadingsTooSteep += 1;
       logger.debug('..incrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
     } else {
@@ -244,7 +244,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
       logger.debug('..decrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
     }
     // numberReadingsTooSteep += 1;
-    logger.debug('..SLOPE TOO STEEP. currentReadingGradient-d/h {} >= maxAllowedGradient-d/h {}, returning oldTempVal: {} (spike rejected)', currentReadingGradientPerHour, maxAllowedGradientPerHour, oldTempVal);
+    logger.debug('..SLOPE TOO STEEP. newReadingGradientPerHour {} >= maxAllowedGradientPerHour {}, returning oldTempVal: {} (spike rejected)', newReadingGradientPerHour, maxAllowedGradientPerHour, oldTempVal);
     logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
     logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', oldTempVal, formatEpochToTime(oldTimeVal));
     // an ignored spike must also be not used as previous for next calc
@@ -253,7 +253,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     cache.private.put('slopeCache', {
       oldTempVal,
       oldTimeVal,
-      currentReadingGradient,
+      newReadingGradient,
       numberReadingsTooSteep,
     });
 
@@ -274,7 +274,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     return oldTempVal;
   }
   // else less than threshold
-  logger.debug('..SLOPE ACCEPTABLE currentReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newTempVal: {}', currentReadingGradientPerHour, maxAllowedGradientPerHour, newTempVal);
+  logger.debug('..SLOPE ACCEPTABLE newReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newTempVal: {}', newReadingGradientPerHour, maxAllowedGradientPerHour, newTempVal);
   clearSlopeCache('..resetting slopeCache in CACHE');
 
   // if the temperature is above the conservatory setpoint show a message indicating heating off
@@ -294,10 +294,10 @@ rules.JSRule({
   description: 'smooth out CT temperature readings',
   triggers: [triggers.ItemStateUpdateTrigger('CT_Temperature_sensor')],
   execute: (event) => {
-    logger.debug('------------------------------------------');
-    logger.debug('>NEW CT Temp Sensor: smoothing ct sensor temp reading.........');
-    logger.debug(`Event: ${JSON.stringify(event)}`);
-    logger.debug('------------------------------------------');
+    // logger.debug('------------------------------------------');
+    // logger.debug('>NEW CT Temp Sensor: smoothing ct sensor temp reading.........');
+    // logger.debug(`Event: ${JSON.stringify(event)}`);
+    // logger.debug('------------------------------------------');
 
     // get new temp sensor reading and timestamp
     const tempSensorItem = items.getItem('CT_Temperature_sensor');
@@ -366,7 +366,7 @@ rules.JSRule({
     // let temp0 = calculateLimitRateOfChange(previousAmbientTempState, previousAmbientTempSateTimestamp.toEpochSecond(), newTempSensorState, newTempSensorStateTimestampEpoch);
 
     temp0 = Number(temp0).toFixed(decimalPlaces);
-    logger.debug(`temp0..calculated currentReadingGradient temp0: ${temp0}\n`);
+    logger.debug(`temp0..calculated newReadingGradient temp0: ${temp0}\n`);
     items.getItem('temp0').postUpdate(temp0);
 
     // to 1 decimalPlaces for display and rules etc
