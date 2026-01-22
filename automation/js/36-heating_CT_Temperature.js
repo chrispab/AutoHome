@@ -159,7 +159,7 @@ function formatEpochToTime(epochSeconds) {
  * @param {string} message - The message to log.
  */
 function clearSlopeCache(message) {
-  cache.private.remove('slopeCache');
+  cache.private.remove('preSpikeVals');
   logger.debug(`.${message}`);
 }
 
@@ -175,7 +175,7 @@ function clearSlopeCache(message) {
  */
 function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   // maximum allowed gradient (degrees per second)
-  const maxAllowedGradient = 0.1 / 70; // 0.1 degree per 90 seconds
+  const maxAllowedGradient = 0.1 / 60; // 0.1 degree per 90 seconds
 
   // number of consecutive too steep readings before accepting newTempVal anyway
   // e.g accept new temp if this many previos readings were rejected, accept n+1 reading
@@ -187,7 +187,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   let oldTimeVal = oldTime;
   const newTempVal = parseFloat(newTemp);
   const newTimeVal = newTime;
-  let numberReadingsTooSteep = 0;
+  let rejectedGradientReadings = 0;
 
   logger.debug('..oldTempVal: {}, oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
   logger.debug('..newTempVal: {}, newTimeVal: {}', newTempVal, formatEpochToTime(newTimeVal));
@@ -198,19 +198,19 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   }
 
   // check cache for a last accepted oldTempVal to avoid using a spike(last time through) as oldTempVal
-  const slopeCache = cache.private.get('slopeCache');
-  if (slopeCache && slopeCache.oldTempVal !== null && slopeCache.oldTempVal !== undefined) {
-    logger.debug('..using CACHED slopeCache.oldTempVal: {} instead of spike oldTempVal: {}', slopeCache.oldTempVal, oldTempVal);
-    logger.debug('..using CACHED oldTimeVal: {} instead of spike oldTimeVal: {}', formatEpochToTime(slopeCache.oldTimeVal), formatEpochToTime(oldTimeVal));
-    logger.debug('..had {} consecutive TOO STEEP readings cached', slopeCache.numberReadingsTooSteep);
+  const preSpikeVals = cache.private.get('preSpikeVals');
+  if (preSpikeVals && preSpikeVals.lastGoodTemp !== null && preSpikeVals.lastGoodTemp !== undefined) {
+    logger.debug('..using CACHED preSpikeVals.lastGoodTemp: {} instead of spike oldTempVal: {}', preSpikeVals.lastGoodTemp, oldTempVal);
+    logger.debug('..using CACHED preSpikeVals.lastGoodTempTimestamp: {} instead of spike oldTimeVal: {}', formatEpochToTime(preSpikeVals.lastGoodTempTimestamp), formatEpochToTime(oldTimeVal));
+    logger.debug('..had {} consecutive preSpikeVals.rejectedGradientReadings in CACHE', preSpikeVals.rejectedGradientReadings);
 
-    oldTempVal = slopeCache.oldTempVal;
-    oldTimeVal = slopeCache.oldTimeVal;
-    numberReadingsTooSteep = slopeCache.numberReadingsTooSteep || 0;
+    oldTempVal = preSpikeVals.lastGoodTemp;
+    oldTimeVal = preSpikeVals.lastGoodTempTimestamp;
+    rejectedGradientReadings = preSpikeVals.rejectedGradientReadings || 0;
     // clear cache now used
-    clearSlopeCache('..cleared slopeCache after use');
+    clearSlopeCache('..removed preSpikeVals after use from CACHE');
   } else {
-    logger.debug('..no slopeCache in CACHE, using passed oldTempVal: {} and oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
+    logger.debug('..no preSpikeVals in CACHE, using passed oldTempVal: {} and oldTimeVal: {}', oldTempVal, formatEpochToTime(oldTimeVal));
   }
 
   const deltaTemp = parseFloat((newTempVal - oldTempVal).toFixed(2));
@@ -232,39 +232,39 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
 
   // express maxAllowedGradient as degrees per hour for logging
   const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
-  logger.debug('..maxAllowedGradient d/hr: {}', maxAllowedGradientPerHour);
+  logger.debug('..maxAllowedGradientPerHour: {}', maxAllowedGradientPerHour);
 
   if (Math.abs(newReadingGradient) > maxAllowedGradient) { // gradient greater than threshold
     // increment counter if curreent gradient is positive, decrement if negative
     if (newReadingGradient > 0) {
-      numberReadingsTooSteep += 1;
-      logger.debug('..incrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
+      rejectedGradientReadings += 1;
+      logger.debug('..incrementing rejectedGradientReadings to {}', rejectedGradientReadings);
     } else {
-      numberReadingsTooSteep -= 1;
-      logger.debug('..decrementing numberReadingsTooSteep to {}', numberReadingsTooSteep);
+      rejectedGradientReadings -= 1;
+      logger.debug('..decrementing rejectedGradientReadings to {}', rejectedGradientReadings);
     }
-    // numberReadingsTooSteep += 1;
+    // rejectedGradientReadings += 1;
     logger.debug('..SLOPE TOO STEEP. newReadingGradientPerHour {} >= maxAllowedGradientPerHour {}, returning oldTempVal: {} (spike rejected)', newReadingGradientPerHour, maxAllowedGradientPerHour, oldTempVal);
-    logger.debug('..storing slope data in CACHE. Steep readings count: {}', numberReadingsTooSteep);
-    logger.debug('..storing slopePreviousTemp {} and slopePreviousTime {} in CACHE to avoid using spike as previous for next reading', oldTempVal, formatEpochToTime(oldTimeVal));
+    logger.debug('..storing preSpikeVals in CACHE. Steep readings count: {}', rejectedGradientReadings);
+    logger.debug('..storing preSpikeVals.lastGoodTemp {} and preSpikeVals.lastGoodTempTimestamp {} in CACHE to avoid using spike as previous for next reading', oldTempVal, formatEpochToTime(oldTimeVal));
     // an ignored spike must also be not used as previous for next calc
     // set and store oldTempVal for next calc
     // also store timestamp of oldTempVal
-    cache.private.put('slopeCache', {
-      oldTempVal,
-      oldTimeVal,
-      newReadingGradient,
-      numberReadingsTooSteep,
+    cache.private.put('preSpikeVals', {
+      lastGoodTemp: oldTempVal,
+      lastGoodTempTimestamp: oldTimeVal,
+      lastGoodTempGradient: newReadingGradient,
+      rejectedGradientReadings,
     });
 
     // if there have been n consecutive too steep readings, accept the newTempVal anyway
     // implies genuine rapid temp change, e.g window opened etc, not a sensor spike
-    if (Math.abs(numberReadingsTooSteep) >= maxRejectedGradientSamples) {
-      logger.debug('..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newTempVal: {} anyway', numberReadingsTooSteep, newTempVal);
+    if (Math.abs(rejectedGradientReadings) >= maxRejectedGradientSamples) {
+      logger.debug('..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newTempVal: {} anyway', rejectedGradientReadings, newTempVal);
       // remove counter, clear cache
-      clearSlopeCache(`..numberReadingsTooSteep ${numberReadingsTooSteep} reset to clear from CACHE`);
+      clearSlopeCache(`..rejectedGradientReadings ${rejectedGradientReadings} removed from CACHE`);
       // show message leaving function
-      logger.debug('..numberReadingsTooSteep limit. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
+      logger.debug('..rejectedGradientReadings limit. leaving calculateLimitRateOfChange, returning newTempVal: {}', newTempVal);
 
       return newTempVal;
     }
@@ -275,7 +275,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
   }
   // else less than threshold
   logger.debug('..SLOPE ACCEPTABLE newReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newTempVal: {}', newReadingGradientPerHour, maxAllowedGradientPerHour, newTempVal);
-  clearSlopeCache('..resetting slopeCache in CACHE');
+  clearSlopeCache('..removed preSpikeVals from CACHE');
 
   // if the temperature is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
