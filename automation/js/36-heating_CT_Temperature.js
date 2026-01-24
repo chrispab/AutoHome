@@ -197,7 +197,7 @@ function calculateLimitRateOfChange(oldTemp, oldTime, newTemp, newTime) {
     return !Number.isNaN(newTempVal) ? newTempVal : oldTempVal;
   }
 
-  // check cache for a last accepted oldTempVal to avoid using a spike(last time through) as oldTempVal
+  // check cache for a lastGoodTemp to avoid using a spike(last time through) as oldTempVal
   const preSpikeVals = cache.private.get('preSpikeVals');
   if (preSpikeVals && preSpikeVals.lastGoodTemp !== null && preSpikeVals.lastGoodTemp !== undefined) {
     logger.debug('..using CACHED preSpikeVals.lastGoodTemp: {} instead of spike oldTempVal: {}', preSpikeVals.lastGoodTemp, oldTempVal);

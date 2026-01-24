@@ -1,7 +1,7 @@
 // Switch       TAPO_SOCKET      "socket"                { channel="tapocontrol:P100:myTapoBridge:mySocket:actuator#output" }
 
-Switch       TAPO_510_bulb      "toilet light"   (gAllPIRControlledLights)     ["Switch","Light"]          { channel="tapocontrol:L510:tapo_bridge:whiteBulb:actuator#output" }
-Switch toilet_light_overridePIR "toilet_light_overridePIR" (gKT_WiFiLightsPower) ["override_PIR"]
+Switch       TAPO_510_bulb_power      "toilet light"   (gAllPIRControlledLights)     ["Switch","Light"]          { channel="tapocontrol:L510:tapo_bridge:whiteBulb:actuator#output" }
+Switch TAPO_510_bulb_overridePIR "toilet_light_overridePIR" (gKT_WiFiLightsPower) ["override_PIR"]
 
 // tapocontrol:L510:myTapoBridge:whiteBulb
 
