@@ -21,7 +21,7 @@ rules.JSRule({
     triggers.ItemStateChangeTrigger('Zone3LightStatusAlt', 'OFF', 'ON'),
   ],
   execute: (data) => {
-    alerting.flashItemAlert('KT_light_1_Power', 5, 400);
+    alerting.flashItemAlert('workLightsPowerSocket', 3, 400);
   },
 });
 
@@ -33,7 +33,7 @@ rules.JSRule({
     logger.warn('Zone 1 went Offline');
     alerting.sendEmail('cbattisson@gmail.com', 'Zone 1 went offline');
 
-    alerting.flashItemAlert('KT_light_1_Power', 5, 400);
+    alerting.flashItemAlert('workLightsPowerSocket', 1, 400);
 
     // if (items.getItem('tableLamp1').state === 'ON') {
     //   items.getItem('tableLamp1').sendCommand('OFF');

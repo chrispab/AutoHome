@@ -5,6 +5,7 @@
  */
 /* eslint-disable no-undef */
 /* eslint-disable max-len */
+
 const {
   log, items, rules, triggers, actions,
 } = require('openhab');

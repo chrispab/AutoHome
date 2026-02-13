@@ -61,7 +61,7 @@ exports.toggleItem = function (itemNameStr, nToggles, durationMs, logger) {
 
   theItem = items.getItem(itemNameStr);
 
-  currentState = items.getItem('KT_light_1_Power').state;
+  // currentState = items.getItem('KT_light_1_Power').state;
 
   for (let index = 0; index < nToggles; index++) {
     // timersOff[index] = ''

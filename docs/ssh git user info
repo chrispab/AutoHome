@@ -12,21 +12,17 @@ ssh-copy-id -i ~/.ssh/<public_key_file> <user>@<remote machine>
 ssh-copy-id -i ~/.ssh/id_ed25519.pub openhabian@openhabian2.local
 
 
+
+
+add to github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
 
 $ cat ~/.ssh/id_ed25519.pub
 # Then select and copy the contents of the id_ed25519.pub file
 # displayed in the terminal to your clipboard
 
-add to github
-
-
-
-
-
-
-
 https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+
 
 
 git config --global user.email "cbattisson@gmail.com"

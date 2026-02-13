@@ -61,7 +61,7 @@ const lightConfigs = [
   {
     name: 'toilet_Light',
     location: 'Toilet Area',
-    lightControlItemName: 'TAPO_510_bulb',
+    lightControlItemName: 'TAPO_510_bulb_power',
     lightOffDelayTimerDurationItemName: 'toilet_light_offDelayTimerDurationItem',
     defaultLightOffDelayTimerDurationSecs: 5,
   },
