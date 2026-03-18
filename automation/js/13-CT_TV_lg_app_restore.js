@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const {
   log, items, rules, actions, time, triggers,
 } = require('openhab');
@@ -66,7 +67,7 @@ rules.JSRule({
   },
 });
 
-const restoreTimer = 20; // Seconds to wait before restoring the app
+const restoreTimer = 10; // Seconds to wait before restoring the app
 
 // Rule 2: Restore Last App
 rules.JSRule({
