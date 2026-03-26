@@ -164,7 +164,7 @@ function getLimitedRateOfChangeReading(oldData, newData) {
 rules.JSRule({
   name: 'smooth out soil moisture readings',
   description: 'smooth out soil moisture readings',
-  triggers: [triggers.ItemStateUpdateTrigger('Soil_Moisture_Sensor')],
+  triggers: [triggers.ItemStateUpdateTrigger('sensor_method0_single_raw')],
   execute: () => {
     // logger.debug('------------------------------------------');
     // logger.debug('>NEW CT Temp Sensor: smoothing ct sensor reading reading.........');
@@ -172,47 +172,48 @@ rules.JSRule({
     // logger.debug('------------------------------------------');
 
     // get new reading sensor reading and timestamp
-    const tempSensorItem = items.getItem('CT_Temperature_sensor');
-    let newReadingSensorState = tempSensorItem.state;
+    const sensorItem = items.getItem('sensor_method0_single_raw');
+    let newReadingSensorState = sensorItem.state;
     if (newReadingSensorState !== 'NULL' && newReadingSensorState !== 'UNDEF') {
       newReadingSensorState = parseFloat(newReadingSensorState).toFixed(1);
     }
-    const newReadingSensorStateTimestamp = tempSensorItem.lastStateUpdateTimestamp;
+    const newReadingSensorStateTimestamp = sensorItem.lastStateUpdateTimestamp;
+    // now have new reading data
 
-    // get previousTempSensorState from persistence
-    let previousTempSensorState = tempSensorItem.persistence.previousState().state;
-    const previousSensorTempSateTimestamp = tempSensorItem.persistence.previousState().timestamp;
-    if (previousTempSensorState !== null && previousTempSensorState !== 'NULL' && previousTempSensorState !== 'UNDEF') {
-      previousTempSensorState = parseFloat(previousTempSensorState).toFixed(1);
-    }
-    logger.debug(`previousTempSensorState.: ${previousTempSensorState}, ${previousSensorTempSateTimestamp ? formatEpochToTime(previousSensorTempSateTimestamp.toEpochSecond()) : 'null'}`);
-    if (previousTempSensorState === 'NULL' || previousTempSensorState === 'UNDEF') {
-      logger.debug('previousTempSensorState is NULL or UNDEF, using newReadingSensorState.');
-      previousTempSensorState = newReadingSensorState;
-    }
+    // // get previousTempSensorState from persistence
+    // let previousTempSensorState = sensorItem.persistence.previousState().state;
+    // const previousSensorTempSateTimestamp = sensorItem.persistence.previousState().timestamp;
+    // if (previousTempSensorState !== null && previousTempSensorState !== 'NULL' && previousTempSensorState !== 'UNDEF') {
+    //   previousTempSensorState = parseFloat(previousTempSensorState).toFixed(1);
+    // }
+    // logger.debug(`previousTempSensorState.: ${previousTempSensorState}, ${previousSensorTempSateTimestamp ? formatEpochToTime(previousSensorTempSateTimestamp.toEpochSecond()) : 'null'}`);
+    // if (previousTempSensorState === 'NULL' || previousTempSensorState === 'UNDEF') {
+    //   logger.debug('previousTempSensorState is NULL or UNDEF, using newReadingSensorState.');
+    //   previousTempSensorState = newReadingSensorState;
+    // }
 
-    // get previous reading Ambient Used from persistence
-    const ambientTempItem = items.getItem('CT_ThermostatTemperatureAmbient');
-    let previousAmbientTempState = ambientTempItem.persistence.previousState().state;
-    const previousAmbientTempSateTimestamp = ambientTempItem.persistence.previousState().timestamp;
-    if (previousAmbientTempState !== null && previousAmbientTempState !== 'NULL' && previousAmbientTempState !== 'UNDEF') {
-      previousAmbientTempState = parseFloat(previousAmbientTempState).toFixed(1);
-    }
-    logger.debug(`previousAmbientTempState: ${previousAmbientTempState}, ${previousAmbientTempSateTimestamp ? formatEpochToTime(previousAmbientTempSateTimestamp.toEpochSecond()) : 'null'}`);
-    if (previousAmbientTempState === 'NULL' || previousAmbientTempState === 'UNDEF') {
-      logger.debug('previousAmbientTempState is NULL or UNDEF, using current ambientTempItem.');
-      previousAmbientTempState = ambientTempItem.state;
-    }
+    // // get previous reading Used from persistence
+    // const ambientTempItem = items.getItem('sensor_method0_single_raw');
+    // let previousAmbientTempState = ambientTempItem.persistence.previousState().state;
+    // const previousAmbientTempSateTimestamp = ambientTempItem.persistence.previousState().timestamp;
+    // if (previousAmbientTempState !== null && previousAmbientTempState !== 'NULL' && previousAmbientTempState !== 'UNDEF') {
+    //   previousAmbientTempState = parseFloat(previousAmbientTempState).toFixed(1);
+    // }
+    // logger.debug(`previousAmbientTempState: ${previousAmbientTempState}, ${previousAmbientTempSateTimestamp ? formatEpochToTime(previousAmbientTempSateTimestamp.toEpochSecond()) : 'null'}`);
+    // if (previousAmbientTempState === 'NULL' || previousAmbientTempState === 'UNDEF') {
+    //   logger.debug('previousAmbientTempState is NULL or UNDEF, using current ambientTempItem.');
+    //   previousAmbientTempState = ambientTempItem.state;
+    // }
 
     // currentAmbientTempState in use reading
-    let currentAmbientTempState = items.getItem('CT_ThermostatTemperatureAmbient').state;
+    let currentAmbientTempState = items.getItem('soil1_moisture_raw_slew_limited').state;
     if (currentAmbientTempState !== 'NULL' && currentAmbientTempState !== 'UNDEF') {
       currentAmbientTempState = parseFloat(currentAmbientTempState).toFixed(1);
     }
     const currentAmbientTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').lastStateUpdateTimestamp;
     logger.debug(`currentAmbientTempState.: ${currentAmbientTempState}, ${currentAmbientTempTimestamp ? formatEpochToTime(currentAmbientTempTimestamp.toEpochSecond()) : 'null'}`);
 
-    // newReadingSensorState and timestamp from persistence
+    // skip smoothing if invalid newReadingSensorState
     logger.debug(`newReadingSensorState......: ${newReadingSensorState}, ${newReadingSensorStateTimestamp ? formatEpochToTime(newReadingSensorStateTimestamp.toEpochSecond()) : 'null'}`);
     if (newReadingSensorState === 'NULL' || newReadingSensorState === 'UNDEF') {
       logger.warn('newReadingSensorState is NULL or UNDEF, skipping smoothing.');
@@ -252,14 +253,14 @@ rules.JSRule({
       return;
     }
 
-    items.getItem('CT_ThermostatTemperatureAmbient').postUpdate(workingTemp);
-    items.getItem('FH_ThermostatTemperatureAmbient').postUpdate(workingTemp);
+    items.getItem('soil1_moisture_raw_slew_limited').postUpdate(workingTemp);
+    // items.getItem('FH_ThermostatTemperatureAmbient').postUpdate(workingTemp);
     logger.debug(`writing new ct reading 1 decimal Places to CT and FH ambient reading: ${workingTemp}`);
 
     // get reading in working item value
-    const ctTemp = items.getItem('CT_ThermostatTemperatureAmbient').state;
-    logger.debug(`newReading CT_ThermostatTemperatureAmbient: ${ctTemp}`);
+    const ctTemp = items.getItem('soil1_moisture_raw_slew_limited').state;
+    logger.debug(`newReading soil1_moisture_raw_slew_limited: ${ctTemp}`);
 
-    logger.debug(`newReadingSensorState:${newReadingSensorState}, currentAmbientTempState:${currentAmbientTempState}, new workingTemp:${workingTemp}`);
+    logger.debug(`newReadingSensorState:${newReadingSensorState}, soil1_moisture_raw_slew_limited:${currentAmbientTempState}, new workingTemp:${workingTemp}`);
   },
 });

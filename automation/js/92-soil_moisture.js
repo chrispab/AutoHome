@@ -77,12 +77,16 @@ rules.JSRule({
 
     items.getItem('Soil1_Moisture_OH_1').postUpdate(moisturePercentage);
     items.getItem('Soil1_Moisture_Percentage_Calculated').postUpdate(moisturePercentage);
+    const soil1_moisture_raw_slew_limited = items.getItem('soil1_moisture_raw_slew_limited').state;
+
     // send calculated moisture percentage via mqtt
     // Get the MQTT Broker Thing actions
     const mqttActions = actions.Things.getActions('mqtt', 'mqtt:broker:MyMQTTBroker'); // FIXME: Replace 'mqtt:broker:mosquitto' with your actual MQTT Broker Thing UID
     if (mqttActions) {
       mqttActions.publishMQTT('openhab/soil_moisture/percentage', moisturePercentage.toString());
       logger.debug(`Soil moisture calculated and published: ${moisturePercentage}%`);
+      mqttActions.publishMQTT('openhab/soil_moisture_raw_slew_limited', soil1_moisture_raw_slew_limited.toString());
+      logger.debug(`soil1_moisture_raw_slew_limited calculated and published: ${soil1_moisture_raw_slew_limited}%`);
     } else {
       logger.error('Could not get MQTT actions. Please check your MQTT Broker Thing UID.');
     }

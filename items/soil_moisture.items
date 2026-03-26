@@ -23,6 +23,7 @@ Number  sensor_method3_batch_average      "sensor_method3_batch_average [%.1f %u
 Number  sensor_method4_batch_moving_average      "sensor_method4_batch_moving_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
 Number  sensor_method5_batch_moving_average_float      "sensor_method5_batch_moving_average_float [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method5_batch_moving_average_float" }
 
+Number soil1_moisture_raw_slew_limited    "soil1_moisture_raw_slew_limited [%.1f %unit%]"
 // Number  Soil1_Moisture_2    "Soil 1 Moisture 2"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
 // Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture3"}
 // Number  Soil1_Moisture_4    "Soil 1 Moisture 4"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture4"}
