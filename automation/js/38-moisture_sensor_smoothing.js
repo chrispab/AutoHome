@@ -7,7 +7,7 @@ const {
   log, items, rules, actions, triggers, cache, time,
 } = require('openhab');
 
-const ruleUID = 'moisture_sensor_smoothing';
+const ruleUID = 'soil1_moisture_sensor_smoothing';
 const logger = log(ruleUID);
 // log:set DEBUG org.openhab.automation.openhab-js.moisture_sensor_smoothing
 // log:set INFO org.openhab.automation.openhab-js.moisture_sensor_smoothing
@@ -31,9 +31,9 @@ function formatEpochToTime(epochSeconds) {
  * Clears the slope cache and logs a debug message.
  * @param {string} message - The message to log.
  */
-function clearSlopeCache(message) {
-  cache.private.remove('preSpikeVals');
-  logger.debug(`.${message}`);
+function clearSlopeCache(cacheTag, message) {
+  cache.private.remove(cacheTag.toString());
+  logger.error(`removing ${cacheTag} from CACHE - .${message}`);
 }
 
 /**
@@ -53,6 +53,7 @@ function getLimitedRateOfChangeReading(oldData, newData) {
   // e.g accept new reading if this many previous readings were rejected, accept n+1 reading
   // handles genuine rapid reading gradient changes
   const maxRejectedGradientSamples = 3;
+  const preSpikeValsCacheTag = `${ruleUID.toString()}.preSpikeVals`;
 
   // convert to floats into local variables (do not reassign parameters)
   let oldReadingVal = parseFloat(oldData.reading);
@@ -65,30 +66,54 @@ function getLimitedRateOfChangeReading(oldData, newData) {
   logger.debug('..newReadingVal: {}, newTimeVal: {}', newReadingVal, formatEpochToTime(newTimeVal));
 
   if (Number.isNaN(oldReadingVal) || Number.isNaN(newReadingVal)) {
-    logger.warn('..getLimitedRateOfChangeReading: Invalid inputs. prev: {}, curr: {}', oldData.reading, newData.reading);
+    logger.warn(
+      '..getLimitedRateOfChangeReading: Invalid inputs. prev: {}, curr: {}',
+      oldData.reading,
+      newData.reading,
+    );
     return !Number.isNaN(newReadingVal) ? newReadingVal : oldReadingVal;
   }
 
   // check cache for a lastGoodReading to avoid using a spike(last time through) as oldReadingVal
-  const preSpikeVals = cache.private.get('preSpikeVals');
+  const preSpikeVals = cache.private.get(preSpikeValsCacheTag);
   if (preSpikeVals && preSpikeVals.lastGoodReading !== null && preSpikeVals.lastGoodReading !== undefined) {
-    logger.debug('..using CACHED preSpikeVals.lastGoodReading: {} instead of spike oldReadingVal: {}', preSpikeVals.lastGoodReading, oldReadingVal);
-    logger.debug('..using CACHED preSpikeVals.lastGoodReadingTimestamp: {} instead of spike oldTimeVal: {}', formatEpochToTime(preSpikeVals.lastGoodReadingTimestamp), formatEpochToTime(oldTimeVal));
-    logger.debug('..had {} consecutive preSpikeVals.rejectedGradientReadings in CACHE', preSpikeVals.rejectedGradientReadings);
+    logger.debug(
+      '..using CACHED preSpikeVals.lastGoodReading: {} instead of spike oldReadingVal: {}',
+      preSpikeVals.lastGoodReading,
+      oldReadingVal,
+    );
+    logger.debug(
+      '..using CACHED preSpikeVals.lastGoodReadingTimestamp: {} instead of spike oldTimeVal: {}',
+      formatEpochToTime(preSpikeVals.lastGoodReadingTimestamp),
+      formatEpochToTime(oldTimeVal),
+    );
+    logger.debug(
+      '..had {} consecutive preSpikeVals.rejectedGradientReadings in CACHE',
+      preSpikeVals.rejectedGradientReadings,
+    );
 
     oldReadingVal = preSpikeVals.lastGoodReading;
     oldTimeVal = preSpikeVals.lastGoodReadingTimestamp;
     rejectedGradientReadings = preSpikeVals.rejectedGradientReadings || 0;
     // clear cache now used
-    clearSlopeCache('..removed preSpikeVals after use from CACHE');
+    clearSlopeCache(preSpikeValsCacheTag, '..removed preSpikeVals after use from CACHE');
   } else {
-    logger.debug('..no preSpikeVals in CACHE, using passed oldReadingVal: {} and oldTimeVal: {}', oldReadingVal, formatEpochToTime(oldTimeVal));
+    logger.debug(
+      '..no preSpikeVals in CACHE, using passed oldReadingVal: {} and oldTimeVal: {}',
+      oldReadingVal,
+      formatEpochToTime(oldTimeVal),
+    );
   }
 
   const deltaReading = parseFloat((newReadingVal - oldReadingVal).toFixed(2));
-  const deltaTime = (newTimeVal - oldTimeVal);
+  const deltaTime = newTimeVal - oldTimeVal;
   logger.debug('..deltaReading = {} ({} - {})', deltaReading, newReadingVal, oldReadingVal);
-  logger.debug('..deltaTime = {} ({} - {})', formatEpochToTime(deltaTime), formatEpochToTime(newTimeVal), formatEpochToTime(oldTimeVal));
+  logger.debug(
+    '..deltaTime = {} ({} - {})',
+    formatEpochToTime(deltaTime),
+    formatEpochToTime(newTimeVal),
+    formatEpochToTime(oldTimeVal),
+  );
   // if (deltaTime === 0) {
   //   logger.debug('..deltaTime is 0, returning oldReadingVal: {}', oldReadingVal);
   //   return oldReadingVal;
@@ -106,7 +131,8 @@ function getLimitedRateOfChangeReading(oldData, newData) {
   const maxAllowedGradientPerHour = parseFloat((maxAllowedGradient * 3600).toFixed(2));
   logger.debug('..maxAllowedGradientPerHour: {}', maxAllowedGradientPerHour);
 
-  if (Math.abs(newReadingGradient) > maxAllowedGradient) { // gradient greater than threshold
+  if (Math.abs(newReadingGradient) > maxAllowedGradient) {
+    // gradient greater than threshold
     // increment counter if curreent gradient is positive, decrement if negative
     if (newReadingGradient > 0) {
       rejectedGradientReadings += 1;
@@ -116,13 +142,22 @@ function getLimitedRateOfChangeReading(oldData, newData) {
       logger.debug('..decrementing rejectedGradientReadings to {}', rejectedGradientReadings);
     }
     // rejectedGradientReadings += 1;
-    logger.debug('..SLOPE TOO STEEP. newReadingGradientPerHour {} >= maxAllowedGradientPerHour {}, returning oldReadingVal: {} (spike rejected)', newReadingGradientPerHour, maxAllowedGradientPerHour, oldReadingVal);
+    logger.debug(
+      '..SLOPE TOO STEEP. newReadingGradientPerHour {} >= maxAllowedGradientPerHour {}, returning oldReadingVal: {} (spike rejected)',
+      newReadingGradientPerHour,
+      maxAllowedGradientPerHour,
+      oldReadingVal,
+    );
     logger.debug('..storing preSpikeVals in CACHE. Steep readings count: {}', rejectedGradientReadings);
-    logger.debug('..storing preSpikeVals.lastGoodReading {} and preSpikeVals.lastGoodReadingTimestamp {} in CACHE to avoid using spike as previous for next reading', oldReadingVal, formatEpochToTime(oldTimeVal));
+    logger.debug(
+      '..storing preSpikeVals.lastGoodReading {} and preSpikeVals.lastGoodReadingTimestamp {} in CACHE to avoid using spike as previous for next reading',
+      oldReadingVal,
+      formatEpochToTime(oldTimeVal),
+    );
     // an ignored spike must also be not used as previous for next calc
     // set and store oldReadingVal for next calc
     // also store timestamp of oldReadingVal
-    cache.private.put('preSpikeVals', {
+    cache.private.put(preSpikeValsCacheTag, {
       lastGoodReading: oldReadingVal,
       lastGoodReadingTimestamp: oldTimeVal,
       lastGoodReadingGradient: newReadingGradient,
@@ -132,22 +167,37 @@ function getLimitedRateOfChangeReading(oldData, newData) {
     // if there have been n consecutive too steep readings, accept the newReadingVal anyway
     // implies genuine rapid reading change, e.g window opened etc, not a sensor spike
     if (Math.abs(rejectedGradientReadings) >= maxRejectedGradientSamples) {
-      logger.debug('..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newReadingVal: {} anyway', rejectedGradientReadings, newReadingVal);
+      logger.debug(
+        '..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newReadingVal: {} anyway',
+        rejectedGradientReadings,
+        newReadingVal,
+      );
       // remove counter, clear cache
-      clearSlopeCache(`..rejectedGradientReadings ${rejectedGradientReadings} removed from CACHE`);
+      clearSlopeCache(preSpikeValsCacheTag, `..rejectedGradientReadings ${rejectedGradientReadings} removed from CACHE`);
       // show message leaving function
-      logger.debug('..rejectedGradientReadings limit. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}', newReadingVal);
+      logger.debug(
+        '..rejectedGradientReadings limit. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}',
+        newReadingVal,
+      );
 
       return newReadingVal;
     }
 
     // show message leaving function
-    logger.debug('..gradient greater than threshold, leaving getLimitedRateOfChangeReading, returning oldReadingVal: {}', oldReadingVal);
+    logger.debug(
+      '..gradient greater than threshold, leaving getLimitedRateOfChangeReading, returning oldReadingVal: {}',
+      oldReadingVal,
+    );
     return oldReadingVal;
   }
   // else less than threshold
-  logger.debug('..SLOPE ACCEPTABLE newReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newReadingVal: {}', newReadingGradientPerHour, maxAllowedGradientPerHour, newReadingVal);
-  clearSlopeCache('..removed preSpikeVals from CACHE');
+  logger.debug(
+    '..SLOPE ACCEPTABLE newReadingGradientPerHour {} < maxAllowedGradientPerHour {}, returning newReadingVal: {}',
+    newReadingGradientPerHour,
+    maxAllowedGradientPerHour,
+    newReadingVal,
+  );
+  clearSlopeCache(preSpikeValsCacheTag, '..removed preSpikeVals from CACHE');
 
   // if the reading is above the conservatory setpoint show a message indicating heating off
   const setpoint = items.getItem('CT_ThermostatTemperatureSetpoint').rawState;
@@ -157,110 +207,82 @@ function getLimitedRateOfChangeReading(oldData, newData) {
     logger.debug('..reading {} is at or below setpoint {}, heating on', newReadingVal, setpoint);
   }
   // show message leaving function
-  logger.debug('..less than maxAllowedGradient threshold. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}', newReadingVal);
+  logger.debug(
+    '..less than maxAllowedGradient threshold. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}',
+    newReadingVal,
+  );
   return newReadingVal;
 }
 
 rules.JSRule({
   name: 'smooth out soil moisture readings',
   description: 'smooth out soil moisture readings',
-  triggers: [triggers.ItemStateUpdateTrigger('sensor_method0_single_raw')],
+  triggers: [triggers.ItemStateUpdateTrigger('soil_moisture_1_rawReading')],
   execute: () => {
-    // logger.debug('------------------------------------------');
-    // logger.debug('>NEW CT Temp Sensor: smoothing ct sensor reading reading.........');
-    // logger.debug(`Event: ${JSON.stringify(event)}`);
-    // logger.debug('------------------------------------------');
-
     // get new reading sensor reading and timestamp
-    const sensorItem = items.getItem('sensor_method0_single_raw');
+    const sensorItem = items.getItem('soil_moisture_1_rawReading');
     let newReadingSensorState = sensorItem.state;
     if (newReadingSensorState !== 'NULL' && newReadingSensorState !== 'UNDEF') {
       newReadingSensorState = parseFloat(newReadingSensorState).toFixed(1);
     }
     const newReadingSensorStateTimestamp = sensorItem.lastStateUpdateTimestamp;
     // now have new reading data
-
-    // // get previousTempSensorState from persistence
-    // let previousTempSensorState = sensorItem.persistence.previousState().state;
-    // const previousSensorTempSateTimestamp = sensorItem.persistence.previousState().timestamp;
-    // if (previousTempSensorState !== null && previousTempSensorState !== 'NULL' && previousTempSensorState !== 'UNDEF') {
-    //   previousTempSensorState = parseFloat(previousTempSensorState).toFixed(1);
-    // }
-    // logger.debug(`previousTempSensorState.: ${previousTempSensorState}, ${previousSensorTempSateTimestamp ? formatEpochToTime(previousSensorTempSateTimestamp.toEpochSecond()) : 'null'}`);
-    // if (previousTempSensorState === 'NULL' || previousTempSensorState === 'UNDEF') {
-    //   logger.debug('previousTempSensorState is NULL or UNDEF, using newReadingSensorState.');
-    //   previousTempSensorState = newReadingSensorState;
-    // }
-
-    // // get previous reading Used from persistence
-    // const ambientTempItem = items.getItem('sensor_method0_single_raw');
-    // let previousAmbientTempState = ambientTempItem.persistence.previousState().state;
-    // const previousAmbientTempSateTimestamp = ambientTempItem.persistence.previousState().timestamp;
-    // if (previousAmbientTempState !== null && previousAmbientTempState !== 'NULL' && previousAmbientTempState !== 'UNDEF') {
-    //   previousAmbientTempState = parseFloat(previousAmbientTempState).toFixed(1);
-    // }
-    // logger.debug(`previousAmbientTempState: ${previousAmbientTempState}, ${previousAmbientTempSateTimestamp ? formatEpochToTime(previousAmbientTempSateTimestamp.toEpochSecond()) : 'null'}`);
-    // if (previousAmbientTempState === 'NULL' || previousAmbientTempState === 'UNDEF') {
-    //   logger.debug('previousAmbientTempState is NULL or UNDEF, using current ambientTempItem.');
-    //   previousAmbientTempState = ambientTempItem.state;
-    // }
-
-    // currentAmbientTempState in use reading
-    let currentAmbientTempState = items.getItem('soil1_moisture_raw_slew_limited').state;
-    if (currentAmbientTempState !== 'NULL' && currentAmbientTempState !== 'UNDEF') {
-      currentAmbientTempState = parseFloat(currentAmbientTempState).toFixed(1);
-    }
-    const currentAmbientTempTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').lastStateUpdateTimestamp;
-    logger.debug(`currentAmbientTempState.: ${currentAmbientTempState}, ${currentAmbientTempTimestamp ? formatEpochToTime(currentAmbientTempTimestamp.toEpochSecond()) : 'null'}`);
-
+    const newReadingSensorStateTimestampEpoch = newReadingSensorStateTimestamp
+      ? newReadingSensorStateTimestamp.toEpochSecond()
+      : 0;
+    const newReadingData = { reading: newReadingSensorState, time: newReadingSensorStateTimestampEpoch };
     // skip smoothing if invalid newReadingSensorState
-    logger.debug(`newReadingSensorState......: ${newReadingSensorState}, ${newReadingSensorStateTimestamp ? formatEpochToTime(newReadingSensorStateTimestamp.toEpochSecond()) : 'null'}`);
+    logger.debug(
+      `newReadingSensorState......: ${newReadingSensorState}, ${newReadingSensorStateTimestamp ? formatEpochToTime(newReadingSensorStateTimestamp.toEpochSecond()) : 'null'}`,
+    );
     if (newReadingSensorState === 'NULL' || newReadingSensorState === 'UNDEF') {
       logger.warn('newReadingSensorState is NULL or UNDEF, skipping smoothing.');
       return;
     }
 
-    let preciseTemp = parseFloat(items.getItem('CT_ThermostatTemperatureAmbient_precision').state);
-
-    // if preciseTemp is null set to rawTemp
-    if (items.getItem('CT_ThermostatTemperatureAmbient_precision').state === 'NULL') {
-      preciseTemp = newReadingSensorState;
-      logger.error(`setup initial value of preciseTemp from rawtemp: ${preciseTemp}`);
+    // currentSensorState in use reading
+    let currentSensorState = items.getItem('soil_moisture_1_raw_slew_limited').state;
+    if (currentSensorState !== 'NULL' && currentSensorState !== 'UNDEF') {
+      currentSensorState = parseFloat(currentSensorState).toFixed(1);
     }
+    const currentSensorStateTimestamp = items.getItem('CT_ThermostatTemperatureAmbient').lastStateUpdateTimestamp;
+    logger.debug(
+      `currentSensorState.: ${currentSensorState}, ${currentSensorStateTimestamp ? formatEpochToTime(currentSensorStateTimestamp.toEpochSecond()) : 'null'}`,
+    );
+    // Convert timestamps to epoch seconds for calculation
+    const currentSensorStateTimestampEpoch = currentSensorStateTimestamp
+      ? currentSensorStateTimestamp.toEpochSecond()
+      : 0;
+    const currentReadingData = { reading: currentSensorState, time: currentSensorStateTimestampEpoch };
 
     const decimalPlaces = 1;
 
-    // Convert timestamps to epoch seconds for calculation
-    const currentAmbientTempTimestampEpoch = currentAmbientTempTimestamp ? currentAmbientTempTimestamp.toEpochSecond() : 0;
-    const newReadingSensorStateTimestampEpoch = newReadingSensorStateTimestamp ? newReadingSensorStateTimestamp.toEpochSecond() : 0;
-
     // calculate
-    let temp0 = getLimitedRateOfChangeReading(
-      { reading: currentAmbientTempState, time: currentAmbientTempTimestampEpoch },
-      { reading: newReadingSensorState, time: newReadingSensorStateTimestampEpoch },
-    );
-    // let temp0 = getLimitedRateOfChangeReading(previousAmbientTempState, previousAmbientTempSateTimestamp.toEpochSecond(), newReadingSensorState, newReadingSensorStateTimestampEpoch);
+    let reading0 = getLimitedRateOfChangeReading(currentReadingData, newReadingData);
 
-    temp0 = Number(temp0).toFixed(decimalPlaces);
-    logger.debug(`temp0..calculated newReadingGradient temp0: ${temp0}\n`);
-    items.getItem('temp0').postUpdate(temp0);
+    reading0 = Number(reading0).toFixed(decimalPlaces);
+    logger.debug(`reading0..calculated newReading reading0: ${reading0}\n`);
+    // items.getItem('reading0').postUpdate(reading0);
 
     // to 1 decimalPlaces for display and rules etc
-    const workingTemp = Number(temp0).toFixed(1);
-    // if workingTemp is NaN then log error and return
-    if (Number.isNaN(parseFloat(workingTemp))) {
-      logger.error(`calculated workingTemp is NaN: ${workingTemp}, rawTemp: ${newReadingSensorState}, preciseTemp: ${preciseTemp}`);
+    const newReading = Number(reading0).toFixed(1);
+    // if newReading is NaN then log error and return
+    if (Number.isNaN(parseFloat(newReading))) {
+      logger.error(
+        `calculated newReading is NaN: ${newReading}, rawTemp: ${newReadingSensorState}`,
+      );
       return;
     }
 
-    items.getItem('soil1_moisture_raw_slew_limited').postUpdate(workingTemp);
-    // items.getItem('FH_ThermostatTemperatureAmbient').postUpdate(workingTemp);
-    logger.debug(`writing new ct reading 1 decimal Places to CT and FH ambient reading: ${workingTemp}`);
+    items.getItem('soil_moisture_1_raw_slew_limited').postUpdate(newReading);
+    logger.debug(`writing new ct reading 1 decimal Places to CT and FH ambient reading: ${newReading}`);
 
     // get reading in working item value
-    const ctTemp = items.getItem('soil1_moisture_raw_slew_limited').state;
-    logger.debug(`newReading soil1_moisture_raw_slew_limited: ${ctTemp}`);
+    const ctTemp = items.getItem('soil_moisture_1_raw_slew_limited').state;
+    logger.debug(`newReading soil_moisture_1_raw_slew_limited: ${ctTemp}`);
 
-    logger.debug(`newReadingSensorState:${newReadingSensorState}, soil1_moisture_raw_slew_limited:${currentAmbientTempState}, new workingTemp:${workingTemp}`);
+    logger.debug(
+      `newReadingSensorState:${newReadingSensorState}, soil_moisture_1_raw_slew_limited:${currentSensorState}, new newReading:${newReading}`,
+    );
   },
 });
