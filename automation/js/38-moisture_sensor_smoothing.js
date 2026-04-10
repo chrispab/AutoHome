@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /**
  * @file 36-heating_CT_Temperature.js
  * @description Smooths raw reading readings for the Conservatory (CT) thermostat using various algorithms
@@ -45,9 +46,9 @@ function clearSlopeCache(cacheTag, message) {
  * @param {object} newData - The current reading object { reading, time }.
  * @returns {number} The filtered reading (either current or previous).
  */
-function getLimitedRateOfChangeReading(oldData, newData) {
+function getLimitedRateOfChangeReading(oldData, newData, maxAllowedGradient) {
   // maximum allowed gradient (units per second)
-  const maxAllowedGradient = 0.1 / 60; // 0.1 unit per 60 seconds
+  // const maxAllowedGradient = 4 / (5 * 60); // 0.1 unit per 60 seconds
 
   // number of consecutive too steep readings before accepting newReadingVal anyway
   // e.g accept new reading if this many previous readings were rejected, accept n+1 reading
@@ -60,7 +61,7 @@ function getLimitedRateOfChangeReading(oldData, newData) {
   let oldTimeVal = oldData.time;
   const newReadingVal = parseFloat(newData.reading);
   const newTimeVal = newData.time;
-  let rejectedGradientReadings = 0;
+  let rejectedGradientReadingsCount = 0;
 
   logger.debug('..oldReadingVal: {}, oldTimeVal: {}', oldReadingVal, formatEpochToTime(oldTimeVal));
   logger.debug('..newReadingVal: {}, newTimeVal: {}', newReadingVal, formatEpochToTime(newTimeVal));
@@ -88,13 +89,13 @@ function getLimitedRateOfChangeReading(oldData, newData) {
       formatEpochToTime(oldTimeVal),
     );
     logger.debug(
-      '..had {} consecutive preSpikeVals.rejectedGradientReadings in CACHE',
-      preSpikeVals.rejectedGradientReadings,
+      '..had {} consecutive preSpikeVals.rejectedGradientReadingsCount in CACHE',
+      preSpikeVals.rejectedGradientReadingsCount,
     );
 
     oldReadingVal = preSpikeVals.lastGoodReading;
     oldTimeVal = preSpikeVals.lastGoodReadingTimestamp;
-    rejectedGradientReadings = preSpikeVals.rejectedGradientReadings || 0;
+    rejectedGradientReadingsCount = preSpikeVals.rejectedGradientReadingsCount || 0;
     // clear cache now used
     clearSlopeCache(preSpikeValsCacheTag, '..removed preSpikeVals after use from CACHE');
   } else {
@@ -135,20 +136,20 @@ function getLimitedRateOfChangeReading(oldData, newData) {
     // gradient greater than threshold
     // increment counter if curreent gradient is positive, decrement if negative
     if (newReadingGradient > 0) {
-      rejectedGradientReadings += 1;
-      logger.debug('..incrementing rejectedGradientReadings to {}', rejectedGradientReadings);
+      rejectedGradientReadingsCount += 1;
+      logger.debug('..incrementing rejectedGradientReadingsCount to {}', rejectedGradientReadingsCount);
     } else {
-      rejectedGradientReadings -= 1;
-      logger.debug('..decrementing rejectedGradientReadings to {}', rejectedGradientReadings);
+      rejectedGradientReadingsCount -= 1;
+      logger.debug('..decrementing rejectedGradientReadingsCount to {}', rejectedGradientReadingsCount);
     }
-    // rejectedGradientReadings += 1;
+    // rejectedGradientReadingsCount += 1;
     logger.debug(
       '..SLOPE TOO STEEP. newReadingGradientPerHour {} >= maxAllowedGradientPerHour {}, returning oldReadingVal: {} (spike rejected)',
       newReadingGradientPerHour,
       maxAllowedGradientPerHour,
       oldReadingVal,
     );
-    logger.debug('..storing preSpikeVals in CACHE. Steep readings count: {}', rejectedGradientReadings);
+    logger.debug('..storing preSpikeVals in CACHE. Steep readings count: {}', rejectedGradientReadingsCount);
     logger.debug(
       '..storing preSpikeVals.lastGoodReading {} and preSpikeVals.lastGoodReadingTimestamp {} in CACHE to avoid using spike as previous for next reading',
       oldReadingVal,
@@ -161,22 +162,22 @@ function getLimitedRateOfChangeReading(oldData, newData) {
       lastGoodReading: oldReadingVal,
       lastGoodReadingTimestamp: oldTimeVal,
       lastGoodReadingGradient: newReadingGradient,
-      rejectedGradientReadings,
+      rejectedGradientReadingsCount,
     });
 
     // if there have been n consecutive too steep readings, accept the newReadingVal anyway
     // implies genuine rapid reading change, e.g window opened etc, not a sensor spike
-    if (Math.abs(rejectedGradientReadings) >= maxRejectedGradientSamples) {
+    if (Math.abs(rejectedGradientReadingsCount) >= maxRejectedGradientSamples) {
       logger.debug(
         '..SLOPE TOO STEEP.. BUT {} consecutive readings, ACCEPTING newReadingVal: {} anyway',
-        rejectedGradientReadings,
+        rejectedGradientReadingsCount,
         newReadingVal,
       );
       // remove counter, clear cache
-      clearSlopeCache(preSpikeValsCacheTag, `..rejectedGradientReadings ${rejectedGradientReadings} removed from CACHE`);
+      clearSlopeCache(preSpikeValsCacheTag, `..rejectedGradientReadingsCount ${rejectedGradientReadingsCount} removed from CACHE`);
       // show message leaving function
       logger.debug(
-        '..rejectedGradientReadings limit. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}',
+        '..rejectedGradientReadingsCount limit. leaving getLimitedRateOfChangeReading, returning newReadingVal: {}',
         newReadingVal,
       );
 
@@ -258,7 +259,8 @@ rules.JSRule({
     const decimalPlaces = 1;
 
     // calculate
-    let reading0 = getLimitedRateOfChangeReading(currentReadingData, newReadingData);
+    const maxAllowedGradient = 4 / (5 * 60);
+    let reading0 = getLimitedRateOfChangeReading(currentReadingData, newReadingData, maxAllowedGradient);
 
     reading0 = Number(reading0).toFixed(decimalPlaces);
     logger.debug(`reading0..calculated newReading reading0: ${reading0}\n`);
@@ -278,8 +280,8 @@ rules.JSRule({
     logger.debug(`writing new ct reading 1 decimal Places to CT and FH ambient reading: ${newReading}`);
 
     // get reading in working item value
-    const ctTemp = items.getItem('soil_moisture_1_raw_slew_limited').state;
-    logger.debug(`newReading soil_moisture_1_raw_slew_limited: ${ctTemp}`);
+    // const ctTemp = items.getItem('soil_moisture_1_raw_slew_limited').state;
+    // logger.debug(`newReading soil_moisture_1_raw_slew_limited: ${ctTemp}`);
 
     logger.debug(
       `newReadingSensorState:${newReadingSensorState}, soil_moisture_1_raw_slew_limited:${currentSensorState}, new newReading:${newReading}`,

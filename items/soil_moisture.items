@@ -1,6 +1,14 @@
+Number Zone1SoilMoistureSensor1ReadingRaw      "Zone1SoilMoistureSensor1ReadingRaw [%.1f %unit%]"     (gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingRaw" }
+Number Zone1SoilMoistureSensor1ReadingMovingAverage      "Zone1SoilMoistureSensor1ReadingMovingAverage [%.1f %unit%]"     (gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingMovingAverage" }
+Number Zone1SoilMoistureSensor1RawSlewLimited    "Zone1SoilMoistureSensor1RawSlewLimited [%.1f %unit%]" (gChart_Minute)
+
+
+
 Number soil_moisture_1_rawReading      "soil_moisture_1_rawReading [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil_1:rawReading" }
 Number soil_moisture_1_raw_slew_limited    "soil_moisture_1_raw_slew_limited [%.1f %unit%]" //(gChart_Minute)
 
+Number soil_moisture_sensor_zone3_rawReading      "soil_moisture_sensor_zone3_rawReading [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil_moisture_sensor_zone3:rawReading" }
+Number soil_moisture_sensor_zone3_raw_slew_limited    "soil_moisture_sensor_zone3_raw_slew_limited [%.1f %unit%]" //(gChart_Minute)
 //used as input to calculatrion of percent moisture
 
 //used to trigger percent moisture calculation rule
@@ -14,25 +22,10 @@ Number  Soil1_Moisture_Percentage_Calculated    "Soil1_Moisture_Percentage_Calcu
 
 Number  sensor_method5_batch_moving_average_float      "sensor_method5_batch_moving_average_float [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil_1:sensor_method5_batch_moving_average_float" }
 
-
 // Number  Soil1_Moisture_Mode    "Soil 1 Moisture mode [%.1f %unit%]" (gMQTT)       { channel="mqtt:topic:soil1:MoistureMode"}
 // Number  Soil1_Moisture_Moving_Average    "Soil 1 Moisture moving average [%.1f %unit%]" (gMQTT)       { channel="mqtt:topic:soil1:MoistureMovingAverage"}
 
-
-// Number  sensor_method1_batch_average      "sensor_method1_batch_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method1_batch_average" }
-// Number  sensor_method2_batch_mode      "sensor_method2_batch_mode [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method2_batch_mode" }
-// Number  sensor_method3_batch_outlier      "sensor_method3_batch_outlier [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_outlier" }
-// Number  sensor_method3_batch_average      "sensor_method3_batch_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method3_batch_average" }
-// Number  sensor_method4_batch_moving_average      "sensor_method4_batch_moving_average [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil1:sensor_method4_batch_moving_average" }
-
-// Number  Soil1_Moisture_2    "Soil 1 Moisture 2"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture2"}
-// Number  Soil1_Moisture_3    "Soil 1 Moisture 3"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture3"}
-// Number  Soil1_Moisture_4    "Soil 1 Moisture 4"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture4"}
-// Number  Soil1_Moisture_5    "Soil 1 Moisture 5"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture5"}
-// Number  Soil1_Moisture_6    "Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
-// Number  Soil1_Moisture_xxx    "xxx Soil 1 Moisture 6"     (gMQTT)       { channel="mqtt:topic:soil1:Moisture6"}
-
-
+Number  soil_moisture_sensor_zone3_percent_moisture    "Soil Moisture sensor zone3 percent moisture [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil_moisture_sensor_zone3_percent_moisture" }
 
 String  Soil1_Reachable     "Soil 1 Moisture reachable" (gMQTT)   { channel = "mqtt:topic:soil_1:Reachable" }
 Switch  Soil1_Moisture_read    "Soil1_Moisture_read"     (gMQTT)       { channel="mqtt:topic:soil_1:triggerRead"}
