@@ -1,7 +1,31 @@
-Number Zone1SoilMoistureSensor1ReadingRaw      "Zone1SoilMoistureSensor1ReadingRaw [%.1f %unit%]"     (gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingRaw" }
-Number Zone1SoilMoistureSensor1ReadingMovingAverage      "Zone1SoilMoistureSensor1ReadingMovingAverage [%.1f %unit%]"     (gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingMovingAverage" }
-Number Zone1SoilMoistureSensor1RawSlewLimited    "Zone1SoilMoistureSensor1RawSlewLimited [%.1f %unit%]" (gChart_Minute)
+Group gSoilMoistureSensors "Soil Moisture Sensors"
 
+Group gZone1SoilMoistureSensor1 "Soil Moisture Sensor 1" (gSoilMoistureSensors)
+Number Zone1SoilMoistureSensor1_ReadingRaw      "Zone1SoilMoistureSensor1_ReadingRaw [%.1f %unit%]"     (gZone1SoilMoistureSensor1, gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingRaw" }
+Number Zone1SoilMoistureSensor1_ReadingMovingAverage      "Zone1SoilMoistureSensor1_ReadingMovingAverage [%.1f %unit%]"     (gZone1SoilMoistureSensor1,gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:ReadingMovingAverage" }
+Number Zone1SoilMoistureSensor1_RawSlewLimited    "Zone1SoilMoistureSensor1_RawSlewLimited [%.1f %unit%]" (gZone1SoilMoistureSensor1,gChart_Minute)
+Number Zone1SoilMoistureSensor1_MoisturePercentage    "Zone1SoilMoistureSensor1_MoisturePercentage [%.1f %unit%]" (gZone1SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone1SoilMoistureSensor1:MoisturePercentage" }
+String Zone1SoilMoistureSensor1_Reachable     "Zone1SoilMoistureSensor1_Reachable" (gZone1SoilMoistureSensor1,gMQTT)   { channel = "mqtt:topic:Zone1SoilMoistureSensor1:Reachable" }
+Switch Zone1SoilMoistureSensor1_Read    "Zone1SoilMoistureSensor1_Read"     (gZone1SoilMoistureSensor1,gMQTT)       { channel="mqtt:topic:Zone1SoilMoistureSensor1:TriggerRead"}
+Number Zone1SoilMoistureSensor1_OHPercentage    "Zone1SoilMoistureSensor1_OH [%.1f %unit%]" (gZone1SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone1SoilMoistureSensor1:MoisturePercentage" }
+
+Group gZone2SoilMoistureSensor1 "gZone2SoilMoistureSensor1" (gSoilMoistureSensors)
+Number Zone2SoilMoistureSensor1_ReadingRaw      "Zone2SoilMoistureSensor1_ReadingRaw [%.1f %unit%]"     (gZone2SoilMoistureSensor1, gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone2SoilMoistureSensor1:ReadingRaw" }
+Number Zone2SoilMoistureSensor1_ReadingMovingAverage      "Zone2SoilMoistureSensor1_ReadingMovingAverage [%.1f %unit%]"     (gZone2SoilMoistureSensor1,gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone2SoilMoistureSensor1:ReadingMovingAverage" }
+Number Zone2SoilMoistureSensor1_RawSlewLimited    "Zone2SoilMoistureSensor1_RawSlewLimited [%.1f %unit%]" (gZone2SoilMoistureSensor1,gChart_Minute)
+Number Zone2SoilMoistureSensor1_MoisturePercentage    "Zone2SoilMoistureSensor1_MoisturePercentage [%.1f %unit%]" (gZone2SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone2SoilMoistureSensor1:MoisturePercentage" }
+String Zone2SoilMoistureSensor1_Reachable     "Zone2SoilMoistureSensor1_Reachable" (gZone2SoilMoistureSensor1,gMQTT)   { channel = "mqtt:topic:Zone2SoilMoistureSensor1:Reachable" }
+Switch Zone2SoilMoistureSensor1_Read    "Zone2SoilMoistureSensor1_Read"     (gZone2SoilMoistureSensor1,gMQTT)       { channel="mqtt:topic:Zone2SoilMoistureSensor1:TriggerRead"}
+Number Zone2SoilMoistureSensor1_OHPercentage    "Zone2SoilMoistureSensor1_OH [%.1f %unit%]" (gZone2SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone2SoilMoistureSensor1:MoisturePercentage" }
+
+Group gZone3SoilMoistureSensor1 "gZone3SoilMoistureSensor1" (gSoilMoistureSensors)
+Number Zone3SoilMoistureSensor1_ReadingRaw      "Zone3SoilMoistureSensor1_ReadingRaw [%.1f %unit%]"     (gZone3SoilMoistureSensor1, gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone3SoilMoistureSensor1:ReadingRaw" }
+Number Zone3SoilMoistureSensor1_ReadingMovingAverage      "Zone3SoilMoistureSensor1_ReadingMovingAverage [%.1f %unit%]"     (gZone3SoilMoistureSensor1,gMQTT,gChart_Minute)       { channel="mqtt:topic:Zone3SoilMoistureSensor1:ReadingMovingAverage" }
+Number Zone3SoilMoistureSensor1_RawSlewLimited    "Zone3SoilMoistureSensor1_RawSlewLimited [%.1f %unit%]" (gZone3SoilMoistureSensor1,gChart_Minute)
+Number Zone3SoilMoistureSensor1_MoisturePercentage    "Zone3SoilMoistureSensor1_MoisturePercentage [%.1f %unit%]" (gZone3SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone3SoilMoistureSensor1:MoisturePercentage" }
+String Zone3SoilMoistureSensor1_Reachable     "Zone3SoilMoistureSensor1_Reachable" (gZone3SoilMoistureSensor1,gMQTT)   { channel = "mqtt:topic:Zone3SoilMoistureSensor1:Reachable" }
+Switch Zone3SoilMoistureSensor1_Read    "Zone3SoilMoistureSensor1_Read"     (gZone3SoilMoistureSensor1,gMQTT)       { channel="mqtt:topic:Zone3SoilMoistureSensor1:TriggerRead" }
+Number Zone3SoilMoistureSensor1_OHPercentage    "Zone3SoilMoistureSensor1_OH [%.1f %unit%]" (gZone3SoilMoistureSensor1,gChart_Minute) { channel="mqtt:topic:Zone3SoilMoistureSensor1:MoisturePercentage" }
 
 
 Number soil_moisture_1_rawReading      "soil_moisture_1_rawReading [%.1f %unit%]"     (gMQTT)       { channel="mqtt:topic:soil_1:rawReading" }

@@ -6,30 +6,26 @@ Thing mqtt:topic:Zone1SoilMoistureSensor1  "MQTT Thing: zone1 Soil Moisture Sens
         Type string : Reachable    [ stateTopic="Zone1/SoilMoistureSensor/1/LWT"  ]
         Type number : ReadingRaw   [ stateTopic="Zone1/SoilMoistureSensor/1/ReadingRaw" ]
         Type number : ReadingMovingAverage  [ stateTopic="Zone1/SoilMoistureSensor/1/ReadingMovingAverage" ]
+        Type number : MoisturePercentage  [ stateTopic="Zone1/SoilMoistureSensor/1/MoisturePercentage" ]
 }
 
-Thing mqtt:topic:soil_1  "MQTT Thing: Soil Moisture Sensor zone3" (mqtt:broker:MyMQTTBroker) @ "Shed"
+//ZONE3 SOIL MOISTURE SENSOR 1
+Thing mqtt:topic:Zone3SoilMoistureSensor1  "MQTT Thing: zone3 Soil Moisture Sensor1 " (mqtt:broker:MyMQTTBroker) @ "Shed"
 {
     Channels:
-        Type switch : triggerRead  [ stateTopic="soil_moisture_sensor_1/read" , commandTopic="soil_moisture_sensor_1/read", on="1", off="0"  ]
-        Type string : Reachable    [ stateTopic="soil_moisture_sensor_1/LWT"  ]
-        // Type number : rssi         [ stateTopic="sonoff_water1/tele/STATE",  transformationPattern="JSONPATH:$.Wifi.RSSI" ]
-        // Type number : Moisture  [ stateTopic="soil1/moisture" ]
-        // Type number : Moisture2  [ stateTopic="soil1/moisture_2" ]
-        // Type number : Moisture3  [ stateTopic="soil1/moisture_3" ]
-        // Type number : Moisture4  [ stateTopic="soil1/moisture_4" ]
-        // Type number : Moisture5  [ stateTopic="soil1/moisture_5" ]
-        // Type number : Moisture6  [ stateTopic="soil1/moisture_6" ]
-
-        // Type number : MoistureRaw  [ stateTopic="soil1/moisture_method3_average" ]
-        // Type number : MoistureMode  [ stateTopic="soil1/moisture_method2_mode" ]
-        // Type number : MoistureMovingAverage  [ stateTopic="soil1/moisture_method4_moving_average" ]
-
-        Type number : rawReading  [ stateTopic="soil_moisture_sensor_1/rawReading" ]
-        Type number : rawReadingx  [ stateTopic="soil_moisture_sensor_zone3/rawReading" ]
-
-        Type number : sensor_method5_batch_moving_average_float  [ stateTopic="soil_moisture_sensor_1/sensor_method5_batch_moving_average_float" ]
-
-
-
+        Type switch : TriggerRead  [ stateTopic="Zone3/SoilMoistureSensor/1/read" , commandTopic="Zone3/SoilMoistureSensor/1/read", on="1", off="0"  ]
+        Type string : Reachable    [ stateTopic="Zone3/SoilMoistureSensor/1/LWT"  ]
+        Type number : ReadingRaw   [ stateTopic="Zone3/SoilMoistureSensor/1/ReadingRaw" ]
+        Type number : ReadingMovingAverage  [ stateTopic="Zone3/SoilMoistureSensor/1/ReadingMovingAverage" ]
+        Type number : MoisturePercentage  [ stateTopic="Zone3/SoilMoistureSensor/1/MoisturePercentage" ]
 }
+
+// Thing mqtt:topic:soil_1  "MQTT Thing: Soil Moisture Sensor zone3" (mqtt:broker:MyMQTTBroker) @ "Shed"
+// {
+//     Channels:
+//         Type switch : triggerRead  [ stateTopic="soil_moisture_sensor_1/read" , commandTopic="soil_moisture_sensor_1/read", on="1", off="0"  ]
+//         Type string : Reachable    [ stateTopic="soil_moisture_sensor_1/LWT"  ]
+//         Type number : rawReading  [ stateTopic="soil_moisture_sensor_1/rawReading" ]
+//         Type number : rawReadingx  [ stateTopic="soil_moisture_sensor_zone3/rawReading" ]
+//         Type number : sensor_method5_batch_moving_average_float  [ stateTopic="soil_moisture_sensor_1/sensor_method5_batch_moving_average_float" ]
+// }
